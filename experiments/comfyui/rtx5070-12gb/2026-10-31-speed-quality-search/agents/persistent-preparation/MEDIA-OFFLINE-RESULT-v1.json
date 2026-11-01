@@ -1,0 +1,49 @@
+{
+  "schema": "q33-persistent-media-offline/v1",
+  "checks": [
+    {
+      "name": "complete_two_requests_accepted",
+      "ok": true
+    },
+    {
+      "name": "reject_cleanup",
+      "ok": true
+    },
+    {
+      "name": "reject_job",
+      "ok": true
+    },
+    {
+      "name": "reject_partial",
+      "ok": true
+    },
+    {
+      "name": "reject_wrong_driver",
+      "ok": true
+    },
+    {
+      "name": "reject_policy",
+      "ok": true
+    },
+    {
+      "name": "smart_source_record_accepted",
+      "ok": true
+    },
+    {
+      "name": "reject_duplicate_prompt",
+      "ok": true
+    },
+    {
+      "name": "reject_same_output",
+      "ok": true
+    },
+    {
+      "name": "relative_artifact_only",
+      "ok": true
+    }
+  ],
+  "completed": 10,
+  "candidate_sha256": "d68861ebcc633881f27179339e4fb678abb318c95a38510db900d9a38eb97ae7",
+  "model_GPU_media_dispatches": 0,
+  "scope": "Synthetic aggregate identity/cleanup and path gate only; no forged real result, no decode run"
+}

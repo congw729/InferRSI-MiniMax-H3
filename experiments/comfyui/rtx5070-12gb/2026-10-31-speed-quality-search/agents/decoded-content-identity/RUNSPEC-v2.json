@@ -1,0 +1,14 @@
+{
+  "schema": "q33-decoded-content-runspec/v2",
+  "backend": "PyAV CPU",
+  "device": "CPU",
+  "model": "none",
+  "scenario": "five previously validated Trim8 clips; streaming complete RGB and PCM identity",
+  "source_freeze_sha256": "af01d8ee988291f82843806448ee4e78a10b8b8f00d1db00735393882455aa3c",
+  "notes_relative_trial": "results/decoded-content-identity-v2-75e21186a4d145cd85243058d42dac86",
+  "timeout_seconds": 60,
+  "network_requests": 0,
+  "media_writes": 0,
+  "inference_performance_claim": "INCONCLUSIVE",
+  "semantic_quality": "not_assessed"
+}

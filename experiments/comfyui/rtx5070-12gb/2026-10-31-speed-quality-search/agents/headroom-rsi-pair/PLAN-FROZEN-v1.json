@@ -1,0 +1,43 @@
+{
+  "schema": "q33-headroom-rsi-warm-plan/v1",
+  "frozen_before_candidate": true,
+  "plane": "infra",
+  "only_runtime_delta": "native --vram-headroom 1.0 to 0.75 GiB; existing controllers/helpers unchanged",
+  "order": [
+    "A",
+    "B",
+    "B",
+    "A"
+  ],
+  "services": 4,
+  "requests_per_service": 2,
+  "seeds": [
+    424242,
+    424243
+  ],
+  "primary_metric": "metrics.warm_second_native_history_seconds",
+  "warm_policy": "First request actually generates/decodes seed424242; retained and full-media validated. Second request uses seed424243, same model/conditioning graph, 8 uncached steps. Each ABBA member starts fresh service.",
+  "candidate_scope": "Dedicated small adapter around unchanged InferRSI run_experiment/existing launch+media helpers; no runtime/IR edits",
+  "max_minutes": 10,
+  "output_exact_SHA_by_seed": {
+    "424242": "9c0ec62b2694f56299a15872e2b4259777dbe91428c7bea4a85a45e15b91d226",
+    "424243": "899f475cf381e417873470707b119c3e5bb5ff65386cb0858f5ab8fa8887c501"
+  },
+  "required_gates": [
+    "True immutable source file manifest before/after every member and real import paths; no fake Git identity",
+    "Both POST accepted exactly once, matching exact recipes/graphs/seeds and actual history endpoints",
+    "Both sampler nodes uncached and progress8/8, observer terminal/exited and per-request timing",
+    "Both full media validation reports, whole file exact hash/bytes, decode-result/summary/execution identity and cleanup",
+    "Every owned service terminal before media/next service; unchanged fresh admission, all running guards/deadlines",
+    "No absent/nonfinite/zero metric silently skipped; stop ABBA after invalid member",
+    "Keep total controller/outer and sampled resource data, separate from warm metric",
+    "No formal acceptance issue/general quality validator: final INCONCLUSIVE even when structured gates complete"
+  ],
+  "light_validation_before_parent": [
+    "Pure extraction valid two sides from actual small result/history/media metadata",
+    "Reject incomplete second request, first media invalid, changed seed/hash, cached or seven-step sampler, failed owned cleanup, bad controller/headroom, missing history endpoint and source drift",
+    "Actual portable --help plus preview validates import origins and frozen source bundle without launching helpers; 0 POST/GPU",
+    "Independent short code review before parent execution"
+  ],
+  "scope_limit": "No model downloads, GPU execution, decoder reruns, IR library edits or artifact overwrite by preparation agent."
+}

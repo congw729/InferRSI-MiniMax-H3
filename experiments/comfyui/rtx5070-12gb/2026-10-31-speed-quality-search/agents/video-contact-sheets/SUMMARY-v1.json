@@ -1,0 +1,46 @@
+{
+  "schema": "q33-contact-sheet-summary/v1",
+  "trial_relative_to_iteration": "results/contact-sheets-toycar-1eae6f2253274ce4a99f8e703efb6117",
+  "result_sha256": "01c5574f38c1a5bf2e332ebba75f0970e6fbaf5ac1e61954c03754f063502377",
+  "execution_sha256": "7865040ef7a7fd48334527b82d7535c64ef88b69cf6fa3d5758130122c863637",
+  "freeze_sha256": "101bc77adb0544dc0007696ccbaed81bb48ba332271615af1424bccc984eb37b",
+  "complete": true,
+  "grids": 6,
+  "all_sources_unchanged": true,
+  "all_decoded_frames73": true,
+  "selected_indices": [
+    0,
+    7,
+    13,
+    20,
+    26,
+    33,
+    39,
+    46,
+    52,
+    59,
+    65,
+    72
+  ],
+  "grid_dimensions": [
+    1536,
+    852
+  ],
+  "versions": {
+    "pyav": "19.0.2",
+    "pillow": "13.0.0"
+  },
+  "worker_seconds": 1.082859899965115,
+  "peak_worker_rss_bytes": 56385536,
+  "torch_imported": false,
+  "model_dispatches": 0,
+  "layout_visual_check": {
+    "profile": "trim-8",
+    "grid_sha256": "465c9756390ae139b23f76d5db5a804aa5fce3736b34878ee8d19af3d36258a9",
+    "readable_frame_time_labels": true,
+    "unscaled_4_by_3_layout": true
+  },
+  "quality_verdict": "INCONCLUSIVE",
+  "audio_listened": false,
+  "full_motion_playback_reviewed": false
+}

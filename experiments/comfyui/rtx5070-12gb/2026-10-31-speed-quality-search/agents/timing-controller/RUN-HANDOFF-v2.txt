@@ -1,0 +1,23 @@
+Q33 计时 controller v2 最小清理修正交接
+
+v2 supersedes v1 for execution only; v1代码/冻结/结果全部保留。
+执行argv、所有profile、graph、asset/conditioning manifest、154 runtime sources、旧resource gates均沿用RUN-HANDOFF-v1.txt，唯一控制器入口改为：
+  C/speed_stage_b_v2.py
+  SHA256 916c8f2e19d9d42d72719e985ee801d9a92e4d43d007eeabb9ec25c52c77d797
+
+修正：
+- finally首先以Event.set非阻塞通知observer退出；
+- 立即Job.close并等待/必要时仅kill已持有的同一proc句柄；
+- 上述回收之后才尝试cleanup日志、join observer和写timing summary。
+- 日志/observer异常不能跳过Job关闭；Job.close异常仍尝试exact child回收并标cleanup_inconclusive。
+- resource streams关闭失败只保存异常类型，不阻止尝试保存最终result；没有删除文件。
+- cleanup事件现为owned_service_cleanup_finished，含start/end perf_counter_ns，不包含随后observer join时间。
+- 计时controller总耗时仍包含最终observer收尾；native prompt时间口径不变。
+
+冻结与窄验证：
+CLEANUP-PLAN-v2.json先于candidate；validate_cleanup_offline_v2.py先于candidate。
+CANDIDATE-FREEZE-v2.json记录新旧controller、observer、补丁、旧freeze和source清单。
+offline-v2-cleanup.stdout.json四场完成：正常、日志抛异常、Job.close抛异常、observer.finish抛异常。
+每场核对stop先于Job.close、Job关闭与exact childwait先于日志/join、owned_exit和close_requested。
+无网络/真实子进程/GPU；未重跑未受影响v1的34项。
+父级仍需独立复核controller-v2-cleanup.patch，再冻结实机命令/来源；本代理没有实际运行模型。

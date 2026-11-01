@@ -1,0 +1,73 @@
+{
+  "schema": "q33-speed-asset-set/v1",
+  "assets": [
+    {
+      "id": "trim-dit",
+      "bytes": 11894623166,
+      "sha256": "748b2bcc9c4b7bf7b23406987b42d4ac40362070c164cf11092482be6a863455",
+      "relative_path": "comfy-trim/models/diffusion_models/fastvideo_fasth3_trim_8step_nvfp4.safetensors",
+      "receipt": {
+        "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/state/transport/assets/trim-dit.receipt.json",
+        "sha256": "bfac58dff244b76e1933696293a6d14cb9edba76f44eab994467c4982e48f0f8",
+        "schema": "q31-asset-receipt/v1"
+      },
+      "transport_plan": {
+        "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/state/transport/assets/trim-dit.json",
+        "sha256": "2469e286a91b603ef0d80598ed55d0db23405d35b85ec1842e9b82ca41616583"
+      },
+      "receipt_relative_path": "comfy-trim/models/diffusion_models/fastvideo_fasth3_trim_8step_nvfp4.safetensors",
+      "alias_source_relative_path": null
+    },
+    {
+      "id": "video-vae",
+      "bytes": 2811065184,
+      "sha256": "52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e",
+      "relative_path": "comfy-trim/models/vae/minimax_h3_video_vae_int8_convrot.safetensors",
+      "receipt": {
+        "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/state/transport/assets/video-vae.receipt.json",
+        "sha256": "10d5e728d94c586c0aa3db2f8b9433df3b3d84105d6fa31a8a4c2e5e513e19d4",
+        "schema": "q31-asset-receipt/v1"
+      },
+      "transport_plan": {
+        "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/state/transport/assets/video-vae.json",
+        "sha256": "2606bfe4a0a25313d8423dfc8486a4e3260eed41a8fbff1678e425fb12d94dc9"
+      },
+      "receipt_relative_path": "comfy-trim/models/vae/minimax_h3_video_vae_int8_convrot.safetensors",
+      "alias_source_relative_path": null
+    },
+    {
+      "id": "audio-vae",
+      "bytes": 605254808,
+      "sha256": "8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48",
+      "relative_path": "comfy-trim/models/vae/minimax_h3_audio_vae_fp32.safetensors",
+      "receipt": {
+        "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/state/transport/assets/audio-vae.receipt.json",
+        "sha256": "f2f8217d2d75c8d8420a12b44e6cb298ce7f2dda52d71296c25f99c39fd28251",
+        "schema": "q31-asset-receipt/v1"
+      },
+      "transport_plan": {
+        "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/state/transport/assets/audio-vae.json",
+        "sha256": "825d5402d4dea3d39be45c436564949944a030268860d5eb029728f30b552a6b"
+      },
+      "receipt_relative_path": "comfy-trim/models/vae/minimax_h3_audio_vae_fp32.safetensors",
+      "alias_source_relative_path": null
+    },
+    {
+      "id": "text-encoder",
+      "bytes": 15687142551,
+      "sha256": "35a88d51044231fe332301d7a62aa81e3f2cba62febeb446e2c1e3e0ef76f2c6",
+      "relative_path": "comfy-trim/models/text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+      "receipt": {
+        "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/state/transport/assets/text-encoder.receipt.json",
+        "sha256": "02a963018053d8435937ef4a5ae980c4ea4fedb79d6461856bd4547af3d19eb5",
+        "schema": "q31-asset-receipt/v1"
+      },
+      "transport_plan": {
+        "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/state/transport/assets/text-encoder.json",
+        "sha256": "2461f4323834f844722921dfd162fcd8e8ee14883003d4da244972ddc1703c1b"
+      },
+      "receipt_relative_path": "comfy-trim/models/text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+      "alias_source_relative_path": null
+    }
+  ]
+}

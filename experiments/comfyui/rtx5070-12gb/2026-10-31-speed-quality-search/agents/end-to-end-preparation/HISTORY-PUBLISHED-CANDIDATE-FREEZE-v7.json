@@ -1,0 +1,39 @@
+{
+  "files": [
+    {
+      "path": "HISTORY-PUBLISHED-PLAN-v7.json",
+      "bytes": 1949,
+      "sha256": "3f774a8932cc9033202eeecf04c818a54c128894cad6a868956bfd95c1790ff5"
+    },
+    {
+      "path": "validate_history_published_v7.py",
+      "bytes": 2796,
+      "sha256": "eb1d731b0a153b8aaea82ee6bdb9491d2fa929ed713d61771d4036114b500513"
+    },
+    {
+      "path": "HISTORY-PUBLISHED-VALIDATOR-FREEZE-v7.json",
+      "bytes": 218,
+      "sha256": "9d5d927d6c1540e3c0b8923cd69b1b65190afa4dddb5441ec07203129dff2361"
+    },
+    {
+      "path": "timing_events_history_v7.py",
+      "bytes": 11690,
+      "sha256": "5a276a265d06c3108dfe0babac1137145db6553f211dd2a7b77882d49e5c6bf8"
+    },
+    {
+      "path": "observer-v1-to-history-v7.patch",
+      "bytes": 3440,
+      "sha256": "a85eff1700216710b67f163a9b4660f2bca3e0912b1ba6d381f84e78973fdbdb"
+    },
+    {
+      "path": "end_to_end_v7.py",
+      "bytes": 70183,
+      "sha256": "d061f926418dd48dcef3b4c9517f1b198ac190dd0b5405d0c42c3f74b924aaa0"
+    },
+    {
+      "path": "v6-to-v7-history-published.patch",
+      "bytes": 7445,
+      "sha256": "5579fc9f251b90c3aff1a007d0a86ec51fc4c15f42a4cdf636b61ce167c564ac"
+    }
+  ]
+}

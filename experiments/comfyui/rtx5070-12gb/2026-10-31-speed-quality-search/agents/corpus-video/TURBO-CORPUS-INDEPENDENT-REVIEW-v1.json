@@ -1,0 +1,29 @@
+{
+  "schema": "q33-turbo-corpus-independent-review/v1",
+  "created_utc": "2026-10-30T18:42:00.573846+00:00",
+  "reviewed_controller_sha256": "5fb623f8b68c7be3342db7e28abe34bd206ac6967a51824b9a877f3a3bab9476",
+  "reviewed_freezes": [
+    {
+      "path": "agents/turbo-corpus/CANDIDATE-FREEZE-v1.json",
+      "sha256": "5589d8daccdb82e5f22479d7696d615ccf385222406e1eefdeb2e6986a098b60",
+      "files_matched": 12
+    },
+    {
+      "path": "agents/turbo-corpus/MODE-FREEZE-v2.json",
+      "sha256": "be730087e1922fcc906ec5ab9042649cb4e7094f4ad42ef417b3ef52a26ced4c",
+      "files_matched": 3
+    }
+  ],
+  "findings": [],
+  "evidence": [
+    "Mode correction changes only parser/state mode literals, no runtime behavior modification.",
+    "Both actual corpus graphs differ from nativeTurbo6 only at condition_name/output prefix. Euler/simple6,shift12/3,LoRAstrength1 remain.",
+    "Four-asset metadata byte-identical to native ready set.",
+    "Real StageA and41-check value receipts hashes match both cases. Full provenance function AST-identical to reviewed corpus-stageB.",
+    "sample,http,guarded_hash,verify_conditioning,cleanup_owned_v2,load_asset_manifest,conditioning_header AST-identical to nativev6."
+  ],
+  "scope": "read-only source/small metadata audit; no model or body read; did not rerun24 tests",
+  "readiness": "No blocking issue for parent final source freeze and fresh-resource serial dispatch",
+  "quality_performance": "INCONCLUSIVE",
+  "new_GPU_runs": 0
+}

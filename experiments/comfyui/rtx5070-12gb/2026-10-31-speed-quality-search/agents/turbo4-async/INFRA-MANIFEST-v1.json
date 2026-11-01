@@ -1,0 +1,15 @@
+{
+  "schema": "q33-turbo4-async-infra/v1",
+  "profile": "bounce-audio",
+  "native_flag_removed": "--disable-async-offload",
+  "requested_async_streams": 2,
+  "headroom_gib": 1.0,
+  "reserve_gib": 3,
+  "disable_pinned_memory": true,
+  "cache": "none",
+  "disable_smart_memory": true,
+  "baseline_controller_sha256": "a94784c03a22de99eef9ebb379c0d7f741d0cb5923fffba3fae1cf5c0ad79aaf",
+  "controller_sha256": "06eefc92c039a476efbad12b76a90400655a1e80ec267f0448c8a3ad25f09b04",
+  "single_candidate_only": true,
+  "claim": "INCONCLUSIVE"
+}

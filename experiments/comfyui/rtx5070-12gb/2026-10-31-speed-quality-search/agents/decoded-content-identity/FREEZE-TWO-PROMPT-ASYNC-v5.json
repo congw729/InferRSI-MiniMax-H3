@@ -1,0 +1,39 @@
+{
+  "schema": "q33-decoded-content-freeze/v3",
+  "files": [
+    {
+      "path": "PLAN-TWO-PROMPT-ASYNC-v1.json",
+      "bytes": 1861,
+      "sha256": "14a8003c749e69980e7ffa1e05829100c036b88d29760329b079e7454f1c8940"
+    },
+    {
+      "path": "INPUTS-TWO-PROMPT-ASYNC-v1.json",
+      "bytes": 6364,
+      "sha256": "ba6c67e1d5356e77acd1e37ea3a7c0875f6d626ed3dc037374f0e8642b184360"
+    },
+    {
+      "path": "decoded_content_v5.py",
+      "bytes": 13414,
+      "sha256": "83735974eed31fd02c169b8f8dc3dc5f53b374fc41365cd836aaf8470be0e0e0"
+    },
+    {
+      "path": "v4-to-v5-async-inputs.patch",
+      "bytes": 1663,
+      "sha256": "518f64b4b8dcbf5de2795b8a6d31f3a7366797a318a8128abd462b5988a2bd6d"
+    }
+  ],
+  "infra_files": [
+    {
+      "path": "src/inferrsi/infra/executors/local.py",
+      "bytes": 3505,
+      "sha256": "b089cdc7daaaf7834698c2d280a12c5e755915ded926aa039c8de5f521bd46f0"
+    },
+    {
+      "path": "src/inferrsi/infra/processes.py",
+      "bytes": 8151,
+      "sha256": "3b96ebc7a50913e78e86ff3dcba74c8ee8d03d547d9591ca6488f390ac1e6189"
+    }
+  ],
+  "decode_loop_text_identical_to_v2": true,
+  "decode_loop_unchanged_from_v3": true
+}

@@ -1,0 +1,76 @@
+--- turbo6/profiles/hands-face-mug.json
++++ turbo4/profiles/hands-face-mug.json
+@@ -1,15 +1,15 @@
+ {
+   "schema": "q33-turbo-corpus-profile/v1",
+-  "id": "turbo-native-6",
++  "id": "turbo-native-4",
+   "family": "turbo-native",
+-  "steps": 6,
++  "steps": 4,
+   "role": "candidate",
+   "dispatch_ready": true,
+-  "dispatch_note": "Native fullmerge Turbo6 recipe unchanged except real corpus conditioning/output prefix; parent frozen source/resource review before serial GPU. Quality/performance INCONCLUSIVE.",
++  "dispatch_note": "Exploratory native fullmerge Turbo4 compared with same-corpus Turbo6; only sampler steps6to4 and output identity change. No author-proven4step quality claim; parent review before GPU.",
+   "model_subdir": "comfy-original/models",
+   "graph": {
+     "file": "graphs/hands-face-mug.json",
+-    "sha256": "7795b20de7a95eb5320df8c58d96d203412771c3222cfeb23a4988ba8e2daa2e"
++    "sha256": "62b9fe5240d4cd461a86a651f6e1ad8ad0ef33206d51934c3979c5be9d3efe87"
+   },
+   "canonical_graph": {
+     "file": "canonical/original.json",
+@@ -21,9 +21,9 @@
+   },
+   "conditioning": {
+     "file": "conditioning/hands-face-mug.json",
+-    "sha256": "ee41ce386410d5b7e39fc9231bb1bf02385ba5ed56b59930e5fb9f440626734f"
++    "sha256": "a98c8cf3625b97b3513e162bb5b42f749300763af0afef885dd8a34028f52410"
+   },
+   "corpus_id": "hands-face-mug",
+   "prompt_sha256": "5f19fe4a542a411bf2313a2a9f8cd051c2b727c8666d5df628c461a025eb7b58",
+   "conditioning_sha256": "ea6cb031df1988576ee7eb4cc9d8d4c38a393e025f92de57d4aae8227858e2dc"
+-}+}
+--- turbo6/graphs/hands-face-mug.json
++++ turbo4/graphs/hands-face-mug.json
+@@ -50,7 +50,7 @@
+           0
+         ],
+         "scheduler": "simple",
+-        "steps": 6,
++        "steps": 4,
+         "denoise": 1
+       }
+     },
+@@ -142,7 +142,7 @@
+           "91",
+           0
+         ],
+-        "filename_prefix": "q33-turbo-corpus/hands-face-mug/turbo-native-6",
++        "filename_prefix": "q33-turbo-corpus/hands-face-mug/turbo-native-4",
+         "format": "mp4",
+         "format.codec": "h264",
+         "format.codec.encoding": "auto"
+@@ -174,4 +174,4 @@
+       }
+     }
+   }
+-}+}
+--- turbo6/conditioning/hands-face-mug.json
++++ turbo4/conditioning/hands-face-mug.json
+@@ -35,8 +35,8 @@
+     "basename": "h3-conditioning-ea6cb031df1988576ee7eb4cc9d8d4c38a393e025f92de57d4aae8227858e2dc.safetensors"
+   },
+   "graph": {
+-    "relative_path": "agents/turbo-corpus/graphs/hands-face-mug.json",
+-    "sha256": "7795b20de7a95eb5320df8c58d96d203412771c3222cfeb23a4988ba8e2daa2e"
++    "relative_path": "agents/turbo4-corpus/graphs/hands-face-mug.json",
++    "sha256": "62b9fe5240d4cd461a86a651f6e1ad8ad0ef33206d51934c3979c5be9d3efe87"
+   },
+   "provenance": {
+     "stage_a_receipt": {
+@@ -48,4 +48,4 @@
+       "sha256": "466f920729e35fe314ba8e26d06a4da904b0f8a166585666a4074d24242dd8dc"
+     }
+   }
+-}+}

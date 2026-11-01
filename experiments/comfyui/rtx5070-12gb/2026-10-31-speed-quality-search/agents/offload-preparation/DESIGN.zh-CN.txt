@@ -1,0 +1,15 @@
+当前建议：等 cache 实测结束后，仅移除 --disable-async-offload，保留 --disable-pinned-memory；暂不实施。
+
+已证实的调用关系
+1. model_management.py:1372–1385：NVIDIA 默认 2 streams；disable-async-offload 强制 0。1493–1517：0 返回 None；编译状态也返回 None，否则建立 CUDA streams。
+2. ops.py:151–181、396–414：DynamicVRAM/VBAR 的缺页搬运也调用该 stream 入口。异步分支使用按 stream 缓存的 AIMDO VRAMBuffer；同步分支使用临时 torch.empty。不是只影响旧 low-VRAM 路径。model_prefetch.py:107–123 同样经过此入口。resident 命中在 ops.py:183–195 跳过复制，因此 warm classic 可能收益很小；保留未锁页源时也不能保证传输与计算重叠。
+3. model_management.py:1445–1491：异步 cast buffers 保留到 reset_cast_buffers。vram_buffer.py:27–53 的 max_size=16GiB 与按需 grow 是不同概念；不能把最大虚拟预留解释成马上消耗 16GiB 显存，也不能只看 Torch allocator 判断成本。
+4. model_management.py:1616、1639–1659：默认 NVIDIA 开启 pin；Windows 注册上限 RAM×40%（恰为32GiB时约12.8GiB）。pinned_memory.py:79–138：动态路径先检查 disable 标志；允许时才扩 HostBuffer 并 cudaHostRegister，有预算/注册/回收失败回退。当前禁用确实避免这一路额外 pinned host cache，并不是无效参数。该上限不是本次将分配多少。
+
+为什么先测异步
+只恢复异步不会同时放开 native pin/host-buffer cache，在32GB主机更容易解释单变量成本。代价可能是按流保留的 GPU cast buffers；收益尚无证据。原生 Kitchen attention 不改变上述加载入口，但本轮没有内核/stream trace，不能声称实际重叠已发生。ops.py:426 的 cuda_malloc 限制属于 VBAR 之后的 legacy 分支，不能据此判当前异步无效。
+
+未来最小方案（仅设计）
+cache 结论确定后固定同一 policy，两独立服务：baseline 禁用异步、candidate 去掉该单 flag；每个服务都用既有两种子424242/424243、Trim8与相同 graph/资产/输入/节点ID。保留 reserve3、headroom1、全部外部保护/清理。候选实际启动日志需显示2 streams；逐请求分别记录 native prompt、采样、完整媒体与文件hash，以及整卡空闲下限、进程private/RSS、系统物理/commit下限，区分首请求/后请求和启动校验开销。不得把计时探索写成服务性能或质量等价。
+
+不增加参数矩阵，不改 driver/依赖/源码；此轮只读源码和保存小记录，未运行模型/GPU或网络。源码hash与精确摘录见 SOURCE-READOUT-v1.json。现结论 INCONCLUSIVE，等待父级决定是否实测。

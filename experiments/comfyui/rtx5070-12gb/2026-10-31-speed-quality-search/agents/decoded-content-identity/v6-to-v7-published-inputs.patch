@@ -1,0 +1,13 @@
+--- decoded_content_v6.py
++++ decoded_content_v7.py
+@@ -39,8 +39,8 @@
+   v=child(root,x['path']);need(v.stat().st_size==x['bytes'] and sha(v)==x['sha256'],'frozen source drift')
+  for x in f['infra_files']:
+   v=child(infra,x['path']);need(v.stat().st_size==x['bytes'] and sha(v)==x['sha256'],'InferRSI source drift')
+- plan=json.loads((root/'PLAN-TWO-PROMPT-WAKE-v1.json').read_text());manifest=json.loads((root/'INPUTS-TWO-PROMPT-WAKE-v1.json').read_text());need(1<=len(manifest['inputs'])<=10,'input count bound');expected=plan['expected']
+- out={'schema':'q33-decoded-content-identity/v1','complete':False,'claim':'INCONCLUSIVE','quality_verdict':'INCONCLUSIVE','model_dispatches':0,'network_requests':0,'media_writes':0,'worker_sha256':sha(Path(__file__)),'freeze_sha256':a.freeze_sha256,'inputs_sha256':sha(root/'INPUTS-TWO-PROMPT-WAKE-v1.json'),'peak_own_rss_bytes':0,'items':[]}
++ plan=json.loads((root/'PLAN-TWO-PROMPT-PUBLISHED-v1.json').read_text());manifest=json.loads((root/'INPUTS-TWO-PROMPT-PUBLISHED-v1.json').read_text());need(1<=len(manifest['inputs'])<=10,'input count bound');expected=plan['expected']
++ out={'schema':'q33-decoded-content-identity/v1','complete':False,'claim':'INCONCLUSIVE','quality_verdict':'INCONCLUSIVE','model_dispatches':0,'network_requests':0,'media_writes':0,'worker_sha256':sha(Path(__file__)),'freeze_sha256':a.freeze_sha256,'inputs_sha256':sha(root/'INPUTS-TWO-PROMPT-PUBLISHED-v1.json'),'peak_own_rss_bytes':0,'items':[]}
+  def guard():
+   need(time.perf_counter()-start<plan['whole_seconds'],'CPU whole deadline');v=rss();out['peak_own_rss_bytes']=max(out['peak_own_rss_bytes'],v);need(v<=plan['max_worker_rss_bytes'],'CPU RSS cap')
+  try:

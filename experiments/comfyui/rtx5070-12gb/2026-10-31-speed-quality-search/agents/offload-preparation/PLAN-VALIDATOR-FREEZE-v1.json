@@ -1,0 +1,15 @@
+{
+  "schema": "q33-plan-before-candidate/v1",
+  "files": [
+    {
+      "path": "PLAN-FROZEN-v1.json",
+      "bytes": 1565,
+      "sha256": "cec44e32607cd074ea50c44b091cdcd4e1e21179c9e0fc9ccdee2f713bdc54e9"
+    },
+    {
+      "path": "validate_async_delta_v1.py",
+      "bytes": 5853,
+      "sha256": "ec366f2fdce27c49985c2a0ec8483d50f7656d3cfdb405b22e333ae5b90e70a8"
+    }
+  ]
+}

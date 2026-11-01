@@ -1,0 +1,14 @@
+{
+  "schema": "q33-decoded-rate-fix/v2",
+  "failure_trial": "results/decoded-content-identity-2bf0c6ba643c4b999debb71705f2cd5e",
+  "reason": "Native rational string 24/1 versus expected 24 made a semantically equal rate fail a string comparison before decoding.",
+  "only_change": "Exact integer numerator/denominator comparison to expected integer fps, no float tolerance.",
+  "gates_and_inputs_unchanged": true,
+  "first_attempt_media_writes": 0,
+  "offline_arithmetic_checks": {
+    "24_over_1": true,
+    "48_over_2": true,
+    "24000_over_1001_rejected": true
+  },
+  "quality_claim": "INCONCLUSIVE"
+}

@@ -1,0 +1,28 @@
+{
+  "schema": "q33-real-corpus-value-summary/v1",
+  "runs": [
+    {
+      "corpus_id": "bounce-audio",
+      "trial_relative_to_iteration": "results/corpus-values-bounce-audio-fe603a89512d4bb98a135d9e8d78efd7",
+      "returncode": 0,
+      "elapsed_seconds": 0.15700000000651926,
+      "complete": true,
+      "integrity_verdict": "PASS",
+      "check_count": 41,
+      "reason": null,
+      "result_sha256": "4855dcfd0579ffe9557a46fb6b9b3acd679ffb3fc21a61697c0ed331efa8c5f5"
+    },
+    {
+      "corpus_id": "hands-face-mug",
+      "trial_relative_to_iteration": "results/corpus-values-hands-face-mug-0f8d3dfd38934c84975055108dd3d69c",
+      "returncode": 0,
+      "elapsed_seconds": 0.14000000001396984,
+      "complete": true,
+      "integrity_verdict": "PASS",
+      "check_count": 41,
+      "reason": null,
+      "result_sha256": "466f920729e35fe314ba8e26d06a4da904b0f8a166585666a4074d24242dd8dc"
+    }
+  ],
+  "claim": "INCONCLUSIVE"
+}

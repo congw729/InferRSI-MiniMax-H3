@@ -1,0 +1,48 @@
+{
+  "schema": "q33-turbo-source-snapshots/v1",
+  "mode": "read_only_no_model_execution",
+  "repository_commit": "4274783a23afcfdbea3b4876cb79effd6c510785",
+  "git_blob_checks": true,
+  "sources": [
+    {
+      "source_relative_path": "__init__.py",
+      "snapshot_relative_path": "upstream/__init__.py.snapshot.txt",
+      "source_url": "https://github.com/Larryvrh/ComfyUI-MiniMax-H3-Turbo/blob/4274783a23afcfdbea3b4876cb79effd6c510785/__init__.py",
+      "git_blob_sha": "c6d89b596f6d09c215058ac71afb2dab456a274b",
+      "bytes": 26363,
+      "sha256": "a22f222f11dfc337552371f7f288bf5928cb1fa80a6afb3f24075a8315d02f06"
+    },
+    {
+      "source_relative_path": "README.md",
+      "snapshot_relative_path": "upstream/README.md.snapshot.txt",
+      "source_url": "https://github.com/Larryvrh/ComfyUI-MiniMax-H3-Turbo/blob/4274783a23afcfdbea3b4876cb79effd6c510785/README.md",
+      "git_blob_sha": "934f5108e2a3223b6a14a9093efe71ed5c9141f2",
+      "bytes": 6044,
+      "sha256": "1676b6cd2804c43ce6c7c822d0a5c6a33bea1ce728449fa0d44ebf0f07583e3d"
+    },
+    {
+      "source_relative_path": "pyproject.toml",
+      "snapshot_relative_path": "upstream/pyproject.toml.snapshot.txt",
+      "source_url": "https://github.com/Larryvrh/ComfyUI-MiniMax-H3-Turbo/blob/4274783a23afcfdbea3b4876cb79effd6c510785/pyproject.toml",
+      "git_blob_sha": "80fa9614ff6716550e2fd9ad07b40a3ff235d269",
+      "bytes": 413,
+      "sha256": "b4f49884a0cbb068ae0720612599486515d2b6f257c462d9621addada893ef7c"
+    },
+    {
+      "source_relative_path": "LICENSE",
+      "snapshot_relative_path": "upstream/LICENSE.snapshot.txt",
+      "source_url": "https://github.com/Larryvrh/ComfyUI-MiniMax-H3-Turbo/blob/4274783a23afcfdbea3b4876cb79effd6c510785/LICENSE",
+      "git_blob_sha": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "source_relative_path": "example_workflows/minimax_h3_t2v_turbo.json",
+      "snapshot_relative_path": "upstream/example_workflows__minimax_h3_t2v_turbo.json.snapshot.txt",
+      "source_url": "https://github.com/Larryvrh/ComfyUI-MiniMax-H3-Turbo/blob/4274783a23afcfdbea3b4876cb79effd6c510785/example_workflows/minimax_h3_t2v_turbo.json",
+      "git_blob_sha": "7d3a055051bc2ccc24a50bc958e6cae6cdf6ac1d",
+      "bytes": 22311,
+      "sha256": "7371dfc10b6794607db817c5df17e6614f7c27e35ebd7f3231d71bc445eafd08"
+    }
+  ]
+}

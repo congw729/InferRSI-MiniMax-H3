@@ -1,0 +1,61 @@
+{
+  "schema": "q33-turbo2-bounce-candidate/v1",
+  "files": [
+    {
+      "path": "assets/turbo-native.ready.json",
+      "bytes": 3939,
+      "sha256": "4f43082899ac7818ebaeb4e911904bd258c4fae6d8d78ad11efa31f3fab0f95d"
+    },
+    {
+      "path": "BOUNCE-PROFILE-TURBO4-TO2-v1.patch",
+      "bytes": 2598,
+      "sha256": "3a2933282111f8dbe007912590e287e08d077a0227a4b0bcf2139bc1130fb592"
+    },
+    {
+      "path": "canonical/original.json",
+      "bytes": 3069,
+      "sha256": "d5937f2505f74e07ce8de746c49c98e8a428535d79ccc878383e8b989807fb29"
+    },
+    {
+      "path": "conditioning/bounce-audio.json",
+      "bytes": 1568,
+      "sha256": "93bd4215d0fd57d0b5dc11e3d432401a57fc884ad97ceef1c2b931fc71b2315c"
+    },
+    {
+      "path": "CONTROLLER-TURBO4-TO2-v1.patch",
+      "bytes": 2843,
+      "sha256": "1e0ff15b2b8f7707aa3dfaaf83a9ca58f78fcf3ab9fcfdfa25f9cfedd3c847d7"
+    },
+    {
+      "path": "graphs/bounce-audio.json",
+      "bytes": 3333,
+      "sha256": "f723ade71bb68caca20ab6a2c3c5a2e305ac4feaf1d6fb0032814e7b4f3d5fcf"
+    },
+    {
+      "path": "PLAN-FROZEN-v1.json",
+      "bytes": 1079,
+      "sha256": "bd293a7ee867b150dfe87e0f2c8011d80dd2ed8ba8e4deaf0b332099465d3b0f"
+    },
+    {
+      "path": "PLAN-VALIDATOR-FREEZE-v1.json",
+      "bytes": 387,
+      "sha256": "9c835fcbb60fac43c417e469ba7113151f204963b8121ae3dbbfd97d413a1144"
+    },
+    {
+      "path": "profiles/bounce-audio.json",
+      "bytes": 1239,
+      "sha256": "50fbab95fe9f6d16a9be5cc1f0ac66039a9a5a8675360a7c18c3fc3802559f9a"
+    },
+    {
+      "path": "turbo2_corpus_stage_b_v1.py",
+      "bytes": 57210,
+      "sha256": "2efeea87e1a6bcc415c697d437bfefef3dc5d10dbc164636efa07a7fc6bf45f7"
+    },
+    {
+      "path": "validate_turbo2_delta_v1.py",
+      "bytes": 3883,
+      "sha256": "c6d9eed72e02959c1c59a77a3d1199cbec3a3ed09b42ee03caf2f4d277bf05e4"
+    }
+  ],
+  "model_gpu_dispatches": 0
+}

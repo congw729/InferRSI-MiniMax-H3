@@ -1,0 +1,34 @@
+{
+  "schema": "q33-phase4-publication-independent-review/v1",
+  "utc": "2026-10-30T19:35:41.739110+00:00",
+  "decision": "ready_to_sync_after_two_factual_label_corrections",
+  "claim": "INCONCLUSIVE",
+  "checks": {
+    "observations_exact_summary": 35,
+    "source_identities_bytes_sha_matched": 292,
+    "lifecycle_embedded_data_and_hash_matched": 2,
+    "decoded_content_comparison_full_rgb_pcm_pts_equal_container_bytes_differ": true,
+    "no_metadata_only_attribution": true,
+    "end_to_end_single_vs_historical_arithmetic_not_repeat_benchmark": true,
+    "native_controller_executor_separated": true,
+    "warm_admission_unchanged_caps": true,
+    "four_post_candidate_not_claimed_executed": true,
+    "privacy_patterns_absent": true
+  },
+  "corrections": [
+    "62.026s historical split baseline is Trim8, not original MiniMax-H3 model; changed original-version wording to prior Trim8 split-process",
+    "Static checker mismatch was a validator, not a timing observer; corrected label"
+  ],
+  "before_markdown_sha256": "de3346f0751ad2f557c60e8980ba2ac5c8528639542a6ef8530c49505c5e0716",
+  "files": {
+    "2026-10-31-speed-quality-search.md": {
+      "bytes": 11187,
+      "sha256": "4cd520f1a76be721b8898146430425d26cdf164179903d3781fd6d63bb16c0fa"
+    },
+    "2026-10-31-speed-quality-search-evidence.json": {
+      "bytes": 507674,
+      "sha256": "66576c4a234f177a305e4758b2e16d657000c18b3f74d18feccfa605268ef992"
+    }
+  },
+  "no_frozen_runtime_model_or_evidence_edits": true
+}

@@ -1,0 +1,85 @@
+--- speed_stage_b_v1.py
++++ speed_stage_b_v2.py
+@@ -254,6 +254,47 @@
+     p.add_argument("--port", type=int, required=True)
+     return p.parse_args()
+ 
++
++
++def cleanup_owned_v2(job, proc, observer, state, gates, event):
++    """Release owned service first; no journal write/join can delay Job close."""
++    cleanup_start_ns=time.perf_counter_ns()
++    diagnostics=state.setdefault("cleanup_diagnostics",[])
++    if observer is not None:
++        try:
++            observer.stop.set()  # Event signal only: no join, network or file write.
++        except BaseException as exc:
++            diagnostics.append("observer_stop_"+type(exc).__name__)
++    state["job_close_requested"]=job is not None
++    if job is not None:
++        try:
++            job.close()
++        except BaseException as exc:
++            diagnostics.append("job_close_"+type(exc).__name__)
++    if proc is not None:
++        try:
++            if proc.poll() is None:
++                proc.kill()  # Exact existing handle only; no unrelated process lookup.
++            proc.wait(timeout=gates["cleanup_seconds"])
++            state["owned_root_exited"]=True;state["owned_returncode"]=proc.returncode
++        except BaseException as exc:
++            state["owned_root_exited"]=False;state["status"]="cleanup_inconclusive"
++            diagnostics.append("owned_process_cleanup_"+type(exc).__name__)
++    cleanup_end_ns=time.perf_counter_ns()
++    try:
++        event("owned_service_cleanup_finished",start_perf_counter_ns=cleanup_start_ns,
++              end_perf_counter_ns=cleanup_end_ns,owned_root_exited=state.get("owned_root_exited"))
++    except BaseException as exc:
++        diagnostics.append("cleanup_log_"+type(exc).__name__)
++    if observer is not None:
++        try:
++            state["node_timing"]=observer.finish()
++            state["node_timing_relative_to_run"]="timing/summary.json"
++        except BaseException as exc:
++            state["node_timing"]={"invalid_reasons":["observer_cleanup_"+type(exc).__name__],"nodes":{}}
++    # Errors remain evidence even if the exact root process subsequently exited.
++    if any(x.startswith("job_close_") for x in diagnostics):
++        state["status"]="cleanup_inconclusive"
+ 
+ def main():
+     global STAGE_NODES, ASSET_EXPECTED, ASSET_IDS
+@@ -674,29 +715,14 @@
+         state["error"] = str(exc) if type(exc) is RuntimeError else "external operation failed; local raw evidence retained"
+         event("stopped", status=state["status"], error_type=type(exc).__name__)
+     finally:
+-        event("owned_cleanup_started")
+-        if observer is not None:
+-            try:
+-                state["node_timing"]=observer.finish()
+-                state["node_timing_relative_to_run"]="timing/summary.json"
+-            except BaseException as exc:
+-                state["node_timing"]={"invalid_reasons":["observer_cleanup_"+type(exc).__name__],"nodes":{}}
+-        if job is not None:
+-            job.close()
+-        if proc is not None:
+-            try:
+-                if proc.poll() is None:
+-                    proc.kill()  # Exact child handle only; also covers attach failure.
+-                proc.wait(timeout=gates["cleanup_seconds"])
+-                state["owned_root_exited"] = True; state["owned_returncode"] = proc.returncode
+-            except (OSError, subprocess.TimeoutExpired):
+-                state["owned_root_exited"] = False; state["status"] = "cleanup_inconclusive"
+-        state["job_close_requested"] = job is not None
+-        event("owned_cleanup_finished",owned_root_exited=state.get("owned_root_exited"))
++        cleanup_owned_v2(job,proc,observer,state,gates,event)
+         state["elapsed_seconds"] = time.monotonic() - started
+         for stream in (samples, journal, raw_log):
+             if stream is not None:
+-                stream.close()
++                try:
++                    stream.close()
++                except BaseException as exc:
++                    state.setdefault("cleanup_diagnostics",[]).append("stream_close_"+type(exc).__name__)
+         v1.save_new(result_path, state)
+     print(json.dumps({"status": state["status"], "claim": state["claim"],
+                       "prompt_posts": state["prompt_posts"], "media_validation": "not_performed"}))

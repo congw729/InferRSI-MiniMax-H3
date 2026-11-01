@@ -1,0 +1,29 @@
+--- validate_e2e_two_wake_media_v6.py
++++ validate_e2e_two_published_media_v7.py
+@@ -1,7 +1,7 @@
+ """Validate both actual StageB MP4s after one-service two-new-prompt cleanup."""
+ import argparse,hashlib,json,sys,time,uuid
+ from pathlib import Path
+-CONTROLLER_SHA='8b787a016c311184955f98eccb760d058d266c2fc994dfa7bd094b34fd79da85'
++CONTROLLER_SHA='d061f926418dd48dcef3b4c9517f1b198ac190dd0b5405d0c42c3f74b924aaa0'
+ p=argparse.ArgumentParser(allow_abbrev=False)
+ for n in ('notes-root','infra-root','portable-root','run','trial'):p.add_argument('--'+n,type=Path,required=True)
+ p.add_argument('--result-sha256',required=True);a=p.parse_args()
+@@ -12,7 +12,7 @@
+   text=text.replace(str(path).replace('\\','\\\\'),label).replace(str(path).replace('\\','/'),label)
+  return text
+ assert Path(__file__).resolve().parent==D and run.drive.upper()=='E:' and prior.parent==Q/'results'
+-assert sha(D/'end_to_end_v6.py')==CONTROLLER_SHA
++assert sha(D/'end_to_end_v7.py')==CONTROLLER_SHA
+ rp=prior/'result.json';assert rp.stat().st_size<=2**20 and sha(rp)==a.result_sha256;r=json.loads(rp.read_text(encoding='utf-8'))
+ assert r['status']=='two_new_prompt_videos_received_unvalidated' and r['mode']=='two-new-prompts-trim8' and r['driver_sha256']==CONTROLLER_SHA
+ assert r['owned_root_exited'] and r['job_close_requested'] and not r.get('cleanup_diagnostics')
+@@ -37,7 +37,7 @@
+  request_index=group*2+2;f=r['requests'][request_index-1]['artifact'];rel=Path(f['relative_to_run'])
+  assert not rel.is_absolute() and not rel.drive and '..' not in rel.parts and rel.parts[0]=='output'
+  video=(run/rel).resolve();assert video.is_relative_to(run/'output/q33-e2e-two'/case) and video.name.startswith('video_') and video.suffix=='.mp4' and video.stat().st_size==f['bytes']
+- out=run/('media-inspection-request-'+str(request_index)+'-v1');assert not out.exists();trial=Q/'results'/('media-e2e-two-wake-'+case+'-'+uuid.uuid4().hex)
++ out=run/('media-inspection-request-'+str(request_index)+'-v1');assert not out.exists();trial=Q/'results'/('media-e2e-two-published-'+case+'-'+uuid.uuid4().hex)
+  argv=[str(a.portable_root/'python_embeded/python.exe'),'-s','-B','-X','utf8',str(script),'--input',str(video),'--run-root',str(run),'--output-dir',str(out),'--gates',str(gates),'--monitor-source',str(monitor),'--inferrsi-src',str(IR/'src'),'--expected-sha256',f['sha256'],'--gates-sha256','3e880606a5744fc290be9ca4011169be7dac65140e66ac3525e7b58b65a82e60']
+  rec=execute_command(tuple(argv),IR,trial,time.monotonic()+140)
+  with (trial/'execution.json').open('x',encoding='utf-8') as stream:stream.write(redact(json.dumps(rec,indent=2)))

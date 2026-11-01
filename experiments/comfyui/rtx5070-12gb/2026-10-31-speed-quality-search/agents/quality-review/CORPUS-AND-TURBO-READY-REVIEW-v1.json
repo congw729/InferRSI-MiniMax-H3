@@ -1,0 +1,43 @@
+{
+  "schema": "q33-two-preparation-delta-review/v1",
+  "at_utc": "2026-10-30T17:34:32.2765040Z",
+  "corpus": {
+    "external_files": 7,
+    "candidate_sha256": "7c87ea7524c6bf4adf2573a6ccd881778807634f06d96c8f4161e98c357c3a2d",
+    "local_files": 17,
+    "observations": [
+      "Only two protocol prompt texts and output prefixes change in graph",
+      "Existing four assets and StageA gates retained",
+      "Reviewed v3 observer and v2 cleanup explicitly hash-imported",
+      "v1 constant-name failure retained; v2 corrects two definitions and real metadata loading for both cases verified",
+      "No future conditioning hash invented and StageB_ready remains false"
+    ],
+    "ready_for_bounded_stageA": true,
+    "mismatches": [],
+    "freeze_sha256": "e13e61e5fb13ad54a660a7d5091f24663068488ca7e4c5b82c13172d987e5665"
+  },
+  "turbo": {
+    "header_tensors": 518,
+    "candidate_sha256": "604ae8578f132e66654924dd08c9515a0be6b25273faa5e962efe93c9f91102c",
+    "actual_receipt_asset_sha256": "5f3a626cd72c93a8b9318d6760c510bc5092d2ab13aaba1f932c5bab07a416d3",
+    "freeze_sha256": "c10614cef68ea9aff4f4ae5f83afc52d23db508ae1e870294a8254af024651bd",
+    "actual_receipt_bytes": 779849816,
+    "ready_delta": "Only real fourth receipt descriptor plus dispatch flag/note/assets binding; graphs and v5 candidate unchanged",
+    "external_files": 11,
+    "actual_receipt_sha256": "8addc82669d67ee9bdec02bff9ce32a7a69b7e57223eab6634b022c853e26c86",
+    "local_files": 17,
+    "ready_for_bounded_stageB": true,
+    "header_scope": "Existing small header report plus source-derived target mapping; no tensor values or model execution rechecked",
+    "header_report_sha256": "cadd5ae14a7cf84572f156e083d39f4c1cd9e92757482aeb69c6411caf7672f7",
+    "mismatches": [],
+    "header_pairs": 259
+  },
+  "conditions": [
+    "Final run identities and fresh resource admission",
+    "Serial GPU execution",
+    "StageA generated condition still requires real value validation before StageB",
+    "Whole model or quality conclusions require actual execution; existing metadata evidence does not imply native LoRA numeric equivalence"
+  ],
+  "claim": "INCONCLUSIVE",
+  "review_scope": "Read small sources/metadata and verify file hashes; no model payload/network/GPU/validator rerun"
+}

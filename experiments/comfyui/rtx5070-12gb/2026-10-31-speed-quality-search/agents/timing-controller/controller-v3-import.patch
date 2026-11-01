@@ -1,0 +1,26 @@
+--- speed_stage_b_v2.py
++++ speed_stage_b_v3.py
+@@ -5,7 +5,6 @@
+ from __future__ import annotations
+ import argparse
+ import copy
+-from timing_events_v1 import NativeWSObserver
+ import csv
+ import hashlib
+ import http.client as http_client
+@@ -33,6 +32,15 @@
+ CANONICAL_SHA = {'original': 'd5937f2505f74e07ce8de746c49c98e8a428535d79ccc878383e8b989807fb29', 'trim': 'a915f62f109cd2e1be615eb7b0c1aa6fab4a4b6ad6e31791fb84488b02a17ad8'}
+ ASSET_EXPECTED = EXPECTED_BY_FAMILY["original"]
+ ASSET_IDS = set(ASSET_EXPECTED)
++
++# Portable Python isolates script-directory imports; load only the frozen sibling.
++_timing_path = Path(__file__).resolve().with_name("timing_events_v1.py")
++if hashlib.sha256(_timing_path.read_bytes()).hexdigest() != TIMING_MODULE_SHA:
++    raise RuntimeError("frozen timing sibling hash mismatch")
++_timing_spec = importlib.util.spec_from_file_location("q33_frozen_native_timing_v1", _timing_path)
++_timing_module = importlib.util.module_from_spec(_timing_spec)
++_timing_spec.loader.exec_module(_timing_module)
++NativeWSObserver = _timing_module.NativeWSObserver
+ EXTRA_GATES = {
+     "asset_timeout_seconds", "startup_timeout_seconds", "render_timeout_seconds",
+     "gpu_poll_seconds", "gpu_query_timeout_seconds", "start_gpu_free_bytes",

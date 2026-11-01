@@ -1,0 +1,261 @@
+{
+  "schema": "q33-turbo4-async-execution-freeze/v1",
+  "controller_sha256": "06eefc92c039a476efbad12b76a90400655a1e80ec267f0448c8a3ad25f09b04",
+  "files": [
+    {
+      "path": "assets/turbo-native.ready.json",
+      "bytes": 3939,
+      "sha256": "4f43082899ac7818ebaeb4e911904bd258c4fae6d8d78ad11efa31f3fab0f95d"
+    },
+    {
+      "path": "CANDIDATE-FREEZE-v1.json",
+      "bytes": 1835,
+      "sha256": "8441e15e14cdb8620eeeb4af6e135f065f390e886e08b0ba4e628b787d3a3ed3"
+    },
+    {
+      "path": "canonical/original.json",
+      "bytes": 3069,
+      "sha256": "d5937f2505f74e07ce8de746c49c98e8a428535d79ccc878383e8b989807fb29"
+    },
+    {
+      "path": "conditioning/bounce-audio.json",
+      "bytes": 1616,
+      "sha256": "3f740296a4e230b72577c8abc7500ed0e6dc054de3a0697f94883b8e92ef8ac5"
+    },
+    {
+      "path": "CONTROLLER-v1.patch",
+      "bytes": 4124,
+      "sha256": "af6b27dd4431f78855cff31bc1dbf8137b8d3a9718e9bb6089e56f60e4201c97"
+    },
+    {
+      "path": "ENTRY-RESULT-v1.json",
+      "bytes": 233,
+      "sha256": "3d331d86f36eb533d53a834d0a91f3179258efb62e838a308effb4f3268c690a"
+    },
+    {
+      "path": "graphs/bounce-audio.json",
+      "bytes": 3333,
+      "sha256": "bed7a0c36208a1834707812c499648be6a66848750cfa9d11f513964a871ced6"
+    },
+    {
+      "path": "INFRA-MANIFEST-v1.json",
+      "bytes": 548,
+      "sha256": "90a05d2ee7ba7ae9f2a4fec8fac74d871cd6409f46d724acf78f39a738c51408"
+    },
+    {
+      "path": "METADATA-RESULT-v1.json",
+      "bytes": 962,
+      "sha256": "b93712a52f136ca4db7e859c9ebfd7c020207cc6d4cf6639a6b6b0376b6e6822"
+    },
+    {
+      "path": "PLAN-FROZEN-v1.json",
+      "bytes": 1640,
+      "sha256": "64e0b3ab098672f0a18813d4acb1ba316563e3f21abb57759b2c719626a923ff"
+    },
+    {
+      "path": "PLAN-VALIDATOR-FREEZE-v1.json",
+      "bytes": 376,
+      "sha256": "78cdec92d67a2ee975eda430422bc00d653ae1ce8d18546dc5da5d2bce91c1db"
+    },
+    {
+      "path": "profiles/bounce-audio.json",
+      "bytes": 1216,
+      "sha256": "1460f48e80579473a735acfcafa35d56162e7c6a92239128ea2239a888fe47ce"
+    },
+    {
+      "path": "turbo4_async_stage_b_v1.py",
+      "bytes": 57544,
+      "sha256": "06eefc92c039a476efbad12b76a90400655a1e80ec267f0448c8a3ad25f09b04"
+    },
+    {
+      "path": "validate_async_delta_v1.py",
+      "bytes": 4846,
+      "sha256": "56dd51106648f04641e10a35189234dc4dcbd5f66df9f28810033dd4d0090316"
+    }
+  ],
+  "external_notes_files": [
+    {
+      "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/state/transport/assets/audio-vae.json",
+      "bytes": 383,
+      "sha256": "825d5402d4dea3d39be45c436564949944a030268860d5eb029728f30b552a6b"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/state/transport/assets/audio-vae.receipt.json",
+      "bytes": 800,
+      "sha256": "f2f8217d2d75c8d8420a12b44e6cb298ce7f2dda52d71296c25f99c39fd28251"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/state/transport/assets/video-vae.json",
+      "bytes": 400,
+      "sha256": "2606bfe4a0a25313d8423dfc8486a4e3260eed41a8fbff1678e425fb12d94dc9"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/state/transport/assets/video-vae.receipt.json",
+      "bytes": 809,
+      "sha256": "10d5e728d94c586c0aa3db2f8b9433df3b3d84105d6fa31a8a4c2e5e513e19d4"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/tools/comfy_first_video_v1.py",
+      "bytes": 20306,
+      "sha256": "63eb319e9fe294209e65c188a447a101987738e5ebc49bae879b65d36bb20d35"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-30-original-h3-first-video/state/transport/assets/original-dit.json",
+      "bytes": 426,
+      "sha256": "e1c8673171d86b258cdda2efd6634be49805c25b2022159324758d253b4a93a2"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-30-original-h3-first-video/state/transport/assets/original-dit.receipt.json",
+      "bytes": 1354,
+      "sha256": "17a83e4cb12be696aa0c9625c17e2f0f293cfab227bb652d2852221c66614468"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/corpus-video/corpus_conditioning_values_v1.py",
+      "bytes": 12179,
+      "sha256": "c43cf358b04accdb4d21d1476d32370642a6dd8420e5b5afd88a47256b9061ba"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/corpus-video/corpus_stage_b_v1.py",
+      "bytes": 54098,
+      "sha256": "74de2ccded6ec7415e183c13d162caba653b54b5bcc99270a924c9391d58c7d1"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/corpus-video/ready/bounce-audio/original-50.conditioning.json",
+      "bytes": 1584,
+      "sha256": "6338ec15cb1d100d10e2c8a1f997503461ff697a19c6088432f3440945c52253"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/corpus-video/ready/bounce-audio/original-50.profile.json",
+      "bytes": 1142,
+      "sha256": "e5f916da433dc45d955667f41c9d7ef72635ef96187b71daf9940df8e6a840e3"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/corpus-video/ready/hands-face-mug/original-50.conditioning.json",
+      "bytes": 1592,
+      "sha256": "22dec438ce4f27aef16dc53d24b9bc7f0e50da8c926c2973f70f6c89a6d0f81d"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/corpus-video/ready/hands-face-mug/original-50.profile.json",
+      "bytes": 1148,
+      "sha256": "c24a2efbcda00958e41d9523c0e814aad3a601d346d1e9eb31d04675e58a2f9e"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/corpus-video/VALUES-FREEZE-v1.json",
+      "bytes": 1975,
+      "sha256": "3a6b8d0a794eedce440e70895065bf5995d1a79a6a453f405086eafaed21159c"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/timing-controller/RESOURCE-GATES-RESERVE3-v1.json",
+      "bytes": 855,
+      "sha256": "13672a9bbe8946c28c98b3bab0f906f6ddfe67735ff7f77929e58539a4a580dd"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/timing-controller/SOURCES-v1.json",
+      "bytes": 33327,
+      "sha256": "bf0d3e3b09f8130053735eaa6645bcc4ff753833a97ef4ae306d7d223283f007"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/timing-controller/timing_events_v1.py",
+      "bytes": 10734,
+      "sha256": "f0abb1937ca5462d712a73d1a8623b6a9f5df86927dbcf6375903b8a5ad3e614"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/turbo-controller/graphs/turbo-native-6.json",
+      "bytes": 3490,
+      "sha256": "e0f890fb91a40f559070101b4143e147fa51c511d55a1df7e187b92ea215add9"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/turbo-controller/REAL-LORA-HEADER-NATIVE-MAP-v1.json",
+      "bytes": 121492,
+      "sha256": "cadd5ae14a7cf84572f156e083d39f4c1cd9e92757482aeb69c6411caf7672f7"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/turbo-controller/turbo_stage_b_v6.py",
+      "bytes": 53411,
+      "sha256": "407a1dc679941f444ed0100108eab01c740a43a3ea193088de844284b9e9abcd"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/turbo-preparation/download/PROFILE-v1.json",
+      "bytes": 1299,
+      "sha256": "84be14a039cc3955eb475f5fa2cd52a62d92190a2c534ac7ee75f18d9e64bb10"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/results/corpus-bounce-audio-d390a0a06ba94536ba389c1a97e025b8/result.json",
+      "bytes": 8448,
+      "sha256": "9ee4c39cfe9d96735d432015ba84bba5d67d920445956a1ffd8498e9756ec401"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/results/corpus-hands-face-mug-e60ffa23907148b18928538d2a2ea43d/result.json",
+      "bytes": 8454,
+      "sha256": "5a33d0f55b511d68b71739c2ed47c7bb8feb1a9572b246d8dd8f79f1f3eabbc2"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/results/corpus-values-bounce-audio-fe603a89512d4bb98a135d9e8d78efd7/result.json",
+      "bytes": 5019,
+      "sha256": "4855dcfd0579ffe9557a46fb6b9b3acd679ffb3fc21a61697c0ed331efa8c5f5"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/results/corpus-values-hands-face-mug-0f8d3dfd38934c84975055108dd3d69c/result.json",
+      "bytes": 5022,
+      "sha256": "466f920729e35fe314ba8e26d06a4da904b0f8a166585666a4074d24242dd8dc"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/state/turbo-download/asset-receipt-4dbdde2c1c314d9590ecb78215ec4861.json",
+      "bytes": 691,
+      "sha256": "8addc82669d67ee9bdec02bff9ce32a7a69b7e57223eab6634b022c853e26c86"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/tools/validate_profile_media_v1.py",
+      "bytes": 2230,
+      "sha256": "b44bc73cd1c7d65e0c1f8616c051fd341cba66c98fe7dbacc36f80a92e42e138"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/turbo-corpus/turbo_corpus_stage_b_v2.py",
+      "bytes": 57178,
+      "sha256": "5fb623f8b68c7be3342db7e28abe34bd206ac6967a51824b9a877f3a3bab9476"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/turbo-corpus/run_turbo_corpus_v1.py",
+      "bytes": 5985,
+      "sha256": "1ffb91a42e315a5163cc4f6a5b627f188a56e44bd330a019877d07949462233b"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/turbo-corpus/EXECUTION-FREEZE-v1.json",
+      "bytes": 10695,
+      "sha256": "e607db985ffb7f7a1e802d8826f72924e5ab4e06487cc68837b2b79377047332"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/turbo4-corpus/turbo4_corpus_stage_b_v1.py",
+      "bytes": 57181,
+      "sha256": "a94784c03a22de99eef9ebb379c0d7f741d0cb5923fffba3fae1cf5c0ad79aaf"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/turbo4-corpus/run_turbo4_corpus_v1.py",
+      "bytes": 5990,
+      "sha256": "f823eec338279d2ff717e365b9d8734c3662ec7c876f4bde6b7aebb29323300a"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/turbo4-corpus/EXECUTION-FREEZE-v1.json",
+      "bytes": 10894,
+      "sha256": "2eb3836bf6850b5d1172f1e76a520c922bf6255e204911c7a26f8bf865c1a822"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/offload-preparation/async_persistent_stage_b_v1.py",
+      "bytes": 58297,
+      "sha256": "be5ed4634a212e0d68d9b014f04ac2ca8e8547ade62c93967e73ccdecb9a8bfe"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/tools/validate_first_video_media_v1.py",
+      "bytes": 23411,
+      "sha256": "7fa12bd773e5933f2ce0e71c5be2f4124fc6c35284fbe5d3c624ab1b7012ca1a"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/plan/MEDIA-VALIDATION-GATES-v1.json",
+      "bytes": 687,
+      "sha256": "3e880606a5744fc290be9ca4011169be7dac65140e66ac3525e7b58b65a82e60"
+    }
+  ],
+  "runtime_source_manifest": "agents/timing-controller/SOURCES-v1.json checked by controller perrun",
+  "claim": "INCONCLUSIVE",
+  "model_gpu_dispatches": 0
+}

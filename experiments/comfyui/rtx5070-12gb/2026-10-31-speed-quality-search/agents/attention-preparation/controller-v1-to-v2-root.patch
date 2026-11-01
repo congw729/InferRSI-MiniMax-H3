@@ -1,0 +1,11 @@
+--- attention_stage_b_v1.py
++++ attention_stage_b_v2.py
+@@ -327,7 +327,7 @@
+ 
+     require(a.iteration_root == a.notes_root / "iterations/2026-10-31-speed-quality-search"
+             and a.q31_root == a.notes_root / "iterations/2026-10-28-comfy-trim-first-video"
+-            and Path(__file__).resolve().parent == a.iteration_root / "agents/timing-controller", "Q33/Q31 roots")
++            and Path(__file__).resolve().parent == a.iteration_root / "agents/attention-preparation", "Q33/Q31 roots")
+     require(a.portable_python == a.comfy_root.parent / "python_embeded/python.exe", "fixed portable relationship")
+     sys.dont_write_bytecode = True
+     v1_path = a.q31_root / "tools/comfy_first_video_v1.py"

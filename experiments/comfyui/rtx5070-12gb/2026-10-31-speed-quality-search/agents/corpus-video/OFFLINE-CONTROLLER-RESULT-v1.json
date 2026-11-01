@@ -1,0 +1,153 @@
+{
+  "schema": "q33-corpus-controller-offline/v1",
+  "unit_graph_only_not_real_ready_profile": true,
+  "checks": [
+    {
+      "name": "unchanged_sample",
+      "ok": true
+    },
+    {
+      "name": "unchanged_event",
+      "ok": true
+    },
+    {
+      "name": "unchanged_guarded_hash",
+      "ok": true
+    },
+    {
+      "name": "unchanged_http",
+      "ok": true
+    },
+    {
+      "name": "unchanged_verify_conditioning",
+      "ok": true
+    },
+    {
+      "name": "unchanged_cleanup_owned_v2",
+      "ok": true
+    },
+    {
+      "name": "unchanged_load_asset_manifest",
+      "ok": true
+    },
+    {
+      "name": "unchanged_conditioning_header",
+      "ok": true
+    },
+    {
+      "name": "unchanged_verify_dynamic_vram_startup",
+      "ok": true
+    },
+    {
+      "name": "bounce-audio_original-50_allowed_graph",
+      "ok": true
+    },
+    {
+      "name": "bounce-audio_original-50_reject_step_change",
+      "ok": true
+    },
+    {
+      "name": "bounce-audio_original-50_reject_missing_condition",
+      "ok": true
+    },
+    {
+      "name": "bounce-audio_original-20_allowed_graph",
+      "ok": true
+    },
+    {
+      "name": "bounce-audio_original-20_reject_step_change",
+      "ok": true
+    },
+    {
+      "name": "bounce-audio_original-20_reject_missing_condition",
+      "ok": true
+    },
+    {
+      "name": "bounce-audio_trim-8_allowed_graph",
+      "ok": true
+    },
+    {
+      "name": "bounce-audio_trim-8_reject_step_change",
+      "ok": true
+    },
+    {
+      "name": "bounce-audio_trim-8_reject_missing_condition",
+      "ok": true
+    },
+    {
+      "name": "bounce-audio_trim-6_allowed_graph",
+      "ok": true
+    },
+    {
+      "name": "bounce-audio_trim-6_reject_step_change",
+      "ok": true
+    },
+    {
+      "name": "bounce-audio_trim-6_reject_missing_condition",
+      "ok": true
+    },
+    {
+      "name": "hands-face-mug_original-50_allowed_graph",
+      "ok": true
+    },
+    {
+      "name": "hands-face-mug_original-50_reject_step_change",
+      "ok": true
+    },
+    {
+      "name": "hands-face-mug_original-50_reject_missing_condition",
+      "ok": true
+    },
+    {
+      "name": "hands-face-mug_original-20_allowed_graph",
+      "ok": true
+    },
+    {
+      "name": "hands-face-mug_original-20_reject_step_change",
+      "ok": true
+    },
+    {
+      "name": "hands-face-mug_original-20_reject_missing_condition",
+      "ok": true
+    },
+    {
+      "name": "hands-face-mug_trim-8_allowed_graph",
+      "ok": true
+    },
+    {
+      "name": "hands-face-mug_trim-8_reject_step_change",
+      "ok": true
+    },
+    {
+      "name": "hands-face-mug_trim-8_reject_missing_condition",
+      "ok": true
+    },
+    {
+      "name": "hands-face-mug_trim-6_allowed_graph",
+      "ok": true
+    },
+    {
+      "name": "hands-face-mug_trim-6_reject_step_change",
+      "ok": true
+    },
+    {
+      "name": "hands-face-mug_trim-6_reject_missing_condition",
+      "ok": true
+    },
+    {
+      "name": "reserve3_identity",
+      "ok": true
+    },
+    {
+      "name": "headroom_request_preserved",
+      "ok": true
+    },
+    {
+      "name": "no_torch_import",
+      "ok": true
+    }
+  ],
+  "check_count": 36,
+  "model_dispatches": 0,
+  "claim": "INCONCLUSIVE"
+}

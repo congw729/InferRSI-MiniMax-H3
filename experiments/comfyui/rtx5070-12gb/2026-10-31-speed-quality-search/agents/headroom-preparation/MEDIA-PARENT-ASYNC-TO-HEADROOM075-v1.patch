@@ -1,0 +1,33 @@
+--- run_async_persistent_media_v1.py
++++ run_headroom_persistent_media_v1.py
+@@ -3,22 +3,23 @@
+ p=argparse.ArgumentParser(allow_abbrev=False)
+ for k in ['notes-root','infra-root','portable-root','run','trial']:p.add_argument('--'+k,type=Path,required=True)
+ a=p.parse_args()
+-r=a.notes_root;q=r/'iterations/2026-10-31-speed-quality-search';pp=q/'agents/offload-preparation'
++r=a.notes_root;q=r/'iterations/2026-10-31-speed-quality-search';pp=q/'agents/headroom-preparation'
+ def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+ assert Path(__file__).resolve().parent==pp.resolve()
+ fr=pp/'EXECUTION-FREEZE-v1.json'
+-assert sha(fr)=='a996fe37e5f693bab17c2d7ec3b120ac4d4c12ff717562d6e1f9b181fc493a8a'
++assert sha(fr)=='8ca36a4350eeece479fd012f64921f905973a1f9084639201654f6f8b296a62d'
+ f=json.loads(fr.read_text())
+ for group,base,key in [('files',pp,'path'),('external_notes_files',r,'relative_to_notes'),('portable_files',a.portable_root,'path')]:
+  for row in f[group]:
+   file=(base/row[key]).resolve();assert file.is_relative_to(base.resolve())
+   assert file.stat().st_size==row['bytes'] and sha(file)==row['sha256']
+-script=pp/'validate_async_persistent_media_v1.py'
+-assert sha(script)=='27d8a29e51d9e18da93e803e16eaa8276445e103665c2eeef7dc1e6ee746b84e'
++script=pp/'validate_headroom_persistent_media_v1.py'
++assert sha(script)=='10fbe161061af3b38b8fd8d926771be1940d2fb4b7e379c646784da3470e4367'
+ result=a.trial/'result.json';actual=json.loads(result.read_text());assert actual['owned_root_exited'] and not actual['cleanup_diagnostics']
+-assert actual['status']=='two_artifacts_received_unvalidated' and actual['mode']=='async-persistent-video-stage-b' and actual['cache_policy']=='classic'
+-assert actual['driver_sha256']=='be5ed4634a212e0d68d9b014f04ac2ca8e8547ade62c93967e73ccdecb9a8bfe'
+-trial=q/'results'/('async-persistent-media-classic-'+uuid.uuid4().hex)
++assert actual['status']=='two_artifacts_received_unvalidated' and actual['mode']=='headroom-persistent-video-stage-b' and actual['cache_policy']=='classic'
++assert actual['requested_aimdo_vram_headroom_gib']==0.75
++assert actual['driver_sha256']=='2455f4c923639103a294fc53145ff6e3ef4eb2c6fa7dfd36014a5a50905981e1'
++trial=q/'results'/('headroom075-media-classic-'+uuid.uuid4().hex)
+ argv=[str(a.portable_root/'python_embeded/python.exe'),'-s','-B','-X','utf8',str(script),'--notes-root',str(r),'--infra-root',str(a.infra_root),'--portable-root',str(a.portable_root),'--run',str(a.run),'--trial',str(a.trial),'--stop-marker',str(a.run/'stop.signal'),'--result-sha256',sha(result)]
+ sys.path.insert(0,str(a.infra_root/'src'))
+ from inferrsi.infra.executors.local import execute_command

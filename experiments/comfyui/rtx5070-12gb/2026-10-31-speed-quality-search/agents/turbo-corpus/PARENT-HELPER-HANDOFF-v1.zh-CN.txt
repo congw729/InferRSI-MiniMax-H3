@@ -1,0 +1,6 @@
+可执行入口（需父级串行GPU队列/实时额度检查）：
+<PPY> -s -B -X utf8 <Q33>/agents/turbo-corpus/run_turbo_corpus_v1.py --notes-root <R> --infra-root <IR> --portable-root <PORTABLE> --model-root <MiniMax-H3 model root> --runs-parent <existing E runs parent> --nvidia-smi <actual executable> --corpus-id bounce-audio --remaining-percent <fresh quota percent>
+人物场景把corpus-id改为hands-face-mug，所有根参数沿现有正确值。profile/controller/freeze/reserve3/timing模块内部固定；不再手工拼全部native控制器参数。parenthelper SHA及3项冻结见PARENT-HELPER-FREEZE-v1。helper先核本目录EXECUTION-FREEZE-v1的21项和27外部项以及candidate原12项，首次模型完整hash仍由controller完成。
+外部门 physical>=12GiB/commit>=16.5GiB/GPUfree>=6GiB、剩余额度>20，InferRSI deadline2730不变。新run/trial名称含turbo-corpus及case；RunSpec写native profile_id=turbo-native-6和独立corpus_id。唯一端口仍8193，父级不得同时开其他实验。
+实际成功后执行现有Q33/tools/validate_profile_media_v1.py，参数 --notes-root R --infra-root IR --portable-root P --run <actual run> --trial <actual trial>。原384x256CPU完整EOF门适用，无需新媒体源码；检查仅结构，不把它当主观质量。
+本任务只准备：24旧小metadata门+v2两mode字串反向byte核对/实际PPYhelp，0GPU；source/profiles/receipts已独立只读审。

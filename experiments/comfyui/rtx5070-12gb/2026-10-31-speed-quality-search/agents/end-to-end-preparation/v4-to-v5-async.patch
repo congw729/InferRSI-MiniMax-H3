@@ -1,0 +1,19 @@
+--- end_to_end_v4.py
++++ end_to_end_v5.py
+@@ -84,6 +84,7 @@
+             "legacy ModelPatcher fallback detected")
+     require(b"DynamicVRAM support detected and enabled" in raw,
+             "DynamicVRAM enabled marker missing")
++    require(b"Using async weight offloading with 2 streams" in raw, "native two-stream async marker missing")
+     return {"startup_log_bytes": len(raw),
+             "startup_log_sha256": hashlib.sha256(raw).hexdigest()}
+ 
+@@ -672,7 +673,7 @@
+         command = [str(a.portable_python), "-s", "-B", str(a.comfy_root / "main.py"),
+                    "--listen", "127.0.0.1", "--port", str(a.port),
+                    "--disable-auto-launch", "--disable-all-custom-nodes", "--disable-partner-nodes",
+-                   "--offline", "--disable-assets", "--disable-pinned-memory", "--disable-async-offload", "--disable-smart-memory", "--cache-none", "--preview-method", "none",
++                   "--offline", "--disable-assets", "--disable-pinned-memory", "--disable-smart-memory", "--cache-none", "--preview-method", "none",
+                    "--vram-headroom", "1.0",
+                    "--reserve-vram", str(gates["reserve_vram_gb"]),
+                    "--models-directory", str(models_root)]

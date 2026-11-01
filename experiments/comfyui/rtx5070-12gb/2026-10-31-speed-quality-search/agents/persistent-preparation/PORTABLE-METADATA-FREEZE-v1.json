@@ -1,0 +1,7 @@
+{
+  "schema": "q33-persistent-metadata-probe-freeze/v1",
+  "file": "portable_metadata_probe_v1.py",
+  "sha256": "389bcaa5d1d99729e11599ca46331a6e4d6c907b70d11f00cf30d7373d9422f4",
+  "candidate_sha256": "333ec8b999dd747e585ce01e57245a4db5ec582cbbb146bf810f52e2ef39c7ef",
+  "purpose": "Verify adjusted descriptor root and existing real receipts via actual portable stdlib-only imports, plus --help; no model/GPU/service"
+}

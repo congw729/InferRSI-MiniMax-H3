@@ -1,0 +1,27 @@
+{
+  "schema": "q33-headroom-command-binding-result/v6",
+  "checks": {
+    "exact_one_added_cli_line": true,
+    "old_controller_preserved": true,
+    "ast_parse": true,
+    "prior_ready_identities_matched": 28,
+    "gates_profiles_graphs_assets_unchanged": true,
+    "portable_cli_help_returncode": 0,
+    "native_option_present": true,
+    "requested_headroom_bytes": 1073741824,
+    "service_model_GPU_execution": false,
+    "no_new_test_matrix": true
+  },
+  "candidate_sha256": "407a1dc679941f444ed0100108eab01c740a43a3ea193088de844284b9e9abcd",
+  "native_help_argv": [
+    "<PORTABLE_PYTHON>",
+    "-s",
+    "-B",
+    "<COMFY_ROOT>/main.py",
+    "--help",
+    "--vram-headroom",
+    "1.0"
+  ],
+  "help_limit": "Argparse help exits before main.py backend initialization; this validates option existence, not actual allocator effect or native runtime startup",
+  "quality_performance": "INCONCLUSIVE"
+}

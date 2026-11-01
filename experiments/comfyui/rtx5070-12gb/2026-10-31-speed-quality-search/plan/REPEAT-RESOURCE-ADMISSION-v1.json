@@ -1,0 +1,22 @@
+{
+  "schema": "q33-repeat-admission/v1",
+  "scope": "One serial repeat of existing original or existing Trim profile; extra Turbo memory requires separate review",
+  "prior_first_clip_external_admission_GiB": {
+    "physical": 12,
+    "commit": 20
+  },
+  "repeat_admission_GiB": {
+    "physical": 12,
+    "commit": 16.5,
+    "gpu_free": 6
+  },
+  "basis": "Previous successful original sampled owned private peak 13331423232 bytes; at16.5GiB about4.08GiB reserve. Sampled peak is not a continuous upper bound. External load differs; not a strict equal-load benchmark.",
+  "controller_gates_unchanged": true,
+  "controller_running_floor_GiB": {
+    "physical": 2,
+    "commit": 2
+  },
+  "controller_owned_private_cap_GiB": 16,
+  "review": "manual_notes_review approved for scoped repeat after immediate-cleanup v2 fix",
+  "no_unrelated_process_action": true
+}

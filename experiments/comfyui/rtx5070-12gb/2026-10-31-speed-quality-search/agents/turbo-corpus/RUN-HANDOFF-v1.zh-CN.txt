@@ -1,0 +1,7 @@
+原生Turbo6两真实corpus候选：非hybrid，无新节点/依赖/模型下载，无GPU。
+固定full50原版INT8ConvRot+现有v4step600 LoRA native LoraLoaderModelOnly全merge；Euler/simple6、video12/audio3、strength1、seed424242、384x256/73/24fps；reserve3/headroom1/no-pin/sync-offload/disable-smart-memory/cache-none与原guards不变。两图仅node1001 conditioning和node92 prefix不同于已成功native6toycar。
+bounce-audio复用真实F32[1,41,5120]/I64[41]；hands-face-mug复用F32[1,49,5120]/I64[49]。每条绑定实际StageA receipt与41项finite/value结果以及原生prompt/graph/driver哈希。stage_b入口函数AST与已审corpus版相同，native asset4和load_timing/cleanup/sample/http/guardedhash均AST不变。运行时仍完整权重SHA和conditioningfullSHA，不用合成收据替代。
+controller使用turbo_corpus_stage_b_v2.py，mode=turbo-corpus-video-stage-b；v1预备版metadata24项已完成但保留nativegeneric mode，v2仅修2处mode字串，反向bytes完全一致且实际portable --help0。v1和所有冻结/结果保留；没有v1服务失败或GPU。
+父级root参数沿原Turbo6，--timing-module仍Q33/agents/timing-controller/timing_events_v1.py；profile使用profiles/bounce-audio.json或profiles/hands-face-mug.json；conditioning各自descriptor，assets共用本目录assets/turbo-native.ready.json；gates/source依旧T/RESOURCE-GATES-RESERVE3-v1.json和T/SOURCES-v1.json。两次各新E run/独立InferRSI trial、串行GPU。完整profile SHA见READY-SUMMARY。
+输出仍artifact_received_unvalidated、profile_id=turbo-native-6，另有corpus_id/prompt_sha字段。结束所属服务后，可直接复用Q33/tools/validate_profile_media_v1.py：维持384x256/73帧音轨原CPU门；其actual run/trial从本次真实controller结果取，不伪造。该媒体结果只证结构/EOF，不能证明人物面部/动作/声音质量。需要看完整片，避免只凭toycar或抽帧选择默认。
+未改原portable/旧controller/旧profile。质量与性能INCONCLUSIVE。

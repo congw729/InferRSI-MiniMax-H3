@@ -1,0 +1,18 @@
+{
+  "schema": "q33-persistent-frozen-plan/v1",
+  "created_utc": "2026-10-30T18:18:33.779560+00:00",
+  "plane": "infra",
+  "baseline_controller_sha256": "f194d1b1862eab246c826d19c36c9c0846afe89b1664f6c24cd3f367f86d9ee9",
+  "graph_sha256": "4f3100808edb367c1e06066320113eb94043c1f697489c443b025a31d1788016",
+  "gates_sha256": "13672a9bbe8946c28c98b3bab0f906f6ddfe67735ff7f77929e58539a4a580dd",
+  "source_readout_sha256": "a1e0d413bf22a1b142fb24bbead06b3b20328572bae6a0947f956911b9adea36",
+  "design_sha256": "c71b66ab5df4172162875582745b68ee0bf7b7f03f9441251d4ae407995fb3e2",
+  "validator_sha256": "c4f25e32d28bfbb707473a3af407e41ef48dc8f81509d5ac8d8d7df1adc52641",
+  "configurations": {
+    "baseline": "two requests, existing cache-none and disable-smart-memory retained",
+    "smart": "two requests, only remove disable-smart-memory"
+  },
+  "new_test_scope": "Frozen small loop/one-POST/uncached8timing/directory-free graph+CLI cases, unchanged original cleanup AST; no old broad matrix rerun",
+  "real_runs": 0,
+  "quality_performance": "INCONCLUSIVE"
+}

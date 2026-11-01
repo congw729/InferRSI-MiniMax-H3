@@ -1,0 +1,19 @@
+{
+  "schema": "q33-turbo4-async-handoff/v1",
+  "ready_for_parent_after_independent_review": true,
+  "controller_sha256": "06eefc92c039a476efbad12b76a90400655a1e80ec267f0448c8a3ad25f09b04",
+  "execution_freeze_sha256": "23f5f906d7d49dc4f600a78106ca0f46f2308d8badf4f2ec459ebb9a8a770f13",
+  "helper_sha256": "2c3e4cb06837871604cd90f6951bc848af4a0322a178a4d0aa3e585e8975422d",
+  "helper_freeze_sha256": "c2cdf6360c574fd0b1045da67ce28b66519fdf51123fa761e96f545bad8e8ea5",
+  "command": "<PPY> -s -B -X utf8 <THIS>/run_turbo4_async_v1.py --notes-root <R> --infra-root <IR> --portable-root <P> --model-root <M> --runs-parent <E_RUNS> --nvidia-smi <SMI> --corpus-id bounce-audio --remaining-percent <FRESH_PERCENT>",
+  "execute_scope": "One new candidate, parent owns sole GPU; actual helper fresh12/16.5/6 plus unchanged controller limits. No automatic retries.",
+  "media_command": "<PPY> -s -B -X utf8 <Q33>/tools/validate_profile_media_v1.py --notes-root <R> --infra-root <IR> --portable-root <P> --run <ACTUAL_E_RUN> --trial <ACTUAL_CONTROLLER_TRIAL>",
+  "media_wrapper_sha256": "b44bc73cd1c7d65e0c1f8616c051fd341cba66c98fe7dbacc36f80a92e42e138",
+  "media_compatibility": "Existing generic wrapper binds actual artifact/profile and cleanup, not an old fixed controller filename; native73x384x256+audio validator unchanged. Parent/audit must verify actual new driver hash above.",
+  "decoded_comparison": "Use existing agents/decoded-content-identity/decoded_content_v7.py with a new actual-source manifest after media completion. Baseline frozen original Turbo4 bounce run q33-turbo4-corpus-bounce-audio-4265351f40394e2bb197a07d5c611653. Do not substitute three stills for full RGB/PCM/PTS comparison.",
+  "frozen_checks_completed": 10,
+  "actual_portable_help_checks": 2,
+  "runtime_delta": "Only remove native disable-async-offload; startup must report2streams. Profile graph and assets/canonical exact bytes, condition/provenance payload unchanged.",
+  "measurement_scope": "Historical baseline native history27.106s only descriptive, no new baseline or stable paired gain; record sampling/controller/outer separately.",
+  "claim": "INCONCLUSIVE"
+}

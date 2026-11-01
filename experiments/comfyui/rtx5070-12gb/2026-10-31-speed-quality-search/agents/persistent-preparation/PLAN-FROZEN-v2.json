@@ -1,0 +1,26 @@
+{
+  "schema": "q33-persistent-cache-frozen-plan/v2",
+  "plane": "infra",
+  "baseline_controller_sha256": "333ec8b999dd747e585ce01e57245a4db5ec582cbbb146bf810f52e2ef39c7ef",
+  "baseline_media_sha256": "d68861ebcc633881f27179339e4fb678abb318c95a38510db900d9a38eb97ae7",
+  "validator_sha256": "91466a356164ab407b4f5506c01650a4cbb0873a3161833c81ade3cd994fb3e9",
+  "configurations": {
+    "none": "fixed smart memory + cache-none",
+    "classic": "fixed smart memory + cache-classic"
+  },
+  "two_requests_each": {
+    "seeds": [
+      424242,
+      424243
+    ],
+    "steps": 8,
+    "same_toycar_conditioning": true,
+    "only_graph_changes": "seed for second request and unique per-request output prefix"
+  },
+  "cache_semantics": "existing native classic preserves output/object caches; seed changes sampler input signature while loader IDs/inputs stay identical; actual reuse must be observed, not assumed",
+  "unchanged": "same assets/geometry/sampler/shift, reserve3/headroom1, 768MiB boardfloor/RSS10/private16/host floors, overall2700/HTTP budgets, original cleanup and 2POST cap",
+  "required_each_request": "history exact graph, native success, sampler uncached and progress=8/8, distinct prompt/client and output, full media afterward",
+  "comparison": "one none session versus one classic session with same seed schedule. Not compare old v1 same-seed session as single-factor control. Human quality and performance INCONCLUSIVE. Record native prompt/sampler/loader cached states, resources and same-seed cross-configuration MP4/PNG hashes. No new broad matrix.",
+  "offline_checks": "validator frozen above before implementation; portable --help only; independent delta review before parent dispatch",
+  "no_gpu_model_network_in_preparation": true
+}

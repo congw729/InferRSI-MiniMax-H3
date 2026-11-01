@@ -1,0 +1,19 @@
+备份与进度归属（2026-11-01）
+
+代码：本仓库保存 H3 适配器与 ComfyUI 实验控制器/验证器。
+进度：继续更新原 vllm-omni-draft；此次不移动、删除或复制整套 dashboard。新仓库 README 提供入口，避免两个进度页不一致。
+
+进度看板源码与本地入口：
+https://github.com/congw729/vllm-omni-draft/blob/6e1638f5748258adba5276802272e06697c53ba0/src/dev_notes/h3-5070-inferrsi/dashboard/index.html
+<RECORD_ROOT>/dashboard/index.html
+GitHub blob 页面不是可直接播放视频的网页；视频留在本机 E 盘，本地页面可选取媒体。
+
+实验笔记：
+https://github.com/congw729/vllm-omni-draft/blob/6e1638f5748258adba5276802272e06697c53ba0/src/dev_notes/h3-5070-inferrsi/notes/2026-10-31-speed-quality-search.md
+配置与结果对比：
+https://github.com/congw729/vllm-omni-draft/blob/6e1638f5748258adba5276802272e06697c53ba0/src/dev_notes/h3-5070-inferrsi/previews/2026-10-31-config-comparisons-v1/CONFIG-COMPARISON.zh-CN.txt
+
+复现起点：experiments/comfyui/rtx5070-12gb/2026-10-31-speed-quality-search/
+先读 REPORT 与 plan、控制器 --help；使用隔离环境和显式路径，核对冻结来源与外部依赖。历史控制器可能含下载/启动服务行为，不应直接批量运行。
+本次只做文件复制、静态语法/JSON 与完整性核对，没有新模型运行、画质或速度验证。
+原始日志、模型、媒体、虚拟环境、较早迭代依赖仍在原位置；本仓库不是完整机器镜像。

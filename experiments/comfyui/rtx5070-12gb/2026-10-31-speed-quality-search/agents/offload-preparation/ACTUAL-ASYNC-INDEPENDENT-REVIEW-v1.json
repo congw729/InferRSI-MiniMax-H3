@@ -1,0 +1,247 @@
+{
+  "schema": "q33-async-actual-independent-review/v1",
+  "checks": {
+    "all_4_MP4_actual_full_hashes_match": true,
+    "whole_MP4_same_for_each_seed": true,
+    "graphs_same": true,
+    "cached_node_sets_same": true,
+    "asset_gates_profile_conditioning_sources_same": true,
+    "2stream_marker_only_candidate": true
+  },
+  "trials": [
+    {
+      "label": "baseline",
+      "trial_relative_to_q33": "results/inferrsi-persistent-cache-classic-3d98ba2758554d3ebf3c3d0bbed9d69d",
+      "run_relative_to_lab": "comfy-original/runs/q33-persistent-cache-classic-3d98ba2758554d3ebf3c3d0bbed9d69d",
+      "evidence_sha256": {
+        "result.json": "91f2e9a931dbc9287586d9742f881a7943e40bc8dc1cbbae8bb58ee09d4347f3",
+        "execution.json": "7680ea58a00a95e91294e3a58795e516b67d38187349ba26d2c491c4fc870a5a",
+        "resources.jsonl": "a22c376aa19a8de96ebb6eba5dde9a3a1efbb125ad1e3b999280abda077a8fb1",
+        "comfy.raw.log": "d751c6e1cef50a26e4cc9ea386e86d81e354ba8fff9adf717f84164932f6cd5a"
+      },
+      "native_prompt_log_seconds": [
+        9.58,
+        7.61
+      ],
+      "native_async_marker": false,
+      "elapsed_seconds": 36.53974959999323,
+      "outer_seconds": 36.67200000002049,
+      "peak_rss": 5472825344,
+      "peak_private": 14983557120,
+      "min_physical": 13035016192,
+      "min_commit": 5158617088,
+      "min_board_free": 1626341376,
+      "sample_count": 39,
+      "cleanup_confirmed": true,
+      "identity": {
+        "gates_sha256": "13672a9bbe8946c28c98b3bab0f906f6ddfe67735ff7f77929e58539a4a580dd",
+        "asset_set_sha256": "c1507b121962e250f2d74c7dce2f4e0e63e7de8e55a39c2d2795e336106de2a0",
+        "conditioning_manifest_sha256": "56e67d26b9041f4e21b91f9adf12d8efdfeab2a1a677540b3765052982043992",
+        "profile_sha256": "e25e4e27c44203e8bf5deac8ddb143c7b1c347881cc572f4161021a112a38e64",
+        "source_manifest_sha256": "bf0d3e3b09f8130053735eaa6645bcc4ff753833a97ef4ae306d7d223283f007"
+      },
+      "requests": [
+        {
+          "request_index": 1,
+          "seed": 424242,
+          "graph_sha256": "2c262a7d706ee09111d961f4f0bdad504cd6f33c89eee013e8c335cce212b6f5",
+          "metrics": {
+            "native_prompt_wall_seconds": 9.58,
+            "sampler_observed_wall_seconds": 7.483346,
+            "gpu_compute_only_seconds": null
+          },
+          "artifact": {
+            "relative_to_run": "output\\q33-persistent-cache\\trim-8\\request-1_00001_.mp4",
+            "bytes": 240122,
+            "sha256": "9c0ec62b2694f56299a15872e2b4259777dbe91428c7bea4a85a45e15b91d226"
+          },
+          "peak_owned_rss_sum_bytes": 5472825344,
+          "peak_owned_private_sum_bytes": 14842892288,
+          "min_gpu_board_free_bytes": 1665138688,
+          "max_gpu_board_used_bytes": 10859053056,
+          "actual_file_sha256": "9c0ec62b2694f56299a15872e2b4259777dbe91428c7bea4a85a45e15b91d226",
+          "file_stat_unchanged": true,
+          "sampler_cached": false,
+          "sampler_steps": 8,
+          "cached_nodes": []
+        },
+        {
+          "request_index": 2,
+          "seed": 424243,
+          "graph_sha256": "c6b6f4a436b4899495a25009e860ac917fda38baf55920e35d76b0bcc71bee48",
+          "metrics": {
+            "native_prompt_wall_seconds": 7.611,
+            "sampler_observed_wall_seconds": 6.2164684,
+            "gpu_compute_only_seconds": null
+          },
+          "artifact": {
+            "relative_to_run": "output\\q33-persistent-cache\\trim-8\\request-2_00001_.mp4",
+            "bytes": 312427,
+            "sha256": "899f475cf381e417873470707b119c3e5bb5ff65386cb0858f5ab8fa8887c501"
+          },
+          "peak_owned_rss_sum_bytes": 5458178048,
+          "peak_owned_private_sum_bytes": 14983557120,
+          "min_gpu_board_free_bytes": 1626341376,
+          "max_gpu_board_used_bytes": 10897850368,
+          "actual_file_sha256": "899f475cf381e417873470707b119c3e5bb5ff65386cb0858f5ab8fa8887c501",
+          "file_stat_unchanged": true,
+          "sampler_cached": false,
+          "sampler_steps": 8,
+          "cached_nodes": [
+            "6",
+            "11",
+            "24",
+            "148",
+            "128",
+            "127",
+            "17",
+            "9",
+            "16",
+            "1001",
+            "1002"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "async",
+      "trial_relative_to_q33": "results/inferrsi-async-classic-98274aade90b40659e74f9a86b4b2563",
+      "run_relative_to_lab": "comfy-original/runs/q33-async-classic-98274aade90b40659e74f9a86b4b2563",
+      "evidence_sha256": {
+        "result.json": "a830f1cd4beea203ef0b6719a049c2e6af3c7f21e8b20cbe2d3fe67e0d8cac02",
+        "execution.json": "0b4a45598d547ccf3b1833b0dc3da9f70b29904ddb2cce95de7fc92558aed4fa",
+        "resources.jsonl": "67ad20c16cc01d2451fde10c770651468982a12cc69da69c43b24f9138403bad",
+        "comfy.raw.log": "14d5c174ebec5c52cc071d8ad1a37029cbb400a91e3f31ac4b7ee98407778ac6"
+      },
+      "native_prompt_log_seconds": [
+        9.29,
+        6.73
+      ],
+      "native_async_marker": true,
+      "elapsed_seconds": 34.5865943999961,
+      "outer_seconds": 34.73399999993853,
+      "peak_rss": 5458141184,
+      "peak_private": 15240945664,
+      "min_physical": 12994265088,
+      "min_commit": 4992630784,
+      "min_board_free": 1472200704,
+      "sample_count": 37,
+      "cleanup_confirmed": true,
+      "identity": {
+        "gates_sha256": "13672a9bbe8946c28c98b3bab0f906f6ddfe67735ff7f77929e58539a4a580dd",
+        "asset_set_sha256": "c1507b121962e250f2d74c7dce2f4e0e63e7de8e55a39c2d2795e336106de2a0",
+        "conditioning_manifest_sha256": "56e67d26b9041f4e21b91f9adf12d8efdfeab2a1a677540b3765052982043992",
+        "profile_sha256": "e25e4e27c44203e8bf5deac8ddb143c7b1c347881cc572f4161021a112a38e64",
+        "source_manifest_sha256": "bf0d3e3b09f8130053735eaa6645bcc4ff753833a97ef4ae306d7d223283f007"
+      },
+      "requests": [
+        {
+          "request_index": 1,
+          "seed": 424242,
+          "graph_sha256": "2c262a7d706ee09111d961f4f0bdad504cd6f33c89eee013e8c335cce212b6f5",
+          "metrics": {
+            "native_prompt_wall_seconds": 9.285,
+            "sampler_observed_wall_seconds": 6.9543885,
+            "gpu_compute_only_seconds": null
+          },
+          "artifact": {
+            "relative_to_run": "output\\q33-persistent-cache\\trim-8\\request-1_00001_.mp4",
+            "bytes": 240122,
+            "sha256": "9c0ec62b2694f56299a15872e2b4259777dbe91428c7bea4a85a45e15b91d226"
+          },
+          "peak_owned_rss_sum_bytes": 5451489280,
+          "peak_owned_private_sum_bytes": 14812876800,
+          "min_gpu_board_free_bytes": 1639972864,
+          "max_gpu_board_used_bytes": 10884218880,
+          "actual_file_sha256": "9c0ec62b2694f56299a15872e2b4259777dbe91428c7bea4a85a45e15b91d226",
+          "file_stat_unchanged": true,
+          "sampler_cached": false,
+          "sampler_steps": 8,
+          "cached_nodes": []
+        },
+        {
+          "request_index": 2,
+          "seed": 424243,
+          "graph_sha256": "c6b6f4a436b4899495a25009e860ac917fda38baf55920e35d76b0bcc71bee48",
+          "metrics": {
+            "native_prompt_wall_seconds": 6.727,
+            "sampler_observed_wall_seconds": 5.2964909,
+            "gpu_compute_only_seconds": null
+          },
+          "artifact": {
+            "relative_to_run": "output\\q33-persistent-cache\\trim-8\\request-2_00001_.mp4",
+            "bytes": 312427,
+            "sha256": "899f475cf381e417873470707b119c3e5bb5ff65386cb0858f5ab8fa8887c501"
+          },
+          "peak_owned_rss_sum_bytes": 5458141184,
+          "peak_owned_private_sum_bytes": 15240945664,
+          "min_gpu_board_free_bytes": 1472200704,
+          "max_gpu_board_used_bytes": 11051991040,
+          "actual_file_sha256": "899f475cf381e417873470707b119c3e5bb5ff65386cb0858f5ab8fa8887c501",
+          "file_stat_unchanged": true,
+          "sampler_cached": false,
+          "sampler_steps": 8,
+          "cached_nodes": [
+            "6",
+            "11",
+            "24",
+            "148",
+            "128",
+            "127",
+            "17",
+            "9",
+            "16",
+            "1001",
+            "1002"
+          ]
+        }
+      ]
+    }
+  ],
+  "media_result_sha256": "14e8d257402b9bedfc2438733fc1d15aa9aaf34af571095e26be75fa5367b20c",
+  "candidate_media": [
+    {
+      "request_index": 1,
+      "summary_sha256": "2aa8be616ea09e7c7ad658aecfec57725526de413270354399021b5c01f5f45b",
+      "decoder_result_sha256": "b530998991776d5531385f79ff4c18b0e24b1cd210041db3dd8a2a9ea79fe2ab",
+      "video": {
+        "decoded_frames": 73,
+        "width": 384,
+        "height": 256,
+        "pts_rate": "24"
+      },
+      "audio": {
+        "sample_rate": 32000,
+        "channels": 2,
+        "samples_per_channel": 97334
+      },
+      "full_eof_unchanged_cleanup": true
+    },
+    {
+      "request_index": 2,
+      "summary_sha256": "c14483d7578e06022894ed584896f218c753621714cf69b40a27fdfccffa85d5",
+      "decoder_result_sha256": "57dfde96c5bf158da3ac8f46b52e771a63fac75aa31844dfb1a49c223868506b",
+      "video": {
+        "decoded_frames": 73,
+        "width": 384,
+        "height": 256,
+        "pts_rate": "24"
+      },
+      "audio": {
+        "sample_rate": 32000,
+        "channels": 2,
+        "samples_per_channel": 97334
+      },
+      "full_eof_unchanged_cleanup": true
+    }
+  ],
+  "review_scope": "Actual result/resources/log + four small MP4 whole hashes; actual complete media chain, no rerun.",
+  "prior_read_attempt": "First review path assumption used comfy-trim/runs and raised FileNotFoundError before any write; corrected by reading actual executor argv run-dir. No experimental failure or altered source.",
+  "interpretation": "Two tested seeds have identical full MP4 bytes including encoded audio. One ordered session per configuration shows lower candidate times; not a repeated causal gain or broad quality proof.",
+  "limits": [
+    "Whole-board GPU is sampled and includes unrelated processes, not torch allocator.",
+    "Only two seeds / one trial per configuration; no full playback or listening in this review.",
+    "Private peak increased and minimum board free decreased; preserve original thresholds."
+  ],
+  "performance_quality_verdict": "INCONCLUSIVE"
+}

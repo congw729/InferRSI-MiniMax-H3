@@ -1,0 +1,25 @@
+{
+  "schema": "q33-e2e-history-published/v7",
+  "plane": "harness",
+  "baseline_controller_sha256": "8b787a016c311184955f98eccb760d058d266c2fc994dfa7bd094b34fd79da85",
+  "baseline_observer_sha256": "f0abb1937ca5462d712a73d1a8623b6a9f5df86927dbcf6375903b8a5ad3e614",
+  "baseline_actual_review_sha256": "cc95a2fc5e93305a66c05d30464b93a455a8d5402ad51f0281e13a3b2196ca5f",
+  "only_change": "New bounded observer records execution_success clock but remains connected until same prompt executing with explicit node=None, emitted after native task_done. Error/interrupted terminate immediately. One notification wake, original history authority and fallback remain.",
+  "source_order": "execution.py828 success; unload/finally thereafter; main389 task_done publishes; main399 executing node=None after publication.",
+  "clocks": "Separate success_received_ns and history_published_marker_received_ns; never use mutable last_ns as success. Marker is not pure GPU completion/GC acknowledgement. Missing marker remains null.",
+  "fallback": "If authoritative history and artifact verified before marker is observed and success has arrived, signal observer stop; keep marker/marker-to-artifact null. No marker is fabricated; disconnect/errors/cancel still invalid.",
+  "unchanged": "All old WS message/byte limits, aiohttp timeout, sid/prompt check, node timing, sample/cancel/timeouts/maxhistory/onePOST, same4POST3free/all model/infra/guards/Jobcleanup.",
+  "CPU_cases": [
+    "success alone not done",
+    "wrong prompt null ignored",
+    "missing node ignored",
+    "non-null executing ignored",
+    "null-before-success not acknowledgement",
+    "proper ordered explicit null accepted once",
+    "error/interrupted immediate",
+    "cancel exception causes done and invalid record",
+    "history wait helper unchanged (once then timed fallback)",
+    "old protected controller and observer lifecycle/byte bounds unchanged"
+  ],
+  "claim": "INCONCLUSIVE"
+}

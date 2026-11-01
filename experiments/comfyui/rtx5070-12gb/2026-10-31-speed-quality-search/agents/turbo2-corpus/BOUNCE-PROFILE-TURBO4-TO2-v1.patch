@@ -1,0 +1,64 @@
+--- turbo4/profiles/bounce-audio.json
++++ turbo2/profiles/bounce-audio.json
+@@ -1,15 +1,15 @@
+ {
+   "schema": "q33-turbo-corpus-profile/v1",
+-  "id": "turbo-native-4",
++  "id": "turbo-native-2",
+   "family": "turbo-native",
+-  "steps": 4,
++  "steps": 2,
+   "role": "candidate",
+   "dispatch_ready": true,
+-  "dispatch_note": "Exploratory native fullmerge Turbo4 compared with same-corpus Turbo6; only sampler steps6to4 and output identity change. No author-proven4step quality claim; parent review before GPU.",
++  "dispatch_note": "Exploratory native fullmerge Turbo2 bounce only, compared with same-corpus4; only steps4to2/output identity changes. No author-validated2step quality claim. Parent decides next prompt only after this actual result.",
+   "model_subdir": "comfy-original/models",
+   "graph": {
+     "file": "graphs/bounce-audio.json",
+-    "sha256": "bed7a0c36208a1834707812c499648be6a66848750cfa9d11f513964a871ced6"
++    "sha256": "f723ade71bb68caca20ab6a2c3c5a2e305ac4feaf1d6fb0032814e7b4f3d5fcf"
+   },
+   "canonical_graph": {
+     "file": "canonical/original.json",
+@@ -21,7 +21,7 @@
+   },
+   "conditioning": {
+     "file": "conditioning/bounce-audio.json",
+-    "sha256": "4986619bf419aa10b1c0f779b30fa36d1c6c0c3dde8ea0a5efba71fc87557368"
++    "sha256": "93bd4215d0fd57d0b5dc11e3d432401a57fc884ad97ceef1c2b931fc71b2315c"
+   },
+   "corpus_id": "bounce-audio",
+   "prompt_sha256": "ab2edbd2e3a796a8f0507aa8cefc0f7d76c412b1e889a9d6536b44536cd78869",
+--- turbo4/graphs/bounce-audio.json
++++ turbo2/graphs/bounce-audio.json
+@@ -50,7 +50,7 @@
+           0
+         ],
+         "scheduler": "simple",
+-        "steps": 4,
++        "steps": 2,
+         "denoise": 1
+       }
+     },
+@@ -142,7 +142,7 @@
+           "91",
+           0
+         ],
+-        "filename_prefix": "q33-turbo-corpus/bounce-audio/turbo-native-4",
++        "filename_prefix": "q33-turbo-corpus/bounce-audio/turbo-native-2",
+         "format": "mp4",
+         "format.codec": "h264",
+         "format.codec.encoding": "auto"
+--- turbo4/conditioning/bounce-audio.json
++++ turbo2/conditioning/bounce-audio.json
+@@ -35,8 +35,8 @@
+     "basename": "h3-conditioning-70a19cfeb46fe9411ac6f3fbfea63c253056d28cffb9bb28f269da4c2134d170.safetensors"
+   },
+   "graph": {
+-    "relative_path": "agents/turbo4-corpus/graphs/bounce-audio.json",
+-    "sha256": "bed7a0c36208a1834707812c499648be6a66848750cfa9d11f513964a871ced6"
++    "relative_path": "agents/turbo2-corpus/graphs/bounce-audio.json",
++    "sha256": "f723ade71bb68caca20ab6a2c3c5a2e305ac4feaf1d6fb0032814e7b4f3d5fcf"
+   },
+   "provenance": {
+     "stage_a_receipt": {

@@ -1,0 +1,293 @@
+{
+  "schema": "q33-author-hybrid-execution-freeze/v2",
+  "created_utc": "2026-10-30T18:12:58.450106+00:00",
+  "controller_sha256": "032323facd78fa5ee881c47327ca28b33c934fdd4c4eb05495d9e93666134a36",
+  "files": [
+    {
+      "path": "assets/turbo-hybrid.ready.json",
+      "bytes": 3866,
+      "sha256": "bc2390f35de3f1348b23f196a041c8f618e4591381c34b73877e4885461accfd"
+    },
+    {
+      "path": "CANDIDATE-FREEZE-v1.json",
+      "bytes": 2573,
+      "sha256": "b38776fe1d3f32e6f2e71ac426f00146456b97d5c7e9458118e32004bf104658"
+    },
+    {
+      "path": "canonical/original.json",
+      "bytes": 3069,
+      "sha256": "d5937f2505f74e07ce8de746c49c98e8a428535d79ccc878383e8b989807fb29"
+    },
+    {
+      "path": "conditioning/turbo-hybrid-6.json",
+      "bytes": 1025,
+      "sha256": "db95a72b2fcf433cb2ca0f0dbed76e7ae7b97d5edbe5bc01a487fb5878b55eb5"
+    },
+    {
+      "path": "DEPLOYED-AUTHOR-SOURCES-v1.json",
+      "bytes": 979,
+      "sha256": "d9e9a7161e6233fc68ad5666a06e637f3b950f1ec2598ec388b89fdb4bd75625"
+    },
+    {
+      "path": "EXTRA-HYBRID-IMPORT-SOURCES-v1.json",
+      "bytes": 881,
+      "sha256": "b9cfa5f0c921ec3368db926be50fa76382e127dc7ead484930c1e70cc946d51b"
+    },
+    {
+      "path": "graphs/turbo-hybrid-6.json",
+      "bytes": 3333,
+      "sha256": "fc56e56ab1b30990f823ab84c4b8f2a3f83cc8b94d778212d86e2144a1a2cca9"
+    },
+    {
+      "path": "HANDOFF-v1.zh-CN.txt",
+      "bytes": 2008,
+      "sha256": "90ac3ab3894548b7cfa40362f7b14c9d2050b11e91bad4ecc15f111bf1bab97f"
+    },
+    {
+      "path": "native-v6-to-hybrid-v1.patch",
+      "bytes": 14599,
+      "sha256": "f771c47373eed1fa7f70bd4ebc308e1d0cdd1503171872f4c3ba2059d4b46c17"
+    },
+    {
+      "path": "OFFLINE-RESULT-v1.json",
+      "bytes": 2488,
+      "sha256": "36b9023711d89892a08bd60ee68876feddcbf5d4ed43a452c732c70017bec4f2"
+    },
+    {
+      "path": "PLAN-FROZEN-v1.json",
+      "bytes": 2352,
+      "sha256": "1050ab3d4ad22fd2c5101d6eebffc8b7d3bf65e18bf55da1ba2d69238c4a807d"
+    },
+    {
+      "path": "PORTABLE-HELP-v1.json",
+      "bytes": 213,
+      "sha256": "027f4e3198ccc30ee83a57f1997782e13f0eace0cee6e74e0ba3d828903ab93c"
+    },
+    {
+      "path": "PORTABLE-HELP-v1.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "PORTABLE-HELP-v1.stdout.txt",
+      "bytes": 2596,
+      "sha256": "e664b81ab519fff9dad3643f3320d044ae10da5d43364d584948f805545a7bb7"
+    },
+    {
+      "path": "profiles/turbo-hybrid-6.ready.json",
+      "bytes": 976,
+      "sha256": "e5850a6a50b2bca30d89526203f04efcbf72fb0d734effae8fcf03d23b5a10c5"
+    },
+    {
+      "path": "REAL-HEADER-HYBRID-MAPPING-v1.json",
+      "bytes": 1053,
+      "sha256": "4a0f6bf4bbf350192007404b260ef1fce019b9e741bc556c20443dae84b8e4d6"
+    },
+    {
+      "path": "TURBO-RESOURCE-GATES-v1.json",
+      "bytes": 855,
+      "sha256": "13672a9bbe8946c28c98b3bab0f906f6ddfe67735ff7f77929e58539a4a580dd"
+    },
+    {
+      "path": "turbo_hybrid_stage_b_v1.py",
+      "bytes": 57567,
+      "sha256": "eb195fdb263ee8015bd06233f4cfb115f4741749e87b2a02afa5d56793b341a1"
+    },
+    {
+      "path": "validate_hybrid_offline_v1.py",
+      "bytes": 5805,
+      "sha256": "d829403cefb1f31570ec449ba2cc63dc4f322b267bc0c40200596c34a5d2038e"
+    },
+    {
+      "path": "EXECUTION-FREEZE-v1.json",
+      "bytes": 9850,
+      "sha256": "13ccb0a744aaa033917b5a9cad9c289bf060c3dbf7a83d8ccf0e24b546bb3cd8"
+    },
+    {
+      "path": "PLAN-DIRECTORY-FIX-v2.json",
+      "bytes": 1237,
+      "sha256": "688ec25fa29b0a1d1f970627ce8afe1c5caeaf335174697b2eccb375b74a02e6"
+    },
+    {
+      "path": "validate_hybrid_directory_v2.py",
+      "bytes": 2420,
+      "sha256": "0f61e3eabbffafeca36b47b5c8c7a24d03250986f69b75be17e205b83dbc0bb8"
+    },
+    {
+      "path": "turbo_hybrid_stage_b_v2.py",
+      "bytes": 57615,
+      "sha256": "032323facd78fa5ee881c47327ca28b33c934fdd4c4eb05495d9e93666134a36"
+    },
+    {
+      "path": "hybrid-v1-to-v2.patch",
+      "bytes": 417,
+      "sha256": "c699125a44d00ca0824bfdd9e73d7f7c71fa9baeb46ec3bbc2f0f76dd147113c"
+    },
+    {
+      "path": "DIRECTORY-REGRESSION-v2.json",
+      "bytes": 695,
+      "sha256": "82239afc3449752a7e56a39a9daf4ecfa235d9cf00924975a101e2ecc8c7258c"
+    },
+    {
+      "path": "HANDOFF-v2.zh-CN.txt",
+      "bytes": 718,
+      "sha256": "f7571e094f483ad170a8718d1e8d13a624a9e521752357d6f7b7da6acab5bd7d"
+    }
+  ],
+  "external_notes_files": [
+    {
+      "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/state/transport/assets/audio-vae.json",
+      "bytes": 383,
+      "sha256": "825d5402d4dea3d39be45c436564949944a030268860d5eb029728f30b552a6b"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/state/transport/assets/audio-vae.receipt.json",
+      "bytes": 800,
+      "sha256": "f2f8217d2d75c8d8420a12b44e6cb298ce7f2dda52d71296c25f99c39fd28251"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/state/transport/assets/video-vae.json",
+      "bytes": 400,
+      "sha256": "2606bfe4a0a25313d8423dfc8486a4e3260eed41a8fbff1678e425fb12d94dc9"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/state/transport/assets/video-vae.receipt.json",
+      "bytes": 809,
+      "sha256": "10d5e728d94c586c0aa3db2f8b9433df3b3d84105d6fa31a8a4c2e5e513e19d4"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/tools/comfy_first_video_v1.py",
+      "bytes": 20306,
+      "sha256": "63eb319e9fe294209e65c188a447a101987738e5ebc49bae879b65d36bb20d35"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-30-original-h3-first-video/state/transport/assets/original-dit.json",
+      "bytes": 426,
+      "sha256": "e1c8673171d86b258cdda2efd6634be49805c25b2022159324758d253b4a93a2"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-30-original-h3-first-video/state/transport/assets/original-dit.receipt.json",
+      "bytes": 1354,
+      "sha256": "17a83e4cb12be696aa0c9625c17e2f0f293cfab227bb652d2852221c66614468"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/timing-controller/SOURCES-v1.json",
+      "bytes": 33327,
+      "sha256": "bf0d3e3b09f8130053735eaa6645bcc4ff753833a97ef4ae306d7d223283f007"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/timing-controller/timing_events_v1.py",
+      "bytes": 10734,
+      "sha256": "f0abb1937ca5462d712a73d1a8623b6a9f5df86927dbcf6375903b8a5ad3e614"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/turbo-preparation/download/PROFILE-v1.json",
+      "bytes": 1299,
+      "sha256": "84be14a039cc3955eb475f5fa2cd52a62d92190a2c534ac7ee75f18d9e64bb10"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/state/turbo-download/asset-receipt-4dbdde2c1c314d9590ecb78215ec4861.json",
+      "bytes": 691,
+      "sha256": "8addc82669d67ee9bdec02bff9ce32a7a69b7e57223eab6634b022c853e26c86"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/turbo-controller/turbo_stage_b_v6.py",
+      "bytes": 53411,
+      "sha256": "407a1dc679941f444ed0100108eab01c740a43a3ea193088de844284b9e9abcd"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/turbo-controller/READY-EXECUTION-FREEZE-v6.json",
+      "bytes": 7836,
+      "sha256": "f06f433dc89b21ab2900203437b87f3ba97768c90a825c4a69826d97cce62d2a"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/turbo-controller/REAL-LORA-HEADER-NATIVE-MAP-v1.json",
+      "bytes": 121492,
+      "sha256": "cadd5ae14a7cf84572f156e083d39f4c1cd9e92757482aeb69c6411caf7672f7"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/turbo-preparation/SOURCE-INDEX-v1.json",
+      "bytes": 2496,
+      "sha256": "8d8f8822a3b95a7454ea3b0975b98d52657a74d71b5c73ffd8352980fc89da46"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-23-original-quant-audit/metadata/comfy-headers-v2-retry/minimax_h3_fl2va_int8_convrot.safetensors.header.raw",
+      "bytes": 108240,
+      "sha256": "7513055dc7e4b8f67e1c8afa2126fb48e899f9c7b70d25655dad599d8c2e6783"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/turbo-preparation/upstream/__init__.py.snapshot.txt",
+      "bytes": 26363,
+      "sha256": "a22f222f11dfc337552371f7f288bf5928cb1fa80a6afb3f24075a8315d02f06"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/turbo-preparation/upstream/LICENSE.snapshot.txt",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/turbo-preparation/upstream/README.md.snapshot.txt",
+      "bytes": 6044,
+      "sha256": "1676b6cd2804c43ce6c7c822d0a5c6a33bea1ce728449fa0d44ebf0f07583e3d"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/turbo-preparation/upstream/pyproject.toml.snapshot.txt",
+      "bytes": 413,
+      "sha256": "b4f49884a0cbb068ae0720612599486515d2b6f257c462d9621addada893ef7c"
+    }
+  ],
+  "portable_files": [
+    {
+      "path": "ComfyUI/utils/extra_config.py",
+      "bytes": 1404,
+      "sha256": "79575ef9f3c8eeda9903fb6f5cdea98b13ac408e1ccae06235f89453b8c65bb5"
+    },
+    {
+      "path": "ComfyUI/app/governance.py",
+      "bytes": 22703,
+      "sha256": "59eb805f9bd3fa0a5ab03836267bb7876af69ad6ec33e28162295383a73e411e"
+    },
+    {
+      "path": "ComfyUI/comfy/model_detection.py",
+      "bytes": 97268,
+      "sha256": "3908b979fcd25c8eb761453cf0fd1be5bff65fb6481e70ef541df8fb3b9419d4"
+    },
+    {
+      "path": "ComfyUI/comfy/ldm/minimax/model.py",
+      "bytes": 41932,
+      "sha256": "a1b9c179832ed69e84f603521fc89cd62c7f4486fda19d23ff356f212d01429c"
+    }
+  ],
+  "deployment_relative_to_model_root": "comfy-original/extensions/q33-turbo-hybrid-4274783",
+  "deployment_files": [
+    {
+      "path": "custom_nodes/ComfyUI-MiniMax-H3-Turbo-full-4274783/__init__.py",
+      "bytes": 26363,
+      "sha256": "a22f222f11dfc337552371f7f288bf5928cb1fa80a6afb3f24075a8315d02f06"
+    },
+    {
+      "path": "custom_nodes/ComfyUI-MiniMax-H3-Turbo-full-4274783/LICENSE",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "path": "extra-paths.yaml",
+      "bytes": 41,
+      "sha256": "661a579712e477b9f0793454b4903489315a2b6051795a5d437470f7e2934187"
+    }
+  ],
+  "dispatch_ready_after_parent_independent_review": true,
+  "candidate_model_GPU_runs": 0,
+  "quality_performance": "INCONCLUSIVE",
+  "numeric_recipe": "same native6 graph except authorhybrid node/outputprefix; reserve3 headroom1 originalguards",
+  "source_scope": "selectedsources plusnewcustomnodes, not wholeenvironment/DLLclosure",
+  "baseline_freeze_sha256": "13ccb0a744aaa033917b5a9cad9c289bf060c3dbf7a83d8ccf0e24b546bb3cd8",
+  "single_change": "Create empty fresh run/base/custom_nodes before Popen; all other controller lines byte-identical after inserted line removal.",
+  "targeted_validation": {
+    "cases": 1,
+    "GPU": 0,
+    "service": 0,
+    "runtime_imports": 0
+  },
+  "prior_failure_preserved": "results/inferrsi-turbo-hybrid-6-98a2d965c65e49ef8c2f861a583c0890"
+}

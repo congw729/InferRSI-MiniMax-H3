@@ -1,0 +1,45 @@
+{
+  "prompt": {
+    "13": {
+      "class_type": "CLIPLoader",
+      "inputs": {
+        "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+        "type": "minimax",
+        "device": "default"
+      }
+    },
+    "11": {
+      "class_type": "VAELoader",
+      "inputs": {
+        "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+      }
+    },
+    "104": {
+      "class_type": "MiniMaxH3ImageToVideo",
+      "inputs": {
+        "clip": [
+          "13",
+          0
+        ],
+        "vae": [
+          "11",
+          0
+        ],
+        "prompt": "A single yellow tennis ball drops onto a wooden floor, bounces twice, and settles. Static camera, continuous shot. Audio: two soft impacts matching the visible bounces, with a quiet room background.",
+        "width": 384,
+        "height": 256,
+        "length": 73
+      }
+    },
+    "1001": {
+      "class_type": "SaveConditioning",
+      "inputs": {
+        "conditioning": [
+          "104",
+          0
+        ],
+        "filename_prefix": "q33-e2e-two/bounce-audio/conditioning/stage-a"
+      }
+    }
+  }
+}

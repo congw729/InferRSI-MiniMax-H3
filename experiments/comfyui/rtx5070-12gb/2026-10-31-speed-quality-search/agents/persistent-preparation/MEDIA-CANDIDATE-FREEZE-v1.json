@@ -1,0 +1,18 @@
+{
+  "schema": "q33-persistent-media-candidate-freeze/v1",
+  "files": [
+    {
+      "file": "MEDIA-PLAN-FROZEN-v1.json",
+      "sha256": "e32e7d8e15012590ef9da3e0af928502fa2126d1e0d11c35cb5d61703d197598"
+    },
+    {
+      "file": "validate_persistent_media_offline_v1.py",
+      "sha256": "70fd6914fa2af0b0c28347901bff23d96a8447d1bf2c214535c433d3d6408188"
+    },
+    {
+      "file": "validate_persistent_media_v1.py",
+      "sha256": "d68861ebcc633881f27179339e4fb678abb318c95a38510db900d9a38eb97ae7"
+    }
+  ],
+  "scope": "before synthetic metadata validation; no real decode yet"
+}

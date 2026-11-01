@@ -1,0 +1,71 @@
+{
+  "schema": "q33-inferrsi-interface-source-review/v1",
+  "at_utc": "2026-10-30T17:32:57.5846138Z",
+  "root_alias": "INFERRSI_CHECKOUT",
+  "proposal_sha256": "3653b2a12e940dbf74a45ef928ee55347eba6d70a7afab3961509198eff278f0",
+  "sources": [
+    {
+      "path": "docs/operations.md",
+      "bytes": 12143,
+      "sha256": "c4b93e7f12fd6cc0c6218953c3fa919e88d39008beec853db979dc39a690f9f6"
+    },
+    {
+      "path": "docs/quickstart.md",
+      "bytes": 9532,
+      "sha256": "55006273195d13a14a6851c5b7dd3e4eaa0ac41b36bba20b9b1bfa804a995fac"
+    },
+    {
+      "path": "docs/architecture.md",
+      "bytes": 16680,
+      "sha256": "67c37b369d5055311dd70fafb3518b8dbae9330eb2cc3351615779d811030e8c"
+    },
+    {
+      "path": "docs/contributing.md",
+      "bytes": 13685,
+      "sha256": "4048443e7a959050ac57a7aa1755b444c085b3d205e20c404785756e43968c13"
+    },
+    {
+      "path": "src/inferrsi/runspec.py",
+      "bytes": 4398,
+      "sha256": "dca0952425caf42095ef0c7e2feb8ef4740cc422ecb61e777f203962d9b87709"
+    },
+    {
+      "path": "src/inferrsi/harness/runner.py",
+      "bytes": 6567,
+      "sha256": "a566307b9b586655941b627f428b5121ed38d7ac80bccd1e1799e443fb0de911"
+    },
+    {
+      "path": "src/inferrsi/harness/evaluation.py",
+      "bytes": 4160,
+      "sha256": "9b00b2e93959f16b7b76bb4b257df7dcf48520a06fd6adae96e9a165a05e6e80"
+    },
+    {
+      "path": "src/inferrsi/harness/scenarios/external.py",
+      "bytes": 1016,
+      "sha256": "84d5f6920501a9d882cc4fffbc721d2051fdbf7c90694bde9cbfba3c2b866304"
+    },
+    {
+      "path": "src/inferrsi/infra/executors/local.py",
+      "bytes": 3505,
+      "sha256": "b089cdc7daaaf7834698c2d280a12c5e755915ded926aa039c8de5f521bd46f0"
+    },
+    {
+      "path": "src/inferrsi/infra/targets/git.py",
+      "bytes": 2910,
+      "sha256": "6327c4f126086f310b6de309fc7659c9759da28ed76efaeeb94a3d2fba29a0c2"
+    },
+    {
+      "path": "src/inferrsi/model/protocols/metrics.py",
+      "bytes": 610,
+      "sha256": "17db16d6ef15b41fb60d8f09507893accc43f9cb3ad686b8dc4e9839713ebc56"
+    },
+    {
+      "path": "tests/test_module_boundaries.py",
+      "bytes": 6040,
+      "sha256": "fb2f05c8b1bc586a07ee21183d3a50248206d907fa7a7765188da1a529c55304"
+    }
+  ],
+  "read_only": true,
+  "experiment_executed": false,
+  "claim": "INCONCLUSIVE"
+}

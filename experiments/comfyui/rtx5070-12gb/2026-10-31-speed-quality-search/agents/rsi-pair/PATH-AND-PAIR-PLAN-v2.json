@@ -1,0 +1,13 @@
+{
+  "schema": "q33-rsi-path-pair-delta/v2",
+  "at_utc": "2026-10-30T18:14:04.3225432Z",
+  "basis_sha256": "c6effd915ea16301b08c335059e29aa1b39869845cf5ed6a98cce66babdc4249",
+  "changes": [
+    "Record each E run relative to explicitly supplied runs_parent, independent of model_root; verify root/path boundary before use",
+    "Bind command pair to frozen ready baseline Trim8 and candidate Trim6, preserving native ABBA repetitions2"
+  ],
+  "unchanged": "InferRSI runner/evaluator, launcher v3, controller v6, reserve3/headroom1, all resource/cleanup/media/numeric gates",
+  "validation": "One targeted different model-root/run-parent regression plus boundary rejection and explicit selected-pair check; no rerun of26 unchanged gates or GPU",
+  "parent_selection": "Trim8 vsTrim6; Trim4 retained as fast draft with observed visual differences, no universal quality verdict",
+  "dispatch": "Parent only after delta review and fresh resource/quota check"
+}

@@ -1,0 +1,52 @@
+--- timing_events_v1.py
++++ timing_events_history_v7.py
+@@ -23,6 +23,7 @@
+     def __init__(self,nodes,prompt_id,client_id):
+         self.prompt_id=prompt_id;self.client_id=client_id;self.last_ns=None
+         self.ready=False;self.terminal=None;self.invalid_reasons=[];self.seq=0
++        self.success_received_ns=None;self.history_published_marker_received_ns=None
+         self.nodes={str(k):{"class_type":v,"start_received_ns":None,"finish_received_ns":None,
+                            "cached":False,"last_state":None,"first_progress_received_ns":None,
+                            "last_progress_received_ns":None,"progress_value":None,"progress_max":None}
+@@ -83,6 +84,10 @@
+             if current["first_progress_received_ns"] is None:current["first_progress_received_ns"]=received_ns
+             current["last_progress_received_ns"]=received_ns;current["progress_value"]=value;current["progress_max"]=maximum
+             emit("progress",node_id=node,value=value,max=maximum)
++        elif kind=="executing" and "node" in data and data["node"] is None:
++            if self.terminal=="execution_success" and self.history_published_marker_received_ns is None:
++                self.history_published_marker_received_ns=received_ns
++                emit("history_published_marker",source="native executing(node=None) after task_done")
+         elif kind in {"execution_start","execution_success","execution_error","execution_interrupted"}:
+             fields={}
+             timestamp=data.get("timestamp")
+@@ -92,8 +97,12 @@
+             emit(kind,**fields)
+             if kind!="execution_start":
+                 self.terminal=kind
++                if kind=="execution_success" and self.success_received_ns is None:self.success_received_ns=received_ns
+                 if kind!="execution_success":self.invalidate(kind)
+         return out
++    def should_finish(self):
++        return self.terminal in {"execution_error","execution_interrupted"} or (
++            self.terminal=="execution_success" and self.history_published_marker_received_ns is not None)
+     def summary(self):
+         nodes={}
+         for node,row in self.nodes.items():
+@@ -104,6 +113,8 @@
+                 "measurement":"Observed node wall interval including async WS transport; not GPU-only",
+                 "prompt_id":self.prompt_id,"client_id":self.client_id,"ready":self.ready,
+                 "terminal":self.terminal,"invalid_reasons":list(self.invalid_reasons),"nodes":nodes,
++                "success_received_perf_counter_ns":self.success_received_ns,
++                "history_published_marker_received_perf_counter_ns":self.history_published_marker_received_ns,
+                 "gpu_compute_only_seconds":None,"pure_initialization_seconds":None}
+ 
+ class NativeWSObserver:
+@@ -147,7 +158,7 @@
+                                 row["controller_elapsed_seconds"]=time.monotonic()-self.controller_started
+                                 writer.write(row)
+                             if self.collector.ready:self.ready.set()
+-                            if self.collector.terminal is not None:break
++                            if self.collector.should_finish():break
+                         elif message.type in {aiohttp.WSMsgType.CLOSE,aiohttp.WSMsgType.CLOSED,aiohttp.WSMsgType.ERROR}:
+                             self.collector.invalidate("disconnect");break
+                         elif message.type==aiohttp.WSMsgType.BINARY:

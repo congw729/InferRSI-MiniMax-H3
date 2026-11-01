@@ -1,0 +1,237 @@
+{
+  "schema": "q33-headroom075-actual-review/v1",
+  "claim": "INCONCLUSIVE",
+  "read_only_no_reexecution": true,
+  "comparison": [
+    {
+      "role": "baseline",
+      "requested_headroom_gib": 1.0,
+      "trial_relative_to_q33": "results/inferrsi-async-classic-98274aade90b40659e74f9a86b4b2563",
+      "run_name": "q33-async-classic-98274aade90b40659e74f9a86b4b2563",
+      "outer_seconds": 34.73399999993853,
+      "controller_seconds": 34.5865943999961,
+      "requests": [
+        {
+          "index": 1,
+          "seed": 424242,
+          "graph_sha256": "2c262a7d706ee09111d961f4f0bdad504cd6f33c89eee013e8c335cce212b6f5",
+          "artifact": {
+            "relative_to_run": "output\\q33-persistent-cache\\trim-8\\request-1_00001_.mp4",
+            "bytes": 240122,
+            "sha256": "9c0ec62b2694f56299a15872e2b4259777dbe91428c7bea4a85a45e15b91d226"
+          },
+          "whole_MP4_rehashed": true,
+          "history_seconds": 9.285,
+          "sampler_observed_seconds": 6.9543885,
+          "cached_nodes": [],
+          "uncached_steps": 8
+        },
+        {
+          "index": 2,
+          "seed": 424243,
+          "graph_sha256": "c6b6f4a436b4899495a25009e860ac917fda38baf55920e35d76b0bcc71bee48",
+          "artifact": {
+            "relative_to_run": "output\\q33-persistent-cache\\trim-8\\request-2_00001_.mp4",
+            "bytes": 312427,
+            "sha256": "899f475cf381e417873470707b119c3e5bb5ff65386cb0858f5ab8fa8887c501"
+          },
+          "whole_MP4_rehashed": true,
+          "history_seconds": 6.727,
+          "sampler_observed_seconds": 5.2964909,
+          "cached_nodes": [
+            "1001",
+            "1002",
+            "11",
+            "127",
+            "128",
+            "148",
+            "16",
+            "17",
+            "24",
+            "6",
+            "9"
+          ],
+          "uncached_steps": 8
+        }
+      ],
+      "sampled_owned_private_peak_bytes": 15240945664,
+      "sampled_owned_rss_peak_bytes": 5458141184,
+      "sampled_board_min_free_bytes": 1472200704,
+      "sampled_physical_min_bytes": 12994265088,
+      "sampled_commit_min_bytes": 4992630784,
+      "owned_cleanup_complete": true,
+      "guard_triggered": false
+    },
+    {
+      "role": "candidate",
+      "requested_headroom_gib": 0.75,
+      "trial_relative_to_q33": "results/inferrsi-headroom075-classic-6a072b6e64c64711a405e57e111591ed",
+      "run_name": "q33-headroom075-classic-6a072b6e64c64711a405e57e111591ed",
+      "outer_seconds": 34.65700000000652,
+      "controller_seconds": 34.50787649990525,
+      "requests": [
+        {
+          "index": 1,
+          "seed": 424242,
+          "graph_sha256": "2c262a7d706ee09111d961f4f0bdad504cd6f33c89eee013e8c335cce212b6f5",
+          "artifact": {
+            "relative_to_run": "output\\q33-persistent-cache\\trim-8\\request-1_00001_.mp4",
+            "bytes": 240122,
+            "sha256": "9c0ec62b2694f56299a15872e2b4259777dbe91428c7bea4a85a45e15b91d226"
+          },
+          "whole_MP4_rehashed": true,
+          "history_seconds": 8.754,
+          "sampler_observed_seconds": 6.4802334,
+          "cached_nodes": [],
+          "uncached_steps": 8
+        },
+        {
+          "index": 2,
+          "seed": 424243,
+          "graph_sha256": "c6b6f4a436b4899495a25009e860ac917fda38baf55920e35d76b0bcc71bee48",
+          "artifact": {
+            "relative_to_run": "output\\q33-persistent-cache\\trim-8\\request-2_00001_.mp4",
+            "bytes": 312427,
+            "sha256": "899f475cf381e417873470707b119c3e5bb5ff65386cb0858f5ab8fa8887c501"
+          },
+          "whole_MP4_rehashed": true,
+          "history_seconds": 6.348,
+          "sampler_observed_seconds": 4.9339598,
+          "cached_nodes": [
+            "1001",
+            "1002",
+            "11",
+            "127",
+            "128",
+            "148",
+            "16",
+            "17",
+            "24",
+            "6",
+            "9"
+          ],
+          "uncached_steps": 8
+        }
+      ],
+      "sampled_owned_private_peak_bytes": 15221968896,
+      "sampled_owned_rss_peak_bytes": 5487001600,
+      "sampled_board_min_free_bytes": 1203765248,
+      "sampled_physical_min_bytes": 13389221888,
+      "sampled_commit_min_bytes": 5002035200,
+      "owned_cleanup_complete": true,
+      "guard_triggered": false
+    }
+  ],
+  "candidate_full_media": [
+    {
+      "index": 1,
+      "status": "inspection_ready_human_review_pending",
+      "summary_sha256": "9689aef47183f57787b55481e403b5c8078da6e647ebd97ba22e4d6da15d0821",
+      "decoder_result_sha256": "45868c737a1b957e35d491a6bea88ed9c2d7e2a02e930f59f2eb3d6635f72c47",
+      "video_fields": {
+        "decoded_frames": 73,
+        "width": 384,
+        "height": 256,
+        "pts_rate": "24",
+        "pts_start_seconds": 0.0,
+        "pts_end_with_one_frame_seconds": 3.0416666666666665,
+        "decoded_duration_seconds": 3.0416666666666665,
+        "all_values_finite": true,
+        "not_all_black": true,
+        "not_spatially_constant_somewhere": true,
+        "not_temporally_constant": true,
+        "rgb_min": 0,
+        "rgb_max": 255
+      },
+      "audio": {
+        "sample_rate": 32000,
+        "channels": 2,
+        "samples_per_channel": 97334,
+        "all_values_finite": true
+      },
+      "owned_decoder_reclaimed": true
+    },
+    {
+      "index": 2,
+      "status": "inspection_ready_human_review_pending",
+      "summary_sha256": "29bb08b0ceb7421a537b4749756de740af8cf154a9e3f7946a3fd96eafb4738d",
+      "decoder_result_sha256": "b10916c937de0f445a9e6364e23454a705470aa8f7fdafde8174309bb3cd5add",
+      "video_fields": {
+        "decoded_frames": 73,
+        "width": 384,
+        "height": 256,
+        "pts_rate": "24",
+        "pts_start_seconds": 0.0,
+        "pts_end_with_one_frame_seconds": 3.0416666666666665,
+        "decoded_duration_seconds": 3.0416666666666665,
+        "all_values_finite": true,
+        "not_all_black": true,
+        "not_spatially_constant_somewhere": true,
+        "not_temporally_constant": true,
+        "rgb_min": 0,
+        "rgb_max": 255
+      },
+      "audio": {
+        "sample_rate": 32000,
+        "channels": 2,
+        "samples_per_channel": 97334,
+        "all_values_finite": true
+      },
+      "owned_decoder_reclaimed": true
+    }
+  ],
+  "same_seed_entire_MP4_identical": true,
+  "same_graph_and_cache_nodes_and_uncached_steps": true,
+  "controller_delta_seconds": -0.07871790009085089,
+  "outer_delta_seconds": -0.07699999993201345,
+  "conclusion_zh": "本次顺序样本第二请求 history 6.727→6.348 秒，采样观察间隔 5.29649→4.93396 秒；两 seed 完整 MP4 均一致。总 controller/outer 基本不变，不能称端到端加速。0.75 样本整卡最少空闲比 1.0 少 256 MiB，仍高于 768 MiB 门。",
+  "limitations": [
+    "One ordered session each; no repeated ABBA.",
+    "Whole-board sampled GPU memory includes other apps, not Torch allocator or complete peak capture.",
+    "No new prompt TE in this scenario; first request cold and second request warm with different seed.",
+    "Media integrity and equal files do not establish general perceptual quality.",
+    "First review script stopped before writing: reconstructed history JSON SHA differed from planned graph serialization despite structured equality (numeric normalization); corrected review binds saved graph hash and independently checks native history structured equality. No runtime failure."
+  ],
+  "evidence": [
+    {
+      "relative_to_q33": "results/inferrsi-async-classic-98274aade90b40659e74f9a86b4b2563/result.json",
+      "bytes": 28366,
+      "sha256": "a830f1cd4beea203ef0b6719a049c2e6af3c7f21e8b20cbe2d3fe67e0d8cac02"
+    },
+    {
+      "relative_to_q33": "results/inferrsi-async-classic-98274aade90b40659e74f9a86b4b2563/execution.json",
+      "bytes": 4152,
+      "sha256": "0b4a45598d547ccf3b1833b0dc3da9f70b29904ddb2cce95de7fc92558aed4fa"
+    },
+    {
+      "relative_to_q33": "results/inferrsi-async-classic-98274aade90b40659e74f9a86b4b2563/resources.jsonl",
+      "bytes": 18137,
+      "sha256": "67ad20c16cc01d2451fde10c770651468982a12cc69da69c43b24f9138403bad"
+    },
+    {
+      "relative_to_q33": "results/inferrsi-headroom075-classic-6a072b6e64c64711a405e57e111591ed/result.json",
+      "bytes": 28375,
+      "sha256": "91874a221713392b1df4aec9d10c2213c05af1feee55ed0de27563dff56a6dc8"
+    },
+    {
+      "relative_to_q33": "results/inferrsi-headroom075-classic-6a072b6e64c64711a405e57e111591ed/execution.json",
+      "bytes": 4189,
+      "sha256": "dc40469539c064545e67639d5a6b7d9abf3e0d5cc6c937155346d7272f722559"
+    },
+    {
+      "relative_to_q33": "results/inferrsi-headroom075-classic-6a072b6e64c64711a405e57e111591ed/resources.jsonl",
+      "bytes": 18136,
+      "sha256": "4d87f8a440d87498a71d08a36a7d465b5b15b19a65522ad183889cb01f00075b"
+    },
+    {
+      "relative_to_q33": "results/headroom075-media-classic-6ada4efd150b483fafea25173bfe0551/result.json",
+      "bytes": 32858,
+      "sha256": "dbf130a332b29be149acdc50e3ea0ffa38c12fb981f9adade75c0f83d765520b"
+    },
+    {
+      "relative_to_q33": "results/headroom075-media-classic-6ada4efd150b483fafea25173bfe0551/execution.json",
+      "bytes": 2151,
+      "sha256": "10410d432a3cd046be8170db7c7300240c1561f0e9c075b6eb76e69ce8b4dd32"
+    }
+  ]
+}

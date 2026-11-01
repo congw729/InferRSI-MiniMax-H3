@@ -1,0 +1,46 @@
+{
+  "schema": "q33-persistent-cache-candidate/v2",
+  "files": [
+    {
+      "path": "PLAN-FROZEN-v2.json",
+      "bytes": 1780,
+      "sha256": "a366d418bd24ddbd5414bc5dd8daa47c87ae8d3e9e06fc67213c57ec3eb3d286"
+    },
+    {
+      "path": "validate_cache_delta_v2.py",
+      "bytes": 4111,
+      "sha256": "91466a356164ab407b4f5506c01650a4cbb0873a3161833c81ade3cd994fb3e9"
+    },
+    {
+      "path": "persistent_stage_b_v1.py",
+      "bytes": 57696,
+      "sha256": "333ec8b999dd747e585ce01e57245a4db5ec582cbbb146bf810f52e2ef39c7ef"
+    },
+    {
+      "path": "persistent_stage_b_v2.py",
+      "bytes": 57964,
+      "sha256": "f27dff8a8792a99c47d9ba71f5ddd005a95bebd950e8f365b51cb4685b4c31b8"
+    },
+    {
+      "path": "controller-v1-to-cache-v2.patch",
+      "bytes": 4415,
+      "sha256": "087b8f621ddf35e69f6d626eeccd0308f6bda1f3ee084e7696108b913e043ed1"
+    },
+    {
+      "path": "validate_persistent_media_v1.py",
+      "bytes": 9671,
+      "sha256": "d68861ebcc633881f27179339e4fb678abb318c95a38510db900d9a38eb97ae7"
+    },
+    {
+      "path": "validate_persistent_media_v2.py",
+      "bytes": 9816,
+      "sha256": "9f044eb064662f861a6b69ccd2070c37863e74abb698f0c91b58306f3cc0e2f3"
+    },
+    {
+      "path": "media-v1-to-cache-v2.patch",
+      "bytes": 6558,
+      "sha256": "18fb5d13f40adcb54f0fd868b4c1c449196049e980a9b29d72e914db9f199671"
+    }
+  ],
+  "created_before_targeted_checks": true
+}

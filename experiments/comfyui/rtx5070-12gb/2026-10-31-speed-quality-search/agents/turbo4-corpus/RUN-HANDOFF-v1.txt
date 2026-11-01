@@ -1,0 +1,16 @@
+Turbo4 两 corpus 交接（父级串行GPU；准备代理GPU0）
+
+controller turbo4_corpus_stage_b_v1.py SHA a94784c03a22de99eef9ebb379c0d7f741d0cb5923fffba3fae1cf5c0ad79aaf
+EXECUTION-FREEZE-v1.json SHA 2eb3836bf6850b5d1172f1e76a520c922bf6255e204911c7a26f8bf865c1a822（20local/30external）
+run_turbo4_corpus_v1.py SHA f823eec338279d2ff717e365b9d8734c3662ec7c876f4bde6b7aebb29323300a
+PARENTHELPER-FREEZE-v1.json SHA f1af3acbb8b39a0ce1419739834f32f0f6a2837f99db36e0f802f2fd7092ff11
+
+只改模型plane采样steps6→4。保持原版full50 INT8ConvRot、同Turbo v4step600EMA native LoRA merge strength1、Euler/simple/shift video12 audio3、384×256/73frames/24fps、seed424242；相同两真实conditioning和provenance。输出id/prefix与graph/manifest hash同步新身份。新controller四处literal可完全反向还原旧源，不改采样执行、监控、清理或资源语义。
+
+对照仍用已成功同corpus Turbo6；本候选不额外开启async或改cache，保留no-pin/禁async/cache-none/disable-smart-memory及reserve3/headroom1，避免把模型plane和infra收益混在一次比较。4步是探索，不是作者验证过的最佳质量结论。
+
+父级argv（两场分开，均先资源门和>20%额度）：
+<PPY> -s -B -X utf8 <THIS_DIR>/run_turbo4_corpus_v1.py --notes-root <R> --infra-root <IR> --portable-root <P> --model-root <M> --runs-parent <E_RUNS> --nvidia-smi <SMI> --corpus-id <bounce-audio|hands-face-mug> --remaining-percent <ACTUAL>
+清理完成后沿用 <Q33>/tools/validate_profile_media_v1.py 的 --notes-root/--infra-root/--portable-root/--run/--trial，完整384媒体门不变。若需要联系表，现成contact_sheets_v2适合384，另绑定本轮实际trial/完整媒体summary即可，不能复用旧receipt。
+
+11项窄元数据检查全完成：图仅steps/prefix差；实际四资产+StageA和值检查provenance读取通过；conditioning与canonical/asset无变；旧6步图在新4profile拒绝；controller反向差完全一致。实际PPY controller/helper帮助入口均0/stderr0。未读取大权重正文、未加载模型、未运行GPU、未新增依赖。

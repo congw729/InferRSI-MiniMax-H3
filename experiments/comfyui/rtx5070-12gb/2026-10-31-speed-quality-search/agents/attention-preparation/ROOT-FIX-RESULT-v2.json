@@ -1,0 +1,8 @@
+{
+  "schema": "q33-attention-root-fix-result/v2",
+  "exact_reverse_patch": true,
+  "actual_main_root_expression_accepts_dedicated_directory": true,
+  "rejects_other_directory": true,
+  "no_main_service_gpu_executed": true,
+  "candidate_sha256": "5fa1f66c157189044f358bf21ca505d8b7cefc96c53fc9c9f6157d9c4b281cb9"
+}

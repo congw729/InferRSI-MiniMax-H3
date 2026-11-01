@@ -1,0 +1,40 @@
+{
+  "schema": "q33-e2e-candidate-freeze/v1",
+  "files": [
+    {
+      "path": "PLAN-FROZEN-v1.json",
+      "bytes": 3744,
+      "sha256": "126c41a0058c712590db112dc3f021919041ed4df68310b05ae898be05649bc3"
+    },
+    {
+      "path": "ASSETS-v1.json",
+      "bytes": 3763,
+      "sha256": "fcaa021e7aa7ecc50ecd14f51e81448a758dc6c8352b65d5ea7aa657d1fe31a8"
+    },
+    {
+      "path": "STAGE-A-GRAPH-v1.json",
+      "bytes": 1115,
+      "sha256": "5f7d0cff0c911151fd2318e2be5e8c953503034d66259673edf851f24d2274f8"
+    },
+    {
+      "path": "e2e_helpers_v1.py",
+      "bytes": 5000,
+      "sha256": "8d78df645d789a448116542f818b764f28d93f3e6333378da9ae75863c3846d6"
+    },
+    {
+      "path": "end_to_end_v1.py",
+      "bytes": 64996,
+      "sha256": "378b3830cb85edaaec9c9b6a1539e084c3a2a04ccf74ed088c527ccd6b8ff903"
+    },
+    {
+      "path": "persistent-v1-to-e2e-v1.patch",
+      "bytes": 31254,
+      "sha256": "1a57a67e974c50a20de5469251f58347f8cc794b2639acf7113f7bf3adc942bd"
+    },
+    {
+      "path": "validate_offline_v1.py",
+      "bytes": 5346,
+      "sha256": "e6f75640b841347d65e519f64da90e8a0df304346a7ca8472295c63045d2f30c"
+    }
+  ]
+}

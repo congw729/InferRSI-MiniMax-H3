@@ -1,0 +1,49 @@
+{
+  "schema": "q33-turbo4-async-checks/v1",
+  "checks": [
+    {
+      "name": "reverse declared changes exactly old controller",
+      "ok": true
+    },
+    {
+      "name": "only native argv flag removed",
+      "ok": true
+    },
+    {
+      "name": "real4asset receipts and41token provenance",
+      "ok": true
+    },
+    {
+      "name": "graph canonical assets byte unchanged",
+      "ok": true
+    },
+    {
+      "name": "condition payload provenance unchanged",
+      "ok": true
+    },
+    {
+      "name": "reject hands before dispatch",
+      "ok": true
+    },
+    {
+      "name": "exact observed2streams",
+      "ok": true
+    },
+    {
+      "name": "reject_one_marker",
+      "ok": true
+    },
+    {
+      "name": "reject_missing_marker",
+      "ok": true
+    },
+    {
+      "name": "noTorch",
+      "ok": true
+    }
+  ],
+  "count": 10,
+  "complete": true,
+  "model_gpu_runs": 0,
+  "claim": "INCONCLUSIVE"
+}

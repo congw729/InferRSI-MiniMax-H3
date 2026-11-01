@@ -1,0 +1,24 @@
+{
+  "schema": "q33-turbo-headroom-only-plan/v6",
+  "created_utc": "2026-10-30T17:41:48.044215+00:00",
+  "baseline": "turbo_stage_b_v5.py",
+  "baseline_sha256": "604ae8578f132e66654924dd08c9515a0be6b25273faa5e962efe93c9f91102c",
+  "requested_cli_addition": [
+    "--vram-headroom",
+    "1.0"
+  ],
+  "requested_extra_headroom_bytes": 1073741824,
+  "changes_allowed": [
+    "one service argv line only"
+  ],
+  "checks": [
+    "Exact byte-equivalent v5 after removing the one added argv line",
+    "All prior ready freeze source/asset/profile/gate identities still match",
+    "Native portable Python main.py --help --vram-headroom 1.0 exits0 and lists option",
+    "Freeze candidate, exact diff, unchanged ready inputs and source diagnosis"
+  ],
+  "prior_checks_reused": "45 metadata/graph checks; real259LoRA-header mapping; real receipt metadata. No rerun.",
+  "guards_unchanged": true,
+  "network_model_GPU_runs_authorized": false,
+  "quality_performance": "INCONCLUSIVE"
+}

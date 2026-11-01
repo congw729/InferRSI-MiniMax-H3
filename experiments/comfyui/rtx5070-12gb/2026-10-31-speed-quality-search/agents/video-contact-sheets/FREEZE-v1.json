@@ -1,0 +1,22 @@
+{
+  "schema": "q33-contact-sheet-source-freeze/v1",
+  "created_utc": "2026-10-30T18:23:58.040683+00:00",
+  "files": [
+    {
+      "path": "PLAN-v1.json",
+      "bytes": 1374,
+      "sha256": "9d79c35f058014cfa54fd31c6df58c1dff6e082ae171277dce709a7cab97b38b"
+    },
+    {
+      "path": "INPUTS-TOYCAR-v1.json",
+      "bytes": 4123,
+      "sha256": "5579f5527c7fe2806fa05611d95cfa7aeb5bdfe7311a4c99a62310e7564c693a"
+    },
+    {
+      "path": "contact_sheets_v1.py",
+      "bytes": 7530,
+      "sha256": "391d06a846230a4accd37f25aef369921023a287c3660479644b6733529b9e09"
+    }
+  ],
+  "claim": "INCONCLUSIVE"
+}

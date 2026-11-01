@@ -1,0 +1,29 @@
+{
+  "schema": "q33-e2e-preparation-result/v1",
+  "targeted_offline_checks": 24,
+  "targeted_offline_complete": true,
+  "controller_portable_help_returncode": 0,
+  "parent_helpers_help": [
+    {
+      "script": "run_e2e_v1.py",
+      "returncode": 0,
+      "stdout_sha256": "e230dbe03ba4b275134c116848a800fa3cc4c0e23ed1fe83d510e49877bd3b7a",
+      "stderr_bytes": 0,
+      "service_started": false,
+      "gpu_queries": 0
+    },
+    {
+      "script": "validate_e2e_media_v1.py",
+      "returncode": 0,
+      "stdout_sha256": "658c11c9b087b883f5f579cf8e6fb37da5df9a84531dd37ea4c62f9ebb10fabf",
+      "stderr_bytes": 0,
+      "service_started": false,
+      "gpu_queries": 0
+    }
+  ],
+  "full_stack_metadata_sources_checked": 188,
+  "gpu_dispatches": 0,
+  "model_dispatches": 0,
+  "claim": "INCONCLUSIVE",
+  "pending": "Parent independent review and one actual new-prompt execution."
+}

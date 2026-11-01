@@ -1,0 +1,13 @@
+cache 对象复用最小候选交接（未运行GPU）
+
+执行组合：run_persistent_profile_v2.py → persistent_stage_b_v2.py → validate_persistent_media_v3.py。父级helper固定EXECUTION-FREEZE-v3.json（SHA7605cd62e680a25877b8e77df2e676f7b700e5b2f70210b519f97e96ad32cfff），33本地/16notes/6portable来源；原154runtime来源仍由controller逐项校验。
+
+同既有roots参数，分别传 --cache-policy none 与 --cache-policy classic，另传刚检查的 --remaining-percent。两侧都smart memory，唯一infra差异是cache-none/classic。每个新服务固定两次Trim8+toycar，种子424242、424243；所有模型、条件、分辨率、帧数、采样器和shift一致。独立prompt/client/history/timing/output；每次必须8/8未缓存sampler进度，首失败不发第二。原资源/2700秒总时限/两POST/Job清理均保留。没有改runtime或安装依赖。
+
+9个定向离线检查完成，涵盖两cacheCLI差异、两种子图边界、其他函数AST不变、媒体seed/policy元数据拒绝。controller与media portable help退出0；parenthelper help也退出0。不是实际cache命中或模型成功证据。
+
+独审发现媒体v2常量绑定新controller，但main仍核旧v1文件，启动后会在0decode阶段拒绝。该版本与冻结原件保留，尚未真实执行。媒体v3只修固定路径为persistent_stage_b_v2.py；精确反向patch和实际文件SHA==常量检查完成。此缺陷说明小元数据门不能替代实际入口源身份核对。
+
+每服务完成且Job回收后，用validate_persistent_media_v3.py通过既有InferRSI execute_command调用，传真实 --run、--trial、--result-sha256、--stop-marker 等旧参数。wrapper核两次实际accepted结果与seed、MP4 hash及cleanup后各跑原Q31 CPU媒体门。总300秒/各child140秒，不伪造单片结果。与旧v1对照不是单因素比较，因为v1两次同seed；这次none和classic才共享相同双seed计划。
+
+记录native prompt/sampler墙钟、loader节点cached状态、两request资源峰和间隔快照。classic若提升驻留也可能提高commit/VRAM，原保护门不会放宽。两张新种子都实际采样后，再看同seed跨cache配置MP4/PNG一致性；不预设bitwise保证，不把缓存命中当生成。人类感知与稳健性能仍INCONCLUSIVE。

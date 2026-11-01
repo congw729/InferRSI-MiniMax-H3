@@ -1,0 +1,61 @@
+{
+  "schema": "q33-rsi-pair-independent-static-review/v1",
+  "created_utc": "2026-10-30T17:49:22.665816+00:00",
+  "mode": "Read source and selected small frozen metadata only; no adapter import/test/model/GPU/network execution for this review",
+  "candidate": {
+    "relative_to_q33": "agents/rsi-pair/rsi_pair_v1.py",
+    "sha256": "c6effd915ea16301b08c335059e29aa1b39869845cf5ed6a98cce66babdc4249"
+  },
+  "pending_bundle": {
+    "relative_to_q33": "agents/rsi-pair/SOURCE-BUNDLE.pending-v1.json",
+    "sha256": "4be294665850e05525cf06155ce8a5f9961535c2e5fe12226cab06fdfd3b717c",
+    "files_checked": 266,
+    "files_matched": 266,
+    "dispatch_ready": false
+  },
+  "blockers_found": [],
+  "conclusions": [
+    {
+      "topic": "order",
+      "evidence": "InferRSI src/inferrsi/harness/runner.py74-91; adapter RunSpec repetitions2",
+      "finding": "Actual unchanged run_experiment serial A B / B A; noncompleted trial stops loop, not replaced or omitted."
+    },
+    {
+      "topic": "same_condition",
+      "evidence": "Three pinned Trim profiles/graphs/conditioning manifests",
+      "finding": "Graphs identical after normalizing only steps and output prefix; fixed seed384x256/73frames24fps, same assets and conditioningSHA; same controller reserve3/headroom1. Experimental Trim6/4 is not claimed trained or quality-equivalent."
+    },
+    {
+      "topic": "source_identity",
+      "evidence": "adapter source_snapshot, bundle266 entries; actual runner import path checked",
+      "finding": "Actual file SHA256 identity, no invented Git commit. Before each dispatch checked plus native runner before/after snapshots. Legacy Git reason wording explicitly disclosed. Selected sources, not entire runtime/DLL closure."
+    },
+    {
+      "topic": "cleanup_resource",
+      "evidence": "Existing run_profile_v3->InferRSI local execute_command->WindowsJob, controller v6 and frozen media wrapper",
+      "finding": "Serial launcher then CPUmedia only after ownedroot/job cleanup. Shared outerdeadline bounds nested jobs; errors preserved and comparison becomes INCONCLUSIVE. Current combination has not yet been actual-runtime lifecycle-tested by this review."
+    },
+    {
+      "topic": "media_quality",
+      "evidence": "Q31 validate_first_video_media_v1.py130-326,329-431; adapter extract_metrics",
+      "finding": "Validator fully demuxes73frames/audio and checks identity/EOF/closure then reports human review pending. Adapter requires matching artifact/source/gates and decode-result hash. It does not claim perceptual quality or synchronization. Native evaluator remains INCONCLUSIVE because validation_command is absent."
+    },
+    {
+      "topic": "metrics",
+      "evidence": "adapter extract_metrics/history endpoints/read_metric; runner evaluation.py",
+      "finding": "Primary metric server execution_start->execution_success seconds, includes graph execution with reusedconditioning and fresh service/cache-none. Not pureGPU, first-startup, HTTPservice or TE-inclusive latency. Observer sampler/decode/save and controller wall separately recorded. Missing/nonfinite/nonpositive/incorrect terminal evidence rejected; median/range descriptive, n2 each not significance."
+    }
+  ],
+  "operating_conditions": [
+    "Select pair only after parent completes actual initial screening; new ready bundle with its own SHA, keep pending immutable.",
+    "Pass runs-parent inside model-root as documented: initial adapter check only verifies E drive and existence, while later run.relative_to(model_root) fails after inference for a different E directory. Not a blocker for the documented actual path, but do not substitute old outside-model-root runs path.",
+    "Quota guard is parent supplied launch snapshot; stop-file is checked between child launches, not active polling. Parent must interrupt owned outer job at20percent; it is not self-querying account quota.",
+    "Use owned outer executor; no concurrentGPU. Source checks are small-file review only; actual controller still hashes full models each trial.",
+    "Raw argv/results include local paths and remain local until parent sanitizes; no automatic remote publication by adapter."
+  ],
+  "test_runs": 0,
+  "models_or_GPU_runs": 0,
+  "prior_offline26_not_repeated": true,
+  "readiness": "No new code blocker found for documented inputs; pending remains non-dispatchable, parent screening and ready-freeze required",
+  "claim": "INCONCLUSIVE"
+}

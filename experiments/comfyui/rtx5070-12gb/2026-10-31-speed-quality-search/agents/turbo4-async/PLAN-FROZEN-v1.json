@@ -1,0 +1,21 @@
+{
+  "schema": "q33-turbo4-async-plan/v1",
+  "plane": "infra",
+  "frozen_before_candidate": true,
+  "runtime_delta": "Remove only --disable-async-offload; native default2 streams required from actual startup marker.",
+  "fixed": "Full original50block INT8 ConvRot + same Turbo v4 step600 LoRA strength1; bounce-only real41-token condition; Euler/simple4steps video12/audio3;384x256/73/24fps seed424242; reserve3/headroom1/no-pin/cache-none/disable-smart; all guards and cleanup unchanged.",
+  "execution": "One parent-owned candidate only. Historical matching baseline27.106s is descriptive, no new baseline/ABBA/performance claim.",
+  "checks_before_parent": [
+    "AST native argv differs only missing disable-async-offload",
+    "Reverse non-runtime identity changes reproduces old source exactly except frozen startup-marker function and bounce restriction/state reporting",
+    "Actual bounce graph/canonical/assets bytes remain same; conditioning/provenance actual payload unchanged; metadata graph location only differs",
+    "Real profile/asset/conditioning loaders validate actual small metadata; hands rejected",
+    "Frozen startup marker succeeds with2streams and rejects absent/1stream marker using tiny text",
+    "Real PPY --help for controller/helper, zero model dispatch"
+  ],
+  "post_candidate": [
+    "Parent full media decoder, exact file SHA and compare full decoded media to historical baseline (not just three stills)",
+    "Log observed2streams, actual steps/history/controller/outer/resources/cleanup; failed guard preserved, no cap lowering or automatic retry"
+  ],
+  "claim": "INCONCLUSIVE"
+}

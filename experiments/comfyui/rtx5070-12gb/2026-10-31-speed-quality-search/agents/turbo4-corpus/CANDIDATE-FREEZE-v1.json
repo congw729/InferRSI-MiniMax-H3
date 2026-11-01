@@ -1,0 +1,71 @@
+{
+  "schema": "q33-turbo4-corpus-candidate/v1",
+  "files": [
+    {
+      "path": "assets/turbo-native.ready.json",
+      "bytes": 3939,
+      "sha256": "4f43082899ac7818ebaeb4e911904bd258c4fae6d8d78ad11efa31f3fab0f95d"
+    },
+    {
+      "path": "canonical/original.json",
+      "bytes": 3069,
+      "sha256": "d5937f2505f74e07ce8de746c49c98e8a428535d79ccc878383e8b989807fb29"
+    },
+    {
+      "path": "conditioning/bounce-audio.json",
+      "bytes": 1568,
+      "sha256": "4986619bf419aa10b1c0f779b30fa36d1c6c0c3dde8ea0a5efba71fc87557368"
+    },
+    {
+      "path": "conditioning/hands-face-mug.json",
+      "bytes": 1576,
+      "sha256": "a98c8cf3625b97b3513e162bb5b42f749300763af0afef885dd8a34028f52410"
+    },
+    {
+      "path": "CONTROLLER-TURBO6-TO4-v1.patch",
+      "bytes": 2325,
+      "sha256": "f2e077bf02c0a998b3996ee220ee2d961effa1e901e7f065661625ca39743fae"
+    },
+    {
+      "path": "graphs/bounce-audio.json",
+      "bytes": 3333,
+      "sha256": "bed7a0c36208a1834707812c499648be6a66848750cfa9d11f513964a871ced6"
+    },
+    {
+      "path": "graphs/hands-face-mug.json",
+      "bytes": 3335,
+      "sha256": "62b9fe5240d4cd461a86a651f6e1ad8ad0ef33206d51934c3979c5be9d3efe87"
+    },
+    {
+      "path": "PLAN-FROZEN-v1.json",
+      "bytes": 1461,
+      "sha256": "6e16f69c463325f50eeb7908607ce30ac4eea07e632f6a9c2c8488febebff4ea"
+    },
+    {
+      "path": "PLAN-VALIDATOR-FREEZE-v1.json",
+      "bytes": 387,
+      "sha256": "f4cc05f984ddada81789eb13fb0a0062fcdb791cccc6fbc6b6132b3c049dd5af"
+    },
+    {
+      "path": "profiles/bounce-audio.json",
+      "bytes": 1208,
+      "sha256": "dc0c3465026a4b590f848fa5f38f2e886204da5c6364d963a859a26434f8582e"
+    },
+    {
+      "path": "profiles/hands-face-mug.json",
+      "bytes": 1214,
+      "sha256": "1fff3a85129e61605b4479627972e6655953227d32513f760c06d6b55f811740"
+    },
+    {
+      "path": "turbo4_corpus_stage_b_v1.py",
+      "bytes": 57181,
+      "sha256": "a94784c03a22de99eef9ebb379c0d7f741d0cb5923fffba3fae1cf5c0ad79aaf"
+    },
+    {
+      "path": "validate_turbo4_delta_v1.py",
+      "bytes": 3636,
+      "sha256": "c4695825a64fc56030709b62053dbec2613afe22eead601ee0a6378db507d842"
+    }
+  ],
+  "model_gpu_dispatches": 0
+}

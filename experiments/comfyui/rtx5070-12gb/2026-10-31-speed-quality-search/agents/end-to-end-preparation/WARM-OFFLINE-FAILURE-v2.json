@@ -1,0 +1,12 @@
+{
+  "schema": "q33-warm-offline-failure/v2",
+  "validator": "validate_warm_offline_v2.py",
+  "validator_sha256": "1df7b5ee3a9d3e7c9f939def7f4d7be8c44a676001c952995b122db34fa9c5f4",
+  "completed_arithmetic_checks": 11,
+  "arithmetic_checks_passed": true,
+  "failure_check": "unchanged_all_old_named_functions_except_main",
+  "reason": "Validator incorrectly included run_one, whose two admission calls intentionally change from cold to warm. Candidate math/helper unchanged; new static-only verifier checks exact reverse normalization.",
+  "controller_help_returncode": 0,
+  "controller_sha256": "0a261d4246526c8611fbbfd873b140907b6e31cc7639156d37bfc38127888d25",
+  "model_dispatches": 0
+}

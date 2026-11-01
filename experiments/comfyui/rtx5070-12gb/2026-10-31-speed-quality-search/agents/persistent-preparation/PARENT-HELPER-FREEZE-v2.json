@@ -1,0 +1,31 @@
+{
+  "schema": "q33-persistent-cache-parenthelper/v2",
+  "files": [
+    {
+      "path": "PARENT-HELPER-PLAN-v2.json",
+      "bytes": 399,
+      "sha256": "e1f996b7fa12de2d47a6b3ef60698b4fb9abc4750d09cef128dcab299f1653d7"
+    },
+    {
+      "path": "run_persistent_profile_v1.py",
+      "bytes": 6109,
+      "sha256": "705d519918dc9eab07553416178aa539380285111077fee163df73524213f3a1"
+    },
+    {
+      "path": "run_persistent_profile_v2.py",
+      "bytes": 6168,
+      "sha256": "0b48ed7d18c4aaed4a27f9bbe32af9c98ac61637ce896067bd56417798f0fd59"
+    },
+    {
+      "path": "parenthelper-v1-to-cache-v2.patch",
+      "bytes": 6978,
+      "sha256": "4c04ae50441882385390e9940d3c662384597202f75d205d6af2e30d7b224613"
+    },
+    {
+      "path": "EXECUTION-FREEZE-v3.json",
+      "bytes": 11146,
+      "sha256": "7605cd62e680a25877b8e77df2e676f7b700e5b2f70210b519f97e96ad32cfff"
+    }
+  ],
+  "no_gpu_dispatches": true
+}

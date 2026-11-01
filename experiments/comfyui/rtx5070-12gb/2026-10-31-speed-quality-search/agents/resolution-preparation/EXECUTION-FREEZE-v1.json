@@ -1,0 +1,148 @@
+{
+  "schema": "q33-resolution-execution-freeze/v1",
+  "created_utc": "2026-10-30T18:32:53.116788+00:00",
+  "formal_geometry": [
+    576,
+    384
+  ],
+  "formal_profile": "trim-8-576x384",
+  "preserved_unexecuted_alternative": "PLAN-v1.json640x384",
+  "files": [
+    {
+      "path": "assets/trim.json",
+      "bytes": 2763,
+      "sha256": "c1507b121962e250f2d74c7dce2f4e0e63e7de8e55a39c2d2795e336106de2a0"
+    },
+    {
+      "path": "canonical/trim.json",
+      "bytes": 3895,
+      "sha256": "a915f62f109cd2e1be615eb7b0c1aa6fab4a4b6ad6e31791fb84488b02a17ad8"
+    },
+    {
+      "path": "conditioning/trim-8-576x384.json",
+      "bytes": 1065,
+      "sha256": "cba4a43134c47055ee62ee694a0b22bff37593b2ace475219a647eda0f10fca4"
+    },
+    {
+      "path": "CONTROLLER-v1.patch",
+      "bytes": 4469,
+      "sha256": "cd92cf50d124a97e5c7bb53529f07722f7eaa65266f5735e8890e64b91b61807"
+    },
+    {
+      "path": "graphs/trim-8-576x384.json",
+      "bytes": 3905,
+      "sha256": "c0df0511ae3ad908c2983ee27245ee57cd61e609ecd9bc74d730eee8b55d8ee0"
+    },
+    {
+      "path": "MEDIA-EXPECTED-v1.json",
+      "bytes": 71,
+      "sha256": "96a1983b4a12d7d2890a06e6a37cf4fbf5af25ad5f22541d02dd0aaaa1823e8b"
+    },
+    {
+      "path": "MEDIA-RESOURCE-GATES-v1.json",
+      "bytes": 687,
+      "sha256": "3e880606a5744fc290be9ca4011169be7dac65140e66ac3525e7b58b65a82e60"
+    },
+    {
+      "path": "MEDIA-v1.patch",
+      "bytes": 2751,
+      "sha256": "2ffede11e58388fc12ba1fb7ab23053a80e7f1353cdedb8a3e8c42ad73ad924c"
+    },
+    {
+      "path": "OFFLINE-FREEZE-v1.json",
+      "bytes": 2606,
+      "sha256": "ded8916440daf051cb41cae397d2b737ceafcb76dfa966711ccb0c05a0dfd376"
+    },
+    {
+      "path": "OFFLINE-RESULT-v1.json",
+      "bytes": 2334,
+      "sha256": "abd925bc95cfa5ceb25d2695c3aa2d17ec83976ebcb30dfbd8dbdc8e3bb28e69"
+    },
+    {
+      "path": "offline_resolution_v1.py",
+      "bytes": 4464,
+      "sha256": "5fbacc8f3b40938b271621e3de597d2fa7e33110721f1318bb459c1ff7000a24"
+    },
+    {
+      "path": "PLAN-v1.json",
+      "bytes": 3947,
+      "sha256": "99fa20488d6cbe255b1bcce2ddc9f000cdd1cc5d7b7f72ad49dad83cb367b535"
+    },
+    {
+      "path": "PLAN-v2.json",
+      "bytes": 4068,
+      "sha256": "9c446183e6efd044ebff7df34e558157cc031170d7738b22a0e9bd910fabf36e"
+    },
+    {
+      "path": "PORTABLE-HELP-v1.json",
+      "bytes": 686,
+      "sha256": "718668689b0cf812e49fdad4489d2d1f71f5fe3a723bc039ba0825a0816461b3"
+    },
+    {
+      "path": "profiles/trim-8-576x384.json",
+      "bytes": 938,
+      "sha256": "f80dd17bc8931fd829a78170804e6fb9e9743dd7e34bbac7fa776f20f52ccf7d"
+    },
+    {
+      "path": "resolution_stage_b_v1.py",
+      "bytes": 50442,
+      "sha256": "7eba09ef5e83aaa7517ad24115651a2d2ae6f80c3169921c2aeaab4579caf0c3"
+    },
+    {
+      "path": "RUN-HANDOFF-v1.txt",
+      "bytes": 3706,
+      "sha256": "16f6e1c12b63392a2d7834a01ba989aa963989652cae5016ca82319d289af4b9"
+    },
+    {
+      "path": "timing_events_v1.py",
+      "bytes": 10734,
+      "sha256": "f0abb1937ca5462d712a73d1a8623b6a9f5df86927dbcf6375903b8a5ad3e614"
+    },
+    {
+      "path": "validate_resolution_media_v1.py",
+      "bytes": 23857,
+      "sha256": "a6bf70e146c07e1ae3706b2900130afd44cbd92787584f78a13cf1994c52cf5b"
+    }
+  ],
+  "external_files": [
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/timing-controller/SOURCES-v1.json",
+      "bytes": 33327,
+      "sha256": "bf0d3e3b09f8130053735eaa6645bcc4ff753833a97ef4ae306d7d223283f007"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/timing-controller/RESOURCE-GATES-RESERVE3-v1.json",
+      "bytes": 855,
+      "sha256": "13672a9bbe8946c28c98b3bab0f906f6ddfe67735ff7f77929e58539a4a580dd"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/timing-controller/speed_stage_b_v6.py",
+      "bytes": 49744,
+      "sha256": "f194d1b1862eab246c826d19c36c9c0846afe89b1664f6c24cd3f367f86d9ee9"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/timing-controller/graphs/trim-8.json",
+      "bytes": 3698,
+      "sha256": "4f3100808edb367c1e06066320113eb94043c1f697489c443b025a31d1788016"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/tools/validate_first_video_media_v1.py",
+      "bytes": 23411,
+      "sha256": "7fa12bd773e5933f2ce0e71c5be2f4124fc6c35284fbe5d3c624ab1b7012ca1a"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/plan/MEDIA-VALIDATION-GATES-v1.json",
+      "bytes": 687,
+      "sha256": "3e880606a5744fc290be9ca4011169be7dac65140e66ac3525e7b58b65a82e60"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/tools/comfy_first_video_v1.py",
+      "bytes": 20306,
+      "sha256": "63eb319e9fe294209e65c188a447a101987738e5ebc49bae879b65d36bb20d35"
+    }
+  ],
+  "native_source_catalog": "T/SOURCES-v1.json frozen154 sources checked by controller at runtime; not a DLL closure claim",
+  "model_dispatches": 0,
+  "media_dispatches": 0,
+  "claim": "INCONCLUSIVE"
+}

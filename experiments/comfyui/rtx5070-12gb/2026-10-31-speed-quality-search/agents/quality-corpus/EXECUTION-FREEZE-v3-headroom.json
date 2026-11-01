@@ -1,0 +1,191 @@
+{
+  "schema": "q33-headroom-execution-freeze/v1",
+  "phase": "before parent model dispatch",
+  "files": [
+    {
+      "path": "CANONICAL-STAGE-A-v1.json",
+      "bytes": 1000,
+      "sha256": "1da6a1e7184e13d7e783918d09f2a3bbec750b53ec3fd66c7c3e8c57a103cb88"
+    },
+    {
+      "path": "CORPUS-MANIFEST-v1.json",
+      "bytes": 1608,
+      "sha256": "870756bbdae953f6c52b40a05a6ac35005d8818402170f1aa9d964bed715ef02"
+    },
+    {
+      "path": "EXECUTION-FREEZE-v1.json",
+      "bytes": 3327,
+      "sha256": "b959583c9818b16aebc5d5c9751c29ce5676fbde6b05badd17a79987276f39a9"
+    },
+    {
+      "path": "EXECUTION-FREEZE-v2.json",
+      "bytes": 4783,
+      "sha256": "e13e61e5fb13ad54a660a7d5091f24663068488ca7e4c5b82c13172d987e5665"
+    },
+    {
+      "path": "HEADROOM-PLAN-v1.json",
+      "bytes": 1504,
+      "sha256": "85dd54abc43070eecc89727ea04b750412841243ef6a90869b25eab4d9ce9952"
+    },
+    {
+      "path": "HEADROOM-STATIC-CHECK-v1.json",
+      "bytes": 418,
+      "sha256": "102d9201a2fa43d40003cff3944f4b2b0515cc3ec2fa81b404084c26dd994c0f"
+    },
+    {
+      "path": "HEADROOM-conditioning_corpus_v3.patch",
+      "bytes": 1161,
+      "sha256": "a18f56a24db0ca3fb120d86b37a224bcdb00122fba69380e1624d4bca56fe658"
+    },
+    {
+      "path": "METADATA-NAME-FIX-PLAN-v2.json",
+      "bytes": 494,
+      "sha256": "93918ccdc4bde8a525cd184de46b75614439ab68eb93cca01376c7353a3a4ab5"
+    },
+    {
+      "path": "PREPARATION-RESULT-v1.json",
+      "bytes": 436,
+      "sha256": "d6b932f5ebf3a1fccf296358f406cd8e928a69becdafdcd71fd1152633a5b241"
+    },
+    {
+      "path": "STAGE-A-PLAN-v1.json",
+      "bytes": 1395,
+      "sha256": "82935a2b6b00583203fa7752e33557402a44ca19a6aa7869a6348afbaf95dd94"
+    },
+    {
+      "path": "conditioning-corpus-v1.patch",
+      "bytes": 18462,
+      "sha256": "8368c5390bf1c41ae18dcf454e60cb2cfc5826747a64ddc2a23e013d0ec65dce"
+    },
+    {
+      "path": "conditioning-corpus-v2.patch",
+      "bytes": 1075,
+      "sha256": "d349832c9ecc97c550e4438edec244c5a0fe23e9cb417a38527ef22da63ed97d"
+    },
+    {
+      "path": "conditioning_corpus_v1.py",
+      "bytes": 38032,
+      "sha256": "d171f28a2b59fab793c305c24f10be728c470d7c86d39a2df5b40a972d3c4877"
+    },
+    {
+      "path": "conditioning_corpus_v2.py",
+      "bytes": 38032,
+      "sha256": "7c87ea7524c6bf4adf2573a6ccd881778807634f06d96c8f4161e98c357c3a2d"
+    },
+    {
+      "path": "conditioning_corpus_v3.py",
+      "bytes": 38132,
+      "sha256": "1e930d7ad4c5b32d8c3842e77bc39cbea5d0d510c4c5758c7240758ae15087dc"
+    },
+    {
+      "path": "graphs/bounce-audio.json",
+      "bytes": 1073,
+      "sha256": "1ada1b2863fd3e18b7bf20c85b6a459d70df5f802590e46dde99d6b58fd15ba3"
+    },
+    {
+      "path": "graphs/hands-face-mug.json",
+      "bytes": 1104,
+      "sha256": "07d4d6734fbadca28ba315fa3c620bfaf6c3d9e9f4cad2a22e9e6abfa831eaed"
+    },
+    {
+      "path": "offline-v1.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "offline-v1.stdout.json",
+      "bytes": 475,
+      "sha256": "1f4651d093cd2a57807b3443ee071fc8f98c561f4483306939f652d7de2f2acd"
+    },
+    {
+      "path": "portable-help-v1.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "portable-help-v1.stdout.txt",
+      "bytes": 2374,
+      "sha256": "0fd1e845b41e1b0a4ff0e91eabe091e3025128e1d842f061741439ee49791455"
+    },
+    {
+      "path": "validate_corpus_offline_v1.py",
+      "bytes": 1898,
+      "sha256": "4cac98bd0735e5e71fd3e6bd7170de686caa2869219112e51296ba1cbf142e37"
+    }
+  ],
+  "native_sources": [
+    {
+      "relative_to_portable": "ComfyUI/main.py",
+      "sha256": "baaa16d69ee78e08c490eeec20bf27c56b746c070f76cc05b4aa13cbc616bcef",
+      "lines": [
+        82,
+        83,
+        296
+      ]
+    },
+    {
+      "relative_to_portable": "ComfyUI/comfy/cli_args.py",
+      "sha256": "c88f737c65915bd19ff04be68d151c0794b03b09e50dcb4fcd088647eb796f4a",
+      "lines": [
+        176,
+        177
+      ]
+    },
+    {
+      "relative_to_portable": "python_embeded/Lib/site-packages/comfy_aimdo/control.py",
+      "sha256": "15b1be566ab6b88d61a10b1dd65385772e26b1e140003ac0fc3d0a6f7f74ad4e",
+      "lines": [
+        157,
+        169,
+        190,
+        191,
+        215,
+        228
+      ]
+    }
+  ],
+  "external_sources": [
+    {
+      "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/tools/conditioning_stage_v1.py",
+      "bytes": 32411,
+      "sha256": "5ed099fa2761cac83ce8c6ae920c234fb289724ac1efcff57a69f38766d1991c",
+      "role": "Q31 StageA basis"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/timing-controller/speed_stage_b_v3.py",
+      "bytes": 49642,
+      "sha256": "524bf48df04c3ecdb251115b4db08c6482ed36eeb33405db34799b3a5669f66e",
+      "role": "reviewed timing and cleanup helper"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/timing-controller/timing_events_v1.py",
+      "bytes": 10734,
+      "sha256": "f0abb1937ca5462d712a73d1a8623b6a9f5df86927dbcf6375903b8a5ad3e614",
+      "role": "WS observer"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/timing-controller/SOURCES-v1.json",
+      "bytes": 33327,
+      "sha256": "bf0d3e3b09f8130053735eaa6645bcc4ff753833a97ef4ae306d7d223283f007",
+      "role": "154 selected runtime sources"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/plan/CONDITIONING-STAGE-RESOURCE-GATES-v1.json",
+      "bytes": 827,
+      "sha256": "4d5114f7abc9041f34778b3f615034cc3da797150e750b4a6e7a4c684ad5a9be",
+      "role": "unchanged StageA gates"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/plan/ASSET-SET-v1.json",
+      "bytes": 3491,
+      "sha256": "1a24d5245740f570c4169e86b5528036c26ad134ec784f8aec7cfc079234305d",
+      "role": "old four assets"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/results/object-info-v1-20261028T131953602235Z/result.json",
+      "bytes": 3315,
+      "sha256": "60a916c5ae597eca9abb8901f788691b0759aa9204df4b8168065d68b4933788",
+      "role": "fixed successful schema"
+    }
+  ]
+}

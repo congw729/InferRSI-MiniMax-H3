@@ -1,0 +1,48 @@
+{
+  "schema": "q33-timing-cleanup-freeze/v2",
+  "phase": "before targeted offline validation",
+  "files": [
+    {
+      "path": "CLEANUP-PLAN-v2.json",
+      "bytes": 932,
+      "sha256": "af8cd29a92dc9bf557e511ac83c5ecde1702f88d4ad11dc09a411e44e130d7eb"
+    },
+    {
+      "path": "validate_cleanup_offline_v2.py",
+      "bytes": 2442,
+      "sha256": "7b4a2d63530b78d8458fa37ba1e0d03b87866a013de3c66d31155890f199421e"
+    },
+    {
+      "path": "speed_stage_b_v1.py",
+      "bytes": 47912,
+      "sha256": "17ad08a26af88efad9ee2bd25ee7bd575cde8adfb6a574f472d5fd336c539ae3"
+    },
+    {
+      "path": "speed_stage_b_v2.py",
+      "bytes": 49129,
+      "sha256": "916c8f2e19d9d42d72719e985ee801d9a92e4d43d007eeabb9ec25c52c77d797"
+    },
+    {
+      "path": "timing_events_v1.py",
+      "bytes": 10734,
+      "sha256": "f0abb1937ca5462d712a73d1a8623b6a9f5df86927dbcf6375903b8a5ad3e614"
+    },
+    {
+      "path": "controller-v2-cleanup.patch",
+      "bytes": 4263,
+      "sha256": "4bba738d1e50c36c2a1a2a867c56e343f775759e9cfeb82040738b3d27b04137"
+    },
+    {
+      "path": "SOURCES-v1.json",
+      "bytes": 33327,
+      "sha256": "bf0d3e3b09f8130053735eaa6645bcc4ff753833a97ef4ae306d7d223283f007"
+    },
+    {
+      "path": "CANDIDATE-FREEZE-v1.json",
+      "bytes": 4157,
+      "sha256": "6a5141d32958b5f9ba36894fd44d355183a45c0b7732642047ca23d41cf0f51f"
+    }
+  ],
+  "runtime_sources": "unchanged154 from SOURCES-v1",
+  "unchanged_profiles_assets_gates": true
+}

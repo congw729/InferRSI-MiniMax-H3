@@ -1,0 +1,17 @@
+{
+  "schema": "q33-attention-independent-review/v1",
+  "created_utc": "2026-10-30T18:30:28.458157+00:00",
+  "candidate_sha256": "5fa1f66c157189044f358bf21ca505d8b7cefc96c53fc9c9f6157d9c4b281cb9",
+  "freeze_sha256": "e0841a54967ff97e1f1ff279f48726253c2987e60da9a29b6835b2dbebc21e6d",
+  "local_matched": 27,
+  "external_matched": 2,
+  "launcher_sha256": "60c6833159686d9b5c469e23c9ea9818d9f6a9a40b1fab9cfc55134a874d73ef",
+  "blockers": [],
+  "findings": [
+    "v1 startup location mismatch was identified before dispatch and preserved; v2 fixes only own-directory assertion",
+    "Actual graph restricts Trim6, node128 pytorch attention and unique output prefix; no other sampler/seed/condition/model/guard change",
+    "Launcher only admits pinned v2/profile/reserve3/freeze; original timing source and gates still bound to timing-controller directory",
+    "No source/guard/cleanup changes beyond graph validation and directory binding; numeric attention values may differ, quality/performance not established"
+  ],
+  "scope": "Read-only exact patch/source and small metadata identity audit, no repeated tests/GPU"
+}

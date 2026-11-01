@@ -1,0 +1,97 @@
+{
+  "schema": "q33-cleanup-offline/v2",
+  "scenarios": [
+    {
+      "bad_log": false,
+      "bad_job_close": false,
+      "bad_observer": false,
+      "trace": [
+        "stop",
+        "job.close",
+        "poll",
+        "kill",
+        "wait",
+        "event",
+        "observer.finish"
+      ],
+      "checks": {
+        "stop_first": true,
+        "job_immediate": true,
+        "child_wait_before_join": true,
+        "no_event_before_child_wait": true,
+        "owned_exited": true,
+        "job_close_requested": true
+      }
+    },
+    {
+      "bad_log": true,
+      "bad_job_close": false,
+      "bad_observer": false,
+      "trace": [
+        "stop",
+        "job.close",
+        "poll",
+        "kill",
+        "wait",
+        "event",
+        "observer.finish"
+      ],
+      "checks": {
+        "stop_first": true,
+        "job_immediate": true,
+        "child_wait_before_join": true,
+        "no_event_before_child_wait": true,
+        "owned_exited": true,
+        "job_close_requested": true
+      }
+    },
+    {
+      "bad_log": false,
+      "bad_job_close": true,
+      "bad_observer": false,
+      "trace": [
+        "stop",
+        "job.close",
+        "poll",
+        "kill",
+        "wait",
+        "event",
+        "observer.finish"
+      ],
+      "checks": {
+        "stop_first": true,
+        "job_immediate": true,
+        "child_wait_before_join": true,
+        "no_event_before_child_wait": true,
+        "owned_exited": true,
+        "job_close_requested": true
+      }
+    },
+    {
+      "bad_log": false,
+      "bad_job_close": false,
+      "bad_observer": true,
+      "trace": [
+        "stop",
+        "job.close",
+        "poll",
+        "kill",
+        "wait",
+        "event",
+        "observer.finish"
+      ],
+      "checks": {
+        "stop_first": true,
+        "job_immediate": true,
+        "child_wait_before_join": true,
+        "no_event_before_child_wait": true,
+        "owned_exited": true,
+        "job_close_requested": true
+      }
+    }
+  ],
+  "scenarios_completed": 4,
+  "all_observed": true,
+  "no_real_processes": true,
+  "no_network_gpu": true
+}

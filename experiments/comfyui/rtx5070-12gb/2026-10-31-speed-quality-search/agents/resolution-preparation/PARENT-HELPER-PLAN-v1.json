@@ -1,0 +1,21 @@
+{
+  "schema": "q33-resolution-parent-helper-plan/v1",
+  "created_utc": "2026-10-30T18:43:10.970761+00:00",
+  "launch_base_sha256": "ceb5727c01cc0a1b29c6d20a3c602fdd9f4d2deabb0980bb25a4faba6907c854",
+  "media_base_sha256": "b44bc73cd1c7d65e0c1f8616c051fd341cba66c98fe7dbacc36f80a92e42e138",
+  "changes": [
+    "fixed resolution directory/profile/mode/controller scenario576x384",
+    "source catalog and reserve3 gates remain timing-controller originals",
+    "verify resolution execution freeze external_files relative to notes root",
+    "media helper selects the new five-literal dimension validator, same gates, requires actual resolution controller/profile receipt"
+  ],
+  "unchanged": [
+    "InferRSI executor",
+    "fresh12GiB physical/16.5GiB commit/6GiB GPU admission",
+    "remainingpercent>20",
+    "2700s controller/2730s outer",
+    "full runtime guards and ownership cleanup",
+    "media140s outer"
+  ],
+  "scope": "prepare/help only; no GPU/media execution"
+}

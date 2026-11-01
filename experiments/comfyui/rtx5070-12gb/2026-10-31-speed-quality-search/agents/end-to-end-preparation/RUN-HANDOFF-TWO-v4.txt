@@ -1,0 +1,12 @@
+Fixed two NEW prompts, one service; not precomputed-TE reuse.
+Core end_to_end_v4.py retains v2 all running guards and cold/warm budget. New run prefix q33-e2e-two-trim8; 4 prompt POST, 3 /free; original assets full SHA once and stat before every POST. Unique per-case condition subtree. Runtime and old sources unchanged.
+Parent (IR Python):
+python -B RUNNER --notes-root R --infra-root INFERRSI --portable-root PORTABLE --model-root MODEL_ROOT --runs-parent RUNS_PARENT --nvidia-smi NVIDIA_SMI --remaining-percent ACTUAL_REMAINING
+RUNNER=Q33/agents/end-to-end-preparation/run_e2e_two_v4.py
+MODEL_ROOT is existing MiniMax-H3 root, not h3-lab or comfy-trim/models. Inputs retain v2 meanings.
+Media after actual return0 and cleanup:
+python -B MEDIA --notes-root R --infra-root INFERRSI --portable-root PORTABLE --run ACTUAL_NEW_E_RUN --trial ACTUAL_TRIAL --result-sha256 ACTUAL_RESULT_SHA
+MEDIA=Q33/agents/end-to-end-preparation/validate_e2e_two_media_v4.py
+Media checks requests 2 and 4 independently, same existing CPU full media validator and gates; output media-inspection-request-2-v1 and -4-v1.
+Timing: per request/case and whole events. Second-new-prompt interval must include free2, real hands TE, free3 and video through full MP4 SHA. Cold source/assets/startup are first-run overhead; do not add nested node times to total. No new performance/quality PASS from one run.
+18 targeted CPU checks and actual PPY help succeeded on v3; v4 only clears previous state.node_timing at begin_request to prevent stale failure attribution (exact reverse+AST checked). Parent/manual independent review required before GPU dispatch. No model run performed by this author.

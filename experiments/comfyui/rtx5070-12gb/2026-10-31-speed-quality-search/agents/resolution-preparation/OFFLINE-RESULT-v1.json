@@ -1,0 +1,120 @@
+{
+  "schema": "q33-resolution-targeted-checks/v1",
+  "checks": [
+    {
+      "name": "native_identity_ComfyUI/comfy_extras/nodes_minimax_h3.py",
+      "ok": true
+    },
+    {
+      "name": "native_identity_ComfyUI/comfy/ldm/minimax/model.py",
+      "ok": true
+    },
+    {
+      "name": "native_identity_ComfyUI/comfy_extras/nodes_sparse_attention.py",
+      "ok": true
+    },
+    {
+      "name": "native_temporal73",
+      "ok": true
+    },
+    {
+      "name": "native_spatial_patch_divisible",
+      "ok": true
+    },
+    {
+      "name": "native_geometry_tokens",
+      "ok": true
+    },
+    {
+      "name": "same_aspect_ratio",
+      "ok": true
+    },
+    {
+      "name": "exact_graph_delta",
+      "ok": true
+    },
+    {
+      "name": "all_graph_refs",
+      "ok": true
+    },
+    {
+      "name": "candidate_graph_accepted",
+      "ok": true
+    },
+    {
+      "name": "reject_unfrozen_noise_seed",
+      "ok": true
+    },
+    {
+      "name": "reject_unfrozen_steps",
+      "ok": true
+    },
+    {
+      "name": "reject_unfrozen_width",
+      "ok": true
+    },
+    {
+      "name": "unchanged_sample",
+      "ok": true
+    },
+    {
+      "name": "unchanged_http",
+      "ok": true
+    },
+    {
+      "name": "unchanged_guarded_hash",
+      "ok": true
+    },
+    {
+      "name": "unchanged_verify_conditioning",
+      "ok": true
+    },
+    {
+      "name": "unchanged_cleanup_owned_v2",
+      "ok": true
+    },
+    {
+      "name": "unchanged_load_asset_manifest",
+      "ok": true
+    },
+    {
+      "name": "unchanged_load_stage_b_manifest",
+      "ok": true
+    },
+    {
+      "name": "unchanged_conditioning_header",
+      "ok": true
+    },
+    {
+      "name": "media_exact_five_geometry_replacements",
+      "ok": true
+    },
+    {
+      "name": "media_resource_gates_identical",
+      "ok": true
+    },
+    {
+      "name": "media_expected_only_width_height",
+      "ok": true
+    },
+    {
+      "name": "no_torch_import",
+      "ok": true
+    }
+  ],
+  "check_count": 25,
+  "source_derived_geometry": {
+    "video_tokens": 4752,
+    "total_tokens": 5025,
+    "latent": [
+      1,
+      24,
+      22,
+      24,
+      36
+    ]
+  },
+  "model_dispatches": 0,
+  "media_dispatches": 0,
+  "claim": "INCONCLUSIVE"
+}

@@ -1,0 +1,30 @@
+{
+  "schema": "q33-attention-root-fix-freeze/v2",
+  "files": [
+    {
+      "path": "ROOT-FIX-PLAN-v2.json",
+      "bytes": 476,
+      "sha256": "b85fcf16ee105fd6a6de607139a9ed14ca9afcce8f8454253c08bb5b4ad396be"
+    },
+    {
+      "path": "validate_root_fix_v2.py",
+      "bytes": 1575,
+      "sha256": "1bddbb800a937f4de0aea210a43db0cfa541958a8e9ac9321ccf271fedab5073"
+    },
+    {
+      "path": "attention_stage_b_v1.py",
+      "bytes": 49637,
+      "sha256": "0273e6d9b035db6b2077673c181a687e86fd2e149743a35eddbfed1efc32476b"
+    },
+    {
+      "path": "attention_stage_b_v2.py",
+      "bytes": 49641,
+      "sha256": "5fa1f66c157189044f358bf21ca505d8b7cefc96c53fc9c9f6157d9c4b281cb9"
+    },
+    {
+      "path": "controller-v1-to-v2-root.patch",
+      "bytes": 712,
+      "sha256": "b4a535811427216f2cfeb82e2ef5115189ba665b9bed482fa83df79de6abcea7"
+    }
+  ]
+}

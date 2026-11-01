@@ -1,0 +1,146 @@
+{
+  "schema": "q33-timing-offline/v1",
+  "checks": [
+    {
+      "name": "first state transitions only",
+      "ok": true
+    },
+    {
+      "name": "missing node null",
+      "ok": true
+    },
+    {
+      "name": "foreign prompt ignored",
+      "ok": true
+    },
+    {
+      "name": "finish without start null",
+      "ok": true
+    },
+    {
+      "name": "cached null",
+      "ok": true
+    },
+    {
+      "name": "max progress not finish",
+      "ok": true
+    },
+    {
+      "name": "disconnect invalidates intervals",
+      "ok": true
+    },
+    {
+      "name": "wrong sid rejected",
+      "ok": true
+    },
+    {
+      "name": "unknown node rejected",
+      "ok": true
+    },
+    {
+      "name": "clock regression rejected",
+      "ok": true
+    },
+    {
+      "name": "nonfinite progress rejected",
+      "ok": true
+    },
+    {
+      "name": "message count bounded",
+      "ok": true
+    },
+    {
+      "name": "encoded bytes bounded",
+      "ok": true
+    },
+    {
+      "name": "profile original-20",
+      "ok": true
+    },
+    {
+      "name": "seed change rejected original-20",
+      "ok": true
+    },
+    {
+      "name": "profile original-30",
+      "ok": true
+    },
+    {
+      "name": "seed change rejected original-30",
+      "ok": true
+    },
+    {
+      "name": "profile original-50",
+      "ok": true
+    },
+    {
+      "name": "seed change rejected original-50",
+      "ok": true
+    },
+    {
+      "name": "profile trim-6",
+      "ok": true
+    },
+    {
+      "name": "seed change rejected trim-6",
+      "ok": true
+    },
+    {
+      "name": "profile trim-8",
+      "ok": true
+    },
+    {
+      "name": "seed change rejected trim-8",
+      "ok": true
+    },
+    {
+      "name": "Trim50 cannot be original baseline",
+      "ok": true
+    },
+    {
+      "name": "extra model node rejected",
+      "ok": true
+    },
+    {
+      "name": "unchanged guard sample",
+      "ok": true
+    },
+    {
+      "name": "unchanged guard http",
+      "ok": true
+    },
+    {
+      "name": "unchanged guard conditioning_header",
+      "ok": true
+    },
+    {
+      "name": "unchanged guard bounded_notes_json",
+      "ok": true
+    },
+    {
+      "name": "unchanged guard verify_dynamic_vram_startup",
+      "ok": true
+    },
+    {
+      "name": "compile speed_stage_b_v1.py",
+      "ok": true
+    },
+    {
+      "name": "compile timing_events_v1.py",
+      "ok": true
+    },
+    {
+      "name": "compile validate_timing_offline_v1.py",
+      "ok": true
+    },
+    {
+      "name": "no torch imported",
+      "ok": true
+    }
+  ],
+  "completed": 34,
+  "all_observed": true,
+  "network": false,
+  "gpu": false,
+  "quality_performance": "INCONCLUSIVE"
+}

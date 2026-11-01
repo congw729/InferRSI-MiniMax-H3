@@ -1,0 +1,29 @@
+{
+  "files": [
+    {
+      "path": "run_e2e_two_wake_v6.py",
+      "bytes": 6420,
+      "sha256": "4d6cdb8b049f46863617727861111f7dba60f3e27e1cb0a552a1b2022859e3c4"
+    },
+    {
+      "path": "validate_e2e_two_wake_media_v6.py",
+      "bytes": 5488,
+      "sha256": "7d6583f5fc7b2c42205eb22b6aa64e73deed32a9bb01faf724676fc128db9705"
+    },
+    {
+      "path": "parent-v5-to-wake-v6.patch",
+      "bytes": 7351,
+      "sha256": "81595bc9d2490a0ed0c99583e13c91f328cf2e3c523ff9de2ffa8d8c31246364"
+    },
+    {
+      "path": "media-v5-to-wake-v6.patch",
+      "bytes": 2607,
+      "sha256": "ce6c3db99a248c9d08259865e6b0a239f41f277770516d29679005078563615b"
+    },
+    {
+      "path": "EXECUTION-FREEZE-v6.json",
+      "bytes": 48171,
+      "sha256": "9de3448531bcd7a0067b8b0f1cd823e9a851d65452c4264fde8a589ef1525dca"
+    }
+  ]
+}

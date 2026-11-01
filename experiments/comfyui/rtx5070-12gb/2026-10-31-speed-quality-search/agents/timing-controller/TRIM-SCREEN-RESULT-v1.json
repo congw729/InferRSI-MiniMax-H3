@@ -1,0 +1,13 @@
+{
+  "schema": "q33-trim-screen-preparation/v1",
+  "offline_returncode": 0,
+  "portable_help_returncode": 0,
+  "controller_sha256": "10ff69732b3e06b273d124bc3342db62938349ee0e2ef0d431af1151c3a53e1b",
+  "freeze_sha256": "28db6a564e8763d8cf08b2d11d748d69a70ca3baa76bea90b5ac50705c462069",
+  "profiles": {
+    "trim-6-screen-v1": "22bf854b5cb86b45295295a4180d07d78516699a47bc5ebb70d2fb8ec4f91dfe",
+    "trim-4-screen-v1": "950d49dbf72ef1afa2335199b6b200ebbdd54f4abab2f89d74ebaa32b7b8222c"
+  },
+  "model_posts": 0,
+  "old_trim6_dispatch_ready": false
+}

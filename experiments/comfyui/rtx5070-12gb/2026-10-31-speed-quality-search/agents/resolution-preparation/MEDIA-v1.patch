@@ -1,0 +1,43 @@
+--- Q31/tools/validate_first_video_media_v1.py
++++ resolution-preparation/validate_resolution_media_v1.py
+@@ -19,7 +19,7 @@
+ import sys
+ import time
+ 
+-EXPECTED = {"width": 384, "height": 256, "frames": 73, "fps": 24}
++EXPECTED = {"width": 576, "height": 384, "frames": 73, "fps": 24}
+ MONITOR_SHA = "63eb319e9fe294209e65c188a447a101987738e5ebc49bae879b65d36bb20d35"
+ PROCESS_SHA = "3b96ebc7a50913e78e86ff3dcba74c8ee8d03d547d9591ca6488f390ac1e6189"
+ GATE_KEYS = {
+@@ -174,7 +174,7 @@
+         vs, aus = container.streams.video[0], container.streams.audio[0]
+         for stream in (vs, aus):
+             stream.codec_context.thread_count = 1
+-        require((vs.codec_context.width, vs.codec_context.height) == (384, 256),
++        require((vs.codec_context.width, vs.codec_context.height) == (576, 384),
+                 "coded geometry differs from fixed graph")
+         require(vs.average_rate == Fraction(24, 1), "reported average rate differs from 24 fps")
+         state["streams"] = {
+@@ -209,11 +209,11 @@
+                 if packet.stream.type == "video":
+                     n = len(state["video_frames"])
+                     require(n < g["max_video_frames"], "video frame cap")
+-                    require((frame.width, frame.height) == (384, 256), "decoded geometry")
++                    require((frame.width, frame.height) == (576, 384), "decoded geometry")
+                     require(previous_time is None or t - previous_time == Fraction(1, 24),
+                             "decoded PTS cadence differs from fixed 24 fps")
+                     rgb = frame.to_ndarray(format="rgb24")
+-                    require(rgb.shape == (256, 384, 3) and rgb.dtype == np.uint8, "RGB frame shape/dtype")
++                    require(rgb.shape == (384, 576, 3) and rgb.dtype == np.uint8, "RGB frame shape/dtype")
+                     require(bool(np.isfinite(rgb).all()), "nonfinite video values")
+                     mn, mx = int(rgb.min()), int(rgb.max())
+                     video_min, video_max = min(video_min, mn), max(video_max, mx)
+@@ -277,7 +277,7 @@
+         require(len(state["video_frames"]) == 73 and audio_samples > 0, "missing expected video/audio content")
+         require(len(state["pngs"]) == 3, "three inspection frames required")
+         state["video"] = {
+-            "decoded_frames": 73, "width": 384, "height": 256, "pts_rate": "24",
++            "decoded_frames": 73, "width": 576, "height": 384, "pts_rate": "24",
+             "pts_start_seconds": float(video_start), "pts_end_with_one_frame_seconds": float(video_end),
+             "decoded_duration_seconds": float(video_end - video_start),
+             "all_values_finite": True, "not_all_black": video_max > 0,

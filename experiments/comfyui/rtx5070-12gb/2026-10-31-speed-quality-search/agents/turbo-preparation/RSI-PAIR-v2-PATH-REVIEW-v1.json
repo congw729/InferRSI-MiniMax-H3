@@ -1,0 +1,12 @@
+{
+  "schema": "q33-rsi-path-pair-independent-review/v1",
+  "candidate_sha256": "4830c462866ea832481a1a97f0989ed01481911126998b61d5f6c1fe728a8b6c",
+  "diff_sha256": "05de17b8a9853c42b19323b8c36e8c45fae077c8f9e6316ecef15de3086bded0",
+  "blockers": [],
+  "findings": [
+    "run path now relative to explicit resolved runs_parent, while direct-child and E-drive boundaries remain",
+    "Selected bundle and CLI bind baseline trim-8 and candidate trim-6-screen-v1; trim4 not accepted",
+    "No metric, execute_trial, model graph, cleanup or resource change in diff"
+  ],
+  "scope": "Read-only exact small diff/source inspection, no repeated tests/GPU; final source bundle remains parent/author responsibility"
+}

@@ -1,0 +1,30 @@
+{
+  "schema": "q33-async-media-parent/v1",
+  "files": [
+    {
+      "path": "MEDIA-PARENT-PLAN-v1.json",
+      "bytes": 698,
+      "sha256": "7d8f24ce9ea7922fb1abff4334d2d350b61c1d2340503ac2e9633b7bb2266b09"
+    },
+    {
+      "path": "run_async_persistent_media_v1.py",
+      "bytes": 2193,
+      "sha256": "460e98178bc28649a822286acb54137fb298fed150305228695efe5206183617"
+    },
+    {
+      "path": "MEDIA-PARENT-v2-to-async-v1.patch",
+      "bytes": 2392,
+      "sha256": "4ef169a3e990796a078467ecbcb6ac1375bc01a3042cb513bc52b7040f409941"
+    },
+    {
+      "path": "MEDIA-PARENT-HELP-v1.json",
+      "bytes": 190,
+      "sha256": "e1d41e6a393ad21fb9ffcd8a92248a056f4dc65202baeccfbe00fe4af17e2103"
+    },
+    {
+      "path": "EXECUTION-FREEZE-v1.json",
+      "bytes": 9726,
+      "sha256": "a996fe37e5f693bab17c2d7ec3b120ac4d4c12ff717562d6e1f9b181fc493a8a"
+    }
+  ]
+}

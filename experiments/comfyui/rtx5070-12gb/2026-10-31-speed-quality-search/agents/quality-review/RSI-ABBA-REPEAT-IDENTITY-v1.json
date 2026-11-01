@@ -1,0 +1,97 @@
+{
+  "schema": "q33-abba-repeat-byte-identity/v1",
+  "source_review_sha256": "97a8751cb60a1e6da6912b0e5b9cdce705021b4e1b9c204191a0bb687d8b6e73",
+  "scope": "Within each configuration, two actual repeats at same scene/seed and frozen environment; not baseline versus candidate equality or general determinism",
+  "results": {
+    "baseline": {
+      "mp4_byte_identity": true,
+      "three_saved_pngs_byte_identical": true,
+      "trials": [
+        {
+          "trial": 1,
+          "mp4_sha256": "0e98112c12f89c00fb11100e36825257d96f0408e9b90e908c71752c00a4eaba",
+          "mp4_bytes": 240101,
+          "pngs": [
+            {
+              "frame": 0,
+              "sha256": "a566c3cb492385f06134f968f39eb7e3a8c9ed7d323694f46592d9cd2291a2e8"
+            },
+            {
+              "frame": 36,
+              "sha256": "78e9205e52d634170d3f8e3fd417772eb4c02cf2846f6dc065a26439485ac185"
+            },
+            {
+              "frame": 72,
+              "sha256": "a3f2218920bf887a966c7e2f782611bcae374f9fde5a603aa144294b1837fa44"
+            }
+          ]
+        },
+        {
+          "trial": 2,
+          "mp4_sha256": "0e98112c12f89c00fb11100e36825257d96f0408e9b90e908c71752c00a4eaba",
+          "mp4_bytes": 240101,
+          "pngs": [
+            {
+              "frame": 0,
+              "sha256": "a566c3cb492385f06134f968f39eb7e3a8c9ed7d323694f46592d9cd2291a2e8"
+            },
+            {
+              "frame": 36,
+              "sha256": "78e9205e52d634170d3f8e3fd417772eb4c02cf2846f6dc065a26439485ac185"
+            },
+            {
+              "frame": 72,
+              "sha256": "a3f2218920bf887a966c7e2f782611bcae374f9fde5a603aa144294b1837fa44"
+            }
+          ]
+        }
+      ]
+    },
+    "candidate": {
+      "mp4_byte_identity": true,
+      "three_saved_pngs_byte_identical": true,
+      "trials": [
+        {
+          "trial": 1,
+          "mp4_sha256": "77750a1f7a5af302f0e255f818eab8308c460089324d0326be700ea352de8f4d",
+          "mp4_bytes": 222934,
+          "pngs": [
+            {
+              "frame": 0,
+              "sha256": "1f03e9056c3f713af606d2971722a696b72d77a365fdccd2fc6cd47e0007e5b1"
+            },
+            {
+              "frame": 36,
+              "sha256": "6046f58e9efdd5e71eef4b44e8417d627ac90d9a7f2a28c9c8dd320c6a625879"
+            },
+            {
+              "frame": 72,
+              "sha256": "30c594f699bd4907b6f2d7be566dc9ccb40168483b884921cd122e9967efd7c3"
+            }
+          ]
+        },
+        {
+          "trial": 2,
+          "mp4_sha256": "77750a1f7a5af302f0e255f818eab8308c460089324d0326be700ea352de8f4d",
+          "mp4_bytes": 222934,
+          "pngs": [
+            {
+              "frame": 0,
+              "sha256": "1f03e9056c3f713af606d2971722a696b72d77a365fdccd2fc6cd47e0007e5b1"
+            },
+            {
+              "frame": 36,
+              "sha256": "6046f58e9efdd5e71eef4b44e8417d627ac90d9a7f2a28c9c8dd320c6a625879"
+            },
+            {
+              "frame": 72,
+              "sha256": "30c594f699bd4907b6f2d7be566dc9ccb40168483b884921cd122e9967efd7c3"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "new_decode_gpu_execution": false,
+  "quality_verdict": "INCONCLUSIVE"
+}

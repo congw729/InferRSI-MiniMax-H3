@@ -1,0 +1,72 @@
+{
+  "schema": "q33-persistent-offline-result/v1",
+  "checks": [
+    {
+      "name": "two_memory_policies_single_flag_delta",
+      "ok": true
+    },
+    {
+      "name": "two_graphs_only_prefix_change",
+      "ok": true
+    },
+    {
+      "name": "exact_two_serial_calls",
+      "ok": true
+    },
+    {
+      "name": "fail_fast_request_1",
+      "ok": true
+    },
+    {
+      "name": "fail_fast_request_2",
+      "ok": true
+    },
+    {
+      "name": "no_duplicate_or_early_second_post",
+      "ok": true
+    },
+    {
+      "name": "second_post_total_bound",
+      "ok": true
+    },
+    {
+      "name": "uncached_eight_step_timing",
+      "ok": true
+    },
+    {
+      "name": "reject_cached",
+      "ok": true
+    },
+    {
+      "name": "reject_progress_value",
+      "ok": true
+    },
+    {
+      "name": "reject_progress_max",
+      "ok": true
+    },
+    {
+      "name": "reject_missing_terminal",
+      "ok": true
+    },
+    {
+      "name": "original_cleanup_ast",
+      "ok": true
+    },
+    {
+      "name": "one_finally_cleanup_call",
+      "ok": true
+    },
+    {
+      "name": "no_torch_import",
+      "ok": true
+    }
+  ],
+  "completed": 15,
+  "candidate_sha256": "333ec8b999dd747e585ce01e57245a4db5ec582cbbb146bf810f52e2ef39c7ef",
+  "GPU": 0,
+  "service": 0,
+  "model": 0,
+  "scope": "Synthetic loop/CLI/graph/timing gates plus unchanged cleanup AST; not real Windows Job/network cancellation or model residency proof",
+  "quality_performance": "INCONCLUSIVE"
+}

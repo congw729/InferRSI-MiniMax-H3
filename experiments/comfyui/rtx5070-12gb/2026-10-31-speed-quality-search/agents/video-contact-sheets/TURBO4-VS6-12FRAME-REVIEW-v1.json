@@ -1,0 +1,357 @@
+{
+  "schema": "q33-turbo4-vs6-actual-quality-screen/v1",
+  "timing_definition": "native_history_prompt_seconds is execution_start to execution_success timestamps/1000 for all four trials; raw log rounded durations kept in a separate column. Sampler interval is WS receiver wall time, not GPU-only.",
+  "comparisons": [
+    {
+      "case": "bounce-audio",
+      "same_assets_runtime_gates_prompt_conditioning": true,
+      "graph_only_steps_and_output_prefix": true,
+      "rows": [
+        {
+          "steps": 6,
+          "trial_relative_to_q33": "results/inferrsi-turbo-corpus-bounce-audio-f854ba8b4bbd49e6a8e7d1023323701b",
+          "result_sha256": "fe85ae7892eeadef16973c876eee7abf38af7813cb3f020b9ad5b96eaa5d7158",
+          "execution_sha256": "11e5112c5098167bc773f148967488706325188ebd535653c0afe0ee7b940388",
+          "history_sha256": "9ca4ff9fb946415831020bbd31ee7cbe53fcb0362301c24dd92066b0130b5704",
+          "resources_sha256": "996e06bade58b1bf2e052a01b56e0bd357c3f63a02531d451d8cf0112a220b85",
+          "timing_sha256": "bfca874f475cebce7d3f1a9c6a13b6bfe484faf449c3c653271ab336724e17ce",
+          "native_history_prompt_seconds": 37.939,
+          "native_log_prompt_seconds_separate": [
+            37.98
+          ],
+          "sampler_WS_observed_seconds": 35.2231198,
+          "outer_executor_seconds": 71.40599999995902,
+          "controller_seconds": 71.29720190004446,
+          "peak_RSS_bytes": 2915098624,
+          "peak_private_bytes": 12792164352,
+          "min_whole_board_free_bytes": 1655701504,
+          "min_host_physical_bytes": 16587366400,
+          "min_host_commit_bytes": 7172808704,
+          "sampler_uncached_steps_complete": true,
+          "cleanup_complete": true,
+          "artifact": {
+            "relative_to_run": "output\\q33-turbo-corpus\\bounce-audio\\turbo-native-6_00001_.mp4",
+            "bytes": 143510,
+            "sha256": "105e3e6ba470bc71aea8e9ecf4fcb1e2f07d7fbf6156886bab7df5c00d9b4e18"
+          },
+          "full_media": {
+            "summary_sha256": "e4d5c8a02dc7c483837015e84794e5d2326d47c5f7f716f55ab3ec4d7f3ef5b4",
+            "decoded_frames": 73,
+            "dimensions": [
+              384,
+              256
+            ],
+            "audio_rate": 32000,
+            "audio_channels": 2,
+            "full_eof": true,
+            "source_unchanged": true
+          }
+        },
+        {
+          "steps": 4,
+          "trial_relative_to_q33": "results/inferrsi-turbo4-corpus-bounce-audio-4265351f40394e2bb197a07d5c611653",
+          "result_sha256": "945596a1d88d496bcf91aab993463d36dc7b585cf9ec4e90f9016c2ab9f2db77",
+          "execution_sha256": "f38e7adfe46e6e47d8868df4833a68f4e057df00d4dd1da186f39e03234f9ada",
+          "history_sha256": "3ce157a17e3b5c0935070372397f9360da66dc3a323d13b171fca1d0d1b10254",
+          "resources_sha256": "ffc8d8f892d34f45cc9ea68a4ff6f9d31c0c945cf831fe951e2588c583ad0771",
+          "timing_sha256": "571126fa97f0b115b323af43154ea72f38e1c85c5f59c47edb5cf5ce55b8d82a",
+          "native_history_prompt_seconds": 27.106,
+          "native_log_prompt_seconds_separate": [
+            27.15
+          ],
+          "sampler_WS_observed_seconds": 24.4255377,
+          "outer_executor_seconds": 60.90700000000652,
+          "controller_seconds": 60.78613529994618,
+          "peak_RSS_bytes": 2811408384,
+          "peak_private_bytes": 12821778432,
+          "min_whole_board_free_bytes": 1634729984,
+          "min_host_physical_bytes": 16728969216,
+          "min_host_commit_bytes": 7188688896,
+          "sampler_uncached_steps_complete": true,
+          "cleanup_complete": true,
+          "artifact": {
+            "relative_to_run": "output\\q33-turbo-corpus\\bounce-audio\\turbo-native-4_00001_.mp4",
+            "bytes": 168489,
+            "sha256": "f7d646b7b97918d78c16e6d6e69a8be05a54f4c58450b3d5dfaa27e4664b6350"
+          },
+          "full_media": {
+            "summary_sha256": "8c00aae8bdc563b7004b1b8c2a16e70cf3c74d721e14a3f0d19579970270b9f3",
+            "decoded_frames": 73,
+            "dimensions": [
+              384,
+              256
+            ],
+            "audio_rate": 32000,
+            "audio_channels": 2,
+            "full_eof": true,
+            "source_unchanged": true
+          }
+        }
+      ]
+    },
+    {
+      "case": "hands-face-mug",
+      "same_assets_runtime_gates_prompt_conditioning": true,
+      "graph_only_steps_and_output_prefix": true,
+      "rows": [
+        {
+          "steps": 6,
+          "trial_relative_to_q33": "results/inferrsi-turbo-corpus-hands-face-mug-40be03c872424cc9b834ffe96e2413de",
+          "result_sha256": "b8145e6a4f56c192b356eb2f98ae54b19c23be43efb7ebedc771d9e9ebeec1aa",
+          "execution_sha256": "b7ce7d0e5121077572ea8524fdd4292da6a4fe715104bce5f16a81c98f13b29c",
+          "history_sha256": "a3742b4abc8e59794f121e63369954ad17eb19016e7b7b2e773ef82f17d30d98",
+          "resources_sha256": "5f360e48dba209f73d0b964a813910892db5165049b264ecd4471dc25fefcbb0",
+          "timing_sha256": "37eaf3d7ee8b496790d80c07572e819d7a4b0ae8f7067a7e550e9d0dcfc11c7e",
+          "native_history_prompt_seconds": 37.749,
+          "native_log_prompt_seconds_separate": [
+            37.79
+          ],
+          "sampler_WS_observed_seconds": 35.0694016,
+          "outer_executor_seconds": 71.31299999996554,
+          "controller_seconds": 71.17430140008219,
+          "peak_RSS_bytes": 2810662912,
+          "peak_private_bytes": 12988665856,
+          "min_whole_board_free_bytes": 1658847232,
+          "min_host_physical_bytes": 17120227328,
+          "min_host_commit_bytes": 7137656832,
+          "sampler_uncached_steps_complete": true,
+          "cleanup_complete": true,
+          "artifact": {
+            "relative_to_run": "output\\q33-turbo-corpus\\hands-face-mug\\turbo-native-6_00001_.mp4",
+            "bytes": 233528,
+            "sha256": "997b739cfb932216abd1d361c015cfc909ed98f0907f60184415b49ca4610d95"
+          },
+          "full_media": {
+            "summary_sha256": "7d8cf374d3383e52fe22b9a3ca1f72351c320d51e766873e92d58e253ee21f10",
+            "decoded_frames": 73,
+            "dimensions": [
+              384,
+              256
+            ],
+            "audio_rate": 32000,
+            "audio_channels": 2,
+            "full_eof": true,
+            "source_unchanged": true
+          }
+        },
+        {
+          "steps": 4,
+          "trial_relative_to_q33": "results/inferrsi-turbo4-corpus-hands-face-mug-0d48885730294c2786c24e78ecab2ded",
+          "result_sha256": "7d4fd38775f99281cbd154e800bd71ef79778774aadf74bbb93e06294c0d1e33",
+          "execution_sha256": "88d983a0d24eae67fe55a90672689db6cad28325c63c3f20b576850b8c390931",
+          "history_sha256": "b7ff094ee9e39deb9eac137165cc7cd3c9c9ee47c4443cc6c9e21fde2417509d",
+          "resources_sha256": "fcaaa9c2a0547984d9e8af68f75dec472206b9e5a58d72b572bdd9a664dffa10",
+          "timing_sha256": "a5befafbfb49745ea1499fe5f1744f983de0a7a3b046d697a1a90549d7c9afa3",
+          "native_history_prompt_seconds": 26.886,
+          "native_log_prompt_seconds_separate": [
+            26.93
+          ],
+          "sampler_WS_observed_seconds": 24.2035254,
+          "outer_executor_seconds": 60.45299999997951,
+          "controller_seconds": 60.314831999945454,
+          "peak_RSS_bytes": 2832252928,
+          "peak_private_bytes": 12851490816,
+          "min_whole_board_free_bytes": 1623195648,
+          "min_host_physical_bytes": 16918904832,
+          "min_host_commit_bytes": 7127142400,
+          "sampler_uncached_steps_complete": true,
+          "cleanup_complete": true,
+          "artifact": {
+            "relative_to_run": "output\\q33-turbo-corpus\\hands-face-mug\\turbo-native-4_00001_.mp4",
+            "bytes": 226301,
+            "sha256": "a760abbd335eef70cfa1440814de72dfbb118511fec563ac19f594701af406c0"
+          },
+          "full_media": {
+            "summary_sha256": "663bdc63183009cc68452a78f46fcda6895ad62c34395208292803bb43527ad6",
+            "decoded_frames": 73,
+            "dimensions": [
+              384,
+              256
+            ],
+            "audio_rate": 32000,
+            "audio_channels": 2,
+            "full_eof": true,
+            "source_unchanged": true
+          }
+        }
+      ]
+    }
+  ],
+  "contact_trial_relative_to_q33": "results/contact-sheets-turbo4-f294b3c337db468eb4868ef3e5ca30a9",
+  "contact_result_sha256": "e42a77f694221bdcb13da181eb89d3d60921aa5882f3c0bd315193c3d89faced",
+  "contact_execution_sha256": "231373f53a327b3260f02d737bad2a39f3f6290377771ca2b2738132a1c499b0",
+  "contact_peak_RSS_bytes": 56037376,
+  "contact_worker_seconds": 0.3138660000404343,
+  "items": [
+    {
+      "profile": "bounce-audio/turbo-native-4",
+      "run_relative_to_lab": "comfy-original/runs/q33-turbo4-corpus-bounce-audio-4265351f40394e2bb197a07d5c611653",
+      "source_relative_to_run": "output\\q33-turbo-corpus\\bounce-audio\\turbo-native-4_00001_.mp4",
+      "source_bytes": 168489,
+      "source_sha256": "f7d646b7b97918d78c16e6d6e69a8be05a54f4c58450b3d5dfaa27e4664b6350",
+      "full_decoded_video_frames": 73,
+      "video_decode_reached_eof": true,
+      "source_unchanged": true,
+      "selected_frames": [
+        {
+          "frame": 0,
+          "pts_seconds": 0.0
+        },
+        {
+          "frame": 7,
+          "pts_seconds": 0.2916666666666667
+        },
+        {
+          "frame": 13,
+          "pts_seconds": 0.5416666666666666
+        },
+        {
+          "frame": 20,
+          "pts_seconds": 0.8333333333333334
+        },
+        {
+          "frame": 26,
+          "pts_seconds": 1.0833333333333333
+        },
+        {
+          "frame": 33,
+          "pts_seconds": 1.375
+        },
+        {
+          "frame": 39,
+          "pts_seconds": 1.625
+        },
+        {
+          "frame": 46,
+          "pts_seconds": 1.9166666666666667
+        },
+        {
+          "frame": 52,
+          "pts_seconds": 2.1666666666666665
+        },
+        {
+          "frame": 59,
+          "pts_seconds": 2.4583333333333335
+        },
+        {
+          "frame": 65,
+          "pts_seconds": 2.7083333333333335
+        },
+        {
+          "frame": 72,
+          "pts_seconds": 3.0
+        }
+      ],
+      "grid_relative_to_run": "media-inspection-v1/contact-sheet-12-v1/contact-sheet-12.png",
+      "grid_dimensions": [
+        1536,
+        852
+      ],
+      "grid_bytes": 753995,
+      "grid_sha256": "a4a7c7394cae83f57558522753a00c7cd6f9fee6fa1ea58f23a58906c118dac5",
+      "elapsed_seconds": 0.1183402999304235,
+      "claim": "INCONCLUSIVE",
+      "audio_listened": false,
+      "assistant_observation": {
+        "visible": [
+          "One yellow-green ball at each visible sampled position; frames52–72 retain fuzzy surface and a clear curved seam.",
+          "Later frames show near-floor settling; early frames0/13 omit the ball while nearby samples show it at/top of frame, so disappearance is not inferred.",
+          "No separated duplicate ball-like patches or severe color-flicker visible in these12samples."
+        ],
+        "versus6": "Both4 and6 preserve late-ball fuzz/seam and one visible ball per selected sample. Background/trajectory differ; no obvious major degradation identified in these stills, not an equivalence finding.",
+        "limitations": [
+          "Cannot verify exactly two impacts, physical continuity or audio alignment from12stills.",
+          "Surface details differ; no reference pixel quality metric."
+        ]
+      }
+    },
+    {
+      "profile": "hands-face-mug/turbo-native-4",
+      "run_relative_to_lab": "comfy-original/runs/q33-turbo4-corpus-hands-face-mug-0d48885730294c2786c24e78ecab2ded",
+      "source_relative_to_run": "output\\q33-turbo-corpus\\hands-face-mug\\turbo-native-4_00001_.mp4",
+      "source_bytes": 226301,
+      "source_sha256": "a760abbd335eef70cfa1440814de72dfbb118511fec563ac19f594701af406c0",
+      "full_decoded_video_frames": 73,
+      "video_decode_reached_eof": true,
+      "source_unchanged": true,
+      "selected_frames": [
+        {
+          "frame": 0,
+          "pts_seconds": 0.0
+        },
+        {
+          "frame": 7,
+          "pts_seconds": 0.2916666666666667
+        },
+        {
+          "frame": 13,
+          "pts_seconds": 0.5416666666666666
+        },
+        {
+          "frame": 20,
+          "pts_seconds": 0.8333333333333334
+        },
+        {
+          "frame": 26,
+          "pts_seconds": 1.0833333333333333
+        },
+        {
+          "frame": 33,
+          "pts_seconds": 1.375
+        },
+        {
+          "frame": 39,
+          "pts_seconds": 1.625
+        },
+        {
+          "frame": 46,
+          "pts_seconds": 1.9166666666666667
+        },
+        {
+          "frame": 52,
+          "pts_seconds": 2.1666666666666665
+        },
+        {
+          "frame": 59,
+          "pts_seconds": 2.4583333333333335
+        },
+        {
+          "frame": 65,
+          "pts_seconds": 2.7083333333333335
+        },
+        {
+          "frame": 72,
+          "pts_seconds": 3.0
+        }
+      ],
+      "grid_relative_to_run": "media-inspection-v1/contact-sheet-12-v1/contact-sheet-12.png",
+      "grid_dimensions": [
+        1536,
+        852
+      ],
+      "grid_bytes": 1240158,
+      "grid_sha256": "2bdeb46ce4f8886820ef36e06c67e1b4f89011959ca6217673037e0f464d686a",
+      "elapsed_seconds": 0.11220680002588779,
+      "claim": "INCONCLUSIVE",
+      "audio_listened": false,
+      "assistant_observation": {
+        "visible": [
+          "Both hands lift a blue mug from tabletop toward mouth; cup contour and short-haired face remain broadly coherent over the12samples.",
+          "No obvious extra hand, broken cup or abrupt yellow-green forearm patch seen in selectedframes.",
+          "Fine fingers/edges around the cup remain small or occluded, so precise anatomy is not claimed."
+        ],
+        "versus6": "Different person/composition from6 is compatible with the prompt. No clear major deterioration in sampled mug/hand/face continuity identified; neither clip was watched continuously or listened to.",
+        "limitations": [
+          "Subtle expression/facial changes and unsampled transition artifacts may be missed.",
+          "Prompt quality and audio quality remain unscored."
+        ]
+      }
+    }
+  ],
+  "prior6_review_sha256": "5599d974ca5ed53acf43bcaaa0edb506b14b761143cf57223e2bdf8f2e36f6a7",
+  "observation_scope": "Assistant viewed two new full12frame grids and compares earlier viewed6step grids; no full-motion/audio subjective playback.",
+  "interpretation": "4 steps is a plausible further candidate on these two samples: complete media and no obvious major sampled-frame deterioration. Lower measured times in one ordered run per scene do not prove stable gain or a quality floor;2steps remains an unverified exploration.",
+  "quality_performance_verdict": "INCONCLUSIVE",
+  "model_gpu_runs_by_reviewer": 0,
+  "read_note": "A raw Comfy log first attempted as UTF-8 raised UnicodeDecodeError; metric extraction then used ASCII byte-pattern for log durations. Native timing uses structured history; source files unmodified."
+}

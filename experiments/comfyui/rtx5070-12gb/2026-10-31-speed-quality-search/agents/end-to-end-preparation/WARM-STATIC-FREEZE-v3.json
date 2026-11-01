@@ -1,0 +1,35 @@
+{
+  "schema": "q33-warm-static-freeze/v3",
+  "files": [
+    {
+      "path": "end_to_end_v1.py",
+      "bytes": 64996,
+      "sha256": "378b3830cb85edaaec9c9b6a1539e084c3a2a04ccf74ed088c527ccd6b8ff903"
+    },
+    {
+      "path": "end_to_end_v2.py",
+      "bytes": 65371,
+      "sha256": "0a261d4246526c8611fbbfd873b140907b6e31cc7639156d37bfc38127888d25"
+    },
+    {
+      "path": "e2e_helpers_v1.py",
+      "bytes": 5000,
+      "sha256": "8d78df645d789a448116542f818b764f28d93f3e6333378da9ae75863c3846d6"
+    },
+    {
+      "path": "e2e_helpers_v2.py",
+      "bytes": 6711,
+      "sha256": "28262f6f3531d50b5b4e6f69eb6d13ba3103b75375a7d19cffcea37276439c83"
+    },
+    {
+      "path": "WARM-OFFLINE-FAILURE-v2.json",
+      "bytes": 701,
+      "sha256": "8dbfd67f98eaa35fa8093612f0fbc026500f3830563180b6b38541a452faa115"
+    },
+    {
+      "path": "validate_warm_static_v3.py",
+      "bytes": 2230,
+      "sha256": "51a22aa1c77d39e33168f1e82f2ed932a83471038ad615c66b5b47db45dd3a07"
+    }
+  ]
+}

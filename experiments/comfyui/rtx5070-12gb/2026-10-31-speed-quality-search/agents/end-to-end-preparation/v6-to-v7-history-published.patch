@@ -1,0 +1,56 @@
+--- end_to_end_v6.py
++++ end_to_end_v7.py
+@@ -27,14 +27,14 @@
+ NODE_FAMILIES = {'original': {'UNETLoader': 'nodes', 'VAELoader': 'nodes', 'VAEDecode': 'nodes', 'MiniMaxH3SigmaShift': 'comfy_extras.nodes_minimax_h3', 'RandomNoise': 'comfy_extras.nodes_custom_sampler', 'KSamplerSelect': 'comfy_extras.nodes_custom_sampler', 'BasicScheduler': 'comfy_extras.nodes_custom_sampler', 'BasicGuider': 'comfy_extras.nodes_custom_sampler', 'SamplerCustomAdvanced': 'comfy_extras.nodes_custom_sampler', 'VAEDecodeAudio': 'comfy_extras.nodes_audio', 'CreateVideo': 'comfy_extras.nodes_video', 'SaveVideo': 'comfy_extras.nodes_video', 'ConditioningLoader': 'comfy_extras.nodes_cond', 'EmptyMiniMaxH3LatentAV': 'comfy_extras.nodes_minimax_h3'}, 'trim': {'UNETLoader': 'nodes', 'VAELoader': 'nodes', 'VAEDecode': 'nodes', 'MiniMaxH3SigmaShift': 'comfy_extras.nodes_minimax_h3', 'RandomNoise': 'comfy_extras.nodes_custom_sampler', 'KSamplerSelect': 'comfy_extras.nodes_custom_sampler', 'BasicScheduler': 'comfy_extras.nodes_custom_sampler', 'BasicGuider': 'comfy_extras.nodes_custom_sampler', 'SamplerCustomAdvanced': 'comfy_extras.nodes_custom_sampler', 'VAEDecodeAudio': 'comfy_extras.nodes_audio', 'CreateVideo': 'comfy_extras.nodes_video', 'SaveVideo': 'comfy_extras.nodes_video', 'ConditioningLoader': 'comfy_extras.nodes_cond', 'EmptyMiniMaxH3LatentAV': 'comfy_extras.nodes_minimax_h3', 'ModelAttentionBackend': 'comfy_extras.nodes_model_advanced', 'BlockSparseAttention': 'comfy_extras.nodes_sparse_attention'}}
+ STAGE_SOURCE_SHA256 = {'comfy_extras/nodes_cond.py': '56344e64a20692a0f64521bf4de78c0a9c040e23c3499a00491b5243ca39f898', 'comfy_extras/nodes_minimax_h3.py': '5999ed8c22b13c8251084c0629fd82137d2fb52b55106abfc73bf5cafc73841d', 'comfy_api/latest/_io.py': 'a16cea6dd228468b5fbe3fa2acb5dd86bf9445babcd9d8bfe697b84c449bf5fb', 'folder_paths.py': '045a2ea987c0c7bcb0e47cbc46826ee34e82179562c85123f35ea3ff1c3e7ac4'}
+ SOURCE_MANIFEST_SHA = "bf0d3e3b09f8130053735eaa6645bcc4ff753833a97ef4ae306d7d223283f007"
+-TIMING_MODULE_SHA = "f0abb1937ca5462d712a73d1a8623b6a9f5df86927dbcf6375903b8a5ad3e614"
++TIMING_MODULE_SHA = "5a276a265d06c3108dfe0babac1137145db6553f211dd2a7b77882d49e5c6bf8"
+ EXPECTED_BY_FAMILY = {'original': {'original-dit': {'id': 'original-dit', 'bytes': 34038892334, 'sha256': '7ad4c73e6e378b822ffd1629f27f632d3787d95f5e468e3af958f98c58df96a5', 'relative_path': 'comfy-original/models/diffusion_models/minimax_h3_fl2va_int8_convrot.safetensors'}, 'video-vae': {'id': 'video-vae', 'bytes': 2811065184, 'sha256': '52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e', 'relative_path': 'comfy-original/models/vae/minimax_h3_video_vae_int8_convrot.safetensors'}, 'audio-vae': {'id': 'audio-vae', 'bytes': 605254808, 'sha256': '8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48', 'relative_path': 'comfy-original/models/vae/minimax_h3_audio_vae_fp32.safetensors'}}, 'trim': {'trim-dit': {'id': 'trim-dit', 'bytes': 11894623166, 'sha256': '748b2bcc9c4b7bf7b23406987b42d4ac40362070c164cf11092482be6a863455', 'relative_path': 'comfy-trim/models/diffusion_models/fastvideo_fasth3_trim_8step_nvfp4.safetensors'}, 'video-vae': {'id': 'video-vae', 'bytes': 2811065184, 'sha256': '52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e', 'relative_path': 'comfy-trim/models/vae/minimax_h3_video_vae_int8_convrot.safetensors'}, 'audio-vae': {'id': 'audio-vae', 'bytes': 605254808, 'sha256': '8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48', 'relative_path': 'comfy-trim/models/vae/minimax_h3_audio_vae_fp32.safetensors'}}}
+ CANONICAL_SHA = {'original': 'd5937f2505f74e07ce8de746c49c98e8a428535d79ccc878383e8b989807fb29', 'trim': 'a915f62f109cd2e1be615eb7b0c1aa6fab4a4b6ad6e31791fb84488b02a17ad8'}
+ ASSET_EXPECTED = EXPECTED_BY_FAMILY["original"]
+ ASSET_IDS = set(ASSET_EXPECTED)
+ 
+ # Portable Python isolates script-directory imports; load only the frozen sibling.
+-_timing_path = Path(__file__).resolve().parents[1] / "timing-controller/timing_events_v1.py"
++_timing_path = Path(__file__).resolve().parent / "timing_events_history_v7.py"
+ if hashlib.sha256(_timing_path.read_bytes()).hexdigest() != TIMING_MODULE_SHA:
+     raise RuntimeError("frozen timing sibling hash mismatch")
+ _timing_spec = importlib.util.spec_from_file_location("q33_frozen_native_timing_v1", _timing_path)
+@@ -735,7 +735,8 @@
+             current = begin_request(state, request_index, str(uuid.uuid4()))
+             state.pop("node_timing",None)  # Do not attach a previous request timing on early failure.
+             current.update(history_early_wake_count=0,history_early_wake_source=None,
+-                           native_terminal_received_perf_counter_ns=None,terminal_received_to_artifact_seconds=None)
++                           native_terminal_received_perf_counter_ns=None,terminal_received_to_artifact_seconds=None,
++                           history_published_marker_received_perf_counter_ns=None,history_marker_to_artifact_seconds=None)
+             history_wake_consumed=False
+             request_started = time.monotonic()
+             case='bounce-audio' if request_index<=2 else 'hands-face-mug'
+@@ -886,15 +887,24 @@
+             observer_deadline = min(deadline, time.monotonic() + 12)
+             while not observer.done.wait(timeout=0.05):
+                 sample()
++                if observer.collector.terminal=="execution_success" and observer.collector.history_published_marker_received_ns is None:
++                    if not observer.stop.is_set():
++                        current["history_authoritative_observer_stop_without_marker"]=True
++                        event("history_authoritative_observer_stop_without_marker")
++                    observer.stop.set()  # History+artifact already verified; missing marker remains null.
+                 require(time.monotonic() < observer_deadline, "request observer terminal deadline")
+             timing = observer.finish()
+             if (timing.get("terminal")=="execution_success" and not timing.get("invalid_reasons")
+                     and timing.get("error_type") is None and timing.get("observer_thread_exited") is True):
+-                terminal_ns=observer.collector.last_ns
++                terminal_ns=observer.collector.success_received_ns
+                 if type(terminal_ns) is int and terminal_ns>=0:
+                     current["native_terminal_received_perf_counter_ns"]=terminal_ns
+                     current["terminal_received_to_artifact_seconds"]=(current["artifact_verified_perf_counter_ns"]-terminal_ns)/1e9
+-                    current["terminal_timestamp_source"]="Frozen NativeWSObserver.collector.last_ns after successful finish; request timing/events.jsonl"
++                    current["terminal_timestamp_source"]="Frozen observer.success_received_ns after successful finish; request timing/events.jsonl"
++            marker_ns=timing.get("history_published_marker_received_perf_counter_ns")
++            if type(marker_ns) is int and marker_ns>=0 and not timing.get("invalid_reasons") and timing.get("error_type") is None:
++                current["history_published_marker_received_perf_counter_ns"]=marker_ns
++                current["history_marker_to_artifact_seconds"]=(current["artifact_verified_perf_counter_ns"]-marker_ns)/1e9
+             observer = None
+             current["node_timing"] = timing
+             current["metrics"] = request_metrics(timing, record, state["prompt_id"])

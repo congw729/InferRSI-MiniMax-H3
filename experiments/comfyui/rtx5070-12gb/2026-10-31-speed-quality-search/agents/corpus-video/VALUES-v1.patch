@@ -1,0 +1,61 @@
+--- Q31/validator/real_conditioning_values_v3.py
++++ agents/corpus-video/corpus_conditioning_values_v1.py
+@@ -1,4 +1,4 @@
+-"""Q31 stdlib-only native pure-text conditioning integrity validator; frozen v3."""
++"""Q33 fixed-corpus pure-text conditioning integrity validator; frozen v1."""
+ import argparse
+ import hashlib
+ import json
+@@ -62,15 +62,23 @@
+     for n in ['qroot','owned-runs-root','run-dir','input','receipt','freeze','result']:ap.add_argument('--'+n,type=Path,required=True)
+     for n in ['expected-sha256','receipt-sha256','freeze-sha256']:ap.add_argument('--'+n,required=True)
+     ap.add_argument('--expected-bytes',type=int,required=True)
++    ap.add_argument('--corpus',choices=['bounce-audio','hands-face-mug'],required=True)
+     supplied=[x for x in sys.argv[1:] if x.startswith('--')]
+     require(len(supplied)==len(set(supplied)),'duplicate_cli_option')
+     a=ap.parse_args()
+     for n in ['expected_sha256','receipt_sha256','freeze_sha256']:require(re.fullmatch('[0-9a-f]{64}',getattr(a,n)) is not None,'digest_argument')
+     return a
+ 
++def validate_corpus_receipt(receipt,frozen,corpus_id,check):
++    check('fixed_corpus',corpus_id in {'bounce-audio','hands-face-mug'})
++    case=frozen['cases'][corpus_id]
++    check('receipt_stage_success',receipt.get('mode')=='quality-corpus-stage-a' and receipt.get('status')=='conditioning_artifact_received_unvalidated')
++    check('receipt_corpus_identity',receipt.get('corpus_id')==corpus_id and receipt.get('prompt_sha256')==case['prompt_sha256'])
++    check('receipt_native_identity',receipt.get('driver_sha256')==frozen['stage_a_driver_sha256'] and receipt.get('graph_sha256')==case['graph_sha256'])
++
+ def main():
+     a=args();start=time.monotonic();deadline=start+DEADLINE_SECONDS
+-    out={'schema':'q31-real-conditioning-values/v3','complete':False,'claim':'INCONCLUSIVE','integrity_verdict':'INCONCLUSIVE','quality_verdict':'INCONCLUSIVE','roundtrip_equivalence_checked':False,'model_dispatches':0,'torch_imported':False,'network_requests':0,'checks':[]}
++    out={'schema':'q33-corpus-conditioning-values/v1','corpus_id':a.corpus,'complete':False,'claim':'INCONCLUSIVE','integrity_verdict':'INCONCLUSIVE','quality_verdict':'INCONCLUSIVE','roundtrip_equivalence_checked':False,'model_dispatches':0,'torch_imported':False,'network_requests':0,'checks':[]}
+     def check(name,ok):
+         out['checks'].append({'name':name,'ok':bool(ok)});require(ok,name)
+     q=no_links(a.qroot);rp=a.result.absolute()
+@@ -78,7 +86,7 @@
+     no_links(rp.parent)
+     try:
+         frozen_raw,_=read_small(a.freeze,65536);check('freeze_hash',sha(frozen_raw)==a.freeze_sha256)
+-        frozen=parse_json(frozen_raw);check('freeze_schema',frozen['schema']=='q31-real-conditioning-values-freeze/v3')
++        frozen=parse_json(frozen_raw);check('freeze_schema',frozen['schema']=='q33-corpus-conditioning-values-freeze/v1')
+         for row in frozen['sources']:
+             source=no_links(q/row['path']);check('source_'+row['path'],source.is_relative_to(q) and source.stat().st_size==row['bytes'] and sha(source.read_bytes())==row['sha256'])
+         check('validator_self_identity',sha(Path(__file__).read_bytes())==frozen['validator_sha256'])
+@@ -89,8 +97,7 @@
+         receipt_path=no_links(a.receipt);check('receipt_under_results',receipt_path.is_relative_to(q/'results'))
+         raw_receipt,receipt_sig=read_small(receipt_path,1024**2);check('receipt_hash',sha(raw_receipt)==a.receipt_sha256)
+         receipt=parse_json(raw_receipt)
+-        check('receipt_stage_success',receipt.get('mode')=='conditioning-stage' and receipt.get('status')=='conditioning_artifact_received_unvalidated')
+-        check('receipt_native_identity',receipt.get('driver_sha256')==frozen['stage_a_driver_sha256'] and receipt.get('graph_sha256')==frozen['stage_a_graph_sha256'])
++        validate_corpus_receipt(receipt,frozen,a.corpus,check)
+         check('receipt_cleanup_and_single_prompt',receipt.get('owned_root_exited') is True and receipt.get('job_close_requested') is True and receipt.get('prompt_posts')==1)
+         artifact=receipt['artifact'];relative=PureWindowsPath(artifact['relative_to_run'])
+         check('receipt_relative_path',not relative.is_absolute() and relative.parts[0]=='output' and all(x not in ('.','..') for x in relative.parts) and target==run.joinpath(*relative.parts).resolve(strict=True))
+@@ -148,7 +155,7 @@
+         check('receipt_stable',sha(receipt_after)==a.receipt_sha256 and receipt_after_sig==receipt_sig)
+         check('no_torch_import','torch' not in sys.modules)
+         tick(deadline)
+-        out.update(complete=True,integrity_verdict='PASS',artifact={'bytes':a.expected_bytes,'sha256':a.expected_sha256,'tensors':header,'metadata_keys':sorted(metadata),'option_keys':[],'options_sha256':sha(b'{}'),'header_bytes':n,'header_sha256':sha(raw)},scan=info,stage_a_receipt_sha256=a.receipt_sha256,validator_sha256=frozen['validator_sha256'],freeze_sha256=a.freeze_sha256)
++        out.update(complete=True,integrity_verdict='PASS',artifact={'bytes':a.expected_bytes,'sha256':a.expected_sha256,'tensors':header,'metadata_keys':sorted(metadata),'option_keys':[],'options_sha256':sha(b'{}'),'header_bytes':n,'header_sha256':sha(raw)},scan=info,stage_a_receipt_sha256=a.receipt_sha256,prompt_sha256=frozen['cases'][a.corpus]['prompt_sha256'],stage_a_graph_sha256=frozen['cases'][a.corpus]['graph_sha256'],stage_a_driver_sha256=frozen['stage_a_driver_sha256'],validator_sha256=frozen['validator_sha256'],freeze_sha256=a.freeze_sha256)
+     except BaseException as exc:
+         out.update(integrity_verdict='FAIL',error_type=type(exc).__name__,reason=str(exc) if type(exc) is Rejected else 'unexpected_operation_failure_no_private_details')
+     out.update(elapsed_seconds=time.monotonic()-start,check_count=len(out['checks']))

@@ -1,0 +1,11 @@
+--- validate_persistent_media_v2.py
++++ validate_persistent_media_v3.py
+@@ -64,7 +64,7 @@
+  try:
+   boundary();rp=a.trial/'result.json';require(sha(rp)==a.result_sha256,'actual aggregate result identity');r=read(rp);requests=validate_session(r)
+   state['memory_policy']=r['memory_policy'];state['cache_policy']=r['cache_policy'];state['request_seeds']=r['request_seeds'];state['source_controller_sha256']=r['driver_sha256'];state['source_trial_relative_to_iteration']=a.trial.relative_to(Q).as_posix()
+-  require(sha(D/'persistent_stage_b_v1.py')==CONTROLLER_SHA,'controller source drift')
++  require(sha(D/'persistent_stage_b_v2.py')==CONTROLLER_SHA,'controller source drift')
+   script=Q31/'tools/validate_first_video_media_v1.py';gates=Q31/'plan/MEDIA-VALIDATION-GATES-v1.json';monitor=Q31/'tools/comfy_first_video_v1.py'
+   require(sha(script)==MEDIA_SHA and sha(gates)==MEDIA_GATES_SHA and sha(monitor)==MONITOR_SHA,'original media tools identity')
+   source=Q/'agents/timing-controller/SOURCES-v1.json';require(sha(source)==SOURCES_SHA,'runtime source manifest drift')

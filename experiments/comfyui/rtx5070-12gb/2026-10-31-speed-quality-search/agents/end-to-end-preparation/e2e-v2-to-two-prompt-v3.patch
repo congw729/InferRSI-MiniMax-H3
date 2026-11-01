@@ -1,0 +1,308 @@
+--- end_to_end_v2.py
++++ end_to_end_v3.py
+@@ -1,4 +1,4 @@
+-"""Q33 one-service real bounce TE -> explicit release -> Trim8 with native timing.
++"""Q33 one-service bounce then hands real TE -> release -> Trim8 with native timing.
+ This is a new harness derived from frozen Q32; old sources remain unchanged.
+ Run with the existing portable Python under InferRSI. No model imports here.
+ """
+@@ -44,9 +44,9 @@
+     raise RuntimeError("actual timing import source")
+ NativeWSObserver = _timing_module.NativeWSObserver
+ E2E_ASSETS_SHA = "fcaa021e7aa7ecc50ecd14f51e81448a758dc6c8352b65d5ea7aa657d1fe31a8"
+-STAGE_A_GRAPH_SHA = "5f7d0cff0c911151fd2318e2be5e8c953503034d66259673edf851f24d2274f8"
+-E2E_HELPER_SHA = "28262f6f3531d50b5b4e6f69eb6d13ba3103b75375a7d19cffcea37276439c83"
+-_e2e_path = Path(__file__).resolve().parent / "e2e_helpers_v2.py"
++STAGE_A_GRAPHS = {'bounce-audio': {'file': 'STAGE-A-bounce-audio-v3.json', 'sha256': 'e94c58afb0181f3a79f85c76b6e2d6441ae4ba49809bd30f40081f5f41da2caf'}, 'hands-face-mug': {'file': 'STAGE-A-hands-face-mug-v3.json', 'sha256': '41d4fc0abcf22f10cf79afcbd439e769f7a5edaefb82376523056827dda4c2fb'}}
++E2E_HELPER_SHA = "da1f2273e93a18ba78e58f2ccae1f4cc52559e89a9285aeb91110e0f15aaf4d0"
++_e2e_path = Path(__file__).resolve().parent / "e2e_helpers_v3.py"
+ if hashlib.sha256(_e2e_path.read_bytes()).hexdigest() != E2E_HELPER_SHA: raise RuntimeError("frozen lifecycle helper drift")
+ _e2e_spec = importlib.util.spec_from_file_location("q33_e2e_helpers_v1", _e2e_path)
+ e2e = importlib.util.module_from_spec(_e2e_spec); _e2e_spec.loader.exec_module(e2e)
+@@ -259,7 +259,7 @@
+ 
+ def parse():
+     p = argparse.ArgumentParser(description=__doc__, allow_abbrev=False)
+-    p.add_argument("--mode", choices=["new-prompt-trim8"], required=True)
++    p.add_argument("--mode", choices=["two-new-prompts-trim8"], required=True)
+     for name in ("iteration-root", "lab-root", "portable-python", "comfy-root",
+                  "run-dir", "stop-marker", "nvidia-smi", "inferrsi-src",
+                  "gates", "conditioning-manifest", "notes-root", "q31-root",
+@@ -322,21 +322,8 @@
+     return list(command) if policy == "baseline" else [x for x in command if x != "--disable-smart-memory"]
+ 
+ 
+-def request_graph(graph, request_index):
+-    require(type(request_index) is int and request_index in (1, 2), "exact two requests")
+-    require(graph["prompt"]["9"]["inputs"]["steps"] == 8 and graph["prompt"]["15"]["inputs"]["noise_seed"] == 424242, "fixed steps/seed")
+-    result = copy.deepcopy(graph)
+-    result["prompt"]["92"]["inputs"]["filename_prefix"] = "q33-persistent/trim-8/request-" + str(request_index)
+-    return result
+-
+-
+-def two_requests(run_one):
+-    for request_index in (1, 2):
+-        run_one(request_index)
+-
+-
+ def begin_request(state, request_index, prompt_id):
+-    require(type(request_index) is int and request_index in (1, 2), "exact two requests")
++    require(type(request_index) is int and request_index in (1, 2, 3, 4), "exact four requests")
+     require(len(state["requests"]) == request_index - 1 and state["prompt_posts"] == request_index - 1, "request/POST sequence")
+     require(not state["requests"] or state["requests"][-1]["status"] == "complete", "previous request incomplete")
+     require(type(prompt_id) is str and prompt_id and all(x["prompt_id"] != prompt_id for x in state["requests"]), "unique prompt identity")
+@@ -350,7 +337,7 @@
+ def begin_post(state):
+     current = state["requests"][-1]
+     require(current["post_attempted"] is False and state["prompt_posts"] == current["request_index"] - 1, "POST attempted once")
+-    require(current["request_index"] in (1, 2), "POST total bound")
++    require(current["request_index"] in (1, 2, 3, 4), "POST total bound")
+     current["post_attempted"] = True
+     state["prompt_posts"] += 1
+ 
+@@ -444,10 +431,13 @@
+     manifest, graph = load_stage_b_manifest(a, v1, gates)
+     graph_sha = manifest["graph"]["sha256"]
+     conditioning = None
+-    stage_a_path=Path(__file__).resolve().parent/"STAGE-A-GRAPH-v1.json"
+-    stage_a_graph=v1.frozen_json(stage_a_path,STAGE_A_GRAPH_SHA,gates["max_schema_bytes"])
+-    require(set(stage_a_graph)=={"prompt"} and {x["class_type"] for x in stage_a_graph["prompt"].values()}==set(STAGE_A_NODES),"StageA fixed nodes")
+-    stage_a_prompt_sha=hashlib.sha256(stage_a_graph["prompt"]["104"]["inputs"]["prompt"].encode()).hexdigest()
++    stage_a_graphs={}
++    for case, descriptor in STAGE_A_GRAPHS.items():
++        path=Path(__file__).resolve().parent/descriptor['file']
++        item=v1.frozen_json(path,descriptor['sha256'],gates['max_schema_bytes'])
++        require(set(item)=={'prompt'} and {x['class_type'] for x in item['prompt'].values()}==set(STAGE_A_NODES),'StageA fixed nodes')
++        stage_a_graphs[case]=item
++    stage_a_graph=stage_a_graphs['bounce-audio']  # Shared CLIP/VAE enumeration only.
+     selected = load_asset_manifest(a, v1, gates)  # Null receipt stops here before runtime/monitor/service.
+     require(a.source_manifest_sha256.lower() == SOURCE_MANIFEST_SHA, "Q32 source manifest identity")
+     source_manifest = v1.frozen_json(a.source_manifest, SOURCE_MANIFEST_SHA, gates["max_schema_bytes"])
+@@ -473,7 +463,7 @@
+     proc = job = raw_log = samples = journal = observer = None
+     next_sample = next_gpu = 0.0
+     gpu = None
+-    state = {"status": "preflight", "claim": "INCONCLUSIVE", "mode": "new-prompt-trim8",
++    state = {"status": "preflight", "claim": "INCONCLUSIVE", "mode": "two-new-prompts-trim8",
+              "profile_id": a.loaded_profile["id"], "profile_sha256": a.profile_sha256,
+              "controller_entry_perf_counter_ns":entry_perf_ns,
+              "source_verification_start_ns":source_start_ns,"source_verification_end_ns":source_end_ns,
+@@ -484,7 +474,7 @@
+              "conditioning_manifest_sha256": a.conditioning_manifest_sha256.lower(),
+              "gates_sha256": a.gates_sha256.lower(), "gates": gates,
+              "prompt_posts": 0, "http_bytes": 0, "history_polls": 0, "free_posts":0,
+-             "stage_a_graph_sha256":STAGE_A_GRAPH_SHA,"prompt_sha256":stage_a_prompt_sha,
++             "stage_a_graphs":STAGE_A_GRAPHS,"fixed_case_order":["bounce-audio","hands-face-mug"],"releases":[],"videos":[],
+              "fresh_between_stages":{"physical_bytes":12*2**30,"commit_policy":"remaining_owned_private_growth_plus_original_running_floor","gpu_free_bytes":6*2**30,"pre_post_available_minimum":True},
+              "requests": [], "completed_requests": 0, "memory_policy": a.memory_policy,
+              "cache_policy": "none", "total_output_bytes": 0, "total_ws_bytes": 0,
+@@ -590,8 +580,8 @@
+         allowed_get = {"/object_info/" + name for name in STAGE_NODES} | {
+             "/history/" + state["prompt_id"]}
+         require((method == "GET" and route in allowed_get) or
+-                (method == "POST" and route == "/prompt" and 1 <= state["prompt_posts"] == len(state["requests"]) <= 2 and state["requests"][-1].get("post_attempted") is True) or
+-                (method=="POST" and route=="/free" and state["free_posts"]==1 and state["completed_requests"]==1 and state["prompt_posts"]==1 and body==b'{"unload_models":true,"free_memory":true}'), "HTTP operation outside fixed task")
++                (method == "POST" and route == "/prompt" and 1 <= state["prompt_posts"] == len(state["requests"]) <= 4 and state["requests"][-1].get("post_attempted") is True) or
++                (method=="POST" and route=="/free" and 1<=state["free_posts"]==state["completed_requests"]==state["prompt_posts"]<=3 and state["requests"][-1]["status"]=="complete" and body==b'{"unload_models":true,"free_memory":true}'), "HTTP operation outside fixed task")
+         connection = http_client.HTTPConnection("127.0.0.1", a.port,
+                                                  timeout=gates["http_timeout_seconds"])
+         try:
+@@ -734,10 +724,21 @@
+             require(observer is None, "previous observer not finalized")
+             current = begin_request(state, request_index, str(uuid.uuid4()))
+             request_started = time.monotonic()
++            case='bounce-audio' if request_index<=2 else 'hands-face-mug'
++            is_text=request_index in (1,3)
++            reference=e2e.CASES[case]
++            current['case']=case
++            if is_text:
++                conditioning=None;conditioning_path=None
++                current['new_prompt_start_elapsed_seconds']=request_started-started
++            else:
++                require(conditioning is not None and conditioning_path is not None and state['requests'][-2]['case']==case,'matching preceding TE required')
++            if request_index>1:
++                require(len(state['releases'])==request_index-1 and state['releases'][-1]['after_request_index']==request_index-1 and state['releases'][-1]['fresh_admitted'],'prior transition release/admission required')
+             request_dir = a.run_dir / ("request-" + str(request_index))
+             request_dir.mkdir()
+-            current_graph = copy.deepcopy(stage_a_graph) if request_index==1 else e2e.bind_stage_b(graph,conditioning_path.name)
+-            current["stage"]="text-encoder" if request_index==1 else "trim-video"
++            current_graph = copy.deepcopy(stage_a_graphs[case]) if is_text else e2e.bind_stage_b(graph,conditioning_path.name,case)
++            current["stage"]="text-encoder" if is_text else "trim-video"
+             current["graph_sha256"] = hashlib.sha256(json.dumps(current_graph,sort_keys=True,separators=(",", ":"),allow_nan=False).encode()).hexdigest()
+             current["history_relative_to_run"] = str((request_dir / "history.raw.json").relative_to(a.run_dir))
+             current["timing_relative_to_run"] = str((request_dir / "timing/summary.json").relative_to(a.run_dir))
+@@ -749,9 +750,8 @@
+             for path, signature in asset_stats.items():
+                 st = path.stat()
+                 require((st.st_size, st.st_mtime_ns, st.st_dev, st.st_ino) == signature, "asset changed before POST")
+-            require(digest(stage_a_path)==STAGE_A_GRAPH_SHA,"StageA graph drift before POST")
+-            if request_index==2:
+-                require(state.get("release",{}).get("fresh_admitted") is True,"release/admission required before DiT")
++            require(digest(Path(__file__).resolve().parent/STAGE_A_GRAPHS[case]["file"])==STAGE_A_GRAPHS[case]["sha256"],"StageA graph drift before POST")
++            if not is_text:
+                 state["conditioning_pre_post"] = verify_conditioning(conditioning_path,min(deadline,time.monotonic()+60))
+                 status,info=http("GET","/object_info/ConditioningLoader")
+                 v1.save_new(request_dir/"ConditioningLoader.schema.raw.json",info)
+@@ -761,7 +761,7 @@
+             require(digest(a.conditioning_manifest)==a.conditioning_manifest_sha256,"baseline graph manifest drift")
+             require(digest(a.iteration_root/manifest["graph"]["relative_path"])==graph_sha,"baseline graph drift")
+             sample(force=True,startup=request_index==1)
+-            if request_index==2:require(warm_admit(),"fresh external admission before DiT POST")
++            if request_index>1:require(warm_admit(),"warm admission before next POST")
+             render_deadline = min(deadline, time.monotonic() + gates["render_timeout_seconds"])
+             state["client_id"]=uuid.uuid4().hex
+             current["client_id"] = state["client_id"]
+@@ -779,9 +779,10 @@
+             event("observer_ready",client_id=state["client_id"])
+             body = json.dumps({"prompt": current_graph["prompt"], "prompt_id": state["prompt_id"],
+                                "client_id":state["client_id"]}).encode("utf-8")
+-            if request_index==2:
++            if request_index>1:
+                 sample(force=True)
+-                require(warm_admit(),"fresh external admission immediately before DiT POST")
++                require(warm_admit(),"warm admission immediately before next POST")
++                current['immediately_pre_post_warm_admission']=copy.deepcopy(state['last_warm_admission'])
+             begin_post(state); state["status"] = "submitting"
+             event("post_attempt", prompt_id=state["prompt_id"], graph_sha256=current["graph_sha256"])
+             try:
+@@ -816,18 +817,20 @@
+                     require(set(observed) == set(current_graph["prompt"]) and all(
+                         observed[k]["class_type"] == v["class_type"] and observed[k]["inputs"] == v["inputs"]
+                         for k, v in current_graph["prompt"].items()), "executed graph changed")
+-                    if request_index==1:
++                    if is_text:
+                         event("conditioning_verification_started")
+-                        output=e2e.find_conditioning_artifact(dirs["output"],32*2**20,sample)
++                        condition_root=dirs['output']/'q33-e2e-two'/case/'conditioning'
++                        e2e.no_links(condition_root)
++                        output=e2e.find_conditioning_artifact(condition_root,32*2**20,sample)
+                         structure=conditioning_header(output,v1.unique_json,32*2**20)
+-                        value_scan=e2e.scan_conditioning(output,structure,sample,min(deadline,time.monotonic()+60))
++                        value_scan=e2e.scan_conditioning(output,structure,sample,min(deadline,time.monotonic()+60),case)
+                         output_hash,signature=guarded_hash(output,render_deadline)
+                         require(signature==structure.pop("file_signature"),"conditioning changed during finite/hash scan")
+-                        require(output_hash==e2e.REFERENCE_SHA and output.stat().st_size==e2e.REFERENCE_BYTES,"bounce conditioning differs from frozen split-process reference")
++                        require(output_hash==reference["sha256"] and output.stat().st_size==reference["bytes"],"case conditioning differs from frozen split-process reference")
+                         conditioning={"bytes":output.stat().st_size,"sha256":output_hash,**{k:structure[k] for k in ("tensors","metadata_keys","option_keys","options_sha256")}}
+                         current["artifact"]={"relative_to_run":str(output.relative_to(a.run_dir)),"bytes":output.stat().st_size,"sha256":output_hash,"structure":structure}
+                         current["conditioning_value_validation"]=value_scan
+-                        basename="h3-e2e-bounce-"+a.run_dir.name.rsplit("-",1)[-1]+"-"+output_hash+".safetensors"
++                        basename="h3-e2e-"+case+"-"+a.run_dir.name.rsplit("-",1)[-1]+"-"+output_hash+".safetensors"
+                         conditioning_path=embeddings/basename
+                         require(not conditioning_path.exists() and not conditioning_path.is_symlink(),"new condition alias already exists")
+                         os.link(output,conditioning_path)
+@@ -836,6 +839,7 @@
+                         current["conditioning_alias"]={"relative_to_models":str(conditioning_path.relative_to(models_root)),"sha256":output_hash,"samefile":True,"created":True}
+                         state["conditioning_input"]=verify_conditioning(conditioning_path,min(deadline,time.monotonic()+60))
+                         state["conditioning_input"]["relative_to_models"]=str(conditioning_path.relative_to(models_root))
++                        current["conditioning_input"]=copy.deepcopy(state["conditioning_input"])
+                         event("conditioning_verified_and_registered",artifact=current["artifact"],alias=current["conditioning_alias"],values=value_scan)
+                     else:
+                         videos = record["outputs"]["92"]["images"]
+@@ -844,13 +848,16 @@
+                         relative = Path(item["subfolder"]) / item["filename"]
+                         require(not relative.is_absolute() and not relative.drive, "absolute output path forbidden")
+                         output = (dirs["output"] / relative).resolve()
+-                        require(output.is_relative_to(dirs["output"]) and output.suffix.lower() == ".mp4"
++                        require(output.is_relative_to(dirs["output"] / "q33-e2e-two" / case) and output.name.startswith("video_") and output.suffix.lower() == ".mp4"
+                                 and output.is_file() and 0 < output.stat().st_size <= gates["max_output_bytes"],
+                                 "output path/size guard")
+                         output_hash, _ = guarded_hash(output, render_deadline)
+                         current["artifact"] = {"relative_to_run": str(output.relative_to(a.run_dir)),
+                                              "bytes": output.stat().st_size, "sha256": output_hash}
+-                    if request_index==2:state["end_to_end_artifact_wall_seconds"]=time.monotonic()-started
++                    if not is_text:
++                        current['video_artifact_wall_seconds']=time.monotonic()-started
++                        state['end_to_end_artifact_wall_seconds']=current['video_artifact_wall_seconds']
++                        state['videos'].append({'case':case,'request_index':request_index,'artifact':copy.deepcopy(current['artifact']),'artifact_wall_seconds':current['video_artifact_wall_seconds']})
+                     current["status"] = "artifact_received_unvalidated"
+                     event("artifact_received", artifact=current["artifact"])
+                     break
+@@ -863,7 +870,7 @@
+             observer = None
+             current["node_timing"] = timing
+             current["metrics"] = request_metrics(timing, record, state["prompt_id"])
+-            if request_index==2:
++            if not is_text:
+                 state["artifact"]=current["artifact"]
+                 state["node_timing"]=timing
+ 
+@@ -877,36 +884,39 @@
+             sample(force=True)
+             current["after_request_sample"] = copy.deepcopy(state["last_sample"])
+             event("request_complete", metrics=current["metrics"], artifact=current["artifact"])
+-        run_one(1)
+-        event("release_started")
+-        release_started=time.perf_counter_ns()
+-        log_path=a.run_dir/"comfy.raw.log";log_offset=log_path.stat().st_size
+-        require(state["free_posts"]==0,"free must be attempted once")
+-        state["free_posts"]=1
+-        state["release"]={"log_offset":log_offset,"post_attempted":True,"reset_path_entered":False,"fresh_admitted":False,"te_object_absence_proven":False,"start_perf_counter_ns":release_started}
+-        status,_=http("POST","/free",b'{"unload_models":true,"free_memory":true}')
+-        state["release"]["http_status"]=status
+-        release_deadline=min(deadline,time.monotonic()+30)
+-        while True:
+-            sample(force=True)
+-            require(proc.poll() is None and time.monotonic()<release_deadline,"release/admission deadline or service exit")
+-            entered=e2e.reset_path_entered(log_path,log_offset)
+-            if entered and not state["release"]["reset_path_entered"]:
+-                state["release"]["reset_path_entered"]=True
+-                state["release"]["marker_perf_counter_ns"]=time.perf_counter_ns()
+-                event("reset_path_entered_not_completion_ack")
+-            if entered and warm_admit():
+-                state["release"]["fresh_admitted"]=True
+-                state["release"]["fresh_sample"]=copy.deepcopy(state["last_sample"])
+-                state["release"]["warm_admission"]=copy.deepcopy(state["last_warm_admission"])
+-                state["release"]["admitted_perf_counter_ns"]=time.perf_counter_ns()
+-                break
+-            time.sleep(gates["poll_seconds"])
+-        state["release"]["elapsed_seconds"]=(time.perf_counter_ns()-release_started)/1e9
+-        event("release_fresh_admission_finished",release=state["release"])
+-        run_one(2)
+-        require(state["completed_requests"] == state["prompt_posts"] == 2, "two completed requests required")
+-        state["status"] = "new_prompt_video_received_unvalidated"
++        def release_transition(after_request_index):
++            event("release_started")
++            release_started=time.perf_counter_ns()
++            log_path=a.run_dir/"comfy.raw.log";log_offset=log_path.stat().st_size
++            require(after_request_index in (1,2,3) and state["free_posts"]==after_request_index-1 and state["completed_requests"]==state["prompt_posts"]==after_request_index,"one free per completed transition")
++            state["free_posts"]+=1
++            state["release"]={"after_request_index":after_request_index,"log_offset":log_offset,"post_attempted":True,"reset_path_entered":False,"fresh_admitted":False,"te_object_absence_proven":False,"start_perf_counter_ns":release_started}
++            status,_=http("POST","/free",b'{"unload_models":true,"free_memory":true}')
++            state["release"]["http_status"]=status
++            release_deadline=min(deadline,time.monotonic()+30)
++            while True:
++                sample(force=True)
++                require(proc.poll() is None and time.monotonic()<release_deadline,"release/admission deadline or service exit")
++                entered=e2e.reset_path_entered(log_path,log_offset)
++                if entered and not state["release"]["reset_path_entered"]:
++                    state["release"]["reset_path_entered"]=True
++                    state["release"]["marker_perf_counter_ns"]=time.perf_counter_ns()
++                    event("reset_path_entered_not_completion_ack")
++                if entered and warm_admit():
++                    state["release"]["fresh_admitted"]=True
++                    state["release"]["fresh_sample"]=copy.deepcopy(state["last_sample"])
++                    state["release"]["warm_admission"]=copy.deepcopy(state["last_warm_admission"])
++                    state["release"]["admitted_perf_counter_ns"]=time.perf_counter_ns()
++                    break
++                time.sleep(gates["poll_seconds"])
++            state["release"]["elapsed_seconds"]=(time.perf_counter_ns()-release_started)/1e9
++            event("release_fresh_admission_finished",release=state["release"])
++            state["releases"].append(copy.deepcopy(state["release"]))
++        for request_index in (1,2,3,4):
++            if request_index>1:release_transition(request_index-1)
++            run_one(request_index)
++        require(state['completed_requests']==state['prompt_posts']==4 and state['free_posts']==3 and len(state['videos'])==2,'four completed requests and three transitions required')
++        state['status']='two_new_prompt_videos_received_unvalidated'
+     except BaseException as exc:
+         state["status"] = "cancelled" if isinstance(exc, KeyboardInterrupt) or a.stop_marker.exists() else "failed"
+         state["error_type"] = type(exc).__name__
+@@ -926,7 +936,7 @@
+         v1.save_new(result_path, state)
+     print(json.dumps({"status": state["status"], "claim": state["claim"],
+                       "prompt_posts": state["prompt_posts"], "media_validation": "not_performed"}))
+-    return 0 if state["status"] == "new_prompt_video_received_unvalidated" else 1
++    return 0 if state["status"] == "two_new_prompt_videos_received_unvalidated" else 1
+ 
+ 
+ if __name__ == "__main__":

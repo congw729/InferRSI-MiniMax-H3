@@ -1,0 +1,41 @@
+{
+  "schema": "q33-turbo2-metadata-result/v1",
+  "checks": [
+    {
+      "name": "controller reverse literal changes exact baseline",
+      "ok": true
+    },
+    {
+      "name": "bounce-audio only steps and prefix",
+      "ok": true
+    },
+    {
+      "name": "bounce-audio actual4assets and real provenance metadata",
+      "ok": true
+    },
+    {
+      "name": "bounce-audio exact conditioning and provenance",
+      "ok": true
+    },
+    {
+      "name": "bounce-audio reject4steps",
+      "ok": true
+    },
+    {
+      "name": "reject hands profile",
+      "ok": true
+    },
+    {
+      "name": "asset canonical byte identities",
+      "ok": true
+    },
+    {
+      "name": "no Torch imported",
+      "ok": true
+    }
+  ],
+  "count": 8,
+  "complete": true,
+  "model_gpu_runs": 0,
+  "quality_performance": "INCONCLUSIVE"
+}

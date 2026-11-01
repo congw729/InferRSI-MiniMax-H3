@@ -1,0 +1,49 @@
+usage: conditioning_corpus_v2.py [-h] --mode {quality-corpus-stage-a}
+                                 --iteration-root ITERATION_ROOT
+                                 --lab-root LAB_ROOT
+                                 --portable-python PORTABLE_PYTHON
+                                 --comfy-root COMFY_ROOT --run-dir RUN_DIR
+                                 --stop-marker STOP_MARKER
+                                 --nvidia-smi NVIDIA_SMI
+                                 --inferrsi-src INFERRSI_SRC
+                                 --schema-result SCHEMA_RESULT --gates GATES
+                                 --notes-root NOTES_ROOT --q31-root Q31_ROOT
+                                 --corpus-manifest CORPUS_MANIFEST
+                                 --timing-controller TIMING_CONTROLLER
+                                 --source-manifest SOURCE_MANIFEST
+                                 --corpus {bounce-audio,hands-face-mug}
+                                 --corpus-manifest-sha256 CORPUS_MANIFEST_SHA256
+                                 --source-manifest-sha256 SOURCE_MANIFEST_SHA256
+                                 --schema-result-sha256 SCHEMA_RESULT_SHA256
+                                 --gates-sha256 GATES_SHA256 --port PORT
+
+Q33 fixed quality-corpus Stage A; one selected prompt, one service, one POST.
+Invoke under InferRSI execute_command. This controller imports no inference
+runtime. It uses v1's verified Windows ownership/monitor code and never
+downloads, installs, schedules another run, changes global settings, or
+deletes files.
+
+options:
+  -h, --help            show this help message and exit
+  --mode {quality-corpus-stage-a}
+  --iteration-root ITERATION_ROOT
+  --lab-root LAB_ROOT
+  --portable-python PORTABLE_PYTHON
+  --comfy-root COMFY_ROOT
+  --run-dir RUN_DIR
+  --stop-marker STOP_MARKER
+  --nvidia-smi NVIDIA_SMI
+  --inferrsi-src INFERRSI_SRC
+  --schema-result SCHEMA_RESULT
+  --gates GATES
+  --notes-root NOTES_ROOT
+  --q31-root Q31_ROOT
+  --corpus-manifest CORPUS_MANIFEST
+  --timing-controller TIMING_CONTROLLER
+  --source-manifest SOURCE_MANIFEST
+  --corpus {bounce-audio,hands-face-mug}
+  --corpus-manifest-sha256 CORPUS_MANIFEST_SHA256
+  --source-manifest-sha256 SOURCE_MANIFEST_SHA256
+  --schema-result-sha256 SCHEMA_RESULT_SHA256
+  --gates-sha256 GATES_SHA256
+  --port PORT

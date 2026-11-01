@@ -1,0 +1,38 @@
+{
+  "schema": "q33-e2e-warm-v2-independent-review/v1",
+  "utc": "2026-10-30T19:24:35.955646+00:00",
+  "decision": "no_blocker_for_one_bounded_actual_run",
+  "claim": "INCONCLUSIVE",
+  "identity": {
+    "end_to_end_v2.py": "0a261d4246526c8611fbbfd873b140907b6e31cc7639156d37bfc38127888d25",
+    "e2e_helpers_v2.py": "28262f6f3531d50b5b4e6f69eb6d13ba3103b75375a7d19cffcea37276439c83",
+    "run_e2e_v2.py": "1027ff1a4b510a04d6bff3612a97f2aaf006be2dacc457f0c02d7ab220cef1a6",
+    "validate_e2e_media_v2.py": "31b73309f2bb619449239b38f3890219543be48d50ff96ae1b3906166f971e0f",
+    "EXECUTION-FREEZE-v2.json": "dcd201060065b6d10f2b4b5a014296993e1cb442cc12b4fdfc8cc2d3d10028ef"
+  },
+  "matched_sources": {
+    "candidate": 6,
+    "execution_local": 22,
+    "execution_notes": 24,
+    "runtime": 154
+  },
+  "checks": [
+    "Only already-running between-stage commit admission uses remaining owned growth plus same system2GiB floor",
+    "Initial12/16.5/6 admission remains; owned16GiB, RSS10GiB, runtime2/2GiB and board768MiB unchanged",
+    "Warm helper rejects invalid owned domain; forced sample followed by immediate host memory read uses conservative min before/after",
+    "Second prompt checks warm admission before observer and again after ready immediately before single POST",
+    "Condition exact SHA/reference/finite scanner, new hardlink, graphs, source guards, Job cleanup unchanged",
+    "Launcher and media read correct v2 filenames and hashes; no oldsourceidentity mixup",
+    "Media additionally checks real warm formula/cap/floor and old native complete-decode worker remains"
+  ],
+  "retained_failed_validation": {
+    "file": "WARM-OFFLINE-FAILURE-v2.json",
+    "meaning": "11 arithmetic gates completed; static test wrongly included intended run_one admission edits; new static-only validator retains candidate and corrects test scope"
+  },
+  "no_model_gpu_media_execution": true,
+  "remaining_limits": [
+    "Warm admission is not reserved commit or proof all TE allocations disappeared",
+    "External/driver/shared commitment can change; inherited live guards remain necessary",
+    "Single successful pipeline would not establish service or perceptual acceptance"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "model_dispatches": 0,
+  "gpu_queries": 0,
+  "entries": [
+    {
+      "file": "async_persistent_stage_b_v1.py",
+      "returncode": 0,
+      "stdout_bytes": 2752,
+      "stderr_bytes": 0,
+      "source_sha256": "be5ed4634a212e0d68d9b014f04ac2ca8e8547ade62c93967e73ccdecb9a8bfe"
+    },
+    {
+      "file": "validate_async_persistent_media_v1.py",
+      "returncode": 0,
+      "stdout_bytes": 687,
+      "stderr_bytes": 0,
+      "source_sha256": "27d8a29e51d9e18da93e803e16eaa8276445e103665c2eeef7dc1e6ee746b84e"
+    }
+  ]
+}

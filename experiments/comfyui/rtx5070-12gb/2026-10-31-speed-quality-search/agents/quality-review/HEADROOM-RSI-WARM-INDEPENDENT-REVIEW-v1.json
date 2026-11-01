@@ -1,0 +1,24 @@
+{
+  "schema": "q33-independent-review/v1",
+  "at_utc": "2026-10-30T20:05:40.294176+00:00",
+  "scope": "Headroom warm-request RSI ABBA adapter, read-only source and identity review",
+  "reviewer": "manual_notes_review",
+  "status": "no_blocking_finding_pending_ready_identity",
+  "controller_adapter_sha256": "06f1e924ff128db63a0eeb0bfdb8245bdb13ab98349d4630699f8a2c3073b944",
+  "pending_bundle_sha256": "4df8ba35bb9e843f3b9736ecb4cdee15ea90bf6bb7861bc0c297fe8b1723a1ee",
+  "verified_sources": 338,
+  "mismatches": [],
+  "findings": [
+    "The unchanged InferRSI runner with repetitions=2 produces A-B-B-A. Existing controllers and launch/media helper filenames, hashes, modes and stdout schemas match.",
+    "Each member starts a fresh service; both distinct seeds require accepted POST, exact graphs, eight uncached sampler steps, matching history endpoints, observer termination and owned cleanup.",
+    "Primary metric is the second native history timestamp difference, checked against the controller metric. First prompt and both complete media checks remain required; startup, asset hashing and TE are excluded from the primary metric.",
+    "Both actual MP4 bytes are rehashed against frozen identities. Media validation-summary/decode-result identities, end-of-file, unchanged input, 73 frames and audio samples are checked. Exact fixed outputs do not establish general perceptual equivalence.",
+    "Source snapshot checks occur around actual members and before child dispatch; actual IR import paths are checked. No fake Git revision or acceptance issue is introduced.",
+    "Resources are successful-member JSONL samples, not a guaranteed peak. Normal successful forced samples are written; failed guard evidence must also inspect actual result.last_sample, and an incomplete member emits no accepted metric.",
+    "Stop file is checked between children; active-child cancellation/deadline and owned process cleanup remain the existing executor/controller mechanisms. Parent must enforce quota during active work.",
+    "validation_command=None keeps formal evaluation INCONCLUSIVE; completion exit2 is expected and must not be confused with a model failure."
+  ],
+  "new_tests_executed": false,
+  "gpu_or_model_execution": false,
+  "quality_service_verdict": "INCONCLUSIVE"
+}

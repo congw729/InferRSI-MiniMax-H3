@@ -1,0 +1,20 @@
+{
+  "schema": "q33-headroom-plan-before-candidate/v1",
+  "files": [
+    {
+      "path": "SOURCE-SEMANTICS-v1.json",
+      "bytes": 5750,
+      "sha256": "b24f03aefcd49573d3d21d49d660fc2740b3035bb66d3706bc42a7e07665b6a2"
+    },
+    {
+      "path": "PLAN-FROZEN-v1.json",
+      "bytes": 1108,
+      "sha256": "f9ef46b5be68e8b5eff5fbea25c80a1e18b19f0ecc9bdc1517b9e79076d3be4b"
+    },
+    {
+      "path": "validate_headroom_delta_v1.py",
+      "bytes": 4117,
+      "sha256": "7e89399b65dd2d2a0f42fb1d06e4d3b6dd1400b79e8b6479e0999bdfeace4059"
+    }
+  ]
+}

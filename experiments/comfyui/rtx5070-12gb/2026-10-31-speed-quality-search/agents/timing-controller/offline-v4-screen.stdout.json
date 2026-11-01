@@ -1,0 +1,12 @@
+{
+  "schema": "q33-trim-screen-offline/v1",
+  "checks": [
+    "one literal source change reversible",
+    "trim-6-screen-v1 exact graph/config",
+    "trim-4-screen-v1 exact graph/config",
+    "old v3 continues rejecting4"
+  ],
+  "all_observed": true,
+  "models": 0,
+  "network": false
+}

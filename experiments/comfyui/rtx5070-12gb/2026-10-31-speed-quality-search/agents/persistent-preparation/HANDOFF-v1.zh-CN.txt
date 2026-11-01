@@ -1,0 +1,7 @@
+同服务两请求独立控制器已准备，无GPU实测。
+控制器 persistent_stage_b_v1.py，mode 必须 persistent-video-stage-b。其余根参数沿 speed_stage_b_v6，profile/asset/conditioning 仍用 agents/timing-controller 下 trim-8.json、assets/trim.json、conditioning/trim-8.json；gates 固定 RESOURCE-GATES-RESERVE3-v1（SHA13672a9...），source-manifest仍 SOURCES-v1（bf0d3e...）。新目录只放controller，不复制权重/模型代码。
+新增 --memory-policy baseline（默认）或 --memory-policy smart。baseline 保留 disable-smart-memory；smart 仅删此标志。cache-none、reserve3/headroom1、所有运行资源门不改。父级分别以两个新run/两独立InferRSI试验顺序执行：baseline2请求后终止服务，再smart2请求后终止服务。不允许并发GPU。父级每次再检查quota>20和当前资源余量，不自动推广baseline到其他家族。
+每run总时限2700秒（不按请求翻倍）；HTTP累计16MiB、history总2701次、WS累计16MiB、两个MP4总<=128MiB。初始assets完整SHA和系统启动门仅服务前一次，第二请求仍保持running门。请求1失败不发送2；成功历史后收束/验证第一observer再发送2；POST不重试。原cleanup_owned_v2函数AST不变，main唯一finally回收一次所属Job，第二请求失败也执行。
+result.status成功值是 two_artifacts_received_unvalidated（不兼容旧单片媒体wrapper自动期待artifact）；requests[0/1]各有prompt_id、artifact、node_timing、metrics、history_relative_to_run、timing_relative_to_run与after_request_sample。实际保存分别 request-1/ 与request-2/，output里的prefix也区分request1/2。请在服务cleanup后给每个artifact调用既有CPU媒体检查器；不要伪造单片controller result或把结构验证当质量。
+每请求metrics.native_prompt_wall_seconds来自history起止timestamp；sampler_observed_wall_seconds来自native WS wall；必须非cache、8/8progress、terminal success且observer退出。资源是whole-board采样，非allocator；各请求RSS/private峰和最小显存free单独存。一次服务/资产核验开销独列，不与samplerwall混称。
+冻结15小离线门和实际portable profile/3receipt metadata+--help均通过，0服务/0Torch/0GPU；没有重跑旧大矩阵或实测Windows Job取消。源码审计证明现有flag确实prompt末unload，但cache-none仍会重走loader，因此smart或persistent收益可能很小。性能/质量保持INCONCLUSIVE。

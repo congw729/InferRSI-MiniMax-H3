@@ -1,0 +1,19 @@
+{
+  "schema": "q33-headroom075-plan/v1",
+  "before_candidate": true,
+  "plane": "infra",
+  "baseline_controller_sha256": "be5ed4634a212e0d68d9b014f04ac2ca8e8547ade62c93967e73ccdecb9a8bfe",
+  "single_runtime_change": "--vram-headroom1.0 to0.75GiB",
+  "fixed": "classic/smart/async default2/no-pin/reserve3; same Trim8/two seed424242,424243 and exact graphs/prefix; all existing resource/cleanup/deadline/source gates",
+  "requested_headroom_bytes": 805306368,
+  "checks": [
+    "reverse source changes exact baseline and command differs one numeric argument only",
+    "extract real native argparse float declaration and parse0.75 without launching Comfy",
+    "identical request_graph and resource/cleanup functions",
+    "media sourcefilename/hash/new mode and requested0.75 identity",
+    "all frozen profile/gates/assets shared, helper --help valid"
+  ],
+  "interpretation": "Exploratory one fixed probe; previous1404MiB free is not a guaranteed budget prediction. Guard trigger preserved, no reduced stop threshold or auto retry.",
+  "quality_performance": "INCONCLUSIVE",
+  "no_gpu_by_preparer": true
+}

@@ -1,0 +1,157 @@
+{
+  "schema": "q33-native-turbo-ready-execution-freeze/v1",
+  "created_utc": "2026-10-30T17:32:41.848406+00:00",
+  "file_root": "this agents/turbo-controller directory",
+  "files": [
+    {
+      "path": "turbo_stage_b_v5.py",
+      "bytes": 53366,
+      "sha256": "604ae8578f132e66654924dd08c9515a0be6b25273faa5e962efe93c9f91102c"
+    },
+    {
+      "path": "TURBO-RESOURCE-GATES-v1.json",
+      "bytes": 855,
+      "sha256": "13672a9bbe8946c28c98b3bab0f906f6ddfe67735ff7f77929e58539a4a580dd"
+    },
+    {
+      "path": "profiles/turbo-native-6.ready.json",
+      "bytes": 1010,
+      "sha256": "8faeb384519065b04739820dfeea940606f6103f896864fe3ec592d0f79c5b3d"
+    },
+    {
+      "path": "profiles/turbo-native-8.ready.json",
+      "bytes": 1010,
+      "sha256": "30f68948e70a737caf69758113fc156c3f47b00c6998c12ad958e799017ba5dc"
+    },
+    {
+      "path": "assets/turbo-native.ready.json",
+      "bytes": 3939,
+      "sha256": "4f43082899ac7818ebaeb4e911904bd258c4fae6d8d78ad11efa31f3fab0f95d"
+    },
+    {
+      "path": "canonical/original.json",
+      "bytes": 3069,
+      "sha256": "d5937f2505f74e07ce8de746c49c98e8a428535d79ccc878383e8b989807fb29"
+    },
+    {
+      "path": "graphs/turbo-native-6.json",
+      "bytes": 3490,
+      "sha256": "e0f890fb91a40f559070101b4143e147fa51c511d55a1df7e187b92ea215add9"
+    },
+    {
+      "path": "graphs/turbo-native-8.json",
+      "bytes": 3490,
+      "sha256": "6130337efb39907e0eaec48a6a1760e6424fe94a54a6326b775f5523e3aca4f9"
+    },
+    {
+      "path": "conditioning/turbo-native-6.json",
+      "bytes": 1059,
+      "sha256": "e84a47f0263f8bcb967c1a8289745629e1a550094134030ff2722af620f97a7f"
+    },
+    {
+      "path": "conditioning/turbo-native-8.json",
+      "bytes": 1059,
+      "sha256": "ced34d2e4003c32964f28d62f4404150921275594a31ab5f1ec880c53dc6efb8"
+    },
+    {
+      "path": "REAL-LORA-HEADER-NATIVE-MAP-v1.json",
+      "bytes": 121492,
+      "sha256": "cadd5ae14a7cf84572f156e083d39f4c1cd9e92757482aeb69c6411caf7672f7"
+    },
+    {
+      "path": "REAL-METADATA-PREFLIGHT-v1.json",
+      "bytes": 1259,
+      "sha256": "9684a7e79ec0c5a93f032775c784a0fbe369c9a2b16a8193f2814b305b180cda"
+    },
+    {
+      "path": "real_metadata_preflight_v1.py",
+      "bytes": 2623,
+      "sha256": "7925c4f37e54fad67543cacc44a08ffa514e34851bb855283ba87ac3e534886e"
+    },
+    {
+      "path": "PLAN-FROZEN-v4.json",
+      "bytes": 1909,
+      "sha256": "9497a6e3a28296a31fea5b9c2b18a9417fe710de6943d27c8d9543cf3b0daf3a"
+    },
+    {
+      "path": "RESERVE-PLAN-FROZEN-v5.json",
+      "bytes": 784,
+      "sha256": "46699e882eeeca6dba0ca2a5e7df4394c96712136b13dbbc37c268f195114087"
+    },
+    {
+      "path": "RESERVE-DIFF-RESULT-v5.json",
+      "bytes": 633,
+      "sha256": "4f8ad9061b31143f915bf0a32d1df957533806348cf5724454bc8a7856de36b3"
+    },
+    {
+      "path": "EXTRA-NATIVE-LORA-SOURCES-v4.json",
+      "bytes": 1348,
+      "sha256": "40ef10a42124c9e6e3c0b22e265cd456e24ad556a01fe764a0f9196e78c97036"
+    }
+  ],
+  "external_notes_files": [
+    {
+      "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/state/transport/assets/audio-vae.json",
+      "bytes": 383,
+      "sha256": "825d5402d4dea3d39be45c436564949944a030268860d5eb029728f30b552a6b"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/state/transport/assets/audio-vae.receipt.json",
+      "bytes": 800,
+      "sha256": "f2f8217d2d75c8d8420a12b44e6cb298ce7f2dda52d71296c25f99c39fd28251"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/state/transport/assets/video-vae.json",
+      "bytes": 400,
+      "sha256": "2606bfe4a0a25313d8423dfc8486a4e3260eed41a8fbff1678e425fb12d94dc9"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/state/transport/assets/video-vae.receipt.json",
+      "bytes": 809,
+      "sha256": "10d5e728d94c586c0aa3db2f8b9433df3b3d84105d6fa31a8a4c2e5e513e19d4"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/tools/comfy_first_video_v1.py",
+      "bytes": 20306,
+      "sha256": "63eb319e9fe294209e65c188a447a101987738e5ebc49bae879b65d36bb20d35"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-30-original-h3-first-video/state/transport/assets/original-dit.json",
+      "bytes": 426,
+      "sha256": "e1c8673171d86b258cdda2efd6634be49805c25b2022159324758d253b4a93a2"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-30-original-h3-first-video/state/transport/assets/original-dit.receipt.json",
+      "bytes": 1354,
+      "sha256": "17a83e4cb12be696aa0c9625c17e2f0f293cfab227bb652d2852221c66614468"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/timing-controller/SOURCES-v1.json",
+      "bytes": 33327,
+      "sha256": "bf0d3e3b09f8130053735eaa6645bcc4ff753833a97ef4ae306d7d223283f007"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/timing-controller/timing_events_v1.py",
+      "bytes": 10734,
+      "sha256": "f0abb1937ca5462d712a73d1a8623b6a9f5df86927dbcf6375903b8a5ad3e614"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/turbo-preparation/download/PROFILE-v1.json",
+      "bytes": 1299,
+      "sha256": "84be14a039cc3955eb475f5fa2cd52a62d92190a2c534ac7ee75f18d9e64bb10"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/state/turbo-download/asset-receipt-4dbdde2c1c314d9590ecb78215ec4861.json",
+      "bytes": 691,
+      "sha256": "8addc82669d67ee9bdec02bff9ce32a7a69b7e57223eab6634b022c853e26c86"
+    }
+  ],
+  "candidate_sha256": "604ae8578f132e66654924dd08c9515a0be6b25273faa5e962efe93c9f91102c",
+  "dispatch_ready_after_parent_review": true,
+  "native_target_evidence": "259 realLoRA pairs/518BF16 headers map to pinned full50DiT shapes; no native model constructed",
+  "resource_recipe": "reserve3GiB vs original/Trim reserve2GiB, other gates same; not singlefactor causal comparison",
+  "model_or_GPU_executed_by_this_preflight": false,
+  "timing_actual_import_PPythree13_stdlib_checked": true,
+  "runtime_source_scope": "existing154 selected sources plus12 nativeLoRA source identities; not wholeDLL closure",
+  "quality_performance": "INCONCLUSIVE"
+}

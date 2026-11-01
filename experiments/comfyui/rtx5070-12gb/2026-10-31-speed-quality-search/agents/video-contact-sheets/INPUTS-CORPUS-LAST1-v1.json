@@ -1,0 +1,18 @@
+{
+  "schema": "q33-contact-sheet-inputs/v1",
+  "inputs": [
+    {
+      "profile": "hands-face-mug/trim-6",
+      "trial_relative_to_iteration": "results/inferrsi-corpus-hands-face-mug-trim-6-4b67ed669500447d884d742f21443a7a",
+      "result_sha256": "e7788a4229d88b3dab0de3cd5e25296219ec21371f20dbffb8c1cbf157c03e9f",
+      "run_relative_to_lab": "comfy-original/runs/q33-corpus-hands-face-mug-trim-6-4b67ed669500447d884d742f21443a7a",
+      "artifact": {
+        "relative_to_run": "output\\q33-corpus\\hands-face-mug\\trim-6_00001_.mp4",
+        "bytes": 273858,
+        "sha256": "a601a863b26f96c359e9f9dc6a0b6aa11b8a4564e74c4bcebdefa64ad0802f42"
+      },
+      "prior_media_summary_sha256": "6a63ebd190c986c4cee355c93b68998d90ba93da6be16f5ebe106ceff7baf943"
+    }
+  ],
+  "claim": "INCONCLUSIVE"
+}

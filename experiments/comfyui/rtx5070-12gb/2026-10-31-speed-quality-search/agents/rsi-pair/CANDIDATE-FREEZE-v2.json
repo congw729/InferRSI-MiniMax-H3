@@ -1,0 +1,26 @@
+{
+  "schema": "q33-rsi-path-freeze/v2",
+  "phase": "before targeted regression",
+  "files": [
+    {
+      "path": "PATH-AND-PAIR-PLAN-v2.json",
+      "bytes": 967,
+      "sha256": "1224028e714fc859f7129e438eace05d74a1afacd7f96e7360e6bb146c15b845"
+    },
+    {
+      "path": "validate_path_pair_v2.py",
+      "bytes": 1623,
+      "sha256": "936cebcc40211e5545698dd2429cd474c5f10e43e43cc6270f039cc05c820395"
+    },
+    {
+      "path": "rsi_pair_v1.py",
+      "bytes": 14874,
+      "sha256": "c6effd915ea16301b08c335059e29aa1b39869845cf5ed6a98cce66babdc4249"
+    },
+    {
+      "path": "rsi_pair_v2.py",
+      "bytes": 15336,
+      "sha256": "4830c462866ea832481a1a97f0989ed01481911126998b61d5f6c1fe728a8b6c"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "schema": "q33-e2e-parent-helper-freeze/v2",
+  "files": [
+    {
+      "path": "run_e2e_v2.py",
+      "bytes": 6233,
+      "sha256": "1027ff1a4b510a04d6bff3612a97f2aaf006be2dacc457f0c02d7ab220cef1a6"
+    },
+    {
+      "path": "EXECUTION-FREEZE-v2.json",
+      "bytes": 43731,
+      "sha256": "dcd201060065b6d10f2b4b5a014296993e1cb442cc12b4fdfc8cc2d3d10028ef"
+    },
+    {
+      "path": "validate_e2e_media_v2.py",
+      "bytes": 4416,
+      "sha256": "31b73309f2bb619449239b38f3890219543be48d50ff96ae1b3906166f971e0f"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "schema": "q33-persistent-cache-helper-plan/v2",
+  "baseline_sha256": "705d519918dc9eab07553416178aa539380285111077fee163df73524213f3a1",
+  "scope": "Only fixed v2 controller/execution freeze and cache none/classic CLI; both smart, seed schedule snapshot; keep original external resource and InferRSI execute/Job behavior",
+  "check": "source delta+compile and portable help, no dispatch"
+}

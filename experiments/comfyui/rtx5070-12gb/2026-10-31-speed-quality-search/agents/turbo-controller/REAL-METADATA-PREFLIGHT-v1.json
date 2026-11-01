@@ -1,0 +1,29 @@
+{
+  "schema": "q33-real-turbo-metadata-preflight/v1",
+  "profiles": [
+    {
+      "profile": "turbo-native-6",
+      "profile_sha256": "8faeb384519065b04739820dfeea940606f6103f896864fe3ec592d0f79c5b3d",
+      "assets": 4,
+      "actual_receipts_complete_and_plan_bound": true,
+      "graph_sha256": "e0f890fb91a40f559070101b4143e147fa51c511d55a1df7e187b92ea215add9",
+      "reserve_vram_gb": 3.0
+    },
+    {
+      "profile": "turbo-native-8",
+      "profile_sha256": "30f68948e70a737caf69758113fc156c3f47b00c6998c12ad958e799017ba5dc",
+      "assets": 4,
+      "actual_receipts_complete_and_plan_bound": true,
+      "graph_sha256": "6130337efb39907e0eaec48a6a1760e6424fe94a54a6326b775f5523e3aca4f9",
+      "reserve_vram_gb": 3.0
+    }
+  ],
+  "timing_source_relative_to_iteration": "agents/timing-controller/timing_events_v1.py",
+  "timing_sha256": "f0abb1937ca5462d712a73d1a8623b6a9f5df86927dbcf6375903b8a5ad3e614",
+  "timing_class_module": "q33_frozen_native_timing_v1",
+  "portable_executable_verified_by_parent_argv": true,
+  "no_torch_import": true,
+  "model_dispatches": 0,
+  "network_requests": 0,
+  "scope": "actual small receipt/profile/conditioning metadata and timing import only; no payload SHA loop, service or GPU"
+}

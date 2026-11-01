@@ -1,0 +1,15 @@
+{
+  "schema": "q33-turbo4-plan-before-candidate/v1",
+  "files": [
+    {
+      "path": "PLAN-FROZEN-v1.json",
+      "bytes": 1461,
+      "sha256": "6e16f69c463325f50eeb7908607ce30ac4eea07e632f6a9c2c8488febebff4ea"
+    },
+    {
+      "path": "validate_turbo4_delta_v1.py",
+      "bytes": 3636,
+      "sha256": "c4695825a64fc56030709b62053dbec2613afe22eead601ee0a6378db507d842"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema": "q33-corpus-portable-import/v1",
+  "argv": [
+    "PPY",
+    "-s",
+    "-B",
+    "V/corpus_stage_b_v1.py",
+    "--help"
+  ],
+  "exit_code": 0,
+  "controller_sha256": "74de2ccded6ec7415e183c13d162caba653b54b5bcc99270a924c9391d58c7d1",
+  "model_dispatches": 0,
+  "scope": "stdlib import/parser only; no runtime model or new profiles"
+}

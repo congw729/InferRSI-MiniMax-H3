@@ -1,0 +1,23 @@
+{
+  "schema": "q33-asset-download-proposal/v1",
+  "status": "proposal_not_downloaded",
+  "id": "turbo-v4-step600-ema",
+  "repo": "larryvrh/MiniMax-H3-Turbo-Lora",
+  "revision": "7b7ac96b0616100db75ea285090210c3ddf37c04",
+  "file": "minimax_h3_turbo_v4_step600_ema.safetensors",
+  "url": "https://huggingface.co/larryvrh/MiniMax-H3-Turbo-Lora/resolve/7b7ac96b0616100db75ea285090210c3ddf37c04/minimax_h3_turbo_v4_step600_ema.safetensors",
+  "bytes": 779849816,
+  "sha256": "5f3a626cd72c93a8b9318d6760c510bc5092d2ab13aaba1f932c5bab07a416d3",
+  "suggested_relative_path": "comfy-original/models/loras/minimax_h3_turbo_v4_step600_ema.safetensors",
+  "identity_evidence": [
+    "HF raw main LFS pointer",
+    "fixed asset introduction commit diff",
+    "HF file SHA page"
+  ],
+  "body_cap_proposal_bytes": 1073741824,
+  "global_cap_bytes": 137438953472,
+  "ledger_must_preserve_all_prior_reservations": true,
+  "do_not_reuse_fixed_original_dit_gap_identity": true,
+  "requires_parent_review_new_ranges": true,
+  "tensor_header_or_body_read": false
+}

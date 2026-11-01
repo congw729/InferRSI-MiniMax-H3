@@ -1,0 +1,47 @@
+576x384 Trim8 candidate; preparation only, no GPU or media execution.
+R=notes root; Q=R/iterations/2026-10-31-speed-quality-search; Q31=R/iterations/2026-10-28-comfy-trim-first-video
+V=Q/agents/resolution-preparation; T=Q/agents/timing-controller; M=existing MiniMax-H3 model root
+P=existing portable root; PPY=P/python_embeded/python.exe; B=P/ComfyUI; IR=InferRSI root.
+
+Parent requested 640x384 first; PLAN-v1 preserves that UNEXECUTED geometry study. Formal candidate is PLAN-v2,
+576x384 preserving3:2. Native AST temporal functions confirm73f->latentT22/audioT122.
+Video latent[1,24,22,24,36]; patch[1,2,2] yields4752 video tokens +244audio +29text =5025.
+This is below unchanged min_tokens12288. No VSA activation inferred from native gate, not a kernel trace.
+Pixels/video tokens rise2.25x. Same seed with a different noise shape does not promise identical composition.
+No faster or quality-improvement claim. Parent runs only after present GPU queue and fresh admission.
+
+Model dispatch: existing InferRSI execute_command, new E run, outerdeadline2730s; do not use old toycar-only
+parent launcher unchanged (it hardcodes directory/mode/scenario). New metadata is already fully bound:
+ PPY -s -B -X utf8 V/resolution_stage_b_v1.py
+ --mode resolution-video-stage-b --iteration-root Q --notes-root R --q31-root Q31
+ --lab-root M --model-root M/comfy-trim/models --portable-python PPY --comfy-root B
+ --run-dir <new E run> --stop-marker <same new E run>/stop.signal --nvidia-smi <actual executable>
+ --inferrsi-src IR/src --port <parent chosen free port>
+ --profile V/profiles/trim-8-576x384.json
+ --profile-sha256 f80dd17bc8931fd829a78170804e6fb9e9743dd7e34bbac7fa776f20f52ccf7d
+ --conditioning-manifest V/conditioning/trim-8-576x384.json
+ --conditioning-manifest-sha256 cba4a43134c47055ee62ee694a0b22bff37593b2ace475219a647eda0f10fca4
+ --asset-manifest V/assets/trim.json --asset-manifest-sha256 c1507b121962e250f2d74c7dce2f4e0e63e7de8e55a39c2d2795e336106de2a0
+ --gates T/RESOURCE-GATES-RESERVE3-v1.json
+ --gates-sha256 13672a9bbe8946c28c98b3bab0f906f6ddfe67735ff7f77929e58539a4a580dd
+ --source-manifest T/SOURCES-v1.json
+ --source-manifest-sha256 bf0d3e3b09f8130053735eaa6645bcc4ff753833a97ef4ae306d7d223283f007
+Native flags remain reserve3/headroom1, no-pin/sync-offload/disable-smart-memory/cache-none; monitor/cleanup
+andall model/conditioning fullSHA validation unchanged. New controller merely fixes resolution profile.
+TE stays precomputed toycar F32[1,29,5120], empty options, existing content-addressed alias. No new TE run.
+
+CPU media validation only after owned model worker cleanup and successful artifact receipt:
+ PPY -s -B -X utf8 V/validate_resolution_media_v1.py
+ --input <actual generated MP4 from receipt> --run-root <actual E run>
+ --output-dir <actual E run>/media-inspection-v1
+ --gates V/MEDIA-RESOURCE-GATES-v1.json
+ --gates-sha256 3e880606a5744fc290be9ca4011169be7dac65140e66ac3525e7b58b65a82e60
+ --monitor-source Q31/tools/comfy_first_video_v1.py --inferrsi-src IR/src
+ --expected-sha256 <actual completed artifact SHA>
+Use InferRSI outerdeadline140s. Do not use Q33/tools/validate_profile_media_v1.py unchanged: it intentionally
+selects old384x256 validator. The new validator changes only five width/height literals; resource gates
+are byte-identical. MEDIA-EXPECTED-v1.json documents matching EXPECTED; no full-media condition was weakened.
+Media success is structural/finite/EOF evidence, not visual or audio quality PASS.
+
+Checks:25 focused source/AST/geometry/graph/guard/only-dimension checks; two existing portable --help exits0.
+No real576x384 run or decoded media exists yet. All prior sources/graphs/files unchanged.

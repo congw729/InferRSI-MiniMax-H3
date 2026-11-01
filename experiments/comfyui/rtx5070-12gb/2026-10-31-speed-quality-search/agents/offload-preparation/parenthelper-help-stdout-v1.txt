@@ -1,0 +1,19 @@
+usage: run_async_persistent_v1.py [-h] --notes-root NOTES_ROOT
+                                  --infra-root INFRA_ROOT
+                                  --portable-root PORTABLE_ROOT
+                                  --model-root MODEL_ROOT
+                                  --runs-parent RUNS_PARENT
+                                  --nvidia-smi NVIDIA_SMI
+                                  --cache-policy {classic}
+                                  --remaining-percent REMAINING_PERCENT
+
+options:
+  -h, --help            show this help message and exit
+  --notes-root NOTES_ROOT
+  --infra-root INFRA_ROOT
+  --portable-root PORTABLE_ROOT
+  --model-root MODEL_ROOT
+  --runs-parent RUNS_PARENT
+  --nvidia-smi NVIDIA_SMI
+  --cache-policy {classic}
+  --remaining-percent REMAINING_PERCENT

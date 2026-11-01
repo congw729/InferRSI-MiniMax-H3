@@ -1,0 +1,31 @@
+{
+  "schema": "q33-warm-static-scope/v3",
+  "complete": true,
+  "checks": [
+    {
+      "name": "other_inherited_functions_exact",
+      "ok": true
+    },
+    {
+      "name": "run_one_exact_two_call_reverse",
+      "ok": true
+    },
+    {
+      "name": "all_original_helpers_exact",
+      "ok": true
+    },
+    {
+      "name": "initial_cold_gate_retained",
+      "ok": true
+    },
+    {
+      "name": "warm_three_call_sites",
+      "ok": true
+    }
+  ],
+  "check_count": 5,
+  "prior_arithmetic_successes_preserved": 11,
+  "candidate_changed": false,
+  "model_dispatches": 0,
+  "claim": "INCONCLUSIVE"
+}

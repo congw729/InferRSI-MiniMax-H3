@@ -1,0 +1,44 @@
+{
+  "schema": "q33-independent-turbo-download-review/v1",
+  "at_utc": "2026-10-30T17:18:42.7083174Z",
+  "candidate": "agents/turbo-preparation/download/download_turbo_v2.py",
+  "candidate_sha256": "2a1179ce634191f8293c8cf50710ac6c8b52e0726064927e620d355d7cfee002",
+  "deployment_sha256": "3acd4e7714f75020d5648815e7aec6017e6b2367e7273e9fa90e14615a505779",
+  "frozen_file_hashes_rechecked": 5,
+  "mismatches": [],
+  "old_ledger_identity_rechecked": {
+    "sha256": "02de3d2c8c4d4f988655f00e21b335cebd47a1351bd4f0e0aeb73f0ed5a90da2",
+    "bytes": 4568504,
+    "matches": true
+  },
+  "observations": [
+    "Single fixed revision, asset byte count and official full SHA; immutable exact profile equality",
+    "Shared legacy download lock held through base ledger verification, budget reservation, download and finalization",
+    "New failed or unfinished reservations remain charged; no automatic retry; at most three reservations per chunk",
+    "Strict TLS verification and redirect hostname allowlist; exact 206 range, length and encoding before application body reads; 429 stops",
+    "Completed region hashes are checked before resume; full official SHA precedes final hardlink and receipt",
+    "Owned partial retained; no unlink/delete or overwrite existing final; existing final recovery requires complete owned ledger plus full SHA",
+    "Session record redacts exception details and reports application body accounting, not VPN wire traffic"
+  ],
+  "offline_evidence": {
+    "reviewed_not_rerun": true,
+    "scope": "Synthetic functions, mock responses, ledger and Windows lock; not actual TLS/redirect or full-file completion",
+    "checks": 43,
+    "total": 43,
+    "network_calls": 0
+  },
+  "blockers": [],
+  "readiness": "Ready for parent-controlled bounded single-file run subject conditions",
+  "conditions": [
+    "Independent outer hard timeout and exact-owned-process cleanup required: max_seconds is cooperative, and HTTPResponse.read can overrun it under continuous slow trickle",
+    "Freeze and check exact deployment hash and use the reviewed profile; no concurrent or legacy downloader that ignores this subledger",
+    "Preserve all incomplete reservations on timeout or interruption",
+    "Do not dispatch LoRA/model execution before real full-SHA receipt exists"
+  ],
+  "claim": "INCONCLUSIVE",
+  "review_actions": [
+    "Read source/plan/offline evidence",
+    "Hashed five deployment-bound files and current old ledger",
+    "No network, GPU, model, test rerun or candidate mutation"
+  ]
+}

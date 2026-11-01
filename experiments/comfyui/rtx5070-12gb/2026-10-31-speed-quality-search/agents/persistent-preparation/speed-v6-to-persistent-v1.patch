@@ -1,0 +1,434 @@
+--- speed_stage_b_v6.py
++++ persistent_stage_b_v1.py
+@@ -1,4 +1,4 @@
+-"""Q33 bounded speed/quality profiles with native node timing.
++"""Q33 bounded two-request persistent Trim8 infra probe with native node timing.
+ This is a new harness derived from frozen Q32; old sources remain unchanged.
+ Run with the existing portable Python under InferRSI. No model imports here.
+ """
+@@ -34,12 +34,14 @@
+ ASSET_IDS = set(ASSET_EXPECTED)
+ 
+ # Portable Python isolates script-directory imports; load only the frozen sibling.
+-_timing_path = Path(__file__).resolve().with_name("timing_events_v1.py")
++_timing_path = Path(__file__).resolve().parents[1] / "timing-controller/timing_events_v1.py"
+ if hashlib.sha256(_timing_path.read_bytes()).hexdigest() != TIMING_MODULE_SHA:
+     raise RuntimeError("frozen timing sibling hash mismatch")
+ _timing_spec = importlib.util.spec_from_file_location("q33_frozen_native_timing_v1", _timing_path)
+ _timing_module = importlib.util.module_from_spec(_timing_spec)
+ _timing_spec.loader.exec_module(_timing_module)
++if Path(_timing_module.__file__).resolve() != _timing_path.resolve():
++    raise RuntimeError("actual timing import source")
+ NativeWSObserver = _timing_module.NativeWSObserver
+ EXTRA_GATES = {
+     "asset_timeout_seconds", "startup_timeout_seconds", "render_timeout_seconds",
+@@ -159,7 +161,7 @@
+     require(profile["family"] in EXPECTED_BY_FAMILY,"profile family")
+     require(type(profile["dispatch_ready"]) is bool and profile["dispatch_ready"],
+             "profile not dispatch ready; review required")
+-    root=Path(__file__).resolve().parent
++    root=a.iteration_root / "agents/timing-controller"
+     def descriptor(key):
+         d=profile[key]
+         require(type(d) is dict and set(d)=={"file","sha256"},"profile descriptor")
+@@ -182,7 +184,7 @@
+             manifest["schema"]=="q33-speed-conditioning/v1","conditioning manifest schema")
+     profile=a.loaded_profile;c=manifest["conditioning"];g=manifest["graph"]
+     relative=Path(g["relative_path"]);path=a.iteration_root/relative
+-    root=Path(__file__).resolve().parent
++    root=a.iteration_root / "agents/timing-controller"
+     require(not relative.is_absolute() and not relative.drive and ".." not in relative.parts and
+             path.resolve()==root/profile["graph"]["file"],"profile graph path")
+     graph=v1.frozen_json(path,g["sha256"],gates["max_schema_bytes"])
+@@ -248,7 +250,7 @@
+ 
+ def parse():
+     p = argparse.ArgumentParser(description=__doc__, allow_abbrev=False)
+-    p.add_argument("--mode", choices=["speed-video-stage-b"], required=True)
++    p.add_argument("--mode", choices=["persistent-video-stage-b"], required=True)
+     for name in ("iteration-root", "lab-root", "portable-python", "comfy-root",
+                  "run-dir", "stop-marker", "nvidia-smi", "inferrsi-src",
+                  "gates", "conditioning-manifest", "notes-root", "q31-root",
+@@ -259,6 +261,7 @@
+     p.add_argument("--asset-manifest-sha256", required=True)
+     p.add_argument("--gates-sha256", required=True)
+     p.add_argument("--conditioning-manifest-sha256", required=True)
++    p.add_argument("--memory-policy", choices=["baseline", "smart"], default="baseline")
+     p.add_argument("--port", type=int, required=True)
+     return p.parse_args()
+ 
+@@ -304,6 +307,66 @@
+     if any(x.startswith("job_close_") for x in diagnostics):
+         state["status"]="cleanup_inconclusive"
+ 
++def memory_command(command, policy):
++    require(policy in {"baseline", "smart"}, "memory policy")
++    require(command.count("--disable-smart-memory") == 1 and command.count("--cache-none") == 1, "fixed memory/cache baseline")
++    return list(command) if policy == "baseline" else [x for x in command if x != "--disable-smart-memory"]
++
++
++def request_graph(graph, request_index):
++    require(type(request_index) is int and request_index in (1, 2), "exact two requests")
++    require(graph["prompt"]["9"]["inputs"]["steps"] == 8 and graph["prompt"]["15"]["inputs"]["noise_seed"] == 424242, "fixed steps/seed")
++    result = copy.deepcopy(graph)
++    result["prompt"]["92"]["inputs"]["filename_prefix"] = "q33-persistent/trim-8/request-" + str(request_index)
++    return result
++
++
++def two_requests(run_one):
++    for request_index in (1, 2):
++        run_one(request_index)
++
++
++def begin_request(state, request_index, prompt_id):
++    require(type(request_index) is int and request_index in (1, 2), "exact two requests")
++    require(len(state["requests"]) == request_index - 1 and state["prompt_posts"] == request_index - 1, "request/POST sequence")
++    require(not state["requests"] or state["requests"][-1]["status"] == "complete", "previous request incomplete")
++    require(type(prompt_id) is str and prompt_id and all(x["prompt_id"] != prompt_id for x in state["requests"]), "unique prompt identity")
++    state["prompt_id"] = prompt_id
++    state["current_request_index"] = request_index
++    current = {"request_index": request_index, "prompt_id": prompt_id, "status": "preparing", "post_attempted": False}
++    state["requests"].append(current)
++    return current
++
++
++def begin_post(state):
++    current = state["requests"][-1]
++    require(current["post_attempted"] is False and state["prompt_posts"] == current["request_index"] - 1, "POST attempted once")
++    require(current["request_index"] in (1, 2), "POST total bound")
++    current["post_attempted"] = True
++    state["prompt_posts"] += 1
++
++
++def request_metrics(timing, record, prompt_id):
++    require(timing.get("prompt_id") == prompt_id and timing.get("ready") is True
++            and timing.get("terminal") == "execution_success" and not timing.get("invalid_reasons")
++            and timing.get("error_type") is None and timing.get("observer_thread_exited") is True, "request timing incomplete")
++    sampler = timing.get("nodes", {}).get("14", {})
++    require(sampler.get("cached") is False and sampler.get("progress_value") == 8
++            and sampler.get("progress_max") == 8, "request must execute eight uncached steps")
++    wall = sampler.get("observed_wall_seconds")
++    require(type(wall) in (float, int) and math.isfinite(wall) and wall > 0, "sampler timing missing")
++    endpoints = {}
++    for kind, body in record["status"]["messages"]:
++        if kind in {"execution_start", "execution_success"}:
++            require(kind not in endpoints and body.get("prompt_id") == prompt_id
++                    and type(body.get("timestamp")) is int, "native timestamp identity")
++            endpoints[kind] = body["timestamp"]
++    require(set(endpoints) == {"execution_start", "execution_success"}
++            and endpoints["execution_success"] > endpoints["execution_start"], "native prompt interval missing")
++    return {"native_prompt_wall_seconds": (endpoints["execution_success"] - endpoints["execution_start"]) / 1000,
++            "sampler_observed_wall_seconds": wall, "gpu_compute_only_seconds": None}
++
++
+ def main():
+     global STAGE_NODES, ASSET_EXPECTED, ASSET_IDS
+     entry_perf_ns=time.perf_counter_ns()
+@@ -329,7 +392,7 @@
+ 
+     require(a.iteration_root == a.notes_root / "iterations/2026-10-31-speed-quality-search"
+             and a.q31_root == a.notes_root / "iterations/2026-10-28-comfy-trim-first-video"
+-            and Path(__file__).resolve().parent == a.iteration_root / "agents/timing-controller", "Q33/Q31 roots")
++            and Path(__file__).resolve().parent == a.iteration_root / "agents/persistent-preparation", "Q33/Q31 roots")
+     require(a.portable_python == a.comfy_root.parent / "python_embeded/python.exe", "fixed portable relationship")
+     sys.dont_write_bytecode = True
+     v1_path = a.q31_root / "tools/comfy_first_video_v1.py"
+@@ -338,8 +401,10 @@
+     v1 = importlib.util.module_from_spec(spec)
+     spec.loader.exec_module(v1)  # Imports stdlib only; its main is not called.
+     require(Path(sys.executable).resolve()==a.portable_python,"use existing portable Python for native aiohttp")
+-    require(digest(Path(__file__).with_name("timing_events_v1.py"))==TIMING_MODULE_SHA,"timing module drift")
++    require(digest(_timing_path)==TIMING_MODULE_SHA,"timing module drift")
++    require(a.profile == a.iteration_root / "agents/timing-controller/profiles/trim-8.json", "fixed Trim8 profile path")
+     a.loaded_profile=load_profile(a,v1)
++    require(a.loaded_profile["id"] == "trim-8" and a.loaded_profile["family"] == "trim" and a.loaded_profile["steps"] == 8, "fixed Trim8 recipe")
+     STAGE_NODES=NODE_FAMILIES[a.loaded_profile["family"]]
+     ASSET_EXPECTED=EXPECTED_BY_FAMILY[a.loaded_profile["family"]];ASSET_IDS=set(ASSET_EXPECTED)
+     require(a.model_root==a.lab_root/a.loaded_profile["model_subdir"] and a.model_root.drive.upper()=="E:",
+@@ -392,7 +457,7 @@
+     proc = job = raw_log = samples = journal = observer = None
+     next_sample = next_gpu = 0.0
+     gpu = None
+-    state = {"status": "preflight", "claim": "INCONCLUSIVE", "mode": "speed-video-stage-b",
++    state = {"status": "preflight", "claim": "INCONCLUSIVE", "mode": "persistent-video-stage-b",
+              "profile_id": a.loaded_profile["id"], "profile_sha256": a.profile_sha256,
+              "controller_entry_perf_counter_ns":entry_perf_ns,
+              "source_verification_start_ns":source_start_ns,"source_verification_end_ns":source_end_ns,
+@@ -403,6 +468,8 @@
+              "conditioning_manifest_sha256": a.conditioning_manifest_sha256.lower(),
+              "gates_sha256": a.gates_sha256.lower(), "gates": gates,
+              "prompt_posts": 0, "http_bytes": 0, "history_polls": 0,
++             "requests": [], "completed_requests": 0, "memory_policy": a.memory_policy,
++             "cache_policy": "none", "total_output_bytes": 0, "total_ws_bytes": 0,
+              "verified_assets": [], "gpu_measurement": "nvidia-smi whole-board MiB",
+              "cuda_allocator_metrics": None, "media_validation": "not_performed"}
+     asset_stats = {}
+@@ -410,7 +477,8 @@
+     def event(kind, **fields):
+         if journal is not None:
+             journal.write(json.dumps({"elapsed_seconds": time.monotonic() - started,
+-                                      "event": kind, "perf_counter_ns":time.perf_counter_ns(), **fields}) + "\n")
++                                      "event": kind, "perf_counter_ns":time.perf_counter_ns(),
++                                       "request_index": state.get("current_request_index"), **fields}) + "\n")
+             journal.flush()
+ 
+     def sample(force=False, startup=False):
+@@ -422,7 +490,8 @@
+             return
+         memory = monitor.memory()
+         owned = monitor.owned(job, gates["max_owned_processes"]) if job is not None else []
+-        row = {"elapsed_seconds": now - started, **memory, "owned_processes": owned,
++        row = {"elapsed_seconds": now - started, "request_index": state.get("current_request_index"),
++               **memory, "owned_processes": owned,
+                "owned_rss_sum_bytes": sum(p["rss_bytes"] for p in owned),
+                "owned_private_sum_bytes": sum(p["private_bytes"] for p in owned),
+                "e_free_bytes": shutil.disk_usage(a.run_dir.parent).free}
+@@ -452,6 +521,12 @@
+         state["last_sample"] = row
+         for key in ("owned_rss_sum_bytes", "owned_private_sum_bytes"):
+             state["peak_" + key] = max(state.get("peak_" + key, 0), row[key])
++        if state["requests"]:
++            current = state["requests"][-1]
++            for key in ("owned_rss_sum_bytes", "owned_private_sum_bytes"):
++                current["peak_" + key] = max(current.get("peak_" + key, 0), row[key])
++            current["min_gpu_board_free_bytes"] = min(current.get("min_gpu_board_free_bytes", gpu["free_bytes"]), gpu["free_bytes"])
++            current["max_gpu_board_used_bytes"] = max(current.get("max_gpu_board_used_bytes", 0), gpu["used_bytes"])
+         if samples is not None:
+             samples.write(json.dumps(row) + "\n"); samples.flush()
+         require(gpu["free_bytes"] >= gates[floor + "gpu_free_bytes"], "board free-VRAM guard")
+@@ -490,7 +565,9 @@
+         allowed_get = {"/object_info/" + name for name in STAGE_NODES} | {
+             "/history/" + state["prompt_id"]}
+         require((method == "GET" and route in allowed_get) or
+-                (method == "POST" and route == "/prompt" and state["prompt_posts"] == 1),
++                (method == "POST" and route == "/prompt"
++                 and 1 <= state["prompt_posts"] == len(state["requests"]) <= 2
++                 and state["requests"][-1].get("post_attempted") is True),
+                 "HTTP operation outside fixed task")
+         connection = http_client.HTTPConnection("127.0.0.1", a.port,
+                                                  timeout=gates["http_timeout_seconds"])
+@@ -588,6 +665,8 @@
+                    "--vram-headroom", "1.0",
+                    "--reserve-vram", str(gates["reserve_vram_gb"]),
+                    "--models-directory", str(models_root)]
++        command = memory_command(command, a.memory_policy)
++        state["disable_smart_memory_requested"] = "--disable-smart-memory" in command
+         for key in ("base", "output", "temp", "input", "previews", "user"):
+             command += ["--" + key + "-directory", str(dirs[key])]
+         raw_log = (a.run_dir / "comfy.raw.log").open("xb")
+@@ -640,85 +719,120 @@
+                 require(all(graph["prompt"][i]["inputs"][field] in choices for i in ids),
+                         "model/conditioning file not enumerated")
+         event("native_schema_verification_finished")
+-        require(digest(a.profile)==a.profile_sha256,"profile changed before POST")
+-        require(digest(a.asset_manifest) == a.asset_manifest_sha256.lower(), "asset manifest changed before POST")
+-        require(load_asset_manifest(a, v1, gates) == selected, "asset receipt identity changed before POST")
+-        for path, signature in asset_stats.items():
+-            st = path.stat()
+-            require((st.st_size, st.st_mtime_ns, st.st_dev, st.st_ino) == signature, "asset changed before POST")
+-        state["conditioning_pre_post"] = verify_conditioning(
+-            conditioning_path, min(deadline, time.monotonic() + gates["asset_timeout_seconds"]))
+-        require(digest(a.conditioning_manifest) == a.conditioning_manifest_sha256.lower(),
+-                "conditioning manifest changed before POST")
+-        graph_path = a.iteration_root / manifest["graph"]["relative_path"]
+-        require(digest(graph_path) == graph_sha, "Stage-B graph changed before POST")
+-        sample(force=True, startup=True)
+-        render_deadline = min(deadline, time.monotonic() + gates["render_timeout_seconds"])
+-        state["client_id"]=uuid.uuid4().hex
+-        observer=NativeWSObserver(a.port,state["prompt_id"],state["client_id"],
+-            {k:n["class_type"] for k,n in graph["prompt"].items()},a.run_dir/"timing",
+-            a.comfy_root.parent,started)
+-        require(monitor.owns_listener(proc.pid,a.port),"observer must bind owned listener")
+-        event("observer_connect_started");observer.start()
+-        observer_deadline=min(deadline,time.monotonic()+12)
+-        while not observer.ready.wait(timeout=0.05):
+-            sample()
+-            require(not observer.done.is_set(),"observer failed before POST")
+-            require(time.monotonic()<observer_deadline,"observer readiness deadline")
+-        require(not observer.done.is_set() and observer.error is None,"observer ready but exited")
+-        event("observer_ready",client_id=state["client_id"])
+-        body = json.dumps({"prompt": graph["prompt"], "prompt_id": state["prompt_id"],
+-                           "client_id":state["client_id"]}).encode("utf-8")
+-        state["prompt_posts"] = 1; state["status"] = "submitting"
+-        event("post_attempt", prompt_id=state["prompt_id"], graph_sha256=graph_sha)
+-        try:
+-            status, answer = http("POST", "/prompt", body)
+-            v1.save_new(a.run_dir / "post.response.raw.json", answer)
+-            require(status == 200 and answer.get("prompt_id") == state["prompt_id"]
+-                    and not answer.get("node_errors"), "server rejected or changed fixed prompt")
+-            state["submission_outcome"] = "accepted"
+-        except (OSError, http_client.HTTPException) as exc:
+-            state["submission_outcome"] = "unknown"
+-            event("post_transport_outcome_unknown", error_type=type(exc).__name__)
+-        state["status"] = "waiting_history"
+-        while True:
+-            sample()
+-            require(proc.poll() is None, "Comfy exited before history completion")
+-            require(time.monotonic() < render_deadline, "render deadline")
+-            require(state["history_polls"] < gates["max_history_polls"], "history poll bound")
+-            state["history_polls"] += 1
++        def run_one(request_index):
++            nonlocal observer
++            require(observer is None, "previous observer not finalized")
++            current = begin_request(state, request_index, str(uuid.uuid4()))
++            request_started = time.monotonic()
++            request_dir = a.run_dir / ("request-" + str(request_index))
++            request_dir.mkdir()
++            current_graph = request_graph(graph, request_index)
++            current["graph_sha256"] = hashlib.sha256(json.dumps(current_graph,sort_keys=True,separators=(",", ":"),allow_nan=False).encode()).hexdigest()
++            current["history_relative_to_run"] = str((request_dir / "history.raw.json").relative_to(a.run_dir))
++            current["timing_relative_to_run"] = str((request_dir / "timing/summary.json").relative_to(a.run_dir))
++            v1.save_new(request_dir / "graph.raw.json", current_graph)
++            event("request_preparation_started")
++            require(digest(a.profile)==a.profile_sha256,"profile changed before POST")
++            require(digest(a.asset_manifest) == a.asset_manifest_sha256.lower(), "asset manifest changed before POST")
++            require(load_asset_manifest(a, v1, gates) == selected, "asset receipt identity changed before POST")
++            for path, signature in asset_stats.items():
++                st = path.stat()
++                require((st.st_size, st.st_mtime_ns, st.st_dev, st.st_ino) == signature, "asset changed before POST")
++            state["conditioning_pre_post"] = verify_conditioning(
++                conditioning_path, min(deadline, time.monotonic() + gates["asset_timeout_seconds"]))
++            require(digest(a.conditioning_manifest) == a.conditioning_manifest_sha256.lower(),
++                    "conditioning manifest changed before POST")
++            graph_path = a.iteration_root / manifest["graph"]["relative_path"]
++            require(digest(graph_path) == graph_sha, "Stage-B graph changed before POST")
++            sample(force=True, startup=request_index == 1)
++            render_deadline = min(deadline, time.monotonic() + gates["render_timeout_seconds"])
++            state["client_id"]=uuid.uuid4().hex
++            current["client_id"] = state["client_id"]
++            observer=NativeWSObserver(a.port,state["prompt_id"],state["client_id"],
++                {k:n["class_type"] for k,n in current_graph["prompt"].items()},request_dir/"timing",
++                a.comfy_root.parent,started)
++            require(monitor.owns_listener(proc.pid,a.port),"observer must bind owned listener")
++            event("observer_connect_started");observer.start()
++            observer_deadline=min(deadline,time.monotonic()+12)
++            while not observer.ready.wait(timeout=0.05):
++                sample()
++                require(not observer.done.is_set(),"observer failed before POST")
++                require(time.monotonic()<observer_deadline,"observer readiness deadline")
++            require(not observer.done.is_set() and observer.error is None,"observer ready but exited")
++            event("observer_ready",client_id=state["client_id"])
++            body = json.dumps({"prompt": current_graph["prompt"], "prompt_id": state["prompt_id"],
++                               "client_id":state["client_id"]}).encode("utf-8")
++            begin_post(state); state["status"] = "submitting"
++            event("post_attempt", prompt_id=state["prompt_id"], graph_sha256=current["graph_sha256"])
+             try:
+-                status, history = http("GET", "/history/" + state["prompt_id"])
+-                require(status == 200, "history HTTP status")
++                status, answer = http("POST", "/prompt", body)
++                v1.save_new(request_dir / "post.response.raw.json", answer)
++                require(status == 200 and answer.get("prompt_id") == state["prompt_id"]
++                        and not answer.get("node_errors"), "server rejected or changed fixed prompt")
++                current["submission_outcome"] = "accepted"
+             except (OSError, http_client.HTTPException) as exc:
+-                event("history_transport_error", error_type=type(exc).__name__)
+-                history = {}
+-            if history:
+-                v1.save_new(a.run_dir / "history.raw.json", history)
+-                require(set(history) == {state["prompt_id"]}, "unexpected history prompt identity")
+-                record = history[state["prompt_id"]]
+-                require(record.get("status", {}).get("status_str") == "success"
+-                        and record["status"].get("completed") is True, "prompt execution failed")
+-                observed = record["prompt"][2]
+-                require(set(observed) == set(graph["prompt"]) and all(
+-                    observed[k]["class_type"] == v["class_type"] and observed[k]["inputs"] == v["inputs"]
+-                    for k, v in graph["prompt"].items()), "executed graph changed")
+-                videos = record["outputs"]["92"]["images"]
+-                require(len(videos) == 1 and videos[0].get("type") == "output", "single MP4 artifact not returned")
+-                item = videos[0]
+-                relative = Path(item["subfolder"]) / item["filename"]
+-                require(not relative.is_absolute() and not relative.drive, "absolute output path forbidden")
+-                output = (dirs["output"] / relative).resolve()
+-                require(output.is_relative_to(dirs["output"]) and output.suffix.lower() == ".mp4"
+-                        and output.is_file() and 0 < output.stat().st_size <= gates["max_output_bytes"],
+-                        "output path/size guard")
+-                output_hash, _ = guarded_hash(output, render_deadline)
+-                state["artifact"] = {"relative_to_run": str(output.relative_to(a.run_dir)),
+-                                     "bytes": output.stat().st_size, "sha256": output_hash}
+-                state["status"] = "artifact_received_unvalidated"
+-                event("artifact_received", artifact=state["artifact"])
+-                break
+-            time.sleep(min(gates["poll_seconds"], max(0, render_deadline - time.monotonic())))
++                current["submission_outcome"] = "unknown"
++                event("post_transport_outcome_unknown", error_type=type(exc).__name__)
++            state["status"] = "waiting_history"
++            while True:
++                sample()
++                require(proc.poll() is None, "Comfy exited before history completion")
++                require(time.monotonic() < render_deadline, "render deadline")
++                require(state["history_polls"] < gates["max_history_polls"], "history poll bound")
++                state["history_polls"] += 1
++                try:
++                    status, history = http("GET", "/history/" + state["prompt_id"])
++                    require(status == 200, "history HTTP status")
++                except (OSError, http_client.HTTPException) as exc:
++                    event("history_transport_error", error_type=type(exc).__name__)
++                    history = {}
++                if history:
++                    v1.save_new(request_dir / "history.raw.json", history)
++                    require(set(history) == {state["prompt_id"]}, "unexpected history prompt identity")
++                    record = history[state["prompt_id"]]
++                    require(record.get("status", {}).get("status_str") == "success"
++                            and record["status"].get("completed") is True, "prompt execution failed")
++                    observed = record["prompt"][2]
++                    require(set(observed) == set(current_graph["prompt"]) and all(
++                        observed[k]["class_type"] == v["class_type"] and observed[k]["inputs"] == v["inputs"]
++                        for k, v in current_graph["prompt"].items()), "executed graph changed")
++                    videos = record["outputs"]["92"]["images"]
++                    require(len(videos) == 1 and videos[0].get("type") == "output", "single MP4 artifact not returned")
++                    item = videos[0]
++                    relative = Path(item["subfolder"]) / item["filename"]
++                    require(not relative.is_absolute() and not relative.drive, "absolute output path forbidden")
++                    output = (dirs["output"] / relative).resolve()
++                    require(output.is_relative_to(dirs["output"]) and output.suffix.lower() == ".mp4"
++                            and output.is_file() and 0 < output.stat().st_size <= gates["max_output_bytes"],
++                            "output path/size guard")
++                    output_hash, _ = guarded_hash(output, render_deadline)
++                    current["artifact"] = {"relative_to_run": str(output.relative_to(a.run_dir)),
++                                         "bytes": output.stat().st_size, "sha256": output_hash}
++                    current["status"] = "artifact_received_unvalidated"
++                    event("artifact_received", artifact=current["artifact"])
++                    break
++                time.sleep(min(gates["poll_seconds"], max(0, render_deadline - time.monotonic())))
++            observer_deadline = min(deadline, time.monotonic() + 12)
++            while not observer.done.wait(timeout=0.05):
++                sample()
++                require(time.monotonic() < observer_deadline, "request observer terminal deadline")
++            timing = observer.finish()
++            observer = None
++            current["node_timing"] = timing
++            current["metrics"] = request_metrics(timing, record, state["prompt_id"])
++            state["total_ws_bytes"] += timing["raw_received_bytes"]
++            state["total_output_bytes"] += current["artifact"]["bytes"]
++            require(state["total_ws_bytes"] <= gates["max_total_http_bytes"], "whole-session WS budget")
++            require(state["total_output_bytes"] <= gates["max_output_bytes"], "whole-session output budget")
++            current["request_elapsed_seconds"] = time.monotonic() - request_started
++            current["status"] = "complete"
++            state["completed_requests"] += 1
++            sample(force=True)
++            current["after_request_sample"] = copy.deepcopy(state["last_sample"])
++            event("request_complete", metrics=current["metrics"], artifact=current["artifact"])
++        two_requests(run_one)
++        require(state["completed_requests"] == state["prompt_posts"] == 2, "two completed requests required")
++        state["status"] = "two_artifacts_received_unvalidated"
+     except BaseException as exc:
+         state["status"] = "cancelled" if isinstance(exc, KeyboardInterrupt) or a.stop_marker.exists() else "failed"
+         state["error_type"] = type(exc).__name__
+@@ -726,6 +840,8 @@
+         event("stopped", status=state["status"], error_type=type(exc).__name__)
+     finally:
+         cleanup_owned_v2(job,proc,observer,state,gates,event)
++        if state["requests"] and "node_timing" in state:
++            state["requests"][-1]["node_timing"] = state.pop("node_timing")
+         state["elapsed_seconds"] = time.monotonic() - started
+         for stream in (samples, journal, raw_log):
+             if stream is not None:
+@@ -736,7 +852,7 @@
+         v1.save_new(result_path, state)
+     print(json.dumps({"status": state["status"], "claim": state["claim"],
+                       "prompt_posts": state["prompt_posts"], "media_validation": "not_performed"}))
+-    return 0 if state["status"] == "artifact_received_unvalidated" else 1
++    return 0 if state["status"] == "two_artifacts_received_unvalidated" else 1
+ 
+ 
+ if __name__ == "__main__":

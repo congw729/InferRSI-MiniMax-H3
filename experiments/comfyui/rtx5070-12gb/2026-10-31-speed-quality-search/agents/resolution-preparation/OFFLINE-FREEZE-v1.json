@@ -1,0 +1,83 @@
+{
+  "schema": "q33-resolution-offline-freeze/v1",
+  "created_utc": "2026-10-30T18:31:14.628775+00:00",
+  "files": [
+    {
+      "path": "assets/trim.json",
+      "bytes": 2763,
+      "sha256": "c1507b121962e250f2d74c7dce2f4e0e63e7de8e55a39c2d2795e336106de2a0"
+    },
+    {
+      "path": "canonical/trim.json",
+      "bytes": 3895,
+      "sha256": "a915f62f109cd2e1be615eb7b0c1aa6fab4a4b6ad6e31791fb84488b02a17ad8"
+    },
+    {
+      "path": "conditioning/trim-8-576x384.json",
+      "bytes": 1065,
+      "sha256": "cba4a43134c47055ee62ee694a0b22bff37593b2ace475219a647eda0f10fca4"
+    },
+    {
+      "path": "CONTROLLER-v1.patch",
+      "bytes": 4469,
+      "sha256": "cd92cf50d124a97e5c7bb53529f07722f7eaa65266f5735e8890e64b91b61807"
+    },
+    {
+      "path": "graphs/trim-8-576x384.json",
+      "bytes": 3905,
+      "sha256": "c0df0511ae3ad908c2983ee27245ee57cd61e609ecd9bc74d730eee8b55d8ee0"
+    },
+    {
+      "path": "MEDIA-EXPECTED-v1.json",
+      "bytes": 71,
+      "sha256": "96a1983b4a12d7d2890a06e6a37cf4fbf5af25ad5f22541d02dd0aaaa1823e8b"
+    },
+    {
+      "path": "MEDIA-RESOURCE-GATES-v1.json",
+      "bytes": 687,
+      "sha256": "3e880606a5744fc290be9ca4011169be7dac65140e66ac3525e7b58b65a82e60"
+    },
+    {
+      "path": "MEDIA-v1.patch",
+      "bytes": 2751,
+      "sha256": "2ffede11e58388fc12ba1fb7ab23053a80e7f1353cdedb8a3e8c42ad73ad924c"
+    },
+    {
+      "path": "offline_resolution_v1.py",
+      "bytes": 4464,
+      "sha256": "5fbacc8f3b40938b271621e3de597d2fa7e33110721f1318bb459c1ff7000a24"
+    },
+    {
+      "path": "PLAN-v1.json",
+      "bytes": 3947,
+      "sha256": "99fa20488d6cbe255b1bcce2ddc9f000cdd1cc5d7b7f72ad49dad83cb367b535"
+    },
+    {
+      "path": "PLAN-v2.json",
+      "bytes": 4068,
+      "sha256": "9c446183e6efd044ebff7df34e558157cc031170d7738b22a0e9bd910fabf36e"
+    },
+    {
+      "path": "profiles/trim-8-576x384.json",
+      "bytes": 938,
+      "sha256": "f80dd17bc8931fd829a78170804e6fb9e9743dd7e34bbac7fa776f20f52ccf7d"
+    },
+    {
+      "path": "resolution_stage_b_v1.py",
+      "bytes": 50442,
+      "sha256": "7eba09ef5e83aaa7517ad24115651a2d2ae6f80c3169921c2aeaab4579caf0c3"
+    },
+    {
+      "path": "timing_events_v1.py",
+      "bytes": 10734,
+      "sha256": "f0abb1937ca5462d712a73d1a8623b6a9f5df86927dbcf6375903b8a5ad3e614"
+    },
+    {
+      "path": "validate_resolution_media_v1.py",
+      "bytes": 23857,
+      "sha256": "a6bf70e146c07e1ae3706b2900130afd44cbd92787584f78a13cf1994c52cf5b"
+    }
+  ],
+  "model_dispatches": 0,
+  "claim": "INCONCLUSIVE"
+}

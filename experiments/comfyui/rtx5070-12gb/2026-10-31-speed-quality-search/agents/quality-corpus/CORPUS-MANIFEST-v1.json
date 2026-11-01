@@ -1,0 +1,33 @@
+{
+  "schema": "q33-quality-corpus-manifest/v1",
+  "quality_protocol": {
+    "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/quality-review/QUALITY-SCREEN-PROTOCOL-v1.json",
+    "sha256": "9130e04dc11d376689f9b23c283efdae4d756eeeb23192fe9409899410026348"
+  },
+  "canonical": {
+    "file": "CANONICAL-STAGE-A-v1.json",
+    "sha256": "1da6a1e7184e13d7e783918d09f2a3bbec750b53ec3fd66c7c3e8c57a103cb88"
+  },
+  "cases": {
+    "bounce-audio": {
+      "prompt": "A single yellow tennis ball drops onto a wooden floor, bounces twice, and settles. Static camera, continuous shot. Audio: two soft impacts matching the visible bounces, with a quiet room background.",
+      "prompt_sha256": "ab2edbd2e3a796a8f0507aa8cefc0f7d76c412b1e889a9d6536b44536cd78869",
+      "graph": {
+        "file": "graphs/bounce-audio.json",
+        "sha256": "1ada1b2863fd3e18b7bf20c85b6a459d70df5f802590e46dde99d6b58fd15ba3"
+      },
+      "expected_conditioning_sha256": null,
+      "stageB_ready": false
+    },
+    "hands-face-mug": {
+      "prompt": "An adult sitting at a table slowly lifts a blue ceramic mug with both hands and gives a small smile. Static waist-up camera, continuous shot. Audio: a light ceramic sound as the mug leaves the table and a quiet room, no speech.",
+      "prompt_sha256": "5f19fe4a542a411bf2313a2a9f8cd051c2b727c8666d5df628c461a025eb7b58",
+      "graph": {
+        "file": "graphs/hands-face-mug.json",
+        "sha256": "07d4d6734fbadca28ba315fa3c620bfaf6c3d9e9f4cad2a22e9e6abfa831eaed"
+      },
+      "expected_conditioning_sha256": null,
+      "stageB_ready": false
+    }
+  }
+}

@@ -1,0 +1,76 @@
+--- turbo6/profiles/bounce-audio.json
++++ turbo4/profiles/bounce-audio.json
+@@ -1,15 +1,15 @@
+ {
+   "schema": "q33-turbo-corpus-profile/v1",
+-  "id": "turbo-native-6",
++  "id": "turbo-native-4",
+   "family": "turbo-native",
+-  "steps": 6,
++  "steps": 4,
+   "role": "candidate",
+   "dispatch_ready": true,
+-  "dispatch_note": "Native fullmerge Turbo6 recipe unchanged except real corpus conditioning/output prefix; parent frozen source/resource review before serial GPU. Quality/performance INCONCLUSIVE.",
++  "dispatch_note": "Exploratory native fullmerge Turbo4 compared with same-corpus Turbo6; only sampler steps6to4 and output identity change. No author-proven4step quality claim; parent review before GPU.",
+   "model_subdir": "comfy-original/models",
+   "graph": {
+     "file": "graphs/bounce-audio.json",
+-    "sha256": "8ba9490a41b76a7ce4192900d49d8cb81e29598c2609e23ba153340f3fdebc59"
++    "sha256": "bed7a0c36208a1834707812c499648be6a66848750cfa9d11f513964a871ced6"
+   },
+   "canonical_graph": {
+     "file": "canonical/original.json",
+@@ -21,9 +21,9 @@
+   },
+   "conditioning": {
+     "file": "conditioning/bounce-audio.json",
+-    "sha256": "13838633b81f6514c51109002f036eaea9e3872fc3e39afb82edfbd789331c03"
++    "sha256": "4986619bf419aa10b1c0f779b30fa36d1c6c0c3dde8ea0a5efba71fc87557368"
+   },
+   "corpus_id": "bounce-audio",
+   "prompt_sha256": "ab2edbd2e3a796a8f0507aa8cefc0f7d76c412b1e889a9d6536b44536cd78869",
+   "conditioning_sha256": "70a19cfeb46fe9411ac6f3fbfea63c253056d28cffb9bb28f269da4c2134d170"
+-}+}
+--- turbo6/graphs/bounce-audio.json
++++ turbo4/graphs/bounce-audio.json
+@@ -50,7 +50,7 @@
+           0
+         ],
+         "scheduler": "simple",
+-        "steps": 6,
++        "steps": 4,
+         "denoise": 1
+       }
+     },
+@@ -142,7 +142,7 @@
+           "91",
+           0
+         ],
+-        "filename_prefix": "q33-turbo-corpus/bounce-audio/turbo-native-6",
++        "filename_prefix": "q33-turbo-corpus/bounce-audio/turbo-native-4",
+         "format": "mp4",
+         "format.codec": "h264",
+         "format.codec.encoding": "auto"
+@@ -174,4 +174,4 @@
+       }
+     }
+   }
+-}+}
+--- turbo6/conditioning/bounce-audio.json
++++ turbo4/conditioning/bounce-audio.json
+@@ -35,8 +35,8 @@
+     "basename": "h3-conditioning-70a19cfeb46fe9411ac6f3fbfea63c253056d28cffb9bb28f269da4c2134d170.safetensors"
+   },
+   "graph": {
+-    "relative_path": "agents/turbo-corpus/graphs/bounce-audio.json",
+-    "sha256": "8ba9490a41b76a7ce4192900d49d8cb81e29598c2609e23ba153340f3fdebc59"
++    "relative_path": "agents/turbo4-corpus/graphs/bounce-audio.json",
++    "sha256": "bed7a0c36208a1834707812c499648be6a66848750cfa9d11f513964a871ced6"
+   },
+   "provenance": {
+     "stage_a_receipt": {
+@@ -48,4 +48,4 @@
+       "sha256": "4855dcfd0579ffe9557a46fb6b9b3acd679ffb3fc21a61697c0ed331efa8c5f5"
+     }
+   }
+-}+}

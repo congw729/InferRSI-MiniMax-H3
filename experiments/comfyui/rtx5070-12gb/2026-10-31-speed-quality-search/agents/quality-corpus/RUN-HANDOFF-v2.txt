@@ -1,0 +1,57 @@
+Q33 质量语料Stage A v2交接（只准备，未执行TE/GPU）
+先bounce-audio，再hands-face-mug；每次新E_RUN和TRIAL，串行单服务单POST。
+
+入口：
+C=Q33/agents/quality-corpus
+C/conditioning_corpus_v2.py
+SHA 7c87ea7524c6bf4adf2573a6ccd881778807634f06d96c8f4161e98c357c3a2d
+C/CORPUS-MANIFEST-v1.json
+SHA 870756bbdae953f6c52b40a05a6ac35005d8818402170f1aa9d964bed715ef02
+C/EXECUTION-FREEZE-v2.json
+SHA e13e61e5fb13ad54a660a7d5091f24663068488ca7e4c5b82c13172d987e5665
+该freeze的files相对C，external_sources相对R，父级预检必须两组均核对。
+v1常量名误替换问题已保留，v2只修两个定义；PREPARATION-RESULT-v2记录两场真实load_corpus元数据检查、schema绑定、portable help。
+
+参数：
+R=统一记录根；Q31=R/iterations/2026-10-28-comfy-trim-first-video
+Q33=R/iterations/2026-10-31-speed-quality-search
+T=Q33/agents/timing-controller；P=portable根；PPY=P/python_embeded/python.exe
+M=models/MiniMax-H3模型根；IR=InferRSI checkout；SMI=明确nvidia-smi
+E_RUN为新E盘运行目录，parent已存在；TRIAL为新Q33/results试验目录（InferRSI创建）。
+CASE='bounce-audio'或'hands-face-mug'，PORT为父级确认空闲端口。
+
+    argv=[str(PPY),'-s','-B','-X','utf8',str(C/'conditioning_corpus_v2.py'),
+      '--mode','quality-corpus-stage-a','--corpus',CASE,
+      '--iteration-root',str(Q33),'--notes-root',str(R),'--q31-root',str(Q31),
+      '--lab-root',str(M),'--portable-python',str(PPY),'--comfy-root',str(P/'ComfyUI'),
+      '--run-dir',str(E_RUN),'--stop-marker',str(E_RUN/'stop.signal'),
+      '--nvidia-smi',str(SMI),'--inferrsi-src',str(IR/'src'),
+      '--corpus-manifest',str(C/'CORPUS-MANIFEST-v1.json'),
+      '--corpus-manifest-sha256','870756bbdae953f6c52b40a05a6ac35005d8818402170f1aa9d964bed715ef02',
+      '--timing-controller',str(T/'speed_stage_b_v3.py'),
+      '--source-manifest',str(T/'SOURCES-v1.json'),
+      '--source-manifest-sha256','bf0d3e3b09f8130053735eaa6645bcc4ff753833a97ef4ae306d7d223283f007',
+      '--schema-result',str(Q31/'results/object-info-v1-20261028T131953602235Z/result.json'),
+      '--schema-result-sha256','60a916c5ae597eca9abb8901f788691b0759aa9204df4b8168065d68b4933788',
+      '--gates',str(Q31/'plan/CONDITIONING-STAGE-RESOURCE-GATES-v1.json'),
+      '--gates-sha256','4d5114f7abc9041f34778b3f615034cc3da797150e750b4a6e7a4c684ad5a9be',
+      '--port',str(PORT)]
+    record=execute_command(tuple(argv),IR,TRIAL,time.monotonic()+2730)
+
+配置边界
+- 4个原生节点13CLIPLoader、11VAELoader、104MiniMaxH3ImageToVideo、1001SaveConditioning。
+- 两图只改104.prompt为质量协议精确文本、1001.filename_prefix为h3-quality-corpus/<case>。
+- TE仍qwen3vl_32b_minimax_h3_nvfp4_awq，type=minimax/device=default；视频VAE原int8convrot；几何384x256/73帧不变。
+- 保留Q31全4资产receipt与SHA，虽然StageA不加载DiT/audioVAE。这是保留成功路径的最小实现，不能将其校验时间称TE前向。
+- 资源门是原StageA固定门：reserve1.0GiB/private16GiB/RSS10GiB/输出32MiB；没有暗改成StageB reserve2。
+- 父级仍执行现行外部fresh资源/额度准入，GPU串行，不改无关进程。
+
+真实输出和后续
+- 成功状态conditioning_artifact_received_unvalidated，仅代表新E_RUN/output内唯一safetensors完整SHA与头结构核对。
+- result保留corpus_id、prompt_sha、graph_sha、真实artifact SHA/size/tensor结构；stageB_ready永远false。
+- 不能拿此前玩具车condition SHA替代本次结果；不能把写盘成功当有限值/数值质量通过。
+- 后续先对实际新token数做值/原生序列化检查，再以真实文件SHA/size/shape/options构建新的StageB conditioning manifest和graph冻结；此入口不制造ready manifest、不搬动/删除模型或condition。
+- 参数manifest中的expected_conditioning_sha256=null是未来输出未知，不是下载/执行完成收据。
+- 原生WS计时复用已审timing v3：节点13是TE加载入口；104包含实际prompt处理/文本编码与latent准备；11是VAE加载入口；1001保存conditioning。
+- source及所有asset校验start/end、服务启动/schema/POST/artifact/清理单独记录，实际node时间是异步接收墙钟；缺失/缓存/断线null，纯GPU时间null。
+- cleanup先signal observer→立即Job关闭/exact child回收→best-effort日志→observer join/write，保留失败。

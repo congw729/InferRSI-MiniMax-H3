@@ -1,0 +1,6 @@
+Same six path parameters plus actual remaining-percent as run_e2e_two_v4.
+Runner: Q33/agents/end-to-end-preparation/run_e2e_two_async_v5.py
+Media: Q33/agents/end-to-end-preparation/validate_e2e_two_async_media_v5.py (same parameters as v4 media, actual new run/trial/result SHA)
+Only runtime change: remove --disable-async-offload; native NVIDIA default2streams must be visible in actual bounded startup. No-pin/cache-none/disable-smart-memory/reserve3/headroom1/4POST3free and every cold/warm/stop/cleanup gate unchanged. No headroom0.75 combination.
+Record both actual prompt groups and compare complete decodedRGB/PCM/PTS to sync fourpost dc2fb2efcaf74f7db10b6846c5832541. Strict conditioning hashes remain mandatory. Preserve any failure without retries/relaxing budget. Native async source suggests copy scheduling overlap; speedup and memory on TE path remain unproven before this run.
+Exact2edit/reverse, AST, startup positive/missing rejection and realportable --help already passed; no GPU run by author. Parent/manual review then parent serial execution only.

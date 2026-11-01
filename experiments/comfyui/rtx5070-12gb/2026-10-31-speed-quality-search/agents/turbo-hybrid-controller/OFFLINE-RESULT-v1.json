@@ -1,0 +1,124 @@
+{
+  "schema": "q33-hybrid-offline-result/v1",
+  "checks": [
+    {
+      "name": "fixed_hybrid_graph",
+      "ok": true
+    },
+    {
+      "name": "merge_forbidden",
+      "ok": true
+    },
+    {
+      "name": "strength_fixed",
+      "ok": true
+    },
+    {
+      "name": "sigma_fixed",
+      "ok": true
+    },
+    {
+      "name": "sampler_fixed",
+      "ok": true
+    },
+    {
+      "name": "steps_fixed",
+      "ok": true
+    },
+    {
+      "name": "three_copied_sources_exact",
+      "ok": true
+    },
+    {
+      "name": "outside_deployment_rejected",
+      "ok": true
+    },
+    {
+      "name": "synthetic_author_log_full_coverage",
+      "ok": true
+    },
+    {
+      "name": "missing_author_log",
+      "ok": true
+    },
+    {
+      "name": "pruned_rejected",
+      "ok": true
+    },
+    {
+      "name": "partial_mapping_rejected",
+      "ok": true
+    },
+    {
+      "name": "duplicate_log_rejected",
+      "ok": true
+    },
+    {
+      "name": "unchanged_cleanup_owned_v2",
+      "ok": true
+    },
+    {
+      "name": "unchanged_sample",
+      "ok": true
+    },
+    {
+      "name": "unchanged_http",
+      "ok": true
+    },
+    {
+      "name": "unchanged_guarded_hash",
+      "ok": true
+    },
+    {
+      "name": "unchanged_verify_conditioning",
+      "ok": true
+    },
+    {
+      "name": "unchanged_conditioning_header",
+      "ok": true
+    },
+    {
+      "name": "unchanged_load_timing_module",
+      "ok": true
+    },
+    {
+      "name": "CLI_single_allowlist_and_original_protections",
+      "ok": true
+    },
+    {
+      "name": "recorded_header_evidence_identity",
+      "ok": true
+    },
+    {
+      "name": "author_native_keys_all259",
+      "ok": true
+    },
+    {
+      "name": "source_derived_fc2_split",
+      "ok": true
+    },
+    {
+      "name": "original_header_identity",
+      "ok": true
+    },
+    {
+      "name": "full_header_no_curve_branch",
+      "ok": true
+    },
+    {
+      "name": "four_real_receipts_profile_graph_bindings",
+      "ok": true
+    },
+    {
+      "name": "no_torch_import",
+      "ok": true
+    }
+  ],
+  "completed": 28,
+  "dispatches": 0,
+  "models": 0,
+  "GPU": 0,
+  "author_node_imported": false,
+  "real_mapping_scope": "Reuse real pinned header A/B shapes plus source-derived key mapping; actual hook application only future runtime log; no numerical quality proof",
+  "quality_performance": "INCONCLUSIVE"
+}

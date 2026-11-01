@@ -1,0 +1,26 @@
+{
+  "schema": "q33-contact-sheet-source-freeze/v1",
+  "files": [
+    {
+      "path": "PLAN-v1.json",
+      "bytes": 1374,
+      "sha256": "9d79c35f058014cfa54fd31c6df58c1dff6e082ae171277dce709a7cab97b38b"
+    },
+    {
+      "path": "contact_sheets_v2.py",
+      "bytes": 7800,
+      "sha256": "b0d5f4283f5f6bb78c5f650bcea7e779f472b42f81c2745ded7eba329827b68d"
+    },
+    {
+      "path": "PLAN-TURBO-AND-576-v1.json",
+      "bytes": 665,
+      "sha256": "3594c1b6c843dca52cc106c993fb615b4187b5d2d9ac9144fe612fa0a98f606a"
+    },
+    {
+      "path": "INPUTS-TURBO2-v1.json",
+      "bytes": 1541,
+      "sha256": "1dd87eb3f7fea85555f70675082f6c4927263e1bc369281eca11a951e5c91bf1"
+    }
+  ],
+  "claim": "INCONCLUSIVE"
+}

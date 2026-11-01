@@ -1,0 +1,8 @@
+{
+  "schema": "q33-persistent-media-source-fix-check/v3",
+  "exact_reverse_patch": true,
+  "actual_controller_source_sha_matches_constant": true,
+  "source_sha256": "87782b68c6e7ea7629e490ff859739fd20f30903687c2101593e6555bd873e6a",
+  "controller_sha256": "f27dff8a8792a99c47d9ba71f5ddd005a95bebd950e8f365b51cb4685b4c31b8",
+  "real_service_gpu_decoder_dispatches": 0
+}

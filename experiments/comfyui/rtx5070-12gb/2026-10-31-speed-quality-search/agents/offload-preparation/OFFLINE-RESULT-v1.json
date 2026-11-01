@@ -1,0 +1,84 @@
+{
+  "schema": "q33-async-offline-delta/v1",
+  "status": "complete",
+  "checks": [
+    {
+      "name": "frozen baseline",
+      "complete": true
+    },
+    {
+      "name": "all nonchanged function AST incl nested monitor/hash/http/loop/cleanup",
+      "complete": true
+    },
+    {
+      "name": "actual CLI only removes disable async",
+      "complete": true
+    },
+    {
+      "name": "no pin/headroom/reserve/classic maintained",
+      "complete": true
+    },
+    {
+      "name": "reject none cache",
+      "complete": true
+    },
+    {
+      "name": "two graphs unchanged with intended seeds",
+      "complete": true
+    },
+    {
+      "name": "actual startup marker accepted",
+      "complete": true
+    },
+    {
+      "name": "missing async marker rejected",
+      "complete": true
+    },
+    {
+      "name": "legacy rejected",
+      "complete": true
+    },
+    {
+      "name": "media source exact filename/hash",
+      "complete": true
+    },
+    {
+      "name": "synthetic metadata new identity accepted",
+      "complete": true
+    },
+    {
+      "name": "reject metadata mode",
+      "complete": true
+    },
+    {
+      "name": "reject metadata cache_policy",
+      "complete": true
+    },
+    {
+      "name": "reject metadata disable_async_offload_requested",
+      "complete": true
+    },
+    {
+      "name": "reject metadata disable_pinned_memory_requested",
+      "complete": true
+    },
+    {
+      "name": "reject metadata owned_root_exited",
+      "complete": true
+    },
+    {
+      "name": "reject missing observed 2 streams",
+      "complete": true
+    },
+    {
+      "name": "roots/mode fixed",
+      "complete": true
+    }
+  ],
+  "check_count": 18,
+  "gpu_runs": 0,
+  "model_dispatches": 0,
+  "limitations": "Only metadata/AST/command/startup-log checks; synthetic media record is not a real receipt or decoded media. GPU and end-to-end performance INCONCLUSIVE.",
+  "candidate_sha256": "be5ed4634a212e0d68d9b014f04ac2ca8e8547ade62c93967e73ccdecb9a8bfe",
+  "validator_sha256": "ec366f2fdce27c49985c2a0ec8483d50f7656d3cfdb405b22e333ae5b90e70a8"
+}

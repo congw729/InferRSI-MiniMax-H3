@@ -1,0 +1,26 @@
+usage: headroom_rsi_pair_v1.py [-h] --notes-root NOTES_ROOT
+                               --infra-root INFRA_ROOT
+                               --portable-root PORTABLE_ROOT
+                               --model-root MODEL_ROOT
+                               --runs-parent RUNS_PARENT
+                               --nvidia-smi NVIDIA_SMI
+                               --source-bundle SOURCE_BUNDLE
+                               --stop-file STOP_FILE
+                               --source-bundle-sha256 SOURCE_BUNDLE_SHA256
+                               --remaining-percent REMAINING_PERCENT
+                               [--max-minutes MAX_MINUTES] [--execute]
+
+options:
+  -h, --help            show this help message and exit
+  --notes-root NOTES_ROOT
+  --infra-root INFRA_ROOT
+  --portable-root PORTABLE_ROOT
+  --model-root MODEL_ROOT
+  --runs-parent RUNS_PARENT
+  --nvidia-smi NVIDIA_SMI
+  --source-bundle SOURCE_BUNDLE
+  --stop-file STOP_FILE
+  --source-bundle-sha256 SOURCE_BUNDLE_SHA256
+  --remaining-percent REMAINING_PERCENT
+  --max-minutes MAX_MINUTES
+  --execute

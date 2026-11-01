@@ -1,0 +1,21 @@
+{
+  "schema": "q33-reserve3-infra-plan/v1",
+  "frozen_before_candidate": true,
+  "plane": "infra",
+  "reason": "Real Trim8 reserve2 stopped by unchanged board free-VRAM guard; owned process reclaimed",
+  "failure_source": {
+    "relative_to_notes": "iterations/2026-10-31-speed-quality-search/results/inferrsi-trim-8-6080264a782342d799f92cd68695986b/result.json",
+    "sha256": "ec51e1bf2f8e0c077437387f9007eac9c54377988b66156ac2b00a0bd053a30d",
+    "model_posts": 1
+  },
+  "only_gate_change": {
+    "reserve_vram_gb": {
+      "before": 2.0,
+      "after": 3.0
+    }
+  },
+  "runtime_change": "STAGE_GATES_SHA constant only in new v5; exact byte reverse proof required",
+  "unchanged": "graphs/profiles/weights/steps/condition/seed/geometry/private/RSS/board floor/timeouts",
+  "hypothesis": "More reservation may preserve runtime margin, may reduce residency and slow; no stability/quality guarantee",
+  "no_gpu_preparation": true
+}

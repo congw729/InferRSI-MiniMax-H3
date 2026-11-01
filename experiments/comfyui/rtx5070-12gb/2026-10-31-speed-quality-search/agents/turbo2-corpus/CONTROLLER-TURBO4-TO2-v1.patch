@@ -1,0 +1,43 @@
+--- turbo4_corpus_stage_b_v1.py
++++ turbo2_corpus_stage_b_v1.py
+@@ -161,11 +161,11 @@
+ def validate_profile_graph(profile, graph, canonical):
+     steps = profile.get("steps")
+     require(profile.get("family") == "turbo-native" and type(steps) is int
+-            and steps == 4, "native Turbo4 corpus family/steps")
++            and steps == 2, "native Turbo2 corpus family/steps")
+     require(profile.get("id") == "turbo-native-" + str(steps)
+             and profile.get("role") == "candidate", "Turbo candidate identifier/role")
+     corpus = profile.get("corpus_id")
+-    require(corpus in CORPUS_CASES and profile.get("prompt_sha256") == CORPUS_CASES[corpus]["prompt_sha256"], "fixed corpus prompt")
++    require(corpus == "bounce-audio" and corpus in CORPUS_CASES and profile.get("prompt_sha256") == CORPUS_CASES[corpus]["prompt_sha256"], "fixed corpus prompt")
+     require(profile.get("conditioning_sha256") == CORPUS_CONDITIONING_SHA[corpus], "fixed real corpus conditioning")
+     expected = copy.deepcopy(canonical)
+     expected["prompt"]["9"]["inputs"]["steps"] = steps
+@@ -322,7 +322,7 @@
+ 
+ def parse():
+     p = argparse.ArgumentParser(description=__doc__, allow_abbrev=False)
+-    p.add_argument("--mode", choices=["turbo4-corpus-video-stage-b"], required=True)
++    p.add_argument("--mode", choices=["turbo2-corpus-video-stage-b"], required=True)
+     for name in ("iteration-root", "lab-root", "portable-python", "comfy-root",
+                  "run-dir", "stop-marker", "nvidia-smi", "inferrsi-src",
+                  "gates", "conditioning-manifest", "notes-root", "q31-root",
+@@ -403,7 +403,7 @@
+ 
+     require(a.iteration_root == a.notes_root / "iterations/2026-10-31-speed-quality-search"
+             and a.q31_root == a.notes_root / "iterations/2026-10-28-comfy-trim-first-video"
+-            and Path(__file__).resolve().parent == a.iteration_root / "agents/turbo4-corpus", "Q33/Q31 roots")
++            and Path(__file__).resolve().parent == a.iteration_root / "agents/turbo2-corpus", "Q33/Q31 roots")
+     require(a.portable_python == a.comfy_root.parent / "python_embeded/python.exe", "fixed portable relationship")
+     sys.dont_write_bytecode = True
+     v1_path = a.q31_root / "tools/comfy_first_video_v1.py"
+@@ -466,7 +466,7 @@
+     proc = job = raw_log = samples = journal = observer = None
+     next_sample = next_gpu = 0.0
+     gpu = None
+-    state = {"status": "preflight", "claim": "INCONCLUSIVE", "mode": "turbo4-corpus-video-stage-b",
++    state = {"status": "preflight", "claim": "INCONCLUSIVE", "mode": "turbo2-corpus-video-stage-b",
+              "profile_id": a.loaded_profile["id"], "profile_sha256": a.profile_sha256,
+              "corpus_id": a.loaded_profile["corpus_id"], "prompt_sha256": a.loaded_profile["prompt_sha256"],
+              "controller_entry_perf_counter_ns":entry_perf_ns,

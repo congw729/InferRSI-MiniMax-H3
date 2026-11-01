@@ -1,0 +1,29 @@
+{
+  "files": [
+    {
+      "path": "run_e2e_two_published_v7.py",
+      "bytes": 6426,
+      "sha256": "3291425e626d3fe00f61c7afec1620d44ed13c3782f8fc53d274188a2ac938ed"
+    },
+    {
+      "path": "validate_e2e_two_published_media_v7.py",
+      "bytes": 5493,
+      "sha256": "f94d50c755a8011dc1a119f37b87e1dedb0617fe8f9e18744833d3a84864fb8a"
+    },
+    {
+      "path": "parent-v6-to-published-v7.patch",
+      "bytes": 7440,
+      "sha256": "9dd5329354d6f482e8714d3e5d7dfb34f18366291db1f0f0fc1e6a04f6a5587e"
+    },
+    {
+      "path": "media-v6-to-published-v7.patch",
+      "bytes": 2615,
+      "sha256": "224afe940ac1be138445a4799759d986d913422b1deb92ffb2fe51410da44602"
+    },
+    {
+      "path": "EXECUTION-FREEZE-v7.json",
+      "bytes": 50823,
+      "sha256": "61ff847ab2481b5b9dffcb8239a1872b464a007b74cd5b9da5c156008f180fc7"
+    }
+  ]
+}

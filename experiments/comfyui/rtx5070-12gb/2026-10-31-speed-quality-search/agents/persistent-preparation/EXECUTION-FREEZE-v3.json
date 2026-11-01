@@ -1,0 +1,293 @@
+{
+  "schema": "q33-persistent-cache-execution/v3",
+  "controller_sha256": "f27dff8a8792a99c47d9ba71f5ddd005a95bebd950e8f365b51cb4685b4c31b8",
+  "media_wrapper_sha256": "87782b68c6e7ea7629e490ff859739fd20f30903687c2101593e6555bd873e6a",
+  "files": [
+    {
+      "path": "CANDIDATE-FREEZE-v1.json",
+      "bytes": 1238,
+      "sha256": "34910091c9a7fcd929b7cb97bb5c2c0b6276f0cf519085e48f39d0a5078bd6a4"
+    },
+    {
+      "path": "CANDIDATE-FREEZE-v2.json",
+      "bytes": 1405,
+      "sha256": "a365f2970dec069139d568dcfe8112663cf099330ed10445195ba4490b8d76a5"
+    },
+    {
+      "path": "CONFIGURATIONS-v1.json",
+      "bytes": 1594,
+      "sha256": "6d0c0df9f28571164e0c170aca0d30c4e5a90f603f6acf98d2e9c38b693a68b3"
+    },
+    {
+      "path": "DESIGN-v1.zh-CN.txt",
+      "bytes": 3055,
+      "sha256": "c71b66ab5df4172162875582745b68ee0bf7b7f03f9441251d4ae407995fb3e2"
+    },
+    {
+      "path": "EXECUTION-FREEZE-v2.json",
+      "bytes": 9847,
+      "sha256": "1838e39efe9d0bad0b909c8b668bdf27b033b965ac152f46adf6fe0c62409e03"
+    },
+    {
+      "path": "HANDOFF-v1.zh-CN.txt",
+      "bytes": 2510,
+      "sha256": "9c3b940cfc05d0a3c25d3734b58eac9678d3b113e808847f1a475b54d837d99e"
+    },
+    {
+      "path": "MEDIA-SOURCE-FIX-FREEZE-v3.json",
+      "bytes": 757,
+      "sha256": "702a67b15b469c52a06925c28f5f397c9e0c3695abcf2df3d7e873db33627918"
+    },
+    {
+      "path": "MEDIA-SOURCE-FIX-PLAN-v3.json",
+      "bytes": 490,
+      "sha256": "fb2981955577a7b3a978ac93dcbe1ac309b924aa1b23024029d0cbb29b4eb601"
+    },
+    {
+      "path": "MEDIA-SOURCE-FIX-RESULT-v3.json",
+      "bytes": 375,
+      "sha256": "f749ec74321a2d43a048ae65124ca43066e849676a352c866fca276043e74acf"
+    },
+    {
+      "path": "OFFLINE-RESULT-v1.json",
+      "bytes": 1541,
+      "sha256": "d0a5bbd474abacef60b85ed4265c84be64e888398d19b5c845cb82ef880140e8"
+    },
+    {
+      "path": "OFFLINE-RESULT-v2.json",
+      "bytes": 1143,
+      "sha256": "be13c25e4aff35534f277bc50869f3ef40e07505e252a61014834bdf5f15c149"
+    },
+    {
+      "path": "PARENT-HELPER-PLAN-v2.json",
+      "bytes": 399,
+      "sha256": "e1f996b7fa12de2d47a6b3ef60698b4fb9abc4750d09cef128dcab299f1653d7"
+    },
+    {
+      "path": "PLAN-FROZEN-v1.json",
+      "bytes": 1072,
+      "sha256": "5bf339a0f7e32d4def960fc54280db6e3f86d2fe1e8d894359a392246eca2f96"
+    },
+    {
+      "path": "PLAN-FROZEN-v2.json",
+      "bytes": 1780,
+      "sha256": "a366d418bd24ddbd5414bc5dd8daa47c87ae8d3e9e06fc67213c57ec3eb3d286"
+    },
+    {
+      "path": "PORTABLE-HELP-v2.json",
+      "bytes": 251,
+      "sha256": "79d38e15dc30148839fb7ebc95f6c3633ab6603a1dc4a084830f51869277475a"
+    },
+    {
+      "path": "PORTABLE-METADATA-FREEZE-v1.json",
+      "bytes": 426,
+      "sha256": "b1acfaf55f8d1161f1dbc5b7e8e7c395c026eeb82237b44dd8f8bb4b6c08f2f4"
+    },
+    {
+      "path": "PORTABLE-METADATA-v1.json",
+      "bytes": 615,
+      "sha256": "32a7138abcad21c0566340c2fb5d33c8d3f8334e8546b4df512814c50afc46d5"
+    },
+    {
+      "path": "SOURCE-READOUT-v1.json",
+      "bytes": 2402,
+      "sha256": "a1e0d413bf22a1b142fb24bbead06b3b20328572bae6a0947f956911b9adea36"
+    },
+    {
+      "path": "controller-v1-to-cache-v2.patch",
+      "bytes": 4415,
+      "sha256": "087b8f621ddf35e69f6d626eeccd0308f6bda1f3ee084e7696108b913e043ed1"
+    },
+    {
+      "path": "media-v1-to-cache-v2.patch",
+      "bytes": 6558,
+      "sha256": "18fb5d13f40adcb54f0fd868b4c1c449196049e980a9b29d72e914db9f199671"
+    },
+    {
+      "path": "media-v2-to-v3-source.patch",
+      "bytes": 1076,
+      "sha256": "ae1f2d1cf1f96140e6a302abde5253184507fb14c5837ada0f1f666c80fa0799"
+    },
+    {
+      "path": "persistent_stage_b_v1.py",
+      "bytes": 57696,
+      "sha256": "333ec8b999dd747e585ce01e57245a4db5ec582cbbb146bf810f52e2ef39c7ef"
+    },
+    {
+      "path": "persistent_stage_b_v2.py",
+      "bytes": 57964,
+      "sha256": "f27dff8a8792a99c47d9ba71f5ddd005a95bebd950e8f365b51cb4685b4c31b8"
+    },
+    {
+      "path": "persistent_stage_b_v2.py.help.txt",
+      "bytes": 2411,
+      "sha256": "9c2af5571e1cd441f51cf7e74603c1fae94a02199ec4bdeb227ce3687b86a5e4"
+    },
+    {
+      "path": "portable_metadata_probe_v1.py",
+      "bytes": 2396,
+      "sha256": "389bcaa5d1d99729e11599ca46331a6e4d6c907b70d11f00cf30d7373d9422f4"
+    },
+    {
+      "path": "speed-v6-to-persistent-v1.patch",
+      "bytes": 28480,
+      "sha256": "76131029823ef687d55799a9e658b1e16b37f61f7734fb473451e6a029b0f86e"
+    },
+    {
+      "path": "validate_cache_delta_v2.py",
+      "bytes": 4111,
+      "sha256": "91466a356164ab407b4f5506c01650a4cbb0873a3161833c81ade3cd994fb3e9"
+    },
+    {
+      "path": "validate_persistent_media_v1.py",
+      "bytes": 9671,
+      "sha256": "d68861ebcc633881f27179339e4fb678abb318c95a38510db900d9a38eb97ae7"
+    },
+    {
+      "path": "validate_persistent_media_v2.py",
+      "bytes": 9816,
+      "sha256": "9f044eb064662f861a6b69ccd2070c37863e74abb698f0c91b58306f3cc0e2f3"
+    },
+    {
+      "path": "validate_persistent_media_v2.py.help.txt",
+      "bytes": 595,
+      "sha256": "e1de610ea9ece140be2cc36916395c46ece32e4ba948762a026fcd21d9cf2c2b"
+    },
+    {
+      "path": "validate_persistent_media_v3.py",
+      "bytes": 9816,
+      "sha256": "87782b68c6e7ea7629e490ff859739fd20f30903687c2101593e6555bd873e6a"
+    },
+    {
+      "path": "validate_persistent_media_v3.py.help.txt",
+      "bytes": 595,
+      "sha256": "12656ff40c7355a4aaed7c33f81d56b7bd1d3429c639ece8585c36af8f86d2f9"
+    },
+    {
+      "path": "validate_persistent_offline_v1.py",
+      "bytes": 4218,
+      "sha256": "c4f25e32d28bfbb707473a3af407e41ef48dc8f81509d5ac8d8d7df1adc52641"
+    }
+  ],
+  "external_notes_files": [
+    {
+      "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/state/transport/assets/audio-vae.json",
+      "bytes": 383,
+      "sha256": "825d5402d4dea3d39be45c436564949944a030268860d5eb029728f30b552a6b"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/state/transport/assets/audio-vae.receipt.json",
+      "bytes": 800,
+      "sha256": "f2f8217d2d75c8d8420a12b44e6cb298ce7f2dda52d71296c25f99c39fd28251"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/state/transport/assets/trim-dit.json",
+      "bytes": 443,
+      "sha256": "2469e286a91b603ef0d80598ed55d0db23405d35b85ec1842e9b82ca41616583"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/state/transport/assets/trim-dit.receipt.json",
+      "bytes": 823,
+      "sha256": "bfac58dff244b76e1933696293a6d14cb9edba76f44eab994467c4982e48f0f8"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/state/transport/assets/video-vae.json",
+      "bytes": 400,
+      "sha256": "2606bfe4a0a25313d8423dfc8486a4e3260eed41a8fbff1678e425fb12d94dc9"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/state/transport/assets/video-vae.receipt.json",
+      "bytes": 809,
+      "sha256": "10d5e728d94c586c0aa3db2f8b9433df3b3d84105d6fa31a8a4c2e5e513e19d4"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/tools/comfy_first_video_v1.py",
+      "bytes": 20306,
+      "sha256": "63eb319e9fe294209e65c188a447a101987738e5ebc49bae879b65d36bb20d35"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/timing-controller/assets/trim.json",
+      "bytes": 2763,
+      "sha256": "c1507b121962e250f2d74c7dce2f4e0e63e7de8e55a39c2d2795e336106de2a0"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/timing-controller/canonical/trim.json",
+      "bytes": 3895,
+      "sha256": "a915f62f109cd2e1be615eb7b0c1aa6fab4a4b6ad6e31791fb84488b02a17ad8"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/timing-controller/conditioning/trim-8.json",
+      "bytes": 1011,
+      "sha256": "56e67d26b9041f4e21b91f9adf12d8efdfeab2a1a677540b3765052982043992"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/timing-controller/graphs/trim-8.json",
+      "bytes": 3698,
+      "sha256": "4f3100808edb367c1e06066320113eb94043c1f697489c443b025a31d1788016"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/timing-controller/profiles/trim-8.json",
+      "bytes": 810,
+      "sha256": "e25e4e27c44203e8bf5deac8ddb143c7b1c347881cc572f4161021a112a38e64"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/timing-controller/RESOURCE-GATES-RESERVE3-v1.json",
+      "bytes": 855,
+      "sha256": "13672a9bbe8946c28c98b3bab0f906f6ddfe67735ff7f77929e58539a4a580dd"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/timing-controller/SOURCES-v1.json",
+      "bytes": 33327,
+      "sha256": "bf0d3e3b09f8130053735eaa6645bcc4ff753833a97ef4ae306d7d223283f007"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/timing-controller/speed_stage_b_v6.py",
+      "bytes": 49744,
+      "sha256": "f194d1b1862eab246c826d19c36c9c0846afe89b1664f6c24cd3f367f86d9ee9"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/timing-controller/timing_events_v1.py",
+      "bytes": 10734,
+      "sha256": "f0abb1937ca5462d712a73d1a8623b6a9f5df86927dbcf6375903b8a5ad3e614"
+    }
+  ],
+  "portable_files": [
+    {
+      "path": "ComfyUI/execution.py",
+      "bytes": 66163,
+      "sha256": "5312ba107f69f2bc70f4009c5d52524b3865dd54fceafdc8649b22c98d6c612f"
+    },
+    {
+      "path": "ComfyUI/comfy_execution/caching.py",
+      "bytes": 23938,
+      "sha256": "f71d43f6196330e73674e13795a9d392a95750ad55be2c9d96cf54355794b862"
+    },
+    {
+      "path": "ComfyUI/main.py",
+      "bytes": 31468,
+      "sha256": "baaa16d69ee78e08c490eeec20bf27c56b746c070f76cc05b4aa13cbc616bcef"
+    },
+    {
+      "path": "ComfyUI/comfy/model_management.py",
+      "bytes": 77396,
+      "sha256": "63610e41cf06fccb5eeaa153c5fd3799e01a0c645facba844763781d2036989a"
+    },
+    {
+      "path": "ComfyUI/nodes.py",
+      "bytes": 112281,
+      "sha256": "776f549a05fc068eca20a9edc1602c6f1b80cfbbf5153bc44ba371a55fbb13be"
+    },
+    {
+      "path": "ComfyUI/comfy/cli_args.py",
+      "bytes": 23996,
+      "sha256": "c88f737c65915bd19ff04be68d151c0794b03b09e50dcb4fcd088647eb796f4a"
+    }
+  ],
+  "runtime_source_manifest": "Existing frozen SOURCES-v1 containing selected runtime/InferRSI files is verified by controller each session; this is not full environment/DLL closure",
+  "configuration_scope": "both smart, only cache none/classic; same seeds424242/424243",
+  "dispatch_ready_after_parent_independent_review": true,
+  "new_gpu_runs": 0,
+  "quality_performance": "INCONCLUSIVE",
+  "selected_controller": "persistent_stage_b_v2.py",
+  "selected_media": "validate_persistent_media_v3.py"
+}

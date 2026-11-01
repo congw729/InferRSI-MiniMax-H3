@@ -1,0 +1,10 @@
+{
+  "schema": "q33-portable-import-validation/v3",
+  "returncode": 0,
+  "controller_sha256": "524bf48df04c3ecdb251115b4db08c6482ed36eeb33405db34799b3a5669f66e",
+  "freeze_sha256": "d63e64747e488c3b69f939811d66538c113078fb18c64884167bcf39fa0f9b50",
+  "stdout_bytes": 2184,
+  "stderr_bytes": 0,
+  "model_posts": 0,
+  "only_help": true
+}

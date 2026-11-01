@@ -1,0 +1,72 @@
+{
+  "schema": "q33-persistent-media-execution-freeze/v1",
+  "created_utc": "2026-10-30T18:30:28.459162+00:00",
+  "wrapper_sha256": "d68861ebcc633881f27179339e4fb678abb318c95a38510db900d9a38eb97ae7",
+  "files": [
+    {
+      "path": "MEDIA-PLAN-FROZEN-v1.json",
+      "bytes": 1181,
+      "sha256": "e32e7d8e15012590ef9da3e0af928502fa2126d1e0d11c35cb5d61703d197598"
+    },
+    {
+      "path": "validate_persistent_media_offline_v1.py",
+      "bytes": 2583,
+      "sha256": "70fd6914fa2af0b0c28347901bff23d96a8447d1bf2c214535c433d3d6408188"
+    },
+    {
+      "path": "validate_persistent_media_v1.py",
+      "bytes": 9671,
+      "sha256": "d68861ebcc633881f27179339e4fb678abb318c95a38510db900d9a38eb97ae7"
+    },
+    {
+      "path": "MEDIA-CANDIDATE-FREEZE-v1.json",
+      "bytes": 600,
+      "sha256": "91db921ddb598e176d4c45d60728bd57ffe6b3f704ebc9ebecbb3aa5cc58c778"
+    },
+    {
+      "path": "MEDIA-OFFLINE-RESULT-v1.json",
+      "bytes": 1038,
+      "sha256": "180e7e22305c738aa22692f6632fab9750436f4e35f8608c8ed74841a9cff236"
+    },
+    {
+      "path": "MEDIA-HANDOFF-v1.zh-CN.txt",
+      "bytes": 1594,
+      "sha256": "1fac73b9d0d3c401d55f616b4f534f79d8f265bf3f79f3f457ff3fc4426d7507"
+    },
+    {
+      "path": "persistent_stage_b_v1.py",
+      "bytes": 57696,
+      "sha256": "333ec8b999dd747e585ce01e57245a4db5ec582cbbb146bf810f52e2ef39c7ef"
+    },
+    {
+      "path": "EXECUTION-FREEZE-v1.json",
+      "bytes": 7545,
+      "sha256": "00e58d584bfdc7faa52763470c263cf9be247234a47724b906562b2b6c5d6d59"
+    }
+  ],
+  "external_notes_files": [
+    {
+      "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/tools/validate_first_video_media_v1.py",
+      "bytes": 23411,
+      "sha256": "7fa12bd773e5933f2ce0e71c5be2f4124fc6c35284fbe5d3c624ab1b7012ca1a"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/plan/MEDIA-VALIDATION-GATES-v1.json",
+      "bytes": 687,
+      "sha256": "3e880606a5744fc290be9ca4011169be7dac65140e66ac3525e7b58b65a82e60"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/tools/comfy_first_video_v1.py",
+      "bytes": 20306,
+      "sha256": "63eb319e9fe294209e65c188a447a101987738e5ebc49bae879b65d36bb20d35"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/timing-controller/SOURCES-v1.json",
+      "bytes": 33327,
+      "sha256": "bf0d3e3b09f8130053735eaa6645bcc4ff753833a97ef4ae306d7d223283f007"
+    }
+  ],
+  "actual_media_dispatches": 0,
+  "independent_review_pending": true,
+  "quality_performance": "INCONCLUSIVE"
+}

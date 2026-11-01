@@ -1,0 +1,15 @@
+现有后端与最小候选（只读来源核对，未运行GPU）
+
+Trim当前已经在128号ModelAttentionBackend节点选择comfy kitchen attention。全局启动日志“Using pytorch attention”不能用来判断该模型被节点覆盖后的后端；此前成功run实际schema同时提供pytorch attention与comfy kitchen attention。因此不应再因为该全局日志而安装另一个重复的INT8 attention后端。
+
+本机隔离环境有torch2.14.1+cu130与comfy_kitchen0.2.40。已保存本机实际schema和选定源码hash；既有RTX5070日志报告Kitchen CUDA后端可用。源码is_available要求CUDA extension与compute capability>=7.5，schema提供选项说明该设备已通过这个可用性门，但本次没有逐kernel追踪。没有发现独立sageattention、sageattn3、flash_attn、xformers、triton包目录；实际既有日志也显示triton未安装且禁用。Kitchen内部sage_attention.py名称不代表安装了独立SageAttention发行包。
+
+当前384x256、73帧、29文本rows的packed rows是2385，小于BlockSparseAttention的min_tokens12288，故VSA被dense_reason挡住。本候选保留该门，不把现有低分辨率速度归因于稀疏VSA，也不顺便降低阈值。
+
+唯一候选固定Trim6，将128.inputs.attention从comfy kitchen attention改为pytorch attention。另改实验ID和输出prefix防止混淆；所有权重、条件、随机种子、步数、采样器、sigma shift、分辨率、帧数、reserve3、headroom1和停止门保持。controller只改validate_profile_graph以严格限制此图；其他函数AST相同。profile/conditioning/assets已只读解析通过，原8个小门及portable --help完成。没有改成功runtime或旧controller。
+
+Kitchen源实现将Q/K/V及概率量化为INT8、用FP32做softmax算术；旋转的理论点积不变不等于量化后值不变。PyTorch路径调用现有SDPA，源优先表是Flash、cuDNN、efficient、math，具体执行哪个kernel由设备/形状/支持条件决定，本次未实测，不能称已强制Flash或cuDNN。移除这一步INT8 attention会改变数值；画质可能不同，不能预先说更好/等价，也不能保证速度更快。
+
+建议只跑一次相同toycar场景，比较native history prompt wall、sampler node wall、private/RSS峰、boardfree最低值；沿用完整视频音频EOF门并抽帧。若明显更慢，可优先保留Kitchen；一次结果只作为筛选，不能当普遍性能或质量结论。完整感知与代表场景仍待核对，INCONCLUSIVE。
+
+调用参数与v6相同，controller改attention_stage_b_v1.py、profile改profiles/trim-6-pytorch.json；其余metadata按本目录profile descriptor传入，iteration-root仍Q33，gates仍RESOURCE-GATES-RESERVE3-v1.json，sources仍相同154项SOURCES-v1.json。父级拥有唯一GPU队列与额度检查；本准备没有启动服务、POST、网络或GPU。

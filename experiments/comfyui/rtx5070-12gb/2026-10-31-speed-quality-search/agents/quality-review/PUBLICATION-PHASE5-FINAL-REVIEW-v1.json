@@ -1,0 +1,47 @@
+{
+  "schema": "q33-publication-review/v1",
+  "at_utc": "2026-10-30T20:37:27.871999+00:00",
+  "reviewer": "manual_notes_review",
+  "scope": "Final two public notes, phase5 including final Turbo4 async no-gain observation; incremental read-only review",
+  "status": "no_blocking_finding",
+  "ready_for_parent_normal_push": true,
+  "files": [
+    {
+      "relative_to_notes": "notes/2026-10-31-speed-quality-search.md",
+      "bytes": 19491,
+      "sha256": "a5bab6755860a2a14b0e0c8a01731469f0882f1f37eaaaad59592022f2664695"
+    },
+    {
+      "relative_to_notes": "notes/2026-10-31-speed-quality-search-evidence.json",
+      "bytes": 822391,
+      "sha256": "298bc5b5be672a96176589800d6cc89a6f2615b2b0897e3ed32ffd8eceedc2c7"
+    }
+  ],
+  "checks": {
+    "valid_json_no_duplicate_keys_or_nonfinite": true,
+    "profile_entries": 41,
+    "profile_data_equals_actual_summary_v8": true,
+    "summary_v8_sha256": "86a6559f3ae95ba438c1921e2bbca2f6477f415611c7bacf3754e13ff7c3a1f9",
+    "source_identity_items_matched": 360,
+    "source_mismatches": [],
+    "lifecycle_reviews_matched": 6,
+    "additional_RSI_and_candidate_reviews_matched": 2,
+    "report_matches_public_markdown": true,
+    "three_prompt_texts_exact_original_graph_matches": true,
+    "raw_Turbo4_sync_async_results_match_added_numbers": true,
+    "actual_decoded_comparison_complete_RGB_PCM_PTS_equal": true,
+    "privacy_scan_absolute_personal_paths_IP_tokens_found": 0
+  },
+  "findings": [
+    "V4/v5/v6/v7 total controller, first output, second new-prompt and executor intervals are distinct; nested stage intervals are not added. Missing GPU-only/isolated initialization remains null.",
+    "V6 no gain, admission failure and static-validator error remain recorded; v7 single-run difference does not establish stable causal or service gain.",
+    "Headroom RSI ABBA primary warm-second median 6.6945 versus 6.44 seconds is separated from full controller and new-prompt flow. INCONCLUSIVE and two-repetition limits remain explicit.",
+    "Final Turbo4 async historical comparison is slower in this observation; candidate is not adopted. Exact fixed MP4 and complete decoded content do not imply universal quality equivalence.",
+    "Public index contains relative source identities and evidence, not runtime, raw logs, weight payload or credentials. No dashboard or git index was touched.",
+    "Current STATUS is a closeout state with quota23 and no new experiments; historical records are retained."
+  ],
+  "minor_metadata_note": "Parent handoff byte count was stale; actual index UTF8 file is 822391 bytes at the reviewed SHA. Public claim unaffected.",
+  "new_model_media_or_GPU_execution": false,
+  "files_modified_by_reviewer": [],
+  "formal_quality_service_verdict": "INCONCLUSIVE"
+}

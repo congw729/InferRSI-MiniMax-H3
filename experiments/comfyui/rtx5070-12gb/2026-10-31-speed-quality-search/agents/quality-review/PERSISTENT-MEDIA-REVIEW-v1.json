@@ -1,0 +1,26 @@
+{
+  "schema": "q33-persistent-media-independent-review/v1",
+  "reviewer": "manual_notes_review",
+  "scope": "read-only source and frozen identities; no decoder/GPU/test rerun",
+  "controller_sha256": "d68861ebcc633881f27179339e4fb678abb318c95a38510db900d9a38eb97ae7",
+  "freeze_sha256": "9b67a48a9dbab443b35575aea7892e315ebcf469c2073fbb77a0a77786f404ac",
+  "source_counts": {
+    "files": 8,
+    "external_notes_files": 4
+  },
+  "blocking_findings": [],
+  "confirmed": [
+    "Reads actual aggregate result by explicit full hash; requires two accepted complete requests and actual controller/gates/source identity",
+    "Requires GPU controller Job/root cleanup before per-artifact verification",
+    "Checks distinct safe relative MP4 paths, size/fullSHA and aggregate bound; fresh output paths; no fake single-request result",
+    "Runs unchanged Q31 validator through actual InferRSI executor once per request, each own output/trial and bounded140seconds, overall300seconds",
+    "Stops on first failed decoder; verifies full EOF/input/source/decoder hashes and cleanup before declaring structural completion",
+    "Human quality remains not_assessed/INCONCLUSIVE; no perceptual PASS"
+  ],
+  "operational_limits": [
+    "Parent supplies actual run/trial pair and stop marker; stop marker is checked between child calls, active child interruption belongs to parent executor Job",
+    "This is source review only; actual two-file decoding must still finish",
+    "Manifest freeze remains selected sources, not a complete system/DLL environment freeze"
+  ],
+  "verdict": "INCONCLUSIVE"
+}

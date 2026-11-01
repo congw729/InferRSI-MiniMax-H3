@@ -1,0 +1,11 @@
+{
+  "schema": "q33-corpus-preparation/v1",
+  "offline_returncode": 0,
+  "portable_help_returncode": 0,
+  "controller_sha256": "d171f28a2b59fab793c305c24f10be728c470d7c86d39a2df5b40a972d3c4877",
+  "manifest_sha256": "870756bbdae953f6c52b40a05a6ac35005d8818402170f1aa9d964bed715ef02",
+  "freeze_sha256": "b959583c9818b16aebc5d5c9751c29ce5676fbde6b05badd17a79987276f39a9",
+  "model_posts": 0,
+  "network": false,
+  "stageB_ready": false
+}

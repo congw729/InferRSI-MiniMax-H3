@@ -1,0 +1,52 @@
+{
+  "schema": "q33-warm-commit-admission-independent-review/v1",
+  "utc": "2026-10-30T19:18:52.633103+00:00",
+  "decision": "formula_consistent_for_bounded_warm_admission_with_fresh_read_and_existing_runtime_guards",
+  "claim": "INCONCLUSIVE",
+  "actual_v1": {
+    "result_relative_to_notes": "iterations/2026-10-31-speed-quality-search/results/inferrsi-e2e-bounce-trim8-69cb3e6959a2499fa4c7b32c214da4a0/result.json",
+    "result_sha256": "20fa0c9112ce47080293ff95a2228b8d490a78e34f9a403d72f98c1e3b16ba0c",
+    "status": "failed",
+    "prompt_posts": 1,
+    "free_posts": 1,
+    "completed_requests": 1,
+    "reset_path_entered": true,
+    "fresh_admitted": false,
+    "owned_root_exited": true,
+    "cleanup_diagnostics": [],
+    "last_available_commit_bytes": 16326205440,
+    "last_owned_private_bytes": 3840593920,
+    "warm_required_commit_bytes": 15486758912,
+    "remaining_above_warm_requirement_bytes": 839446528
+  },
+  "formula": "available_commit >= max(0, max_owned_private_bytes - current_owned_private_sum_bytes) + running_commit_bytes",
+  "same_existing_gates": {
+    "max_owned_private_bytes": 17179869184,
+    "running_commit_bytes": 2147483648,
+    "physical_admission_bytes": 12884901888,
+    "gpu_admission_bytes": 6442450944
+  },
+  "recommended_implementation": [
+    "Reject malformed/negative or owned>cap snapshots, never let max(0,...) hide an exceeded cap",
+    "Margin is existing running_commit floor2GiB, not a newly proven safety bound",
+    "After forced original sample, take a second immediate host memory read and use minimum before/after available commit and physical values for warm gate",
+    "Repeat warm gate after observer ready immediately before second POST; runtime system2GiB/private16GiB guards and original Job cleanup unchanged"
+  ],
+  "limitations": [
+    "Existing system/driver/shared commit is already reflected in availability; future external or driver/shared allocations are not bounded by owned PrivateUsage",
+    "Non-atomic snapshots and one-second polling can miss transients; admission is not reservation or OOM proof",
+    "Current process available commit may be below system-wide available commit; existing monitor uses the conservative Win32 field",
+    "Warm gate does not establish absence of TE objects or zero residual commit; runtime teardown remains fallback"
+  ],
+  "primary_sources": [
+    {
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/psapi/ns-psapi-process_memory_counters_ex",
+      "supports": "PrivateUsage reports process private Commit Charge"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/sysinfoapi/ns-sysinfoapi-memorystatusex",
+      "supports": "ullAvailPageFile is current-process committable memory, no greater than system-wide available commit; snapshot only"
+    }
+  ],
+  "scope": "Read-only actual failure and source review; no model, GPU, install, weight reads, runtime modifications"
+}

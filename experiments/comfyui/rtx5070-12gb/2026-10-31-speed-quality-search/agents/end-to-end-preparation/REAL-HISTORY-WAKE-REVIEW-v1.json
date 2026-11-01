@@ -1,0 +1,694 @@
+{
+  "schema": "q33-e2e-history-wake-actual-review/v1",
+  "claim": "INCONCLUSIVE",
+  "execution_complete": true,
+  "quality_verdict": "INCONCLUSIVE",
+  "optimization_outcome": "No observed complete-latency improvement in this single exploratory pair; retain failed optimization evidence.",
+  "result_sha256": "a501214deebb2ec55e6202d34bde4a687f2e4b705801132105a6dada14fb731a",
+  "execution_sha256": "5918b3d3dbbcb319c23fc5715b351dca8fd19c27155f91c5d5b506e639d81e96",
+  "events_sha256": "f53d91fcf39602683235ba3c8c3b0e9704d6f93cc67c9a4cac86b5631f882bd2",
+  "resources_sha256": "950f859d21ebdc0568e74cc2d0d1cebcdc1a454621de605f6acce081d8dea88b",
+  "raw_log_sha256": "8708b04465657d8aca441a5f27ef309ad3bcf81d4bf7de42ea2129a9ea771f7c",
+  "controller_sha256": "8b787a016c311184955f98eccb760d058d266c2fc994dfa7bd094b34fd79da85",
+  "freeze_sha256": "9de3448531bcd7a0067b8b0f1cd823e9a851d65452c4264fde8a589ef1525dca",
+  "trial_relative_to_q33": "results/inferrsi-e2e-two-async-wake-trim8-5a26c1ac5cd64c9aaad4fbb2c55181e9",
+  "actual_times_seconds": {
+    "outer": 63.01500000001397,
+    "controller_through_cleanup": 62.87598659994546,
+    "first_clip_entry_to_MP4_SHA": 45.84788919996936,
+    "second_clip_entry_to_MP4_SHA": 62.80699159996584,
+    "second_new_prompt_free2_start_to_MP4_SHA": 16.87442360003479,
+    "first_clip_MP4_SHA_to_second_clip_MP4_SHA": 16.959102399996482,
+    "source_verification": 0.1890972,
+    "asset_full_SHA_seconds_sum": 18.587061600000002,
+    "asset_full_SHA_bytes_sum": 30998085709,
+    "asset_full_SHA_phases": [
+      {
+        "id": "trim-dit",
+        "bytes": 11894623166,
+        "seconds": 7.2698558
+      },
+      {
+        "id": "video-vae",
+        "bytes": 2811065184,
+        "seconds": 1.7158451
+      },
+      {
+        "id": "audio-vae",
+        "bytes": 605254808,
+        "seconds": 0.3323891
+      },
+      {
+        "id": "text-encoder",
+        "bytes": 15687142551,
+        "seconds": 9.2689716
+      }
+    ],
+    "service_spawn_to_ready": 9.3286985
+  },
+  "requests": [
+    {
+      "index": 1,
+      "case": "bounce-audio",
+      "stage": "text-encoder",
+      "native_prompt_seconds": 3.538,
+      "request_controller_seconds": 4.88863499998115,
+      "post_elapsed_seconds": 28.719646199955605,
+      "artifact_SHA_elapsed_seconds": 33.40625869994983,
+      "observed_nodes": {
+        "13": {
+          "class_type": "CLIPLoader",
+          "wall_seconds": 0.65039,
+          "cached": false
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "wall_seconds": 0.2650915,
+          "cached": false
+        },
+        "104": {
+          "class_type": "MiniMaxH3ImageToVideo",
+          "wall_seconds": 2.5976488,
+          "cached": false
+        },
+        "1001": {
+          "class_type": "SaveConditioning",
+          "wall_seconds": 0.0046209,
+          "cached": false
+        }
+      },
+      "history_early_wake_count": 1,
+      "history_early_wake_source": "NativeWSObserver.done; not itself success proof",
+      "wake_elapsed_seconds": 32.27680779993534,
+      "terminal_received_to_artifact_seconds": 1.1302317,
+      "native_terminal_received_perf_counter_ns": 995410385560100,
+      "artifact_verified_perf_counter_ns": 995411515791800,
+      "timing_summary_sha256": "cbf0e12eaf68401e5e185893a637ab66391eba9942ba5d7d39250101cb4141b7",
+      "timing_events_sha256": "094234db287e78485ccd68ee4cd75d0951b071774e7c0cceed4c09f29cb17c0f",
+      "history_sha256": "7581ef77b4207de8f8028bcfc51fb96808dd242ed22f808ca854c9a65e75c709",
+      "artifact": {
+        "relative_to_run": "output\\q33-e2e-two\\bounce-audio\\conditioning\\stage-a_00001_.safetensors",
+        "bytes": 840216,
+        "sha256": "70a19cfeb46fe9411ac6f3fbfea63c253056d28cffb9bb28f269da4c2134d170"
+      },
+      "GPU_kernel_seconds": null,
+      "isolated_model_initialization_seconds": null,
+      "native_history_publication_time": null,
+      "conditioning_value_validation": {
+        "finite_values_checked": true,
+        "all_token_tags_one": true,
+        "elements_checked": 209961,
+        "nonzero_conditioning_values": 209920,
+        "roundtrip_equivalence_checked": false
+      },
+      "conditioning_shape": [
+        1,
+        41,
+        5120
+      ],
+      "conditioning_verify_alias_seconds": 0.0275325
+    },
+    {
+      "index": 2,
+      "case": "bounce-audio",
+      "stage": "trim-video",
+      "native_prompt_seconds": 10.957,
+      "request_controller_seconds": 12.274224299937487,
+      "post_elapsed_seconds": 33.8369265999645,
+      "artifact_SHA_elapsed_seconds": 45.84788919996936,
+      "observed_nodes": {
+        "6": {
+          "class_type": "UNETLoader",
+          "wall_seconds": 0.5182726,
+          "cached": false
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "wall_seconds": 0.2126079,
+          "cached": false
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "wall_seconds": 0.0504428,
+          "cached": false
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "wall_seconds": 0.0041615,
+          "cached": false
+        },
+        "128": {
+          "class_type": "ModelAttentionBackend",
+          "wall_seconds": 0.0004871,
+          "cached": false
+        },
+        "127": {
+          "class_type": "BlockSparseAttention",
+          "wall_seconds": 0.0001673,
+          "cached": false
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "wall_seconds": 0.0003278,
+          "cached": false
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "wall_seconds": 0.0004215,
+          "cached": false
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "wall_seconds": 0.0013199,
+          "cached": false
+        },
+        "16": {
+          "class_type": "BasicGuider",
+          "wall_seconds": 0.0003949,
+          "cached": false
+        },
+        "14": {
+          "class_type": "SamplerCustomAdvanced",
+          "wall_seconds": 7.8448596,
+          "cached": false
+        },
+        "10": {
+          "class_type": "VAEDecode",
+          "wall_seconds": 1.4887059,
+          "cached": false
+        },
+        "23": {
+          "class_type": "VAEDecodeAudio",
+          "wall_seconds": 0.523471,
+          "cached": false
+        },
+        "91": {
+          "class_type": "CreateVideo",
+          "wall_seconds": 0.000724,
+          "cached": false
+        },
+        "92": {
+          "class_type": "SaveVideo",
+          "wall_seconds": 0.2979711,
+          "cached": false
+        },
+        "1001": {
+          "class_type": "ConditioningLoader",
+          "wall_seconds": 0.0007864,
+          "cached": false
+        },
+        "1002": {
+          "class_type": "EmptyMiniMaxH3LatentAV",
+          "wall_seconds": 0.000439,
+          "cached": false
+        }
+      },
+      "history_early_wake_count": 1,
+      "history_early_wake_source": "NativeWSObserver.done; not itself success proof",
+      "wake_elapsed_seconds": 44.82027849997394,
+      "terminal_received_to_artifact_seconds": 1.0286066,
+      "native_terminal_received_perf_counter_ns": 995422928832400,
+      "artifact_verified_perf_counter_ns": 995423957439000,
+      "timing_summary_sha256": "7af2791dd3c9f6df739a9e64b2f3980fdbf08dbeac109b23cb3b7615be51745b",
+      "timing_events_sha256": "23166b420d9d39c6b59acbe95c87d04ac5d53743a84466c6e9b7418b7cf2124a",
+      "history_sha256": "56068d1a90273ad73eb278a3b63cc2f5fef0d04ac2d52113ee341d0a8e50d9eb",
+      "artifact": {
+        "relative_to_run": "output\\q33-e2e-two\\bounce-audio\\video_00001_.mp4",
+        "bytes": 234365,
+        "sha256": "06f16f02c040d2d8032b33970155d9d049851640b1bf074beabb935724a586d4"
+      },
+      "GPU_kernel_seconds": null,
+      "isolated_model_initialization_seconds": null,
+      "native_history_publication_time": null,
+      "immediately_pre_POST_warm_admission": {
+        "admitted": true,
+        "current_owned_private_bytes": 3842703360,
+        "same_owned_private_cap_bytes": 17179869184,
+        "remaining_private_growth_bytes": 13337165824,
+        "same_system_commit_floor_bytes": 2147483648,
+        "required_available_commit_bytes": 15484649472,
+        "effective_available_physical_bytes": 18484129792,
+        "effective_available_commit_bytes": 16196747264,
+        "post_read_available_physical_bytes": 18484129792,
+        "post_read_available_commit_bytes": 16197431296,
+        "gpu_board_free_bytes": 10083106816,
+        "TE_object_absence_proven": false,
+        "post_read_perf_counter_ns": 995411946441900
+      }
+    },
+    {
+      "index": 3,
+      "case": "hands-face-mug",
+      "stage": "text-encoder",
+      "native_prompt_seconds": 4.587,
+      "request_controller_seconds": 5.846735000028275,
+      "post_elapsed_seconds": 46.21144969994202,
+      "artifact_SHA_elapsed_seconds": 51.87198929989245,
+      "observed_nodes": {
+        "13": {
+          "class_type": "CLIPLoader",
+          "wall_seconds": 0.9298722,
+          "cached": false
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "wall_seconds": 0.147096,
+          "cached": false
+        },
+        "104": {
+          "class_type": "MiniMaxH3ImageToVideo",
+          "wall_seconds": 3.5038744,
+          "cached": false
+        },
+        "1001": {
+          "class_type": "SaveConditioning",
+          "wall_seconds": 0.0038785,
+          "cached": false
+        }
+      },
+      "history_early_wake_count": 1,
+      "history_early_wake_source": "NativeWSObserver.done; not itself success proof",
+      "wake_elapsed_seconds": 50.82424019998871,
+      "terminal_received_to_artifact_seconds": 1.0492655,
+      "native_terminal_received_perf_counter_ns": 995428932257000,
+      "artifact_verified_perf_counter_ns": 995429981522500,
+      "timing_summary_sha256": "307ed5c363a4153b1103d3870fffcbba54580e75b529b98df81509e4e25ea033",
+      "timing_events_sha256": "499e2696f04ce72bfe48cee344781b7eea004110f146a419328f330bb9f5d9a0",
+      "history_sha256": "593c4c40188129cb2726758b29e8123779646a6baf72808d341fa11049686835",
+      "artifact": {
+        "relative_to_run": "output\\q33-e2e-two\\hands-face-mug\\conditioning\\stage-a_00001_.safetensors",
+        "bytes": 1004120,
+        "sha256": "ea6cb031df1988576ee7eb4cc9d8d4c38a393e025f92de57d4aae8227858e2dc"
+      },
+      "GPU_kernel_seconds": null,
+      "isolated_model_initialization_seconds": null,
+      "native_history_publication_time": null,
+      "conditioning_value_validation": {
+        "finite_values_checked": true,
+        "all_token_tags_one": true,
+        "elements_checked": 250929,
+        "nonzero_conditioning_values": 250880,
+        "roundtrip_equivalence_checked": false
+      },
+      "conditioning_shape": [
+        1,
+        49,
+        5120
+      ],
+      "conditioning_verify_alias_seconds": 0.0314036,
+      "immediately_pre_POST_warm_admission": {
+        "admitted": true,
+        "current_owned_private_bytes": 4992061440,
+        "same_owned_private_cap_bytes": 17179869184,
+        "remaining_private_growth_bytes": 12187807744,
+        "same_system_commit_floor_bytes": 2147483648,
+        "required_available_commit_bytes": 14335291392,
+        "effective_available_physical_bytes": 17406320640,
+        "effective_available_commit_bytes": 15032262656,
+        "post_read_available_physical_bytes": 17409777664,
+        "post_read_available_commit_bytes": 15032262656,
+        "gpu_board_free_bytes": 10045358080,
+        "TE_object_absence_proven": false,
+        "post_read_perf_counter_ns": 995424320967000
+      }
+    },
+    {
+      "index": 4,
+      "case": "hands-face-mug",
+      "stage": "trim-video",
+      "native_prompt_seconds": 9.407,
+      "request_controller_seconds": 10.754432899993844,
+      "post_elapsed_seconds": 52.34933159989305,
+      "artifact_SHA_elapsed_seconds": 62.80699159996584,
+      "observed_nodes": {
+        "6": {
+          "class_type": "UNETLoader",
+          "wall_seconds": 0.4429959,
+          "cached": false
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "wall_seconds": 0.2100254,
+          "cached": false
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "wall_seconds": 0.046062,
+          "cached": false
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "wall_seconds": 0.0038601,
+          "cached": false
+        },
+        "128": {
+          "class_type": "ModelAttentionBackend",
+          "wall_seconds": 0.0004564,
+          "cached": false
+        },
+        "127": {
+          "class_type": "BlockSparseAttention",
+          "wall_seconds": 0.0001305,
+          "cached": false
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "wall_seconds": 0.0001076,
+          "cached": false
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "wall_seconds": 0.0005005,
+          "cached": false
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "wall_seconds": 0.0004896,
+          "cached": false
+        },
+        "16": {
+          "class_type": "BasicGuider",
+          "wall_seconds": 0.0004756,
+          "cached": false
+        },
+        "14": {
+          "class_type": "SamplerCustomAdvanced",
+          "wall_seconds": 6.8324314,
+          "cached": false
+        },
+        "10": {
+          "class_type": "VAEDecode",
+          "wall_seconds": 1.2816505,
+          "cached": false
+        },
+        "23": {
+          "class_type": "VAEDecodeAudio",
+          "wall_seconds": 0.3404292,
+          "cached": false
+        },
+        "91": {
+          "class_type": "CreateVideo",
+          "wall_seconds": 0.0003159,
+          "cached": false
+        },
+        "92": {
+          "class_type": "SaveVideo",
+          "wall_seconds": 0.2354805,
+          "cached": false
+        },
+        "1001": {
+          "class_type": "ConditioningLoader",
+          "wall_seconds": 0.0011045,
+          "cached": false
+        },
+        "1002": {
+          "class_type": "EmptyMiniMaxH3LatentAV",
+          "wall_seconds": 0.0004986,
+          "cached": false
+        }
+      },
+      "history_early_wake_count": 1,
+      "history_early_wake_source": "NativeWSObserver.done; not itself success proof",
+      "wake_elapsed_seconds": 61.781371999997646,
+      "terminal_received_to_artifact_seconds": 1.0265989,
+      "native_terminal_received_perf_counter_ns": 995439889942200,
+      "artifact_verified_perf_counter_ns": 995440916541100,
+      "timing_summary_sha256": "5addfe7fe640cba17feed55a2769cdde874b609e5f6fae767ae8dadaf6a011b0",
+      "timing_events_sha256": "9f35fa5d8b08a2c5771f5938132d0502cdede7b96711aa2bbf617e098b030583",
+      "history_sha256": "48215a08da32c1c341bd03836087b29daa2c687eec41679d78257e896424fa69",
+      "artifact": {
+        "relative_to_run": "output\\q33-e2e-two\\hands-face-mug\\video_00001_.mp4",
+        "bytes": 266043,
+        "sha256": "5fe6fd1cbe73688fc966287f79499d63bcfe303474a644cf94494fac49cf3734"
+      },
+      "GPU_kernel_seconds": null,
+      "isolated_model_initialization_seconds": null,
+      "native_history_publication_time": null,
+      "immediately_pre_POST_warm_admission": {
+        "admitted": true,
+        "current_owned_private_bytes": 5010808832,
+        "same_owned_private_cap_bytes": 17179869184,
+        "remaining_private_growth_bytes": 12169060352,
+        "same_system_commit_floor_bytes": 2147483648,
+        "required_available_commit_bytes": 14316544000,
+        "effective_available_physical_bytes": 16912461824,
+        "effective_available_commit_bytes": 14954557440,
+        "post_read_available_physical_bytes": 16945045504,
+        "post_read_available_commit_bytes": 15002996736,
+        "gpu_board_free_bytes": 10052698112,
+        "TE_object_absence_proven": false,
+        "post_read_perf_counter_ns": 995430458848300
+      }
+    }
+  ],
+  "releases": [
+    {
+      "after_request_index": 1,
+      "elapsed_seconds": 0.0793157,
+      "http_status": 200,
+      "reset_path_entered": true,
+      "fresh_admitted": true,
+      "warm_admission": {
+        "admitted": true,
+        "current_owned_private_bytes": 3842703360,
+        "same_owned_private_cap_bytes": 17179869184,
+        "remaining_private_growth_bytes": 13337165824,
+        "same_system_commit_floor_bytes": 2147483648,
+        "required_available_commit_bytes": 15484649472,
+        "effective_available_physical_bytes": 18489827328,
+        "effective_available_commit_bytes": 16199667712,
+        "post_read_available_physical_bytes": 18489827328,
+        "post_read_available_commit_bytes": 16200409088,
+        "gpu_board_free_bytes": 10083106816,
+        "TE_object_absence_proven": false,
+        "post_read_perf_counter_ns": 995411683551000
+      },
+      "new_marker_byte_offset": 8272,
+      "log_offset": 8256,
+      "TE_object_absence_proven": false,
+      "marker_is_not_completion_ack": true,
+      "owned_RSS_bytes": 1786183680
+    },
+    {
+      "after_request_index": 2,
+      "elapsed_seconds": 0.0939438,
+      "http_status": 200,
+      "reset_path_entered": true,
+      "fresh_admitted": true,
+      "warm_admission": {
+        "admitted": true,
+        "current_owned_private_bytes": 4992061440,
+        "same_owned_private_cap_bytes": 17179869184,
+        "remaining_private_growth_bytes": 12187807744,
+        "same_system_commit_floor_bytes": 2147483648,
+        "required_available_commit_bytes": 14335291392,
+        "effective_available_physical_bytes": 17411588096,
+        "effective_available_commit_bytes": 15037734912,
+        "post_read_available_physical_bytes": 17415450624,
+        "post_read_available_commit_bytes": 15039188992,
+        "gpu_board_free_bytes": 10045358080,
+        "TE_object_absence_proven": false,
+        "post_read_perf_counter_ns": 995424136031600
+      },
+      "new_marker_byte_offset": 11068,
+      "log_offset": 11052,
+      "TE_object_absence_proven": false,
+      "marker_is_not_completion_ack": true,
+      "owned_RSS_bytes": 2851315712
+    },
+    {
+      "after_request_index": 3,
+      "elapsed_seconds": 0.0940042,
+      "http_status": 200,
+      "reset_path_entered": true,
+      "fresh_admitted": true,
+      "warm_admission": {
+        "admitted": true,
+        "current_owned_private_bytes": 5019463680,
+        "same_owned_private_cap_bytes": 17179869184,
+        "remaining_private_growth_bytes": 12160405504,
+        "same_system_commit_floor_bytes": 2147483648,
+        "required_available_commit_bytes": 14307889152,
+        "effective_available_physical_bytes": 16914034688,
+        "effective_available_commit_bytes": 14963937280,
+        "post_read_available_physical_bytes": 16914034688,
+        "post_read_available_commit_bytes": 14963937280,
+        "gpu_board_free_bytes": 10052698112,
+        "TE_object_absence_proven": false,
+        "post_read_perf_counter_ns": 995430162434800
+      },
+      "new_marker_byte_offset": 12131,
+      "log_offset": 12115,
+      "TE_object_absence_proven": false,
+      "marker_is_not_completion_ack": true,
+      "owned_RSS_bytes": 2877325312
+    }
+  ],
+  "resource_samples": {
+    "peak_owned_private_bytes": 15137910784,
+    "peak_owned_RSS_bytes": 5978562560,
+    "min_whole_board_free_bytes": 1623195648,
+    "min_host_physical_bytes": 13464948736,
+    "min_host_commit_bytes": 4822794240,
+    "includes_final_sample": true,
+    "whole_board_not_allocator": true
+  },
+  "history_poll_seconds": 1.0,
+  "history_poll_count": 37,
+  "media": [
+    {
+      "index": 2,
+      "summary_sha256": "ca1d813a848e6319c1bcb20f7526f1cc7a3ce8607a21b7b125ba4196599f09f1",
+      "decoder_result_sha256": "be093510de024535b341fcf30b41154ab107554d1642e1d3e3df9c1c6a2b9869",
+      "frames": 73,
+      "complete": true,
+      "EOF": true,
+      "input_unchanged": true
+    },
+    {
+      "index": 4,
+      "summary_sha256": "de31e472f6429f99ff2e8175c4714960d43cbc65fc8ce6a189f7ea7f694d37c9",
+      "decoder_result_sha256": "f35555d40c67d70640021f839a16011ad7d8db7c93c8397cc32895d8b600bb22",
+      "frames": 73,
+      "complete": true,
+      "EOF": true,
+      "input_unchanged": true
+    }
+  ],
+  "cleanup": {
+    "prompt_posts": 4,
+    "completed_requests": 4,
+    "free_posts": 3,
+    "owned_root_exited": true,
+    "job_close_requested": true,
+    "cleanup_diagnostics": []
+  },
+  "comparison_to_actual_v5": {
+    "baseline_review_sha256": "6641968fc16eade4a123e25833180b0e83dab808585ea7c00bcadeedbef9f347",
+    "baseline_result_sha256": "7eb620d14c2fada3df8183cc164a5d4597dda667a26d8f50cfdd96ffa3ddb393",
+    "baseline_times": {
+      "outer": 62.04700000002049,
+      "controller_through_cleanup": 61.89537159993779,
+      "first_clip_entry_to_MP4_SHA": 45.18355029996019,
+      "second_clip_entry_to_MP4_SHA": 61.81978469993919,
+      "second_new_prompt_free2_start_to_MP4_SHA": 16.552069299970753,
+      "first_clip_MP4_SHA_to_second_clip_MP4_SHA": 16.636234399979003,
+      "second_new_prompt_free2_start_to_WS_success4": 15.448918899986893,
+      "source_verification": 0.1943024,
+      "asset_full_SHA_seconds_sum": 18.824244999999998,
+      "asset_full_SHA_bytes_sum": 30998085709,
+      "asset_full_SHA_phases": [
+        {
+          "asset_id": "trim-dit",
+          "bytes": 11894623166,
+          "seconds": 7.3087753
+        },
+        {
+          "asset_id": "video-vae",
+          "bytes": 2811065184,
+          "seconds": 1.7567761
+        },
+        {
+          "asset_id": "audio-vae",
+          "bytes": 605254808,
+          "seconds": 0.3566662
+        },
+        {
+          "asset_id": "text-encoder",
+          "bytes": 15687142551,
+          "seconds": 9.4020274
+        }
+      ],
+      "service_spawn_to_ready": 9.3231514
+    },
+    "v6_minus_v5_seconds": {
+      "controller_through_cleanup": 0.9806150000076741,
+      "first_clip_entry_to_MP4_SHA": 0.6643389000091702,
+      "second_new_prompt_free2_start_to_MP4_SHA": 0.32235430006403476,
+      "first_clip_MP4_SHA_to_second_clip_MP4_SHA": 0.32286800001747906
+    },
+    "per_request_terminal_to_artifact_seconds": {
+      "v5": [
+        0.7014142000116408,
+        0.6500112999929115,
+        0.8123199000256136,
+        1.1031503999838606
+      ],
+      "v6": [
+        1.1302317,
+        1.0286066,
+        1.0492655,
+        1.0265989
+      ]
+    }
+  },
+  "decoded_identity": {
+    "trial_relative_to_q33": "results/decoded-content-two-prompt-wake-a1b79f1661dd4d4b87bb7a23bf20fde9",
+    "result_sha256": "c13366246d931fdcf60462821274d662b9d2ad3bab983d7e40a003bf3d84912e",
+    "worker_seconds": 0.39639089989941567,
+    "peak_worker_RSS_bytes": 54603776,
+    "pairs": [
+      {
+        "a": "async-bounce-audio",
+        "b": "wake-bounce-audio",
+        "container_bytes_equal": false,
+        "all_rgb_bytes_equal": true,
+        "video_timeline_equal": true,
+        "all_pcm_bytes_equal": true,
+        "audio_format_equal": true,
+        "audio_timeline_equal": true
+      },
+      {
+        "a": "async-hands-face-mug",
+        "b": "wake-hands-face-mug",
+        "container_bytes_equal": false,
+        "all_rgb_bytes_equal": true,
+        "video_timeline_equal": true,
+        "all_pcm_bytes_equal": true,
+        "audio_format_equal": true,
+        "audio_timeline_equal": true
+      }
+    ],
+    "complete": true,
+    "container_metadata_only_explanation_proven": false
+  },
+  "diagnosis": {
+    "observed": "Every request consumed exactly one notification wake. Terminal-received-to-artifact intervals remain about1.03-1.13s. No gain observed.",
+    "source_facts": [
+      {
+        "file": "ComfyUI/execution.py",
+        "sha256": "5312ba107f69f2bc70f4009c5d52524b3865dd54fceafdc8649b22c98d6c612f",
+        "lines": [
+          828,
+          849
+        ],
+        "meaning": "execution_success is emitted before building history result, disable-smart-memory unload_all_models and finally prompt tracker end."
+      },
+      {
+        "file": "ComfyUI/main.py",
+        "sha256": "baaa16d69ee78e08c490eeec20bf27c56b746c070f76cc05b4aa13cbc616bcef",
+        "lines": [
+          384,
+          398
+        ],
+        "meaning": "After e.execute returns, q.task_done stores history, then executing(node=None,prompt_id) is sent."
+      },
+      {
+        "file": "ComfyUI/execution.py",
+        "sha256": "5312ba107f69f2bc70f4009c5d52524b3865dd54fceafdc8649b22c98d6c612f",
+        "lines": [
+          1341,
+          1361
+        ],
+        "meaning": "task_done inserts completed record into history under mutex."
+      }
+    ],
+    "inference": "Early execution_success can precede history publication; immediate wake likely found no history and used the intended1s fallback. The current controller did not journal each empty history response, so this race is source-supported but not directly proven per GET.",
+    "potential_next_minimal_change": "If authorized, wait on same-prompt native executing node=None after execution_success, which source sends after task_done, rather than generic observer.done at early success. Freeze a new observer separately; preserve native/model sources, all guards and one wake. Do not implement as part of this review."
+  },
+  "limitations": [
+    "A single pair does not establish performance stability or service PASS.",
+    "All73RGB/PCM/PTS bytes identical under fixeddecoder does not establish a new quality score or latent equality.",
+    "Unknown GPU-only/init/history-publication time stays null. Asset hash and node intervals nested within totals."
+  ]
+}

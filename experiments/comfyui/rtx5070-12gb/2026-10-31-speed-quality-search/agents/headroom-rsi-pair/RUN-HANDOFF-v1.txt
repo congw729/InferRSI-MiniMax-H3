@@ -1,0 +1,20 @@
+H3 headroom warm pair — frozen local execution handoff
+
+A=existing async classic 1.0GiB; B=existing async classic0.75GiB. Four services in actual InferRSI ABBA; each two real videos seeds424242/424243. Primary metric second request native history. First priming request still generated and fully media validated. Existing controllers/helpers/runtime/IR unchanged.
+
+Parent must refresh account remaining percent (>20) and own the only GPU dispatch. Max entire pair10minutes; every existing helper independently applies fresh resource admission. Stop marker is Q33/results/HEADROOM-RSI-STOP-v1.signal; creation requests no new member/media child, active owned child bounded by unchanged controller and outer deadline. Do not delete old files or stop unrelated processes.
+
+Command uses actual existing PPY with -s -B -X utf8 then this directory/headroom_rsi_pair_v1.py:
+--notes-root <R> --infra-root <IR> --portable-root <P> --model-root <M> --runs-parent <E_RUNS> --nvidia-smi <SMI>
+--source-bundle <THIS>/SOURCE-BUNDLE.ready-v1.json
+--source-bundle-sha256 4146b6c1922615e831d9a7f9f5ac96291e8f87d059f0fddfe41c0a488305876f
+--stop-file <Q33>/results/HEADROOM-RSI-STOP-v1.signal
+--remaining-percent <FRESH_PARENT_PERCENT> --max-minutes 10 --execute
+
+Expected final adapter exit2 means formal INCONCLUSIVE, even if all members completed. Judge actual run_directory/status.json and evaluation.json, not exit2 alone. Missing general quality validation/acceptance issue is deliberate; no formal PASS. Failed resource or media member stops ABBA, stays incomplete. Do not retry automatically.
+
+Output run_experiment tree is Q33/results/rsi-headroom-pairs/<unique>; actual videos stay in E_RUNS. Source snapshots are selected file SHA manifests, not Git revision claims or entire DLL/environment closure. Preserve raw evidence locally; redact paths/logs before parent note push.
+
+Timing: second request history endpoints are primary. Observed sampler interval is not GPU-only. Record first request, whole controller, controller outer, wrapper and media separately. Resources summarize successful-member resources.jsonl sampled extrema; guard-boundary details remain in original result.last_sample. Whole-board values include other apps, not CUDA allocator.
+
+Ready preview actually verified340 sources and four IR import paths, dispatched0. Frozen readout gate13/13. Both seed whole MP4 expected SHA plus full existing media decode required; limited identity evidence only, not generalized quality equality.

@@ -1,0 +1,7 @@
+Q33 阶段2进展：完整首批逐阶段表及质量范围已保存 notes/2026-10-31-speed-quality-search.md 和对应evidence，已正常推送main 7c7e0e3。原始观察v3修正gpu_board最小值字段，v2未改。新增hybrid v2成功（作者209bypass+50merge日志，POST1且完整媒体检查）；hybrid首试仅目录缺失POST0失败保留。三帧观察hybrid车由左入右出，但末帧有橙色模糊圆形背景，不能称质量改善。Turbo8仍有黑色车顶突起。
+
+原版弹跳参照已完成，POST1及完整媒体检查；当前唯一GPU exec50222为双手拿杯原版50参照。接下来完成两prompt Trim8/6与InferRSI ABBA；quota最近40%，20%停新工作。
+
+反思：给已完成subagent send_message不会启动工作，已改为followup_task；不要将该等待误判为实验慢。旧索引GPU最低值null属于汇总键错误，原始采样完整。阶段数据和失误均保留，未知纯GPU/传输时间仍null。
+
+以下阶段1原文保留在REPORT-phase1.zh-CN.txt。

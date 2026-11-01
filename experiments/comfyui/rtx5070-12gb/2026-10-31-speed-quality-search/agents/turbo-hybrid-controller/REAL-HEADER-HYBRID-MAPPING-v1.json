@@ -1,0 +1,15 @@
+{
+  "schema": "q33-author-hybrid-header-map/v1",
+  "previous_real_header_report_relative_to_q33": "agents/turbo-controller/REAL-LORA-HEADER-NATIVE-MAP-v1.json",
+  "previous_real_header_report_sha256": "cadd5ae14a7cf84572f156e083d39f4c1cd9e92757482aeb69c6411caf7672f7",
+  "pair_count": 259,
+  "author_keymap": "diffusion_model.<lora_module>.weight",
+  "all259_match_recorded_native_targets": true,
+  "expected_merge_I8_mlp_fc2": 50,
+  "expected_bypass_remaining": 209,
+  "runtime_condition": "TensorWiseINT8Layout and nontransposed required by author _int8_fused_fc2; header gives expected split, actual full209/50 author log mandatory at result acceptance",
+  "native_full_curve_rule": "model_detection.py418-427 only setsadaln_curve_grid when adaln_t_table exists; model.py483,493 defaultsNone->false; pinned fullheaderhasnotable",
+  "egrid": "not deployed, not needed by this fullbase; author code only localfile load, no network downloader; fullbase runtime log mandatory",
+  "no_live_model_or_forward": true,
+  "numerical_quality": "INCONCLUSIVE"
+}

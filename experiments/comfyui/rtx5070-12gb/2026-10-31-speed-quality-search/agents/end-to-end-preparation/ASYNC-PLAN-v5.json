@@ -1,0 +1,19 @@
+{
+  "schema": "q33-e2e-async-plan/v5",
+  "plane": "infra",
+  "baseline_controller_sha256": "70a627fc293bb01f7961b7228abfa4b2cda413fecf9d148044ea1d981552d89f",
+  "baseline_actual_result_review_sha256": "e2ffb24b199d04b3170f84c41913d01b6f5970325b82111f0351c7ba9f3bb35f",
+  "only_runtime_change": "Remove exactly one --disable-async-offload flag; retain native NVIDIA default two streams. Require actual bounded startup two-stream marker.",
+  "unchanged": "All four assets/graphs/condition refs/steps/seed/headroom1/reserve3/no-pin/cache-none/disable-smart-memory/4POST3free/warm/cold/stop/Jobcleanup remain unchanged.",
+  "numeric_gates_sha256": "13672a9bbe8946c28c98b3bab0f906f6ddfe67735ff7f77929e58539a4a580dd",
+  "success": [
+    "2stream native and dynamicVRAM startup evidence",
+    "same strict actual two condition refs/finite/tags",
+    "four actual completions and three admitted free transitions",
+    "both full media then decoded RGB/PCM/PTS compared to sync",
+    "all original resource and owned cleanup gates"
+  ],
+  "failure": "Preserve failure and stop; no hidden retry/headroom/pin/cap change.",
+  "claim": "INCONCLUSIVE",
+  "timing": "Compare measured full cold overhead, each phase, second new-prompt free2-to-MP4; one pair is exploratory not service PASS."
+}

@@ -1,0 +1,230 @@
+{
+  "schema": "q33-offload-readonly-source-design/v1",
+  "execution": "NONE; stdlib source reads and small note writes only",
+  "scope": "Installed ComfyUI 0.43.0 Python sources and comfy-aimdo 0.6.0 Python wrapper. No fresh DLL/CUDA trace, no model or network. Prior Q31 DLL research not superseded.",
+  "sources": [
+    {
+      "relative_to_portable": "ComfyUI/comfy/cli_args.py",
+      "bytes": 23996,
+      "sha256": "c88f737c65915bd19ff04be68d151c0794b03b09e50dcb4fcd088647eb796f4a",
+      "line_ranges": [
+        [
+          180,
+          194
+        ]
+      ],
+      "excerpts": [
+        {
+          "first_line": 180,
+          "last_line": 194,
+          "text": "parser.add_argument(\"--async-offload\", nargs='?', const=2, type=int, default=None, metavar=\"NUM_STREAMS\", help=\"Use async weight offloading. An optional argument controls the amount of offload streams. Default is 2. Enabled by default on Nvidia.\")\nparser.add_argument(\"--disable-async-offload\", action=\"store_true\", help=\"Disable async weight offloading.\")\nparser.add_argument(\"--disable-dynamic-vram\", action=\"store_true\", help=\"Disable dynamic VRAM and use estimate based model loading.\")\nparser.add_argument(\"--enable-dynamic-vram\", action=\"store_true\", help=\"Enable dynamic VRAM on systems where it's not enabled by default.\")\nparser.add_argument(\"--fast-disk\", action=\"store_true\", help=\"Force disk-backed dynamic loading and offload over unpinned RAM. Can be faster for users with fast NVME disks.\")\nparser.add_argument(\"--disable-fast-disk\", action=\"store_true\", help=\"Disable disk-backed dynamic loading and offload over unpinned RAM. Overrides --fast-disk.\")\nparser.add_argument(\"--disable-cuda-graphs\", action=\"store_true\", help=\"Disable CUDA graphs.\")\nparser.add_argument(\"--disable-comfy-compiler\", action=\"store_true\", help=\"Disable the Comfy model compiler, including its CUDA graph subfeature.\")\nparser.add_argument(\"--assert-graph-breaks\", action=\"store_true\", help=\"Fail on Comfy model compiler graph breaks.\")\n\nparser.add_argument(\"--force-non-blocking\", action=\"store_true\", help=\"Force ComfyUI to use non-blocking operations for all applicable tensors. This may improve performance on some non-Nvidia systems but can cause issues with some workflows.\")\n\nparser.add_argument(\"--default-hashing-function\", type=str, choices=['md5', 'sha1', 'sha256', 'sha512'], default='sha256', help=\"Allows you to choose the hash function to use for duplicate filename / contents comparison. Default is sha256.\")\n\nparser.add_argument(\"--disable-smart-memory\", action=\"store_true\", help=\"Force ComfyUI to agressively offload to regular ram instead of keeping models in vram when it can.\")"
+        }
+      ]
+    },
+    {
+      "relative_to_portable": "ComfyUI/comfy/model_management.py",
+      "bytes": 77396,
+      "sha256": "63610e41cf06fccb5eeaa153c5fd3799e01a0c645facba844763781d2036989a",
+      "line_ranges": [
+        [
+          728,
+          769
+        ],
+        [
+          1351,
+          1385
+        ],
+        [
+          1403,
+          1407
+        ],
+        [
+          1445,
+          1517
+        ],
+        [
+          1616,
+          1659
+        ]
+      ],
+      "excerpts": [
+        {
+          "first_line": 728,
+          "last_line": 769,
+          "text": "def free_pins(size, evict_active=False, loaded=False):\n    freed = 0\n    for subsets, current_prompt, active in pin_eviction_tiers(loaded, evict_active):\n        freed += free_model_pins(size - freed, subsets, current_prompt, active)\n    return freed\n\ndef should_free_pins_for_ram_pressure(shortfall):\n    if shortfall <= 0:\n        return False\n    if not WINDOWS:\n        return True\n    if comfy.system_memory.virtual_memory_available() < WINDOWS_PIN_EVICTION_EMERGENCY_AVAILABLE:\n        return True\n    try:\n        return psutil.swap_memory().percent >= WINDOWS_PIN_EVICTION_SWAP_PERCENT\n    except RuntimeError as err:\n        logging.warning(\"Could not read Windows swap usage; falling back to RAM-pressure pin eviction: %s\", err)\n        return True\n\ndef ensure_pin_budget(size, evict_active=False, loaded=False):\n    if args.high_ram:\n        return True\n    shortfall = size + max(comfy.memory_management.RAM_CACHE_HEADROOM / 2, 2048 * 1024 ** 2) - comfy.system_memory.virtual_memory_available()\n    if shortfall <= 0:\n        return True\n\n    to_free = shortfall + PIN_PRESSURE_HYSTERESIS\n    return free_pins(to_free, evict_active=evict_active, loaded=loaded) >= shortfall\n\ndef free_registrations(shortfall, evict_active=True):\n    if MAX_PINNED_MEMORY <= 0:\n        return False\n    if shortfall <= 0:\n        return True\n\n    shortfall += REGISTERABLE_PIN_HYSTERESIS\n    for subsets, current_prompt, active, registrations in registration_eviction_tiers(evict_active):\n        shortfall -= free_model_pins(shortfall, subsets, current_prompt, active, registrations=registrations)\n    return shortfall <= REGISTERABLE_PIN_HYSTERESIS\n\ndef ensure_pin_registerable(size, evict_active=True):\n    return free_registrations(TOTAL_PINNED_MEMORY + size - MAX_PINNED_MEMORY, evict_active=evict_active)"
+        },
+        {
+          "first_line": 1351,
+          "last_line": 1385,
+          "text": "def device_supports_non_blocking(device):\n    if args.force_non_blocking:\n        return True\n    if is_device_mps(device):\n        return False #pytorch bug? mps doesn't support non blocking\n    if is_intel_xpu(): #xpu does support non blocking but it is slower on iGPUs for some reason so disable by default until situation changes\n        return False\n    if args.deterministic: #TODO: figure out why deterministic breaks non blocking from gpu to cpu (previews)\n        return False\n    if directml_enabled:\n        return False\n    return True\n\ndef force_channels_last():\n    if args.force_channels_last:\n        return True\n\n    #TODO\n    return False\n\n\nSTREAMS = {}\nNUM_STREAMS = 0\nif args.async_offload is not None:\n    NUM_STREAMS = args.async_offload\nelse:\n    #  Enable by default on Nvidia and AMD\n    if is_nvidia() or is_amd():\n        NUM_STREAMS = 2\n\nif args.disable_async_offload:\n    NUM_STREAMS = 0\n\nif NUM_STREAMS > 0:\n    logging.info(\"Using async weight offloading with {} streams\".format(NUM_STREAMS))"
+        },
+        {
+          "first_line": 1403,
+          "last_line": 1407,
+          "text": "STREAM_AIMDO_CAST_BUFFERS = {}\nLARGEST_AIMDO_CASTED_WEIGHT = (None, 0)\nCROSS_STEP_STATE = weakref.WeakSet()\n\nDEFAULT_AIMDO_CAST_BUFFER_RESERVATION_SIZE = 16 * 1024 ** 3"
+        },
+        {
+          "first_line": 1445,
+          "last_line": 1517,
+          "text": "def get_aimdo_cast_buffer(offload_stream, device):\n    cast_buffer = STREAM_AIMDO_CAST_BUFFERS.get(offload_stream, None)\n    if cast_buffer is None:\n        cast_buffer = comfy_aimdo.vram_buffer.VRAMBuffer(DEFAULT_AIMDO_CAST_BUFFER_RESERVATION_SIZE, device.index)\n        STREAM_AIMDO_CAST_BUFFERS[offload_stream] = cast_buffer\n    return cast_buffer\n\ndef reset_cast_buffers():\n    global LARGEST_CASTED_WEIGHT\n    global LARGEST_AIMDO_CASTED_WEIGHT\n\n    LARGEST_CASTED_WEIGHT = (None, 0)\n    LARGEST_AIMDO_CASTED_WEIGHT = (None, 0)\n    for offload_stream in set(STREAM_CAST_BUFFERS) | set(STREAM_AIMDO_CAST_BUFFERS):\n        if offload_stream is not None:\n            offload_stream.synchronize()\n    synchronize()\n\n    for mmap_obj in DIRTY_MMAPS:\n        mmap_obj.bounce()\n    DIRTY_MMAPS.clear()\n\n    for module in CROSS_STEP_STATE:\n        del module._comfy_cross_step_state\n    CROSS_STEP_STATE.clear()\n\n    for loaded_model in current_loaded_models:\n        model = loaded_model.model\n        if model is not None and model.is_dynamic():\n            pin_state = model.model.dynamic_pins[model.load_device]\n\n            if pin_state[\"active\"]:\n                for subset in (\"weights\", \"weights-loaded\", \"weights-fast\"):\n                    *_, buckets = pin_state[subset]\n                    for size, bucket in list(buckets.items()):\n                        bucket[:] = [ entry for entry in bucket if entry[-1] is not None ]\n                        if not bucket:\n                            del buckets[size]\n\n            pin_state[\"active\"] = False\n            model.partially_unload_ram(1e30, subsets=[ \"patches\", \"patches-loaded\", \"patches-fast\" ])\n            for subset in (\"patches\", \"patches-loaded\", \"patches-fast\"):\n                pin_state[subset] = (comfy_aimdo.host_buffer.HostBuffer(0, 8 * 1024 * 1024, pinned_hostbuf_size(model.model_size())), [], [-1], [0], [0], {})\n\n    STREAM_CAST_BUFFERS.clear()\n    STREAM_AIMDO_CAST_BUFFERS.clear()\n    soft_empty_cache()\n\ndef get_offload_stream(device):\n    stream_counter = stream_counters.get(device, 0)\n    if NUM_STREAMS == 0:\n        return None\n\n    if torch.compiler.is_compiling():\n        return None\n\n    if device in STREAMS:\n        ss = STREAMS[device]\n        #Sync the oldest stream in the queue with the current\n        ss[stream_counter].wait_stream(current_stream(device))\n        stream_counter = (stream_counter + 1) % len(ss)\n        stream_counters[device] = stream_counter\n        return ss[stream_counter]\n    elif is_device_cuda(device):\n        ss = []\n        for k in range(NUM_STREAMS):\n            s1 = torch.cuda.Stream(device=device, priority=0)\n            s1.as_context = torch.cuda.stream\n            ss.append(s1)\n        STREAMS[device] = ss\n        s = ss[stream_counter]\n        stream_counters[device] = stream_counter\n        return s"
+        },
+        {
+          "first_line": 1616,
+          "last_line": 1659,
+          "text": "MAX_PINNED_MEMORY = -1\n\ndef get_disk_swap_total():\n    if not os.path.exists(\"/proc/swaps\"):\n        return 0\n\n    total = 0\n    try:\n        with open(\"/proc/swaps\", encoding=\"utf-8\") as swaps:\n            next(swaps, None)\n            for line in swaps:\n                filename, _, size, _, _ = line.rsplit(maxsplit=4)\n                if os.path.basename(os.path.realpath(filename)).startswith(\"zram\"):\n                    continue\n                total += int(size) * 1024\n    except:\n        logging.warning(\"Could not get amount of swap memory on system.\")\n    return total\n\ndef is_integrated_gpu():\n    device = get_torch_device()\n    return device.type == \"cuda\" and bool(torch.cuda.get_device_properties(device).is_integrated)\n\nDISABLE_PINNED_MEMORY = args.disable_pinned_memory\nif not DISABLE_PINNED_MEMORY and is_integrated_gpu():\n    # Integrated GPU VRAM is carved out of system RAM, so pinning host memory only takes RAM from the GPU.\n    DISABLE_PINNED_MEMORY = True\n\nif not DISABLE_PINNED_MEMORY:\n    if is_nvidia() or is_amd():\n        ram = get_total_memory(torch.device(\"cpu\"))\n        if WINDOWS:\n            MAX_PINNED_MEMORY = ram * 0.40  # Windows limit is apparently 50%\n        else:\n            swap = 0 if comfy.system_memory.cgroup_memory_limit() is not None else get_disk_swap_total()\n            MAX_PINNED_MEMORY = max(ram * 0.40, min(ram * 0.90, ram - 4 * 1024 ** 3, ram + swap - 16 * 1024 ** 3))\n        logging.info(\"Enabled pinned memory {}\".format(MAX_PINNED_MEMORY // (1024 * 1024)))\n\nPINNING_ALLOWED_TYPES = set([\"Tensor\", \"Parameter\", \"QuantizedTensor\"])\n\ndef pinned_hostbuf_size(size):\n    if args.high_ram:\n        return max(0, int(size * 2))\n    return max(0, int(min(size, MAX_PINNED_MEMORY) * 2))"
+        }
+      ]
+    },
+    {
+      "relative_to_portable": "ComfyUI/comfy/ops.py",
+      "bytes": 93642,
+      "sha256": "0167aef2929b92ba3623376f7656e58ead5869485b926b09bead525f32e4dd06",
+      "line_ranges": [
+        [
+          144,
+          195
+        ],
+        [
+          197,
+          251
+        ],
+        [
+          380,
+          426
+        ]
+      ],
+      "excerpts": [
+        {
+          "first_line": 144,
+          "last_line": 195,
+          "text": "def cast_modules_with_vbar(comfy_modules, dtype, device, bias_dtype, non_blocking, return_faulted=False):\n    offload_stream = None\n    cast_buffer = None\n    cast_buffer_offset = 0\n    if return_faulted:\n        fully_faulted = all(not getattr(s, param_key + \"_function\", []) for s in comfy_modules for param_key in (\"weight\", \"bias\"))\n\n    def ensure_offload_stream(module, required_size, check_largest):\n        nonlocal offload_stream\n        nonlocal cast_buffer\n\n        if offload_stream is None:\n            offload_stream = comfy.model_management.get_offload_stream(device)\n        if offload_stream is None or not check_largest or len(comfy_modules) != 1:\n            return\n\n        current_size = 0 if cast_buffer is None else cast_buffer.size()\n        if current_size < required_size and module is comfy.model_management.LARGEST_AIMDO_CASTED_WEIGHT[0]:\n            offload_stream = comfy.model_management.get_offload_stream(device)\n            cast_buffer = None\n        if required_size > comfy.model_management.LARGEST_AIMDO_CASTED_WEIGHT[1]:\n            comfy.model_management.LARGEST_AIMDO_CASTED_WEIGHT = (module, required_size)\n\n    def get_cast_buffer(buffer_size):\n        nonlocal offload_stream\n        nonlocal cast_buffer\n        nonlocal cast_buffer_offset\n\n        if buffer_size == 0:\n            return None\n\n        if offload_stream is None:\n            return torch.empty((buffer_size,), dtype=torch.uint8, device=device)\n\n        cast_buffer = comfy.model_management.get_aimdo_cast_buffer(offload_stream, device)\n        buffer = comfy_aimdo.torch.aimdo_to_tensor(cast_buffer.get(buffer_size, cast_buffer_offset), device)\n        cast_buffer_offset += buffer_size\n        return buffer\n\n    for s in comfy_modules:\n        signature = comfy_aimdo.model_vbar.vbar_fault(s._v)\n        resident = comfy_aimdo.model_vbar.vbar_signature_compare(signature, s._v_signature)\n        if return_faulted and (signature is None or not resident):\n            fully_faulted = False\n        prefetch = {\n            \"signature\": signature,\n            \"resident\": resident,\n        }\n\n        if resident:\n            s._prefetch = prefetch\n            continue"
+        },
+        {
+          "first_line": 197,
+          "last_line": 251,
+          "text": "        materialize_meta_param(s, [\"weight\", \"bias\"])\n        xfer_dest = comfy_aimdo.torch.aimdo_to_tensor(s._v, device) if signature is not None else None\n        cast_geometry = comfy.memory_management.tensors_to_geometries([ s.weight, s.bias ])\n        cast_dest = None\n        needs_cast = False\n\n        xfer_source = [ s.weight, s.bias ]\n        fast_disk = s._pin_state[\"fast_disk\"]\n        subset = \"weights-fast\" if fast_disk else \"weights\"\n        pin = comfy.pinned_memory.get_pin(s, subset=subset)\n        if pin is None and not fast_disk:\n            loaded_pin = comfy.pinned_memory.get_pin(s, subset=\"weights-loaded\")\n            if loaded_pin is not None or signature is not None:\n                subset = \"weights-loaded\"\n                pin = loaded_pin\n        if pin is not None:\n            xfer_source = [ pin ]\n\n        for data, geometry in zip([ s.weight, s.bias ], cast_geometry):\n            if data is None:\n                continue\n            if data.dtype != geometry.dtype:\n                needs_cast = True\n                cast_dest = xfer_dest\n                xfer_dest = None\n                break\n\n        dest_size = comfy.memory_management.vram_aligned_size(xfer_source)\n        ensure_offload_stream(s, dest_size if xfer_dest is None else 0, True)\n        if xfer_dest is None:\n            xfer_dest = get_cast_buffer(dest_size)\n\n        def cast_maybe_lowvram_patch(xfer_source, xfer_dest, stream, xfer_dest2=None):\n            if xfer_source is not None:\n                if getattr(xfer_source, \"is_lowvram_patch\", False):\n                    if xfer_dest is not None:\n                        xfer_source.prepare(xfer_dest, stream, copy=True, commit=False)\n                        xfer_source = [ xfer_dest ]\n                        xfer_dest = xfer_dest2\n                        xfer_dest2 = None\n                    elif xfer_dest2 is not None:\n                        xfer_source.prepare(xfer_dest2, stream, copy=True, commit=False)\n                        return\n                    else:\n                        return\n                comfy.model_management.cast_to_gathered(xfer_source, xfer_dest, non_blocking=non_blocking, stream=stream, r2=xfer_dest2)\n\n        def handle_pin(m, pin, source, dest, subset=\"weights\", size=None):\n            if pin is not None:\n                cast_maybe_lowvram_patch([pin], dest, offload_stream)\n                return\n            if signature is None or not fast_disk or args.high_ram:\n                comfy.pinned_memory.pin_memory(m, subset=subset, size=size)\n                pin = comfy.pinned_memory.get_pin(m, subset=subset)\n            cast_maybe_lowvram_patch(source, pin, offload_stream, xfer_dest2=dest)"
+        },
+        {
+          "first_line": 380,
+          "last_line": 426,
+          "text": "    non_blocking = comfy.model_management.device_supports_non_blocking(device)\n\n    if hasattr(s, \"_v\") and comfy.model_management.is_device_cpu(device):\n\n        #vbar doesn't support CPU weights, but some custom nodes have weird paths\n        #that might switch the layer to the CPU and expect it to work. We have to take\n        #a clone conservatively as we are mmapped and some SFT files are packed misaligned\n        #If you are a custom node author reading this, please move your layer to the GPU\n        #or declare your ModelPatcher as CPU in the first place.\n        materialize_meta_param(s, [\"weight\", \"bias\"])\n        weight = s.weight.to(dtype=dtype, copy=True)\n        if isinstance(weight, QuantizedTensor):\n            weight = weight.dequantize()\n        bias = s.bias.to(dtype=bias_dtype, copy=True) if s.bias is not None else None\n        return format_return((weight, bias, (None, None, None)), offloadable)\n\n    elif hasattr(s, \"_v\") and s.weight.device != device:\n        prefetched = hasattr(s, \"_prefetch\")\n        offload_stream = None\n        offload_device = None\n        if not prefetched:\n            offload_stream = cast_modules_with_vbar([s], dtype, device, bias_dtype, non_blocking)\n            comfy.model_management.sync_stream(device, offload_stream)\n\n        weight, bias = resolve_cast_module_with_vbar(s, dtype, device, bias_dtype, compute_dtype, want_requant)\n\n        if not prefetched:\n            if getattr(s, \"_prefetch\")[\"signature\"] is not None:\n                offload_device = device\n            for param_key in (\"weight\", \"bias\"):\n                lowvram_fn = getattr(s, param_key + \"_lowvram_function\", None)\n                if lowvram_fn is not None:\n                    lowvram_fn.clear_prepared()\n            delattr(s, \"_prefetch\")\n        return format_return((weight, bias, (offload_stream, offload_device, None)), offloadable)\n\n\n    if offloadable and (device != s.weight.device or\n                        (s.bias is not None and device != s.bias.device)):\n        offload_stream = comfy.model_management.get_offload_stream(device)\n    else:\n        offload_stream = None\n\n    bias = None\n    weight = None\n\n    if offload_stream is not None and not args.cuda_malloc:"
+        }
+      ]
+    },
+    {
+      "relative_to_portable": "ComfyUI/comfy/pinned_memory.py",
+      "bytes": 5396,
+      "sha256": "33338a144d0d59406630851d8ec6ea5659d28bad2cd3aa85680a5816e4b44d64",
+      "line_ranges": [
+        [
+          58,
+          138
+        ]
+      ],
+      "excerpts": [
+        {
+          "first_line": 58,
+          "last_line": 138,
+          "text": "def get_pin(module, subset=\"weights\"):\n    pins = module.__dict__.get(\"_pins\")\n    module_pin = None if pins is None else pins.get(subset)\n    pin = None if module_pin is None else module_pin.get(\"pin\")\n    if pin is None or module_pin[\"registered\"] or comfy.model_management.DISABLE_PINNED_MEMORY:\n        return pin\n\n    _, _, stack_split, pinned_size, *_ = module._pin_state[subset]\n    size = pin.nbytes\n    comfy.model_management.ensure_pin_registerable(size)\n\n    if torch.cuda.cudart().cudaHostRegister(pin.data_ptr(), size, 1) != 0:\n        comfy.model_management.discard_cuda_async_error()\n        return pin\n\n    module_pin[\"registered\"] = True\n    stack_split[0] = max(stack_split[0], module_pin[\"stack_index\"])\n    comfy.model_management.TOTAL_PINNED_MEMORY += size\n    pinned_size[0] += size\n    return pin\n\ndef pin_memory(module, subset=\"weights\", size=None):\n    pin_state = module._pin_state\n    if comfy.model_management.DISABLE_PINNED_MEMORY:\n        return\n\n    pin = get_pin(module, subset)\n    if pin is not None:\n        return\n\n    pins = module.__dict__.setdefault(\"_pins\", {})\n    module_pin = pins.setdefault(subset, {})\n    hostbuf, stack, stack_split, pinned_size, counter, buckets = pin_state[subset]\n    if size is None:\n        size = comfy.memory_management.vram_aligned_size([ module.weight, module.bias ])\n    registerable_size = size\n    loaded = subset.endswith(\"-loaded\")\n    fast = subset.endswith(\"-fast\")\n    priority = module_pin.get(\"balancer_priority\")\n\n    if priority is None:\n        priority = comfy.utils.bit_reverse_range(counter[0], 16)\n        counter[0] += 1\n        module_pin[\"balancer_priority\"] = priority\n\n    comfy.memory_management.extra_ram_release(comfy.memory_management.RAM_CACHE_HEADROOM)\n    if (not comfy.model_management.ensure_pin_budget(size, loaded=loaded) or\n        not comfy.model_management.ensure_pin_registerable(registerable_size, evict_active=not fast)):\n        return _steal_pin(module, stack, buckets, size, priority, subset)\n\n    offset = hostbuf.size\n    extended = False\n    try:\n        hostbuf.extend(size=size, register=False)\n        extended = True\n        pin = comfy_aimdo.torch.hostbuf_to_tensor(hostbuf)[offset:offset + size]\n        pin.untyped_storage()._comfy_hostbuf = hostbuf\n        if torch.cuda.cudart().cudaHostRegister(pin.data_ptr(), size, 1) != 0:\n            comfy.model_management.discard_cuda_async_error()\n            comfy.model_management.free_registrations(size, evict_active=not fast)\n            if torch.cuda.cudart().cudaHostRegister(pin.data_ptr(), size, 1) != 0:\n                comfy.model_management.discard_cuda_async_error()\n                del pin\n                hostbuf.truncate(offset, do_unregister=False)\n                return _steal_pin(module, stack, buckets, size, priority, subset)\n    except RuntimeError:\n        if extended:\n            hostbuf.truncate(offset, do_unregister=False)\n        return _steal_pin(module, stack, buckets, size, priority, subset)\n\n    module_pin[\"pin\"] = pin\n    if pin_state[\"writable\"]:\n        module._pin_subset = subset\n    stack.append((module, offset))\n    module_pin[\"registered\"] = True\n    module_pin[\"stack_index\"] = len(stack) - 1\n    stack_split[0] = max(stack_split[0], module_pin[\"stack_index\"])\n    comfy.model_management.TOTAL_PINNED_MEMORY += size\n    pinned_size[0] += size\n    _add_to_bucket(module, module_pin, buckets, size, priority)\n    return True"
+        }
+      ]
+    },
+    {
+      "relative_to_portable": "ComfyUI/comfy/model_patcher.py",
+      "bytes": 109588,
+      "sha256": "4f8ccf957a7227942c0e167384ed4e128f038245ad09b9bb547102281be13612",
+      "line_ranges": [
+        [
+          1820,
+          1835
+        ],
+        [
+          1869,
+          1914
+        ]
+      ],
+      "excerpts": [
+        {
+          "first_line": 1820,
+          "last_line": 1835,
+          "text": "                \"weights\": (comfy_aimdo.host_buffer.HostBuffer(0, 0, 0), [], [-1], [0], [0], {}),\n                \"patches\": (comfy_aimdo.host_buffer.HostBuffer(0, 0, 0), [], [-1], [0], [0], {}),\n                \"weights-loaded\": (comfy_aimdo.host_buffer.HostBuffer(0, 0, 0), [], [-1], [0], [0], {}),\n                \"patches-loaded\": (comfy_aimdo.host_buffer.HostBuffer(0, 0, 0), [], [-1], [0], [0], {}),\n                \"weights-fast\": (comfy_aimdo.host_buffer.HostBuffer(0, 0, 0), [], [-1], [0], [0], {}),\n                \"patches-fast\": (comfy_aimdo.host_buffer.HostBuffer(0, 0, 0), [], [-1], [0], [0], {}),\n                \"fast_disk\": self.fast_disk,\n                \"writable\": self.model.comfy_writable,\n                \"hostbufs_initialized\": False,\n                \"failed\": False,\n                \"active\": False,\n                \"current_prompt\": False,\n            }\n\n    def is_dynamic(self):\n        return True"
+        },
+        {
+          "first_line": 1869,
+          "last_line": 1914,
+          "text": "    def _vbar_get(self, create=False):\n        if self.load_device == torch.device(\"cpu\"):\n            return None\n        vbar = self.model.dynamic_vbars.get(self.load_device, None)\n        if create and vbar is None:\n            # x10. We dont know what model defined type casts we have in the vbar, but virtual address\n            # space is pretty free. This will cover someone casting an entire model from FP4 to FP32\n            # with some left over.\n            size = self.model_size() * 10\n            pageout = None\n            if self.model.comfy_writable:\n                size = sum(comfy.memory_management.vram_aligned_size(p) for p in self.model.parameters())\n                model_ref = weakref.ref(self.model)\n\n                def pageout(offset, size):\n                    model = model_ref()\n                    if model is None:\n                        return\n\n                    for m in model.modules():\n                        if not hasattr(m, \"_v\") or m._v_signature is None:\n                            continue\n                        vbar, address, length = m._v\n                        start = address - vbar.base_addr\n                        if start < offset + size and start + length > offset:\n                            m.writeback(m._v_weight)\n                            m._v_signature = None\n\n            vbar = comfy_aimdo.model_vbar.ModelVBAR(size, self.load_device.index, pageout_callback=pageout)\n            self.model.dynamic_vbars[self.load_device] = vbar\n        return vbar\n\n    def loaded_size(self):\n        vbar = self._vbar_get()\n        return (vbar.loaded_size() if vbar is not None else 0) + self.model.model_loaded_weight_memory\n\n    #Pinning is deferred to ops time. Assert against this API to avoid pin leaks.\n\n    def pin_weight_to_device(self, key):\n        raise RuntimeError(\"pin_weight_to_device invalid for dymamic weight loading\")\n\n    def unpin_weight(self, key):\n        raise RuntimeError(\"unpin_weight invalid for dymamic weight loading\")\n\n    def unpin_all_weights(self):\n        self.partially_unload_ram(1e32)"
+        }
+      ]
+    },
+    {
+      "relative_to_portable": "ComfyUI/comfy/model_prefetch.py",
+      "bytes": 11633,
+      "sha256": "1ee8631a6b797631c705086edad5c5993e77461b57ad3d9308ac3493eeb9d7fd",
+      "line_ranges": [
+        [
+          107,
+          123
+        ]
+      ],
+      "excerpts": [
+        {
+          "first_line": 107,
+          "last_line": 123,
+          "text": "def pin_modules(comfy_modules, device, dtype=None):\n    registerable_size = 0\n    for s in comfy_modules:\n        registerable_size += comfy.memory_management.vram_aligned_size([s.weight, s.bias])\n        for param_key in (\"weight\", \"bias\"):\n            lowvram_fn = getattr(s, param_key + \"_lowvram_function\", None)\n            if lowvram_fn is not None:\n                registerable_size += lowvram_fn.memory_required()\n\n    offload_stream, fully_faulted = comfy.ops.cast_modules_with_vbar(comfy_modules, None, device, None, True, return_faulted=True)\n    if not (comfy_modules and comfy_modules[0]._pin_state[\"fast_disk\"]):\n        comfy.model_management.ensure_pin_registerable(registerable_size)\n    comfy.model_management.sync_stream(device, offload_stream)\n    if fully_faulted and dtype is not None:\n        for comfy_module in comfy_modules:\n            comfy.ops.resolve_cast_module_with_vbar(comfy_module, dtype, device, dtype, None, False, return_weights=False)\n    return offload_stream, fully_faulted"
+        }
+      ]
+    },
+    {
+      "relative_to_portable": "python_embeded/Lib/site-packages/comfy_aimdo/vram_buffer.py",
+      "bytes": 1921,
+      "sha256": "9cbd4b6513321ae493c7d54576c363e6d5bc3fe5f4f39a327d977574147aea39",
+      "line_ranges": [
+        [
+          8,
+          59
+        ]
+      ],
+      "excerpts": [
+        {
+          "first_line": 8,
+          "last_line": 59,
+          "text": "def _growth_chunk_size():\n    lib_name = str(getattr(lib, \"_name\", \"\")).lower()\n    return 2 * 1024**2 if \"rocm\" in lib_name else 16 * 1024**2\n\n\nif lib is not None:\n    lib.vrambuf_create.argtypes = [ctypes.c_int, ctypes.c_size_t]\n    lib.vrambuf_create.restype = ctypes.c_void_p\n\n    lib.vrambuf_grow.argtypes = [ctypes.c_void_p, ctypes.c_size_t]\n    lib.vrambuf_grow.restype = ctypes.c_bool\n\n    lib.vrambuf_get.argtypes = [ctypes.c_void_p]\n    lib.vrambuf_get.restype = ctypes.c_uint64\n\n    lib.vrambuf_destroy.argtypes = [ctypes.c_void_p]\n    lib.vrambuf_destroy.restype = ctypes.c_bool\n\n\nclass VRAMBuffer:\n    def __init__(self, max_size, device):\n        self._devctx = control.get_devctx(device)\n        self.device = device\n        self.max_size = max_size\n        self._ptr = lib.vrambuf_create(self.device, self.max_size)\n        if not self._ptr:\n            raise RuntimeError(\"VRAM reservation failed\")\n\n        self.base_addr = lib.vrambuf_get(self._ptr)\n        self._allocated = 0\n        self._chunk_size = _growth_chunk_size()\n\n    def size(self):\n        return self._allocated\n\n    def get(self, size, offset=0):\n        offset = int(offset)\n        size = int(size)\n        required_size = size + offset\n        if required_size > self._allocated:\n            if not lib.vrambuf_grow(self._ptr, required_size):\n                raise RuntimeError(f\"VRAM grow failed: {required_size} bytes\")\n\n            self._allocated = (required_size + self._chunk_size - 1) & ~(self._chunk_size - 1)\n\n        return (self, self.base_addr + offset, size)\n\n    def __del__(self):\n        ptr = getattr(self, \"_ptr\", None)\n        if ptr:\n            if not lib.vrambuf_destroy(ptr):\n                raise RuntimeError(\"VRAM destroy failed: device context unavailable\")"
+        }
+      ]
+    }
+  ],
+  "current_controller": {
+    "relative_to_q33": "agents/persistent-preparation/persistent_stage_b_v2.py",
+    "sha256": "f27dff8a8792a99c47d9ba71f5ddd005a95bebd950e8f365b51cb4685b4c31b8",
+    "lines": [
+      312,
+      314,
+      667
+    ]
+  },
+  "recommendation": {
+    "status": "DESIGN_ONLY_AWAIT_CACHE_RESULTS",
+    "single_change": "Remove --disable-async-offload only; retain --disable-pinned-memory. NVIDIA default becomes 2 streams. No explicit async stream-count experiment.",
+    "constant": "Chosen cache policy and smart-memory setting must first be fixed equally on baseline/candidate; exact same graph, assets, seed sequence, source freeze, reserve-vram 3.0, vram-headroom 1.0 and all resource/cleanup gates.",
+    "why_first": "Changes only copy/temporary buffer scheduling while keeping native pin/host-buffer cache disabled; avoids simultaneously increasing the 32 GiB host pin commitment.",
+    "not_a_claim": "Source proves affected branches, not transfer overlap or a speed gain. Warm resident weights skip copying. CUDA compilation can return no offload stream. Pageable source may limit overlap."
+  },
+  "memory_boundaries": {
+    "async": "Per-stream AIMDO VRAMBuffer retained in STREAM_AIMDO_CAST_BUFFERS until reset_cast_buffers; synchronous branch uses torch.empty temporary. Wrapper reserves max_size 16 GiB but tracks allocated=0 initially, grows on get, NVIDIA rounded to 16 MiB; 16 GiB is not a measured resident allocation or forecast. No exact peak is inferred.",
+    "pin": "Without disable-pinned-memory NVIDIA enables MAX_PINNED_MEMORY=RAM*0.40 on Windows. About 12.8 GiB for exactly 32 GiB RAM is a registration upper limit, not a promise of consumption. Dynamic pin_memory extends a host buffer, then cudaHostRegister; ensure_pin_budget uses free memory and >=2 GiB/headroom/2, eviction and failure fallbacks. Native internal bounds do not replace external process/commit limits.",
+    "not_equivalent": "The args.cuda_malloc restriction at ops.py:426 belongs to a legacy branch after VBAR branch; it does not prove dynamic AIMDO async is disabled under current allocator."
+  },
+  "minimal_future_measurement": {
+    "prerequisite": "Parent decides after actual cache-none/classic comparison; do not implement or launch now.",
+    "two_sessions": "For selected persistent cache policy, baseline disabled-async then candidate default-async; each service runs the same two seed sequence 424242/424243, same 8 uncached sampler steps per request. This is an exploratory comparison, not service proof or a large matrix.",
+    "evidence": [
+      "First-start actual CLI and source identity; candidate startup text Using async weight offloading with 2 streams (baseline absence alone is not proof; command binds baseline).",
+      "Per-request native prompt and sampling times, first vs second separately; total controller/service startup overhead kept separate.",
+      "Whole-board GPU minimum/free peak, owned private/RSS, host physical/commit minima, guard/timeout/cleanup; no allocator-only memory claim.",
+      "Actual two artifact hashes and full media validation; scheduling-only recipe does not itself prove numerical/visual equivalence; any differences or quality gap remain INCONCLUSIVE."
+    ],
+    "stop": "All existing thresholds unchanged, particularly whole-board free 768 MiB, host physical/commit 2 GiB, private 16 GiB/RSS 10 GiB; failure is preserved, no automatic second flag, reserve change or retry.",
+    "fallback": "If no gain or a resource guard triggers, retain current configuration; enabling pins is a separate later proposal, not bundled."
+  },
+  "verdict": "INCONCLUSIVE: no candidate execution or measured gain."
+}

@@ -1,0 +1,29 @@
+--- decoded_content_v3.py
++++ decoded_content_v4.py
+@@ -39,8 +39,8 @@
+   v=child(root,x['path']);need(v.stat().st_size==x['bytes'] and sha(v)==x['sha256'],'frozen source drift')
+  for x in f['infra_files']:
+   v=child(infra,x['path']);need(v.stat().st_size==x['bytes'] and sha(v)==x['sha256'],'InferRSI source drift')
+- plan=json.loads((root/'PLAN-BOUNCE-E2E-v1.json').read_text());manifest=json.loads((root/'INPUTS-BOUNCE-E2E-v1.json').read_text());need(1<=len(manifest['inputs'])<=10,'input count bound');expected=plan['expected']
+- out={'schema':'q33-decoded-content-identity/v1','complete':False,'claim':'INCONCLUSIVE','quality_verdict':'INCONCLUSIVE','model_dispatches':0,'network_requests':0,'media_writes':0,'worker_sha256':sha(Path(__file__)),'freeze_sha256':a.freeze_sha256,'inputs_sha256':sha(root/'INPUTS-BOUNCE-E2E-v1.json'),'peak_own_rss_bytes':0,'items':[]}
++ plan=json.loads((root/'PLAN-TWO-PROMPT-v1.json').read_text());manifest=json.loads((root/'INPUTS-TWO-PROMPT-v1.json').read_text());need(1<=len(manifest['inputs'])<=10,'input count bound');expected=plan['expected']
++ out={'schema':'q33-decoded-content-identity/v1','complete':False,'claim':'INCONCLUSIVE','quality_verdict':'INCONCLUSIVE','model_dispatches':0,'network_requests':0,'media_writes':0,'worker_sha256':sha(Path(__file__)),'freeze_sha256':a.freeze_sha256,'inputs_sha256':sha(root/'INPUTS-TWO-PROMPT-v1.json'),'peak_own_rss_bytes':0,'items':[]}
+  def guard():
+   need(time.perf_counter()-start<plan['whole_seconds'],'CPU whole deadline');v=rss();out['peak_own_rss_bytes']=max(out['peak_own_rss_bytes'],v);need(v<=plan['max_worker_rss_bytes'],'CPU RSS cap')
+  try:
+@@ -49,7 +49,14 @@
+   for item in manifest['inputs']:
+    guard();t=time.perf_counter();receipt=read_json(child(q,item['trial_relative_to_iteration'])/'result.json',item['result_sha256']);need(receipt['owned_root_exited'] and receipt['job_close_requested'],'generation cleanup binding')
+    need(all(receipt[k]==v for k,v in item['generation_identity'].items()),'generation source binding');idx=item['request_index']
+-   if idx:
++   if idx and receipt['status']=='two_new_prompt_videos_received_unvalidated':
++    need(receipt['mode']=='two-new-prompts-trim8' and idx in (2,4) and receipt['prompt_posts']==receipt['completed_requests']==4 and receipt['free_posts']==3 and len(receipt['requests'])==4 and not receipt['cleanup_diagnostics'],'actual four-POST receipt')
++    need(len(receipt['releases'])==3 and all(x['fresh_admitted'] and x['reset_path_entered'] and x['warm_admission']['admitted'] for x in receipt['releases']),'actual four-POST free admission')
++    case,reference={2:('bounce-audio','70a19cfeb46fe9411ac6f3fbfea63c253056d28cffb9bb28f269da4c2134d170'),4:('hands-face-mug','ea6cb031df1988576ee7eb4cc9d8d4c38a393e025f92de57d4aae8227858e2dc')}[idx]
++    req=receipt['requests'][idx-1];text=receipt['requests'][idx-2]
++    need(req['request_index']==idx and req['case']==case and req['artifact']==item['artifact'] and req['status']=='complete','four-POST request artifact')
++    need(text['case']==case and text['artifact']['sha256']==reference and text['conditioning_value_validation']['finite_values_checked'],'four-POST actual conditioning')
++   elif idx:
+     need(receipt['status']=='two_artifacts_received_unvalidated' and len(receipt['requests'])==2,'persistent receipt')
+     req=receipt['requests'][idx-1];need(req['request_index']==idx and req['artifact']==item['artifact'],'request artifact binding')
+    else:

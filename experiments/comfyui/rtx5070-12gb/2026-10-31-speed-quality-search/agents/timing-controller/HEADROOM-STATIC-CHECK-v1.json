@@ -1,0 +1,12 @@
+{
+  "schema": "q33-headroom-static/v1",
+  "only_cli_and_requested_state_field": true,
+  "exact_reverse_bytes": true,
+  "compile_without_import": true,
+  "native_cli_and_unit_source_confirmed": true,
+  "new_controller": "speed_stage_b_v6.py",
+  "new_sha256": "f194d1b1862eab246c826d19c36c9c0846afe89b1664f6c24cd3f367f86d9ee9",
+  "requested_headroom_gib": 1.0,
+  "unchanged_reserve_gib": 3.0,
+  "model_posts": 0
+}

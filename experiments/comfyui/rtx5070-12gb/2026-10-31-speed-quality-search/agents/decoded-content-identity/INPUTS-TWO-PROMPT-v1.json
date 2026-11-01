@@ -1,0 +1,101 @@
+{
+  "schema": "q33-decoded-content-inputs/v1",
+  "inputs": [
+    {
+      "id": "split-bounce-audio",
+      "trial_relative_to_iteration": "results/inferrsi-corpus-bounce-audio-trim-8-017c32be26204b2aa8e6f4967c5afc71",
+      "result_sha256": "022c8a45e26c38c63db843d7e88a2f2392f09e98e927087d6d11d120be6119d3",
+      "generation_identity": {
+        "driver_sha256": "74de2ccded6ec7415e183c13d162caba653b54b5bcc99270a924c9391d58c7d1",
+        "profile_sha256": "ce709559ed18e1bc6e4f421f016ff9214328aa2f1b37af5d354127f11eda719d",
+        "graph_sha256": "0cb30852195d42dad6eb3d5edf5c6cbf7ed4c6596de1e149310f8d88d0091fce",
+        "asset_set_sha256": "c1507b121962e250f2d74c7dce2f4e0e63e7de8e55a39c2d2795e336106de2a0",
+        "source_manifest_sha256": "bf0d3e3b09f8130053735eaa6645bcc4ff753833a97ef4ae306d7d223283f007",
+        "conditioning_manifest_sha256": "1ad54e9281d4e3b3d4ba7d7baf8d4a9dab7060d30965d6774c904aebcd731c5b",
+        "gates_sha256": "13672a9bbe8946c28c98b3bab0f906f6ddfe67735ff7f77929e58539a4a580dd"
+      },
+      "request_index": 0,
+      "run_relative_to_lab": "comfy-original/runs/q33-corpus-bounce-audio-trim-8-017c32be26204b2aa8e6f4967c5afc71",
+      "media_relative_to_run": "media-inspection-v1",
+      "media_summary_sha256": "eaeb65947a23471156b0dd9cdef1ce2ea041bb97995b696bff06dd7738ee77c5",
+      "decode_report_sha256": "442de25f94df196daa81077019f1580b7a5ccfbe7093836923390b5685b56925",
+      "artifact": {
+        "relative_to_run": "output\\q33-corpus\\bounce-audio\\trim-8_00001_.mp4",
+        "bytes": 234328,
+        "sha256": "0b9c5f0a29430f57efe9acd97ec21534ff0bb51ff2152fe1ab9abebb2d8ff246"
+      }
+    },
+    {
+      "id": "fourpost-bounce-audio",
+      "trial_relative_to_iteration": "results/inferrsi-e2e-two-trim8-dc2fb2efcaf74f7db10b6846c5832541",
+      "result_sha256": "933514e31915a1bbac3c195d39af43c869de4a86a742b63e1359fc456533f119",
+      "generation_identity": {
+        "driver_sha256": "70a627fc293bb01f7961b7228abfa4b2cda413fecf9d148044ea1d981552d89f",
+        "profile_sha256": "e25e4e27c44203e8bf5deac8ddb143c7b1c347881cc572f4161021a112a38e64",
+        "graph_sha256": "4f3100808edb367c1e06066320113eb94043c1f697489c443b025a31d1788016",
+        "asset_set_sha256": "fcaa021e7aa7ecc50ecd14f51e81448a758dc6c8352b65d5ea7aa657d1fe31a8",
+        "source_manifest_sha256": "bf0d3e3b09f8130053735eaa6645bcc4ff753833a97ef4ae306d7d223283f007",
+        "conditioning_manifest_sha256": "56e67d26b9041f4e21b91f9adf12d8efdfeab2a1a677540b3765052982043992",
+        "gates_sha256": "13672a9bbe8946c28c98b3bab0f906f6ddfe67735ff7f77929e58539a4a580dd"
+      },
+      "request_index": 2,
+      "run_relative_to_lab": "comfy-original/runs/q33-e2e-two-trim8-dc2fb2efcaf74f7db10b6846c5832541",
+      "media_relative_to_run": "media-inspection-request-2-v1",
+      "media_summary_sha256": "bc51020268ddcd3174bb4007efd0dbcb23bf32fe4b01e83d35a197c6e468d11c",
+      "decode_report_sha256": "97dcd162053f2011b2d1e0b2fb07e284ed30abf0d8daed7431ef9b21c19950a7",
+      "artifact": {
+        "relative_to_run": "output\\q33-e2e-two\\bounce-audio\\video_00001_.mp4",
+        "bytes": 234365,
+        "sha256": "ced0d146815659e7db03c3ca67aa7513a0a26a9bfbf6584a1adac475f77ca8dc"
+      }
+    },
+    {
+      "id": "split-hands-face-mug",
+      "trial_relative_to_iteration": "results/inferrsi-corpus-hands-face-mug-trim-8-efeb0b2d4a80448d9449d36a5ed96917",
+      "result_sha256": "ba7e00394cd02d87658a2a0479d7c5b6d87571d56dad4d597d075ea893a33b12",
+      "generation_identity": {
+        "driver_sha256": "74de2ccded6ec7415e183c13d162caba653b54b5bcc99270a924c9391d58c7d1",
+        "profile_sha256": "1e20ccd00c5df73c2efbd24e26f1b690dc970ed3179ae512df29adc20a07d11f",
+        "graph_sha256": "544a60ad4863ec1639e351fcf6b8a503bf196ac93f1175023dafa9ff28a89fe8",
+        "asset_set_sha256": "c1507b121962e250f2d74c7dce2f4e0e63e7de8e55a39c2d2795e336106de2a0",
+        "source_manifest_sha256": "bf0d3e3b09f8130053735eaa6645bcc4ff753833a97ef4ae306d7d223283f007",
+        "conditioning_manifest_sha256": "f2892bc8a06e4c84108c07c9e95d4950b20dad26be05b2ddf8c92b73dfcecb33",
+        "gates_sha256": "13672a9bbe8946c28c98b3bab0f906f6ddfe67735ff7f77929e58539a4a580dd"
+      },
+      "request_index": 0,
+      "run_relative_to_lab": "comfy-original/runs/q33-corpus-hands-face-mug-trim-8-efeb0b2d4a80448d9449d36a5ed96917",
+      "media_relative_to_run": "media-inspection-v1",
+      "media_summary_sha256": "8b499b56c88d0bd45ae7603f8893032f9e22e407f1a396be3e15ba9b021d72b7",
+      "decode_report_sha256": "86de114cc3694eae6f4f6e63073f1267543a3ad4d0642b67b14e7c624aa2e159",
+      "artifact": {
+        "relative_to_run": "output\\q33-corpus\\hands-face-mug\\trim-8_00001_.mp4",
+        "bytes": 266004,
+        "sha256": "ee040fcadaa68cd190bafd494153b9ada6427b6ef4005999040ae5a6bf20fd67"
+      }
+    },
+    {
+      "id": "fourpost-hands-face-mug",
+      "trial_relative_to_iteration": "results/inferrsi-e2e-two-trim8-dc2fb2efcaf74f7db10b6846c5832541",
+      "result_sha256": "933514e31915a1bbac3c195d39af43c869de4a86a742b63e1359fc456533f119",
+      "generation_identity": {
+        "driver_sha256": "70a627fc293bb01f7961b7228abfa4b2cda413fecf9d148044ea1d981552d89f",
+        "profile_sha256": "e25e4e27c44203e8bf5deac8ddb143c7b1c347881cc572f4161021a112a38e64",
+        "graph_sha256": "4f3100808edb367c1e06066320113eb94043c1f697489c443b025a31d1788016",
+        "asset_set_sha256": "fcaa021e7aa7ecc50ecd14f51e81448a758dc6c8352b65d5ea7aa657d1fe31a8",
+        "source_manifest_sha256": "bf0d3e3b09f8130053735eaa6645bcc4ff753833a97ef4ae306d7d223283f007",
+        "conditioning_manifest_sha256": "56e67d26b9041f4e21b91f9adf12d8efdfeab2a1a677540b3765052982043992",
+        "gates_sha256": "13672a9bbe8946c28c98b3bab0f906f6ddfe67735ff7f77929e58539a4a580dd"
+      },
+      "request_index": 4,
+      "run_relative_to_lab": "comfy-original/runs/q33-e2e-two-trim8-dc2fb2efcaf74f7db10b6846c5832541",
+      "media_relative_to_run": "media-inspection-request-4-v1",
+      "media_summary_sha256": "ee05803b0916238d91d0a735991fad978882c3d1ee9146b03095e132a4a9b0b2",
+      "decode_report_sha256": "c92195fac75cc4ff6ca5c1ce4d487b6f6e802d90d0a79e9bfc8f9fe1871e7ea8",
+      "artifact": {
+        "relative_to_run": "output\\q33-e2e-two\\hands-face-mug\\video_00001_.mp4",
+        "bytes": 266043,
+        "sha256": "15d21afccf1ade6a0220a4fdbc4659133051cfff10a8564d35178b4fd1a70c5e"
+      }
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "schema": "q33-rsi-source-preflight/v1",
+  "available": true,
+  "files": 266,
+  "mismatches": [],
+  "snapshot_hash": "82471bc86d2029299613d91fb308da19fc1699cd27ef4994b5db5e5529890f86",
+  "bundle_sha256": "4be294665850e05525cf06155ce8a5f9961535c2e5fe12226cab06fdfd3b717c",
+  "dispatch_ready": false,
+  "model_dispatches": 0,
+  "torch_imported": false
+}

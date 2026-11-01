@@ -1,0 +1,9 @@
+后续cache-classic最小接线建议（仅设计，未修改v1）
+
+可做，且比cache-none+去强卸载更有机会保留loader输出及model对象。Comfy CacheKeySetInputSignature把inputs常量及全祖先signature合成key；RandomNoise.noise_seed从424242改424243会使Noise及Sampler后续签名改变，而权重loader节点6/11/24输入与ID不变。cache-classic的outputs/objects为HierarchicalCache；不能承诺GPU全部常驻，dynamic offload和内存门仍可能回收。
+
+不能直接把现v1的两次seed424242与classic A/B比较后解释为缓存单变量。需独立v2冻结A=424242、B=424243两次；baseline/candidate都相同A/B顺序/同conditioning/8steps，其余graph只输出prefix。建议选v1中已完成的memory-policy值固定两边，只比较cache-none→cache-classic；若同时删disable-smart-memory，明确是整套infra recipe，不称单因素因果。只需两个session各两请求，不追加大矩阵。
+
+记录/门：两边每seed均完整8progress和未缓存sampler14、history exactgraph、独立完整媒体检查、同seed跨配置的decoded逐帧/音频hash及数值差（先记录，不预宣称bitwise相同）。MP4字节SHA可含容器差异，不能单凭它判画质。loader cached仅作为复用证据；不要把只重保存MP4当生成。
+
+资源风险：classic会保留模型和中间/输出tensor，旧执行大对象可提高Windows commit、RSS、显存。沿原private16/RSS10GiB/hostfloor2/GPU768MiB，不为了候选抬限；第二次前持续running门。两success后同一Job仅清理一次，失败仍仅回收所属服务；freeze和oldresults保留。当前未做v2代码、CUDA、安装或依赖改动。

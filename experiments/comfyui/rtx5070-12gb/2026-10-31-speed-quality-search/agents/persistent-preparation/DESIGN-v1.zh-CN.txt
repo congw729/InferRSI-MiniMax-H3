@@ -1,0 +1,13 @@
+同服务两请求最小 infra 验证设计
+
+源码结论：execution.py:840–841 明确在 prompt 尾部遇 DISABLE_SMART_MEMORY 时调用 unload_all_models()；并非只有 /free 或显存不足才卸载。model_management.py:911–919 还使 free_memory 更积极卸载。--cache-none 则将 outputs 和 objects 都设 NullCache，get 返回 None、set 不保留；UNETLoader/VAELoader 每次经过 load_diffusion_model/VAE 构造。因此保持服务不等于同一模型对象热复用；移除强制卸载是否获益要实测，不能承诺。
+
+先冻结一个独立控制器，只接受现有 Trim8+toycar profile。baseline 配置保留 --disable-smart-memory --cache-none；candidate 只移除 --disable-smart-memory，仍 cache-none。每个配置各一个新服务、串行两次请求，固定3GiB reserve/1GiB headroom，原全部资源阈值与2700秒总时限保持。父级顺序 baseline 两次→candidate 两次，不并发 GPU。没有 native 源码修改，不引入通用框架。
+
+每次新 prompt/client ID 和独立 timing/history/post/outputprefix；graph 仅 node92 filename_prefix 允许变化。模型、权重、conditioning SHA、384x256/73/24fps、seed424242、res_multistep/simple8、video10/audio3及attention稀疏参数不动。同服务共两次 POST，不重试未知 POST；第一场失败、取消、时限或观察器异常不发第二场。完整资产 hash/startup/admission一次；第二次继续 running guards，不谎称空服务重启。每请求重新核小manifest/conditioning与权重stat身份。成功前必须两次 sampler14 非缓存、progress value=max=8、native success、history graph identity和MP4小文件hash。
+
+禁止直接改为 cache-classic 比较：同seed/同输入的采样可能被输出缓存命中；只变 outputprefix 只强制保存，不证明新生成。普通节点ID也不一定进入 input signature。保留 cache-none 可避免这类假加速，结果可能只体现进程初始化摊销而非模型驻留。
+
+记录：每请求 native prompt wall（history server timestamps）、sampler/DiT与VAE loader/video decode/audio decode/save接收端wall、8步progress与cached标志、实际graph SHA、service启动/一次资产核验独列；资源行标明request index、每请求RSS/private峰、whole-board GPU最小free/最大used、请求间快照。资源是nvidia-smi整卡，不冒充Torch allocator。结束整个服务后再用已有CPU媒体检验两个MP4；结构完整不等于画质/音质。两次探索不支持稳健性能或服务PASS。
+
+清理：唯一WindowsJob覆盖同服务；已结束观察器join后才允许下一POST；失败时先stop信号→Job close→精确进程wait，再收尾观察器/日志，原cleanup函数不变。所有运行痕迹保留，不删除现有文件。第二次保留内存可能抬高commit/显存峰，原RSS10GiB/private16GiB、host运行floor2GiB、GPUfree768MiB、磁盘8GiB门保持。累计HTTP/WS小数据及两个输出受同总预算限制，禁止用新请求重置总时限/预算。

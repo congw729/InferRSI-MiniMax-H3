@@ -1,0 +1,78 @@
+{
+  "schema": "q33-one-service-newprompt-plan/v1",
+  "plane": "harness",
+  "profile": "bounce-audio-to-trim8",
+  "dispatch_ready": false,
+  "claim": "INCONCLUSIVE",
+  "maximum_prompt_posts": 2,
+  "maximum_free_posts": 1,
+  "baseline_controller": {
+    "path": "agents/persistent-preparation/persistent_stage_b_v1.py",
+    "sha256": "333ec8b999dd747e585ce01e57245a4db5ec582cbbb146bf810f52e2ef39c7ef"
+  },
+  "native_stage_a_source": {
+    "path": "agents/quality-corpus/conditioning_corpus_v3.py",
+    "sha256": "1e930d7ad4c5b32d8c3842e77bc39cbea5d0d510c4c5758c7240758ae15087dc"
+  },
+  "stage_a_graph_sha256": "5f7d0cff0c911151fd2318e2be5e8c953503034d66259673edf851f24d2274f8",
+  "asset_manifest_sha256": "fcaa021e7aa7ecc50ecd14f51e81448a758dc6c8352b65d5ea7aa657d1fe31a8",
+  "native_graph_sequence": [
+    "frozen bounce prompt TE + native video VAE constructor + SaveConditioning",
+    "same Trim8 seed424242 384x256 73frames8steps; replace only conditioning_name/outputprefix"
+  ],
+  "process_flags": [
+    "--cache-none",
+    "--disable-smart-memory",
+    "--disable-async-offload",
+    "--disable-pinned-memory",
+    "--reserve-vram 3",
+    "--vram-headroom 1.0"
+  ],
+  "resource_gates_sha256": "13672a9bbe8946c28c98b3bab0f906f6ddfe67735ff7f77929e58539a4a580dd",
+  "fresh_between_stages": {
+    "physical_bytes": 12884901888,
+    "commit_bytes": 17716740096,
+    "gpu_free_bytes": 6442450944,
+    "release_timeout_seconds": 30
+  },
+  "success_gate": [
+    "all four complete asset receipts and full payload hashes once before service",
+    "at most2 prompt POST attempts, no retry on unknown POST outcome; source-bound native schemas",
+    "StageA actual history success + uncached TE + unique safetensors under owned output",
+    "32MiB/64KiB header/512KiB streaming finite values; exact tensor coverage; F32[1,41,5120], I64[41] all tags1; emptyoptions; fullSHA/stat unchanged",
+    "conditioning matches prior split-process bounce reference SHA, then one new content-addressed hardlink only; no overwrite/delete",
+    "one /free with both flags true; fresh log offset, no truncation, new reset-path-entered marker; marker is NOT reset/GC completed",
+    "fresh physical12GiB/commit16.5GiB/GPU6GiB before DiT POST; running RSS10/private16/system2GiB/board768MiB always remain",
+    "StageB actual uncached8steps/history/oneMP4; separate CPU full media validation afterwards",
+    "owned Job cleanup regardless observer/logging failures; save all errors and retained condition"
+  ],
+  "failure_gate": [
+    "no second prompt if TE/history/condition/alias/free/reset marker/fresh admission fails",
+    "never raise caps or kill unrelated processes",
+    "never remove original output or new alias on failure",
+    "semantic/quality/service-performance remain INCONCLUSIVE until actual evidence"
+  ],
+  "reference_conditioning": {
+    "sha256": "70a19cfeb46fe9411ac6f3fbfea63c253056d28cffb9bb28f269da4c2134d170",
+    "bytes": 840216,
+    "tokens": 41
+  },
+  "timing": [
+    "source_verify",
+    "all assets full SHA each",
+    "service spawn to ready",
+    "TE native observed nodes",
+    "condition finite/hash/alias verify",
+    "free request + reset-path marker + fresh admission",
+    "DiT/AudioVAE/VideoVAE/SaveVideo observed nodes",
+    "controller entry to artifact and cleanup separately"
+  ],
+  "offline_scope": [
+    "exact inherited monitor/sample/cleanup AST; graph rules",
+    "positive finite synthetic + NaN + tag + size failure",
+    "newmarker versus old/truncated log rejected",
+    "fresh each physical/commit/GPU threshold independently rejects",
+    "third prompt/retry rejected",
+    "real portable --help/import only; no model dispatch"
+  ]
+}

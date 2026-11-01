@@ -1,0 +1,199 @@
+{
+  "schema": "q33-turbo2-vs4-bounce-quality-screen/v1",
+  "actual_runs": [
+    {
+      "steps": 4,
+      "trial_relative_to_q33": "results/inferrsi-turbo4-corpus-bounce-audio-4265351f40394e2bb197a07d5c611653",
+      "run_relative_to_lab": "comfy-original/runs/q33-turbo4-corpus-bounce-audio-4265351f40394e2bb197a07d5c611653",
+      "evidence_sha256": {
+        "result.json": "945596a1d88d496bcf91aab993463d36dc7b585cf9ec4e90f9016c2ab9f2db77",
+        "execution.json": "f38e7adfe46e6e47d8868df4833a68f4e057df00d4dd1da186f39e03234f9ada",
+        "resources.jsonl": "ffc8d8f892d34f45cc9ea68a4ff6f9d31c0c945cf831fe951e2588c583ad0771"
+      },
+      "history_sha256": "3ce157a17e3b5c0935070372397f9360da66dc3a323d13b171fca1d0d1b10254",
+      "timing_sha256": "571126fa97f0b115b323af43154ea72f38e1c85c5f59c47edb5cf5ce55b8d82a",
+      "native_history_prompt_seconds": 27.106,
+      "native_log_prompt_seconds_separate": [
+        27.15
+      ],
+      "sampler_WS_observed_seconds": 24.4255377,
+      "outer_seconds": 60.90700000000652,
+      "controller_seconds": 60.78613529994618,
+      "peak_RSS_bytes": 2811408384,
+      "peak_private_bytes": 12821778432,
+      "min_whole_board_free_bytes": 1634729984,
+      "min_host_physical_bytes": 16728969216,
+      "min_host_commit_bytes": 7188688896,
+      "steps_uncached_complete": true,
+      "cleanup_complete": true,
+      "artifact": {
+        "relative_to_run": "output\\q33-turbo-corpus\\bounce-audio\\turbo-native-4_00001_.mp4",
+        "bytes": 168489,
+        "sha256": "f7d646b7b97918d78c16e6d6e69a8be05a54f4c58450b3d5dfaa27e4664b6350"
+      },
+      "media": {
+        "summary_sha256": "8c00aae8bdc563b7004b1b8c2a16e70cf3c74d721e14a3f0d19579970270b9f3",
+        "decoder_sha256": "5b807edd2aa1c057999cdb321969504af62582f20cd05ee7d78422366c126fc8",
+        "frames": 73,
+        "dimensions": [
+          384,
+          256
+        ],
+        "audio_rate": 32000,
+        "audio_channels": 2,
+        "full_demux_eof": true,
+        "input_unchanged": true
+      }
+    },
+    {
+      "steps": 2,
+      "trial_relative_to_q33": "results/inferrsi-turbo2-corpus-bounce-audio-0aafeaf2f9a9450c8e6970d99a1784a8",
+      "run_relative_to_lab": "comfy-original/runs/q33-turbo2-corpus-bounce-audio-0aafeaf2f9a9450c8e6970d99a1784a8",
+      "evidence_sha256": {
+        "result.json": "342bede03f6d49c92c6b80d66de7b1a16ceaca85dbe9455ab6efec7a6a3da95c",
+        "execution.json": "64833e0e5dd4dd00c6122c4e524b4d00a74269210094e0befa5579be09fa0441",
+        "resources.jsonl": "9d2572fd154f09bf63ac5925eb74b441191fcf20d57c92b2185eef1eb6930ef1"
+      },
+      "history_sha256": "37b61b661754a592065a7d7fcc4f19e88a49c0dbd7f96e77f425e378fc1d9840",
+      "timing_sha256": "9ee968f38c96b9d4b0e9f0110ad199d12ab9039597f5a3f4b560fa3bac7a202f",
+      "native_history_prompt_seconds": 16.131,
+      "native_log_prompt_seconds_separate": [
+        16.17
+      ],
+      "sampler_WS_observed_seconds": 13.434212,
+      "outer_seconds": 50.18799999996554,
+      "controller_seconds": 50.06758669996634,
+      "peak_RSS_bytes": 2872725504,
+      "peak_private_bytes": 12985647104,
+      "min_whole_board_free_bytes": 1663041536,
+      "min_host_physical_bytes": 16853774336,
+      "min_host_commit_bytes": 7086264320,
+      "steps_uncached_complete": true,
+      "cleanup_complete": true,
+      "artifact": {
+        "relative_to_run": "output\\q33-turbo-corpus\\bounce-audio\\turbo-native-2_00001_.mp4",
+        "bytes": 160085,
+        "sha256": "ed5f869602ec435865f3dbca8e0b74462a0a5bbede877fe1976dfe3b485dd5d2"
+      },
+      "media": {
+        "summary_sha256": "42372c8745de0702f578b4d56ffe703862feddd8c1ce357b639f47588dd5f389",
+        "decoder_sha256": "988f5574db6053f249119ae57cadfe72fe0d683e2d9cde53bbdfb6d0bc304cf3",
+        "frames": 73,
+        "dimensions": [
+          384,
+          256
+        ],
+        "audio_rate": 32000,
+        "audio_channels": 2,
+        "full_demux_eof": true,
+        "input_unchanged": true
+      }
+    }
+  ],
+  "recipe_identity": {
+    "same_assets_runtime_gates_prompt_conditioning": true,
+    "graph_only_steps_and_output_prefix": true
+  },
+  "timing_definition": "Every native_history_prompt_seconds uses structured execution_start/execution_success timestamps. Rounded raw-log values are separate. WS sampler is wall interval, not GPU-only.",
+  "contact": {
+    "trial_relative_to_q33": "results/contact-sheets-turbo-2step-bounce-c0656af975bd4366a19a77f28e5b573c",
+    "result_sha256": "8d533ea8ffac588cac4c9c5189fcc943a671105263048194778ad8432168fb8d",
+    "execution_sha256": "425bbf1ad994592d929eab6668624d57a787e5c9091fb3c8efb87225dbe12134",
+    "worker_seconds": 0.20994199998676777,
+    "peak_RSS_bytes": 55648256,
+    "item": {
+      "profile": "bounce-audio/turbo-native-2",
+      "run_relative_to_lab": "comfy-original/runs/q33-turbo2-corpus-bounce-audio-0aafeaf2f9a9450c8e6970d99a1784a8",
+      "source_relative_to_run": "output\\q33-turbo-corpus\\bounce-audio\\turbo-native-2_00001_.mp4",
+      "source_bytes": 160085,
+      "source_sha256": "ed5f869602ec435865f3dbca8e0b74462a0a5bbede877fe1976dfe3b485dd5d2",
+      "full_decoded_video_frames": 73,
+      "video_decode_reached_eof": true,
+      "source_unchanged": true,
+      "selected_frames": [
+        {
+          "frame": 0,
+          "pts_seconds": 0.0
+        },
+        {
+          "frame": 7,
+          "pts_seconds": 0.2916666666666667
+        },
+        {
+          "frame": 13,
+          "pts_seconds": 0.5416666666666666
+        },
+        {
+          "frame": 20,
+          "pts_seconds": 0.8333333333333334
+        },
+        {
+          "frame": 26,
+          "pts_seconds": 1.0833333333333333
+        },
+        {
+          "frame": 33,
+          "pts_seconds": 1.375
+        },
+        {
+          "frame": 39,
+          "pts_seconds": 1.625
+        },
+        {
+          "frame": 46,
+          "pts_seconds": 1.9166666666666667
+        },
+        {
+          "frame": 52,
+          "pts_seconds": 2.1666666666666665
+        },
+        {
+          "frame": 59,
+          "pts_seconds": 2.4583333333333335
+        },
+        {
+          "frame": 65,
+          "pts_seconds": 2.7083333333333335
+        },
+        {
+          "frame": 72,
+          "pts_seconds": 3.0
+        }
+      ],
+      "grid_relative_to_run": "media-inspection-v1/contact-sheet-12-v1/contact-sheet-12.png",
+      "grid_dimensions": [
+        1536,
+        852
+      ],
+      "grid_bytes": 702174,
+      "grid_sha256": "5a2dad5429b4cbb34f1d7b8c4cb8625491e5cf84f06d8054a1774f55d6910672",
+      "elapsed_seconds": 0.12394389999099076,
+      "claim": "INCONCLUSIVE",
+      "audio_listened": false
+    }
+  },
+  "assistant_observation": {
+    "method": "Independently viewed full12frame2step grid with view_image and compared previously viewed4step grid.",
+    "specific_degradation": [
+      "Frame33 (~1.375s) and39 (~1.625s): multiple overlapping bright contours/seam arcs around the moving ball; frame39 also visibly elongated.",
+      "Frames52–72: a large dark sector on the visible ball surface and less readable seam/fuzz than4step; lighting differs, so darkening alone is not treated as proof of an artifact.",
+      "Frames59–72: faint magenta/reddish trailing region on image-right of the ball, together with contour ghosting, supports a sampled-frame degradation finding."
+    ],
+    "comparison_with4": "The4step clip retained a rounder late ball and readable seam/fuzz without this degree of multi-contour and color trailing in its sampled frames.",
+    "decision": "Do not expand2step to hands or recommend it as the current default; retain4step as the lower-step candidate supported by the current two-scene screen.",
+    "scope": "This is a qualitative rejection for the tested bounce sample, not a universal claim that2steps always fails."
+  },
+  "preserved_boundaries": {
+    "runtime_and_full_media_succeeded": true,
+    "sampled_quality_concern_present": true,
+    "formal_quality_threshold_frozen": false,
+    "full_subjective_motion_playback": false,
+    "audio_listened": false,
+    "exact_impact_count_and_av_sync": "not judged",
+    "hands2step": "not prepared/run",
+    "no_additional_GPU_by_reviewer": true
+  },
+  "prior4_review_sha256": "ece88627c66112df1a18f6ad0f868e66a7eb5e7e948daee9d219b02efccb2712",
+  "preparation_note": "Initial exclusive-create collided with the earlier INPUTS-TURBO2 name (meaning two Turbo6 clips); stopped before worker dispatch, preserved it, then used explicit2STEP-BOUNCE names.",
+  "general_performance_quality_verdict": "INCONCLUSIVE"
+}

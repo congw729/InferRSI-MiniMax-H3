@@ -1,0 +1,20 @@
+--- contact_sheets_v1.py
++++ contact_sheets_v2.py
+@@ -25,14 +25,14 @@
+  value=PM();value.cb=ctypes.sizeof(value);need(api.GetProcessMemoryInfo(kernel.GetCurrentProcess(),ctypes.byref(value),value.cb),'own RSS query');return int(value.WorkingSetSize)
+ def main():
+  p=argparse.ArgumentParser(allow_abbrev=False)
+- for n in ['notes-root','lab-root','freeze','result']:p.add_argument('--'+n,type=Path,required=True)
+- p.add_argument('--freeze-sha256',required=True);a=p.parse_args();start=time.perf_counter();root=Path(__file__).resolve().parent
++ for n in ['notes-root','lab-root','freeze','manifest','result']:p.add_argument('--'+n,type=Path,required=True)
++ p.add_argument('--freeze-sha256',required=True);p.add_argument('--manifest-sha256',required=True);a=p.parse_args();start=time.perf_counter();root=Path(__file__).resolve().parent
+  r=no_links(a.notes_root);lab=no_links(a.lab_root);q=r/'iterations/2026-10-31-speed-quality-search';need(root==q/'agents/video-contact-sheets' and lab.drive.upper()=='E:','fixed root boundary')
+  need(a.result.parent.resolve().is_relative_to(q/'results') and a.result.parent.is_dir() and not a.result.exists(),'new result boundary')
+  frozen=read_json(a.freeze,a.freeze_sha256)
+  for x in frozen['files']:
+   file=root/x['path'];need(file.resolve().is_relative_to(root) and file.stat().st_size==x['bytes'] and sha(file)==x['sha256'],'frozen source drift')
+- plan=json.loads((root/'PLAN-v1.json').read_text());manifest=json.loads((root/'INPUTS-TOYCAR-v1.json').read_text())
++ plan=json.loads((root/'PLAN-v1.json').read_text());need(a.manifest.resolve().parent==root,'frozen local manifest boundary');need(any((root/x['path']).resolve()==a.manifest.resolve() and x['sha256']==a.manifest_sha256 for x in frozen['files']),'manifest missing from freeze');manifest=read_json(a.manifest,a.manifest_sha256)
+  out={'schema':'q33-temporal-contact-sheets/v1','complete':False,'claim':'INCONCLUSIVE','quality_verdict':'INCONCLUSIVE','full_motion_playback_reviewed':False,'audio_listened':False,'model_dispatches':0,'network_requests':0,'worker_sha256':sha(Path(__file__)),'freeze_sha256':a.freeze_sha256,'items':[],'peak_own_rss_bytes':0}
+  try:
+   import av

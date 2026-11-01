@@ -1,0 +1,16 @@
+{
+  "schema": "q33-headroom-warm-validator-freeze/v1",
+  "before_candidate": true,
+  "files": [
+    {
+      "path": "PLAN-FROZEN-v1.json",
+      "bytes": 2580,
+      "sha256": "2d86b24bac36e04dde6c4c9756419608f20577c93600cda34048bebc88c31333"
+    },
+    {
+      "path": "validate_readout_v1.py",
+      "bytes": 3935,
+      "sha256": "ff6055c05b690f102da2b03481ab7530375b0e3aa30e9e581cc7aa42071ebfd3"
+    }
+  ]
+}

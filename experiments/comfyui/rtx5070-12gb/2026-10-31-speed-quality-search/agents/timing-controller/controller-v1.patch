@@ -1,0 +1,351 @@
+--- Q32/original_stage_b_v1.py
++++ Q33/speed_stage_b_v1.py
+@@ -1,11 +1,11 @@
+-"""Q32 original unpruned H3, one fixed prompt, one owned Comfy service, one POST.
+-
+-Invoke under InferRSI execute_command. This controller imports no inference
+-runtime. It uses v1's verified Windows ownership/monitor code and never downloads,
+-installs, schedules another run, changes global settings, or deletes files.
++"""Q33 bounded speed/quality profiles with native node timing.
++This is a new harness derived from frozen Q32; old sources remain unchanged.
++Run with the existing portable Python under InferRSI. No model imports here.
+ """
+ from __future__ import annotations
+ import argparse
++import copy
++from timing_events_v1 import NativeWSObserver
+ import csv
+ import hashlib
+ import http.client as http_client
+@@ -23,12 +23,15 @@
+ import uuid
+ 
+ V1_SHA = "63eb319e9fe294209e65c188a447a101987738e5ebc49bae879b65d36bb20d35"
+-GRAPH_SHA = "d5937f2505f74e07ce8de746c49c98e8a428535d79ccc878383e8b989807fb29"
+ STAGE_GATES_SHA = "dd9658a253e1e0c73bd1d1fe9034055622289a9f6748486fb55761bfa195eecf"
+ STAGE_NODES = {'UNETLoader': 'nodes', 'VAELoader': 'nodes', 'VAEDecode': 'nodes', 'MiniMaxH3SigmaShift': 'comfy_extras.nodes_minimax_h3', 'RandomNoise': 'comfy_extras.nodes_custom_sampler', 'KSamplerSelect': 'comfy_extras.nodes_custom_sampler', 'BasicScheduler': 'comfy_extras.nodes_custom_sampler', 'BasicGuider': 'comfy_extras.nodes_custom_sampler', 'SamplerCustomAdvanced': 'comfy_extras.nodes_custom_sampler', 'VAEDecodeAudio': 'comfy_extras.nodes_audio', 'CreateVideo': 'comfy_extras.nodes_video', 'SaveVideo': 'comfy_extras.nodes_video', 'ConditioningLoader': 'comfy_extras.nodes_cond', 'EmptyMiniMaxH3LatentAV': 'comfy_extras.nodes_minimax_h3'}
++NODE_FAMILIES = {'original': {'UNETLoader': 'nodes', 'VAELoader': 'nodes', 'VAEDecode': 'nodes', 'MiniMaxH3SigmaShift': 'comfy_extras.nodes_minimax_h3', 'RandomNoise': 'comfy_extras.nodes_custom_sampler', 'KSamplerSelect': 'comfy_extras.nodes_custom_sampler', 'BasicScheduler': 'comfy_extras.nodes_custom_sampler', 'BasicGuider': 'comfy_extras.nodes_custom_sampler', 'SamplerCustomAdvanced': 'comfy_extras.nodes_custom_sampler', 'VAEDecodeAudio': 'comfy_extras.nodes_audio', 'CreateVideo': 'comfy_extras.nodes_video', 'SaveVideo': 'comfy_extras.nodes_video', 'ConditioningLoader': 'comfy_extras.nodes_cond', 'EmptyMiniMaxH3LatentAV': 'comfy_extras.nodes_minimax_h3'}, 'trim': {'UNETLoader': 'nodes', 'VAELoader': 'nodes', 'VAEDecode': 'nodes', 'MiniMaxH3SigmaShift': 'comfy_extras.nodes_minimax_h3', 'RandomNoise': 'comfy_extras.nodes_custom_sampler', 'KSamplerSelect': 'comfy_extras.nodes_custom_sampler', 'BasicScheduler': 'comfy_extras.nodes_custom_sampler', 'BasicGuider': 'comfy_extras.nodes_custom_sampler', 'SamplerCustomAdvanced': 'comfy_extras.nodes_custom_sampler', 'VAEDecodeAudio': 'comfy_extras.nodes_audio', 'CreateVideo': 'comfy_extras.nodes_video', 'SaveVideo': 'comfy_extras.nodes_video', 'ConditioningLoader': 'comfy_extras.nodes_cond', 'EmptyMiniMaxH3LatentAV': 'comfy_extras.nodes_minimax_h3', 'ModelAttentionBackend': 'comfy_extras.nodes_model_advanced', 'BlockSparseAttention': 'comfy_extras.nodes_sparse_attention'}}
+ STAGE_SOURCE_SHA256 = {'comfy_extras/nodes_cond.py': '56344e64a20692a0f64521bf4de78c0a9c040e23c3499a00491b5243ca39f898', 'comfy_extras/nodes_minimax_h3.py': '5999ed8c22b13c8251084c0629fd82137d2fb52b55106abfc73bf5cafc73841d', 'comfy_api/latest/_io.py': 'a16cea6dd228468b5fbe3fa2acb5dd86bf9445babcd9d8bfe697b84c449bf5fb', 'folder_paths.py': '045a2ea987c0c7bcb0e47cbc46826ee34e82179562c85123f35ea3ff1c3e7ac4'}
+-SOURCE_MANIFEST_SHA = "8c57851d8dac237a2eb453268e0a2a6fd2ab74a677ddfbcbdef18acd998f581b"
+-ASSET_EXPECTED = {'original-dit': {'id': 'original-dit', 'bytes': 34038892334, 'sha256': '7ad4c73e6e378b822ffd1629f27f632d3787d95f5e468e3af958f98c58df96a5', 'relative_path': 'comfy-original/models/diffusion_models/minimax_h3_fl2va_int8_convrot.safetensors'}, 'video-vae': {'id': 'video-vae', 'bytes': 2811065184, 'sha256': '52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e', 'relative_path': 'comfy-original/models/vae/minimax_h3_video_vae_int8_convrot.safetensors'}, 'audio-vae': {'id': 'audio-vae', 'bytes': 605254808, 'sha256': '8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48', 'relative_path': 'comfy-original/models/vae/minimax_h3_audio_vae_fp32.safetensors'}}
++SOURCE_MANIFEST_SHA = "bf0d3e3b09f8130053735eaa6645bcc4ff753833a97ef4ae306d7d223283f007"
++TIMING_MODULE_SHA = "f0abb1937ca5462d712a73d1a8623b6a9f5df86927dbcf6375903b8a5ad3e614"
++EXPECTED_BY_FAMILY = {'original': {'original-dit': {'id': 'original-dit', 'bytes': 34038892334, 'sha256': '7ad4c73e6e378b822ffd1629f27f632d3787d95f5e468e3af958f98c58df96a5', 'relative_path': 'comfy-original/models/diffusion_models/minimax_h3_fl2va_int8_convrot.safetensors'}, 'video-vae': {'id': 'video-vae', 'bytes': 2811065184, 'sha256': '52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e', 'relative_path': 'comfy-original/models/vae/minimax_h3_video_vae_int8_convrot.safetensors'}, 'audio-vae': {'id': 'audio-vae', 'bytes': 605254808, 'sha256': '8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48', 'relative_path': 'comfy-original/models/vae/minimax_h3_audio_vae_fp32.safetensors'}}, 'trim': {'trim-dit': {'id': 'trim-dit', 'bytes': 11894623166, 'sha256': '748b2bcc9c4b7bf7b23406987b42d4ac40362070c164cf11092482be6a863455', 'relative_path': 'comfy-trim/models/diffusion_models/fastvideo_fasth3_trim_8step_nvfp4.safetensors'}, 'video-vae': {'id': 'video-vae', 'bytes': 2811065184, 'sha256': '52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e', 'relative_path': 'comfy-trim/models/vae/minimax_h3_video_vae_int8_convrot.safetensors'}, 'audio-vae': {'id': 'audio-vae', 'bytes': 605254808, 'sha256': '8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48', 'relative_path': 'comfy-trim/models/vae/minimax_h3_audio_vae_fp32.safetensors'}}}
++CANONICAL_SHA = {'original': 'd5937f2505f74e07ce8de746c49c98e8a428535d79ccc878383e8b989807fb29', 'trim': 'a915f62f109cd2e1be615eb7b0c1aa6fab4a4b6ad6e31791fb84488b02a17ad8'}
++ASSET_EXPECTED = EXPECTED_BY_FAMILY["original"]
+ ASSET_IDS = set(ASSET_EXPECTED)
+ EXTRA_GATES = {
+     "asset_timeout_seconds", "startup_timeout_seconds", "render_timeout_seconds",
+@@ -126,42 +129,61 @@
+             "values_checked": False, "roundtrip_checked": False}
+ 
+ 
++
++def validate_profile_graph(profile, graph, canonical):
++    family=profile.get("family");steps=profile.get("steps")
++    require(family in {"original","trim"} and type(steps) is int and
++            steps in ({"original":{50,30,20},"trim":{8,6}}[family]),"profile family/steps")
++    require(profile.get("id")==family+"-"+str(steps),"profile identifier")
++    require(profile.get("role")==("reference" if family=="original" and steps==50 else "candidate"),
++            "only original50 is reference")
++    expected=copy.deepcopy(canonical)
++    expected["prompt"]["9"]["inputs"]["steps"]=steps
++    expected["prompt"]["92"]["inputs"]["filename_prefix"]="q33-speed/"+profile["id"]
++    require(graph==expected,"graph changes outside frozen family steps/output prefix")
++    require(profile["canonical_graph"]["sha256"]==CANONICAL_SHA[family],"canonical family identity")
++
++def load_profile(a,v1):
++    profile=v1.frozen_json(a.profile,a.profile_sha256,65536)
++    require(set(profile)=={"schema","id","family","steps","role","dispatch_ready","dispatch_note",
++            "model_subdir","graph","canonical_graph","assets","conditioning"}
++            and profile["schema"]=="q33-speed-profile/v1","profile schema")
++    require(profile["family"] in EXPECTED_BY_FAMILY,"profile family")
++    require(type(profile["dispatch_ready"]) is bool and profile["dispatch_ready"],
++            "profile not dispatch ready; review required")
++    root=Path(__file__).resolve().parent
++    def descriptor(key):
++        d=profile[key]
++        require(type(d) is dict and set(d)=={"file","sha256"},"profile descriptor")
++        rel=Path(d["file"]);path=root/rel
++        require(not rel.is_absolute() and not rel.drive and ".." not in rel.parts
++                and path.resolve().is_relative_to(root) and not path.is_symlink(),"profile relative boundary")
++        return path,v1.frozen_json(path,d["sha256"],1048576)
++    gp,graph=descriptor("graph");_,canonical=descriptor("canonical_graph")
++    validate_profile_graph(profile,graph,canonical)
++    ap,_=descriptor("assets");cp,_=descriptor("conditioning")
++    require(a.asset_manifest==ap.resolve() and a.asset_manifest_sha256==profile["assets"]["sha256"]
++            and a.conditioning_manifest==cp.resolve()
++            and a.conditioning_manifest_sha256==profile["conditioning"]["sha256"],"profile metadata bindings")
++    require(profile["model_subdir"]=="comfy-"+profile["family"]+"/models","profile model root")
++    return profile
++
+ def load_stage_b_manifest(a, v1, gates):
+-    """Q32 fixed graph and reused verified conditioning; no arbitrary graph dispatch."""
+-    def valid_sha(value):
+-        return type(value) is str and len(value) == 64 and all(c in "0123456789abcdef" for c in value)
+-    require(valid_sha(a.conditioning_manifest_sha256), "conditioning manifest SHA format")
+-    require(a.conditioning_manifest.parent == Path(__file__).resolve().parent
+-            and a.conditioning_manifest.is_file(), "conditioning manifest must be controller sibling")
+-    manifest = v1.frozen_json(a.conditioning_manifest, a.conditioning_manifest_sha256, 65536)
+-    require(type(manifest) is dict and set(manifest) == {"schema", "conditioning", "graph"}
+-            and manifest["schema"] == "q32-original-conditioning/v1", "conditioning manifest schema")
+-    c, g = manifest["conditioning"], manifest["graph"]
+-    require(type(c) is dict and set(c) == {"basename", "bytes", "sha256", "tensors", "metadata_keys",
+-            "option_keys", "options_sha256"}, "conditioning manifest identity fields")
+-    require(valid_sha(c["sha256"]) and valid_sha(c["options_sha256"])
+-            and c["basename"] == "h3-conditioning-" + c["sha256"] + ".safetensors",
+-            "conditioning fixed content-addressed basename required")
+-    require(type(c["bytes"]) is int and 8 < c["bytes"] <= 32 * 1024 * 1024
+-            and type(c["tensors"]) is dict and type(c["metadata_keys"]) is list
+-            and type(c["option_keys"]) is list, "conditioning manifest size/structure")
+-    for key in ("metadata_keys", "option_keys"):
+-        require(all(type(x) is str for x in c[key]) and c[key] == sorted(set(c[key])),
+-                "conditioning manifest sorted unique keys")
+-    require(type(g) is dict and set(g) == {"relative_path", "sha256"}
+-            and valid_sha(g["sha256"]) and type(g["relative_path"]) is str, "Stage-B graph identity")
+-    relative = Path(g["relative_path"])
+-    require(relative.as_posix() == "agents/native-graph/STAGE-B-ORIGINAL-73F-v1.json",
+-            "Q32 fixed graph path")
+-    path = a.iteration_root / relative
+-    st = path.lstat()
+-    require(not path.is_symlink() and not (getattr(st, "st_file_attributes", 0) & 0x400)
+-            and path.resolve().parent == Path(__file__).resolve().parent, "Stage-B graph path boundary")
+-    graph = v1.frozen_json(path, g["sha256"], gates["max_schema_bytes"])
+-    require(g["sha256"] == GRAPH_SHA and graph["prompt"]["1001"]["inputs"]["conditioning_name"] == c["basename"],
+-            "Q32 graph or verified conditioning identity mismatch")
+-    return manifest, graph
+-
++    manifest=v1.frozen_json(a.conditioning_manifest,a.conditioning_manifest_sha256,65536)
++    require(set(manifest)=={"schema","conditioning","graph"} and
++            manifest["schema"]=="q33-speed-conditioning/v1","conditioning manifest schema")
++    profile=a.loaded_profile;c=manifest["conditioning"];g=manifest["graph"]
++    relative=Path(g["relative_path"]);path=a.iteration_root/relative
++    root=Path(__file__).resolve().parent
++    require(not relative.is_absolute() and not relative.drive and ".." not in relative.parts and
++            path.resolve()==root/profile["graph"]["file"],"profile graph path")
++    graph=v1.frozen_json(path,g["sha256"],gates["max_schema_bytes"])
++    require(g["sha256"]==profile["graph"]["sha256"],"profile graph identity")
++    require(c["basename"]=="h3-conditioning-"+c["sha256"]+".safetensors" and
++            graph["prompt"]["1001"]["inputs"]["conditioning_name"]==c["basename"],"conditioning content address")
++    require(c["sha256"]=="ad5c2652080729c191db4189ab42a42c5f80476370e82a9e2a99fe008cb303f2"
++            and c["bytes"]==594360,"fixed verified text conditioning")
++    return manifest,graph
+ 
+ def bounded_notes_json(a, v1, descriptor):
+     require(type(descriptor) is dict and {"relative_to_notes", "sha256"} <= set(descriptor),
+@@ -180,7 +202,7 @@
+     """No payload access: pending receipts reject before service/import/large file hashing."""
+     manifest = v1.frozen_json(a.asset_manifest, a.asset_manifest_sha256, gates["max_schema_bytes"])
+     require(type(manifest) is dict and set(manifest) == {"schema", "assets"}
+-            and manifest["schema"] == "q32-original-asset-set/v1", "Q32 asset manifest schema")
++            and manifest["schema"] in {"q32-original-asset-set/v1","q33-speed-asset-set/v1"}, "Q32 asset manifest schema")
+     selected = manifest["assets"]
+     require(type(selected) is list and len(selected) == 3
+             and all(type(x) is dict for x in selected)
+@@ -208,21 +230,23 @@
+             require(receipt.get(key) == asset[key] and plan.get(key) == asset[key], "receipt/plan identity mismatch")
+         require(receipt.get("relative_path") == asset["receipt_relative_path"]
+                 and plan.get("relative_path") == asset["receipt_relative_path"], "receipt path mismatch")
+-        expected_origin = asset["relative_path"] if asset["id"] == "original-dit" else asset["relative_path"].replace("comfy-original/", "comfy-trim/", 1)
++        is_alias = a.loaded_profile["family"] == "original" and asset["id"] != "original-dit"
++        expected_origin = asset["relative_path"].replace("comfy-original/", "comfy-trim/", 1) if is_alias else asset["relative_path"]
+         require(asset["receipt_relative_path"] == expected_origin, "unexpected original receipt path")
+-        require(asset["alias_source_relative_path"] == (None if asset["id"] == "original-dit" else expected_origin),
++        require(asset["alias_source_relative_path"] == (expected_origin if is_alias else None),
+                 "unexpected alias origin")
+     return selected
+ 
+ 
+ def parse():
+     p = argparse.ArgumentParser(description=__doc__, allow_abbrev=False)
+-    p.add_argument("--mode", choices=["original-video-stage-b"], required=True)
++    p.add_argument("--mode", choices=["speed-video-stage-b"], required=True)
+     for name in ("iteration-root", "lab-root", "portable-python", "comfy-root",
+                  "run-dir", "stop-marker", "nvidia-smi", "inferrsi-src",
+                  "gates", "conditioning-manifest", "notes-root", "q31-root",
+-                 "model-root", "source-manifest", "asset-manifest"):
++                 "model-root", "source-manifest", "asset-manifest", "profile"):
+         p.add_argument("--" + name, type=Path, required=True)
++    p.add_argument("--profile-sha256", required=True)
+     p.add_argument("--source-manifest-sha256", required=True)
+     p.add_argument("--asset-manifest-sha256", required=True)
+     p.add_argument("--gates-sha256", required=True)
+@@ -232,6 +256,9 @@
+ 
+ 
+ def main():
++    global STAGE_NODES, ASSET_EXPECTED, ASSET_IDS
++    entry_perf_ns=time.perf_counter_ns()
++    entry_monotonic=time.monotonic()
+     a = parse()
+     require(os.name == "nt" and 1024 <= a.port <= 65535, "Windows/port precondition")
+     for name, value in vars(a).items():
+@@ -251,11 +278,9 @@
+     require(not (a.comfy_root / "extra_model_paths.yaml").exists(),
+             "automatic extra model paths are forbidden")
+ 
+-    require(a.iteration_root == a.notes_root / "iterations/2026-10-30-original-h3-first-video"
++    require(a.iteration_root == a.notes_root / "iterations/2026-10-31-speed-quality-search"
+             and a.q31_root == a.notes_root / "iterations/2026-10-28-comfy-trim-first-video"
+-            and Path(__file__).resolve().parent == a.iteration_root / "agents/native-graph", "Q32/Q31 roots")
+-    require(a.model_root == a.lab_root / "comfy-original/models" and a.model_root.drive.upper() == "E:",
+-            "original model root boundary")
++            and Path(__file__).resolve().parent == a.iteration_root / "agents/timing-controller", "Q33/Q31 roots")
+     require(a.portable_python == a.comfy_root.parent / "python_embeded/python.exe", "fixed portable relationship")
+     sys.dont_write_bytecode = True
+     v1_path = a.q31_root / "tools/comfy_first_video_v1.py"
+@@ -263,6 +288,13 @@
+     spec = importlib.util.spec_from_file_location("q32_frozen_q31_stdlib_helper", v1_path)
+     v1 = importlib.util.module_from_spec(spec)
+     spec.loader.exec_module(v1)  # Imports stdlib only; its main is not called.
++    require(Path(sys.executable).resolve()==a.portable_python,"use existing portable Python for native aiohttp")
++    require(digest(Path(__file__).with_name("timing_events_v1.py"))==TIMING_MODULE_SHA,"timing module drift")
++    a.loaded_profile=load_profile(a,v1)
++    STAGE_NODES=NODE_FAMILIES[a.loaded_profile["family"]]
++    ASSET_EXPECTED=EXPECTED_BY_FAMILY[a.loaded_profile["family"]];ASSET_IDS=set(ASSET_EXPECTED)
++    require(a.model_root==a.lab_root/a.loaded_profile["model_subdir"] and a.model_root.drive.upper()=="E:",
++            "profile model root boundary")
+     require(a.gates_sha256.lower() == STAGE_GATES_SHA, "Stage-B gates identity mismatch")
+     gates = v1.frozen_json(a.gates, a.gates_sha256, 65536)
+     require(type(gates) is dict and set(gates) == v1.GATE_KEYS | EXTRA_GATES,
+@@ -289,13 +321,15 @@
+     selected = load_asset_manifest(a, v1, gates)  # Null receipt stops here before runtime/monitor/service.
+     require(a.source_manifest_sha256.lower() == SOURCE_MANIFEST_SHA, "Q32 source manifest identity")
+     source_manifest = v1.frozen_json(a.source_manifest, SOURCE_MANIFEST_SHA, gates["max_schema_bytes"])
+-    require(source_manifest["schema"] == "q32-original-runtime-sources/v1", "Q32 source schema")
++    require(source_manifest["schema"] == "q33-speed-runtime-sources/v1", "Q32 source schema")
+     source_roots = {"portable": a.comfy_root.parent, "inferrsi": a.inferrsi_src.parent}
++    source_start_ns=time.perf_counter_ns()
+     for entry in source_manifest["sources"]:
+         root = source_roots[entry["root"]]
+         path = (root / entry["path"]).resolve()
+         require(path.is_relative_to(root) and path.is_file() and path.stat().st_size == entry["bytes"]
+                 and digest(path) == entry["sha256"], "Q32 frozen runtime source drift")
++    source_end_ns=time.perf_counter_ns()
+     require({n["class_type"] for n in graph["prompt"].values()} == set(STAGE_NODES),
+             "fixed graph node set mismatch")
+ 
+@@ -304,12 +338,15 @@
+     require(Path(processes.__file__).resolve() == a.inferrsi_src / "inferrsi/infra/processes.py",
+             "InferRSI import source mismatch")
+     monitor = v1.WinMonitor()
+-    started = time.monotonic()
++    started = entry_monotonic
+     deadline = started + gates["timeout_seconds"]
+-    proc = job = raw_log = samples = journal = None
++    proc = job = raw_log = samples = journal = observer = None
+     next_sample = next_gpu = 0.0
+     gpu = None
+-    state = {"status": "preflight", "claim": "INCONCLUSIVE", "mode": "original-video-stage-b",
++    state = {"status": "preflight", "claim": "INCONCLUSIVE", "mode": "speed-video-stage-b",
++             "profile_id": a.loaded_profile["id"], "profile_sha256": a.profile_sha256,
++             "controller_entry_perf_counter_ns":entry_perf_ns,
++             "source_verification_start_ns":source_start_ns,"source_verification_end_ns":source_end_ns,
+              "driver_sha256": digest(Path(__file__)), "v1_sha256": V1_SHA,
+              "graph_sha256": graph_sha, "asset_set_sha256": a.asset_manifest_sha256.lower(),
+              "source_manifest_sha256": SOURCE_MANIFEST_SHA,
+@@ -323,7 +360,7 @@
+     def event(kind, **fields):
+         if journal is not None:
+             journal.write(json.dumps({"elapsed_seconds": time.monotonic() - started,
+-                                      "event": kind, **fields}) + "\n")
++                                      "event": kind, "perf_counter_ns":time.perf_counter_ns(), **fields}) + "\n")
+             journal.flush()
+ 
+     def sample(force=False, startup=False):
+@@ -443,7 +480,8 @@
+         a.run_dir.mkdir()
+         samples = (result_path.parent / "resources.jsonl").open("x", encoding="utf-8")
+         journal = (result_path.parent / "events.jsonl").open("x", encoding="utf-8")
+-        event("preflight")
++        event("preflight",source_verification_start_ns=source_start_ns,source_verification_end_ns=source_end_ns,
++              source_verification_wall_seconds=(source_end_ns-source_start_ns)/1e9)
+         models_root = a.model_root
+         require(models_root.drive.upper() == "E:" and models_root.is_dir(), "model root unavailable")
+         verify_deadline = min(deadline, time.monotonic() + gates["asset_timeout_seconds"])
+@@ -455,6 +493,7 @@
+                 origin = (a.lab_root / asset["alias_source_relative_path"]).resolve()
+                 require(origin.is_relative_to(a.lab_root / "comfy-trim/models") and origin.is_file()
+                         and path.samefile(origin), "VAE alias must preserve original receipt file identity")
++            event("asset_verification_started",asset_id=asset["id"])
+             value, signature = guarded_hash(path, verify_deadline)
+             require(value == asset["sha256"], "asset full-file SHA256 mismatch")
+             asset_stats[path] = signature
+@@ -470,6 +509,7 @@
+         require(embeddings.is_dir() and embeddings.resolve() == embeddings
+                 and conditioning_path.is_file() and conditioning_path.resolve().parent == embeddings,
+                 "conditioning input native embeddings boundary")
++        event("conditioning_verification_started")
+         state["conditioning_input"] = verify_conditioning(conditioning_path, verify_deadline)
+         state["conditioning_input"]["relative_to_models"] = str(conditioning_path.relative_to(models_root))
+         event("conditioning_input_verified", artifact=state["conditioning_input"])
+@@ -503,6 +543,7 @@
+         job = processes._WindowsJob()
+         state["prompt_id"] = str(uuid.uuid4())  # Known before POST; never retry POST on unknown outcome.
+         startup_deadline = min(deadline, time.monotonic() + gates["startup_timeout_seconds"])
++        event("service_spawn_started")
+         proc = subprocess.Popen(command, cwd=a.comfy_root, env=env, stdin=subprocess.DEVNULL,
+                                 stdout=raw_log, stderr=subprocess.STDOUT, shell=False,
+                                 creationflags=subprocess.CREATE_NEW_PROCESS_GROUP)
+@@ -516,6 +557,7 @@
+             time.sleep(min(gates["poll_seconds"], max(0, startup_deadline - time.monotonic())))
+         state["dynamic_vram_startup"] = verify_dynamic_vram_startup(a.run_dir / "comfy.raw.log")
+         event("dynamic_vram_confirmed", **state["dynamic_vram_startup"])
++        event("native_schema_verification_started")
+         for name, module in STAGE_NODES.items():
+             status, info = http("GET", "/object_info/" + name)
+             v1.save_new(a.run_dir / (name + ".schema.raw.json"), info)
+@@ -546,6 +588,8 @@
+                     choices = info[name]["input"]["required"][field][0]
+                 require(all(graph["prompt"][i]["inputs"][field] in choices for i in ids),
+                         "model/conditioning file not enumerated")
++        event("native_schema_verification_finished")
++        require(digest(a.profile)==a.profile_sha256,"profile changed before POST")
+         require(digest(a.asset_manifest) == a.asset_manifest_sha256.lower(), "asset manifest changed before POST")
+         require(load_asset_manifest(a, v1, gates) == selected, "asset receipt identity changed before POST")
+         for path, signature in asset_stats.items():
+@@ -559,7 +603,21 @@
+         require(digest(graph_path) == graph_sha, "Stage-B graph changed before POST")
+         sample(force=True, startup=True)
+         render_deadline = min(deadline, time.monotonic() + gates["render_timeout_seconds"])
+-        body = json.dumps({"prompt": graph["prompt"], "prompt_id": state["prompt_id"]}).encode("utf-8")
++        state["client_id"]=uuid.uuid4().hex
++        observer=NativeWSObserver(a.port,state["prompt_id"],state["client_id"],
++            {k:n["class_type"] for k,n in graph["prompt"].items()},a.run_dir/"timing",
++            a.comfy_root.parent,started)
++        require(monitor.owns_listener(proc.pid,a.port),"observer must bind owned listener")
++        event("observer_connect_started");observer.start()
++        observer_deadline=min(deadline,time.monotonic()+12)
++        while not observer.ready.wait(timeout=0.05):
++            sample()
++            require(not observer.done.is_set(),"observer failed before POST")
++            require(time.monotonic()<observer_deadline,"observer readiness deadline")
++        require(not observer.done.is_set() and observer.error is None,"observer ready but exited")
++        event("observer_ready",client_id=state["client_id"])
++        body = json.dumps({"prompt": graph["prompt"], "prompt_id": state["prompt_id"],
++                           "client_id":state["client_id"]}).encode("utf-8")
+         state["prompt_posts"] = 1; state["status"] = "submitting"
+         event("post_attempt", prompt_id=state["prompt_id"], graph_sha256=graph_sha)
+         try:
+@@ -616,6 +674,13 @@
+         state["error"] = str(exc) if type(exc) is RuntimeError else "external operation failed; local raw evidence retained"
+         event("stopped", status=state["status"], error_type=type(exc).__name__)
+     finally:
++        event("owned_cleanup_started")
++        if observer is not None:
++            try:
++                state["node_timing"]=observer.finish()
++                state["node_timing_relative_to_run"]="timing/summary.json"
++            except BaseException as exc:
++                state["node_timing"]={"invalid_reasons":["observer_cleanup_"+type(exc).__name__],"nodes":{}}
+         if job is not None:
+             job.close()
+         if proc is not None:
+@@ -627,6 +692,7 @@
+             except (OSError, subprocess.TimeoutExpired):
+                 state["owned_root_exited"] = False; state["status"] = "cleanup_inconclusive"
+         state["job_close_requested"] = job is not None
++        event("owned_cleanup_finished",owned_root_exited=state.get("owned_root_exited"))
+         state["elapsed_seconds"] = time.monotonic() - started
+         for stream in (samples, journal, raw_log):
+             if stream is not None:

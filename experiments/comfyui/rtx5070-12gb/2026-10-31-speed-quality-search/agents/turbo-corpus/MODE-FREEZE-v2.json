@@ -1,0 +1,20 @@
+{
+  "schema": "q33-turbo-corpus-mode-freeze/v2",
+  "files": [
+    {
+      "path": "MODE-CORRECTION-PLAN-v2.json",
+      "sha256": "1954fcab62bbb6b65d59dc0b0505875c76ebe6edb19b1ae4a69e7781cc9d817e",
+      "bytes": 744
+    },
+    {
+      "path": "turbo_corpus_stage_b_v2.py",
+      "sha256": "5fb623f8b68c7be3342db7e28abe34bd206ac6967a51824b9a877f3a3bab9476",
+      "bytes": 57178
+    },
+    {
+      "path": "corpus-v1-to-v2-mode.patch",
+      "sha256": "0bc4d1dcc9d05ee3351b934fbafc110a2a58d3517e4e79d30fe0334a61e90117",
+      "bytes": 1157
+    }
+  ]
+}

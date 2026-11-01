@@ -1,0 +1,25 @@
+{
+  "schema": "q33-turbo4-corpus-plan/v1",
+  "plane": "model",
+  "before_candidate": true,
+  "baseline_controller_sha256": "5fb623f8b68c7be3342db7e28abe34bd206ac6967a51824b9a877f3a3bab9476",
+  "single_recipe_change": "Native Turbo6 to native Turbo4 sampling steps; two existing prompts independently. Output IDs/prefix and metadata SHA reflect new experiment.",
+  "fixed": [
+    "full50 original INT8 ConvRot DiT",
+    "same Turbo v4 step600 EMA LoRA strength1 native LoraLoaderModelOnly",
+    "Euler/simple,video12/audio3,seed424242,384x256/73frames/24fps",
+    "same real corpus StageA/value receipts and conditioning aliases",
+    "same no-pin/disable-async,cache-none,disable-smart, reserve3/headroom1",
+    "same process/host/GPU/disk/time guards and cleanup"
+  ],
+  "scope": "New small frozen per-corpus profiles and exact controller allowlist 4 only; no new loader/runtime behavior, models, dependencies, source mutations or GPU execution by preparer.",
+  "checks": [
+    "reverse minimal controller replacement recovers exact original source",
+    "two actual metadata/provenance loads with all4 existing assets",
+    "graph only step6to4 and outputprefix changes",
+    "wrong6step graph rejected by4profile",
+    "asset/canonical and conditioning provenance unchanged",
+    "actual portable --help for controller/helper; no GPU"
+  ],
+  "performance_quality": "INCONCLUSIVE; four steps is exploratory, not claimed author-recommended validated recipe"
+}

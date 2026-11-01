@@ -1,0 +1,214 @@
+{
+  "schema": "q33-independent-real-timing-audit/v1",
+  "at_utc": "2026-10-30T17:25:20.2365314Z",
+  "profile": "original-50",
+  "checks": {
+    "result_and_summary_identical": true,
+    "one_accepted_post": true,
+    "observer_ready_before_post": true,
+    "observer_identity": true,
+    "no_timing_invalid": true,
+    "cleanup": true,
+    "no_stopped_event": true,
+    "actual_history_graph": false,
+    "only_output_prefix_changed": true,
+    "original50": true,
+    "cached_nodes_empty": true,
+    "event_sequence_clock": true,
+    "all_node_endpoints": true,
+    "fifty_ordered_progress": true,
+    "resource_peaks_match": true,
+    "sampled_running_limits": true
+  },
+  "failed_checks": [
+    "actual_history_graph"
+  ],
+  "controller_elapsed_seconds": 269.6205813001143,
+  "source_verification_seconds": 0.2290408,
+  "asset_verification": [
+    {
+      "asset_id": "original-dit",
+      "phase": "asset_sha256",
+      "wall_seconds": 20.6173226
+    },
+    {
+      "asset_id": "video-vae",
+      "phase": "asset_sha256",
+      "wall_seconds": 1.7136786
+    },
+    {
+      "asset_id": "audio-vae",
+      "phase": "asset_sha256",
+      "wall_seconds": 0.3589129
+    }
+  ],
+  "service_spawn_to_dynamic_log_confirmation_seconds": 9.3337216,
+  "receiver_execution_interval_seconds": 235.8738347,
+  "server_execution_interval_seconds": 235.875,
+  "node_intervals": [
+    {
+      "node": "6",
+      "class_type": "UNETLoader",
+      "wall_seconds": 0.1339097,
+      "event_endpoints_match": true
+    },
+    {
+      "node": "11",
+      "class_type": "VAELoader",
+      "wall_seconds": 0.2296969,
+      "event_endpoints_match": true
+    },
+    {
+      "node": "24",
+      "class_type": "VAELoader",
+      "wall_seconds": 0.0588046,
+      "event_endpoints_match": true
+    },
+    {
+      "node": "148",
+      "class_type": "MiniMaxH3SigmaShift",
+      "wall_seconds": 0.0044013,
+      "event_endpoints_match": true
+    },
+    {
+      "node": "15",
+      "class_type": "RandomNoise",
+      "wall_seconds": 0.0002536,
+      "event_endpoints_match": true
+    },
+    {
+      "node": "17",
+      "class_type": "KSamplerSelect",
+      "wall_seconds": 0.0004233,
+      "event_endpoints_match": true
+    },
+    {
+      "node": "9",
+      "class_type": "BasicScheduler",
+      "wall_seconds": 0.0016783,
+      "event_endpoints_match": true
+    },
+    {
+      "node": "16",
+      "class_type": "BasicGuider",
+      "wall_seconds": 0.0003659,
+      "event_endpoints_match": true
+    },
+    {
+      "node": "14",
+      "class_type": "SamplerCustomAdvanced",
+      "wall_seconds": 233.1125823,
+      "event_endpoints_match": true
+    },
+    {
+      "node": "10",
+      "class_type": "VAEDecode",
+      "wall_seconds": 1.4418565,
+      "event_endpoints_match": true
+    },
+    {
+      "node": "23",
+      "class_type": "VAEDecodeAudio",
+      "wall_seconds": 0.5413206,
+      "event_endpoints_match": true
+    },
+    {
+      "node": "91",
+      "class_type": "CreateVideo",
+      "wall_seconds": 0.0008909,
+      "event_endpoints_match": true
+    },
+    {
+      "node": "92",
+      "class_type": "SaveVideo",
+      "wall_seconds": 0.3331144,
+      "event_endpoints_match": true
+    },
+    {
+      "node": "1001",
+      "class_type": "ConditioningLoader",
+      "wall_seconds": 0.0007254,
+      "event_endpoints_match": true
+    },
+    {
+      "node": "1002",
+      "class_type": "EmptyMiniMaxH3LatentAV",
+      "wall_seconds": 0.0048414,
+      "event_endpoints_match": true
+    }
+  ],
+  "sampler_start_to_first_step_received_seconds": 7.7389012,
+  "progress_step1_to_step50_received_seconds": 225.3561514,
+  "owned_cleanup_seconds": 0.0004045,
+  "resources": {
+    "sampled_peak_owned_private_bytes": 13160595456.0,
+    "board_margin_over_guard_bytes": 49283072.0,
+    "sampled_min_available_commit_bytes": 6499487744.0,
+    "sampled_min_board_free_bytes": 854589440.0,
+    "rows": 256,
+    "sampled_peak_owned_rss_bytes": 2937749504.0,
+    "sampled_min_available_physical_bytes": 11429777408.0
+  },
+  "inputs": [
+    {
+      "path": "result.json",
+      "root": "trial",
+      "bytes": 14219,
+      "sha256": "bedc935af00c6d325790f135eb6080b85532108bfc10b10d78cb4c39da468490"
+    },
+    {
+      "path": "events.jsonl",
+      "root": "trial",
+      "bytes": 3784,
+      "sha256": "f35a744d0d34f5d8cbdce09048fe3bf8803aff24b600d99e3163c92b377487a3"
+    },
+    {
+      "path": "resources.jsonl",
+      "root": "trial",
+      "bytes": 123990,
+      "sha256": "77d8c9c0276ff8e134b10aa14f36f3e3801d76e2cb770ece43d490254054bb8c"
+    },
+    {
+      "path": "timing/summary.json",
+      "root": "run",
+      "bytes": 6330,
+      "sha256": "02024f824238a42afeed392ac41f69a05941514b0d3e1b5e9244333c30da4ae7"
+    },
+    {
+      "path": "timing/events.jsonl",
+      "root": "run",
+      "bytes": 18470,
+      "sha256": "80ab93a6aaf27e250bf4d510e7970a8632c8cafa9df5e776fc0162f1605c6065"
+    },
+    {
+      "path": "history.raw.json",
+      "root": "run",
+      "bytes": 5543,
+      "sha256": "bebeab20180a42c9f9fe970397ad6fdc741b8e7ff1ed993d255bc2384985cce8"
+    },
+    {
+      "path": "graphs/original-50.json",
+      "root": "controller",
+      "bytes": 3063,
+      "sha256": "9c38e25acd44d56513814f12361d6cd71ac004596df4e29298fb874f68173045"
+    },
+    {
+      "path": "canonical/original.json",
+      "root": "controller",
+      "bytes": 3069,
+      "sha256": "d5937f2505f74e07ce8de746c49c98e8a428535d79ccc878383e8b989807fb29"
+    }
+  ],
+  "script_sha256": "5a214d151b953e1567e9b54b7723acce4dbe8da3de155ebd277cd4b64fbb99e3",
+  "claim": "INCONCLUSIVE",
+  "limits": [
+    "Post-run arithmetic review, not a frozen prospective acceptance validator",
+    "Receiver wall includes websocket transport; sampler interval includes model load/initialization and inference",
+    "Loader node duration is not all physical GPU weight transfer",
+    "Controller main-entry clock includes source verification; old Q32 controller did not",
+    "Step 1-to-50 excludes first-step startup; it is 49 step intervals, not complete sampling duration",
+    "No GPU-only timing, full playback/audio perception or service claim",
+    "Resource extrema are sampled, not continuous; board VRAM includes other applications",
+    "No media or model weights read by this script"
+  ]
+}

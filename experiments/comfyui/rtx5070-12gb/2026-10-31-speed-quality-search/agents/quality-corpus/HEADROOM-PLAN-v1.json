@@ -1,0 +1,48 @@
+{
+  "schema": "q33-aimdo-headroom-plan/v1",
+  "plane": "infra",
+  "frozen_before_candidate": true,
+  "basis": "conditioning_corpus_v2.py",
+  "basis_sha256": "7c87ea7524c6bf4adf2573a6ccd881778807634f06d96c8f4161e98c357c3a2d",
+  "requested_extra_headroom_gib": 1.0,
+  "requested_extra_headroom_bytes": 1073741824,
+  "unchanged_reserve_vram_gib": 1.0,
+  "changes": [
+    "native CLI --vram-headroom 1.0",
+    "record requested value in state; not a measured guarantee"
+  ],
+  "unchanged": "graph/weights/profiles/steps/condition/seed/native source/runtime/guards and cleanup",
+  "sources": [
+    {
+      "relative_to_portable": "ComfyUI/main.py",
+      "sha256": "baaa16d69ee78e08c490eeec20bf27c56b746c070f76cc05b4aa13cbc616bcef",
+      "lines": [
+        82,
+        83,
+        296
+      ]
+    },
+    {
+      "relative_to_portable": "ComfyUI/comfy/cli_args.py",
+      "sha256": "c88f737c65915bd19ff04be68d151c0794b03b09e50dcb4fcd088647eb796f4a",
+      "lines": [
+        176,
+        177
+      ]
+    },
+    {
+      "relative_to_portable": "python_embeded/Lib/site-packages/comfy_aimdo/control.py",
+      "sha256": "15b1be566ab6b88d61a10b1dd65385772e26b1e140003ac0fc3d0a6f7f74ad4e",
+      "lines": [
+        157,
+        169,
+        190,
+        191,
+        215,
+        228
+      ]
+    }
+  ],
+  "limits": "Reserve simple budget differs from device extra headroom; native CUDA/Pytorch allocations and external co-load may still violate board guard; no guaranteed1GiB free",
+  "no_model_dispatch": true
+}

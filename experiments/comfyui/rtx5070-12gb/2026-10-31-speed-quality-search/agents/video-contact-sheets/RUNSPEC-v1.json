@@ -1,0 +1,26 @@
+{
+  "schema": "q33-contact-sheets-runspec/v1",
+  "argv": [
+    "E_LAB\\comfy-trim\\runtime-v0430-20261028-c\\ComfyUI_windows_portable\\python_embeded\\python.exe",
+    "-s",
+    "-B",
+    "-X",
+    "utf8",
+    "R\\iterations\\2026-10-31-speed-quality-search\\agents\\video-contact-sheets\\contact_sheets_v1.py",
+    "--notes-root",
+    "R",
+    "--lab-root",
+    "E_LAB",
+    "--freeze",
+    "R\\iterations\\2026-10-31-speed-quality-search\\agents\\video-contact-sheets\\FREEZE-v1.json",
+    "--freeze-sha256",
+    "101bc77adb0544dc0007696ccbaed81bb48ba332271615af1424bccc984eb37b",
+    "--result",
+    "{result}"
+  ],
+  "trial_relative_to_iteration": "results/contact-sheets-toycar-1eae6f2253274ce4a99f8e703efb6117",
+  "freeze_sha256": "101bc77adb0544dc0007696ccbaed81bb48ba332271615af1424bccc984eb37b",
+  "backend": "CPU PyAV/Pillow",
+  "model_dispatches": 0,
+  "claim": "INCONCLUSIVE"
+}

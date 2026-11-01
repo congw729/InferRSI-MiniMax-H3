@@ -1,0 +1,45 @@
+{
+  "schema": "q33-async-candidate/v1",
+  "files": [
+    {
+      "path": "PLAN-FROZEN-v1.json",
+      "bytes": 1565,
+      "sha256": "cec44e32607cd074ea50c44b091cdcd4e1e21179c9e0fc9ccdee2f713bdc54e9"
+    },
+    {
+      "path": "validate_async_delta_v1.py",
+      "bytes": 5853,
+      "sha256": "ec366f2fdce27c49985c2a0ec8483d50f7656d3cfdb405b22e333ae5b90e70a8"
+    },
+    {
+      "path": "PLAN-VALIDATOR-FREEZE-v1.json",
+      "bytes": 392,
+      "sha256": "8aa9f707b6b97274e018e02e498a09da930ef682b39e34e8d2eab349f534ce94"
+    },
+    {
+      "path": "async_persistent_stage_b_v1.py",
+      "bytes": 58297,
+      "sha256": "be5ed4634a212e0d68d9b014f04ac2ca8e8547ade62c93967e73ccdecb9a8bfe"
+    },
+    {
+      "path": "validate_async_persistent_media_v1.py",
+      "bytes": 10049,
+      "sha256": "27d8a29e51d9e18da93e803e16eaa8276445e103665c2eeef7dc1e6ee746b84e"
+    },
+    {
+      "path": "INFRA-MANIFEST-v1.json",
+      "bytes": 822,
+      "sha256": "3201a27b1080cd6dd89cf43fbc6bddf5166e64eb38c5440ebf8bd02667f5608b"
+    },
+    {
+      "path": "CONTROLLER-v2-to-async-v1.patch",
+      "bytes": 5152,
+      "sha256": "4403a5385d054b22aff31acff7926d79cb93828e8c1a2c48dc64b878b796d5bb"
+    },
+    {
+      "path": "MEDIA-v3-to-async-v1.patch",
+      "bytes": 6231,
+      "sha256": "f42ccc331b571509ae0ba3e76ce8890c3795dc1bc04fd836359bc8d3ea932d0d"
+    }
+  ]
+}

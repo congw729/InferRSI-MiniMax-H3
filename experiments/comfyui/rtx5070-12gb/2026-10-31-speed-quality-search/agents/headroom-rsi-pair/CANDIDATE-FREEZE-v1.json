@@ -1,0 +1,25 @@
+{
+  "files": [
+    {
+      "path": "headroom_rsi_pair_v1.py",
+      "bytes": 18037,
+      "sha256": "06f1e924ff128db63a0eeb0bfdb8245bdb13ab98349d4630699f8a2c3073b944"
+    },
+    {
+      "path": "PLAN-FROZEN-v1.json",
+      "bytes": 2580,
+      "sha256": "2d86b24bac36e04dde6c4c9756419608f20577c93600cda34048bebc88c31333"
+    },
+    {
+      "path": "VALIDATOR-FREEZE-v1.json",
+      "bytes": 426,
+      "sha256": "7122fe304d328c84389ddc21bf6e8868526d44add6c4d6f29fb5731d8ccc20b2"
+    },
+    {
+      "path": "validate_readout_v1.py",
+      "bytes": 3935,
+      "sha256": "ff6055c05b690f102da2b03481ab7530375b0e3aa30e9e581cc7aa42071ebfd3"
+    }
+  ],
+  "gpu_dispatches": 0
+}

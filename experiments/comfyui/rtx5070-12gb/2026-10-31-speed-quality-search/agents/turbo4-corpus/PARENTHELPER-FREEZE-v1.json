@@ -1,0 +1,25 @@
+{
+  "schema": "q33-turbo4-parenthelper/v1",
+  "files": [
+    {
+      "path": "run_turbo4_corpus_v1.py",
+      "bytes": 5990,
+      "sha256": "f823eec338279d2ff717e365b9d8734c3662ec7c876f4bde6b7aebb29323300a"
+    },
+    {
+      "path": "PARENTHELPER-TURBO6-TO4-v1.patch",
+      "bytes": 5660,
+      "sha256": "05069f6a9e3081cb7ed6ef499bc8e16d401bc5123a672b06c2a0d0c0fe8f2372"
+    },
+    {
+      "path": "PARENTHELPER-HELP-v1.json",
+      "bytes": 176,
+      "sha256": "8a8b4f0a228ded46bc00bf0b542a9980c631960351d8a5bc946ed6e7582921f6"
+    },
+    {
+      "path": "EXECUTION-FREEZE-v1.json",
+      "bytes": 10894,
+      "sha256": "2eb3836bf6850b5d1172f1e76a520c922bf6255e204911c7a26f8bf865c1a822"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "schema": "q33-corpus-offline/v1",
+  "checks": [
+    "bounce-audio exact prompt, graph and no manufactured conditioning identity",
+    "hands-face-mug exact prompt, graph and no manufactured conditioning identity",
+    "unchanged sample",
+    "unchanged http",
+    "unchanged conditioning_header",
+    "unchanged find_conditioning_artifact",
+    "unchanged verify_dynamic_vram_startup"
+  ],
+  "all_observed": true,
+  "model_posts": 0,
+  "network": false
+}

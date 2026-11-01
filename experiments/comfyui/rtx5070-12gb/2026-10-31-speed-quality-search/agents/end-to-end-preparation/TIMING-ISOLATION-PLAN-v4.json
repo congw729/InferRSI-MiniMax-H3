@@ -1,0 +1,10 @@
+{
+  "schema": "q33-e2e-timing-isolation/v4",
+  "baseline_controller_sha256": "15cb920f217f582ea7d6bd19af968f9306cd79e7c2b24de2925104a2d596979d",
+  "only_change": "Clear state.node_timing after begin_request so failure before a new observer starts cannot attach a previous completed request timing to this request. Active observer cleanup remains unchanged.",
+  "checks": [
+    "exact one replacement and reverse identity",
+    "AST compile without imports"
+  ],
+  "gates_changed": false
+}

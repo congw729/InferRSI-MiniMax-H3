@@ -1,0 +1,54 @@
+{
+  "schema": "q33-headroom-source-review/v1",
+  "sources": [
+    {
+      "relative_to_portable": "ComfyUI/comfy/cli_args.py",
+      "bytes": 23996,
+      "sha256": "c88f737c65915bd19ff04be68d151c0794b03b09e50dcb4fcd088647eb796f4a",
+      "excerpts": [
+        {
+          "first_line": 176,
+          "last_line": 180,
+          "text": "parser.add_argument(\"--reserve-vram\", type=float, default=None, help=\"Set the amount of vram in GB you want to reserve for use by your OS/other software. By default some amount is reserved depending on your OS.\")\nparser.add_argument(\"--vram-headroom\", type=float, default=0, help=\"Set the amount of vram in GB for DynamicVRAM to maintain as extra headroom above default. ComfyUI will try and keep this much VRAM completely free and unused, even counting VRAM from other apps.\")\nparser.add_argument(\"--disable-nvml-pressure\", action=\"store_true\", help=\"Use CUDA instead of NVML for DynamicVRAM memory pressure.\")\n\nparser.add_argument(\"--async-offload\", nargs='?', const=2, type=int, default=None, metavar=\"NUM_STREAMS\", help=\"Use async weight offloading. An optional argument controls the amount of offload streams. Default is 2. Enabled by default on Nvidia.\")"
+        }
+      ]
+    },
+    {
+      "relative_to_portable": "ComfyUI/main.py",
+      "bytes": 31468,
+      "sha256": "baaa16d69ee78e08c490eeec20bf27c56b746c070f76cc05b4aa13cbc616bcef",
+      "excerpts": [
+        {
+          "first_line": 79,
+          "last_line": 83,
+          "text": "import comfy_aimdo.control\n\nif enables_dynamic_vram():\n    simple_vram_headroom = None if args.reserve_vram is None else int(args.reserve_vram * 1024 ** 3)\n    comfy_aimdo.control.init(simple_vram_headroom=simple_vram_headroom, nvml_pressure=not args.disable_nvml_pressure)"
+        },
+        {
+          "first_line": 291,
+          "last_line": 299,
+          "text": "if args.enable_dynamic_vram or (enables_dynamic_vram() and dynamic_vram_supported()):\n    if (not args.enable_dynamic_vram) and (comfy.model_management.torch_version_numeric < (2, 8)):\n        logging.warning(\"Unsupported Pytorch detected. DynamicVRAM support requires Pytorch version 2.8 or later (2.12+ is recommended). Falling back to legacy ModelPatcher. VRAM estimates may be unreliable especially on Windows\")\n    else:\n        try:\n            aimdo_initialized = comfy_aimdo.control.init_devices((d.index, int(args.vram_headroom * 1024 ** 3)) for d in comfy.model_management.get_all_torch_devices())\n        except TypeError:\n            # comfy-aimdo 0.4.9 protocol.\n            aimdo_initialized = comfy_aimdo.control.init_devices(d.index for d in comfy.model_management.get_all_torch_devices())"
+        }
+      ]
+    },
+    {
+      "relative_to_portable": "python_embeded/Lib/site-packages/comfy_aimdo/control.py",
+      "bytes": 9267,
+      "sha256": "15b1be566ab6b88d61a10b1dd65385772e26b1e140003ac0fc3d0a6f7f74ad4e",
+      "excerpts": [
+        {
+          "first_line": 157,
+          "last_line": 193,
+          "text": "def init_devices(device_ids):\n    global devctxs\n\n    if lib is None:\n        return False\n\n    if devctxs:\n        logging.warning(\"comfy-aimdo devices are already initialized, call deinit() first\")\n        return False\n\n    requested = []\n    headrooms = []\n    for device_id in device_ids:\n        if isinstance(device_id, tuple):\n            if len(device_id) != 2:\n                raise ValueError(\"device tuple must be (device_id, extra_vram_headroom)\")\n            device_id, headroom = device_id\n        else:\n            headroom = 0\n\n        headroom = int(headroom)\n        if headroom < 0:\n            raise ValueError(\"extra_vram_headroom must be non-negative\")\n        requested.append(int(device_id))\n        headrooms.append(headroom)\n\n    if not requested:\n        return False\n\n    if not lib.plat_init():\n        return False\n\n    device_array = (ctypes.c_int * len(requested))(*requested)\n    headroom_array = (ctypes.c_uint64 * len(headrooms))(*headrooms)\n    if lib.init(device_array, headroom_array, len(requested)):\n        devctxs = [get_devctx(device_id) for device_id in requested]\n        return True"
+        },
+        {
+          "first_line": 215,
+          "last_line": 228,
+          "text": "def set_simple_vram_headroom(headroom: int):\n    \"\"\"Set the VRAM the simple budget keeps free, in bytes.\n\n    One process wide value, compared against each device's own capacity. It\n    is separate from the per device extra_vram_headroom given to\n    init_devices(). Only the simple budget term reads it; the measured poll\n    term keeps its own compile time floor of 256 MB (VRAM_HEADROOM) and the\n    budget takes the larger of the two, so raising this above 256 MB is\n    honoured but lowering it below 256 MB changes nothing. Raising it takes\n    effect at the next VBAR fault or hooked device allocation and is honoured\n    by evicting VBAR pages only; torch allocations are counted against it\n    but never refused. Lowering it does not refill anything by itself: pages\n    come back when a VBAR is next prioritized, which ComfyUI does when it\n    loads a model."
+        }
+      ]
+    }
+  ],
+  "interpretation": "Native CLI float permits0.75; main multiplies by1024**3 and sends805306368B in device tuple, wrapper converts nonnegative int to uint64. reserve3 simple budget is separate. Lower extra headroom may allow more dynamic pages only if it affects the active budget; no guarantee of lower transfers/latency or exactly256MiB additional residency. No hard whole-board limit, no DLL execution proof.",
+  "unchanged_guard": "whole-board free768MiB, all process/host/time guards retained",
+  "model_gpu_network": 0
+}

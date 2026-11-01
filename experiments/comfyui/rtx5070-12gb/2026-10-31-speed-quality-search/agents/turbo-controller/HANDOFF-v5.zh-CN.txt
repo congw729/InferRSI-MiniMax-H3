@@ -1,0 +1,9 @@
+Q33 native fullmerge Turbo 控制器 v5，待真实权重receipt+header后就绪。
+仅原生 LoraLoaderModelOnly；模型仍完整50层INT8ConvRot，复用原TE conditioning、原36层视频VAE及audioVAE。没有新增依赖/customnode；没有改变成功runtime。
+新增图为6->1100 LoRA(strength1.0,固定v4step600EMA)->148，euler/simple6或8，seed424242/384x256/73帧/shift12,3全部保持canonical。不是作者hybrid等价，不称质量不降。
+当前assets/turbo-native.pending.json第四receipt=NULL；profiles/turbo-native-{6,8}.pending.json的dispatch_ready=false。绝不可提前运行或伪造完成。父级真实下载完成后，仅读真实receipt及safetensors header，核对native映射与target尺寸，再另建ready资产/profile，原pending保留。
+v4已45/45离线元数据/图负例/AST同源完成。v5只换STAGE_GATES_SHA，对应新TURBO-RESOURCE-GATES-v1.json: reserve_vram_gb2->3，其余所有数字不变。未扩展矩阵。对比属于整配方（LoRA/步数/reserve都不同），不可声称单变量因果。
+执行沿用父级InferRSI受限入口、v3全部资源/原生schema/1POST/Job cleanup。额外必传--timing-module到Q33/agents/timing-controller/timing_events_v1.py；按路径+SHA显式importlib加载、记录实际源身份，无sibling复制与sys.path技巧。
+--gates传本目录TURBO-RESOURCE-GATES-v1.json SHA13672a9bbe8946c28c98b3bab0f906f6ddfe67735ff7f77929e58539a4a580dd。--source-manifest继续原timing-controller/SOURCES-v1.json SHA bf0d3e3b09f8130053735eaa6645bcc4ff753833a97ef4ae306d7d223283f007。新增12个LoRA相关源另在STAGE_SOURCE_SHA256逐个校验；不是环境/DLL完整闭包。
+资源解释：原生merge依LowVramPatch每key prepare与clear，不采用bypass.inject一次搬所有adapterGPU的方式；但prefetch/currentprojection dequant/patch/requant仍有额外GPU临时/缓存，零额外常驻未获证明。
+没有GPU/模型服务/真实LoRA正文执行；所有质量、Turbo容量和性能结论INCONCLUSIVE。

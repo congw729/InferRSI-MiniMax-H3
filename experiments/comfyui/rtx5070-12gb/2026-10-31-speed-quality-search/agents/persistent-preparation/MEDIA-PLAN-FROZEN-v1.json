@@ -1,0 +1,17 @@
+{
+  "schema": "q33-persistent-media-frozen-plan/v1",
+  "created_utc": "2026-10-30T18:27:14.186100+00:00",
+  "controller_sha256": "333ec8b999dd747e585ce01e57245a4db5ec582cbbb146bf810f52e2ef39c7ef",
+  "validator_sha256": "70fd6914fa2af0b0c28347901bff23d96a8447d1bf2c214535c433d3d6408188",
+  "scope": "Read actual aggregate result only after owned cleanup; two artifact paths/hash from requests; independent original Q31 CPU media validator invocation under InferRSI per request. Never fabricate old single-result schema.",
+  "bounds": "Existing per-media 120sec worker /140sec executor; aggregate wrapper300sec; parent stop checked before each; original memory/disk/media gates unchanged.",
+  "required_gates": [
+    "actual aggregate two accepted requests and correct driver/profile/memory policy",
+    "owned root exited/Job close/no cleanup diagnostics",
+    "two distinct prompt ids and output paths; stable actual result hash",
+    "both MP4 actual size/fullSHA match before dispatch",
+    "original decoder+monitor+gates fixed hashes",
+    "per-request independent output/IR trial; fail fast; no GPU/model/network"
+  ],
+  "quality_performance": "INCONCLUSIVE"
+}

@@ -1,0 +1,443 @@
+{
+  "schema": "q33-corpus-12frame-independent-screen/v1",
+  "created_utc": "2026-10-30T18:39:29.871629+00:00",
+  "trials": [
+    {
+      "trial_relative_to_iteration": "results/contact-sheets-corpus-first5-18fcec77390a490a873309c55c6ebf89",
+      "result_sha256": "eec5a00e9c82845b05e8a1b51ed47dbc640553a28d92896d3e7938aae67283f5",
+      "executor_seconds": 0.7650000000139698,
+      "worker_seconds": 0.6868435000069439,
+      "worker_rss_peak_bytes": 57425920,
+      "items": 5
+    },
+    {
+      "trial_relative_to_iteration": "results/contact-sheets-corpus-last1-3a80bd5b8b2c4f7785254742eb894217",
+      "result_sha256": "441857fd01666f8a223a7de9157830b2b4dc8a1cf898479c25399d345dff238b",
+      "executor_seconds": 0.34299999999348074,
+      "worker_seconds": 0.23694199998863041,
+      "worker_rss_peak_bytes": 55988224,
+      "items": 1
+    }
+  ],
+  "extraction_v2_change": "Only frozen input manifest parameter; extraction loop unchanged fromv1. No oldtoycar rerun.",
+  "six_full_video_decodes_source_sha_before_after": true,
+  "entries": [
+    {
+      "profile": "bounce-audio/original-50",
+      "run_relative_to_lab": "comfy-original/runs/q33-corpus-bounce-audio-original-50-e8662fcba54247dd89d97c970b5e0998",
+      "source_sha256": "66c60639cc3e1b7197ec5b133f6ab74a411dca7f25dee28735cb4beeb2df29c0",
+      "grid_relative_to_run": "media-inspection-v1/contact-sheet-12-v1/contact-sheet-12.png",
+      "grid_sha256": "0d6261a0b7962f8e8b1b104033fd44eca9b1f52fc58ca57986cbcc18560af025",
+      "selected_frames": [
+        {
+          "frame": 0,
+          "pts_seconds": 0.0
+        },
+        {
+          "frame": 7,
+          "pts_seconds": 0.2916666666666667
+        },
+        {
+          "frame": 13,
+          "pts_seconds": 0.5416666666666666
+        },
+        {
+          "frame": 20,
+          "pts_seconds": 0.8333333333333334
+        },
+        {
+          "frame": 26,
+          "pts_seconds": 1.0833333333333333
+        },
+        {
+          "frame": 33,
+          "pts_seconds": 1.375
+        },
+        {
+          "frame": 39,
+          "pts_seconds": 1.625
+        },
+        {
+          "frame": 46,
+          "pts_seconds": 1.9166666666666667
+        },
+        {
+          "frame": 52,
+          "pts_seconds": 2.1666666666666665
+        },
+        {
+          "frame": 59,
+          "pts_seconds": 2.4583333333333335
+        },
+        {
+          "frame": 65,
+          "pts_seconds": 2.7083333333333335
+        },
+        {
+          "frame": 72,
+          "pts_seconds": 3.0
+        }
+      ],
+      "inspection": "assistant independently viewed full12-frame grid via view_image",
+      "observations": {
+        "visible_evidence": [
+          "Single fuzzy yellow-green tennis ball with a readable seam in late sampled frames. Frames46-72 show a plausible settling progression near the floor.",
+          "Several early selected frames show no ball or only part of it at the top boundary; this can be outside the camera view."
+        ],
+        "limitations": [
+          "Twelve stills cannot count exactly two impacts or validate audio synchronization. Motion blur during the initial fall is visible."
+        ],
+        "selection": "reference; not assumed flawless"
+      }
+    },
+    {
+      "profile": "bounce-audio/trim-6",
+      "run_relative_to_lab": "comfy-original/runs/q33-corpus-bounce-audio-trim-6-5fd0e6d1d80a4f1980d2b2a6db34716f",
+      "source_sha256": "7cdc661c71fba3fc5dcc46831cd906c3f6cad7c64e4e9f785470027a385ef884",
+      "grid_relative_to_run": "media-inspection-v1/contact-sheet-12-v1/contact-sheet-12.png",
+      "grid_sha256": "ce2822240dad14893f532286d4ba6476783fc4adea347dfeffabff8e6691bbf7",
+      "selected_frames": [
+        {
+          "frame": 0,
+          "pts_seconds": 0.0
+        },
+        {
+          "frame": 7,
+          "pts_seconds": 0.2916666666666667
+        },
+        {
+          "frame": 13,
+          "pts_seconds": 0.5416666666666666
+        },
+        {
+          "frame": 20,
+          "pts_seconds": 0.8333333333333334
+        },
+        {
+          "frame": 26,
+          "pts_seconds": 1.0833333333333333
+        },
+        {
+          "frame": 33,
+          "pts_seconds": 1.375
+        },
+        {
+          "frame": 39,
+          "pts_seconds": 1.625
+        },
+        {
+          "frame": 46,
+          "pts_seconds": 1.9166666666666667
+        },
+        {
+          "frame": 52,
+          "pts_seconds": 2.1666666666666665
+        },
+        {
+          "frame": 59,
+          "pts_seconds": 2.4583333333333335
+        },
+        {
+          "frame": 65,
+          "pts_seconds": 2.7083333333333335
+        },
+        {
+          "frame": 72,
+          "pts_seconds": 3.0
+        }
+      ],
+      "inspection": "assistant independently viewed full12-frame grid via view_image",
+      "observations": {
+        "visible_evidence": [
+          "Frame46 (~1.917s) andframe52 (~2.167s) each contain two separated bright yellow ball-like regions within the same sampled frame: possible duplication or strong ghosting.",
+          "Moving ball regions are elongated/very blurred and strongly neon yellow-green; late ball surfaces lose clear seam/fuzz detail relativeTrim8/reference.",
+          "Frames13/26/33 contain no visible ball, but a high bounce outside the camera cannot be excluded from stills."
+        ],
+        "limitations": [
+          "Do not claim proven object disappearance based only on absent sampledframes; do not infer true physical bounce count."
+        ],
+        "selection": "draft-only speed option pending user tolerance; visible quality concern"
+      }
+    },
+    {
+      "profile": "bounce-audio/trim-8",
+      "run_relative_to_lab": "comfy-original/runs/q33-corpus-bounce-audio-trim-8-017c32be26204b2aa8e6f4967c5afc71",
+      "source_sha256": "0b9c5f0a29430f57efe9acd97ec21534ff0bb51ff2152fe1ab9abebb2d8ff246",
+      "grid_relative_to_run": "media-inspection-v1/contact-sheet-12-v1/contact-sheet-12.png",
+      "grid_sha256": "1497f517b76ce2a97a7ca831addb93a7c5ea6ed7f0e5a576d6a70a207d6e2ab5",
+      "selected_frames": [
+        {
+          "frame": 0,
+          "pts_seconds": 0.0
+        },
+        {
+          "frame": 7,
+          "pts_seconds": 0.2916666666666667
+        },
+        {
+          "frame": 13,
+          "pts_seconds": 0.5416666666666666
+        },
+        {
+          "frame": 20,
+          "pts_seconds": 0.8333333333333334
+        },
+        {
+          "frame": 26,
+          "pts_seconds": 1.0833333333333333
+        },
+        {
+          "frame": 33,
+          "pts_seconds": 1.375
+        },
+        {
+          "frame": 39,
+          "pts_seconds": 1.625
+        },
+        {
+          "frame": 46,
+          "pts_seconds": 1.9166666666666667
+        },
+        {
+          "frame": 52,
+          "pts_seconds": 2.1666666666666665
+        },
+        {
+          "frame": 59,
+          "pts_seconds": 2.4583333333333335
+        },
+        {
+          "frame": 65,
+          "pts_seconds": 2.7083333333333335
+        },
+        {
+          "frame": 72,
+          "pts_seconds": 3.0
+        }
+      ],
+      "inspection": "assistant independently viewed full12-frame grid via view_image",
+      "observations": {
+        "visible_evidence": [
+          "One mostly round tennis ball remains visually coherent across visible selected positions; fuzz/seam are recognizable in late frames.",
+          "Late frames52-72 show a near-floor settling progression. Color is warmer/brighter than reference, without the extreme neon appearance ofTrim6."
+        ],
+        "limitations": [
+          "Exact bounce count, impact timing and audio quality remain unreviewed. Different trajectory/composition is not by itself a defect."
+        ],
+        "selection": "more defensible balanced candidate thanTrim6 on this scene"
+      }
+    },
+    {
+      "profile": "hands-face-mug/original-50",
+      "run_relative_to_lab": "comfy-original/runs/q33-corpus-hands-face-mug-original-50-338e7a9ddd5e4b4c87582a28a096e7a0",
+      "source_sha256": "fa7edd585011d34b4872c8fb2e8ccabf3c93a7da217fb62111e2b647692482f1",
+      "grid_relative_to_run": "media-inspection-v1/contact-sheet-12-v1/contact-sheet-12.png",
+      "grid_sha256": "843c1065bf20d2aafcbf66aac37fdbf01346e2a705c88be69c287e259ed8f012",
+      "selected_frames": [
+        {
+          "frame": 0,
+          "pts_seconds": 0.0
+        },
+        {
+          "frame": 7,
+          "pts_seconds": 0.2916666666666667
+        },
+        {
+          "frame": 13,
+          "pts_seconds": 0.5416666666666666
+        },
+        {
+          "frame": 20,
+          "pts_seconds": 0.8333333333333334
+        },
+        {
+          "frame": 26,
+          "pts_seconds": 1.0833333333333333
+        },
+        {
+          "frame": 33,
+          "pts_seconds": 1.375
+        },
+        {
+          "frame": 39,
+          "pts_seconds": 1.625
+        },
+        {
+          "frame": 46,
+          "pts_seconds": 1.9166666666666667
+        },
+        {
+          "frame": 52,
+          "pts_seconds": 2.1666666666666665
+        },
+        {
+          "frame": 59,
+          "pts_seconds": 2.4583333333333335
+        },
+        {
+          "frame": 65,
+          "pts_seconds": 2.7083333333333335
+        },
+        {
+          "frame": 72,
+          "pts_seconds": 3.0
+        }
+      ],
+      "inspection": "assistant independently viewed full12-frame grid via view_image",
+      "observations": {
+        "visible_evidence": [
+          "Blue mug progresses from tabletop to near the face while both hands remain around it across the12 selectedframes.",
+          "Face, smile and mug contour remain broadly coherent; no obvious additional hand or broken cup seen in these images."
+        ],
+        "limitations": [
+          "Occluded/small fingers cannot be exhaustively counted at384x256; no guarantee of continuous anatomical consistency between sampledframes."
+        ],
+        "selection": "reference"
+      }
+    },
+    {
+      "profile": "hands-face-mug/trim-8",
+      "run_relative_to_lab": "comfy-original/runs/q33-corpus-hands-face-mug-trim-8-efeb0b2d4a80448d9449d36a5ed96917",
+      "source_sha256": "ee040fcadaa68cd190bafd494153b9ada6427b6ef4005999040ae5a6bf20fd67",
+      "grid_relative_to_run": "media-inspection-v1/contact-sheet-12-v1/contact-sheet-12.png",
+      "grid_sha256": "5d36e040bf124eea8ba3fc5ca9fd6e8b054332b64a788c3e08b291dad8a67f8e",
+      "selected_frames": [
+        {
+          "frame": 0,
+          "pts_seconds": 0.0
+        },
+        {
+          "frame": 7,
+          "pts_seconds": 0.2916666666666667
+        },
+        {
+          "frame": 13,
+          "pts_seconds": 0.5416666666666666
+        },
+        {
+          "frame": 20,
+          "pts_seconds": 0.8333333333333334
+        },
+        {
+          "frame": 26,
+          "pts_seconds": 1.0833333333333333
+        },
+        {
+          "frame": 33,
+          "pts_seconds": 1.375
+        },
+        {
+          "frame": 39,
+          "pts_seconds": 1.625
+        },
+        {
+          "frame": 46,
+          "pts_seconds": 1.9166666666666667
+        },
+        {
+          "frame": 52,
+          "pts_seconds": 2.1666666666666665
+        },
+        {
+          "frame": 59,
+          "pts_seconds": 2.4583333333333335
+        },
+        {
+          "frame": 65,
+          "pts_seconds": 2.7083333333333335
+        },
+        {
+          "frame": 72,
+          "pts_seconds": 3.0
+        }
+      ],
+      "inspection": "assistant independently viewed full12-frame grid via view_image",
+      "observations": {
+        "visible_evidence": [
+          "Blue mug is lifted with both hands; face/glasses/mug and hand placement remain broadly stable across sampledframes.",
+          "No obvious duplicated hand, broken cup or abrupt face change seen in these12frames. The depicted person differs fromreference, as allowed by the non-identity-specific prompt."
+        ],
+        "limitations": [
+          "No full-motion or audio review. Fine finger anatomy remains partly occluded/lowresolution."
+        ],
+        "selection": "balanced candidate; no major sampled-frame defect identified"
+      }
+    },
+    {
+      "profile": "hands-face-mug/trim-6",
+      "run_relative_to_lab": "comfy-original/runs/q33-corpus-hands-face-mug-trim-6-4b67ed669500447d884d742f21443a7a",
+      "source_sha256": "a601a863b26f96c359e9f9dc6a0b6aa11b8a4564e74c4bcebdefa64ad0802f42",
+      "grid_relative_to_run": "media-inspection-v1/contact-sheet-12-v1/contact-sheet-12.png",
+      "grid_sha256": "0a6fa6c2c2b8f2dceb649f31bf18055d40fa4fd9c094f94f5a6e6b262a4cf677",
+      "selected_frames": [
+        {
+          "frame": 0,
+          "pts_seconds": 0.0
+        },
+        {
+          "frame": 7,
+          "pts_seconds": 0.2916666666666667
+        },
+        {
+          "frame": 13,
+          "pts_seconds": 0.5416666666666666
+        },
+        {
+          "frame": 20,
+          "pts_seconds": 0.8333333333333334
+        },
+        {
+          "frame": 26,
+          "pts_seconds": 1.0833333333333333
+        },
+        {
+          "frame": 33,
+          "pts_seconds": 1.375
+        },
+        {
+          "frame": 39,
+          "pts_seconds": 1.625
+        },
+        {
+          "frame": 46,
+          "pts_seconds": 1.9166666666666667
+        },
+        {
+          "frame": 52,
+          "pts_seconds": 2.1666666666666665
+        },
+        {
+          "frame": 59,
+          "pts_seconds": 2.4583333333333335
+        },
+        {
+          "frame": 65,
+          "pts_seconds": 2.7083333333333335
+        },
+        {
+          "frame": 72,
+          "pts_seconds": 3.0
+        }
+      ],
+      "inspection": "assistant independently viewed full12-frame grid via view_image",
+      "observations": {
+        "visible_evidence": [
+          "The main two-handed lifting action and blue mug remain recognizable.",
+          "Frame59 (~2.458s) shows an abrupt yellow-green patch on the visible forearm/hand at imageleft; neighboring sampledframes52/65/72 do not show that hue, raising a color-flicker/artifact concern."
+        ],
+        "limitations": [
+          "This is an observed sampled-frame color discontinuity, not a measured complete temporal-quality score. Fine finger anatomy is not exhaustively validated."
+        ],
+        "selection": "draft-only speed option pending user tolerance; visible quality concern"
+      }
+    }
+  ],
+  "overall_preference": "Trim8 is the stronger balance candidate in these two scenes. Trim6 has concrete sampled-frame defects and should not be described as quality-equivalent; keep it as optional speed draft.",
+  "quality_verdict": "INCONCLUSIVE",
+  "full_motion_playback_reviewed": false,
+  "audio_listened": false,
+  "audio_video_sync_reviewed": false,
+  "user_quality_acceptance": false,
+  "new_gpu_runs": 0,
+  "claim": "INCONCLUSIVE"
+}

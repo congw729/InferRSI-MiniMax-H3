@@ -1,0 +1,7 @@
+{
+  "schema": "q33-persistent-cache-help/v2",
+  "controller_returncode": 0,
+  "media_returncode": 0,
+  "model_service_gpu_decode_dispatches": 0,
+  "note": "Portable imports only stdlib/timing definitions; help exits before main initialization"
+}

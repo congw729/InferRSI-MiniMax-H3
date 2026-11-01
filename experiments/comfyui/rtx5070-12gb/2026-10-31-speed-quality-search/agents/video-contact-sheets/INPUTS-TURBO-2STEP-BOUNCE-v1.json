@@ -1,0 +1,19 @@
+{
+  "schema": "q33-contact-sheet-inputs/v1",
+  "inputs": [
+    {
+      "profile": "bounce-audio/turbo-native-2",
+      "trial_relative_to_iteration": "results/inferrsi-turbo2-corpus-bounce-audio-0aafeaf2f9a9450c8e6970d99a1784a8",
+      "result_sha256": "342bede03f6d49c92c6b80d66de7b1a16ceaca85dbe9455ab6efec7a6a3da95c",
+      "run_relative_to_lab": "comfy-original/runs/q33-turbo2-corpus-bounce-audio-0aafeaf2f9a9450c8e6970d99a1784a8",
+      "artifact": {
+        "relative_to_run": "output\\q33-turbo-corpus\\bounce-audio\\turbo-native-2_00001_.mp4",
+        "bytes": 160085,
+        "sha256": "ed5f869602ec435865f3dbca8e0b74462a0a5bbede877fe1976dfe3b485dd5d2"
+      },
+      "prior_media_summary_sha256": "42372c8745de0702f578b4d56ffe703862feddd8c1ce357b639f47588dd5f389"
+    }
+  ],
+  "claim": "INCONCLUSIVE",
+  "preparation_note": "Earlier INPUTS-TURBO2 name already denoted two Turbo6 clips. Exclusive-create stopped before any worker; old manifest preserved; this explicit2STEP name is new."
+}

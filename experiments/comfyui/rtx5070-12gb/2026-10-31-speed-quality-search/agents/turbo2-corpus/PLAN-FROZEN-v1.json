@@ -1,0 +1,18 @@
+{
+  "schema": "q33-turbo2-bounce-plan/v1",
+  "plane": "model",
+  "before_candidate": true,
+  "baseline_sha256": "a94784c03a22de99eef9ebb379c0d7f741d0cb5923fffba3fae1cf5c0ad79aaf",
+  "single_recipe_change": "Native Turbo4 to2 steps, bounce-audio only.",
+  "fixed": "Same full50 original INT8ConvRot+Turbo LoRA native strength1, Euler/simple/video12/audio3,seed424242,384x256/73/24fps; same real conditioning, no-pin/disable-async/cache-none/disable-smart,reserve3/headroom1, all previous guard/timeout/cleanup.",
+  "scope": "One frozen bounce profile only; hands is not admitted by this candidate or helper. Parent decides after actual bounce quality.",
+  "checks": [
+    "reverse minimal source replacement equals frozen4source",
+    "actual frozen4assets and real StageA/value receipt metadata",
+    "graph only steps/prefix",
+    "payload/provenance/canonical/assets unchanged",
+    "reject4step graph and hands profile",
+    "portable --help for controller/helper; no model/GPU"
+  ],
+  "quality_performance": "INCONCLUSIVE;2steps is exploratory, not author-proven quality."
+}

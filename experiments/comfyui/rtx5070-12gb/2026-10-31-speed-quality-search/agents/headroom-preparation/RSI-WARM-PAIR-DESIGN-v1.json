@@ -1,0 +1,42 @@
+{
+  "schema": "q33-headroom-rsi-pair-design/v1",
+  "implementation_started": false,
+  "gpu_dispatches": 0,
+  "claim": "INCONCLUSIVE",
+  "decision_zh": "可薄复用现有 InferRSI run_experiment 与已冻结两个 launcher/media helper；旧 rsi_pair_v2.py 不能直接套 persistent result。只需新的专用 adapter 改命令选择与结果抽取，不改 InferRSI 库或任何真实 controller。",
+  "why_not_direct": [
+    "v2 require_selected_pair pins Trim8 vs Trim6.",
+    "v2 extract_metrics requires one POST and a top-level single artifact/history; persistent has two request records.",
+    "v2 selected profile/launcher/controller identity and cold-service scope are fixed; relabeling would be false evidence."
+  ],
+  "minimal_adapter": [
+    "Reuse hash-bound source_snapshot and positive metric helpers, or small unchanged equivalents; new bundle contains both real controller/media/helper freezes and actual IR files, not fake Git commits.",
+    "Commands call existing offload-preparation/run_async_persistent_v1.py and headroom-preparation/run_headroom_persistent_v1.py with classic; each new service generates identical 424242/424243 sequence. Parent source verification must use actual filenames (confirm baseline helper spelling from filesystem before implementation).",
+    "Parse one dispatch/completed pair, enforce actual E run/R trial boundaries and source controller/gates expected for side. Require two accepted complete requests, no guard, one final owned cleanup and exact same recipe.",
+    "Invoke corresponding existing per-request media helper only after service reclaimed; validate both genuine reports, full MP4 SHA/bytes, actual graph and 8 uncached steps. Compare each seed with its previously established identical artifact SHA; never infer quality from latency.",
+    "Primary metric is actual native history duration of requests[1] (seed424243). First request is explicitly a priming request, retained and validated but excluded from the primary metric. Also keep both samplers, first history, total controller/outer, min whole-board free/private/RSS and media time separately.",
+    "run_experiment repetitions=2 provides order A B B A, four isolated services/eight total videos. Same two-seed warm policy per service; no previous single samples pooled into this repeated set.",
+    "Retain stop-file, fresh external resource admission each service, account>20% check from parent, deadline before each child and source snapshot before/after. Suggested bounded entire pair <=10 minutes; no automatic retries or parameter search.",
+    "Use validation_command=None and keep overall INCONCLUSIVE; descriptive medians and individual observations only. No newly invented latency or quality PASS threshold."
+  ],
+  "metric_name_proposal": "metrics.warm_second_native_history_seconds",
+  "comparison_scope": "same two-seed persistent-session warm second request; reused conditioning; excludes new-prompt TE/startup/asset hashing",
+  "necessary_small_checks": [
+    "Pure tiny fake-result extraction rejects missing second request, cached sampler, graph/seed/artifact/media mismatch and unclean shutdown.",
+    "Source bundle drift and wrong side controller/media identity fail before dispatch.",
+    "Both real PPY help/preview entrypoints and final exact commands inspected; no GPU for preparation."
+  ],
+  "source_q33": {
+    "relative_path": "agents/rsi-pair/rsi_pair_v2.py",
+    "bytes": 15336,
+    "sha256": "4830c462866ea832481a1a97f0989ed01481911126998b61d5f6c1fe728a8b6c",
+    "lines": "30-46 single-result metric;48-68 true source snapshots;70-91 fixed pair/bundle;104-135 execute;141-148 RunSpec/evaluation"
+  },
+  "source_ir": {
+    "relative_path": "src/inferrsi/harness/runner.py",
+    "bytes": 6567,
+    "sha256": "a566307b9b586655941b627f428b5121ed38d7ac80bccd1e1799e443fb0de911",
+    "lines": "69-82 repetitions=2 gives A B / B A;106-153 final source integrity/evaluation"
+  },
+  "scope_limit": "This is a feasibility design only, not an implemented or ready adapter, and does not establish a stable headroom speed gain."
+}

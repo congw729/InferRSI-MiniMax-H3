@@ -1,0 +1,25 @@
+{
+  "schema": "q33-persistent-media-source-fix-freeze/v3",
+  "files": [
+    {
+      "path": "MEDIA-SOURCE-FIX-PLAN-v3.json",
+      "bytes": 490,
+      "sha256": "fb2981955577a7b3a978ac93dcbe1ac309b924aa1b23024029d0cbb29b4eb601"
+    },
+    {
+      "path": "validate_persistent_media_v2.py",
+      "bytes": 9816,
+      "sha256": "9f044eb064662f861a6b69ccd2070c37863e74abb698f0c91b58306f3cc0e2f3"
+    },
+    {
+      "path": "validate_persistent_media_v3.py",
+      "bytes": 9816,
+      "sha256": "87782b68c6e7ea7629e490ff859739fd20f30903687c2101593e6555bd873e6a"
+    },
+    {
+      "path": "media-v2-to-v3-source.patch",
+      "bytes": 1076,
+      "sha256": "ae1f2d1cf1f96140e6a302abde5253184507fb14c5837ada0f1f666c80fa0799"
+    }
+  ]
+}

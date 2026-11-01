@@ -1,0 +1,19 @@
+{
+  "files": [
+    {
+      "path": "ASSETS-v1.json",
+      "bytes": 3763,
+      "sha256": "fcaa021e7aa7ecc50ecd14f51e81448a758dc6c8352b65d5ea7aa657d1fe31a8"
+    },
+    {
+      "path": "STAGE-A-GRAPH-v1.json",
+      "bytes": 1115,
+      "sha256": "5f7d0cff0c911151fd2318e2be5e8c953503034d66259673edf851f24d2274f8"
+    },
+    {
+      "path": "PLAN-FROZEN-v1.json",
+      "bytes": 3744,
+      "sha256": "126c41a0058c712590db112dc3f021919041ed4df68310b05ae898be05649bc3"
+    }
+  ]
+}

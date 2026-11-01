@@ -1,0 +1,48 @@
+--- e2e_helpers_v2.py
++++ e2e_helpers_v3.py
+@@ -2,8 +2,7 @@
+ import copy,hashlib,os,stat,struct,time
+ from pathlib import Path
+ FRESH={'available_physical_bytes':12*2**30,'available_commit_bytes':int(16.5*2**30)}
+-REFERENCE_SHA='70a19cfeb46fe9411ac6f3fbfea63c253056d28cffb9bb28f269da4c2134d170'
+-REFERENCE_BYTES=840216
++CASES={'bounce-audio': {'bytes': 840216, 'tokens': 41, 'sha256': '70a19cfeb46fe9411ac6f3fbfea63c253056d28cffb9bb28f269da4c2134d170'}, 'hands-face-mug': {'bytes': 1004120, 'tokens': 49, 'sha256': 'ea6cb031df1988576ee7eb4cc9d8d4c38a393e025f92de57d4aae8227858e2dc'}}
+ RESET_MARKER=b'Disabling intermediate node cache.'
+ def require(ok,reason):
+  if not ok:raise RuntimeError(reason)
+@@ -21,11 +20,12 @@
+  require(len(raw)<=2**20,'release log read bound')
+  return RESET_MARKER in raw
+ 
+-def scan_conditioning(path,structure,sample,deadline):
++def scan_conditioning(path,structure,sample,deadline,case):
++ require(case in CASES,"fixed corpus case");tokens=CASES[case]["tokens"]
+  no_links(path);before=path.stat();require(8<before.st_size<=32*2**20,'conditioning file bound')
+  require(set(structure['tensors'])=={'conditioning','minimax_token_tags'} and structure['option_keys']==[] and structure['options_sha256']==hashlib.sha256(b'{}').hexdigest(),'pure text exact tensors/options')
+  cond=structure['tensors']['conditioning'];tags=structure['tensors']['minimax_token_tags']
+- require(cond['dtype']=='F32' and cond['shape']==[1,41,5120] and tags['dtype']=='I64' and tags['shape']==[41],'fixed bounce tensor dtype/shape')
++ require(cond['dtype']=='F32' and cond['shape']==[1,tokens,5120] and tags['dtype']=='I64' and tags['shape']==[tokens],'fixed case tensor dtype/shape')
+  total=nonzero=0
+  with path.open('rb') as f:
+   opened=os.fstat(f.fileno());require(identity(opened)==identity(before),'conditioning open identity')
+@@ -38,15 +38,16 @@
+      else:require(bits&0x7f800000!=0x7f800000,'nonfinite conditioning');nonzero+=int(bool(bits&0x7fffffff))
+      count+=1
+     remaining-=n
+-   require(count==(41 if name=='minimax_token_tags' else 41*5120),'element count');total+=count
++   require(count==(tokens if name=='minimax_token_tags' else tokens*5120),'element count');total+=count
+   require(identity(os.fstat(f.fileno()))==identity(opened),'conditioning handle changed')
+  require(nonzero>0 and identity(path.stat())==identity(before),'conditioning allzero/path changed')
+  return {'finite_values_checked':True,'all_token_tags_one':True,'elements_checked':total,'nonzero_conditioning_values':nonzero,'roundtrip_equivalence_checked':False}
+ 
+-def bind_stage_b(graph,basename):
+- require(type(basename) is str and basename.startswith('h3-e2e-bounce-') and basename.endswith('.safetensors') and Path(basename).name==basename,'content-address alias basename')
++def bind_stage_b(graph,basename,case):
++ require(case in CASES,"fixed corpus case")
++ require(type(basename) is str and basename.startswith('h3-e2e-'+case+'-') and basename.endswith('.safetensors') and Path(basename).name==basename,'content-address alias basename')
+  require(graph['prompt']['9']['inputs']['steps']==8 and graph['prompt']['15']['inputs']['noise_seed']==424242,'fixed Trim8 step/seed')
+- result=copy.deepcopy(graph);result['prompt']['1001']['inputs']['conditioning_name']=basename;result['prompt']['92']['inputs']['filename_prefix']='q33-e2e/bounce-video'
++ result=copy.deepcopy(graph);result['prompt']['1001']['inputs']['conditioning_name']=basename;result['prompt']['92']['inputs']['filename_prefix']='q33-e2e-two/'+case+'/video'
+  return result
+ 
+ def find_conditioning_artifact(root, max_bytes, sample):

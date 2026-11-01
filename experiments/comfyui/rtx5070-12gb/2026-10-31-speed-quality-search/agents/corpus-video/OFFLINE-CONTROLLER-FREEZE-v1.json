@@ -1,0 +1,26 @@
+{
+  "schema": "q33-offline-source-freeze/v1",
+  "created_utc": "2026-10-30T17:52:10.559922+00:00",
+  "files": [
+    {
+      "path": "PLAN-v1.json",
+      "sha256": "9b358813fd06562a8827a420f9cc1b53e6ef385ac784bc4ce2fd3cd4766c244a",
+      "bytes": 2225
+    },
+    {
+      "path": "corpus_stage_b_v1.py",
+      "sha256": "74de2ccded6ec7415e183c13d162caba653b54b5bcc99270a924c9391d58c7d1",
+      "bytes": 54098
+    },
+    {
+      "path": "offline_controller_v1.py",
+      "sha256": "0b1ab9d2d297b46e04213983645b8467658ef8acd08e6a39f973c332bacc0df9",
+      "bytes": 2883
+    },
+    {
+      "path": "bind_corpus_profiles_v1.py",
+      "sha256": "2313f4d4058417977abbb620dfce534485e769e9de1bb9504ae7fbb999a27fc7",
+      "bytes": 5545
+    }
+  ]
+}

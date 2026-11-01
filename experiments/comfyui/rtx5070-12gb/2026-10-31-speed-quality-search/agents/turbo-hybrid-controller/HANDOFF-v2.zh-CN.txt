@@ -1,0 +1,3 @@
+hybrid v2 仅在原七个 task-owned 目录创建后增加 (dirs["base"] / "custom_nodes").mkdir()，修复 whitelist 使 Comfy main.py:200–203 扫描不存在的新 base/custom_nodes 而在 POST 之前退出。原 runtime/作者节点/graph/conditioning/资源阈值/cleanup 不改，v1 和失败 trial 保留。
+定向回归只执行真实候选的三个目录 AST 节点：新 E 目录中原七个目录与空 custom_nodes 均存在；1/1 完成，Torch/service/模型/GPU/网络均 0。未宣称完整服务启动或视频生成通过。
+父级继续沿用 v1 参数，只换 controller 到 turbo_hybrid_stage_b_v2.py 及 EXECUTION-FREEZE-v2；profile/assets/conditioning/gates/author sources 全部相同。

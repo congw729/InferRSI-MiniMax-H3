@@ -1,0 +1,29 @@
+{
+  "files": [
+    {
+      "path": "HISTORY-WAKE-PLAN-v6.json",
+      "bytes": 1697,
+      "sha256": "8ed3f67473b6265e1fb4ab62704229e82c27b63eee872ac43c42dc03f4050208"
+    },
+    {
+      "path": "validate_history_wake_v6.py",
+      "bytes": 1806,
+      "sha256": "9108cbe5d6dd660189033a9829abf5a43dafbd826c029af38e2401243ea9da86"
+    },
+    {
+      "path": "HISTORY-WAKE-VALIDATOR-FREEZE-v6.json",
+      "bytes": 218,
+      "sha256": "f9d04f811813335f023cf9011c585e5d3cec58c0d2ffcf9f4e8ceaae3c190541"
+    },
+    {
+      "path": "end_to_end_v6.py",
+      "bytes": 69171,
+      "sha256": "8b787a016c311184955f98eccb760d058d266c2fc994dfa7bd094b34fd79da85"
+    },
+    {
+      "path": "v5-to-v6-history-wake.patch",
+      "bytes": 3763,
+      "sha256": "67f70cc74633449f8f61ae153da7d0767f68577740b6ac16f8901c8a9e6c0fde"
+    }
+  ]
+}

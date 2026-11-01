@@ -1,0 +1,36 @@
+{
+  "schema": "q33-headroom-rsi-execution-freeze/v1",
+  "claim": "INCONCLUSIVE",
+  "files": [
+    {
+      "path": "headroom_rsi_pair_v1.py",
+      "bytes": 18037,
+      "sha256": "06f1e924ff128db63a0eeb0bfdb8245bdb13ab98349d4630699f8a2c3073b944"
+    },
+    {
+      "path": "SOURCE-BUNDLE.ready-v1.json",
+      "bytes": 75876,
+      "sha256": "4146b6c1922615e831d9a7f9f5ac96291e8f87d059f0fddfe41c0a488305876f"
+    },
+    {
+      "path": "CANDIDATE-FREEZE-v1.json",
+      "bytes": 694,
+      "sha256": "931ba847f9585114141169ab94fd9abc12fb69a9530724cbb935477982c0fc7f"
+    },
+    {
+      "path": "READOUT-RESULTS-v1.json",
+      "bytes": 1426,
+      "sha256": "8325dea0197bfc61ed6140afcfc596dd983a3311a27ab65ce6ef6ffdbfa16528"
+    },
+    {
+      "path": "PORTABLE-ENTRY-RESULTS-v1.json",
+      "bytes": 508,
+      "sha256": "a9ce9038eee9c646c18145bec4627ceca5a30cc264410ba5ad92f607e0e7fd74"
+    },
+    {
+      "path": "READY-ENTRY-RESULT-v1.json",
+      "bytes": 219,
+      "sha256": "0b5acfc274485cae5d723efa2043f527f22ee08a1b131b25f1e8fad2ae6a9b68"
+    }
+  ]
+}

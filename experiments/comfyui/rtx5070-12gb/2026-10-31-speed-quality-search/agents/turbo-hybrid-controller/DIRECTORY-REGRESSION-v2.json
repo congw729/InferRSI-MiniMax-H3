@@ -1,0 +1,18 @@
+{
+  "schema": "q33-hybrid-directory-regression/v2",
+  "completed": 1,
+  "checks": [
+    {
+      "name": "actual_candidate_directory_slice_creates_empty_custom_nodes_only",
+      "ok": true
+    }
+  ],
+  "candidate_sha256": "032323facd78fa5ee881c47327ca28b33c934fdd4c4eb05495d9e93666134a36",
+  "baseline_sha256": "eb195fdb263ee8015bd06233f4cfb115f4741749e87b2a02afa5d56793b341a1",
+  "scope": "exact one-line diff; execute only directory AST slice in fresh E task output, no service/Torch/author node/model/GPU",
+  "run_id": "q33-hybrid-directory-v2-20261031-a7c251",
+  "directories_created": 8,
+  "new_files_in_run": 0,
+  "dispatches": 0,
+  "quality_performance": "INCONCLUSIVE"
+}

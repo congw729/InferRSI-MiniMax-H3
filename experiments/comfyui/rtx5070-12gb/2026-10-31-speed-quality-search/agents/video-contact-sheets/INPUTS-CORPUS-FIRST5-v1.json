@@ -1,0 +1,66 @@
+{
+  "schema": "q33-contact-sheet-inputs/v1",
+  "inputs": [
+    {
+      "profile": "bounce-audio/original-50",
+      "trial_relative_to_iteration": "results/inferrsi-corpus-bounce-audio-original-50-e8662fcba54247dd89d97c970b5e0998",
+      "result_sha256": "298ee47e3ff725ad47d4780a3df54b9fef3e4cf496d263115a3149b643a90dcd",
+      "run_relative_to_lab": "comfy-original/runs/q33-corpus-bounce-audio-original-50-e8662fcba54247dd89d97c970b5e0998",
+      "artifact": {
+        "relative_to_run": "output\\q33-corpus\\bounce-audio\\original-50_00001_.mp4",
+        "bytes": 219042,
+        "sha256": "66c60639cc3e1b7197ec5b133f6ab74a411dca7f25dee28735cb4beeb2df29c0"
+      },
+      "prior_media_summary_sha256": "e6d99e7029e803ee74f05928c2acd7a39fcc832a554373580995261adc19124c"
+    },
+    {
+      "profile": "bounce-audio/trim-6",
+      "trial_relative_to_iteration": "results/inferrsi-corpus-bounce-audio-trim-6-5fd0e6d1d80a4f1980d2b2a6db34716f",
+      "result_sha256": "d1f2e8299e7af3de6fafba68cedaf027a835aa074173d1ffb27826f7a1e7f135",
+      "run_relative_to_lab": "comfy-original/runs/q33-corpus-bounce-audio-trim-6-5fd0e6d1d80a4f1980d2b2a6db34716f",
+      "artifact": {
+        "relative_to_run": "output\\q33-corpus\\bounce-audio\\trim-6_00001_.mp4",
+        "bytes": 307903,
+        "sha256": "7cdc661c71fba3fc5dcc46831cd906c3f6cad7c64e4e9f785470027a385ef884"
+      },
+      "prior_media_summary_sha256": "b13341e837cda262c7004817dbe264c7d8be9d79e6f3c22d2ab57b6741688358"
+    },
+    {
+      "profile": "bounce-audio/trim-8",
+      "trial_relative_to_iteration": "results/inferrsi-corpus-bounce-audio-trim-8-017c32be26204b2aa8e6f4967c5afc71",
+      "result_sha256": "022c8a45e26c38c63db843d7e88a2f2392f09e98e927087d6d11d120be6119d3",
+      "run_relative_to_lab": "comfy-original/runs/q33-corpus-bounce-audio-trim-8-017c32be26204b2aa8e6f4967c5afc71",
+      "artifact": {
+        "relative_to_run": "output\\q33-corpus\\bounce-audio\\trim-8_00001_.mp4",
+        "bytes": 234328,
+        "sha256": "0b9c5f0a29430f57efe9acd97ec21534ff0bb51ff2152fe1ab9abebb2d8ff246"
+      },
+      "prior_media_summary_sha256": "eaeb65947a23471156b0dd9cdef1ce2ea041bb97995b696bff06dd7738ee77c5"
+    },
+    {
+      "profile": "hands-face-mug/original-50",
+      "trial_relative_to_iteration": "results/inferrsi-corpus-hands-face-mug-original-50-338e7a9ddd5e4b4c87582a28a096e7a0",
+      "result_sha256": "331975f9ee922b510bd8afa9bde4adc8ffa5b3371b80fd3e0d965fed728ad274",
+      "run_relative_to_lab": "comfy-original/runs/q33-corpus-hands-face-mug-original-50-338e7a9ddd5e4b4c87582a28a096e7a0",
+      "artifact": {
+        "relative_to_run": "output\\q33-corpus\\hands-face-mug\\original-50_00001_.mp4",
+        "bytes": 240156,
+        "sha256": "fa7edd585011d34b4872c8fb2e8ccabf3c93a7da217fb62111e2b647692482f1"
+      },
+      "prior_media_summary_sha256": "4715707e04abb027a9a68b1bf6803fa6ce240a2da88281219933ce4d50bbd3a0"
+    },
+    {
+      "profile": "hands-face-mug/trim-8",
+      "trial_relative_to_iteration": "results/inferrsi-corpus-hands-face-mug-trim-8-efeb0b2d4a80448d9449d36a5ed96917",
+      "result_sha256": "ba7e00394cd02d87658a2a0479d7c5b6d87571d56dad4d597d075ea893a33b12",
+      "run_relative_to_lab": "comfy-original/runs/q33-corpus-hands-face-mug-trim-8-efeb0b2d4a80448d9449d36a5ed96917",
+      "artifact": {
+        "relative_to_run": "output\\q33-corpus\\hands-face-mug\\trim-8_00001_.mp4",
+        "bytes": 266004,
+        "sha256": "ee040fcadaa68cd190bafd494153b9ada6427b6ef4005999040ae5a6bf20fd67"
+      },
+      "prior_media_summary_sha256": "8b499b56c88d0bd45ae7603f8893032f9e22e407f1a396be3e15ba9b021d72b7"
+    }
+  ],
+  "claim": "INCONCLUSIVE"
+}

@@ -1,0 +1,35 @@
+{
+  "schema": "q33-headroom075-helpers/v1",
+  "files": [
+    {
+      "path": "run_headroom_persistent_v1.py",
+      "bytes": 6737,
+      "sha256": "83788ccb1ccc370a413ef01340a447edc324faed915e7c5e14c1e13692813741"
+    },
+    {
+      "path": "run_headroom_persistent_media_v1.py",
+      "bytes": 2252,
+      "sha256": "28f82690c0630e69ea4256eec2c9cdb184ddd804686e25f151e1c9ef755ba351"
+    },
+    {
+      "path": "PARENTHELPER-ASYNC-TO-HEADROOM075-v1.patch",
+      "bytes": 6968,
+      "sha256": "d399cc07a6bed4748e33be66296a70037f60b88e9b40f17fb3d817ea6f86a43c"
+    },
+    {
+      "path": "MEDIA-PARENT-ASYNC-TO-HEADROOM075-v1.patch",
+      "bytes": 2662,
+      "sha256": "476082f7c0b313333288a37bc4887d45c34e8c45226bdaeabeb5573cfd643d4d"
+    },
+    {
+      "path": "HELPERS-HELP-v1.json",
+      "bytes": 515,
+      "sha256": "41d982ef49355c92d1cf320b4085110266ea6885ab850f215d9ce72543815a88"
+    },
+    {
+      "path": "EXECUTION-FREEZE-v1.json",
+      "bytes": 9730,
+      "sha256": "8ca36a4350eeece479fd012f64921f905973a1f9084639201654f6f8b296a62d"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "schema": "q33-e2e-launch-media-independent-review/v1",
+  "utc": "2026-10-30T19:14:44.421856+00:00",
+  "decision": "no_blocker_for_one_bounded_actual_run",
+  "claim": "INCONCLUSIVE",
+  "controller_sha256": "378b3830cb85edaaec9c9b6a1539e084c3a2a04ccf74ed088c527ccd6b8ff903",
+  "launcher_sha256": "dc37f322bae21ddf43ef40094262459de9db185ec6421c267302d5d0d3c21d2a",
+  "media_sha256": "909b452e12c9a9527be7ed5c0a2ff57480689604ceb5a7e12c98b0d429830e46",
+  "execution_freeze_sha256": "4bc84ddf38701bbb086abe4efde5febdd59429a6d7f89caf726f6e4945eeb035",
+  "matched_sources": {
+    "local": 10,
+    "external_notes": 24,
+    "runtime": 154
+  },
+  "checks": [
+    "Launcher binds exact reviewed controller and four assets, profile, gates, source manifest, paths and new mode",
+    "Existing InferRSI local.execute_command supplies INFERRSI_RESULT_PATH; actual import path asserted in launcher",
+    "Media checks real new controller filename/hash, successful two-request result, one release/fresh gate, reference condition, cleanup and StageB artifact identity",
+    "Original Q31 media worker/gates/monitor identities preserved; media structure is not quality acceptance"
+  ],
+  "no_gpu_model_media_execution": true,
+  "offline_core_gates_not_rerun": true
+}

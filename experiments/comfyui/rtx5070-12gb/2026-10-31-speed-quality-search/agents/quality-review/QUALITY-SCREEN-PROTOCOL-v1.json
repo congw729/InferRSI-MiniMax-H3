@@ -1,0 +1,86 @@
+{
+  "schema": "h3-speed-quality-screen-protocol/v1",
+  "freeze_scope": "Prospective minimal screening protocol for Q33 candidates; historical Q31/Q32 baselines were observed before this freeze, not a retrospective PASS gate",
+  "campaign_verdict": "INCONCLUSIVE",
+  "objective": "Prioritize local generation speed while screening for substantial visible/audible degradation. Original, Turbo, Trim and other explicitly identified candidates are eligible. No universal numeric quality-loss threshold has been accepted.",
+  "quota_stop_remaining_percent": 20,
+  "current_scenario": {
+    "id": "toycar-384x256-73f-seed424242",
+    "prompt": "A small red toy car drives slowly from left to right across a wooden table. Static camera, continuous motion. Audio: a quiet motor hum.",
+    "conditioning_sha256": "ad5c2652080729c191db4189ab42a42c5f80476370e82a9e2a99fe008cb303f2",
+    "seed": 424242,
+    "width": 384,
+    "height": 256,
+    "frames": 73,
+    "fps": 24,
+    "audio_sample_rate": 32000,
+    "audio_channels": 2,
+    "reference": "Q32 unpruned original INT8,50 Euler/simple,video shift12/audio3; a practical local reference, not a BF16 quality oracle",
+    "historical_fast_candidate": "Q31 Trim NVFP4,8 res_multistep/simple,video shift10/audio3,Kitchen/VSA graph; multi-component recipe comparison",
+    "shared_components": "Historical graphs use the same saved conditioning and original INT8 videoVAE/native FP32 audioVAE filenames; actual asset identity must remain bound by receipts",
+    "scope_limit": "One short low-resolution scenario only; no inference to native-resolution,long-clip or universal quality. Same seed across changed model/sampler does not imply identical trajectories."
+  },
+  "before_each_candidate": [
+    "Freeze candidate graph,exact model/LoRA/VAE/TE hashes,code identity,quantization,steps,sampler,scheduler,shifts,attention request and actual backend/fallback observations.",
+    "Preserve same prompt,conditioning,seed,geometry and audio expectation; declare intentional recipe changes. Do not silently switch components or claim a single-cause speedup when multiple components change.",
+    "Retain existing resource,timeout,ownership and cancellation gates. Do not lower them for a quality/speed win; check remaining quota before dispatch.",
+    "Record cold/warm/reused-conditioning state,system co-load and timestamped timing scope. A missing phase time is null; tqdm adjusted display is not wall latency."
+  ],
+  "automatic_structure_checks": {
+    "method": "Reuse unchanged frozen media decoder and gate identities; bind candidate MP4 SHA and full decode result. No new quality metric package.",
+    "required_facts": [
+      "Input SHA stable and complete demux/decode to EOF without corrupt frame or decode failure",
+      "Declared and decoded geometry/frame count/rate agree with this scenario",
+      "Video finite and neither all-black nor spatially/temporally constant; record diagnostics instead of inventing realism scores",
+      "Audio stream exists,decodes fully,has expected channels/rate,and finite nonzero samples; report duration,start/end offsets,RMS/extrema as observations",
+      "Record stream codecs,timebases,MP4 bytes,frame extraction identities and worker cleanup"
+    ],
+    "interpretation": "Structure eligibility only; finite/nonzero audio does not prove motor-hum semantics,pleasantness or perceptual synchronization. File size,RMS,adjacent RGB differences,PSNR orSSIM are not standalone cross-model quality ranks.",
+    "failed_structure": "Do not select as a speed winner; preserve evidence. Overall quality remains INCONCLUSIVE if evaluation is incomplete."
+  },
+  "perceptual_screen": {
+    "required_review": "Play each complete3.04s clip at24fps with sound,then compare reference/candidate in both orders at the same player volume and display size. Use neutral labels when practical; record if reviewer knew model identity.",
+    "stills": "Use native unmodified frames0,36,72 to localize observations. Stills alone leave temporal and audio fields unreviewed. If a defect is reported,record exact frame/time span; do not cherry-pick only best frames.",
+    "rubric": [
+      {"item":"semantic_adherence","questions":"Red toy car,wooden tabletop,left-to-right slow travel,static camera,quiet motor hum; report wrong/missing requested content. Different car styling is not automatically degradation."},
+      {"item":"subject_and_structure","questions":"Does the car remain recognizably the same object? Check shape,wheels,body parts,table contact and unexpected duplication/disappearance. Record visible severity,not a numeric loss percentage."},
+      {"item":"motion","questions":"Does movement look continuous and coherent across the full clip? Check freezing,teleporting,jumps,reversal or abrupt unrequested cuts; distinguish changed travel distance from corruption."},
+      {"item":"temporal_artifacts","questions":"Check obvious flicker,exposure pumping,ghost trails,smearing and geometry morphing; isolate their times and distinguish intended motion blur."},
+      {"item":"audio_and_sync","questions":"Listen for quiet motor hum rather than missing/overwhelming/unrequested speech ornoise; check clicks,dropouts,distortion and obvious audiovisual mismatch. Numeric timestamps do not settle perceptual synchronization."},
+      {"item":"overall_local_utility","questions":"Is the candidate usable for this requested clip despite differences? Record user acceptance separately from assistant screening."}
+    ],
+    "per_item_fields": ["reviewed:boolean","observation:text","time_or_frame_span:null_or_text","obvious_major_defect:boolean_or_null","uncertain:boolean","reviewer","method"],
+    "no_universal_cutoff": true,
+    "ranking_rule": "After structure checks,only candidates with completed local perceptual review and no observed obvious major defect may be shortlisted by like-for-like measured request time. Pending viewing/listening remains conditional; do not describe as quality-equivalent. User selects acceptable tradeoff. A visible major defect cannot be erased by averaging other rubric items.",
+    "campaign_claim": "Local screening does not establish L3 general quality orL4 service performance; campaign verdict remains INCONCLUSIVE absent the broader accepted gates."
+  },
+  "historical_evidence_reuse": {
+    "allowed": "Reuse valid MP4/decode/conditioning/source identities and existing observations. Avoid regenerating baselines solely to recreate evidence already present.",
+    "not_allowed": "Historical one-off11.23s Trim and237.14s original prompt logs are separate unpaired observations,not a controlled service speedup orpure sampling comparison. Do not add prior TE runtime to fabricate a fresh end-to-end run."
+  },
+  "suggested_next_prompts_not_executed": [
+    {
+      "id":"bounce-audio",
+      "priority":1,
+      "prompt":"A single yellow tennis ball drops onto a wooden floor, bounces twice, and settles. Static camera, continuous shot. Audio: two soft impacts matching the visible bounces, with a quiet room background.",
+      "tests":"Fast motion,object identity,contact deformation,ghost trails,event/audio correspondence",
+      "notes":"Use same384x256/73f/24fps/seed424242 across candidate recipes; encode this prompt once then bind a new conditioning hash. Do not reuse the toycar conditioning."
+    },
+    {
+      "id":"hands-face-mug",
+      "priority":2,
+      "prompt":"An adult sitting at a table slowly lifts a blue ceramic mug with both hands and gives a small smile. Static waist-up camera, continuous shot. Audio: a light ceramic sound as the mug leaves the table and a quiet room, no speech.",
+      "tests":"Human identity,hands and object contact,small facial motion,structural consistency",
+      "notes":"At this low resolution,report unreadable fine details as limited evidence; do not invent precise anatomy scores. New shared conditioning required."
+    },
+    {
+      "id":"text-bell",
+      "priority":3,
+      "optional":true,
+      "prompt":"Close-up of a shop door with a large plain white sign reading OPEN in clear black capital letters. The door opens slightly while the camera stays still. Audio: one small doorbell chime as it opens.",
+      "tests":"Text retention,fine edges,slow motion,brief audio event",
+      "notes":"Only after the first two and quota/resource allowance; text legibility at384x256 is a stress case,not a universal quality rejection rule. New shared conditioning required."
+    }
+  ],
+  "execution_in_this_subtask": "No prompt encoding,GPU,model run,installation,download orold-validator change; only existing small-file reads,view_image of6native frames andnew Q33 records."
+}

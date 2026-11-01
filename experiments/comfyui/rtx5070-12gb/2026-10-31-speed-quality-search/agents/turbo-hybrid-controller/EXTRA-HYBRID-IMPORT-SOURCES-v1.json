@@ -1,0 +1,27 @@
+{
+  "schema": "q33-hybrid-local-import-sources/v1",
+  "root": "portable",
+  "files": [
+    {
+      "path": "ComfyUI/utils/extra_config.py",
+      "bytes": 1404,
+      "sha256": "79575ef9f3c8eeda9903fb6f5cdea98b13ac408e1ccae06235f89453b8c65bb5"
+    },
+    {
+      "path": "ComfyUI/app/governance.py",
+      "bytes": 22703,
+      "sha256": "59eb805f9bd3fa0a5ab03836267bb7876af69ad6ec33e28162295383a73e411e"
+    },
+    {
+      "path": "ComfyUI/comfy/model_detection.py",
+      "bytes": 97268,
+      "sha256": "3908b979fcd25c8eb761453cf0fd1be5bff65fb6481e70ef541df8fb3b9419d4"
+    },
+    {
+      "path": "ComfyUI/comfy/ldm/minimax/model.py",
+      "bytes": 41932,
+      "sha256": "a1b9c179832ed69e84f603521fc89cd62c7f4486fda19d23ff356f212d01429c"
+    }
+  ],
+  "scope": "Explicit extra paths/customnode loader/fullcurve detection selected sources; no completePython/DLLclosure claim"
+}

@@ -1,0 +1,21 @@
+{
+  "schema": "q33-persistent-parent-helper-freeze/v1",
+  "files": [
+    {
+      "file": "PARENT-HELPER-PLAN-v1.json",
+      "bytes": 804,
+      "sha256": "8707c5a0265934bcf1d6a4f6d2fa6fb78827fa9856e50c42f1441e3e328451cb"
+    },
+    {
+      "file": "run_persistent_profile_v1.py",
+      "bytes": 6109,
+      "sha256": "705d519918dc9eab07553416178aa539380285111077fee163df73524213f3a1"
+    },
+    {
+      "file": "parenthelper-v3-to-persistent-v1.patch",
+      "bytes": 7577,
+      "sha256": "fc21aea5bb6f1be563a9f4f6a50e58c65ef1133a19cb8a21e820bec88c5deea0"
+    }
+  ],
+  "controller_freeze_sha256": "00e58d584bfdc7faa52763470c263cf9be247234a47724b906562b2b6c5d6d59"
+}

@@ -1,0 +1,7 @@
+{
+  "schema": "q33-attention-preparation-path-correction/v1",
+  "failure": "Preparation source-audit locator inferred runs from wrong portable ancestor; assert run.is_dir rejected before audit/freeze/check execution",
+  "fix": "Use explicit existing run root supplied from prior evidence; controller/profile unchanged",
+  "model_dispatches": 0,
+  "gpu_calls": 0
+}

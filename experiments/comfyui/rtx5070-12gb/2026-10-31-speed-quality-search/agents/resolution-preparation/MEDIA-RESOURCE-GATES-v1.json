@@ -1,0 +1,23 @@
+{
+  "max_input_bytes": 134217728,
+  "max_video_frames": 73,
+  "max_audio_frames": 2048,
+  "max_audio_samples_per_channel": 960000,
+  "max_audio_samples_per_frame": 65536,
+  "max_audio_sample_rate": 192000,
+  "max_audio_channels": 8,
+  "max_packets": 100000,
+  "max_png_bytes": 1048576,
+  "max_report_bytes": 2097152,
+  "timeout_seconds": 120,
+  "poll_seconds": 0.2,
+  "cleanup_seconds": 10,
+  "start_physical_bytes": 2147483648,
+  "start_commit_bytes": 2147483648,
+  "running_physical_bytes": 1073741824,
+  "running_commit_bytes": 1073741824,
+  "max_owned_rss_bytes": 1073741824,
+  "max_owned_private_bytes": 2147483648,
+  "min_free_disk_bytes": 2147483648,
+  "max_owned_processes": 4
+}

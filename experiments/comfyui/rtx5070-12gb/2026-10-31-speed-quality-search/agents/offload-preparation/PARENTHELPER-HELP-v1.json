@@ -1,0 +1,8 @@
+{
+  "returncode": 0,
+  "stdout_bytes": 808,
+  "stderr_bytes": 0,
+  "model_dispatches": 0,
+  "gpu_queries": 0,
+  "source_sha256": "618638a30e2092deb676981657cfd106b0960c843d3139f5026709452217a6f8"
+}

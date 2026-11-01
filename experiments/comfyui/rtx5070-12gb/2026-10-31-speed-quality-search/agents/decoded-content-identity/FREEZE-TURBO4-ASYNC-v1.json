@@ -1,0 +1,40 @@
+{
+  "schema": "q33-decoded-content-freeze/v3",
+  "files": [
+    {
+      "path": "PLAN-TURBO4-ASYNC-v1.json",
+      "bytes": 1941,
+      "sha256": "7b445eff34d649b8aab27130658acca5ae3ba3af965a2945f7e53104d79a3478"
+    },
+    {
+      "path": "INPUTS-TURBO4-ASYNC-v1.json",
+      "bytes": 3310,
+      "sha256": "3864c0d35566b44ee48f83397462411e9a192126a5ae3a5a052829447d511bcd"
+    },
+    {
+      "path": "decoded_content_turbo4_async_v1.py",
+      "bytes": 13402,
+      "sha256": "3f6ebd3c083eb2e7fe4be4bcb69dd1322f642cafb4774ee75618a0fbae9384d6"
+    },
+    {
+      "path": "v7-to-turbo4-async-v1.patch",
+      "bytes": 1707,
+      "sha256": "6cbec86c529c1ce80e0fb49f63bd9dd8e173ef5ed13782780d00888a26745fb1"
+    }
+  ],
+  "infra_files": [
+    {
+      "path": "src/inferrsi/infra/executors/local.py",
+      "bytes": 3505,
+      "sha256": "b089cdc7daaaf7834698c2d280a12c5e755915ded926aa039c8de5f521bd46f0"
+    },
+    {
+      "path": "src/inferrsi/infra/processes.py",
+      "bytes": 8151,
+      "sha256": "3b96ebc7a50913e78e86ff3dcba74c8ee8d03d547d9591ca6488f390ac1e6189"
+    }
+  ],
+  "decode_loop_text_identical_to_v2": true,
+  "decode_loop_unchanged_from_v3": true,
+  "entire_worker_only_two_filename_literals_changed_from_v7": true
+}

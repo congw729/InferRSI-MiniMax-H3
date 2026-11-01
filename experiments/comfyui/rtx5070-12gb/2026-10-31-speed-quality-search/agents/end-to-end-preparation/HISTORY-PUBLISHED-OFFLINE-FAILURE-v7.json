@@ -1,0 +1,9 @@
+{
+  "trial_relative_to_iteration": "results/offline-e2e-published-v7-b691692363974911bc71f1df03db3900",
+  "returncode": 1,
+  "cause": "Validator selected only ast.FunctionDef, omitting async _run; KeyError at final static comparison. Candidate unaffected.",
+  "preceding_assertions_completed": "message order/wrong prompt/missing node/non-null/once/error/interrupted/cancel;7protected controller+4observer AST comparisons reached before failing line24.",
+  "remaining": "Only async _run single-predicate comparison and fallback literal assertion; new static validator will execute these without repeating unaffected dynamic checks.",
+  "controller_sha256": "d061f926418dd48dcef3b4c9517f1b198ac190dd0b5405d0c42c3f74b924aaa0",
+  "observer_sha256": "5a276a265d06c3108dfe0babac1137145db6553f211dd2a7b77882d49e5c6bf8"
+}

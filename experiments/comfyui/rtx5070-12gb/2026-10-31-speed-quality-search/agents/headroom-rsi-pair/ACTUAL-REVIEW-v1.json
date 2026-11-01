@@ -1,0 +1,588 @@
+{
+  "schema": "q33-headroom-rsi-actual-review/v1",
+  "claim": "INCONCLUSIVE",
+  "run_relative_to_q33": "results/rsi-headroom-pairs/20261030T201142Z-784f36572c",
+  "review_mode": "read-only real evidence and eight small MP4 full SHA; no model/decoder rerun",
+  "formal_status": "completed",
+  "formal_reason": "No general quality validation command supplied; descriptive screen only.",
+  "ABBA_order_verified": true,
+  "members_completed": 4,
+  "videos_structurally_complete": 8,
+  "each_seed_MP4_equal_across_all_four_members_and_prior_fixed_identity": true,
+  "same_source_assets_recipe_seeds_cache_nodes_verified": true,
+  "source_integrity": {
+    "selected_files": 340,
+    "snapshots_verified": 12,
+    "snapshot_file_records_verified": 4080,
+    "all_snapshot_hashes_equal": true,
+    "current_selected_files_rehashed": 340,
+    "scope": "Real file SHA manifest, not Git or entire DLL/environment closure. Legacy IR reason string says Git but identities are manifest snapshots."
+  },
+  "members": [
+    {
+      "order": 1,
+      "side": "A",
+      "repetition": 1,
+      "requested_headroom_gib": 1.0,
+      "run_name": "q33-async-classic-a4aafe11b8fc45b8a995faf615e8e9b7",
+      "controller_trial_relative_to_q33": "results/inferrsi-async-classic-a4aafe11b8fc45b8a995faf615e8e9b7",
+      "media_trial_relative_to_q33": "results/async-persistent-media-classic-e4434e93fd774546b5c9ec1d3db856b9",
+      "requests": [
+        {
+          "index": 1,
+          "seed": 424242,
+          "native_history_seconds": 9.173,
+          "sampler_observed_seconds": 6.7935413,
+          "graph_sha256": "2c262a7d706ee09111d961f4f0bdad504cd6f33c89eee013e8c335cce212b6f5",
+          "cached_nodes": [],
+          "uncached_steps": 8,
+          "MP4_bytes": 240122,
+          "MP4_sha256": "9c0ec62b2694f56299a15872e2b4259777dbe91428c7bea4a85a45e15b91d226",
+          "actual_file_rehashed": true,
+          "complete_media_identity_checked": true,
+          "media_summary_sha256": "b669fdb3a7c70504584e9c32fed299e09c6c820c0f2516f7083a9ef6b6bbd86c",
+          "decoder_result_sha256": "1f15d512f8084144d352ca42f740c6a0507746983eb09184a0e99a8e03dbd3ef",
+          "media_worker_reclaimed": true
+        },
+        {
+          "index": 2,
+          "seed": 424243,
+          "native_history_seconds": 6.723,
+          "sampler_observed_seconds": 5.2654875,
+          "graph_sha256": "c6b6f4a436b4899495a25009e860ac917fda38baf55920e35d76b0bcc71bee48",
+          "cached_nodes": [
+            "1001",
+            "1002",
+            "11",
+            "127",
+            "128",
+            "148",
+            "16",
+            "17",
+            "24",
+            "6",
+            "9"
+          ],
+          "uncached_steps": 8,
+          "MP4_bytes": 312427,
+          "MP4_sha256": "899f475cf381e417873470707b119c3e5bb5ff65386cb0858f5ab8fa8887c501",
+          "actual_file_rehashed": true,
+          "complete_media_identity_checked": true,
+          "media_summary_sha256": "b4527facc08fb3509c8a9a790c97593009d5196ed896286855043c91465df731",
+          "decoder_result_sha256": "8cd5225e443b3216791ba63830e02eb14b6b262091593193b25c99fcd6c7f07f",
+          "media_worker_reclaimed": true
+        }
+      ],
+      "timing": {
+        "controller_seconds": 34.35974730004091,
+        "controller_outer_seconds": 34.50619480002206,
+        "launcher_seconds": 34.69242239999585,
+        "media_wrapper_seconds": 1.7560980999842286,
+        "member_including_media_seconds": 36.865547799970955
+      },
+      "resources": {
+        "whole_board_min_free_bytes": 1502609408,
+        "owned_private_peak_bytes": 15121166336,
+        "owned_rss_peak_bytes": 5460480000,
+        "host_commit_min_bytes": 4971982848,
+        "host_physical_min_bytes": 13241028608,
+        "sample_count": 37,
+        "last_sample_matches_final_JSONL": true
+      },
+      "owned_controller_cleanup_complete": true,
+      "guard_triggered": false
+    },
+    {
+      "order": 2,
+      "side": "B",
+      "repetition": 1,
+      "requested_headroom_gib": 0.75,
+      "run_name": "q33-headroom075-classic-de78bc9d7d2a49749a87ee344592264b",
+      "controller_trial_relative_to_q33": "results/inferrsi-headroom075-classic-de78bc9d7d2a49749a87ee344592264b",
+      "media_trial_relative_to_q33": "results/headroom075-media-classic-759b51dd82724e6badbaf64bf5f3ec1d",
+      "requests": [
+        {
+          "index": 1,
+          "seed": 424242,
+          "native_history_seconds": 8.584,
+          "sampler_observed_seconds": 6.3509717,
+          "graph_sha256": "2c262a7d706ee09111d961f4f0bdad504cd6f33c89eee013e8c335cce212b6f5",
+          "cached_nodes": [],
+          "uncached_steps": 8,
+          "MP4_bytes": 240122,
+          "MP4_sha256": "9c0ec62b2694f56299a15872e2b4259777dbe91428c7bea4a85a45e15b91d226",
+          "actual_file_rehashed": true,
+          "complete_media_identity_checked": true,
+          "media_summary_sha256": "53d15693f7793a8910546c0222ab769c245651eb8186c8c099641ce69026ca85",
+          "decoder_result_sha256": "7940bc21f425a62480e762af083e1f5161bdaf90ef2ba44a150dc8f41377fc92",
+          "media_worker_reclaimed": true
+        },
+        {
+          "index": 2,
+          "seed": 424243,
+          "native_history_seconds": 6.469,
+          "sampler_observed_seconds": 5.0675946,
+          "graph_sha256": "c6b6f4a436b4899495a25009e860ac917fda38baf55920e35d76b0bcc71bee48",
+          "cached_nodes": [
+            "1001",
+            "1002",
+            "11",
+            "127",
+            "128",
+            "148",
+            "16",
+            "17",
+            "24",
+            "6",
+            "9"
+          ],
+          "uncached_steps": 8,
+          "MP4_bytes": 312427,
+          "MP4_sha256": "899f475cf381e417873470707b119c3e5bb5ff65386cb0858f5ab8fa8887c501",
+          "actual_file_rehashed": true,
+          "complete_media_identity_checked": true,
+          "media_summary_sha256": "9fb86635a4d9a8665b1e3b8cdfedfe23222df64ecb690e1a0251e4bb7906c047",
+          "decoder_result_sha256": "d66136f3bb2985983876fa2bea19c283f6fb884beaf2eaef1143f5cdfecc7a7a",
+          "media_worker_reclaimed": true
+        }
+      ],
+      "timing": {
+        "controller_seconds": 33.483554099919274,
+        "controller_outer_seconds": 33.62555850006174,
+        "launcher_seconds": 33.78921129996888,
+        "media_wrapper_seconds": 1.7279169000685215,
+        "member_including_media_seconds": 35.92901570000686
+      },
+      "resources": {
+        "whole_board_min_free_bytes": 1383071744,
+        "owned_private_peak_bytes": 15126384640,
+        "owned_rss_peak_bytes": 5474373632,
+        "host_commit_min_bytes": 4889432064,
+        "host_physical_min_bytes": 13126352896,
+        "sample_count": 36,
+        "last_sample_matches_final_JSONL": true
+      },
+      "owned_controller_cleanup_complete": true,
+      "guard_triggered": false
+    },
+    {
+      "order": 3,
+      "side": "B",
+      "repetition": 2,
+      "requested_headroom_gib": 0.75,
+      "run_name": "q33-headroom075-classic-ea50432dbdf44800b093ff4134b33d89",
+      "controller_trial_relative_to_q33": "results/inferrsi-headroom075-classic-ea50432dbdf44800b093ff4134b33d89",
+      "media_trial_relative_to_q33": "results/headroom075-media-classic-27ad36d8937441089fd12fb3f3e0f2b0",
+      "requests": [
+        {
+          "index": 1,
+          "seed": 424242,
+          "native_history_seconds": 8.549,
+          "sampler_observed_seconds": 6.4174929,
+          "graph_sha256": "2c262a7d706ee09111d961f4f0bdad504cd6f33c89eee013e8c335cce212b6f5",
+          "cached_nodes": [],
+          "uncached_steps": 8,
+          "MP4_bytes": 240122,
+          "MP4_sha256": "9c0ec62b2694f56299a15872e2b4259777dbe91428c7bea4a85a45e15b91d226",
+          "actual_file_rehashed": true,
+          "complete_media_identity_checked": true,
+          "media_summary_sha256": "37302e1c95ad323b289a3f868e1d1837590c1d6dcae9cef368ff806b642b85a5",
+          "decoder_result_sha256": "cd2a23e72b3a900bcab949a465dda12824b2771f6e0a8a06c9b6e8e5e0920ba0",
+          "media_worker_reclaimed": true
+        },
+        {
+          "index": 2,
+          "seed": 424243,
+          "native_history_seconds": 6.411,
+          "sampler_observed_seconds": 4.9913143,
+          "graph_sha256": "c6b6f4a436b4899495a25009e860ac917fda38baf55920e35d76b0bcc71bee48",
+          "cached_nodes": [
+            "1001",
+            "1002",
+            "11",
+            "127",
+            "128",
+            "148",
+            "16",
+            "17",
+            "24",
+            "6",
+            "9"
+          ],
+          "uncached_steps": 8,
+          "MP4_bytes": 312427,
+          "MP4_sha256": "899f475cf381e417873470707b119c3e5bb5ff65386cb0858f5ab8fa8887c501",
+          "actual_file_rehashed": true,
+          "complete_media_identity_checked": true,
+          "media_summary_sha256": "8f60c90a0e53799ac6017e33dae9034f20fee7ab24c10350a1ea2b7ece2c0bac",
+          "decoder_result_sha256": "2b04e56c8536124a203713aca82424d540f548545354c1fd2ea1e35e4cdec48d",
+          "media_worker_reclaimed": true
+        }
+      ],
+      "timing": {
+        "controller_seconds": 33.362260599969886,
+        "controller_outer_seconds": 33.5031909000827,
+        "launcher_seconds": 33.673561300034635,
+        "media_wrapper_seconds": 1.7723722999216989,
+        "member_including_media_seconds": 35.82645890000276
+      },
+      "resources": {
+        "whole_board_min_free_bytes": 1388314624,
+        "owned_private_peak_bytes": 15151845376,
+        "owned_rss_peak_bytes": 5487198208,
+        "host_commit_min_bytes": 4909367296,
+        "host_physical_min_bytes": 13085978624,
+        "sample_count": 35,
+        "last_sample_matches_final_JSONL": true
+      },
+      "owned_controller_cleanup_complete": true,
+      "guard_triggered": false
+    },
+    {
+      "order": 4,
+      "side": "A",
+      "repetition": 2,
+      "requested_headroom_gib": 1.0,
+      "run_name": "q33-async-classic-c3ab28bb571a4992894e1a456273c734",
+      "controller_trial_relative_to_q33": "results/inferrsi-async-classic-c3ab28bb571a4992894e1a456273c734",
+      "media_trial_relative_to_q33": "results/async-persistent-media-classic-2f42d957709e4b1085a376dd60ce7d49",
+      "requests": [
+        {
+          "index": 1,
+          "seed": 424242,
+          "native_history_seconds": 8.769,
+          "sampler_observed_seconds": 6.586827,
+          "graph_sha256": "2c262a7d706ee09111d961f4f0bdad504cd6f33c89eee013e8c335cce212b6f5",
+          "cached_nodes": [],
+          "uncached_steps": 8,
+          "MP4_bytes": 240122,
+          "MP4_sha256": "9c0ec62b2694f56299a15872e2b4259777dbe91428c7bea4a85a45e15b91d226",
+          "actual_file_rehashed": true,
+          "complete_media_identity_checked": true,
+          "media_summary_sha256": "196a8af7870783644b9eae732290bbb895efbcad6d9b3c6ac057df09cbdbadae",
+          "decoder_result_sha256": "4d2c333fe37e3679a9cafb1b5242202104a9e461f2a95b07a05ea5e1a6918dec",
+          "media_worker_reclaimed": true
+        },
+        {
+          "index": 2,
+          "seed": 424243,
+          "native_history_seconds": 6.666,
+          "sampler_observed_seconds": 5.233894,
+          "graph_sha256": "c6b6f4a436b4899495a25009e860ac917fda38baf55920e35d76b0bcc71bee48",
+          "cached_nodes": [
+            "1001",
+            "1002",
+            "11",
+            "127",
+            "128",
+            "148",
+            "16",
+            "17",
+            "24",
+            "6",
+            "9"
+          ],
+          "uncached_steps": 8,
+          "MP4_bytes": 312427,
+          "MP4_sha256": "899f475cf381e417873470707b119c3e5bb5ff65386cb0858f5ab8fa8887c501",
+          "actual_file_rehashed": true,
+          "complete_media_identity_checked": true,
+          "media_summary_sha256": "11a43b2972f9ac5615117226aac03aa1dd954c7e4067d1d221313c4b82ee8d06",
+          "decoder_result_sha256": "6b5eba00e7bb55a875bc8fb5b10be0bf66de92eaa643963d63fc13768852a94e",
+          "media_worker_reclaimed": true
+        }
+      ],
+      "timing": {
+        "controller_seconds": 33.41265019995626,
+        "controller_outer_seconds": 33.55595439998433,
+        "launcher_seconds": 33.727353000082076,
+        "media_wrapper_seconds": 1.7291456999955699,
+        "member_including_media_seconds": 35.81954400008544
+      },
+      "resources": {
+        "whole_board_min_free_bytes": 1536163840,
+        "owned_private_peak_bytes": 15154429952,
+        "owned_rss_peak_bytes": 5460705280,
+        "host_commit_min_bytes": 4793561088,
+        "host_physical_min_bytes": 13076402176,
+        "sample_count": 36,
+        "last_sample_matches_final_JSONL": true
+      },
+      "owned_controller_cleanup_complete": true,
+      "guard_triggered": false
+    }
+  ],
+  "descriptive_comparisons": {
+    "warm_second_native_history_seconds": {
+      "A_values": [
+        6.723,
+        6.666
+      ],
+      "B_values": [
+        6.469,
+        6.411
+      ],
+      "A_median": 6.6945,
+      "B_median": 6.4399999999999995,
+      "delta_seconds_B_minus_A": -0.25450000000000017,
+      "descriptive_reduction_percent": 3.8016282022555856
+    },
+    "warm_second_sampler_observed_seconds": {
+      "A_values": [
+        5.2654875,
+        5.233894
+      ],
+      "B_values": [
+        5.0675946,
+        4.9913143
+      ],
+      "A_median": 5.24969075,
+      "B_median": 5.029454449999999,
+      "delta_seconds_B_minus_A": -0.22023630000000072,
+      "descriptive_reduction_percent": 4.195224261543419
+    },
+    "priming_first_native_history_seconds": {
+      "A_values": [
+        9.173,
+        8.769
+      ],
+      "B_values": [
+        8.584,
+        8.549
+      ],
+      "A_median": 8.971,
+      "B_median": 8.5665,
+      "delta_seconds_B_minus_A": -0.4045000000000005,
+      "descriptive_reduction_percent": 4.508973358599939
+    },
+    "controller_seconds": {
+      "A_values": [
+        34.35974730004091,
+        33.41265019995626
+      ],
+      "B_values": [
+        33.483554099919274,
+        33.362260599969886
+      ],
+      "A_median": 33.886198749998584,
+      "B_median": 33.42290734994458,
+      "delta_seconds_B_minus_A": -0.46329140005400404,
+      "descriptive_reduction_percent": 1.3671979069473628
+    },
+    "controller_outer_seconds": {
+      "A_values": [
+        34.50619480002206,
+        33.55595439998433
+      ],
+      "B_values": [
+        33.62555850006174,
+        33.5031909000827
+      ],
+      "A_median": 34.031074600003194,
+      "B_median": 33.56437470007222,
+      "delta_seconds_B_minus_A": -0.4666998999309726,
+      "descriptive_reduction_percent": 1.3713933674340357
+    },
+    "launcher_seconds": {
+      "A_values": [
+        34.69242239999585,
+        33.727353000082076
+      ],
+      "B_values": [
+        33.78921129996888,
+        33.673561300034635
+      ],
+      "A_median": 34.20988770003896,
+      "B_median": 33.73138630000176,
+      "delta_seconds_B_minus_A": -0.478501400037203,
+      "descriptive_reduction_percent": 1.3987225103830376
+    },
+    "member_including_media_seconds": {
+      "A_values": [
+        36.865547799970955,
+        35.81954400008544
+      ],
+      "B_values": [
+        35.92901570000686,
+        35.82645890000276
+      ],
+      "A_median": 36.3425459000282,
+      "B_median": 35.87773730000481,
+      "delta_seconds_B_minus_A": -0.46480860002338886,
+      "descriptive_reduction_percent": 1.2789654343479229
+    }
+  },
+  "pair_outer_elapsed_seconds": 146.70067389996257,
+  "conclusion_zh": "四成员 ABBA / 八视频全部完成；暖第二请求中位数 6.6945→6.4400 秒，差0.2545秒（本次描述值3.80%）。整个控制器中位数约33.8862→33.4229秒，差约0.4633秒（1.37%），不是视频全流程的3.80%加速。两seed完整MP4逐文件相同；0.75可作为这个短场景下的小幅暖请求优化候选，收益仍小，不能宣称通用E2E或质量PASS。",
+  "recommendation_zh": "保留1.0为余量较大的已验证配置；0.75提供受保护的可选配置。不要再降低768MiB停止线，且不要将其直接扩展到较高分辨率/新prompt或多应用负载。无需继续扩矩阵即可交付本轮结果。",
+  "limitations": [
+    "Two repetitions per side, one toycar prompt/two fixed seeds; no statistical significance or long-duration stability claim.",
+    "Primary interval excludes text encoding, startup and model-file verification; sampler timing includes observer transport and is not GPU-only.",
+    "All eight media files are byte-identical per seed and structurally decoded; no new subjective playback/listening or universal perceptual claim.",
+    "Memory summaries are successful-member JSONL samples; actual final last_sample matches last row for all four. Whole-board GPU usage includes unrelated processes and sampled extrema may miss peaks.",
+    "PowerShell native exit mapping is not used as experiment verdict; actual status/evaluation/member records establish completion. Adapter INCONCLUSIVE exit2 is deliberate.",
+    "No new GPU execution, media decoding, model weights read or source mutations during this audit."
+  ],
+  "evidence": [
+    {
+      "relative_to_q33": "results/rsi-headroom-pairs/20261030T201142Z-784f36572c/baseline/trial-001/result.json",
+      "bytes": 7285,
+      "sha256": "401d4236e3dcbe567f2d8f629e140868e61139e80a167e5024b558efa9ffe4d5"
+    },
+    {
+      "relative_to_q33": "results/rsi-headroom-pairs/20261030T201142Z-784f36572c/baseline/trial-001/execution.json",
+      "bytes": 1467,
+      "sha256": "525e2b00b3a2147c45f13e5d85e5981f6876fbaa69dda03ae5b59bd139f7ca98"
+    },
+    {
+      "relative_to_q33": "results/inferrsi-async-classic-a4aafe11b8fc45b8a995faf615e8e9b7/result.json",
+      "bytes": 28365,
+      "sha256": "4910f07f2b4c85e6da4375fd1613e9e964c687886acd02df3cd3e22f6fe466ff"
+    },
+    {
+      "relative_to_q33": "results/inferrsi-async-classic-a4aafe11b8fc45b8a995faf615e8e9b7/execution.json",
+      "bytes": 4152,
+      "sha256": "5ddf1366eeef78ca80d1ef043cde11f04791346ffd4a2cbc577ce2cdb1dc2ef6"
+    },
+    {
+      "relative_to_q33": "results/inferrsi-async-classic-a4aafe11b8fc45b8a995faf615e8e9b7/resources.jsonl",
+      "bytes": 18135,
+      "sha256": "dfb8777de57b4d753bc60b1dc4af0bda7ab7b1a5fbcfa5de581e974743c75c94"
+    },
+    {
+      "relative_to_q33": "results/async-persistent-media-classic-e4434e93fd774546b5c9ec1d3db856b9/result.json",
+      "bytes": 32867,
+      "sha256": "4dc44820018a8bd70bf8fec3f1b744e62c5179277b7e8d1413aa38c337c4edeb"
+    },
+    {
+      "relative_to_q33": "results/rsi-headroom-pairs/20261030T201142Z-784f36572c/candidate/trial-001/result.json",
+      "bytes": 7331,
+      "sha256": "d30c04e15d94f74fec27e9761b5b157dc688875ee92ae61da92754526f7c927c"
+    },
+    {
+      "relative_to_q33": "results/rsi-headroom-pairs/20261030T201142Z-784f36572c/candidate/trial-001/execution.json",
+      "bytes": 1471,
+      "sha256": "d309cebfdc25e5ca6fa8879a3fa9eefd2c1482be3f7bb7edb3b2f5dfde3454ff"
+    },
+    {
+      "relative_to_q33": "results/inferrsi-headroom075-classic-de78bc9d7d2a49749a87ee344592264b/result.json",
+      "bytes": 28371,
+      "sha256": "d9753c65ed67ddb78f570ae1c710f365a9ac5535f13c9349afac7b03d92b2221"
+    },
+    {
+      "relative_to_q33": "results/inferrsi-headroom075-classic-de78bc9d7d2a49749a87ee344592264b/execution.json",
+      "bytes": 4189,
+      "sha256": "0c9bfcb97c71012d61beb0736bff2cc75656dfd9f5ecaa52bec8b0b3d83e4ff2"
+    },
+    {
+      "relative_to_q33": "results/inferrsi-headroom075-classic-de78bc9d7d2a49749a87ee344592264b/resources.jsonl",
+      "bytes": 17625,
+      "sha256": "0b8dfe09a428b08954245ba6b3f41385ec3ce5e7864b853b564961444728e3e7"
+    },
+    {
+      "relative_to_q33": "results/headroom075-media-classic-759b51dd82724e6badbaf64bf5f3ec1d/result.json",
+      "bytes": 32859,
+      "sha256": "908eb21030754a8aca91579086e29d79ec8dfa8520a01b2ed4d12000a8493cdc"
+    },
+    {
+      "relative_to_q33": "results/rsi-headroom-pairs/20261030T201142Z-784f36572c/candidate/trial-002/result.json",
+      "bytes": 7333,
+      "sha256": "3e1f9f514023d4c2a6ed2409db598ff131498c950e30ceeba7e31a6b8dcde3f0"
+    },
+    {
+      "relative_to_q33": "results/rsi-headroom-pairs/20261030T201142Z-784f36572c/candidate/trial-002/execution.json",
+      "bytes": 1471,
+      "sha256": "16998b97a1738e5eb780445e2984a421891e09b6496f9c84b6e78547592382f8"
+    },
+    {
+      "relative_to_q33": "results/inferrsi-headroom075-classic-ea50432dbdf44800b093ff4134b33d89/result.json",
+      "bytes": 28374,
+      "sha256": "fde776095c36ff6b1b9dd0859d66be11e6d2e083fb8a0e921948baa97c5c86a9"
+    },
+    {
+      "relative_to_q33": "results/inferrsi-headroom075-classic-ea50432dbdf44800b093ff4134b33d89/execution.json",
+      "bytes": 4188,
+      "sha256": "9bf7e7566f304f2134503ccee0666639e97284c590f44929bd7a54811b138934"
+    },
+    {
+      "relative_to_q33": "results/inferrsi-headroom075-classic-ea50432dbdf44800b093ff4134b33d89/resources.jsonl",
+      "bytes": 17198,
+      "sha256": "a1d6da8f90798eda50362800201f05837168e96a43d783f41df2c7e14eb7ce61"
+    },
+    {
+      "relative_to_q33": "results/headroom075-media-classic-27ad36d8937441089fd12fb3f3e0f2b0/result.json",
+      "bytes": 32859,
+      "sha256": "7840b7c061deff7b2b1e07f78a53b114ed4f4e36d118622141a2717a7c38dd63"
+    },
+    {
+      "relative_to_q33": "results/rsi-headroom-pairs/20261030T201142Z-784f36572c/baseline/trial-002/result.json",
+      "bytes": 7285,
+      "sha256": "71cb16430aec147efa8b37488634ad7a2e14751e77ff2007994a708e237035d6"
+    },
+    {
+      "relative_to_q33": "results/rsi-headroom-pairs/20261030T201142Z-784f36572c/baseline/trial-002/execution.json",
+      "bytes": 1466,
+      "sha256": "8fd1ecb890d44d466bd36069a11ac338b8b6e71a943d00cc9c75728ec9e5553a"
+    },
+    {
+      "relative_to_q33": "results/inferrsi-async-classic-c3ab28bb571a4992894e1a456273c734/result.json",
+      "bytes": 28361,
+      "sha256": "415940ee5ea02a9550adc93b418c0abb74b834eb345f84002b2dc659db91992b"
+    },
+    {
+      "relative_to_q33": "results/inferrsi-async-classic-c3ab28bb571a4992894e1a456273c734/execution.json",
+      "bytes": 4152,
+      "sha256": "599230649eeedb589cbc6b7b71346a1c351adf19c6b26fba5e46baf6505e32f1"
+    },
+    {
+      "relative_to_q33": "results/inferrsi-async-classic-c3ab28bb571a4992894e1a456273c734/resources.jsonl",
+      "bytes": 17624,
+      "sha256": "5035e12c36d01d65c1d43510abd65f2c8dcd20cb21667d365cec9292cef24027"
+    },
+    {
+      "relative_to_q33": "results/async-persistent-media-classic-2f42d957709e4b1085a376dd60ce7d49/result.json",
+      "bytes": 32868,
+      "sha256": "caf3e9b952b791a743896d5089ee4474e23e62afa7b4d090f64c8411d5ee57e8"
+    },
+    {
+      "relative_to_q33": "results/rsi-headroom-pairs/20261030T201142Z-784f36572c/run.lock.json",
+      "bytes": 3347,
+      "sha256": "6968b4600e174b3ef4b88990e6a8414d51540dc4910af0ad107ae71503960116"
+    },
+    {
+      "relative_to_q33": "results/rsi-headroom-pairs/20261030T201142Z-784f36572c/environment.json",
+      "bytes": 2475,
+      "sha256": "e9a8d5e50484ee87dacf9e822551480c0efe8c8a4334d6b715c9b879fd52a131"
+    },
+    {
+      "relative_to_q33": "results/rsi-headroom-pairs/20261030T201142Z-784f36572c/events.jsonl",
+      "bytes": 600,
+      "sha256": "16b77ad9f048bbe5a44f35ac0a3aded9fb0b5efa22b5d7abaf30048dc3085b09"
+    },
+    {
+      "relative_to_q33": "results/rsi-headroom-pairs/20261030T201142Z-784f36572c/status.json",
+      "bytes": 343,
+      "sha256": "e03e9b80bc23b6e435621e7d1906595a8f3501f87241a135e8cb76c2b2ea1a80"
+    },
+    {
+      "relative_to_q33": "results/rsi-headroom-pairs/20261030T201142Z-784f36572c/evaluation.json",
+      "bytes": 1180,
+      "sha256": "6cd0753d087ae300a4d0048b981e4adf2015393e0ddd482dca319a15c4d4234c"
+    },
+    {
+      "relative_to_q33": "results/rsi-headroom-pairs/20261030T201142Z-784f36572c/repositories.lock.json",
+      "bytes": 239014,
+      "sha256": "a8aa8e2b58d5a9f2db8d7a2d35b238aa89508b9c954d21403adf50eb3ccd4fc5"
+    },
+    {
+      "relative_to_q33": "results/rsi-headroom-pairs/20261030T201142Z-784f36572c/repositories.final.json",
+      "bytes": 239014,
+      "sha256": "a8aa8e2b58d5a9f2db8d7a2d35b238aa89508b9c954d21403adf50eb3ccd4fc5"
+    },
+    {
+      "relative_to_q33": "results/rsi-headroom-pairs/20261030T201142Z-784f36572c/source_checks.json",
+      "bytes": 1000701,
+      "sha256": "ce0ae1cd13bfebc900b3420ae97cc4cceda59d92936997711596d3e8114d81b4"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+--- turbo_stage_b_v5.py
++++ turbo_stage_b_v6.py
+@@ -628,6 +628,7 @@
+                    "--disable-auto-launch", "--disable-all-custom-nodes", "--disable-partner-nodes",
+                    "--offline", "--disable-assets", "--disable-pinned-memory", "--disable-async-offload", "--disable-smart-memory", "--cache-none", "--preview-method", "none",
+                    "--reserve-vram", str(gates["reserve_vram_gb"]),
++                   "--vram-headroom", "1.0",
+                    "--models-directory", str(models_root)]
+         for key in ("base", "output", "temp", "input", "previews", "user"):
+             command += ["--" + key + "-directory", str(dirs[key])]

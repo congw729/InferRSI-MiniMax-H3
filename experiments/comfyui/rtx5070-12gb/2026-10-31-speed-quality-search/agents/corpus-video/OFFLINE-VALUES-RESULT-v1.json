@@ -1,0 +1,90 @@
+{
+  "schema": "q33-corpus-values-offline/v1",
+  "unit_metadata_only_not_real_receipts": true,
+  "model_dispatches": 0,
+  "network_requests": 0,
+  "checks": [
+    {
+      "name": "value_scanner_exact_unchanged",
+      "ok": true
+    },
+    {
+      "name": "resource_MAX_FILE",
+      "ok": true
+    },
+    {
+      "name": "resource_MAX_HEADER",
+      "ok": true
+    },
+    {
+      "name": "resource_CHUNK",
+      "ok": true
+    },
+    {
+      "name": "resource_DEADLINE_SECONDS",
+      "ok": true
+    },
+    {
+      "name": "cleanup_single_post_guard_preserved",
+      "ok": true
+    },
+    {
+      "name": "no_hardcoded_old_token_count",
+      "ok": true
+    },
+    {
+      "name": "bounce-audio_unit_identity_accept",
+      "ok": true
+    },
+    {
+      "name": "bounce-audio_unit_reject_prompt_sha256",
+      "ok": true
+    },
+    {
+      "name": "bounce-audio_unit_reject_graph_sha256",
+      "ok": true
+    },
+    {
+      "name": "bounce-audio_unit_reject_driver_sha256",
+      "ok": true
+    },
+    {
+      "name": "bounce-audio_unit_reject_corpus_id",
+      "ok": true
+    },
+    {
+      "name": "bounce-audio_unit_reject_mode",
+      "ok": true
+    },
+    {
+      "name": "hands-face-mug_unit_identity_accept",
+      "ok": true
+    },
+    {
+      "name": "hands-face-mug_unit_reject_prompt_sha256",
+      "ok": true
+    },
+    {
+      "name": "hands-face-mug_unit_reject_graph_sha256",
+      "ok": true
+    },
+    {
+      "name": "hands-face-mug_unit_reject_driver_sha256",
+      "ok": true
+    },
+    {
+      "name": "hands-face-mug_unit_reject_corpus_id",
+      "ok": true
+    },
+    {
+      "name": "hands-face-mug_unit_reject_mode",
+      "ok": true
+    },
+    {
+      "name": "no_torch_import",
+      "ok": true
+    }
+  ],
+  "check_count": 20,
+  "claim": "INCONCLUSIVE"
+}

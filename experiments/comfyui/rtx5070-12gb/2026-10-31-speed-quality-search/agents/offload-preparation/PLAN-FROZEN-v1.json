@@ -1,0 +1,37 @@
+{
+  "schema": "q33-async-single-flag-plan/v1",
+  "phase": "frozen before candidate creation",
+  "plane": "infra",
+  "baseline_controller": "../persistent-preparation/persistent_stage_b_v2.py",
+  "baseline_sha256": "f27dff8a8792a99c47d9ba71f5ddd005a95bebd950e8f365b51cb4685b4c31b8",
+  "single_runtime_delta": "Remove --disable-async-offload; restore NVIDIA default 2 streams. Keep --disable-pinned-memory.",
+  "fixed": {
+    "profile": "trim-8",
+    "cache_policy": "classic",
+    "memory_policy": "smart",
+    "seed_schedule": [
+      424242,
+      424243
+    ],
+    "reserve_vram_gib": 3,
+    "aimdo_headroom_gib": 1,
+    "all_resource_gates": "unchanged",
+    "graph_prefix_and_graph": "same baseline two-request graphs; fresh owned run directory separates artifacts"
+  },
+  "additional_harness_identity_only": [
+    "new mode/root/controller/media source identity",
+    "record requested flags and require actual startup 2-stream marker",
+    "parenthelper fixed classic and new frozen dependencies"
+  ],
+  "checks": [
+    "exact CLI delta after existing classic transform",
+    "all unchanged guard/cleanup/identity/loop functions AST equal",
+    "same two request graphs and seeds",
+    "reject other cache policy",
+    "startup present/absent/legacy marker cases",
+    "media correct new mode/source hash, classic/async/no-pin/cleanup requirements",
+    "actual installed Python --help for controller/media/helper with no model imports"
+  ],
+  "no_gpu": true,
+  "claim": "INCONCLUSIVE; no measured speed or quality claim"
+}

@@ -1,0 +1,21 @@
+{
+  "schema": "q33-summary-freeze/v1",
+  "files": [
+    {
+      "path": "RESULT-SUMMARY-PLAN-v1.json",
+      "bytes": 1072,
+      "sha256": "f70ff1ccf307e1db16b00a9ba8990764619ff42a76d1cc0c5a04fbdfd1efc60c"
+    },
+    {
+      "path": "summarize_q33_results_v1.py",
+      "bytes": 15607,
+      "sha256": "6d0678fa597a39696b434687257a0607bc1c0608745e69502d75aa0505705ca5"
+    },
+    {
+      "path": "validate_result_summary_v1.py",
+      "bytes": 2009,
+      "sha256": "58170381879691278d5856c7204f5b1434c7e86493247ad73a2d75ff814d985d"
+    }
+  ],
+  "created_before_checks_and_real_summary": true
+}

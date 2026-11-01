@@ -1,0 +1,10 @@
+--- end_to_end_v3.py
++++ end_to_end_v4.py
+@@ -723,6 +723,7 @@
+             nonlocal observer, conditioning, conditioning_path
+             require(observer is None, "previous observer not finalized")
+             current = begin_request(state, request_index, str(uuid.uuid4()))
++            state.pop("node_timing",None)  # Do not attach a previous request timing on early failure.
+             request_started = time.monotonic()
+             case='bounce-audio' if request_index<=2 else 'hands-face-mug'
+             is_text=request_index in (1,3)

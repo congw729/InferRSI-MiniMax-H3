@@ -1,0 +1,53 @@
+{
+  "schema": "q33-decoded-content-inputs/v1",
+  "inputs": [
+    {
+      "id": "turbo4-sync-bounce",
+      "trial_relative_to_iteration": "results/inferrsi-turbo4-corpus-bounce-audio-4265351f40394e2bb197a07d5c611653",
+      "result_sha256": "945596a1d88d496bcf91aab993463d36dc7b585cf9ec4e90f9016c2ab9f2db77",
+      "generation_identity": {
+        "driver_sha256": "a94784c03a22de99eef9ebb379c0d7f741d0cb5923fffba3fae1cf5c0ad79aaf",
+        "profile_sha256": "dc0c3465026a4b590f848fa5f38f2e886204da5c6364d963a859a26434f8582e",
+        "graph_sha256": "bed7a0c36208a1834707812c499648be6a66848750cfa9d11f513964a871ced6",
+        "asset_set_sha256": "4f43082899ac7818ebaeb4e911904bd258c4fae6d8d78ad11efa31f3fab0f95d",
+        "source_manifest_sha256": "bf0d3e3b09f8130053735eaa6645bcc4ff753833a97ef4ae306d7d223283f007",
+        "conditioning_manifest_sha256": "4986619bf419aa10b1c0f779b30fa36d1c6c0c3dde8ea0a5efba71fc87557368",
+        "gates_sha256": "13672a9bbe8946c28c98b3bab0f906f6ddfe67735ff7f77929e58539a4a580dd"
+      },
+      "request_index": 0,
+      "run_relative_to_lab": "comfy-original/runs/q33-turbo4-corpus-bounce-audio-4265351f40394e2bb197a07d5c611653",
+      "media_relative_to_run": "media-inspection-v1",
+      "media_summary_sha256": "8c00aae8bdc563b7004b1b8c2a16e70cf3c74d721e14a3f0d19579970270b9f3",
+      "decode_report_sha256": "5b807edd2aa1c057999cdb321969504af62582f20cd05ee7d78422366c126fc8",
+      "artifact": {
+        "relative_to_run": "output\\q33-turbo-corpus\\bounce-audio\\turbo-native-4_00001_.mp4",
+        "bytes": 168489,
+        "sha256": "f7d646b7b97918d78c16e6d6e69a8be05a54f4c58450b3d5dfaa27e4664b6350"
+      }
+    },
+    {
+      "id": "turbo4-async-bounce",
+      "trial_relative_to_iteration": "results/inferrsi-turbo4-async-bounce-audio-459062f3943f4f0d88029cb05cf8e67f",
+      "result_sha256": "e886db2edd57c7437cde5bfaa4d518c46cca309d2caecceb7e1f26002c40f5ab",
+      "generation_identity": {
+        "driver_sha256": "06eefc92c039a476efbad12b76a90400655a1e80ec267f0448c8a3ad25f09b04",
+        "profile_sha256": "1460f48e80579473a735acfcafa35d56162e7c6a92239128ea2239a888fe47ce",
+        "graph_sha256": "bed7a0c36208a1834707812c499648be6a66848750cfa9d11f513964a871ced6",
+        "asset_set_sha256": "4f43082899ac7818ebaeb4e911904bd258c4fae6d8d78ad11efa31f3fab0f95d",
+        "source_manifest_sha256": "bf0d3e3b09f8130053735eaa6645bcc4ff753833a97ef4ae306d7d223283f007",
+        "conditioning_manifest_sha256": "3f740296a4e230b72577c8abc7500ed0e6dc054de3a0697f94883b8e92ef8ac5",
+        "gates_sha256": "13672a9bbe8946c28c98b3bab0f906f6ddfe67735ff7f77929e58539a4a580dd"
+      },
+      "request_index": 0,
+      "run_relative_to_lab": "comfy-original/runs/q33-turbo4-async-bounce-audio-459062f3943f4f0d88029cb05cf8e67f",
+      "media_relative_to_run": "media-inspection-v1",
+      "media_summary_sha256": "e24c01f8e956adfcc59cba33d6a73b38ef94747253314089a83522f9a9e3c4ee",
+      "decode_report_sha256": "7708e5fdea8ec33f1be0ccc10c9281dbce499e97af4ec840c2b25d8dd0382c98",
+      "artifact": {
+        "relative_to_run": "output\\q33-turbo-corpus\\bounce-audio\\turbo-native-4_00001_.mp4",
+        "bytes": 168489,
+        "sha256": "f7d646b7b97918d78c16e6d6e69a8be05a54f4c58450b3d5dfaa27e4664b6350"
+      }
+    }
+  ]
+}

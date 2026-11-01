@@ -1,0 +1,33 @@
+{
+  "schema": "q33-trim-step-screen/v1",
+  "frozen_before_candidate": true,
+  "plane": "model",
+  "basis_controller": "speed_stage_b_v3.py",
+  "hypothesis": "Reduce native simple/res_multistep sampling from8 to6 or4; quality may degrade",
+  "source_audit": "NATIVE-SPEED-PATH-AUDIT-v1.json",
+  "source_audit_sha256": "6e193dea59f064a3820a1a107879e351b92a159d6c8094e94a02c6d3731a565c",
+  "candidate_profiles": [
+    "trim-6-screen-v1",
+    "trim-4-screen-v1"
+  ],
+  "unchanged": [
+    "condition",
+    "seed424242",
+    "73f384x25624fps",
+    "sigma10/3",
+    "min_tokens12288 current dense configuration",
+    "all weights/receipts",
+    "resource gates",
+    "controller v3 except step4 allowlist gate in newv4"
+  ],
+  "v3_trim6_dispatch": "new ready profile; old disabled trim6 unchanged",
+  "v4": "exact one allowed-step literal change {8,6}->{8,6,4}",
+  "quality": "Experimental screening only; no official support/quality equivalence claim",
+  "offline_gates": [
+    "reverse exact one source replacement",
+    "profile6 same frozen graph as old6; old false retained",
+    "graph4 onlysteps/prefix changes against canonical",
+    "native metadata bindings/loaders and v3/v4 graph admission",
+    "existing portable --help only"
+  ]
+}

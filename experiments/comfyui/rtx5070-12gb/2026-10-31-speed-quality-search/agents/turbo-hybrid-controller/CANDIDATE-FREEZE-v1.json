@@ -1,0 +1,78 @@
+{
+  "schema": "q33-hybrid-candidate-freeze/v1",
+  "created_utc": "2026-10-30T17:57:28.882345+00:00",
+  "files": [
+    {
+      "path": "DEPLOYED-AUTHOR-SOURCES-v1.json",
+      "bytes": 979,
+      "sha256": "d9e9a7161e6233fc68ad5666a06e637f3b950f1ec2598ec388b89fdb4bd75625"
+    },
+    {
+      "path": "native-v6-to-hybrid-v1.patch",
+      "bytes": 14599,
+      "sha256": "f771c47373eed1fa7f70bd4ebc308e1d0cdd1503171872f4c3ba2059d4b46c17"
+    },
+    {
+      "path": "PLAN-FROZEN-v1.json",
+      "bytes": 2352,
+      "sha256": "1050ab3d4ad22fd2c5101d6eebffc8b7d3bf65e18bf55da1ba2d69238c4a807d"
+    },
+    {
+      "path": "TURBO-RESOURCE-GATES-v1.json",
+      "bytes": 855,
+      "sha256": "13672a9bbe8946c28c98b3bab0f906f6ddfe67735ff7f77929e58539a4a580dd"
+    },
+    {
+      "path": "turbo_hybrid_stage_b_v1.py",
+      "bytes": 57567,
+      "sha256": "eb195fdb263ee8015bd06233f4cfb115f4741749e87b2a02afa5d56793b341a1"
+    },
+    {
+      "path": "validate_hybrid_offline_v1.py",
+      "bytes": 5805,
+      "sha256": "d829403cefb1f31570ec449ba2cc63dc4f322b267bc0c40200596c34a5d2038e"
+    },
+    {
+      "path": "assets/turbo-hybrid.ready.json",
+      "bytes": 3866,
+      "sha256": "bc2390f35de3f1348b23f196a041c8f618e4591381c34b73877e4885461accfd"
+    },
+    {
+      "path": "canonical/original.json",
+      "bytes": 3069,
+      "sha256": "d5937f2505f74e07ce8de746c49c98e8a428535d79ccc878383e8b989807fb29"
+    },
+    {
+      "path": "conditioning/turbo-hybrid-6.json",
+      "bytes": 1025,
+      "sha256": "db95a72b2fcf433cb2ca0f0dbed76e7ae7b97d5edbe5bc01a487fb5878b55eb5"
+    },
+    {
+      "path": "graphs/turbo-hybrid-6.json",
+      "bytes": 3333,
+      "sha256": "fc56e56ab1b30990f823ab84c4b8f2a3f83cc8b94d778212d86e2144a1a2cca9"
+    },
+    {
+      "path": "profiles/turbo-hybrid-6.ready.json",
+      "bytes": 976,
+      "sha256": "e5850a6a50b2bca30d89526203f04efcbf72fb0d734effae8fcf03d23b5a10c5"
+    }
+  ],
+  "deployment_relative_to_model_root": "comfy-original/extensions/q33-turbo-hybrid-4274783",
+  "deployment_files": {
+    "custom_nodes/ComfyUI-MiniMax-H3-Turbo-full-4274783/__init__.py": {
+      "bytes": 26363,
+      "sha256": "a22f222f11dfc337552371f7f288bf5928cb1fa80a6afb3f24075a8315d02f06"
+    },
+    "custom_nodes/ComfyUI-MiniMax-H3-Turbo-full-4274783/LICENSE": {
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    "extra-paths.yaml": {
+      "bytes": 41,
+      "sha256": "661a579712e477b9f0793454b4903489315a2b6051795a5d437470f7e2934187"
+    }
+  },
+  "noGPU": true,
+  "review_required": true
+}

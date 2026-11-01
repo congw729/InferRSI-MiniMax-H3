@@ -1,0 +1,72 @@
+{
+  "schema": "q33-two-new-prompts-plan/v1",
+  "plane": "harness",
+  "baseline_controller_sha256": "0a261d4246526c8611fbbfd873b140907b6e31cc7639156d37bfc38127888d25",
+  "baseline_helper_sha256": "28262f6f3531d50b5b4e6f69eb6d13ba3103b75375a7d19cffcea37276439c83",
+  "baseline_execution_freeze_sha256": "dcd201060065b6d10f2b4b5a014296993e1cb442cc12b4fdfc8cc2d3d10028ef",
+  "scope": "Exactly bounce-audio TE/video then hands-face-mug TE/video, one service, four POST and three free transitions",
+  "steps": [
+    "full SHA four existing assets once",
+    "POST1 bounce TE/save/finite/hash/tag/alias",
+    "free1 reset path marker plus unchanged warm admission",
+    "POST2 bounce Trim8",
+    "free2 reset path marker plus unchanged warm admission",
+    "POST3 hands TE/save/finite/hash/tag/alias",
+    "free3 reset path marker plus unchanged warm admission",
+    "POST4 hands Trim8",
+    "close owned Job immediately before observer join"
+  ],
+  "unchanged": [
+    "model and sample graph other than condition name and output prefix",
+    "physical12/GPU6 admission, cold commit16.5, warm remaining16GiB-owned+2GiB with pre/post min",
+    "runtime private16/RSS10/system2/2/GPU768MiB",
+    "cache-none/sync/no-pin/disable-smart-memory/reserve3/headroom1",
+    "all phase and whole2700s timeouts and bounded logs/output/http",
+    "asset receipt/full SHA initial and stat before every POST",
+    "source manifests, native Comfy and InferRSI sources"
+  ],
+  "new_boundaries": {
+    "fixed_cases": [
+      "bounce-audio",
+      "hands-face-mug"
+    ],
+    "prompt_posts_max": 4,
+    "free_posts_exact": 3,
+    "conditioning_scan_subdir": "output/q33-e2e-two/<case>/conditioning only",
+    "video_prefix": "q33-e2e-two/<case>/video",
+    "references": {
+      "bounce-audio": {
+        "bytes": 840216,
+        "tokens": 41,
+        "sha256": "70a19cfeb46fe9411ac6f3fbfea63c253056d28cffb9bb28f269da4c2134d170"
+      },
+      "hands-face-mug": {
+        "bytes": 1004120,
+        "tokens": 49,
+        "sha256": "ea6cb031df1988576ee7eb4cc9d8d4c38a393e025f92de57d4aae8227858e2dc"
+      }
+    }
+  },
+  "success_evidence": [
+    "4 uncached completed native prompts with individual IDs and WS timing",
+    "each actual condition hash/shape/finite/tags matches own reference",
+    "3 new-offset reset-path markers and warm decisions, never TE-absence claim",
+    "both MP4 bounded SHA receipts with post-artifact elapsed; subsequent independent full media validation",
+    "owned root exited/job closed/cleanup diagnostics empty"
+  ],
+  "failure_evidence": [
+    "incomplete prior request blocks next POST",
+    "failed warm release blocks following POST without relaxing stops",
+    "condition mismatch preserves output and blocks following video",
+    "all failures retained, old files untouched"
+  ],
+  "timing": [
+    "cold source/hash/startup separately recorded",
+    "per-request native + observer nodes + controller events",
+    "second-new-prompt boundary includes group free, real hands TE, intermediate free, real video",
+    "no zero for unmeasured GPU-only/init",
+    "historical split comparison is not controlled L4 PASS"
+  ],
+  "validation_scope": "Only fixed sequence/failure bounds, case graph deltas, subtree isolation, protected AST, help import. Do not rerun old scanner/warm matrices.",
+  "claim": "INCONCLUSIVE"
+}

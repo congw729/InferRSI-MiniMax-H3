@@ -1,0 +1,33 @@
+{
+  "schema": "q33-async-independent-review/v1",
+  "reviewer": "manual_notes_review",
+  "scope": "Read-only short controller/media/helper diffs and actual frozen identities; no matrix rerun/import/model/GPU",
+  "controller_sha256": "be5ed4634a212e0d68d9b014f04ac2ca8e8547ade62c93967e73ccdecb9a8bfe",
+  "media_sha256": "27d8a29e51d9e18da93e803e16eaa8276445e103665c2eeef7dc1e6ee746b84e",
+  "helper_sha256": "618638a30e2092deb676981657cfd106b0960c843d3139f5026709452217a6f8",
+  "freeze_sha256": "a996fe37e5f693bab17c2d7ec3b120ac4d4c12ff717562d6e1f9b181fc493a8a",
+  "helper_freeze_sha256": "4e56188ea14723fb63862fc5f38db14f4f7ae676baae78127c8c80647ad9aff8",
+  "source_counts": {
+    "files": 22,
+    "external_notes_files": 20,
+    "portable_files": 6,
+    "parenthelper_files": 6
+  },
+  "blocking_findings": [],
+  "conclusion": "Ready for parent-controlled bounded single async candidate after fresh resource/quota admission; no actual speed/quality conclusion",
+  "confirmed": [
+    "Same fixed classic/smart/Trim8/two-seed graphs as real baseline; actual runtime argument difference only omission of disable-async-offload",
+    "disable-pinned-memory, reserve3 and aimdo headroom1 retained; original twoPOST/full8uncached sampler/resource/deadline/cleanup helpers unchanged",
+    "Installed native model_management selects two streams on NVIDIA absent override; controller requires exact observed startup marker and rejects legacy fallback",
+    "All dedicated root/mode/controller filenames and media source hash checks point to async artifacts; parenthelper verifies local+notes+portable sources and original T metadata",
+    "Media wrapper still requires two successful actual requests plus cleanup and original frozen CPU decoder, not cached sampler output",
+    "Parenthelper preserves existing outer12GiBphysical/16.5GiBcommit/6GiBGPU admission,20percent quota gate and2730second execution deadline"
+  ],
+  "limits": [
+    "Startup two-stream marker verifies configuration, not proof of physical transfer overlap or speedup",
+    "No-pin remains; actual transport benefit and memory pressure must be measured",
+    "One exploratory comparison cannot establish service performance or broad quality equivalence",
+    "Selected sources are not a complete OS/DLL/environment closure"
+  ],
+  "verdict": "INCONCLUSIVE"
+}

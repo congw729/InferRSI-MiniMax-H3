@@ -1,0 +1,46 @@
+"""Validate both actual StageB MP4s after one-service two-new-prompt cleanup."""
+import argparse,hashlib,json,sys,time,uuid
+from pathlib import Path
+CONTROLLER_SHA='70a627fc293bb01f7961b7228abfa4b2cda413fecf9d148044ea1d981552d89f'
+p=argparse.ArgumentParser(allow_abbrev=False)
+for n in ('notes-root','infra-root','portable-root','run','trial'):p.add_argument('--'+n,type=Path,required=True)
+p.add_argument('--result-sha256',required=True);a=p.parse_args()
+R=a.notes_root.resolve();Q=R/'iterations/2026-10-31-speed-quality-search';Q31=R/'iterations/2026-10-28-comfy-trim-first-video';D=Q/'agents/end-to-end-preparation';IR=a.infra_root.resolve();run=a.run.resolve();prior=a.trial.resolve()
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def redact(text):
+ for path,label in [(R,'R'),(IR,'INFERRSI'),(a.portable_root.resolve(),'PORTABLE'),(run,'OWNED_RUN')]:
+  text=text.replace(str(path).replace('\\','\\\\'),label).replace(str(path).replace('\\','/'),label)
+ return text
+assert Path(__file__).resolve().parent==D and run.drive.upper()=='E:' and prior.parent==Q/'results'
+assert sha(D/'end_to_end_v4.py')==CONTROLLER_SHA
+rp=prior/'result.json';assert rp.stat().st_size<=2**20 and sha(rp)==a.result_sha256;r=json.loads(rp.read_text(encoding='utf-8'))
+assert r['status']=='two_new_prompt_videos_received_unvalidated' and r['mode']=='two-new-prompts-trim8' and r['driver_sha256']==CONTROLLER_SHA
+assert r['owned_root_exited'] and r['job_close_requested'] and not r.get('cleanup_diagnostics')
+assert r['completed_requests']==r['prompt_posts']==4 and r['free_posts']==3 and len(r['releases'])==3 and len(r['requests'])==4 and len(r['videos'])==2
+assert all(x['status']=='complete' for x in r['requests'])
+for index,release in enumerate(r['releases'],1):
+ assert release['after_request_index']==index and release['fresh_admitted'] and release['reset_path_entered'] and release['http_status']==200
+ for warm in (release['warm_admission'],r['requests'][index]['immediately_pre_post_warm_admission']):
+  assert warm['admitted'] and warm['same_owned_private_cap_bytes']==16*2**30 and warm['same_system_commit_floor_bytes']==2*2**30
+  assert warm['required_available_commit_bytes']==16*2**30-warm['current_owned_private_bytes']+2*2**30 and warm['effective_available_commit_bytes']>=warm['required_available_commit_bytes']
+assert r['gates_sha256']=='13672a9bbe8946c28c98b3bab0f906f6ddfe67735ff7f77929e58539a4a580dd' and r['source_manifest_sha256']=='bf0d3e3b09f8130053735eaa6645bcc4ff753833a97ef4ae306d7d223283f007'
+cases=[('bounce-audio','70a19cfeb46fe9411ac6f3fbfea63c253056d28cffb9bb28f269da4c2134d170'),('hands-face-mug','ea6cb031df1988576ee7eb4cc9d8d4c38a393e025f92de57d4aae8227858e2dc')]
+for group,(case,reference) in enumerate(cases):
+ text=r['requests'][group*2];video_request=r['requests'][group*2+1]
+ assert text['case']==video_request['case']==case and text['stage']=='text-encoder' and video_request['stage']=='trim-video'
+ assert text['artifact']['sha256']==reference and text['conditioning_value_validation']['finite_values_checked'] and text['conditioning_value_validation']['all_token_tags_one']
+ assert r['videos'][group]['artifact']==video_request['artifact'] and r['videos'][group]['case']==case and r['videos'][group]['request_index']==group*2+2
+script=Q31/'tools/validate_first_video_media_v1.py';gates=Q31/'plan/MEDIA-VALIDATION-GATES-v1.json';monitor=Q31/'tools/comfy_first_video_v1.py'
+assert sha(script)=='7fa12bd773e5933f2ce0e71c5be2f4124fc6c35284fbe5d3c624ab1b7012ca1a' and sha(gates)=='3e880606a5744fc290be9ca4011169be7dac65140e66ac3525e7b58b65a82e60' and sha(monitor)=='63eb319e9fe294209e65c188a447a101987738e5ebc49bae879b65d36bb20d35'
+sys.path.insert(0,str(IR/'src'));from inferrsi.infra.executors.local import execute_command
+for group,(case,_) in enumerate(cases):
+ request_index=group*2+2;f=r['requests'][request_index-1]['artifact'];rel=Path(f['relative_to_run'])
+ assert not rel.is_absolute() and not rel.drive and '..' not in rel.parts and rel.parts[0]=='output'
+ video=(run/rel).resolve();assert video.is_relative_to(run/'output/q33-e2e-two'/case) and video.name.startswith('video_') and video.suffix=='.mp4' and video.stat().st_size==f['bytes']
+ out=run/('media-inspection-request-'+str(request_index)+'-v1');assert not out.exists();trial=Q/'results'/('media-e2e-two-'+case+'-'+uuid.uuid4().hex)
+ argv=[str(a.portable_root/'python_embeded/python.exe'),'-s','-B','-X','utf8',str(script),'--input',str(video),'--run-root',str(run),'--output-dir',str(out),'--gates',str(gates),'--monitor-source',str(monitor),'--inferrsi-src',str(IR/'src'),'--expected-sha256',f['sha256'],'--gates-sha256','3e880606a5744fc290be9ca4011169be7dac65140e66ac3525e7b58b65a82e60']
+ rec=execute_command(tuple(argv),IR,trial,time.monotonic()+140)
+ with (trial/'execution.json').open('x',encoding='utf-8') as stream:stream.write(redact(json.dumps(rec,indent=2)))
+ with (trial/'SOURCE-v1.json').open('x',encoding='utf-8') as stream:json.dump({'generation_result_sha256':a.result_sha256,'prior_trial_relative_to_iteration':prior.relative_to(Q).as_posix(),'controller_sha256':CONTROLLER_SHA,'media_source_sha256':sha(script),'case':case,'request_index':request_index,'artifact':f,'claim':'INCONCLUSIVE'},stream,indent=2)
+ print(json.dumps({'case':case,'status':rec['status'],'returncode':rec['returncode'],'seconds':rec['elapsed_seconds'],'trial_relative_to_iteration':trial.relative_to(Q).as_posix()}))
+ assert rec['returncode']==0,'media check failed; prior output retained'

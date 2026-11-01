@@ -1,0 +1,76 @@
+{
+  "schema": "q33-attention-candidate-freeze/v1",
+  "files": [
+    {
+      "path": "assets/trim.json",
+      "bytes": 2763,
+      "sha256": "c1507b121962e250f2d74c7dce2f4e0e63e7de8e55a39c2d2795e336106de2a0"
+    },
+    {
+      "path": "attention_stage_b_v1.py",
+      "bytes": 49637,
+      "sha256": "0273e6d9b035db6b2077673c181a687e86fd2e149743a35eddbfed1efc32476b"
+    },
+    {
+      "path": "canonical/trim.json",
+      "bytes": 3895,
+      "sha256": "a915f62f109cd2e1be615eb7b0c1aa6fab4a4b6ad6e31791fb84488b02a17ad8"
+    },
+    {
+      "path": "conditioning/trim-6-pytorch.json",
+      "bytes": 1023,
+      "sha256": "23e0ec33f1d3ee032d444a5189daf4e6fde05a09d0cb1bba78c8a79794228bf2"
+    },
+    {
+      "path": "controller-v6-to-attention-v1.patch",
+      "bytes": 1711,
+      "sha256": "1536f2471ff7b05b502d804244cb88c64c7f644116fae12291c633d3665d7f1c"
+    },
+    {
+      "path": "graphs/trim-6-pytorch.json",
+      "bytes": 3704,
+      "sha256": "5a3dfadea50173937ef761ecafb4bd4c01c7c4b21cfde52ef15ff493b537de21"
+    },
+    {
+      "path": "LOCAL-SOURCES-v1.json",
+      "bytes": 2982,
+      "sha256": "007e474ed3986e6c6080f7b8e9d1cea69a4dc3fec7d3795300ead782557a24f1"
+    },
+    {
+      "path": "PLAN-FROZEN-v1.json",
+      "bytes": 2111,
+      "sha256": "84632dbda4bcd87851045877df5091d039828bbe18bd33ac1aab088313486d64"
+    },
+    {
+      "path": "PREPARATION-PATH-CORRECTION-v1.json",
+      "bytes": 369,
+      "sha256": "9ca70e089d83a73e121bd77c4196b6658884abe8436626ee520203f6ce5dac67"
+    },
+    {
+      "path": "profiles/trim-6-pytorch.json",
+      "bytes": 921,
+      "sha256": "d7be888742d44b75aed8b504a5730da4dd957b0adad41b041122dcb4ef6c28b4"
+    },
+    {
+      "path": "RESOURCE-GATES-RESERVE3-v1.json",
+      "bytes": 855,
+      "sha256": "13672a9bbe8946c28c98b3bab0f906f6ddfe67735ff7f77929e58539a4a580dd"
+    },
+    {
+      "path": "SOURCES-v1.json",
+      "bytes": 33327,
+      "sha256": "bf0d3e3b09f8130053735eaa6645bcc4ff753833a97ef4ae306d7d223283f007"
+    },
+    {
+      "path": "timing_events_v1.py",
+      "bytes": 10734,
+      "sha256": "f0abb1937ca5462d712a73d1a8623b6a9f5df86927dbcf6375903b8a5ad3e614"
+    },
+    {
+      "path": "validate_attention_entry_v1.py",
+      "bytes": 2967,
+      "sha256": "a9f581d5aaf5c06ac33feba094559c6c44fde2838bc2b2b835c36ccd284a779f"
+    }
+  ],
+  "created_before_targeted_checks": true
+}

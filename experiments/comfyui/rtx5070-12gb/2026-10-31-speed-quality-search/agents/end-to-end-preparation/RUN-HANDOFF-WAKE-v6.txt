@@ -1,0 +1,7 @@
+All parent parameters unchanged from v5.
+Runner: Q33/agents/end-to-end-preparation/run_e2e_two_wake_v6.py
+Media: Q33/agents/end-to-end-preparation/validate_e2e_two_wake_media_v6.py
+Only behavior delta from actual async v5: one observer.done wake of history sleep per request, then original timed sleep if history not yet published. No observer source/model/infra/graph/source manifest/resource/cleanup changes. Native async2/headroom1/reserve3/no-pin/cache-none retained.
+Result records per-request early-wake count/source/clock and native-terminal-received-to-artifact SHA interval, signed if delivery late; missing/error/invalid observer remains null. Actual source of terminal clock is existing frozen collector.last_ns after valid joined execution_success, traceable to request timing/events.jsonl.
+Small frozen CPU negatives passed (no done1.0059s; consumed done fallback1.0004s, cancel propagated;8 protected AST functions unchanged), actual portable help0. No GPU by author. Final independent review required then parent runs one real4POST/3free and full two media checks.
+Compare against async v5 actual run d74b620a8f5e4b4ead670ef9524fa26f, keeping native model timings separate from terminal notification/handoff latency. No GPU speedup claim.

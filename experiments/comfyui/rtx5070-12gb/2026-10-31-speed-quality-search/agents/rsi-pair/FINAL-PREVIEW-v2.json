@@ -1,0 +1,17 @@
+{
+  "schema": "q33-rsi-final-preview/v2",
+  "exit_code": 0,
+  "execute_flag": false,
+  "dispatches": 0,
+  "identity_available": true,
+  "baseline": "trim-8",
+  "candidate": "trim-6-screen-v1",
+  "repetitions": 2,
+  "validation_command": null,
+  "metric_key": "metrics.prompt_execution_seconds",
+  "source_bundle_sha256": "1ece6e3187a8308e639112e6cdd09fe1aaa1d5f25fd0af76ee695dd3ec50f951",
+  "source_files": 272,
+  "quota_input_scope": "41 from parent message for non-dispatch preview only; must refresh at real launch",
+  "run_root_scope": "Explicit E drive run parent, not inferred from model root",
+  "no_model_network_gpu": true
+}

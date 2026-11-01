@@ -1,0 +1,35 @@
+{
+  "schema": "q33-e2e-warm-candidate-freeze/v2",
+  "files": [
+    {
+      "path": "WARM-ADMISSION-PLAN-v2.json",
+      "bytes": 2150,
+      "sha256": "e0058d17bb1e40af8741cb58fbaed8d35628f8bef19239aefcc7844f226ad4d8"
+    },
+    {
+      "path": "REAL-ATTEMPT-1-REVIEW-v1.json",
+      "bytes": 5608,
+      "sha256": "985b26cf9e03bece2a35c49c932f09c2a4bd54c6796e06353ad69b374314df9a"
+    },
+    {
+      "path": "e2e_helpers_v2.py",
+      "bytes": 6711,
+      "sha256": "28262f6f3531d50b5b4e6f69eb6d13ba3103b75375a7d19cffcea37276439c83"
+    },
+    {
+      "path": "end_to_end_v2.py",
+      "bytes": 65371,
+      "sha256": "0a261d4246526c8611fbbfd873b140907b6e31cc7639156d37bfc38127888d25"
+    },
+    {
+      "path": "warm-v1-to-v2.patch",
+      "bytes": 4376,
+      "sha256": "52bdd228849fa4cf8852939d0ee04baa93d36c343034b5e52c0558548c474e92"
+    },
+    {
+      "path": "validate_warm_offline_v2.py",
+      "bytes": 3466,
+      "sha256": "1df7b5ee3a9d3e7c9f939def7f4d7be8c44a676001c952995b122db34fa9c5f4"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "schema": "q33-decoded-content-plan/v1",
+  "plane": "harness",
+  "purpose": "Compare each actual v6 one-notification-wake output to actual v5 default-poll async output, whole decoded bytes and PTS. No quality rating.",
+  "claim": "INCONCLUSIVE",
+  "whole_seconds": 60,
+  "outer_seconds": 60,
+  "max_worker_rss_bytes": 536870912,
+  "max_video_bytes": 134217728,
+  "max_metadata_bytes": 2097152,
+  "max_result_bytes": 1048576,
+  "decoder_threads": 1,
+  "expected": {
+    "video_frames": 73,
+    "width": 384,
+    "height": 256,
+    "fps": "24",
+    "audio_rate": 32000,
+    "audio_channels": 2,
+    "audio_samples_per_channel": 97334
+  },
+  "audio_hash_rule": "Preserve native decoded dtype and values; transpose planar channels x samples to sample x channel, normalize byte order to little endian without resampling, hash C-order bytes continuously across frames. Record native format/layout/dtype and independent exact rational PTS metadata.",
+  "video_hash_rule": "Hash every RGB24 uint8 HWC frame in decode order; keep only one frame payload at a time. Record separate exact PTS/time-base metadata.",
+  "no_media_writes": true,
+  "no_network": true,
+  "no_model_dispatch": true,
+  "source_binding": "Freeze worker, plan, inputs, InferRSI executor/process source. Before decoding bind actual generation result, media summary and decode report SHA; full MP4 SHA before and after, unchanged dev/ino/size/mtime.",
+  "limitations": [
+    "Decoded byte identity under this decoder is not quality equivalence or perceptual quality PASS.",
+    "Container hash differences do not alone prove metadata-only changes.",
+    "Wall time below is CPU evidence collection cost, not inference performance."
+  ],
+  "receipt_adapter_scope": "Existing four-POST receipt branch and whole decode loop reused exactly; only fixed manifest/plan filenames differ."
+}

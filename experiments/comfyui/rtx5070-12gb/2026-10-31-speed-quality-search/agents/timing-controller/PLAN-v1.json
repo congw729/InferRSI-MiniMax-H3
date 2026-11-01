@@ -1,0 +1,79 @@
+{
+  "schema": "q33-timing-preimplementation/v1",
+  "plane": "harness",
+  "status": "frozen_before_candidate",
+  "baseline_controller": {
+    "relative_to_notes": "iterations/2026-10-30-original-h3-first-video/agents/native-graph/original_stage_b_v1.py",
+    "sha256": "8e0d6dfbe51b014b93475119de8d21ad61a5ffb385b7b24ceb95666668fbe9e0"
+  },
+  "scope": [
+    "Copied bounded controller with explicit profile/graph/condition/assets identities",
+    "Original 50/30/20, installed Trim 8/6; first real dispatch original50 only by parent",
+    "No GPU/model/network experiment by implementation agent; upstream and previous frozen sources unchanged",
+    "Existing portable Python aiohttp WebSocket observer thread; one owned loopback service and one POST retained"
+  ],
+  "profile_policy": {
+    "original_steps": [
+      50,
+      30,
+      20
+    ],
+    "trim_steps": [
+      8,
+      6
+    ],
+    "reference": "original-50",
+    "canonical_changes_only": [
+      "BasicScheduler.steps",
+      "SaveVideo.filename_prefix"
+    ],
+    "geometry": "384x256/73frames/24fps",
+    "seed": 424242,
+    "conditioning": "reuse Q31 verified text conditioning",
+    "turbo": "not implemented until separately bound real asset/graph"
+  },
+  "observer": {
+    "connect_before_post": true,
+    "endpoint": "ws://127.0.0.1:<owned-port>/ws?clientId=<nonce>",
+    "ready": "native status.data.sid must match client ID",
+    "post_client_id": true,
+    "clock": "receiver perf_counter_ns; not native/server/CUDA duration",
+    "max_message_bytes": 1048576,
+    "max_total_bytes": 16777216,
+    "max_messages": 10000,
+    "connect_timeout_seconds": 10,
+    "receive_poll_seconds": 0.25,
+    "join_seconds": 3,
+    "no_reconnect": true,
+    "bounds_failure": "timing invalid; no retry POST; keep generation evidence"
+  },
+  "semantics": {
+    "node": "first running to first finished; ignore repeat full snapshots",
+    "null": [
+      "cached",
+      "missing start/end",
+      "disconnect",
+      "malformed relevant event",
+      "timestamp regression"
+    ],
+    "progress": "record only; final progress not node finish/CUDA done",
+    "failures": "bounded minimal error marker; do not capture raw tracebacks or personal paths",
+    "cleanup": "signal observer then join before owned service Job cleanup; preserve partial timings"
+  },
+  "unchanged_guards": [
+    "Q32 resource gates including reserve2/private16GiB/RSS10GiB",
+    "native graph exact apart from declared profile variants",
+    "full asset SHA, receipts, native module/source checks, conditioning identity",
+    "one POST, resource sampling and owned service cleanup"
+  ],
+  "offline_validation": [
+    "native lowercase progress_state schema and status sid",
+    "normal duration, duplicate snapshot, cached, missing, foreign prompt, unknown node, bad clock, disconnect",
+    "progress max not treated as completion",
+    "bounded JSONL message/byte limits",
+    "profile step/family/graph identity and forbidden extra changes",
+    "unchanged core guard/function AST vs frozen controller",
+    "AST compile only; no model imports or pyc"
+  ],
+  "claims": "Technical instrumentation only; quality and speed benefits INCONCLUSIVE; receiving timestamps include async transport latency"
+}

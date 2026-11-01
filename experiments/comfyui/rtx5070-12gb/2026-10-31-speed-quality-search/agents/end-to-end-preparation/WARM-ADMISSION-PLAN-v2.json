@@ -1,0 +1,33 @@
+{
+  "schema": "q33-e2e-warm-admission-plan/v2",
+  "plane": "harness",
+  "base_controller_sha256": "378b3830cb85edaaec9c9b6a1539e084c3a2a04ccf74ed088c527ccd6b8ff903",
+  "failed_attempt_review_sha256": "985b26cf9e03bece2a35c49c932f09c2a4bd54c6796e06353ad69b374314df9a",
+  "change": "Only the already-running service admission after TE/reset uses remaining private growth budget instead of cold-start available-commit floor. Initial parent/controller admission remains12/16.5/6.",
+  "formula": "required_available_commit = gates.max_owned_private_bytes - current_owned_private_sum_bytes + gates.running_commit_bytes",
+  "owned_domain": "integer,0<=owned<=same16GiBcap; invalid input fails closed",
+  "effective_available": "min(available in forced sample before owned/GPU read, immediate additional monitor.memory read after forced sample), separately for physical and commit",
+  "unchanged": {
+    "max_owned_private_bytes": 17179869184,
+    "max_owned_rss_bytes": 10737418240,
+    "running_commit_bytes": 2147483648,
+    "running_physical_bytes": 2147483648,
+    "physical_admission_bytes": 12884901888,
+    "gpu_admission_bytes": 6442450944,
+    "board_running_floor_bytes": 805306368,
+    "release_wait_seconds": 30,
+    "maximum_prompt_posts": 2,
+    "models_graphs_assets_and_full_SHA": "unchanged"
+  },
+  "margins": "Original 2GiB system commit floor retained; no new numeric slack. Later external application allocations remain a risk covered by existing live guards, not eliminated.",
+  "release_evidence": "New marker only proves reset path entered. Worker source orders unload/reset/GC before next prompt. Does not prove zero TE objects, mappings or WDDM backing.",
+  "targeted_offline": [
+    "exact required floor admits, one byte below rejects",
+    "owned=0 andcap endpoints; negative,above cap,noninteger reject",
+    "post-read lower commit rejects even if earlier sample passes",
+    "post-read lower physical rejects",
+    "original cold function/condition scan/Job cleanup/sample/source guards unchanged"
+  ],
+  "dispatch_requires_independent_review": true,
+  "quality_performance": "INCONCLUSIVE"
+}

@@ -1,0 +1,50 @@
+{
+  "schema": "q33-corpus-ready-independent-review/v1",
+  "created_utc": "2026-10-30T18:16:06.528180+00:00",
+  "freeze_sha256": "af59cfef44c0b2e68ac4444775c6a635e87a2efb762d5747d90d5437062c7bea",
+  "files_matched": 53,
+  "external_matched": 13,
+  "actual_values": [
+    {
+      "case": "bounce-audio",
+      "result_sha256": "4855dcfd0579ffe9557a46fb6b9b3acd679ffb3fc21a61697c0ed331efa8c5f5",
+      "checks": 41,
+      "actual_returncode": 0
+    },
+    {
+      "case": "hands-face-mug",
+      "result_sha256": "466f920729e35fe314ba8e26d06a4da904b0f8a166585666a4074d24242dd8dc",
+      "checks": 41,
+      "actual_returncode": 0
+    }
+  ],
+  "alias_stat_samefile": [
+    {
+      "corpus_id": "bounce-audio",
+      "family": "original",
+      "samefile": true,
+      "bytes": 840216
+    },
+    {
+      "corpus_id": "bounce-audio",
+      "family": "trim",
+      "samefile": true,
+      "bytes": 840216
+    },
+    {
+      "corpus_id": "hands-face-mug",
+      "family": "original",
+      "samefile": true,
+      "bytes": 1004120
+    },
+    {
+      "corpus_id": "hands-face-mug",
+      "family": "trim",
+      "samefile": true,
+      "bytes": 1004120
+    }
+  ],
+  "blockers": [],
+  "review_probe_correction": "First stat-only probe mistakenly resolved source_relative_to_lab against MODEL_ROOT; corrected to explicit LAB_ROOT, no artifacts modified.",
+  "scope": "Read-only hash check of small notes/results and existing integrity gates, four alias stat/samefile checks; no tensor re-scan, GPU, model load or test rerun. Previously reviewed controller remains same SHA; image/audio quality INCONCLUSIVE."
+}

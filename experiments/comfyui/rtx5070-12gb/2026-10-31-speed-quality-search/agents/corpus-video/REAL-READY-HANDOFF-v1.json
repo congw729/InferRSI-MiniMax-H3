@@ -1,0 +1,85 @@
+{
+  "schema": "q33-real-corpus-ready-handoff/v1",
+  "created_utc": "2026-10-30T18:14:49.265409+00:00",
+  "controller": {
+    "file": "corpus_stage_b_v1.py",
+    "sha256": "74de2ccded6ec7415e183c13d162caba653b54b5bcc99270a924c9391d58c7d1",
+    "mode": "corpus-video-stage-b"
+  },
+  "cases": {
+    "bounce-audio": {
+      "value_trial_relative_to_iteration": "results/corpus-values-bounce-audio-fe603a89512d4bb98a135d9e8d78efd7",
+      "value_result_sha256": "4855dcfd0579ffe9557a46fb6b9b3acd679ffb3fc21a61697c0ed331efa8c5f5",
+      "checks": 41,
+      "integrity_verdict": "PASS",
+      "bytes": 840216,
+      "sha256": "70a19cfeb46fe9411ac6f3fbfea63c253056d28cffb9bb28f269da4c2134d170",
+      "shape": [
+        1,
+        41,
+        5120
+      ],
+      "profiles": [
+        {
+          "path": "ready/bounce-audio/original-50.profile.json",
+          "sha256": "e5f916da433dc45d955667f41c9d7ef72635ef96187b71daf9940df8e6a840e3"
+        },
+        {
+          "path": "ready/bounce-audio/original-20.profile.json",
+          "sha256": "6d7169eaf4cb9dd1f7e197f8d8ddbe8bd4ee320ad975d860d09869b2ca8cdbb6"
+        },
+        {
+          "path": "ready/bounce-audio/trim-8.profile.json",
+          "sha256": "ce709559ed18e1bc6e4f421f016ff9214328aa2f1b37af5d354127f11eda719d"
+        },
+        {
+          "path": "ready/bounce-audio/trim-6.profile.json",
+          "sha256": "82075f82f6ea7ab459db3727ff74b3ea0fe3b4833d4b2d4859b9a0ee95ef4f40"
+        }
+      ]
+    },
+    "hands-face-mug": {
+      "value_trial_relative_to_iteration": "results/corpus-values-hands-face-mug-0f8d3dfd38934c84975055108dd3d69c",
+      "value_result_sha256": "466f920729e35fe314ba8e26d06a4da904b0f8a166585666a4074d24242dd8dc",
+      "checks": 41,
+      "integrity_verdict": "PASS",
+      "bytes": 1004120,
+      "sha256": "ea6cb031df1988576ee7eb4cc9d8d4c38a393e025f92de57d4aae8227858e2dc",
+      "shape": [
+        1,
+        49,
+        5120
+      ],
+      "profiles": [
+        {
+          "path": "ready/hands-face-mug/original-50.profile.json",
+          "sha256": "c24a2efbcda00958e41d9523c0e814aad3a601d346d1e9eb31d04675e58a2f9e"
+        },
+        {
+          "path": "ready/hands-face-mug/original-20.profile.json",
+          "sha256": "9885a33730f083a864ad2440cefa2228b8a58c79a7ce9afd94399b7d9f42fedc"
+        },
+        {
+          "path": "ready/hands-face-mug/trim-8.profile.json",
+          "sha256": "1e20ccd00c5df73c2efbd24e26f1b690dc970ed3179ae512df29adc20a07d11f"
+        },
+        {
+          "path": "ready/hands-face-mug/trim-6.profile.json",
+          "sha256": "e736236c43f2c6d5e5e2533040450632815899b5626d735c68ce2f1db8e3d76a"
+        }
+      ]
+    }
+  },
+  "all_aliases_samefile": true,
+  "numeric_integrity_only_not_quality": true,
+  "new_gpu_runs": 0,
+  "resource_gates": {
+    "relative_to_iteration": "agents/timing-controller/RESOURCE-GATES-RESERVE3-v1.json",
+    "sha256": "13672a9bbe8946c28c98b3bab0f906f6ddfe67735ff7f77929e58539a4a580dd"
+  },
+  "native_sources": {
+    "relative_to_iteration": "agents/timing-controller/SOURCES-v1.json",
+    "sha256": "bf0d3e3b09f8130053735eaa6645bcc4ff753833a97ef4ae306d7d223283f007"
+  },
+  "claim": "INCONCLUSIVE"
+}

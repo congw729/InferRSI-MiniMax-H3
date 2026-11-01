@@ -1,0 +1,25 @@
+{
+  "schema": "q33-independent-review/v1",
+  "at_utc": "2026-10-30T20:03:41.134346+00:00",
+  "scope": "E2E v6 one-shot WS terminal wake and launcher/media identity; read only",
+  "reviewer": "manual_notes_review",
+  "status": "no_blocking_finding",
+  "controller_sha256": "8b787a016c311184955f98eccb760d058d266c2fc994dfa7bd094b34fd79da85",
+  "execution_freeze_sha256": "9de3448531bcd7a0067b8b0f1cd823e9a851d65452c4264fde8a589ef1525dca",
+  "verified_execution_sources": 226,
+  "parent_media_freeze_sha256": "81cb15cb2ad4c1639b0f6ed867ef07bccfef30bef69fb8cec3485e24df4ea105",
+  "verified_parent_media_sources": 5,
+  "source_mismatches": [],
+  "findings": [
+    "Per-request consumed flag remains true after the first event wake; subsequent iterations use the original sleep, so permanently set done does not create a busy loop.",
+    "Unconsumed timed waits remain cancellable by the original exception path. History, not the done event, still establishes actual completion.",
+    "Successful joined frozen observer breaks immediately after matching terminal event; collector.last_ns is that receive timestamp. Missing or invalid terminal remains null.",
+    "Terminal-to-artifact difference is signed arrival-order evidence; a negative value must not be reported as negative execution overhead or speed gain.",
+    "Launcher binds v6 controller and unchanged four-POST mode; actual InferRSI local executor supplies INFERRSI_RESULT_PATH.",
+    "Media launcher binds v6 driver SHA and validates both case-isolated actual requests 2 and 4 through unchanged native media validator.",
+    "Model, observer source, async two streams, no-pin, headroom, resource guards and cleanup remain the reviewed baseline."
+  ],
+  "executed_new_tests": false,
+  "model_or_gpu_execution": false,
+  "quality_performance_verdict": "INCONCLUSIVE"
+}

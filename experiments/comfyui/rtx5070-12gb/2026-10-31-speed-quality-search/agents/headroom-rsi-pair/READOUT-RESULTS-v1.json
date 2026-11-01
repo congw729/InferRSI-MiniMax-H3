@@ -1,0 +1,63 @@
+{
+  "schema": "q33-headroom-rsi-readout-checks/v1",
+  "candidate_sha256": "06f1e924ff128db63a0eeb0bfdb8245bdb13ab98349d4630699f8a2c3073b944",
+  "checks": [
+    {
+      "gate": "actual_metadata_A",
+      "completed": true
+    },
+    {
+      "gate": "actual_metadata_B",
+      "completed": true
+    },
+    {
+      "gate": "missing_second_request",
+      "completed": true
+    },
+    {
+      "gate": "first_media_failed",
+      "completed": true
+    },
+    {
+      "gate": "changed_second_seed",
+      "completed": true
+    },
+    {
+      "gate": "changed_second_mp4",
+      "completed": true
+    },
+    {
+      "gate": "cached_second_sampler",
+      "completed": true
+    },
+    {
+      "gate": "seven_steps",
+      "completed": true
+    },
+    {
+      "gate": "owned_not_reclaimed",
+      "completed": true
+    },
+    {
+      "gate": "wrong_controller",
+      "completed": true
+    },
+    {
+      "gate": "wrong_headroom",
+      "completed": true
+    },
+    {
+      "gate": "missing_history_endpoint",
+      "completed": true
+    },
+    {
+      "gate": "source_drift_rejected",
+      "completed": true
+    }
+  ],
+  "completed": 13,
+  "gpu_dispatches": 0,
+  "model_or_media_execution": false,
+  "scope": "two actual small metadata readouts plus pure in-memory negative mutations and tiny unit source file; not actual lifecycle execution",
+  "claim": "INCONCLUSIVE"
+}

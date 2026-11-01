@@ -1,0 +1,93 @@
+{
+  "schema": "q33-newprompt-async-next/v1",
+  "status": "DESIGN_ONLY",
+  "claim": "INCONCLUSIVE",
+  "recommendation": "Worth one bounded single-variable trial of existing native async offload in the successful four-POST new-prompt workflow, subject to fresh admission and unchanged guards. Do not combine headroom or pinning changes.",
+  "baseline_controller": {
+    "file": "end_to_end_v4.py",
+    "sha256": "70a627fc293bb01f7961b7228abfa4b2cda413fecf9d148044ea1d981552d89f",
+    "actual_review_sha256": "e2ffb24b199d04b3170f84c41913d01b6f5970325b82111f0351c7ba9f3bb35f"
+  },
+  "only_runtime_change": "Remove --disable-async-offload; fixed NVIDIA native default becomes two offload streams. Retain disable-pinned-memory, cache-none, disable-smart-memory, reserve3, headroom1, graphs/assets/seed/steps, three free transitions and every warm/resource/cleanup gate.",
+  "source_evidence": {
+    "relative_to_portable": "ComfyUI/comfy/model_management.py",
+    "sha256": "63610e41cf06fccb5eeaa153c5fd3799e01a0c645facba844763781d2036989a",
+    "lines": {
+      "stream_default_and_override": [
+        1372,
+        1385
+      ],
+      "per_stream_temporary_and_aimdo_cast_buffers": [
+        1413,
+        1449
+      ],
+      "reset_buffers_sync_and_release": [
+        1452,
+        1490
+      ],
+      "stream_selection_and_wait": [
+        1493,
+        1538
+      ],
+      "stream_synchronization": [
+        1542,
+        1553
+      ]
+    },
+    "meaning": "Native offload scheduling changes per-stream buffers and copy scheduling. Source alone does not prove actual CUDA overlap, bandwidth bottleneck, resident size, or speed benefit."
+  },
+  "prior_real_evidence": {
+    "review_relative_to_q33": "agents/offload-preparation/ACTUAL-ASYNC-INDEPENDENT-REVIEW-v1.json",
+    "review_sha256": "c08929350ad5eef52425f431e0b2cd71b0d4b6b70ee92074b41c0250ba5f813d",
+    "observations": [
+      {
+        "label": "baseline",
+        "trial_relative_to_q33": "results/inferrsi-persistent-cache-classic-3d98ba2758554d3ebf3c3d0bbed9d69d",
+        "native_prompt_seconds": [
+          9.58,
+          7.611
+        ],
+        "sampler_seconds": [
+          7.483346,
+          6.2164684
+        ],
+        "peak_private_bytes": 14983557120,
+        "min_board_free_bytes": 1626341376
+      },
+      {
+        "label": "async",
+        "trial_relative_to_q33": "results/inferrsi-async-classic-98274aade90b40659e74f9a86b4b2563",
+        "native_prompt_seconds": [
+          9.285,
+          6.727
+        ],
+        "sampler_seconds": [
+          6.9543885,
+          5.2964909
+        ],
+        "peak_private_bytes": 15240945664,
+        "min_board_free_bytes": 1472200704
+      }
+    ],
+    "same_seed_MP4_SHA_equal": true,
+    "scope_difference": "Prior evidence uses precomputed toycar condition and cache-classic two seeds. Current new-prompt cache-none TE/free/video path is untested with async; gains and memory cannot be transferred as a claim."
+  },
+  "current_sync_fourpost_resources": {
+    "sampled_peak_owned_private_bytes": 15128121344,
+    "sampled_peak_owned_rss_bytes": 5980418048,
+    "sampled_min_board_free_bytes": 1644167168,
+    "sampled_min_available_physical_bytes": 13303312384,
+    "sampled_min_available_commit_bytes": 4913762304,
+    "whole_board_not_Torch_allocator": true,
+    "includes_last_sample": true
+  },
+  "required_real_evidence": [
+    "bounded startup marker Using async weight offloading with 2 streams plus unchanged dynamicVRAM marker",
+    "two actual new TE conditioning hashes/finite/tags remain strict original references",
+    "individual native TE/video node times; second-new-prompt free2-to-MP4 and first-to-second artifact boundaries",
+    "three release/warm outcomes and same stop gates; include final sample in memory maxima",
+    "both actual full media checks and all decodedRGB/PCM/PTS comparison to same sync inputs",
+    "owned cleanup on any exception, preserve failure, no automatic retries or budget relaxation"
+  ],
+  "priority_reason": "An existing native flag has successful video-only evidence and can be compared while preserving the just-demonstrated actual new-prompt lifecycle. Expect potentially modest transfer-related gain; cold fullhash+startup remain around28s and are unaffected by this flag."
+}

@@ -1,0 +1,53 @@
+{
+  "schema": "q33-real-conditioning-aliases/v1",
+  "aliases": [
+    {
+      "corpus_id": "bounce-audio",
+      "family": "original",
+      "relative_to_model_root": "comfy-original/models/embeddings/h3-conditioning-70a19cfeb46fe9411ac6f3fbfea63c253056d28cffb9bb28f269da4c2134d170.safetensors",
+      "source_relative_to_lab": "comfy-original/runs/q33-condition-bounce-audio-d390a0a06ba94536ba389c1a97e025b8/output/h3-quality-corpus/bounce-audio_00001_.safetensors",
+      "bytes": 840216,
+      "sha256": "70a19cfeb46fe9411ac6f3fbfea63c253056d28cffb9bb28f269da4c2134d170",
+      "samefile": true,
+      "created": true,
+      "original_unchanged": true
+    },
+    {
+      "corpus_id": "bounce-audio",
+      "family": "trim",
+      "relative_to_model_root": "comfy-trim/models/embeddings/h3-conditioning-70a19cfeb46fe9411ac6f3fbfea63c253056d28cffb9bb28f269da4c2134d170.safetensors",
+      "source_relative_to_lab": "comfy-original/runs/q33-condition-bounce-audio-d390a0a06ba94536ba389c1a97e025b8/output/h3-quality-corpus/bounce-audio_00001_.safetensors",
+      "bytes": 840216,
+      "sha256": "70a19cfeb46fe9411ac6f3fbfea63c253056d28cffb9bb28f269da4c2134d170",
+      "samefile": true,
+      "created": true,
+      "original_unchanged": true
+    },
+    {
+      "corpus_id": "hands-face-mug",
+      "family": "original",
+      "relative_to_model_root": "comfy-original/models/embeddings/h3-conditioning-ea6cb031df1988576ee7eb4cc9d8d4c38a393e025f92de57d4aae8227858e2dc.safetensors",
+      "source_relative_to_lab": "comfy-original/runs/q33-condition-hands-face-mug-e60ffa23907148b18928538d2a2ea43d/output/h3-quality-corpus/hands-face-mug_00001_.safetensors",
+      "bytes": 1004120,
+      "sha256": "ea6cb031df1988576ee7eb4cc9d8d4c38a393e025f92de57d4aae8227858e2dc",
+      "samefile": true,
+      "created": true,
+      "original_unchanged": true
+    },
+    {
+      "corpus_id": "hands-face-mug",
+      "family": "trim",
+      "relative_to_model_root": "comfy-trim/models/embeddings/h3-conditioning-ea6cb031df1988576ee7eb4cc9d8d4c38a393e025f92de57d4aae8227858e2dc.safetensors",
+      "source_relative_to_lab": "comfy-original/runs/q33-condition-hands-face-mug-e60ffa23907148b18928538d2a2ea43d/output/h3-quality-corpus/hands-face-mug_00001_.safetensors",
+      "bytes": 1004120,
+      "sha256": "ea6cb031df1988576ee7eb4cc9d8d4c38a393e025f92de57d4aae8227858e2dc",
+      "samefile": true,
+      "created": true,
+      "original_unchanged": true
+    }
+  ],
+  "all_samefile": true,
+  "only_new_hardlinks_no_replacement": true,
+  "model_dispatches": 0,
+  "claim": "INCONCLUSIVE"
+}

@@ -1,0 +1,22 @@
+{
+  "schema": "q33-turbo-corpus-frozen-plan/v1",
+  "created_utc": "2026-10-30T18:37:33.567485+00:00",
+  "baseline_controller": {
+    "path": "agents/turbo-controller/turbo_stage_b_v6.py",
+    "sha256": "407a1dc679941f444ed0100108eab01c740a43a3ea193088de844284b9e9abcd"
+  },
+  "provenance_validator": {
+    "path": "agents/corpus-video/corpus_stage_b_v1.py",
+    "sha256": "74de2ccded6ec7415e183c13d162caba653b54b5bcc99270a924c9391d58c7d1"
+  },
+  "native_graph_sha256": "e0f890fb91a40f559070101b4143e147fa51c511d55a1df7e187b92ea215add9",
+  "native_asset_set_sha256": "4f43082899ac7818ebaeb4e911904bd258c4fae6d8d78ad11efa31f3fab0f95d",
+  "validator_sha256": "916e4d0f950e18e12b4c1d8c9b258dfc7edc7e40699a577c234957b6fc32958e",
+  "changes": "Only conditioning input and output prefix relative to nativeTurbo6 graph; new corpus profile/mode/root plus byte-reused prior corpus StageA/finite-values provenance entry. Native fullmerge4assets/6Euler simple/video12 audio3/LoRA1/full50/reserve3 headroom1 and all guards/cleanup unchanged.",
+  "cases": [
+    "bounce-audio",
+    "hands-face-mug"
+  ],
+  "preparation_scope": "No model/GPU/network/install/download. Reuse existing41/49token conditioning and original-family aliases. Freeze small metadata gates then candidate, portable help.",
+  "quality_performance": "INCONCLUSIVE"
+}

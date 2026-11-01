@@ -1,0 +1,6 @@
+父级最小调用（一个policy一次；不要并发）：
+<PPY> -s -B -X utf8 <Q33>/agents/persistent-preparation/run_persistent_profile_v1.py --notes-root <R> --infra-root <InferRSI root> --portable-root <Portable root> --model-root <MiniMax-H3 model root> --runs-parent <existing E runs parent> --nvidia-smi <actual executable> --memory-policy baseline --remaining-percent <fresh actual remaining percent>
+第二场只把 --memory-policy 改 smart，重新获取额度与外部余量。其余profile/controller/freeze/reserve3均内部固定，拒绝不受支持选项。run新名q33-persistent-baseline|smart-<uuid>，IR trial新名inferrsi-persistent-<policy>-<uuid>。helper --help实际portable退出0，无资源查询/GPU/POST。
+检查：现有13local/16notes/6portable全身份，以及旧candidate freeze；metadata来自timing-controller，controller来自persistent-preparation。外部physical>=12GiB、commit>=16.5GiB、GPUfree>=6GiB门原样；remaining>20；原full controller2700秒/parent execute_command2730秒。输出PREFLIGHT、完整ARGV RunSpec和真实execution。
+唯一新增source helper不在旧controller executionfreeze13项里，其自身由PARENT-HELPER-FREEZE-v1与本交付SHA单独固定；不要改旧冻结。
+实际完成后用MEDIA-HANDOFF中的真实run/trial/resultSHA启动逐片CPUwrapper；同样经InferRSI执行，不把旧单片媒体wrapper套aggregate。

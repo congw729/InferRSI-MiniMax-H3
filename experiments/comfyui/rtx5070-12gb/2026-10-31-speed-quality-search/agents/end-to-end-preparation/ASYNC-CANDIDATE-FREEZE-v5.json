@@ -1,0 +1,29 @@
+{
+  "files": [
+    {
+      "path": "ASYNC-PLAN-v5.json",
+      "bytes": 1278,
+      "sha256": "d32a479ba29ec389108b6fd86d9ff3a5d0c4e1f7ab5eb60c869e0d90151de9a3"
+    },
+    {
+      "path": "validate_async_v5.py",
+      "bytes": 1445,
+      "sha256": "e94cfc4eef78a70e6c2d6118d97bbe8ba659785272656eb22a142c6e52341e18"
+    },
+    {
+      "path": "ASYNC-VALIDATOR-FREEZE-v5.json",
+      "bytes": 218,
+      "sha256": "61b1dbbcc4bdd32eaa7e8866d11257d0a92ddf7832a3eb194e3f8cba121e4d64"
+    },
+    {
+      "path": "end_to_end_v5.py",
+      "bytes": 67389,
+      "sha256": "43fb85b9498949a56e4afeed3aaea7a71df8803513821b8e0c6ff75d569bbf5e"
+    },
+    {
+      "path": "v4-to-v5-async.patch",
+      "bytes": 1234,
+      "sha256": "b0b7958132fdd686b05027a64e1adc81074a6e010f53f8d799cddc4d40bf95ee"
+    }
+  ]
+}

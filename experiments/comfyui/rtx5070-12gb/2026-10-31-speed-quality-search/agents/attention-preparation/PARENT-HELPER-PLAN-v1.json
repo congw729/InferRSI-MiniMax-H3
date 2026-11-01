@@ -1,0 +1,6 @@
+{
+  "schema": "q33-attention-parenthelper-plan/v1",
+  "baseline_sha256": "ceb5727c01cc0a1b29c6d20a3c602fdd9f4d2deabb0980bb25a4faba6907c854",
+  "scope": "fixed trim-6-pytorch attention v2; local27+external2 source check; old T candidate/source/gates checks retained; same external resources and InferRSI execution/cleanup",
+  "checks": "exact small diff, compile, actual portable --help only; no GPU/model"
+}

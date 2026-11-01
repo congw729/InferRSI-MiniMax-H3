@@ -1,0 +1,8 @@
+本轮已收尾，不再启动实验或下载。额度剩20%硬停止，当前最近23%，保留收尾余量。
+
+1. 实用默认候选Trim8/async2/no-pin/headroom1；同一已校验服务内复用加载，保留native history发布后通知，现仅固定两prompt验证。下一开发优先小型H3用户prompt入口，沿原生tokenizer检查；当前验证上界49tokens不能外推长prompt。不扩通用框架。
+2. 复用prompt多seed使用classic，headroom0.75仅可选暖请求优化；正式稳定性/主观质量待补，不把两次/侧当服务PASS。
+3. 完整底模保留Turbo4同步，async本次更慢；Turbo2/Trim4不默认，Trim6仅草稿。质量判断继续以实际成片/音频为准，不再盲目减步。
+4. 模型推理、资产校验、启动、TE、换阶段、VAE、保存和清理分别计时。未采集纯GPU/isolated init/PCIe保留null；不要为了数字跳过身份或混淆实验管理开销。
+5. vLLM-Omni仍为后续独立接线；当前速度数据属于ComfyUI，不宣称Omni已实现。
+6. 当前全部原始成功/失败、来源冻结和产物保留；不删除、不重复下载、不改系统或终止无关进程。下次先读STATUS/REPORT/iteration-summary及publication receipt，避免重做。

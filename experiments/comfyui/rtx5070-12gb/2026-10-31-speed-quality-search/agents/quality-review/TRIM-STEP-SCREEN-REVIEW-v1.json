@@ -1,0 +1,29 @@
+{
+  "schema": "q33-independent-trim-screen-review/v1",
+  "at_utc": "2026-10-30T17:28:56.4694286Z",
+  "candidate": "agents/timing-controller/speed_stage_b_v4.py",
+  "candidate_sha256": "10ff69732b3e06b273d124bc3342db62938349ee0e2ef0d431af1151c3a53e1b",
+  "execution_freeze_sha256": "28db6a564e8763d8cf08b2d11d748d69a70ca3baa76bea90b5ac50705c462069",
+  "items_rechecked": 43,
+  "mismatches": [],
+  "blockers": [],
+  "observations": [
+    "Only allowed Trim step set changes from8/6 to8/6/4",
+    "Old disabled Trim6 profile retained; new screening profiles explicit candidates",
+    "Same asset receipts, conditioning, seed, geometry, resource guards and observer/cleanup",
+    "Offline exact reverse-diff/profile checks and portable help evidence inspected, not rerun"
+  ],
+  "ready_for_parent_controlled_screen": true,
+  "conditions": [
+    "Final per-run freeze and fresh resource admission",
+    "Serial GPU execution",
+    "Frozen quality screening protocol applied; missing human full playback/listening remains unverified"
+  ],
+  "interpretation": [
+    "6-step native schedule is not subset of8;4-step is subset but neither establishes trained or official supported quality",
+    "Source/fixed-geometry inference says2385tokens below12288 sparse threshold; no per-kernel trace",
+    "Do not attribute all Trim speed difference to sparse attention or to a single changed factor"
+  ],
+  "claim": "INCONCLUSIVE",
+  "no_model_network_or_media_run": true
+}

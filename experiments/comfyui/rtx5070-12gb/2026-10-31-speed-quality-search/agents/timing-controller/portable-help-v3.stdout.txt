@@ -1,0 +1,47 @@
+usage: speed_stage_b_v3.py [-h] --mode {speed-video-stage-b}
+                           --iteration-root ITERATION_ROOT --lab-root LAB_ROOT
+                           --portable-python PORTABLE_PYTHON
+                           --comfy-root COMFY_ROOT --run-dir RUN_DIR
+                           --stop-marker STOP_MARKER --nvidia-smi NVIDIA_SMI
+                           --inferrsi-src INFERRSI_SRC --gates GATES
+                           --conditioning-manifest CONDITIONING_MANIFEST
+                           --notes-root NOTES_ROOT --q31-root Q31_ROOT
+                           --model-root MODEL_ROOT
+                           --source-manifest SOURCE_MANIFEST
+                           --asset-manifest ASSET_MANIFEST --profile PROFILE
+                           --profile-sha256 PROFILE_SHA256
+                           --source-manifest-sha256 SOURCE_MANIFEST_SHA256
+                           --asset-manifest-sha256 ASSET_MANIFEST_SHA256
+                           --gates-sha256 GATES_SHA256
+                           --conditioning-manifest-sha256 CONDITIONING_MANIFEST_SHA256
+                           --port PORT
+
+Q33 bounded speed/quality profiles with native node timing. This is a new
+harness derived from frozen Q32; old sources remain unchanged. Run with the
+existing portable Python under InferRSI. No model imports here.
+
+options:
+  -h, --help            show this help message and exit
+  --mode {speed-video-stage-b}
+  --iteration-root ITERATION_ROOT
+  --lab-root LAB_ROOT
+  --portable-python PORTABLE_PYTHON
+  --comfy-root COMFY_ROOT
+  --run-dir RUN_DIR
+  --stop-marker STOP_MARKER
+  --nvidia-smi NVIDIA_SMI
+  --inferrsi-src INFERRSI_SRC
+  --gates GATES
+  --conditioning-manifest CONDITIONING_MANIFEST
+  --notes-root NOTES_ROOT
+  --q31-root Q31_ROOT
+  --model-root MODEL_ROOT
+  --source-manifest SOURCE_MANIFEST
+  --asset-manifest ASSET_MANIFEST
+  --profile PROFILE
+  --profile-sha256 PROFILE_SHA256
+  --source-manifest-sha256 SOURCE_MANIFEST_SHA256
+  --asset-manifest-sha256 ASSET_MANIFEST_SHA256
+  --gates-sha256 GATES_SHA256
+  --conditioning-manifest-sha256 CONDITIONING_MANIFEST_SHA256
+  --port PORT

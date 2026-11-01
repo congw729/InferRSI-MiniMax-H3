@@ -1,0 +1,40 @@
+{
+  "schema": "q33-rsi-pair-plan/v1",
+  "at_utc": "2026-10-30T17:38:34.3061794Z",
+  "plane": "harness",
+  "scope": "Existing run_experiment AB/BA with minimal execute/snapshot adapters; no InferRSI or model/runtime edits",
+  "profiles": [
+    "trim-8",
+    "trim-6-screen-v1",
+    "trim-4-screen-v1"
+  ],
+  "selection": "parent chooses after initial screening; no model dispatch by implementing agent",
+  "repetitions": 2,
+  "warm_policy": "new service each trial; cache-none; fixed reused text conditioning; no unreported warmup",
+  "launcher": "tools/run_profile_v3.py",
+  "controller": "agents/timing-controller/speed_stage_b_v5.py",
+  "resource_recipe": "reserve3 both sides; all other controller limits unchanged",
+  "metric": "Native prompt execution_success minus execution_start server milliseconds, cross-referenced with receiver intervals; not GPU-only/HTTP/service",
+  "quality": "Existing full media validation in every trial; validation_command=None until actual perceptual confirmation, therefore evaluator INCONCLUSIVE",
+  "gates": [
+    "real freeze hashes and local files, no invented Git commit or issue",
+    "same source manifest checked before dispatch and by run_experiment snapshot before/after each command",
+    "whitelist Trim8/6/4; baseline differs from candidate",
+    "one serial launcher then media child through existing execute_trial; same outer deadline; no custom process management",
+    "launcher exit0 alone insufficient; require inner completion/unique dispatch/controller accepted1POST/owned cleanup/valid timing/history/fullmedia",
+    "retain failures and intermediate artifacts; never overwrite frozen result",
+    "metric positive finite and coherent terminal/prompt identity; source/image metadata only receives true recorded hashes",
+    "stop marker and parent quota above20 required before any new child",
+    "freeze before offline validation; no GPU/network/model execution in offline tests"
+  ],
+  "offline_cases": [
+    "current source identity and tamper detection",
+    "baseline/candidate command profile and reserve bindings",
+    "valid synthetic controller/history/media aggregation",
+    "inner failed controller despite exit0 rejected",
+    "timing invalid/missing/wrong identity/nonpositive interval rejected",
+    "media incomplete/mismatched input/owned cleanup failure rejected",
+    "native runner order A B B A and missing quality remains INCONCLUSIVE with retained descriptive metrics",
+    "actual portable --help import only"
+  ]
+}

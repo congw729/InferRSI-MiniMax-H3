@@ -1,0 +1,35 @@
+{
+  "schema": "q33-async-parenthelper/v1",
+  "files": [
+    {
+      "path": "run_async_persistent_v1.py",
+      "bytes": 6640,
+      "sha256": "618638a30e2092deb676981657cfd106b0960c843d3139f5026709452217a6f8"
+    },
+    {
+      "path": "PARENTHELPER-v2-to-async-v1.patch",
+      "bytes": 7639,
+      "sha256": "e4073b3eaa9403640339d0c67939a7e930657cc140a2fcea8d80f4993e7098dd"
+    },
+    {
+      "path": "PARENTHELPER-HELP-v1.json",
+      "bytes": 198,
+      "sha256": "d4597824541e1531c63137be54014a40c453ba899324d406affed4fc6ca56230"
+    },
+    {
+      "path": "parenthelper-help-stdout-v1.txt",
+      "bytes": 808,
+      "sha256": "4f5831991a99da772de4573a1e6c720a5d622ba843e1902818427e447328a3dd"
+    },
+    {
+      "path": "parenthelper-help-stderr-v1.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "EXECUTION-FREEZE-v1.json",
+      "bytes": 9726,
+      "sha256": "a996fe37e5f693bab17c2d7ec3b120ac4d4c12ff717562d6e1f9b181fc493a8a"
+    }
+  ]
+}

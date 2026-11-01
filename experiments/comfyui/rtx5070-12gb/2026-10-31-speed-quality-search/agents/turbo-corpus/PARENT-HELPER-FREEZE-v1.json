@@ -1,0 +1,21 @@
+{
+  "schema": "q33-turbo-corpus-parent-helper-freeze/v1",
+  "files": [
+    {
+      "path": "PARENT-HELPER-PLAN-v1.json",
+      "bytes": 426,
+      "sha256": "0849390a8e7e496c3c8597d8cab327f5d5f8e24c882aa7a0f7cc485b533cc9fe"
+    },
+    {
+      "path": "run_turbo_corpus_v1.py",
+      "bytes": 5985,
+      "sha256": "1ffb91a42e315a5163cc4f6a5b627f188a56e44bd330a019877d07949462233b"
+    },
+    {
+      "path": "parenthelper-v3-to-turbo-corpus-v1.patch",
+      "bytes": 6885,
+      "sha256": "543fc8b5d8b1af217769cb76227b6475ec871b82c0af52a0c9aa7a7675dd1eeb"
+    }
+  ],
+  "controller_execution_freeze_sha256": "e607db985ffb7f7a1e802d8826f72924e5ab4e06487cc68837b2b79377047332"
+}

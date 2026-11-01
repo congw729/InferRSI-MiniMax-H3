@@ -1,0 +1,5 @@
+原生 Turbo ready 交接：实际下载完成，receipt SHA8addc826...；真实header57424B、518个BF16张量，259个A/B对全部匹配原DiT目标尺寸，覆盖全部50层；rank16=51对，rank64=208对。只做源码派生native keymap+header形状核对，不是模型数值/画质验证。
+当前用turbo_stage_b_v5.py，ready6/8 profile位于profiles目录，资产assets/turbo-native.ready.json（4个完整真实receipt/plan绑定）。原pending和所有旧版本保留。
+真实PPY -s -B metadata入口已return0，无Torch/network/GPU，timing actual source按旧固定位置SHA导入。READY-EXECUTION-FREEZE-v1.json的files相对本目录，external_notes_files相对R；父级runner应核对两组（不能忽略外部真实收据/原timing源）。
+沿用旧InferRSIargv，入口改本目录v5、profile/asset/cond路径相应ready，--gates本目录TURBO-RESOURCE-GATES-v1.json，增加--timing-module指向Q33/agents/timing-controller/timing_events_v1.py。SOURCE-MANIFEST仍旧timing-controller/SOURCES-v1.json。不要把所有相对文件都套到timing-controller根。
+reserve3GiB，其他守门相同。等当前GPU任务结束后由父级串行运行，首轮建议6步；保持质量INCONCLUSIVE，回收后独立media检查。

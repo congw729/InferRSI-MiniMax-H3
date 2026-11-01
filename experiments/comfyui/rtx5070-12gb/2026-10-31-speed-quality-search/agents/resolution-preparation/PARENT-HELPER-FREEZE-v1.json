@@ -1,0 +1,38 @@
+{
+  "schema": "q33-resolution-parent-helper-freeze/v1",
+  "files": [
+    {
+      "path": "PARENT-HELPER-PLAN-v1.json",
+      "bytes": 995,
+      "sha256": "0925974fa301aa154b24937655f838c1e588cc409d20a77de0926e66367a9c7c"
+    },
+    {
+      "path": "run_resolution_v1.py",
+      "bytes": 5335,
+      "sha256": "5ab40647b67913784b0a51fa93dffb38a05db5ad1c2b4513de530153e132ccbb"
+    },
+    {
+      "path": "validate_resolution_parent_v1.py",
+      "bytes": 2405,
+      "sha256": "e0dda1bafe852621c3cef1aaecf8130209897618794108f27366e48770f287b0"
+    },
+    {
+      "path": "PARENT-LAUNCH-v1.patch",
+      "bytes": 6215,
+      "sha256": "718fd923b23802b1f9c61fe22c882ba164647faf0ceaa603c7e5f4af1df14cd6"
+    },
+    {
+      "path": "PARENT-MEDIA-v1.patch",
+      "bytes": 1750,
+      "sha256": "14fee5599a2530a0391c04f7276a10411abc88fb1588596e2daefab86180773d"
+    },
+    {
+      "path": "EXECUTION-FREEZE-v1.json",
+      "bytes": 5244,
+      "sha256": "7d13204a6b36cae7bc788652e967402f6b52bc6ee67c50bb7d87aaf9b4c2aca7"
+    }
+  ],
+  "execution_freeze_sha256": "7d13204a6b36cae7bc788652e967402f6b52bc6ee67c50bb7d87aaf9b4c2aca7",
+  "model_dispatches": 0,
+  "claim": "INCONCLUSIVE"
+}

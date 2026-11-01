@@ -1,0 +1,41 @@
+{
+  "schema": "q33-author-hybrid-plan/v1",
+  "created_utc": "2026-10-30T17:56:13.702930+00:00",
+  "plane": "harness",
+  "baseline_controller": "agents/turbo-controller/turbo_stage_b_v6.py",
+  "baseline_sha256": "407a1dc679941f444ed0100108eab01c740a43a3ea193088de844284b9e9abcd",
+  "author_commit": "4274783a23afcfdbea3b4876cb79effd6c510785",
+  "fixed_recipe": {
+    "family": "turbo-hybrid",
+    "steps": 6,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "sigma_video": 12,
+    "sigma_audio": 3,
+    "strength": 1.0,
+    "low_vram": false,
+    "reserve_gib": 3,
+    "headroom_gib": 1
+  },
+  "actions_allowed": [
+    "Copy only author __init__.py and LICENSE exact bytes plus small relative YAML into a new E-directory under modelroot/comfy-original/extensions",
+    "Derive new isolated family/controller/graph/profile; no edits to native-success controllers/runtime/upstream",
+    "Reuse4complete real receipts and fixed conditioning, no weight-body reads in preparation",
+    "Stdlib header/source/profile and synthetic-log boundary checks; actual PPY --help/validator only; no Torch/model/GPU/custom-node import"
+  ],
+  "frozen_checks": [
+    "259 actual recordedLoRA A/B shape mappings reuse; author barekey mapping matches,50 I8fc2+209others; no curve table in pinned full original header",
+    "Sourcecopy exact hash/no extra files/no reparse paths; single whitelist and explicit relativecustompaths",
+    "Graph differs from native6 only loader fields/outputprefix and distinct family/schema",
+    "Reject low_vramtrue/changedstrength/steps/sigma/sampler before dispatch",
+    "Runtime success requires author full/bypass259=209bypass+50INT8fc2 and positive injection count, bounded log; not numerical/quality proof",
+    "Existing guard/sample/http/cleanup ASTs unchanged; realassetmetadata bindings+sourceidentities checked",
+    "Keep author debug wrappers unchanged; no efficiency claim; egrid not present or downloaded"
+  ],
+  "runtime_limitations": [
+    "No new dependency or model download; author egrid function is local-file load only,full identity has noadaln_t_table",
+    "Whole-board768MiB/RSS10/private16/otherguard preserved",
+    "Fullmedia/humanquality separate; INCONCLUSIVE"
+  ],
+  "dispatch": "Parent independent review then serial actual run; this preparation performs0GPU"
+}

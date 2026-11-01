@@ -1,0 +1,26 @@
+{
+  "schema": "q33-attention-parenthelper-freeze/v1",
+  "files": [
+    {
+      "path": "PARENT-HELPER-PLAN-v1.json",
+      "bytes": 412,
+      "sha256": "e601fa17c73973865acfcd3f9e2471992d57b5109293e29810c8dc1b2f434d2d"
+    },
+    {
+      "path": "run_attention_profile_v1.py",
+      "bytes": 5942,
+      "sha256": "60c6833159686d9b5c469e23c9ea9818d9f6a9a40b1fab9cfc55134a874d73ef"
+    },
+    {
+      "path": "parenthelper-v3-to-attention-v1.patch",
+      "bytes": 6296,
+      "sha256": "68549e147f6854a76fa3e0a5bdc4d411064f3761d085bbd7969eb5f92c52c8f7"
+    },
+    {
+      "path": "EXECUTION-FREEZE-v2.json",
+      "bytes": 5199,
+      "sha256": "e0841a54967ff97e1f1ff279f48726253c2987e60da9a29b6835b2dbebc21e6d"
+    }
+  ],
+  "no_gpu_dispatches": true
+}

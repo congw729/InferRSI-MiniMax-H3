@@ -1,0 +1,68 @@
+{
+  "schema": "q33-turbo-corpus-candidate-freeze/v1",
+  "created_utc": "2026-10-30T18:38:30.311037+00:00",
+  "files": [
+    {
+      "path": "assets/turbo-native.ready.json",
+      "bytes": 3939,
+      "sha256": "4f43082899ac7818ebaeb4e911904bd258c4fae6d8d78ad11efa31f3fab0f95d"
+    },
+    {
+      "path": "canonical/original.json",
+      "bytes": 3069,
+      "sha256": "d5937f2505f74e07ce8de746c49c98e8a428535d79ccc878383e8b989807fb29"
+    },
+    {
+      "path": "conditioning/bounce-audio.json",
+      "bytes": 1616,
+      "sha256": "13838633b81f6514c51109002f036eaea9e3872fc3e39afb82edfbd789331c03"
+    },
+    {
+      "path": "conditioning/hands-face-mug.json",
+      "bytes": 1624,
+      "sha256": "ee41ce386410d5b7e39fc9231bb1bf02385ba5ed56b59930e5fb9f440626734f"
+    },
+    {
+      "path": "graphs/bounce-audio.json",
+      "bytes": 3508,
+      "sha256": "8ba9490a41b76a7ce4192900d49d8cb81e29598c2609e23ba153340f3fdebc59"
+    },
+    {
+      "path": "graphs/hands-face-mug.json",
+      "bytes": 3510,
+      "sha256": "7795b20de7a95eb5320df8c58d96d203412771c3222cfeb23a4988ba8e2daa2e"
+    },
+    {
+      "path": "native-v6-to-corpus-v1.patch",
+      "bytes": 8478,
+      "sha256": "854a7a74c6514da58e489dc3443c61d89c3a3dd2ff85e8d1b6d7e97e93c2bb48"
+    },
+    {
+      "path": "PLAN-FROZEN-v1.json",
+      "bytes": 1343,
+      "sha256": "853eedaf9fee14021d5128402eebb8a2fdc680c1cf401a7a6bec7de6f0972a65"
+    },
+    {
+      "path": "profiles/bounce-audio.json",
+      "bytes": 1229,
+      "sha256": "72865c7c0f0e035d12c344f76bb5bb4baf0aa9e635fc29570a62e0ed3af2e154"
+    },
+    {
+      "path": "profiles/hands-face-mug.json",
+      "bytes": 1235,
+      "sha256": "22ae4445cf7ce1a9de55ebe6192dbbac8167656ef259516e420bb25e1bf2273c"
+    },
+    {
+      "path": "turbo_corpus_stage_b_v1.py",
+      "bytes": 57164,
+      "sha256": "6d866a372cead6537a07999e02f52559fa2291259022614bab76a519118315e0"
+    },
+    {
+      "path": "validate_turbo_corpus_offline_v1.py",
+      "bytes": 4635,
+      "sha256": "916e4d0f950e18e12b4c1d8c9b258dfc7edc7e40699a577c234957b6fc32958e"
+    }
+  ],
+  "stageB_provenance_function_reused_unchanged": true,
+  "real_GPU_dispatches": 0
+}

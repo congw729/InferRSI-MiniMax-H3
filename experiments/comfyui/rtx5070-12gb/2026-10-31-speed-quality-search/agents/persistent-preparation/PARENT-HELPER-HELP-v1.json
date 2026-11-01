@@ -1,0 +1,18 @@
+{
+  "schema": "q33-persistent-parent-helper-help/v1",
+  "helper_sha256": "705d519918dc9eab07553416178aa539380285111077fee163df73524213f3a1",
+  "actual_interpreter": "existing portable python_embeded/python.exe",
+  "argv_suffix": [
+    "-s",
+    "-B",
+    "-X",
+    "utf8",
+    "run_persistent_profile_v1.py",
+    "--help"
+  ],
+  "returncode": 0,
+  "stderr_observed": false,
+  "GPU_queries": 0,
+  "service_dispatches": 0,
+  "scope": "Actual --help exits before body resource query/launch. Source-derived patch retains original admission and executor calls."
+}

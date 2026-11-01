@@ -1,0 +1,18 @@
+--- speed_stage_b_v5.py
++++ speed_stage_b_v6.py
+@@ -396,6 +396,7 @@
+              "profile_id": a.loaded_profile["id"], "profile_sha256": a.profile_sha256,
+              "controller_entry_perf_counter_ns":entry_perf_ns,
+              "source_verification_start_ns":source_start_ns,"source_verification_end_ns":source_end_ns,
++             "requested_aimdo_vram_headroom_gib": 1.0,
+              "driver_sha256": digest(Path(__file__)), "v1_sha256": V1_SHA,
+              "graph_sha256": graph_sha, "asset_set_sha256": a.asset_manifest_sha256.lower(),
+              "source_manifest_sha256": SOURCE_MANIFEST_SHA,
+@@ -584,6 +585,7 @@
+                    "--listen", "127.0.0.1", "--port", str(a.port),
+                    "--disable-auto-launch", "--disable-all-custom-nodes", "--disable-partner-nodes",
+                    "--offline", "--disable-assets", "--disable-pinned-memory", "--disable-async-offload", "--disable-smart-memory", "--cache-none", "--preview-method", "none",
++                   "--vram-headroom", "1.0",
+                    "--reserve-vram", str(gates["reserve_vram_gb"]),
+                    "--models-directory", str(models_root)]
+         for key in ("base", "output", "temp", "input", "previews", "user"):

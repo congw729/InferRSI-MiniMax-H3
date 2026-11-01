@@ -1,0 +1,34 @@
+{
+  "schema": "q33-existing-metadata-preflight/v1",
+  "checks": [
+    {
+      "profile": "original-50",
+      "metadata_only": true,
+      "selected_asset_ids": [
+        "original-dit",
+        "video-vae",
+        "audio-vae"
+      ],
+      "steps": 50,
+      "condition_sha256": "ad5c2652080729c191db4189ab42a42c5f80476370e82a9e2a99fe008cb303f2",
+      "receipt_and_plan_checks_observed": true,
+      "profile_sha256": "8f952247cb616a1404aaf16d7718f12903cfeda3e8741b7086a84b83bbf66a03"
+    },
+    {
+      "profile": "trim-8",
+      "metadata_only": true,
+      "selected_asset_ids": [
+        "trim-dit",
+        "video-vae",
+        "audio-vae"
+      ],
+      "steps": 8,
+      "condition_sha256": "ad5c2652080729c191db4189ab42a42c5f80476370e82a9e2a99fe008cb303f2",
+      "receipt_and_plan_checks_observed": true,
+      "profile_sha256": "e25e4e27c44203e8bf5deac8ddb143c7b1c347881cc572f4161021a112a38e64"
+    }
+  ],
+  "payload_hashes": 0,
+  "network": false,
+  "model_imports": false
+}

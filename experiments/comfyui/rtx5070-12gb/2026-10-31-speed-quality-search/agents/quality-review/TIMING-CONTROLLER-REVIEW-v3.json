@@ -1,0 +1,30 @@
+{
+  "schema": "q33-independent-timing-review/v3",
+  "at_utc": "2026-10-30T17:19:36.1302253Z",
+  "scope": "Incremental read-only portable Python sibling-import patch review",
+  "candidate": "agents/timing-controller/speed_stage_b_v3.py",
+  "candidate_sha256": "524bf48df04c3ecdb251115b4db08c6482ed36eeb33405db34799b3a5669f66e",
+  "execution_freeze_sha256": "d63e64747e488c3b69f939811d66538c113078fb18c64884167bcf39fa0f9b50",
+  "freeze_items_rechecked": 34,
+  "mismatches": [],
+  "findings": [],
+  "observations": [
+    "v2 import failure was before model POST and retained",
+    "Hash-verifies the exact timing_events_v1.py sibling before importlib execution",
+    "No sys.path or portable _pth widening",
+    "No cleanup, observer implementation, profile, asset or resource gate changes"
+  ],
+  "portable_evidence": {
+    "path": "agents/timing-controller/PORTABLE-IMPORT-RESULT-v3.json",
+    "sha256": "6d99387bf4d4e3b250d633950ab66425e000e4cdeed69ce4ab13a68ee58d3d79",
+    "returncode": 0,
+    "stderr_bytes": 0,
+    "only_help": true,
+    "reviewed_not_rerun": true,
+    "model_posts": 0
+  },
+  "ready_for_parent_controlled_single_timing_trial": true,
+  "conditions": "Carry forward v2 review conditions: fresh recorded admission, unchanged controller guards, full execution identity freeze",
+  "claim": "INCONCLUSIVE",
+  "limits": "Help invocation is only import/CLI evidence; no real websocket, model timing, media quality or service claim"
+}

@@ -1,0 +1,30 @@
+{
+  "schema": "q33-resolution-portable-help/v1",
+  "checks": [
+    {
+      "command": [
+        "PPY",
+        "-s",
+        "-B",
+        "V/resolution_stage_b_v1.py",
+        "--help"
+      ],
+      "exit_code": 0,
+      "source_sha256": "7eba09ef5e83aaa7517ad24115651a2d2ae6f80c3169921c2aeaab4579caf0c3"
+    },
+    {
+      "command": [
+        "PPY",
+        "-s",
+        "-B",
+        "V/validate_resolution_media_v1.py",
+        "--help"
+      ],
+      "exit_code": 0,
+      "source_sha256": "a6bf70e146c07e1ae3706b2900130afd44cbd92787584f78a13cf1994c52cf5b"
+    }
+  ],
+  "model_dispatches": 0,
+  "decoder_dispatches": 0,
+  "claim": "INCONCLUSIVE"
+}

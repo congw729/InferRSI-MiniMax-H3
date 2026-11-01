@@ -1,0 +1,340 @@
+{
+  "schema": "q33-native-speed-source-audit/v1",
+  "mode": "read_only_no_model_no_network",
+  "source_root": "PORTABLE",
+  "sources": [
+    {
+      "path": "ComfyUI/comfy/model_sampling.py",
+      "sha256": "176eeaa45b871fe96fa244961e24ba1f02c1654758b3de37966974ce6850bff7",
+      "lines": [
+        308,
+        338,
+        349
+      ]
+    },
+    {
+      "path": "ComfyUI/comfy/samplers.py",
+      "sha256": "d403874e0c2c4843e3d951e5a98dbc38d9cf862519def82209df82a816c12950",
+      "lines": [
+        645,
+        652
+      ]
+    },
+    {
+      "path": "ComfyUI/comfy/ldm/minimax/model.py",
+      "sha256": "a1b9c179832ed69e84f603521fc89cd62c7f4486fda19d23ff356f212d01429c",
+      "lines": [
+        42,
+        60,
+        164,
+        200,
+        356,
+        457,
+        661
+      ]
+    },
+    {
+      "path": "ComfyUI/comfy_extras/nodes_minimax_h3.py",
+      "sha256": "5999ed8c22b13c8251084c0629fd82137d2fb52b55106abfc73bf5cafc73841d",
+      "lines": [
+        34,
+        45,
+        48,
+        85,
+        392,
+        407
+      ]
+    },
+    {
+      "path": "ComfyUI/comfy_extras/nodes_sparse_attention.py",
+      "sha256": "de202f2b5eb753a5748e1c6452cdc10cdf28834ffd8f8bb6acfaf6f643de9692",
+      "lines": [
+        68,
+        75,
+        229,
+        248,
+        310,
+        323,
+        346,
+        389
+      ]
+    },
+    {
+      "path": "ComfyUI/comfy_extras/nodes_model_advanced.py",
+      "sha256": "8308f07f95938c2156136553ffd1e81b13e71aa6955c71f48c64404bdf91fe1c",
+      "lines": [
+        374,
+        386,
+        402,
+        412
+      ]
+    },
+    {
+      "path": "ComfyUI/comfy/ldm/modules/attention.py",
+      "sha256": "15e4d191c645cb3b475a2d48b16d3d9ac4ff6c4c9b7b714f03ecc25bfb1bf80a",
+      "lines": [
+        654,
+        672,
+        689,
+        958
+      ]
+    },
+    {
+      "path": "ComfyUI/comfy/ops.py",
+      "sha256": "0167aef2929b92ba3623376f7656e58ead5869485b926b09bead525f32e4dd06",
+      "lines": [
+        1291,
+        1296,
+        1312,
+        1326,
+        1500,
+        1538,
+        1564
+      ]
+    },
+    {
+      "path": "ComfyUI/comfy/quant_ops.py",
+      "sha256": "8e094d4f29226d50ceb2014f3c0cfe5cabe85a1ed9ce70f0adfe5d943e0ef587",
+      "lines": [
+        222,
+        238,
+        242
+      ]
+    },
+    {
+      "path": "ComfyUI/comfy/model_management.py",
+      "sha256": "63610e41cf06fccb5eeaa153c5fd3799e01a0c645facba844763781d2036989a",
+      "lines": [
+        883,
+        890,
+        939,
+        944,
+        948
+      ]
+    },
+    {
+      "path": "ComfyUI/comfy/model_patcher.py",
+      "sha256": "4f8ccf957a7227942c0e167384ed4e128f038245ad09b9bb547102281be13612",
+      "lines": [
+        1874,
+        1897,
+        1981,
+        2078,
+        2120
+      ]
+    },
+    {
+      "path": "ComfyUI/execution.py",
+      "sha256": "5312ba107f69f2bc70f4009c5d52524b3865dd54fceafdc8649b22c98d6c612f",
+      "lines": [
+        840,
+        841
+      ]
+    },
+    {
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/tensor/nvfp4.py",
+      "sha256": "306cc2dc5b744f3c58c34a30790973549d658cd12fe14e5a10af4227033a514d",
+      "lines": [
+        212,
+        223,
+        242
+      ]
+    },
+    {
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/tensor/int8.py",
+      "sha256": "57c592711013e6cb33c8e8c22e0c1b7eb94ea71d192a08c770349e80127cabf9",
+      "lines": [
+        403,
+        440
+      ]
+    }
+  ],
+  "observed_weight_metadata": [
+    {
+      "family": "original",
+      "relative_to_models": "comfy-original/models/diffusion_models/minimax_h3_fl2va_int8_convrot.safetensors",
+      "bytes": 34038892334,
+      "header_bytes": 108232,
+      "header_sha256": "a3eceea5f2b61fda66340dec46cfff63e27ab967b2a73b409798b7d082f9176d",
+      "main_block_count": 50,
+      "quant_config_tensor_count": 250,
+      "sampled_block0_configs": [
+        {
+          "key": "blocks.0.adaln_proj.linear.comfy_quant",
+          "config": {
+            "format": "int8_tensorwise",
+            "convrot": true,
+            "convrot_groupsize": 64
+          }
+        },
+        {
+          "key": "blocks.0.attn.out_proj.comfy_quant",
+          "config": {
+            "format": "int8_tensorwise",
+            "convrot": true,
+            "convrot_groupsize": 256
+          }
+        },
+        {
+          "key": "blocks.0.attn.qkv_proj.comfy_quant",
+          "config": {
+            "format": "int8_tensorwise",
+            "convrot": true,
+            "convrot_groupsize": 256
+          }
+        },
+        {
+          "key": "blocks.0.mlp.fc1.comfy_quant",
+          "config": {
+            "format": "int8_tensorwise",
+            "convrot": true,
+            "convrot_groupsize": 256
+          }
+        },
+        {
+          "key": "blocks.0.mlp.fc2.comfy_quant",
+          "config": {
+            "format": "int8_tensorwise",
+            "convrot": true,
+            "convrot_groupsize": 256
+          }
+        }
+      ],
+      "no_full_payload_hash_in_this_audit": true
+    },
+    {
+      "family": "trim",
+      "relative_to_models": "comfy-trim/models/diffusion_models/fastvideo_fasth3_trim_8step_nvfp4.safetensors",
+      "bytes": 11894623166,
+      "header_bytes": 118872,
+      "header_sha256": "4bbe6c20851abb1bef7d498bf156512a55315a9ff138bb6895d027bf5c5f3bbd",
+      "main_block_count": 42,
+      "quant_config_tensor_count": 210,
+      "sampled_block0_configs": [
+        {
+          "key": "blocks.0.attn.out_proj.comfy_quant",
+          "config": {
+            "format": "nvfp4"
+          }
+        },
+        {
+          "key": "blocks.0.attn.qkv_proj.comfy_quant",
+          "config": {
+            "format": "nvfp4"
+          }
+        },
+        {
+          "key": "blocks.0.attn.to_gate_compress.comfy_quant",
+          "config": {
+            "format": "nvfp4"
+          }
+        },
+        {
+          "key": "blocks.0.mlp.fc1.comfy_quant",
+          "config": {
+            "format": "nvfp4"
+          }
+        },
+        {
+          "key": "blocks.0.mlp.fc2.comfy_quant",
+          "config": {
+            "format": "nvfp4"
+          }
+        }
+      ],
+      "no_full_payload_hash_in_this_audit": true
+    }
+  ],
+  "trim_dense_path": {
+    "kind": "source_and_fixed_graph_inference_not_kernel_trace",
+    "graph": "canonical/trim.json",
+    "graph_sha256": "a915f62f109cd2e1be615eb7b0c1aa6fab4a4b6ad6e31791fb84488b02a17ad8",
+    "width": 384,
+    "height": 256,
+    "frames": 73,
+    "video_latent_t": 22,
+    "audio_latent_t": 122,
+    "text_rows": 29,
+    "video_rows": 2112,
+    "audio_rows": 244,
+    "packed_rows": 2385,
+    "min_tokens": 12288,
+    "conclusion": "h3_eligible returns false through dense_reason at this geometry; do not attribute measured Trim advantage to VSA",
+    "dense_model_override": "comfy kitchen attention -> comfy_kitchen_int8; global startup Using pytorch attention does not override node128 choice",
+    "per_kernel_runtime_trace": null
+  },
+  "schedule_candidates": {
+    "kind": "stdlib formula reconstruction, not model run",
+    "simple_source_length": 1000,
+    "shift_video": 10,
+    "shift_audio": 3,
+    "timestep_integer_indices": {
+      "8": [
+        1000,
+        875,
+        750,
+        625,
+        500,
+        375,
+        250,
+        125
+      ],
+      "6": [
+        1000,
+        834,
+        667,
+        500,
+        334,
+        167
+      ],
+      "4": [
+        1000,
+        750,
+        500,
+        250
+      ]
+    },
+    "six_subset_of_eight": false,
+    "four_subset_of_eight": true,
+    "zero_sigma_appended": true,
+    "claim": "native scheduler accepts arbitrary positive step count; 6/4 are quality experiments, not proof of trained or official support"
+  },
+  "backend_limits": [
+    "Observed block0 original int8_tensorwise+convrot versus Trim nvfp4 metadata; ops chooses quantization layout and computes according to hardware/flags",
+    "Native successful Trim log advertises cuda scaled_mm_nvfp4 availability, Native ops nvfp4, 11207MB staged; not a per-layer kernel trace",
+    "Native original log advertises32427MB staged; file size and staged capacity do not measure PCIe traffic per step",
+    "No source evidence justifies assigning all approx4s/step to attention or all to transfer"
+  ],
+  "next_candidates": [
+    {
+      "priority": 1,
+      "candidate": "profile step screening",
+      "scope": "same conditioning/geometry/seed; original30/20 and Trim8 then Trim6/4",
+      "promise": "none; evaluate frozen quality protocol"
+    },
+    {
+      "priority": 2,
+      "candidate": "same-profile reserve_vram2->2.5GiB",
+      "scope": "infra-only headroom/stability; leave boardfree stop floor unchanged",
+      "tradeoff": "less weight residency may increase streaming and slow; no speed promise"
+    },
+    {
+      "priority": 3,
+      "candidate": "original model dense backend override to comfy kitchen attention",
+      "scope": "one native ModelAttentionBackend inserted before sigma; keep steps and graph otherwise fixed",
+      "tradeoff": "already installed INT8 attention path; numerical/quality comparison required; no Sage install needed"
+    },
+    {
+      "priority": 4,
+      "candidate": "persistent-service warm repeat",
+      "scope": "separate harness; retain --cache-none and disclose reusedTEcondition; no code implemented",
+      "tradeoff": "existing --disable-smart-memory unload_all_models at prompt end means merely keeping service may not retain GPU weights; startup/hash amortization must be separated from actual sampler gains"
+    },
+    {
+      "priority": 5,
+      "candidate": "original training-free BlockSparseAttention sol-attn/top-k only if measured attention bottleneck",
+      "scope": "do not copy VSA selection to original; baseline threshold12288 is inactive at2385 tokens",
+      "tradeoff": "lowering min_tokens is a model approximation candidate and may harm quality; no guaranteed speed for small sequence"
+    }
+  ]
+}

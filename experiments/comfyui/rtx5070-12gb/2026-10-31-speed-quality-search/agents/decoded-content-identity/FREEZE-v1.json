@@ -1,0 +1,32 @@
+{
+  "schema": "q33-decoded-content-freeze/v1",
+  "files": [
+    {
+      "path": "PLAN-v1.json",
+      "bytes": 1724,
+      "sha256": "a224877b581671f29437674e6345bff88af63286a0f9c91e8da05158e6489890"
+    },
+    {
+      "path": "INPUTS-v1.json",
+      "bytes": 8011,
+      "sha256": "a36bed165a9082f4d42333a3bc1b5b3f677e92f0f0b9598ba4da2508e97e3f42"
+    },
+    {
+      "path": "decoded_content_v1.py",
+      "bytes": 11620,
+      "sha256": "ddd667006827e3c54e4c2fb82cb99df524e9b9403333d1489ed9ee056387ffb4"
+    }
+  ],
+  "infra_files": [
+    {
+      "path": "src/inferrsi/infra/executors/local.py",
+      "bytes": 3505,
+      "sha256": "b089cdc7daaaf7834698c2d280a12c5e755915ded926aa039c8de5f521bd46f0"
+    },
+    {
+      "path": "src/inferrsi/infra/processes.py",
+      "bytes": 8151,
+      "sha256": "3b96ebc7a50913e78e86ff3dcba74c8ee8d03d547d9591ca6488f390ac1e6189"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "schema": "q33-reserve3-static/v1",
+  "gate_diff": {
+    "reserve_vram_gb": {
+      "before": 2.0,
+      "after": 3.0
+    }
+  },
+  "one_constant_changed": true,
+  "exact_reverse_byte_identity": true,
+  "compile_without_import": true,
+  "new_controller_sha256": "7bfac0749c6d9a95420eb2eb3b90c70ebd915f8dc17197f44277db22355888df",
+  "gates_copy_sha256": "13672a9bbe8946c28c98b3bab0f906f6ddfe67735ff7f77929e58539a4a580dd",
+  "gpu_dispatches": 0,
+  "network": false
+}

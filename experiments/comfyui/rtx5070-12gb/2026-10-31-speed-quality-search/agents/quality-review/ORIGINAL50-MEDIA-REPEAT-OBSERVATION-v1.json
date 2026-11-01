@@ -1,0 +1,43 @@
+{
+  "schema": "q33-independent-repeat-observation/v1",
+  "at_utc": "2026-10-30T17:26:36.8237000Z",
+  "scope": "Read existing frozen-decoder outputs and hash three PNGs only; no new model/media decode or image generation",
+  "previous": "Q32 original 50 reference",
+  "current": "Q33 original 50 timed reference",
+  "png": [
+    {
+      "file": "first.png",
+      "old_sha256": "e290648d97514d2460daa032e093d454ebefc542a6cbc62d7fd816bc948469fb",
+      "new_sha256": "e290648d97514d2460daa032e093d454ebefc542a6cbc62d7fd816bc948469fb",
+      "same_bytes": true
+    },
+    {
+      "file": "middle.png",
+      "old_sha256": "496a15db708da08eb3815819077571fc552188d65a82d23fd8a50e19446d9362",
+      "new_sha256": "496a15db708da08eb3815819077571fc552188d65a82d23fd8a50e19446d9362",
+      "same_bytes": true
+    },
+    {
+      "file": "last.png",
+      "old_sha256": "ffa84bf4272539dba5b853950fd912ada39087327c2fcae6cde873d72b062c67",
+      "new_sha256": "ffa84bf4272539dba5b853950fd912ada39087327c2fcae6cde873d72b062c67",
+      "same_bytes": true
+    }
+  ],
+  "decode_result_changed_top_fields": [
+    "expected_input_sha256",
+    "input_bytes",
+    "input_sha256",
+    "elapsed_seconds"
+  ],
+  "all_other_decode_fields_identical": true,
+  "whole_decoded_stream_byte_identity_tested": false,
+  "visual_quality_threshold_or_verdict": "INCONCLUSIVE",
+  "timing_audit_v1_observer_issue": "Serialized JSON string comparison falsely distinguished native numeric normalization (12 vs 12.0, 3 vs 3.0, denoise1 vs1.0, fps24 vs24.0). v1 script/result preserved. v2 uses structural numeric equivalence; no model inputs, gates, timing measurements or candidate changed.",
+  "v2_audit_sha256": "7583793cc3f09d8d0066905bfcdec31d478722d6b2591b610ae48fa93f3cc0a8",
+  "limits": [
+    "Identical sampled PNG bytes and decoder summary statistics do not establish full perceptual equality or all-frame byte equality",
+    "No complete playback or listening by this reviewer",
+    "New and old MP4 file bytes/SHA differ; container/output identity differs"
+  ]
+}

@@ -1,0 +1,226 @@
+{
+  "schema": "q33-turbo4-async-actual-review/v1",
+  "claim": "INCONCLUSIVE",
+  "experiment_completed": true,
+  "single_historical_comparison_only": true,
+  "rows": [
+    {
+      "role": "historical_sync",
+      "trial_relative_to_q33": "results/inferrsi-turbo4-corpus-bounce-audio-4265351f40394e2bb197a07d5c611653",
+      "run_name": "q33-turbo4-corpus-bounce-audio-4265351f40394e2bb197a07d5c611653",
+      "controller_sha256": "a94784c03a22de99eef9ebb379c0d7f741d0cb5923fffba3fae1cf5c0ad79aaf",
+      "graph_sha256": "bed7a0c36208a1834707812c499648be6a66848750cfa9d11f513964a871ced6",
+      "asset_set_sha256": "4f43082899ac7818ebaeb4e911904bd258c4fae6d8d78ad11efa31f3fab0f95d",
+      "gates_sha256": "13672a9bbe8946c28c98b3bab0f906f6ddfe67735ff7f77929e58539a4a580dd",
+      "artifact": {
+        "relative_to_run": "output\\q33-turbo-corpus\\bounce-audio\\turbo-native-4_00001_.mp4",
+        "bytes": 168489,
+        "sha256": "f7d646b7b97918d78c16e6d6e69a8be05a54f4c58450b3d5dfaa27e4664b6350"
+      },
+      "native_history_seconds": 27.106,
+      "sampler_observed_seconds": 24.4255377,
+      "video_VAE_observed_seconds": 1.4302633,
+      "audio_VAE_observed_seconds": 0.5124194,
+      "save_video_observed_seconds": 0.2831584,
+      "controller_seconds": 60.78613529994618,
+      "controller_outer_seconds": 60.90700000000652,
+      "startup_log_identity": {
+        "startup_log_bytes": 7199,
+        "startup_log_sha256": "ed8b6c9947857535b46dc63097ba41c0e15da2bdf6d2a740176e0af79b5c02b5"
+      },
+      "resources": {
+        "min_whole_board_free_bytes": 1634729984,
+        "peak_owned_private_bytes": 12821778432,
+        "peak_owned_rss_bytes": 2811408384,
+        "min_host_physical_bytes": 16728969216,
+        "min_host_commit_bytes": 7188688896,
+        "sample_count": 59,
+        "final_last_sample_matches_JSONL": true
+      },
+      "owned_cleanup_complete": true,
+      "guard_triggered": false,
+      "media_full_decode_complete": true,
+      "media_summary_sha256": "8c00aae8bdc563b7004b1b8c2a16e70cf3c74d721e14a3f0d19579970270b9f3",
+      "decode_report_sha256": "5b807edd2aa1c057999cdb321969504af62582f20cd05ee7d78422366c126fc8"
+    },
+    {
+      "role": "single_async_candidate",
+      "trial_relative_to_q33": "results/inferrsi-turbo4-async-bounce-audio-459062f3943f4f0d88029cb05cf8e67f",
+      "run_name": "q33-turbo4-async-bounce-audio-459062f3943f4f0d88029cb05cf8e67f",
+      "controller_sha256": "06eefc92c039a476efbad12b76a90400655a1e80ec267f0448c8a3ad25f09b04",
+      "graph_sha256": "bed7a0c36208a1834707812c499648be6a66848750cfa9d11f513964a871ced6",
+      "asset_set_sha256": "4f43082899ac7818ebaeb4e911904bd258c4fae6d8d78ad11efa31f3fab0f95d",
+      "gates_sha256": "13672a9bbe8946c28c98b3bab0f906f6ddfe67735ff7f77929e58539a4a580dd",
+      "artifact": {
+        "relative_to_run": "output\\q33-turbo-corpus\\bounce-audio\\turbo-native-4_00001_.mp4",
+        "bytes": 168489,
+        "sha256": "f7d646b7b97918d78c16e6d6e69a8be05a54f4c58450b3d5dfaa27e4664b6350"
+      },
+      "native_history_seconds": 29.588,
+      "sampler_observed_seconds": 26.8982384,
+      "video_VAE_observed_seconds": 1.4185551,
+      "audio_VAE_observed_seconds": 0.5279151,
+      "save_video_observed_seconds": 0.2822303,
+      "controller_seconds": 63.76970689999871,
+      "controller_outer_seconds": 63.88283789996058,
+      "startup_log_identity": {
+        "observed_async_offload_streams": 2,
+        "startup_log_bytes": 7255,
+        "startup_log_sha256": "9a208a01b488f551954be8dae2eaf5da9eb1cccb818c6976bb56fa6a3b3f9af4"
+      },
+      "resources": {
+        "min_whole_board_free_bytes": 1657798656,
+        "peak_owned_private_bytes": 12790382592,
+        "peak_owned_rss_bytes": 2942603264,
+        "min_host_physical_bytes": 17102503936,
+        "min_host_commit_bytes": 7235559424,
+        "sample_count": 62,
+        "final_last_sample_matches_JSONL": true
+      },
+      "owned_cleanup_complete": true,
+      "guard_triggered": false,
+      "media_full_decode_complete": true,
+      "media_summary_sha256": "e24c01f8e956adfcc59cba33d6a73b38ef94747253314089a83522f9a9e3c4ee",
+      "decode_report_sha256": "7708e5fdea8ec33f1be0ccc10c9281dbce499e97af4ec840c2b25d8dd0382c98"
+    }
+  ],
+  "timing_differences": {
+    "native_history_seconds": {
+      "historical_sync": 27.106,
+      "single_async_candidate": 29.588,
+      "delta_candidate_minus_historical_seconds": 2.4819999999999993
+    },
+    "sampler_observed_seconds": {
+      "historical_sync": 24.4255377,
+      "single_async_candidate": 26.8982384,
+      "delta_candidate_minus_historical_seconds": 2.4727007000000008
+    },
+    "video_VAE_observed_seconds": {
+      "historical_sync": 1.4302633,
+      "single_async_candidate": 1.4185551,
+      "delta_candidate_minus_historical_seconds": -0.011708199999999946
+    },
+    "audio_VAE_observed_seconds": {
+      "historical_sync": 0.5124194,
+      "single_async_candidate": 0.5279151,
+      "delta_candidate_minus_historical_seconds": 0.015495700000000001
+    },
+    "save_video_observed_seconds": {
+      "historical_sync": 0.2831584,
+      "single_async_candidate": 0.2822303,
+      "delta_candidate_minus_historical_seconds": -0.0009280999999999873
+    },
+    "controller_seconds": {
+      "historical_sync": 60.78613529994618,
+      "single_async_candidate": 63.76970689999871,
+      "delta_candidate_minus_historical_seconds": 2.983571600052528
+    },
+    "controller_outer_seconds": {
+      "historical_sync": 60.90700000000652,
+      "single_async_candidate": 63.88283789996058,
+      "delta_candidate_minus_historical_seconds": 2.9758378999540582
+    }
+  },
+  "full_content_identity": {
+    "complete": true,
+    "containers_equal": true,
+    "every_RGB24_byte_equal": true,
+    "every_decoded_PCM_byte_equal": true,
+    "video_exact_PTS_equal": true,
+    "audio_exact_PTS_and_format_equal": true,
+    "decoded_video_frames_each": 73,
+    "audio_samples_per_channel_each": 97334,
+    "worker_peak_RSS_bytes": 53911552,
+    "CPU_outer_seconds": 0.31299999996554106,
+    "torch_imported": false,
+    "trial_relative_to_q33": "results/decoded-turbo4-async-536b83bb7c2148959c54c29482dafe3e",
+    "items": [
+      {
+        "id": "turbo4-sync-bounce",
+        "RGB_sha256": "c7f6311d4d5459800cb04d914c0c07c0268018b2a4a3fd42c7e52ed18edd0c50",
+        "PCM_sha256": "d8c9687da3d060aaeff2bd45c6fdbe1509a6b59c455610dd88981074e69a282e",
+        "video_timeline_sha256": "197946269366394c46c284a4cda1f988d9dc0b6903d70765f6f8b0e2c895f55b",
+        "audio_timeline_sha256": "eb2173ad849abcde32f4fafe998528685c2b7839854bc3a5b47fee0616df528b"
+      },
+      {
+        "id": "turbo4-async-bounce",
+        "RGB_sha256": "c7f6311d4d5459800cb04d914c0c07c0268018b2a4a3fd42c7e52ed18edd0c50",
+        "PCM_sha256": "d8c9687da3d060aaeff2bd45c6fdbe1509a6b59c455610dd88981074e69a282e",
+        "video_timeline_sha256": "197946269366394c46c284a4cda1f988d9dc0b6903d70765f6f8b0e2c895f55b",
+        "audio_timeline_sha256": "eb2173ad849abcde32f4fafe998528685c2b7839854bc3a5b47fee0616df528b"
+      }
+    ]
+  },
+  "post_source_checks": {
+    "all_match": true,
+    "rows": 204,
+    "record_sha256": "c9dafbd76cc79db7118c15a59589a452c2c26ba19318ae800cddcc18bbb70b6a",
+    "scope": "selected source files only"
+  },
+  "decision_zh": "本次 Turbo4 bounce 异步候选未观察到速度收益：原生图27.106→29.588秒，采样24.4255→26.8982秒，整个outer60.907→63.8828秒。保留同步Turbo4为当前配方；异步结果及所有证据保留，不重试/不新增GPU矩阵。此结论不否定Trim8已实测的异步结果，也不能解释为所有Turbo请求异步一定较慢。",
+  "quality_scope_zh": "这一固定seed/提示词的两文件完全相同，并再次完整解码验证全部RGB/PCM/PTS一致；没有本例内容退化证据，不是普遍画质等价或主观质量PASS。",
+  "limits": [
+    "Historical baseline from earlier time, one new candidate; not simultaneous or ABBA matched conditions and no stable causal speed estimate.",
+    "History interval, observed WS node interval, controller lifetime and executor outer are separated. Sampler includes more than pure GPU compute.",
+    "Resource metrics are sampled whole-board/owned process measurements, not allocator or complete peak capture; unrelated apps and scheduling may differ.",
+    "Full decoded byte identity is under frozen installed CPU decoder, not subjective audiovisual quality or universal inference determinism.",
+    "No model/driver/dependency/network modifications; one authorized candidate only; all owned workers terminal."
+  ],
+  "evidence": [
+    {
+      "relative_to_q33": "results/inferrsi-turbo4-corpus-bounce-audio-4265351f40394e2bb197a07d5c611653/result.json",
+      "bytes": 16532,
+      "sha256": "945596a1d88d496bcf91aab993463d36dc7b585cf9ec4e90f9016c2ab9f2db77"
+    },
+    {
+      "relative_to_q33": "results/inferrsi-turbo4-corpus-bounce-audio-4265351f40394e2bb197a07d5c611653/execution.json",
+      "bytes": 4388,
+      "sha256": "f38e7adfe46e6e47d8868df4833a68f4e057df00d4dd1da186f39e03234f9ada"
+    },
+    {
+      "relative_to_q33": "results/inferrsi-turbo4-corpus-bounce-audio-4265351f40394e2bb197a07d5c611653/resources.jsonl",
+      "bytes": 27033,
+      "sha256": "ffc8d8f892d34f45cc9ea68a4ff6f9d31c0c945cf831fe951e2588c583ad0771"
+    },
+    {
+      "relative_to_q33": "results/inferrsi-turbo4-async-bounce-audio-459062f3943f4f0d88029cb05cf8e67f/result.json",
+      "bytes": 16705,
+      "sha256": "e886db2edd57c7437cde5bfaa4d518c46cca309d2caecceb7e1f26002c40f5ab"
+    },
+    {
+      "relative_to_q33": "results/inferrsi-turbo4-async-bounce-audio-459062f3943f4f0d88029cb05cf8e67f/execution.json",
+      "bytes": 4377,
+      "sha256": "45e26eefc61e56ee5c6b00fa9d3699efeba9856c5e62d1e858597aa9c8d0d720"
+    },
+    {
+      "relative_to_q33": "results/inferrsi-turbo4-async-bounce-audio-459062f3943f4f0d88029cb05cf8e67f/resources.jsonl",
+      "bytes": 28518,
+      "sha256": "4fbbd303971232188c9c112dedcd07407d33316ece73fcb13a077bc7902d942b"
+    },
+    {
+      "relative_to_q33": "results/decoded-turbo4-async-536b83bb7c2148959c54c29482dafe3e/result.json",
+      "bytes": 65614,
+      "sha256": "acae5395115aae6f50b09c2a82c4c220b01ca8bb35bd3c8e0a9e76de6e41d6f8"
+    },
+    {
+      "relative_to_q33": "results/decoded-turbo4-async-536b83bb7c2148959c54c29482dafe3e/execution.json",
+      "bytes": 2030,
+      "sha256": "c6c52a9e6e184aca25173cfc1d7c2801b3a5eab554f6c0de2c102bf311359f04"
+    },
+    {
+      "relative_to_q33": "agents/turbo4-async/POST-SOURCE-RECHECK-v1.json",
+      "bytes": 46277,
+      "sha256": "c9dafbd76cc79db7118c15a59589a452c2c26ba19318ae800cddcc18bbb70b6a"
+    },
+    {
+      "relative_to_q33": "results/turbo4-async-media-parent-bb3f60bcdfbd4a7fac3f66709d08d0c7/execution.json",
+      "bytes": 1894,
+      "sha256": "61927df1e76bc5211c7e2f14e70631af6ba698939e058d52cf4988748750388b"
+    },
+    {
+      "relative_to_q33": "results/media-turbo-native-4-3d6c66cede0a4183a5106ccce13bba2f/execution.json",
+      "bytes": 2369,
+      "sha256": "73009aedee7d689565a0d98e4505bd4022a50a0fdc752d8977f7ab5847c7b77d"
+    }
+  ]
+}

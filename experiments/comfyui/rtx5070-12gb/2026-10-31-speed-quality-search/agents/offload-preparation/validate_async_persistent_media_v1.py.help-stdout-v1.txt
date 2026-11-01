@@ -1,0 +1,16 @@
+usage: validate_async_persistent_media_v1.py [-h] --notes-root NOTES_ROOT
+                                             --infra-root INFRA_ROOT
+                                             --portable-root PORTABLE_ROOT
+                                             --run RUN --trial TRIAL
+                                             --stop-marker STOP_MARKER
+                                             --result-sha256 RESULT_SHA256
+
+options:
+  -h, --help            show this help message and exit
+  --notes-root NOTES_ROOT
+  --infra-root INFRA_ROOT
+  --portable-root PORTABLE_ROOT
+  --run RUN
+  --trial TRIAL
+  --stop-marker STOP_MARKER
+  --result-sha256 RESULT_SHA256

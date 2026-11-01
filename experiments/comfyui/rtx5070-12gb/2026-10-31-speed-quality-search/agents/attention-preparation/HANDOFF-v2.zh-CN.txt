@@ -1,0 +1,3 @@
+执行以attention_stage_b_v2.py为准。v1与其freeze/result保留；main还要求timing-controller目录的错误在真实dispatch前发现。v2仅将该断言改为attention-preparation，精确反向patch恢复v1；直接求值实际main根断言接受此目录并拒绝别处。旧8项元数据检查不代表完整main启动，本次v2路径检查也不代表模型运行成功。v2 --help实际portable exit0。没有服务/GPU/POST。
+
+固定profiles/trim-6-pytorch.json和原v1图/条件，仍是node128 Kitchen→PyTorch唯一模型变量。调用mode仍speed-video-stage-b；gates、模型清单、sources参数取本目录副本。父级必须先复核EXECUTION-FREEZE-v2和运行资源/额度，再进入唯一GPU队列；沿用媒体EOF门与感知未决约束。

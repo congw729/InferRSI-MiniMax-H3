@@ -1,0 +1,8 @@
+{
+  "schema": "q33-corpus-name-fix/v2",
+  "frozen_before_candidate": true,
+  "static_issue": "v1 first string replacement matched BASELINE_GRAPH_SHA substring; definitions became BASELINE_OLD_GRAPH_SHA and GRAPH_SHA, but metadata loader expects BASELINE_GRAPH_SHA and OLD_GRAPH_SHA",
+  "v1_retained": true,
+  "narrow_change": "rename the two constant definitions only",
+  "validation": "actual load_corpus for both fixed scenarios with original frozen stdlib helper; portable help; no model"
+}

@@ -1,0 +1,13 @@
+--- conditioning_corpus_v1.py
++++ conditioning_corpus_v2.py
+@@ -24,8 +24,8 @@
+ import uuid
+ 
+ V1_SHA = "63eb319e9fe294209e65c188a447a101987738e5ebc49bae879b65d36bb20d35"
+-BASELINE_OLD_GRAPH_SHA = "bf1578a3753e527f782f4701cde2f7cd2547dab41ab7f729445f1b6a16cb6e1d"
+-GRAPH_SHA = '1da6a1e7184e13d7e783918d09f2a3bbec750b53ec3fd66c7c3e8c57a103cb88'
++BASELINE_GRAPH_SHA = "bf1578a3753e527f782f4701cde2f7cd2547dab41ab7f729445f1b6a16cb6e1d"
++OLD_GRAPH_SHA = '1da6a1e7184e13d7e783918d09f2a3bbec750b53ec3fd66c7c3e8c57a103cb88'
+ STAGE_GATES_SHA = '4d5114f7abc9041f34778b3f615034cc3da797150e750b4a6e7a4c684ad5a9be'
+ STAGE_NODES = {'CLIPLoader': 'nodes', 'VAELoader': 'nodes', 'MiniMaxH3ImageToVideo': 'comfy_extras.nodes_minimax_h3', 'SaveConditioning': 'comfy_extras.nodes_cond'}
+ STAGE_SOURCE_SHA256 = {'comfy_extras/nodes_cond.py': '56344e64a20692a0f64521bf4de78c0a9c040e23c3499a00491b5243ca39f898', 'comfy/text_encoders/minimax.py': 'cff2303063502b63afce83545c7443a48b339e42ee821fb716279a6aa2db4430', 'comfy/sd.py': 'b5dcb5d1156a1f4e5fb9b32ef684105cca27298416f8abe494eafac75a4d2863'}

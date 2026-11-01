@@ -1,0 +1,21 @@
+单变量 async 候选交接（等待独立小审，再由父级执行；本代理未运行GPU）
+
+控制器 async_persistent_stage_b_v1.py SHA be5ed4634a212e0d68d9b014f04ac2ca8e8547ade62c93967e73ccdecb9a8bfe
+媒体入口 validate_async_persistent_media_v1.py SHA 27d8a29e51d9e18da93e803e16eaa8276445e103665c2eeef7dc1e6ee746b84e
+父级启动器 run_async_persistent_v1.py SHA 618638a30e2092deb676981657cfd106b0960c843d3139f5026709452217a6f8
+执行冻结 EXECUTION-FREEZE-v1.json SHA a996fe37e5f693bab17c2d7ec3b120ac4d4c12ff717562d6e1f9b181fc493a8a（22 local/20 notes/6 portable）
+启动器冻结 PARENTHELPER-FREEZE-v1.json SHA 4e56188ea14723fb63862fc5f38db14f4f7ae676baae78127c8c80647ad9aff8
+
+变量：固定 classic cache / smart memory / Trim8 / seed424242,424243，仅去掉 --disable-async-offload。保持 --disable-pinned-memory，reserve3/headroom1、现有全部资源和单Job清理；两graph和output prefix与baseline相同，fresh run目录隔离。actual启动必须出现 Using async weight offloading with 2 streams。请求图仍验证8步无sampler缓存，首次全资产SHA、跨请求stat/conditioning检查保持。
+
+父级启动参数：
+<PPY> -s -B -X utf8 <THIS_DIR>/run_async_persistent_v1.py --notes-root <R> --infra-root <IR> --portable-root <P> --model-root <M> --runs-parent <E_RUNS> --nvidia-smi <SMI> --cache-policy classic --remaining-percent <ACTUAL_REMAINING>
+脚本以既有 InferRSI execute_command 执行，外层2730秒，run/trial每次新nonce，外部12GiB physical/16.5GiB commit/6GiB GPU门不变。
+
+完成且所属GPU服务清理后，用既有 execute_command 调本媒体入口，不能调用旧persistent media（旧身份会拒绝）：
+<PPY> -s -B -X utf8 <THIS_DIR>/validate_async_persistent_media_v1.py --notes-root <R> --infra-root <IR> --portable-root <P> --run <ACTUAL_E_RUN> --trial <ACTUAL_IR_TRIAL> --stop-marker <ACTUAL_E_RUN>/stop.signal --result-sha256 <ACTUAL_RESULT_SHA>
+外层建议330秒；wrapper内总300秒，两段分别用原CPU媒体验证器/140秒执行器，结果落独立IR trial，完整媒体不是质量等价。
+
+已执行：18项定向标准库检查全部完成，三入口真实PPY --help均0且stderr0。范围：CLI精确差、未改函数AST、双seed图、startup正负例、媒体身份正负例、源码文件名/根位置。未重跑旧大矩阵；合成metadata只供离线门，不是实际下载/生成receipt。候选质量/性能INCONCLUSIVE。
+
+需观察：整卡GPU剩余、private/RSS、物理/commit，首/次请求native prompt和sampling分别计时。按流cast缓存可能增加GPU峰；warm resident命中可能无显著收益；不能把16GiB虚拟max reservation当驻留量或宣称异步必然加速。触门即保留失败，不自动开启pin或改变保护门。

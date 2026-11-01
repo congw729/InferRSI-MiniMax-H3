@@ -1,0 +1,16 @@
+{
+  "schema": "q33-rsi-path-regression/v2",
+  "case": "run parent independent of model root",
+  "checks": {
+    "record_relative_to_explicit_parent": true,
+    "outside_parent_rejected": true,
+    "parent_itself_rejected": true,
+    "selected_8_vs_6_only": true
+  },
+  "all_observed": true,
+  "candidate_sha256": "4830c462866ea832481a1a97f0989ed01481911126998b61d5f6c1fe728a8b6c",
+  "validator_sha256": "936cebcc40211e5545698dd2429cd474c5f10e43e43cc6270f039cc05c820395",
+  "model_dispatches": 0,
+  "network_requests": 0,
+  "directories_created": 0
+}

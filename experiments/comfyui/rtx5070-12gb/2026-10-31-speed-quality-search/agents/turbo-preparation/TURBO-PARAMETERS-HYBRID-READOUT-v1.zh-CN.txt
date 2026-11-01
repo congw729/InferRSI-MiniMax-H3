@@ -1,0 +1,41 @@
+记录UTC：2026-10-30T17:46:55.245439+00:00
+Turbo v4-600 参数及作者 hybrid 备用路径：只读简报
+范围：Q33已下载同一LoRA、现有full50 INT8ConvRot/conditioning/VAEs；无新模型下载、安装、节点执行、GPU或新控制器。性能/质量 INCONCLUSIVE。
+
+一、当前参数并未偏离作者v4建议
+固定作者源码：GitHub Larryvrh/ComfyUI-MiniMax-H3-Turbo commit4274783a23afcfdbea3b4876cb79effd6c510785。
+README16–42针对v4-600说明6–8步优先，4步强运动可能拖影；75–85明确simple、strength1.0、4–8步，高于8不作为优先候选。109–123明确video12/audio3，并说明有ModelSamplingAV的新Comfy可用stock euler。
+当前Euler/simple、6或8步、video12/audio3、strength1.0均与该版本建议一致。12/3不只是沿用原版默认，也有作者明确依据，不优先搜索sigma。
+真正差异是LoRA应用路径：我们LoraLoaderModelOnly全merge；作者默认low_vram=false多数层bypass、INT8融合fc2合并。作者称量化底模全merge可能更软，默认bypass较清晰但多占显存。这是待本机核对的作者说明，不是我们已证实的质量结论。
+推荐次序：先观察同prompt/seed的6与8步真实全片/声音；若6已有清晰度和运动，优先测耗时；若有拖影，先比较8而不同时改strength。仅具体片仍模糊拖影时试strength1.05（作者范围约1.05–1.2）；过锐颗粒时试0.95（作者范围约0.8–0.95）。这些是候选，不在未看片时开网格。4步只有在6/8已可接受且用户愿意更多运动风险时才候选；不默认提高到10/20步。
+旧示例workflow不是v4最佳配置证据：所钉JSON节点134仍ckpt500、strength1，节点124是simple6。固定HF资产revision的README也仍介绍旧ckpt850；不能把旧卡的4步宣传替代GitHub已经具体讨论v4的建议。
+尺寸384x256/73帧是本机受限实验，低于作者文档所称约124–362帧验证范围；保留该限制，不把作者宣称的画质/速度迁移到本机。
+
+二、最小hybrid隔离接入（仅方案，未部署）
+不修改成功portable或现有控制器，不装Manager/pip/git pull。用新的E盘run目录作为--base-directory，在该目录的custom_nodes/ComfyUI-MiniMax-H3-Turbo-full-4274783下放已核身份的__init__.py与LICENSE，文件内容直接取既有非执行快照。该full底模不会走use_adaln_curves分支，因此不需额外egrid文件。pyproject依赖空，源码16–29引用已安装torch/tqdm/Comfy；仅静态API存在，不声称import/kernel兼容验证。
+CLI维持--disable-all-custom-nodes并加--whitelist-custom-nodes ComfyUI-MiniMax-H3-Turbo-full-4274783；保留--disable-partner-nodes、offline、独立user/temp/output/cache与已有全部资源守门。folder_paths14–20/45证明base_directory改变custom_nodes根，故无需为了一个节点改安装树。若需要固定多个run复用只读节点目录，再用单独--extra-model-paths-config YAML登记custom_nodes路径；不是当前必要项。
+复用models-directory中的已完整LoRA，不复制模型。graph只将1100换为MiniMaxH3TurboLoRA(model来自6,lora_name同一v4文件,strength1.0,low_vram=false)，其输出仍进入148 SigmaShift；首轮保留原生Euler/simple、同6步/12/3/seed/conditioning/尺寸，以区分加载策略。作者TurboSampler不是此Comfy版本的必要依赖；避免另加旧式音频时钟。新profile需与native_merge分家、明确hybrid，节点source/graph/CLI/freeze身份后再由父级实际启动，不能冒用原native controller的白名单。
+作者__init__.py491–523明确full路径只用现有LoRA，默认hybrid由fc2检测决定；实际log538–541应显示full base、bypass数量与fc2 merge数量，再核259目标总覆盖。不得只看到节点存在就算应用完成。
+质量/速度代价不预判：当前BypassForwardHook.inject会把adapter权重搬计算设备，可能增加常驻及低秩GEMM；与全merge逐投影恢复/patch/requant的成本不同，未保证更快。作者debug wrapper431–460前6次额外RMS/float读数可能同步GPU；其自带sampler110–128更是每步RMS。首轮保持作者源码原样并记录该条件，不能悄悄剥日志再称原作者相同版本。
+
+三、新模型线索只登记，不启动下载
+本次公开元数据复核：dotexec/MiniMax-H3-T2V-NVFP4卡写FL2VA/T2VA混合NVFP4，文件minimax_h3_fl2va_nvfp4_mixed.safetensors约24.4GB，attention/MLP NVFP4、AdaLN FP8、其余BF16。发布者声称原生Comfy支持；本轮未锁文件revision/LFS身份、未核header或本机LoRA兼容，因此只是后续候选，不替代正在测的已有模型。
+FenomAI/MiniMax-H3卡明确只转换ref2va、没有fl2va；18.7GB full是ref2va_nvfp4_full，不能当作同一FL2VA底模的直接压缩替代。GGUF需要另行核对loader/runtime，不进入本轮下载或配方。不要因文件更小同时堆模型。
+
+固定来源
+https://github.com/Larryvrh/ComfyUI-MiniMax-H3-Turbo/blob/4274783a23afcfdbea3b4876cb79effd6c510785/README.md
+https://github.com/Larryvrh/ComfyUI-MiniMax-H3-Turbo/blob/4274783a23afcfdbea3b4876cb79effd6c510785/__init__.py
+https://github.com/Larryvrh/ComfyUI-MiniMax-H3-Turbo/blob/4274783a23afcfdbea3b4876cb79effd6c510785/example_workflows/minimax_h3_t2v_turbo.json
+https://huggingface.co/larryvrh/MiniMax-H3-Turbo-Lora/blob/7b7ac96b0616100db75ea285090210c3ddf37c04/README.md
+动态线索（本次仅卡片元数据，不作下载manifest）：
+https://huggingface.co/dotexec/MiniMax-H3-T2V-NVFP4
+https://huggingface.co/FenomAI/MiniMax-H3
+
+本地身份（均本次只读核过；相对portable ComfyUI）
+作者5份快照与SOURCE-INDEX-v1逐个bytes/SHA匹配：README1676b6cd2804c43ce6c7c822d0a5c6a33bea1ce728449fa0d44ebf0f07583e3d；__init__a22f222f11dfc337552371f7f288bf5928cb1fa80a6afb3f24075a8315d02f06；workflow7371dfc10b6794607db817c5df17e6614f7c27e35ebd7f3231d71bc445eafd08。
+folder_paths.py14–20,45 SHA045a2ea987c0c7bcb0e47cbc46826ee34e82179562c85123f35ea3ff1c3e7ac4
+utils/extra_config.py6–34 SHA79575ef9f3c8eeda9903fb6f5cdea98b13ac408e1ccae06235f89453b8c65bb5
+comfy/cli_args.py218–219 SHAc88f737c65915bd19ff04be68d151c0794b03b09e50dcb4fcd088647eb796f4a
+main.py186–223,612 SHAbaaa16d69ee78e08c490eeec20bf27c56b746c070f76cc05b4aa13cbc616bcef
+nodes.py2368–2396 SHA776f549a05fc068eca20a9edc1602c6f1b80cfbbf5153bc44ba371a55fbb13be
+comfy/weight_adapter/bypass.py185–204,227–240,381–386 SHAd730f23c5d36968e102073051e9677db7761e87228d824470e4034909e3337dd

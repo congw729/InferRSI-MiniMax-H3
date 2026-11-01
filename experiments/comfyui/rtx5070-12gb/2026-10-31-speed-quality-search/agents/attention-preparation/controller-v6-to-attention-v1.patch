@@ -1,0 +1,28 @@
+--- speed_stage_b_v6.py
++++ attention_stage_b_v1.py
+@@ -139,17 +139,15 @@
+ 
+ 
+ def validate_profile_graph(profile, graph, canonical):
+-    family=profile.get("family");steps=profile.get("steps")
+-    require(family in {"original","trim"} and type(steps) is int and
+-            steps in ({"original":{50,30,20},"trim":{8,6,4}}[family]),"profile family/steps")
+-    require(profile.get("id")==family+"-"+str(steps),"profile identifier")
+-    require(profile.get("role")==("reference" if family=="original" and steps==50 else "candidate"),
+-            "only original50 is reference")
++    require(profile.get("family")=="trim" and type(profile.get("steps")) is int
++            and profile["steps"]==6 and profile.get("id")=="trim-6-pytorch"
++            and profile.get("role")=="candidate", "only fixed Trim6 PyTorch attention candidate")
+     expected=copy.deepcopy(canonical)
+-    expected["prompt"]["9"]["inputs"]["steps"]=steps
+-    expected["prompt"]["92"]["inputs"]["filename_prefix"]="q33-speed/"+profile["id"]
+-    require(graph==expected,"graph changes outside frozen family steps/output prefix")
+-    require(profile["canonical_graph"]["sha256"]==CANONICAL_SHA[family],"canonical family identity")
++    expected["prompt"]["9"]["inputs"]["steps"]=6
++    expected["prompt"]["128"]["inputs"]["attention"]="pytorch attention"
++    expected["prompt"]["92"]["inputs"]["filename_prefix"]="q33-attention/trim-6-pytorch"
++    require(graph==expected,"graph changes outside frozen Trim6 dense attention/output prefix")
++    require(profile["canonical_graph"]["sha256"]==CANONICAL_SHA["trim"],"canonical family identity")
+ 
+ def load_profile(a,v1):
+     profile=v1.frozen_json(a.profile,a.profile_sha256,65536)

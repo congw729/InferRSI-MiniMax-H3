@@ -1,0 +1,173 @@
+{
+  "schema": "q33-flattened-execution-freeze/v2",
+  "purpose": "Flattened validated v1 inputs and v2 cleanup candidate for non-recursive parent runner",
+  "basis": [
+    {
+      "path": "CANDIDATE-FREEZE-v1.json",
+      "sha256": "6a5141d32958b5f9ba36894fd44d355183a45c0b7732642047ca23d41cf0f51f"
+    },
+    {
+      "path": "CANDIDATE-FREEZE-v2.json",
+      "sha256": "f491aa14ee38bf55d967cbd7ec6d8188725ce67d50d0da3829bc9ae218ee7ada"
+    }
+  ],
+  "files": [
+    {
+      "path": "CANDIDATE-FREEZE-v1.json",
+      "bytes": 4157,
+      "sha256": "6a5141d32958b5f9ba36894fd44d355183a45c0b7732642047ca23d41cf0f51f"
+    },
+    {
+      "path": "CANDIDATE-FREEZE-v2.json",
+      "bytes": 1513,
+      "sha256": "f491aa14ee38bf55d967cbd7ec6d8188725ce67d50d0da3829bc9ae218ee7ada"
+    },
+    {
+      "path": "CLEANUP-PLAN-v2.json",
+      "bytes": 932,
+      "sha256": "af8cd29a92dc9bf557e511ac83c5ecde1702f88d4ad11dc09a411e44e130d7eb"
+    },
+    {
+      "path": "PLAN-v1.json",
+      "bytes": 3234,
+      "sha256": "39821746413e5b8f22912f882c7fc1f0a3b52f56ac13753a3e50eb5164389ed9"
+    },
+    {
+      "path": "SOURCES-v1.json",
+      "bytes": 33327,
+      "sha256": "bf0d3e3b09f8130053735eaa6645bcc4ff753833a97ef4ae306d7d223283f007"
+    },
+    {
+      "path": "assets/original.json",
+      "bytes": 2910,
+      "sha256": "de6848a0135415f086ad3fa53e94e40202bfc4d72bdf5d3eeafe3494bc9cdd7c"
+    },
+    {
+      "path": "assets/trim.json",
+      "bytes": 2763,
+      "sha256": "c1507b121962e250f2d74c7dce2f4e0e63e7de8e55a39c2d2795e336106de2a0"
+    },
+    {
+      "path": "canonical/original.json",
+      "bytes": 3069,
+      "sha256": "d5937f2505f74e07ce8de746c49c98e8a428535d79ccc878383e8b989807fb29"
+    },
+    {
+      "path": "canonical/trim.json",
+      "bytes": 3895,
+      "sha256": "a915f62f109cd2e1be615eb7b0c1aa6fab4a4b6ad6e31791fb84488b02a17ad8"
+    },
+    {
+      "path": "conditioning/original-20.json",
+      "bytes": 1016,
+      "sha256": "2b732d4be99d46c629e182bd445efcfe516f75cc3144717ed919718403452256"
+    },
+    {
+      "path": "conditioning/original-30.json",
+      "bytes": 1016,
+      "sha256": "b60cf03017757fd285cd14f12400f458a4ad1d04ef20bc82884dde98e751b930"
+    },
+    {
+      "path": "conditioning/original-50.json",
+      "bytes": 1016,
+      "sha256": "c5b81f24e6817953ffb6af258b76b2639f45814fe105392211bfba6095787ff2"
+    },
+    {
+      "path": "conditioning/trim-6.json",
+      "bytes": 1011,
+      "sha256": "33d0cb9fe20557ea456d222e1e92bcc3bd734cb981326ed48e3f5451162c14e2"
+    },
+    {
+      "path": "conditioning/trim-8.json",
+      "bytes": 1011,
+      "sha256": "56e67d26b9041f4e21b91f9adf12d8efdfeab2a1a677540b3765052982043992"
+    },
+    {
+      "path": "controller-v1.patch",
+      "bytes": 27005,
+      "sha256": "4e0ac3a7045b6da334ff657cc1a7d505e07c7af92efb9dc9a9ac4c1b56d9c9dc"
+    },
+    {
+      "path": "controller-v2-cleanup.patch",
+      "bytes": 4263,
+      "sha256": "4bba738d1e50c36c2a1a2a867c56e343f775759e9cfeb82040738b3d27b04137"
+    },
+    {
+      "path": "graphs/original-20.json",
+      "bytes": 3063,
+      "sha256": "88c74e996c92f66624df209486e96c125755ab8c970c7ce336876527b3b2da3a"
+    },
+    {
+      "path": "graphs/original-30.json",
+      "bytes": 3063,
+      "sha256": "2b74121ecc901484239dff188ff3c9d5399d23c4388621115dc21ae0867b088c"
+    },
+    {
+      "path": "graphs/original-50.json",
+      "bytes": 3063,
+      "sha256": "9c38e25acd44d56513814f12361d6cd71ac004596df4e29298fb874f68173045"
+    },
+    {
+      "path": "graphs/trim-6.json",
+      "bytes": 3698,
+      "sha256": "8e18d80bd0039acd96d33595db2a2547e3f4b58b090e05829cced67e2976efd6"
+    },
+    {
+      "path": "graphs/trim-8.json",
+      "bytes": 3698,
+      "sha256": "4f3100808edb367c1e06066320113eb94043c1f697489c443b025a31d1788016"
+    },
+    {
+      "path": "profiles/original-20.json",
+      "bytes": 842,
+      "sha256": "5a5ccd57ee76b2db2165f634dce2ccde0576d8d5558eca7d39d66ac977736c3c"
+    },
+    {
+      "path": "profiles/original-30.json",
+      "bytes": 842,
+      "sha256": "375f8ae84269a75f1349ca5144eea6c74a2c034363b4fa389b02badf2382d6bb"
+    },
+    {
+      "path": "profiles/original-50.json",
+      "bytes": 842,
+      "sha256": "8f952247cb616a1404aaf16d7718f12903cfeda3e8741b7086a84b83bbf66a03"
+    },
+    {
+      "path": "profiles/trim-6.json",
+      "bytes": 837,
+      "sha256": "ef397cf7e614f29b3b50a1d1835f787db25c3929280753db0c6d31daf5027299"
+    },
+    {
+      "path": "profiles/trim-8.json",
+      "bytes": 810,
+      "sha256": "e25e4e27c44203e8bf5deac8ddb143c7b1c347881cc572f4161021a112a38e64"
+    },
+    {
+      "path": "speed_stage_b_v1.py",
+      "bytes": 47912,
+      "sha256": "17ad08a26af88efad9ee2bd25ee7bd575cde8adfb6a574f472d5fd336c539ae3"
+    },
+    {
+      "path": "speed_stage_b_v2.py",
+      "bytes": 49129,
+      "sha256": "916c8f2e19d9d42d72719e985ee801d9a92e4d43d007eeabb9ec25c52c77d797"
+    },
+    {
+      "path": "timing_events_v1.py",
+      "bytes": 10734,
+      "sha256": "f0abb1937ca5462d712a73d1a8623b6a9f5df86927dbcf6375903b8a5ad3e614"
+    },
+    {
+      "path": "validate_cleanup_offline_v2.py",
+      "bytes": 2442,
+      "sha256": "7b4a2d63530b78d8458fa37ba1e0d03b87866a013de3c66d31155890f199421e"
+    },
+    {
+      "path": "validate_timing_offline_v1.py",
+      "bytes": 5951,
+      "sha256": "aef00e8b02cb6491c759b790130ba20e645d9ea6c507646396c2644f4edf1926"
+    }
+  ],
+  "source_payloads": "154 native/InferRSI source entries remain runtime checked through frozen SOURCES-v1.json",
+  "old_files_unchanged": true
+}

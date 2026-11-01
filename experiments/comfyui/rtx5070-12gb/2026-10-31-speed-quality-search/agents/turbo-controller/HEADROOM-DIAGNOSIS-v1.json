@@ -1,0 +1,70 @@
+{
+  "schema": "q33-dynamic-headroom-source-diagnosis/v1",
+  "created_utc": "2026-10-30T17:41:48.043214+00:00",
+  "sources": [
+    {
+      "relative_to_portable": "ComfyUI/main.py",
+      "sha256": "baaa16d69ee78e08c490eeec20bf27c56b746c070f76cc05b4aa13cbc616bcef",
+      "lines": [
+        [
+          79,
+          83
+        ],
+        [
+          291,
+          299
+        ]
+      ]
+    },
+    {
+      "relative_to_portable": "ComfyUI/comfy/cli_args.py",
+      "sha256": "c88f737c65915bd19ff04be68d151c0794b03b09e50dcb4fcd088647eb796f4a",
+      "lines": [
+        [
+          169,
+          178
+        ]
+      ]
+    },
+    {
+      "relative_to_portable": "python_embeded/Lib/site-packages/comfy_aimdo/control.py",
+      "sha256": "15b1be566ab6b88d61a10b1dd65385772e26b1e140003ac0fc3d0a6f7f74ad4e",
+      "lines": [
+        [
+          62,
+          68
+        ],
+        [
+          157,
+          193
+        ],
+        [
+          215,
+          235
+        ]
+      ]
+    }
+  ],
+  "conclusions": [
+    "--reserve-vram 3.0 is not ignored: main.py82-83 passes 3221225472 bytes as AIMDO simple_vram_headroom.",
+    "Installed AIMDO wrapper215-228 says simple headroom is separate from per-device extra headroom, only evicts VBAR pages and never refuses Torch allocations. Reserve is not a hard whole-board free-memory guarantee.",
+    "--vram-headroom 1.0 is parsed as a float and main.py296 multiplies by1024**3: requested extra per-device headroom1073741824 bytes.",
+    "Installed control.py169-191 accepts device/headroom tuples and passes c_uint64 headroom_array to lib.init. Legacy0.4.9 TypeError fallback exists in main297-299; installed0.6.0 normal protocol accepts tuples.",
+    "NativeCLI labels GB but actual conversion is GiB. No disable-nvml-pressure flag is added; existing NVML pressure remains.",
+    "This agrees with prior Q31 NATIVE-MEMORY-REVIEW-v1. It does not establish exact DLL policy or why the specific transient allocation crossed guard."
+  ],
+  "failure_evidence": {
+    "relative_to_iteration": "results/inferrsi-turbo-native-6-31a9448a90eb43d38fb03597c31437b8/result.json",
+    "board_free_bytes": 609222656,
+    "guard_floor_bytes": 805306368,
+    "process_private_bytes": 13825581056,
+    "scope": "whole-board GPU measurement, not allocator peak; source task reports owned worker exited"
+  },
+  "next_candidate": "Keep reserve3 and every guard/model/graph/asset/step fixed; add only native --vram-headroom 1.0 to service argv.",
+  "limits": [
+    "Source-only diagnosis; no GPU or model execution",
+    "Extra headroom is a requested policy, not a hard allocation cap or proven remedy",
+    "No quality or speed conclusion; INCONCLUSIVE",
+    "No upstream source/DLL/driver/VPN change"
+  ]
+}

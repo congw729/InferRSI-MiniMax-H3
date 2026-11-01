@@ -1,0 +1,14 @@
+Q33 v5 reserve3执行补充
+保留v4与真实Trim8 reserve2 guard失败，不改变graph/profile/steps/seed/condition/几何/模型。
+新入口 speed_stage_b_v5.py
+SHA 7bfac0749c6d9a95420eb2eb3b90c70ebd915f8dc17197f44277db22355888df
+新 --gates C/RESOURCE-GATES-RESERVE3-v1.json
+新 --gates-sha256 13672a9bbe8946c28c98b3bab0f906f6ddfe67735ff7f77929e58539a4a580dd
+新 --freeze-name EXECUTION-FREEZE-v5-reserve3.json
+新 --freeze-sha256 0b49f7af16ae8e4f117ce2df096a8365634278584563ba3be10ef07246fc1624
+49项展平freeze含v4/v5及新旧所有实际profile输入；154runtime来源保持。
+注意父级旧run_profile的gates曾硬编码Q32旧门，必须同时参数化/显式选上述新gates；只换controller会拒绝，不应绕过校验。
+门唯一变化 reserve_vram_gb:2.0→3.0，运行boardfree停止线805306368B/private16GiB/RSS10GiB及timeouts完全不动。
+源码唯一变化STAGE_GATES_SHA常量，精确反向字节相同证明见RESERVE3-STATIC-CHECK-v1.json。
+可用已冻结trim-8、trim-6-screen-v1、trim-4-screen-v1，仍按父级顺序串行；此准备未运行模型。
+较大reserve可能保留更多余量，也可能减少权重驻留并变慢，不保证消除guard。

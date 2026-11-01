@@ -1,0 +1,11 @@
+{
+  "schema": "q33-rsi-resource-plan-update/v2",
+  "at_utc": "2026-10-30T17:41:50.6651559Z",
+  "basis": "PLAN-FROZEN-v1.json retained",
+  "reason": "Actual Trim8 reserve2 and Turbo reserve3 board-free guards; parent requested native per-device headroom1GiB in new controllers",
+  "final_recipe": "Trim controller v6, reserve3 plus native vram-headroom1.0 both sides; all stop floors unchanged",
+  "binding": "Reviewed controller filename/hash and execution freeze supplied through content-addressed source bundle; no final dispatch-ready bundle until native delta and actual screening reviewed",
+  "launcher": "run_profile_v3.py unchanged",
+  "offline_validation": "Prior declared adapter cases unchanged; no new model matrix",
+  "state": "Preparation only, no GPU dispatch"
+}

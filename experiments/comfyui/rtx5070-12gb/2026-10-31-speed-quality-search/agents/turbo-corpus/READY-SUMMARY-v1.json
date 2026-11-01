@@ -1,0 +1,59 @@
+{
+  "schema": "q33-native-turbo-corpus-ready/v1",
+  "controller": {
+    "file": "turbo_corpus_stage_b_v2.py",
+    "sha256": "5fb623f8b68c7be3342db7e28abe34bd206ac6967a51824b9a877f3a3bab9476",
+    "mode": "turbo-corpus-video-stage-b"
+  },
+  "cases": {
+    "bounce-audio": {
+      "profile": {
+        "path": "profiles/bounce-audio.json",
+        "sha256": "72865c7c0f0e035d12c344f76bb5bb4baf0aa9e635fc29570a62e0ed3af2e154"
+      },
+      "conditioning": {
+        "path": "conditioning/bounce-audio.json",
+        "sha256": "13838633b81f6514c51109002f036eaea9e3872fc3e39afb82edfbd789331c03"
+      },
+      "graph": {
+        "file": "graphs/bounce-audio.json",
+        "sha256": "8ba9490a41b76a7ce4192900d49d8cb81e29598c2609e23ba153340f3fdebc59"
+      },
+      "conditioning_sha256": "70a19cfeb46fe9411ac6f3fbfea63c253056d28cffb9bb28f269da4c2134d170",
+      "tokens": 41
+    },
+    "hands-face-mug": {
+      "profile": {
+        "path": "profiles/hands-face-mug.json",
+        "sha256": "22ae4445cf7ce1a9de55ebe6192dbbac8167656ef259516e420bb25e1bf2273c"
+      },
+      "conditioning": {
+        "path": "conditioning/hands-face-mug.json",
+        "sha256": "ee41ce386410d5b7e39fc9231bb1bf02385ba5ed56b59930e5fb9f440626734f"
+      },
+      "graph": {
+        "file": "graphs/hands-face-mug.json",
+        "sha256": "7795b20de7a95eb5320df8c58d96d203412771c3222cfeb23a4988ba8e2daa2e"
+      },
+      "conditioning_sha256": "ea6cb031df1988576ee7eb4cc9d8d4c38a393e025f92de57d4aae8227858e2dc",
+      "tokens": 49
+    }
+  },
+  "asset_set": {
+    "path": "assets/turbo-native.ready.json",
+    "sha256": "4f43082899ac7818ebaeb4e911904bd258c4fae6d8d78ad11efa31f3fab0f95d"
+  },
+  "gates": {
+    "relative_to_iteration": "agents/timing-controller/RESOURCE-GATES-RESERVE3-v1.json",
+    "sha256": "13672a9bbe8946c28c98b3bab0f906f6ddfe67735ff7f77929e58539a4a580dd"
+  },
+  "timing_module": {
+    "relative_to_iteration": "agents/timing-controller/timing_events_v1.py",
+    "sha256": "f0abb1937ca5462d712a73d1a8623b6a9f5df86927dbcf6375903b8a5ad3e614"
+  },
+  "metadata_checks_v1": 24,
+  "v2_delta": "Only two mode strings; reverse bytes exact, actual PPY --help exit0",
+  "native_source_scope": "Selected existing runtime source catalogue, not DLL/fullenv closure",
+  "new_gpu_runs": 0,
+  "quality_performance": "INCONCLUSIVE"
+}

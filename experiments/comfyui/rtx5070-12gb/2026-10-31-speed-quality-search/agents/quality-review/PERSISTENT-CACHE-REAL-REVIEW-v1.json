@@ -1,0 +1,490 @@
+{
+  "schema": "q33-persistent-cache-real-review/v1",
+  "verdict": "INCONCLUSIVE",
+  "scope": "One same-seed-order none session and one classic session, both smart memory; four actual 8-step requests, full media verified",
+  "sessions": {
+    "none": {
+      "trial_relative_to_notes": "iterations/2026-10-31-speed-quality-search/results/inferrsi-persistent-cache-none-476a6a00127342f5bb2845627e255c50",
+      "run_name": "q33-persistent-cache-none-476a6a00127342f5bb2845627e255c50",
+      "controller_wall_seconds": 37.67397870006971,
+      "inferrsi_outer_executor_wall_seconds": 37.82799999997951,
+      "resources": {
+        "sample_rows_including_last_sample": 41,
+        "owned_rss_peak_bytes": 5635477504,
+        "owned_private_peak_bytes": 15225184256,
+        "gpu_board_free_min_bytes": 1426063360,
+        "host_available_physical_min_bytes": 13089124352,
+        "host_available_commit_min_bytes": 4835819520,
+        "scope": "sampled owned process sums / whole-board GPU, not continuous CUDA allocator maxima"
+      },
+      "source_manifest_sha256": "bf0d3e3b09f8130053735eaa6645bcc4ff753833a97ef4ae306d7d223283f007",
+      "asset_set_sha256": "c1507b121962e250f2d74c7dce2f4e0e63e7de8e55a39c2d2795e336106de2a0",
+      "gates_sha256": "13672a9bbe8946c28c98b3bab0f906f6ddfe67735ff7f77929e58539a4a580dd",
+      "cleanup_complete": true,
+      "requests": [
+        {
+          "request_index": 1,
+          "seed": 424242,
+          "native_prompt_wall_seconds": 9.669,
+          "sampler_observed_wall_seconds": 7.5434118,
+          "sampler_uncached_progress": 8,
+          "loader_states": {
+            "6": {
+              "class_type": "UNETLoader",
+              "cached": false,
+              "observed_wall_seconds": 0.2898925
+            },
+            "11": {
+              "class_type": "VAELoader",
+              "cached": false,
+              "observed_wall_seconds": 0.1772169
+            },
+            "24": {
+              "class_type": "VAELoader",
+              "cached": false,
+              "observed_wall_seconds": 0.0463039
+            }
+          },
+          "artifact_sha256": "9c0ec62b2694f56299a15872e2b4259777dbe91428c7bea4a85a45e15b91d226",
+          "artifact_bytes": 240122,
+          "resources": {
+            "sample_rows_including_last_sample": 13,
+            "owned_rss_peak_bytes": 5470035968,
+            "owned_private_peak_bytes": 14842662912,
+            "gpu_board_free_min_bytes": 1663041536,
+            "host_available_physical_min_bytes": 13148790784,
+            "host_available_commit_min_bytes": 5260525568,
+            "scope": "sampled owned process sums / whole-board GPU, not continuous CUDA allocator maxima"
+          },
+          "after_request_gpu_board": {
+            "total_bytes": 12820938752,
+            "used_bytes": 2481979392,
+            "free_bytes": 10042212352
+          },
+          "media": {
+            "status": "structurally_complete_human_review_pending",
+            "matches": [
+              {
+                "directory_relative_to_run": "media-inspection-request-1-v2",
+                "status": "inspection_ready_human_review_pending",
+                "structural_complete": true,
+                "decoder_result_hash_binding": true,
+                "worker_returncode": 0,
+                "owned_root_exited": true,
+                "video": {
+                  "decoded_frames": 73,
+                  "width": 384,
+                  "height": 256,
+                  "pts_rate": "24",
+                  "decoded_duration_seconds": 3.0416666666666665,
+                  "not_all_black": true,
+                  "not_temporally_constant": true
+                },
+                "audio": {
+                  "sample_rate": 32000,
+                  "channels": 2,
+                  "samples_per_channel": 97334,
+                  "sample_count_duration_seconds": 3.0416875,
+                  "all_values_finite": true,
+                  "not_all_zero_native_samples": true
+                },
+                "pngs": [
+                  {
+                    "name": "first.png",
+                    "frame": 0,
+                    "bytes": 32374,
+                    "sha256": "a566c3cb492385f06134f968f39eb7e3a8c9ed7d323694f46592d9cd2291a2e8"
+                  },
+                  {
+                    "name": "middle.png",
+                    "frame": 36,
+                    "bytes": 71871,
+                    "sha256": "78e9205e52d634170d3f8e3fd417772eb4c02cf2846f6dc065a26439485ac185"
+                  },
+                  {
+                    "name": "last.png",
+                    "frame": 72,
+                    "bytes": 84512,
+                    "sha256": "a3f2218920bf887a966c7e2f782611bcae374f9fde5a603aa144294b1837fa44"
+                  }
+                ],
+                "quality": "not_assessed_by_summary"
+              }
+            ]
+          }
+        },
+        {
+          "request_index": 2,
+          "seed": 424243,
+          "native_prompt_wall_seconds": 8.683,
+          "sampler_observed_wall_seconds": 6.7090134,
+          "sampler_uncached_progress": 8,
+          "loader_states": {
+            "6": {
+              "class_type": "UNETLoader",
+              "cached": false,
+              "observed_wall_seconds": 0.2838584
+            },
+            "11": {
+              "class_type": "VAELoader",
+              "cached": false,
+              "observed_wall_seconds": 0.203563
+            },
+            "24": {
+              "class_type": "VAELoader",
+              "cached": false,
+              "observed_wall_seconds": 0.0448123
+            }
+          },
+          "artifact_sha256": "899f475cf381e417873470707b119c3e5bb5ff65386cb0858f5ab8fa8887c501",
+          "artifact_bytes": 312427,
+          "resources": {
+            "sample_rows_including_last_sample": 13,
+            "owned_rss_peak_bytes": 5635477504,
+            "owned_private_peak_bytes": 15225184256,
+            "gpu_board_free_min_bytes": 1426063360,
+            "host_available_physical_min_bytes": 13089124352,
+            "host_available_commit_min_bytes": 4835819520,
+            "scope": "sampled owned process sums / whole-board GPU, not continuous CUDA allocator maxima"
+          },
+          "after_request_gpu_board": {
+            "total_bytes": 12820938752,
+            "used_bytes": 2483027968,
+            "free_bytes": 10041163776
+          },
+          "media": {
+            "status": "structurally_complete_human_review_pending",
+            "matches": [
+              {
+                "directory_relative_to_run": "media-inspection-request-2-v2",
+                "status": "inspection_ready_human_review_pending",
+                "structural_complete": true,
+                "decoder_result_hash_binding": true,
+                "worker_returncode": 0,
+                "owned_root_exited": true,
+                "video": {
+                  "decoded_frames": 73,
+                  "width": 384,
+                  "height": 256,
+                  "pts_rate": "24",
+                  "decoded_duration_seconds": 3.0416666666666665,
+                  "not_all_black": true,
+                  "not_temporally_constant": true
+                },
+                "audio": {
+                  "sample_rate": 32000,
+                  "channels": 2,
+                  "samples_per_channel": 97334,
+                  "sample_count_duration_seconds": 3.0416875,
+                  "all_values_finite": true,
+                  "not_all_zero_native_samples": true
+                },
+                "pngs": [
+                  {
+                    "name": "first.png",
+                    "frame": 0,
+                    "bytes": 52585,
+                    "sha256": "55e0ba250a184162962288390ea79263b3a65fd8565c6eb44d71b9247bd46f0f"
+                  },
+                  {
+                    "name": "middle.png",
+                    "frame": 36,
+                    "bytes": 93053,
+                    "sha256": "85c6aaf5c5d0fd09b3780072500032c934e84b274c3c1e593d89872b11eb32af"
+                  },
+                  {
+                    "name": "last.png",
+                    "frame": 72,
+                    "bytes": 82443,
+                    "sha256": "5456bfe20cfcf0cbf2e14550400bfc1db9b0405fcc29c77e0b6810144d20b1e3"
+                  }
+                ],
+                "quality": "not_assessed_by_summary"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "classic": {
+      "trial_relative_to_notes": "iterations/2026-10-31-speed-quality-search/results/inferrsi-persistent-cache-classic-3d98ba2758554d3ebf3c3d0bbed9d69d",
+      "run_name": "q33-persistent-cache-classic-3d98ba2758554d3ebf3c3d0bbed9d69d",
+      "controller_wall_seconds": 36.53974959999323,
+      "inferrsi_outer_executor_wall_seconds": 36.67200000002049,
+      "resources": {
+        "sample_rows_including_last_sample": 40,
+        "owned_rss_peak_bytes": 5472825344,
+        "owned_private_peak_bytes": 14983557120,
+        "gpu_board_free_min_bytes": 1626341376,
+        "host_available_physical_min_bytes": 13035016192,
+        "host_available_commit_min_bytes": 5158617088,
+        "scope": "sampled owned process sums / whole-board GPU, not continuous CUDA allocator maxima"
+      },
+      "source_manifest_sha256": "bf0d3e3b09f8130053735eaa6645bcc4ff753833a97ef4ae306d7d223283f007",
+      "asset_set_sha256": "c1507b121962e250f2d74c7dce2f4e0e63e7de8e55a39c2d2795e336106de2a0",
+      "gates_sha256": "13672a9bbe8946c28c98b3bab0f906f6ddfe67735ff7f77929e58539a4a580dd",
+      "cleanup_complete": true,
+      "requests": [
+        {
+          "request_index": 1,
+          "seed": 424242,
+          "native_prompt_wall_seconds": 9.58,
+          "sampler_observed_wall_seconds": 7.483346,
+          "sampler_uncached_progress": 8,
+          "loader_states": {
+            "6": {
+              "class_type": "UNETLoader",
+              "cached": false,
+              "observed_wall_seconds": 0.2826341
+            },
+            "11": {
+              "class_type": "VAELoader",
+              "cached": false,
+              "observed_wall_seconds": 0.1405892
+            },
+            "24": {
+              "class_type": "VAELoader",
+              "cached": false,
+              "observed_wall_seconds": 0.0480686
+            }
+          },
+          "artifact_sha256": "9c0ec62b2694f56299a15872e2b4259777dbe91428c7bea4a85a45e15b91d226",
+          "artifact_bytes": 240122,
+          "resources": {
+            "sample_rows_including_last_sample": 13,
+            "owned_rss_peak_bytes": 5472825344,
+            "owned_private_peak_bytes": 14842892288,
+            "gpu_board_free_min_bytes": 1665138688,
+            "host_available_physical_min_bytes": 13056438272,
+            "host_available_commit_min_bytes": 5363785728,
+            "scope": "sampled owned process sums / whole-board GPU, not continuous CUDA allocator maxima"
+          },
+          "after_request_gpu_board": {
+            "total_bytes": 12820938752,
+            "used_bytes": 10670309376,
+            "free_bytes": 1853882368
+          },
+          "media": {
+            "status": "structurally_complete_human_review_pending",
+            "matches": [
+              {
+                "directory_relative_to_run": "media-inspection-request-1-v2",
+                "status": "inspection_ready_human_review_pending",
+                "structural_complete": true,
+                "decoder_result_hash_binding": true,
+                "worker_returncode": 0,
+                "owned_root_exited": true,
+                "video": {
+                  "decoded_frames": 73,
+                  "width": 384,
+                  "height": 256,
+                  "pts_rate": "24",
+                  "decoded_duration_seconds": 3.0416666666666665,
+                  "not_all_black": true,
+                  "not_temporally_constant": true
+                },
+                "audio": {
+                  "sample_rate": 32000,
+                  "channels": 2,
+                  "samples_per_channel": 97334,
+                  "sample_count_duration_seconds": 3.0416875,
+                  "all_values_finite": true,
+                  "not_all_zero_native_samples": true
+                },
+                "pngs": [
+                  {
+                    "name": "first.png",
+                    "frame": 0,
+                    "bytes": 32374,
+                    "sha256": "a566c3cb492385f06134f968f39eb7e3a8c9ed7d323694f46592d9cd2291a2e8"
+                  },
+                  {
+                    "name": "middle.png",
+                    "frame": 36,
+                    "bytes": 71871,
+                    "sha256": "78e9205e52d634170d3f8e3fd417772eb4c02cf2846f6dc065a26439485ac185"
+                  },
+                  {
+                    "name": "last.png",
+                    "frame": 72,
+                    "bytes": 84512,
+                    "sha256": "a3f2218920bf887a966c7e2f782611bcae374f9fde5a603aa144294b1837fa44"
+                  }
+                ],
+                "quality": "not_assessed_by_summary"
+              }
+            ]
+          }
+        },
+        {
+          "request_index": 2,
+          "seed": 424243,
+          "native_prompt_wall_seconds": 7.611,
+          "sampler_observed_wall_seconds": 6.2164684,
+          "sampler_uncached_progress": 8,
+          "loader_states": {
+            "6": {
+              "class_type": "UNETLoader",
+              "cached": true,
+              "observed_wall_seconds": null
+            },
+            "11": {
+              "class_type": "VAELoader",
+              "cached": true,
+              "observed_wall_seconds": null
+            },
+            "24": {
+              "class_type": "VAELoader",
+              "cached": true,
+              "observed_wall_seconds": null
+            }
+          },
+          "artifact_sha256": "899f475cf381e417873470707b119c3e5bb5ff65386cb0858f5ab8fa8887c501",
+          "artifact_bytes": 312427,
+          "resources": {
+            "sample_rows_including_last_sample": 12,
+            "owned_rss_peak_bytes": 5458178048,
+            "owned_private_peak_bytes": 14983557120,
+            "gpu_board_free_min_bytes": 1626341376,
+            "host_available_physical_min_bytes": 13035016192,
+            "host_available_commit_min_bytes": 5158617088,
+            "scope": "sampled owned process sums / whole-board GPU, not continuous CUDA allocator maxima"
+          },
+          "after_request_gpu_board": {
+            "total_bytes": 12820938752,
+            "used_bytes": 10459545600,
+            "free_bytes": 2064646144
+          },
+          "media": {
+            "status": "structurally_complete_human_review_pending",
+            "matches": [
+              {
+                "directory_relative_to_run": "media-inspection-request-2-v2",
+                "status": "inspection_ready_human_review_pending",
+                "structural_complete": true,
+                "decoder_result_hash_binding": true,
+                "worker_returncode": 0,
+                "owned_root_exited": true,
+                "video": {
+                  "decoded_frames": 73,
+                  "width": 384,
+                  "height": 256,
+                  "pts_rate": "24",
+                  "decoded_duration_seconds": 3.0416666666666665,
+                  "not_all_black": true,
+                  "not_temporally_constant": true
+                },
+                "audio": {
+                  "sample_rate": 32000,
+                  "channels": 2,
+                  "samples_per_channel": 97334,
+                  "sample_count_duration_seconds": 3.0416875,
+                  "all_values_finite": true,
+                  "not_all_zero_native_samples": true
+                },
+                "pngs": [
+                  {
+                    "name": "first.png",
+                    "frame": 0,
+                    "bytes": 52585,
+                    "sha256": "55e0ba250a184162962288390ea79263b3a65fd8565c6eb44d71b9247bd46f0f"
+                  },
+                  {
+                    "name": "middle.png",
+                    "frame": 36,
+                    "bytes": 93053,
+                    "sha256": "85c6aaf5c5d0fd09b3780072500032c934e84b274c3c1e593d89872b11eb32af"
+                  },
+                  {
+                    "name": "last.png",
+                    "frame": 72,
+                    "bytes": 82443,
+                    "sha256": "5456bfe20cfcf0cbf2e14550400bfc1db9b0405fcc29c77e0b6810144d20b1e3"
+                  }
+                ],
+                "quality": "not_assessed_by_summary"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "cross_configuration_each_seed_graph_equal": true,
+  "cross_configuration_each_seed_mp4_bytes_equal": true,
+  "cross_configuration_each_seed_three_png_hashes_equal": true,
+  "observed_reuse": "Classic second request reports three model/VAELoader nodes cached; sampler remains uncached with full8progress. Cached loader time stays null, not zero. This is not proof all weights are GPU resident.",
+  "timing_difference_seconds": {
+    "second_native_prompt_none_minus_classic": 1.072,
+    "controller_session_none_minus_classic": 1.1342291000764817
+  },
+  "limits": [
+    "Two sessions only, no repeated crossover or statistical significance",
+    "Controller wall and outer InferRSI executor wall are separate; native prompt wall excludes startup/source/full-weight verification",
+    "OS page cache and unrelated machine workload not reset; cannot isolate all timing variation",
+    "Full media byte equality observed at these two seeds, not a global quality or deterministic-equivalence claim",
+    "Board memory snapshots include unrelated applications; last after-request sample is before final service teardown",
+    "No old v1 same-seed session treated as this single-variable control"
+  ],
+  "summary_source_sha256": "f7f06251fca931fec87945bed7572251364bbb1e8ef0e9d95f2ab6cd348f6cac",
+  "input_hashes": [
+    {
+      "root": "run",
+      "run_name": "q33-persistent-cache-none-476a6a00127342f5bb2845627e255c50",
+      "path": "request-1/history.raw.json",
+      "sha256": "91c2df0884fe00ba2ba414114f7e9e516b3cdcfb760f0976f089dc5212de33a2"
+    },
+    {
+      "root": "run",
+      "run_name": "q33-persistent-cache-none-476a6a00127342f5bb2845627e255c50",
+      "path": "request-1/timing/summary.json",
+      "sha256": "60a80be54ba5778e7714abed24e613007ad3b267105d4f5a8428ce7bacdc2e3d"
+    },
+    {
+      "root": "run",
+      "run_name": "q33-persistent-cache-none-476a6a00127342f5bb2845627e255c50",
+      "path": "request-2/history.raw.json",
+      "sha256": "17bd7178dedc23457b286b89e3f75663bb9f1a87380742d77155d9d8c03d9e82"
+    },
+    {
+      "root": "run",
+      "run_name": "q33-persistent-cache-none-476a6a00127342f5bb2845627e255c50",
+      "path": "request-2/timing/summary.json",
+      "sha256": "0f4c2ea1ef449152efe96805c6d381c40bd7c262a7f76ea02c338c9a157b92a1"
+    },
+    {
+      "root": "notes",
+      "path": "iterations/2026-10-31-speed-quality-search/results/inferrsi-persistent-cache-none-476a6a00127342f5bb2845627e255c50/result.json",
+      "sha256": "dff720db1558ff2d13c0637d90daf01cacdf91d2c6f107a3b7e3a96e4cb6d9e2"
+    },
+    {
+      "root": "run",
+      "run_name": "q33-persistent-cache-classic-3d98ba2758554d3ebf3c3d0bbed9d69d",
+      "path": "request-1/history.raw.json",
+      "sha256": "dbca4a6f6ef7b7fadce70b8acf586e7eee24525530cbeddfba206f473b5f7fd4"
+    },
+    {
+      "root": "run",
+      "run_name": "q33-persistent-cache-classic-3d98ba2758554d3ebf3c3d0bbed9d69d",
+      "path": "request-1/timing/summary.json",
+      "sha256": "54dd81ef9fe4b3b03ea97e8c692b589410a2d188c2d51d7091c26e84f291a78a"
+    },
+    {
+      "root": "run",
+      "run_name": "q33-persistent-cache-classic-3d98ba2758554d3ebf3c3d0bbed9d69d",
+      "path": "request-2/history.raw.json",
+      "sha256": "b23554c1a8b6b3f5083aaeaa2a9d0b16ffb5eaf45ed99fcedc18384ea4ab6c3a"
+    },
+    {
+      "root": "run",
+      "run_name": "q33-persistent-cache-classic-3d98ba2758554d3ebf3c3d0bbed9d69d",
+      "path": "request-2/timing/summary.json",
+      "sha256": "7b6428decfc4b55f91befcc8071f502ad0a6393ff4fe60e6f4e1204e04636e95"
+    },
+    {
+      "root": "notes",
+      "path": "iterations/2026-10-31-speed-quality-search/results/inferrsi-persistent-cache-classic-3d98ba2758554d3ebf3c3d0bbed9d69d/result.json",
+      "sha256": "91f2e9a931dbc9287586d9742f881a7943e40bc8dc1cbbae8bb58ee09d4347f3"
+    }
+  ]
+}

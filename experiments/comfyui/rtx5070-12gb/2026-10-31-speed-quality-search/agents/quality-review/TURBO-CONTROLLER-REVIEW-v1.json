@@ -1,0 +1,31 @@
+{
+  "schema": "q33-independent-turbo-controller-review/v1",
+  "at_utc": "2026-10-30T17:28:13.3879159Z",
+  "candidate": "agents/turbo-controller/turbo_stage_b_v5.py",
+  "candidate_sha256": "604ae8578f132e66654924dd08c9515a0be6b25273faa5e962efe93c9f91102c",
+  "freeze_sha256": "b5368eae85532b2351728a030428c39b2f95402ae34b1d478b93d7f6d1080012",
+  "frozen_items_rechecked": 20,
+  "mismatches": [],
+  "code_blockers": [],
+  "ready_to_dispatch_now": false,
+  "reason": "Actual LoRA receipt/header and ready profiles remain pending; no fake metadata is accepted",
+  "observations": [
+    "Fixed four assets; original DiT and both VAE receipts/alias provenance retained",
+    "Turbo receipt uses exact immutable download profile SHA plus matching full-file bytes/SHA/path",
+    "Graph equals original canonical with only LoRA node1100 strength1, model6-to1100-to148, steps6/8 and output prefix changes",
+    "Native LoraLoaderModelOnly schema/output/file enumeration checked before one POST",
+    "Timing module imported by explicit approved path and SHA; original observer reused",
+    "Source-level resource checks, guarded hashing, HTTP and owned cleanup unchanged; v5 only changes resource gate hash for reserve2-to3",
+    "45 v4 offline metadata/schema/AST checks reviewed; no rerun and no real header/body execution",
+    "Fresh runtime source freeze must include the 154 selected sources plus 12 added native LoRA source identities"
+  ],
+  "required_before_first_run": [
+    "Real complete full-SHA LoRA receipt",
+    "Bounded real header key/shape to native model-target mapping review",
+    "Create new ready assets/profile files, retain pending originals, freeze final identities",
+    "Fresh resource admission and serial GPU execution; all controller guards unchanged"
+  ],
+  "interpretation": "Whole-recipe comparison, not single-factor causal estimate; native merge may differ from author hybrid handling and quality remains unverified",
+  "claim": "INCONCLUSIVE",
+  "review_actions": "Read patches/source/validator/results and check frozen file hashes only; no network/GPU/model/partial read"
+}

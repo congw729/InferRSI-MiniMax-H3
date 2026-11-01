@@ -1,0 +1,107 @@
+{
+  "schema": "q33-turbo-corpus-offline/v1",
+  "checks": [
+    {
+      "name": "bounce-audio_only_condition_and_prefix",
+      "ok": true
+    },
+    {
+      "name": "bounce-audio_real_four_assets_and_two_provenance_receipts",
+      "ok": true
+    },
+    {
+      "name": "bounce-audio_existing_alias_stat",
+      "ok": true
+    },
+    {
+      "name": "bounce-audio_reject_strength",
+      "ok": true
+    },
+    {
+      "name": "bounce-audio_reject_shift",
+      "ok": true
+    },
+    {
+      "name": "bounce-audio_reject_steps",
+      "ok": true
+    },
+    {
+      "name": "bounce-audio_reject_hybrid",
+      "ok": true
+    },
+    {
+      "name": "hands-face-mug_only_condition_and_prefix",
+      "ok": true
+    },
+    {
+      "name": "hands-face-mug_real_four_assets_and_two_provenance_receipts",
+      "ok": true
+    },
+    {
+      "name": "hands-face-mug_existing_alias_stat",
+      "ok": true
+    },
+    {
+      "name": "hands-face-mug_reject_strength",
+      "ok": true
+    },
+    {
+      "name": "hands-face-mug_reject_shift",
+      "ok": true
+    },
+    {
+      "name": "hands-face-mug_reject_steps",
+      "ok": true
+    },
+    {
+      "name": "hands-face-mug_reject_hybrid",
+      "ok": true
+    },
+    {
+      "name": "reused_corpus_provenance_validator",
+      "ok": true
+    },
+    {
+      "name": "native_unchanged_cleanup_owned_v2",
+      "ok": true
+    },
+    {
+      "name": "native_unchanged_sample",
+      "ok": true
+    },
+    {
+      "name": "native_unchanged_http",
+      "ok": true
+    },
+    {
+      "name": "native_unchanged_guarded_hash",
+      "ok": true
+    },
+    {
+      "name": "native_unchanged_verify_conditioning",
+      "ok": true
+    },
+    {
+      "name": "native_unchanged_load_asset_manifest",
+      "ok": true
+    },
+    {
+      "name": "native_unchanged_load_timing_module",
+      "ok": true
+    },
+    {
+      "name": "correct_controller_own_root",
+      "ok": true
+    },
+    {
+      "name": "torch_not_imported",
+      "ok": true
+    }
+  ],
+  "completed": 24,
+  "GPU": 0,
+  "model_loads": 0,
+  "controller_sha256": "6d866a372cead6537a07999e02f52559fa2291259022614bab76a519118315e0",
+  "scope": "Metadata/real receipts/alias stat and unchanged protected-function AST; no model/header body read or service; no quality proof",
+  "quality_performance": "INCONCLUSIVE"
+}

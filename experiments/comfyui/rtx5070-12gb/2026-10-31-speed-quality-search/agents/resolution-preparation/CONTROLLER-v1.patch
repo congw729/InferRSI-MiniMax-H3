@@ -1,0 +1,70 @@
+--- timing-controller/speed_stage_b_v6.py
++++ resolution-preparation/resolution_stage_b_v1.py
+@@ -1,4 +1,4 @@
+-"""Q33 bounded speed/quality profiles with native node timing.
++"""Q33 fixed576x384 Trim8 resolution candidate with native node timing.
+ This is a new harness derived from frozen Q32; old sources remain unchanged.
+ Run with the existing portable Python under InferRSI. No model imports here.
+ """
+@@ -139,23 +139,23 @@
+ 
+ 
+ def validate_profile_graph(profile, graph, canonical):
+-    family=profile.get("family");steps=profile.get("steps")
+-    require(family in {"original","trim"} and type(steps) is int and
+-            steps in ({"original":{50,30,20},"trim":{8,6,4}}[family]),"profile family/steps")
+-    require(profile.get("id")==family+"-"+str(steps),"profile identifier")
+-    require(profile.get("role")==("reference" if family=="original" and steps==50 else "candidate"),
+-            "only original50 is reference")
++    require(profile.get("family")=="trim" and type(profile.get("steps")) is int
++            and profile["steps"]==8 and profile.get("id")=="trim-8-576x384", "fixed resolution profile")
++    require(profile.get("role")=="candidate", "resolution candidate role")
+     expected=copy.deepcopy(canonical)
+-    expected["prompt"]["9"]["inputs"]["steps"]=steps
+-    expected["prompt"]["92"]["inputs"]["filename_prefix"]="q33-speed/"+profile["id"]
+-    require(graph==expected,"graph changes outside frozen family steps/output prefix")
+-    require(profile["canonical_graph"]["sha256"]==CANONICAL_SHA[family],"canonical family identity")
++    expected["prompt"]["9"]["inputs"]["steps"]=8
++    expected["prompt"]["1002"]["inputs"]["width"]=576
++    expected["prompt"]["1002"]["inputs"]["height"]=384
++    expected["prompt"]["92"]["inputs"]["filename_prefix"]="q33-resolution/trim-8-576x384"
++    require(graph==expected,"graph changes outside fixed width/height/output prefix")
++    require(profile["canonical_graph"]["sha256"]==CANONICAL_SHA["trim"],"canonical family identity")
++
+ 
+ def load_profile(a,v1):
+     profile=v1.frozen_json(a.profile,a.profile_sha256,65536)
+     require(set(profile)=={"schema","id","family","steps","role","dispatch_ready","dispatch_note",
+             "model_subdir","graph","canonical_graph","assets","conditioning"}
+-            and profile["schema"]=="q33-speed-profile/v1","profile schema")
++            and profile["schema"]=="q33-resolution-profile/v1","profile schema")
+     require(profile["family"] in EXPECTED_BY_FAMILY,"profile family")
+     require(type(profile["dispatch_ready"]) is bool and profile["dispatch_ready"],
+             "profile not dispatch ready; review required")
+@@ -248,7 +248,7 @@
+ 
+ def parse():
+     p = argparse.ArgumentParser(description=__doc__, allow_abbrev=False)
+-    p.add_argument("--mode", choices=["speed-video-stage-b"], required=True)
++    p.add_argument("--mode", choices=["resolution-video-stage-b"], required=True)
+     for name in ("iteration-root", "lab-root", "portable-python", "comfy-root",
+                  "run-dir", "stop-marker", "nvidia-smi", "inferrsi-src",
+                  "gates", "conditioning-manifest", "notes-root", "q31-root",
+@@ -329,7 +329,7 @@
+ 
+     require(a.iteration_root == a.notes_root / "iterations/2026-10-31-speed-quality-search"
+             and a.q31_root == a.notes_root / "iterations/2026-10-28-comfy-trim-first-video"
+-            and Path(__file__).resolve().parent == a.iteration_root / "agents/timing-controller", "Q33/Q31 roots")
++            and Path(__file__).resolve().parent == a.iteration_root / "agents/resolution-preparation", "Q33/Q31 roots")
+     require(a.portable_python == a.comfy_root.parent / "python_embeded/python.exe", "fixed portable relationship")
+     sys.dont_write_bytecode = True
+     v1_path = a.q31_root / "tools/comfy_first_video_v1.py"
+@@ -392,7 +392,7 @@
+     proc = job = raw_log = samples = journal = observer = None
+     next_sample = next_gpu = 0.0
+     gpu = None
+-    state = {"status": "preflight", "claim": "INCONCLUSIVE", "mode": "speed-video-stage-b",
++    state = {"status": "preflight", "claim": "INCONCLUSIVE", "mode": "resolution-video-stage-b",
+              "profile_id": a.loaded_profile["id"], "profile_sha256": a.profile_sha256,
+              "controller_entry_perf_counter_ns":entry_perf_ns,
+              "source_verification_start_ns":source_start_ns,"source_verification_end_ns":source_end_ns,

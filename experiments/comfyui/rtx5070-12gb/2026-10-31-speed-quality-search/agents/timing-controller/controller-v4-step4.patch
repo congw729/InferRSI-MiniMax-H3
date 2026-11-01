@@ -1,0 +1,11 @@
+--- speed_stage_b_v3.py
++++ speed_stage_b_v4.py
+@@ -141,7 +141,7 @@
+ def validate_profile_graph(profile, graph, canonical):
+     family=profile.get("family");steps=profile.get("steps")
+     require(family in {"original","trim"} and type(steps) is int and
+-            steps in ({"original":{50,30,20},"trim":{8,6}}[family]),"profile family/steps")
++            steps in ({"original":{50,30,20},"trim":{8,6,4}}[family]),"profile family/steps")
+     require(profile.get("id")==family+"-"+str(steps),"profile identifier")
+     require(profile.get("role")==("reference" if family=="original" and steps==50 else "candidate"),
+             "only original50 is reference")

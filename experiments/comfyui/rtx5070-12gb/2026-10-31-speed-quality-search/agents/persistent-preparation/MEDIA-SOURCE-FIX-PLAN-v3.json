@@ -1,0 +1,7 @@
+{
+  "schema": "q33-persistent-media-source-fix/v3",
+  "found_by": "independent te_commit_diagnosis source review before any model/decode dispatch",
+  "v2_defect": "main compared v1 controller path with v2 SHA; old metadata-only tests did not cover this source check",
+  "change": "Only fixed controller source filename v1 -> v2; retain frozen v2",
+  "targeted_check": "exact reverse replacement, load definitions only, actual controller v2 file SHA equals media constant, no decode"
+}

@@ -1,0 +1,71 @@
+--- persistent_stage_b_v1.py
++++ persistent_stage_b_v2.py
+@@ -1,4 +1,4 @@
+-"""Q33 bounded two-request persistent Trim8 infra probe with native node timing.
++"""Q33 bounded two-seed persistent Trim8 cache-policy probe with native node timing.
+ This is a new harness derived from frozen Q32; old sources remain unchanged.
+ Run with the existing portable Python under InferRSI. No model imports here.
+ """
+@@ -261,7 +261,7 @@
+     p.add_argument("--asset-manifest-sha256", required=True)
+     p.add_argument("--gates-sha256", required=True)
+     p.add_argument("--conditioning-manifest-sha256", required=True)
+-    p.add_argument("--memory-policy", choices=["baseline", "smart"], default="baseline")
++    p.add_argument("--cache-policy", choices=["none", "classic"], required=True)
+     p.add_argument("--port", type=int, required=True)
+     return p.parse_args()
+ 
+@@ -307,17 +307,19 @@
+     if any(x.startswith("job_close_") for x in diagnostics):
+         state["status"]="cleanup_inconclusive"
+ 
+-def memory_command(command, policy):
+-    require(policy in {"baseline", "smart"}, "memory policy")
+-    require(command.count("--disable-smart-memory") == 1 and command.count("--cache-none") == 1, "fixed memory/cache baseline")
+-    return list(command) if policy == "baseline" else [x for x in command if x != "--disable-smart-memory"]
++def cache_command(command, policy):
++    require(policy in {"none", "classic"}, "cache policy")
++    require(command.count("--disable-smart-memory") == 1 and command.count("--cache-none") == 1, "fixed smart/cache baseline")
++    smart = [x for x in command if x != "--disable-smart-memory"]
++    return smart if policy == "none" else ["--cache-classic" if x == "--cache-none" else x for x in smart]
+ 
+ 
+ def request_graph(graph, request_index):
+     require(type(request_index) is int and request_index in (1, 2), "exact two requests")
+     require(graph["prompt"]["9"]["inputs"]["steps"] == 8 and graph["prompt"]["15"]["inputs"]["noise_seed"] == 424242, "fixed steps/seed")
+     result = copy.deepcopy(graph)
+-    result["prompt"]["92"]["inputs"]["filename_prefix"] = "q33-persistent/trim-8/request-" + str(request_index)
++    result["prompt"]["15"]["inputs"]["noise_seed"] = 424241 + request_index
++    result["prompt"]["92"]["inputs"]["filename_prefix"] = "q33-persistent-cache/trim-8/request-" + str(request_index)
+     return result
+ 
+ 
+@@ -468,8 +470,9 @@
+              "conditioning_manifest_sha256": a.conditioning_manifest_sha256.lower(),
+              "gates_sha256": a.gates_sha256.lower(), "gates": gates,
+              "prompt_posts": 0, "http_bytes": 0, "history_polls": 0,
+-             "requests": [], "completed_requests": 0, "memory_policy": a.memory_policy,
+-             "cache_policy": "none", "total_output_bytes": 0, "total_ws_bytes": 0,
++             "requests": [], "completed_requests": 0, "memory_policy": "smart",
++             "cache_policy": a.cache_policy, "request_seeds": [424242, 424243],
++             "total_output_bytes": 0, "total_ws_bytes": 0,
+              "verified_assets": [], "gpu_measurement": "nvidia-smi whole-board MiB",
+              "cuda_allocator_metrics": None, "media_validation": "not_performed"}
+     asset_stats = {}
+@@ -665,7 +668,7 @@
+                    "--vram-headroom", "1.0",
+                    "--reserve-vram", str(gates["reserve_vram_gb"]),
+                    "--models-directory", str(models_root)]
+-        command = memory_command(command, a.memory_policy)
++        command = cache_command(command, a.cache_policy)
+         state["disable_smart_memory_requested"] = "--disable-smart-memory" in command
+         for key in ("base", "output", "temp", "input", "previews", "user"):
+             command += ["--" + key + "-directory", str(dirs[key])]
+@@ -727,6 +730,7 @@
+             request_dir = a.run_dir / ("request-" + str(request_index))
+             request_dir.mkdir()
+             current_graph = request_graph(graph, request_index)
++            current["seed"] = current_graph["prompt"]["15"]["inputs"]["noise_seed"]
+             current["graph_sha256"] = hashlib.sha256(json.dumps(current_graph,sort_keys=True,separators=(",", ":"),allow_nan=False).encode()).hexdigest()
+             current["history_relative_to_run"] = str((request_dir / "history.raw.json").relative_to(a.run_dir))
+             current["timing_relative_to_run"] = str((request_dir / "timing/summary.json").relative_to(a.run_dir))

@@ -1,0 +1,42 @@
+{
+  "schema": "q33-persistent-configurations/v1",
+  "controller": "persistent_stage_b_v1.py",
+  "controller_sha256": "333ec8b999dd747e585ce01e57245a4db5ec582cbbb146bf810f52e2ef39c7ef",
+  "mode": "persistent-video-stage-b",
+  "configs": [
+    {
+      "id": "persistent-baseline",
+      "memory_policy": "baseline",
+      "requests": 2
+    },
+    {
+      "id": "persistent-smart",
+      "memory_policy": "smart",
+      "requests": 2
+    }
+  ],
+  "shared_metadata": {
+    "profile": {
+      "relative_to_iteration": "agents/timing-controller/profiles/trim-8.json",
+      "sha256": "e25e4e27c44203e8bf5deac8ddb143c7b1c347881cc572f4161021a112a38e64"
+    },
+    "asset_manifest": {
+      "relative_to_iteration": "agents/timing-controller/assets/trim.json",
+      "sha256": "c1507b121962e250f2d74c7dce2f4e0e63e7de8e55a39c2d2795e336106de2a0"
+    },
+    "conditioning_manifest": {
+      "relative_to_iteration": "agents/timing-controller/conditioning/trim-8.json",
+      "sha256": "56e67d26b9041f4e21b91f9adf12d8efdfeab2a1a677540b3765052982043992"
+    },
+    "gates": {
+      "relative_to_iteration": "agents/timing-controller/RESOURCE-GATES-RESERVE3-v1.json",
+      "sha256": "13672a9bbe8946c28c98b3bab0f906f6ddfe67735ff7f77929e58539a4a580dd"
+    },
+    "source_manifest": {
+      "relative_to_iteration": "agents/timing-controller/SOURCES-v1.json",
+      "sha256": "bf0d3e3b09f8130053735eaa6645bcc4ff753833a97ef4ae306d7d223283f007"
+    }
+  },
+  "only_between_configs_cli_difference": "--disable-smart-memory present versus absent",
+  "claim": "INCONCLUSIVE"
+}

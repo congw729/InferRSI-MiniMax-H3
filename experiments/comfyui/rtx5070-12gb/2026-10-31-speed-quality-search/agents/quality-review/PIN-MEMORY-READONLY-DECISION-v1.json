@@ -1,0 +1,130 @@
+{
+  "schema": "q33-pin-memory-readonly-decision/v1",
+  "utc": "2026-10-30T19:31:18.049983+00:00",
+  "decision": "skip_unbounded_native_pin_toggle_this_round_keep_measured_async_no_pin",
+  "claim": "INCONCLUSIVE",
+  "actual_baseline": {
+    "run_name": "q33-async-classic-98274aade90b40659e74f9a86b4b2563",
+    "summary_relative_to_notes": "iterations/2026-10-31-speed-quality-search/results/Q33-READONLY-SUMMARY-v4.json",
+    "summary_sha256": "f117df1b577204a42e657f38cd6f66be20a0e5761f3e9a66b32b68aadfd2c2e9",
+    "resources": {
+      "sample_rows_including_last_sample": 38,
+      "owned_rss_peak_bytes": 5458141184,
+      "owned_private_peak_bytes": 15240945664,
+      "gpu_board_free_min_bytes": 1472200704,
+      "host_available_physical_min_bytes": 12994265088,
+      "host_available_commit_min_bytes": 4992630784,
+      "scope": "sampled owned process sums / whole-board GPU, not continuous CUDA allocator maxima"
+    },
+    "remaining_below_private_cap_bytes": 1938923520,
+    "remaining_below_rss_cap_bytes": 5279277056,
+    "native_request_seconds": [
+      9.285,
+      6.727
+    ],
+    "log_sha256": "14d5c174ebec5c52cc071d8ad1a37029cbb400a91e3f31ac4b7ee98407778ac6",
+    "log_facts": {
+      "async_two_streams": true,
+      "model_fast_disk_true_count": 3,
+      "model_fast_disk_false_count": 0,
+      "enabled_pinned_marker": false
+    }
+  },
+  "source_findings": [
+    {
+      "path": "ComfyUI/comfy/model_management.py",
+      "line": 1648,
+      "finding": "Windows MAX_PINNED_MEMORY=host RAM*0.40; registration budget, not task RSS/private/commit budget."
+    },
+    {
+      "path": "ComfyUI/comfy/model_management.py",
+      "line": 750,
+      "finding": "ensure_pin_budget checks allocation size plus max(RAM_CACHE_HEADROOM/2,2GiB) against system physical availability; does not read owned PrivateUsage or remaining system commit."
+    },
+    {
+      "path": "ComfyUI/main.py",
+      "line": 339,
+      "finding": "cache-classic sets cache_ram=0; execution RAM_PRESSURE node-boundary cache/pin pressure branch is not active for CLASSIC."
+    },
+    {
+      "path": "ComfyUI/comfy/pinned_memory.py",
+      "line": 103,
+      "finding": "Dynamic pin allocation ensures physical and registration budgets then extends HostBuffer and calls cudaHostRegister; may create additional staging/host residency. Source does not enforce campaign private16GiB/RSS10GiB limits."
+    },
+    {
+      "path": "ComfyUI/comfy/ops.py",
+      "line": 248,
+      "finding": "With fast_disk true and available VBAR signature, new pin allocation is skipped; signature None or nonfast/highRAM may attempt pins. Thus it is not necessarily full-model pinning."
+    },
+    {
+      "path": "ComfyUI/comfy/model_patcher.py",
+      "line": 1968,
+      "finding": "HostBuffer max_grow_size derives from twice min(model size,registration cap); this is growth capacity, not evidence all bytes are committed immediately."
+    },
+    {
+      "path": "ComfyUI/comfy/memory_management.py",
+      "line": 72,
+      "finding": "File-backed tensors can use native read_file_to_device path when no CPU destination; existing fast-disk behavior already avoids requiring a full host pin cache."
+    }
+  ],
+  "interpretation": [
+    "Cannot prove enabling pin necessarily exceeds existing caps from static source; actual faulted subsets and native allocation behavior determine size",
+    "Native physical pressure can remain permissive while owned private exceeds16GiB or RSS exceeds10GiB; external controller may stop first",
+    "Current measured private headroom is only about1.81GiB and RSS headroom about4.92GiB;40percentof32GiB is about12.8GiB and is not an adequate task bound",
+    "Possible faster transfers are not measured here; defer rather than spend another GPU run on an unbounded switch",
+    "Do not add high_ram or disable_fast_disk to force pinning; those would change more behavior and pressure"
+  ],
+  "source_identities_relative_to_portable": {
+    "ComfyUI/comfy/model_management.py": {
+      "bytes": 77396,
+      "sha256": "63610e41cf06fccb5eeaa153c5fd3799e01a0c645facba844763781d2036989a"
+    },
+    "ComfyUI/comfy/pinned_memory.py": {
+      "bytes": 5396,
+      "sha256": "33338a144d0d59406630851d8ec6ea5659d28bad2cd3aa85680a5816e4b44d64"
+    },
+    "ComfyUI/comfy/model_patcher.py": {
+      "bytes": 109588,
+      "sha256": "4f8ccf957a7227942c0e167384ed4e128f038245ad09b9bb547102281be13612"
+    },
+    "ComfyUI/comfy/ops.py": {
+      "bytes": 93642,
+      "sha256": "0167aef2929b92ba3623376f7656e58ead5869485b926b09bead525f32e4dd06"
+    },
+    "ComfyUI/comfy/model_prefetch.py": {
+      "bytes": 11633,
+      "sha256": "1ee8631a6b797631c705086edad5c5993e77461b57ad3d9308ac3493eeb9d7fd"
+    },
+    "ComfyUI/comfy/memory_management.py": {
+      "bytes": 8447,
+      "sha256": "a42e6613130f8099b3a478d387bac8ab23e139d48c619a99cea4409ce87b4f0f"
+    },
+    "ComfyUI/comfy/system_memory.py": {
+      "bytes": 3478,
+      "sha256": "1ebc2515138bff8b174d298230b98b6ec09a7dae0a03ba7fefa7ce60c6fba625"
+    },
+    "ComfyUI/execution.py": {
+      "bytes": 66163,
+      "sha256": "5312ba107f69f2bc70f4009c5d52524b3865dd54fceafdc8649b22c98d6c612f"
+    },
+    "ComfyUI/main.py": {
+      "bytes": 31468,
+      "sha256": "baaa16d69ee78e08c490eeec20bf27c56b746c070f76cc05b4aa13cbc616bcef"
+    },
+    "python_embeded/Lib/site-packages/comfy_aimdo/host_buffer.py": {
+      "bytes": 6085,
+      "sha256": "740b078b6f1c2e16e55cd6448a9dab1de79a1f76eb78a53d2d216cdb60289277"
+    }
+  },
+  "actions": {
+    "gpu_model_or_decode_runs": 0,
+    "new_candidates": 0,
+    "runtime_edits": 0,
+    "dependency_changes": 0,
+    "network_requests": 0
+  },
+  "limitations": [
+    "Python/source and existing logs only; native DLL not rebuilt or allocation-traced",
+    "No service-performance or quality verdict derives from this assessment"
+  ]
+}

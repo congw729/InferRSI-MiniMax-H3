@@ -1,0 +1,11 @@
+--- decoded_content_v1.py
++++ decoded_content_v2.py
+@@ -64,7 +64,7 @@
+     with av.open(handle,mode='r',format='mov',options={'enable_drefs':'0','use_absolute_path':'0'}) as container:
+      need(len(container.streams)==2 and len(container.streams.video)==len(container.streams.audio)==1,'one video and audio only');vs=container.streams.video[0];aus=container.streams.audio[0]
+      for stream in (vs,aus):stream.codec_context.thread_count=1
+-     need(str(vs.average_rate)==expected['fps'],'video average rate')
++     need(vs.average_rate.numerator==int(expected['fps'])*vs.average_rate.denominator,'video average rate')
+      for packet in container.demux(vs,aus):
+       guard();packets+=1;need(packets<=4096,'packet cap')
+       for frame in packet.decode():

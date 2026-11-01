@@ -1,0 +1,391 @@
+{
+  "schema": "q33-e2e-attempt2-review/v1",
+  "claim": "INCONCLUSIVE",
+  "execution_complete": true,
+  "quality_verdict": "INCONCLUSIVE",
+  "source_result_sha256": "adb84f11c987df6ff12eabb74a8ff795f4bb4c2aa4d6ebc9322d90116c8523e8",
+  "events_sha256": "6a56c6901460f911cc71889c20c9d9d4047205d5c0dce66ad3fa676e4643cfc6",
+  "resource_samples_sha256": "cb731b1d3e6b2106ee3d355f50bb0baa06e032527435d3f56a8806e5b2f6f939",
+  "controller_sha256": "0a261d4246526c8611fbbfd873b140907b6e31cc7639156d37bfc38127888d25",
+  "execution_freeze_sha256": "dcd201060065b6d10f2b4b5a014296993e1cb442cc12b4fdfc8cc2d3d10028ef",
+  "trial_relative_to_iteration": "results/inferrsi-e2e-bounce-trim8-4a123151e20941bdaae04683aa516546",
+  "actual_time_seconds": {
+    "controller_entry_to_MP4_full_SHA_verified": 46.39853560004849,
+    "controller_entry_through_cleanup": 46.47206580010243,
+    "source_verification": 0.1951093,
+    "full_SHA_bytes": 30998085709,
+    "verified_assets": [
+      {
+        "id": "trim-dit",
+        "bytes": 11894623166,
+        "sha256": "748b2bcc9c4b7bf7b23406987b42d4ac40362070c164cf11092482be6a863455",
+        "receipt_sha256": "bfac58dff244b76e1933696293a6d14cb9edba76f44eab994467c4982e48f0f8"
+      },
+      {
+        "id": "video-vae",
+        "bytes": 2811065184,
+        "sha256": "52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e",
+        "receipt_sha256": "10d5e728d94c586c0aa3db2f8b9433df3b3d84105d6fa31a8a4c2e5e513e19d4"
+      },
+      {
+        "id": "audio-vae",
+        "bytes": 605254808,
+        "sha256": "8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48",
+        "receipt_sha256": "f2f8217d2d75c8d8420a12b44e6cb298ce7f2dda52d71296c25f99c39fd28251"
+      },
+      {
+        "id": "text-encoder",
+        "bytes": 15687142551,
+        "sha256": "35a88d51044231fe332301d7a62aa81e3f2cba62febeb446e2c1e3e0ef76f2c6",
+        "receipt_sha256": "02a963018053d8435937ef4a5ae980c4ea4fedb79d6461856bd4547af3d19eb5"
+      }
+    ],
+    "asset_full_SHA_seconds": {
+      "trim-dit": 7.0816916,
+      "video-vae": 1.9435355,
+      "audio-vae": 0.3840497,
+      "text-encoder": 9.5066922
+    },
+    "asset_full_SHA_sum_seconds": 18.915969,
+    "service_spawn_to_ready_seconds": 9.3347319,
+    "native_schema_verification": 0.195253,
+    "StageA_native_prompt": 3.414,
+    "StageA_WS_observed_nodes": {
+      "13": {
+        "class_type": "CLIPLoader",
+        "wall_seconds": 0.609167,
+        "cached": false
+      },
+      "11": {
+        "class_type": "VAELoader",
+        "wall_seconds": 0.2548949,
+        "cached": false
+      },
+      "104": {
+        "class_type": "MiniMaxH3ImageToVideo",
+        "wall_seconds": 2.5436127,
+        "cached": false
+      },
+      "1001": {
+        "class_type": "SaveConditioning",
+        "wall_seconds": 0.0042927,
+        "cached": false
+      }
+    },
+    "conditioning_value_hash_and_alias": 0.0287203,
+    "free_through_marker_and_fresh_admission": 0.1109957,
+    "StageB_native_prompt": 11.676,
+    "StageB_WS_observed_nodes": {
+      "6": {
+        "class_type": "UNETLoader",
+        "wall_seconds": 0.5135764,
+        "cached": false
+      },
+      "11": {
+        "class_type": "VAELoader",
+        "wall_seconds": 0.2042351,
+        "cached": false
+      },
+      "24": {
+        "class_type": "VAELoader",
+        "wall_seconds": 0.0487588,
+        "cached": false
+      },
+      "148": {
+        "class_type": "MiniMaxH3SigmaShift",
+        "wall_seconds": 0.0044732,
+        "cached": false
+      },
+      "128": {
+        "class_type": "ModelAttentionBackend",
+        "wall_seconds": 0.0005984,
+        "cached": false
+      },
+      "127": {
+        "class_type": "BlockSparseAttention",
+        "wall_seconds": 8.05e-05,
+        "cached": false
+      },
+      "15": {
+        "class_type": "RandomNoise",
+        "wall_seconds": 0.0018517,
+        "cached": false
+      },
+      "17": {
+        "class_type": "KSamplerSelect",
+        "wall_seconds": 0.0004328,
+        "cached": false
+      },
+      "9": {
+        "class_type": "BasicScheduler",
+        "wall_seconds": 0.0016933,
+        "cached": false
+      },
+      "16": {
+        "class_type": "BasicGuider",
+        "wall_seconds": 0.0003099,
+        "cached": false
+      },
+      "14": {
+        "class_type": "SamplerCustomAdvanced",
+        "wall_seconds": 8.5981229,
+        "cached": false
+      },
+      "10": {
+        "class_type": "VAEDecode",
+        "wall_seconds": 1.4642612,
+        "cached": false
+      },
+      "23": {
+        "class_type": "VAEDecodeAudio",
+        "wall_seconds": 0.5213947,
+        "cached": false
+      },
+      "91": {
+        "class_type": "CreateVideo",
+        "wall_seconds": 0.0010729,
+        "cached": false
+      },
+      "92": {
+        "class_type": "SaveVideo",
+        "wall_seconds": 0.3035825,
+        "cached": false
+      },
+      "1001": {
+        "class_type": "ConditioningLoader",
+        "wall_seconds": 0.0012918,
+        "cached": false
+      },
+      "1002": {
+        "class_type": "EmptyMiniMaxH3LatentAV",
+        "wall_seconds": 0.0007216,
+        "cached": false
+      }
+    },
+    "GPU_kernel_only": null,
+    "isolated_model_init": null
+  },
+  "timing_boundaries": [
+    "Node wall intervals include model prep/transfers/WS delivery, not GPU-only.",
+    "Asset SHA verification is disk/hash validation, not model loading.",
+    "Asset and node subintervals are nested within controller totals and must not be added again.",
+    "CPU post-generation media inspection is not VAE decode."
+  ],
+  "release": {
+    "log_offset": 8146,
+    "post_attempted": true,
+    "reset_path_entered": true,
+    "fresh_admitted": true,
+    "te_object_absence_proven": false,
+    "start_perf_counter_ns": 993037387908300,
+    "http_status": 200,
+    "marker_perf_counter_ns": 993037498826000,
+    "fresh_sample": {
+      "elapsed_seconds": 33.398290700046346,
+      "request_index": 1,
+      "available_physical_bytes": 18693873664,
+      "available_commit_bytes": 16280981504,
+      "commit_limit_bytes": 57285681152,
+      "owned_processes": [
+        {
+          "pid": 43528,
+          "rss_bytes": 1785638912,
+          "private_bytes": 3842314240
+        }
+      ],
+      "owned_rss_sum_bytes": 1785638912,
+      "owned_private_sum_bytes": 3842314240,
+      "e_free_bytes": 383493029888,
+      "gpu_board": {
+        "total_bytes": 12820938752,
+        "used_bytes": 2428502016,
+        "free_bytes": 10095689728,
+        "sample_elapsed_seconds": 33.48529010009952
+      }
+    },
+    "warm_admission": {
+      "admitted": true,
+      "current_owned_private_bytes": 3842314240,
+      "same_owned_private_cap_bytes": 17179869184,
+      "remaining_private_growth_bytes": 13337554944,
+      "same_system_commit_floor_bytes": 2147483648,
+      "required_available_commit_bytes": 15485038592,
+      "effective_available_physical_bytes": 18685358080,
+      "effective_available_commit_bytes": 16271491072,
+      "post_read_available_physical_bytes": 18685358080,
+      "post_read_available_commit_bytes": 16271491072,
+      "gpu_board_free_bytes": 10095689728,
+      "TE_object_absence_proven": false,
+      "post_read_perf_counter_ns": 993037498880500
+    },
+    "admitted_perf_counter_ns": 993037498903500,
+    "elapsed_seconds": 0.1109957,
+    "observed_new_marker_byte_offset": 8162,
+    "raw_log_sha256": "856fa6d084d4e905a351b4c8a869a8ddd9454a8a71a311a1f95c41fc64b48091",
+    "marker_completion_ack": false
+  },
+  "immediately_before_DiT_warm_budget": {
+    "admitted": true,
+    "current_owned_private_bytes": 3842314240,
+    "same_owned_private_cap_bytes": 17179869184,
+    "remaining_private_growth_bytes": 13337554944,
+    "same_system_commit_floor_bytes": 2147483648,
+    "required_available_commit_bytes": 15485038592,
+    "effective_available_physical_bytes": 18680279040,
+    "effective_available_commit_bytes": 16267431936,
+    "post_read_available_physical_bytes": 18680279040,
+    "post_read_available_commit_bytes": 16267431936,
+    "gpu_board_free_bytes": 10095689728,
+    "TE_object_absence_proven": false,
+    "post_read_perf_counter_ns": 993037761947800,
+    "remaining_available_commit_above_required_bytes": 782393344
+  },
+  "condition": {
+    "new_output_sha256": "70a19cfeb46fe9411ac6f3fbfea63c253056d28cffb9bb28f269da4c2134d170",
+    "split_reference_sha256": "70a19cfeb46fe9411ac6f3fbfea63c253056d28cffb9bb28f269da4c2134d170",
+    "exact_reference_match": true,
+    "finite_and_tags": {
+      "finite_values_checked": true,
+      "all_token_tags_one": true,
+      "elements_checked": 209961,
+      "nonzero_conditioning_values": 209920,
+      "roundtrip_equivalence_checked": false
+    }
+  },
+  "resources": {
+    "sampled_peak_owned_private_bytes_including_last": 14383063040,
+    "sampled_peak_owned_rss_bytes_including_last": 5608222720,
+    "sampled_min_board_free_bytes": 1677721600,
+    "same_private_cap_bytes": 17179869184,
+    "same_running_commit_floor_bytes": 2147483648,
+    "board_not_allocator": true,
+    "TE_object_absence_proven": false
+  },
+  "media": {
+    "artifact": {
+      "relative_to_run": "output\\q33-e2e\\bounce-video_00001_.mp4",
+      "bytes": 234349,
+      "sha256": "2fe45ccfec731eec46ac4955f1a82d162f9fb4945e7b479eeee07348b3a88ce4"
+    },
+    "summary_sha256": "129b39939c57ed250ca56830cab6d54a245ec2b6fc8d0ba3fb3ed09eb3d0bec2",
+    "decoder_result_sha256": "c27054617df4b9cf06fca13686511f7f087deea1b96958579bff5f26ee2f5347",
+    "worker_returncode": 0,
+    "video_frames": 73,
+    "width": 384,
+    "height": 256,
+    "fps": "24",
+    "audio_samples_per_channel": 97334,
+    "audio_rate": 32000,
+    "input_unchanged": true,
+    "EOF": true,
+    "listening_quality_assessed": false
+  },
+  "decoded_content_comparison": {
+    "result_sha256": "2bc9a08a4dd3039f990c5cb8a868ec48cc0d4c488a3e693e3b3917abe772a02c",
+    "trial_relative_to_iteration": "results/decoded-content-bounce-e2e-9d6a2750182b4d97a6796e8ad6943912",
+    "all_decoded_RGB_PCM_equal": true,
+    "all_PTS_timelines_equal": true,
+    "pairwise": [
+      {
+        "a": "split-bounce-trim8",
+        "b": "single-service-v2-bounce-trim8",
+        "container_bytes_equal": false,
+        "all_rgb_bytes_equal": true,
+        "video_timeline_equal": true,
+        "all_pcm_bytes_equal": true,
+        "audio_format_equal": true,
+        "audio_timeline_equal": true
+      }
+    ],
+    "source_files_unchanged": true,
+    "container_metadata_only_difference_proven": false
+  },
+  "old_separate_runs_arithmetic_comparison": {
+    "stageA_result_sha256": "9ee4c39cfe9d96735d432015ba84bba5d67d920445956a1ffd8498e9756ec401",
+    "stageB_result_sha256": "022c8a45e26c38c63db843d7e88a2f2392f09e98e927087d6d11d120be6119d3",
+    "stageA": {
+      "full_SHA_bytes": 30998085709,
+      "verified_assets": [
+        {
+          "id": "trim-dit",
+          "bytes": 11894623166,
+          "sha256": "748b2bcc9c4b7bf7b23406987b42d4ac40362070c164cf11092482be6a863455",
+          "receipt_sha256": "bfac58dff244b76e1933696293a6d14cb9edba76f44eab994467c4982e48f0f8"
+        },
+        {
+          "id": "text-encoder",
+          "bytes": 15687142551,
+          "sha256": "35a88d51044231fe332301d7a62aa81e3f2cba62febeb446e2c1e3e0ef76f2c6",
+          "receipt_sha256": "02a963018053d8435937ef4a5ae980c4ea4fedb79d6461856bd4547af3d19eb5"
+        },
+        {
+          "id": "video-vae",
+          "bytes": 2811065184,
+          "sha256": "52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e",
+          "receipt_sha256": "10d5e728d94c586c0aa3db2f8b9433df3b3d84105d6fa31a8a4c2e5e513e19d4"
+        },
+        {
+          "id": "audio-vae",
+          "bytes": 605254808,
+          "sha256": "8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48",
+          "receipt_sha256": "f2f8217d2d75c8d8420a12b44e6cb298ce7f2dda52d71296c25f99c39fd28251"
+        }
+      ],
+      "asset_full_SHA_seconds": {
+        "trim-dit": 7.3131431,
+        "text-encoder": 9.3275295,
+        "video-vae": 1.6093479,
+        "audio-vae": 0.3532859
+      },
+      "asset_full_SHA_sum_seconds": 18.6033064,
+      "service_spawn_to_ready_seconds": 9.3191169
+    },
+    "stageB": {
+      "full_SHA_bytes": 15310943158,
+      "verified_assets": [
+        {
+          "id": "trim-dit",
+          "bytes": 11894623166,
+          "sha256": "748b2bcc9c4b7bf7b23406987b42d4ac40362070c164cf11092482be6a863455",
+          "receipt_sha256": "bfac58dff244b76e1933696293a6d14cb9edba76f44eab994467c4982e48f0f8"
+        },
+        {
+          "id": "video-vae",
+          "bytes": 2811065184,
+          "sha256": "52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e",
+          "receipt_sha256": "10d5e728d94c586c0aa3db2f8b9433df3b3d84105d6fa31a8a4c2e5e513e19d4"
+        },
+        {
+          "id": "audio-vae",
+          "bytes": 605254808,
+          "sha256": "8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48",
+          "receipt_sha256": "f2f8217d2d75c8d8420a12b44e6cb298ce7f2dda52d71296c25f99c39fd28251"
+        }
+      ],
+      "asset_full_SHA_seconds": {
+        "trim-dit": 7.3374814,
+        "video-vae": 1.7727124,
+        "audio-vae": 0.3723905
+      },
+      "asset_full_SHA_sum_seconds": 9.4825843,
+      "service_spawn_to_ready_seconds": 7.2462868
+    },
+    "old_full_SHA_bytes_sum": 46309028867,
+    "new_full_SHA_bytes": 30998085709,
+    "avoided_repeated_full_SHA_bytes": 15310943158,
+    "old_hash_seconds_sum": 28.0858907,
+    "new_hash_seconds_sum": 18.915969,
+    "old_controller_seconds_sum": 62.02590919996146,
+    "new_controller_seconds": 46.47206580010243,
+    "observed_arithmetic_difference_seconds": 15.553843399859034,
+    "controlled_repeated_end_to_end_benchmark": false,
+    "limitation": "Earlier separate successful runs versus one current new-prompt run. This observed difference is not a service/E2E performance PASS or guaranteed speedup."
+  },
+  "cleanup": {
+    "prompt_posts": 2,
+    "free_posts": 1,
+    "owned_root_exited": true,
+    "job_close_requested": true,
+    "diagnostics": []
+  }
+}

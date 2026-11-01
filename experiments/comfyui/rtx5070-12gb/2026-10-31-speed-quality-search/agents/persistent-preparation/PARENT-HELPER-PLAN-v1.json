@@ -1,0 +1,14 @@
+{
+  "schema": "q33-persistent-parent-helper-plan/v1",
+  "created_utc": "2026-10-30T18:32:23.422175+00:00",
+  "baseline_relative_to_iteration": "tools/run_profile_v3.py",
+  "baseline_sha256": "ceb5727c01cc0a1b29c6d20a3c602fdd9f4d2deabb0980bb25a4faba6907c854",
+  "changes": [
+    "Only allow memory-policy baseline/smart; fixed Trim8 profile/reserve3/controller/freeze",
+    "Check persistent freeze13local/16notes/6portable; metadata remains timing-controller",
+    "Fresh policy-labeled E run/InferRSI trial and RunSpec; same outer2730/physical12/commit16.5/GPU6 admission",
+    "No GPU run; actual portable --help plus byte-derived patch review"
+  ],
+  "controller_freeze_sha256": "00e58d584bfdc7faa52763470c263cf9be247234a47724b906562b2b6c5d6d59",
+  "quality_performance": "INCONCLUSIVE"
+}

@@ -1,0 +1,78 @@
+{
+  "schema": "q33-contact-sheet-inputs/v1",
+  "inputs": [
+    {
+      "profile": "trim-8",
+      "trial_relative_to_iteration": "results/inferrsi-trim-8-92cae71fdc914fec818983563370cb76",
+      "result_sha256": "7469d69e299d0e161ab812d0f484b43fa0f770793d55e79edb692664ee2cc70b",
+      "run_relative_to_lab": "comfy-original/runs/q33-trim-8-92cae71fdc914fec818983563370cb76",
+      "artifact": {
+        "relative_to_run": "output\\q33-speed\\trim-8_00001_.mp4",
+        "bytes": 240101,
+        "sha256": "0e98112c12f89c00fb11100e36825257d96f0408e9b90e908c71752c00a4eaba"
+      },
+      "prior_media_summary_sha256": "a959a0179d1646b9e871b7e42a83c92dbae67d99d7a636eeab4a42ee7d3a9c78"
+    },
+    {
+      "profile": "trim-6-screen-v1",
+      "trial_relative_to_iteration": "results/inferrsi-trim-6-screen-v1-d07ba4c432434d96b4903bfad2645f7a",
+      "result_sha256": "6267ab4bf643be0b3cbcf1aa612b95991d987ffcd7baf4f0bf9db2532d514c4d",
+      "run_relative_to_lab": "comfy-original/runs/q33-trim-6-screen-v1-d07ba4c432434d96b4903bfad2645f7a",
+      "artifact": {
+        "relative_to_run": "output\\q33-speed\\trim-6_00001_.mp4",
+        "bytes": 222934,
+        "sha256": "77750a1f7a5af302f0e255f818eab8308c460089324d0326be700ea352de8f4d"
+      },
+      "prior_media_summary_sha256": "61f0c730361b89ffe0bd72a068607a42db82756061d23d101a1c8990d3391dd0"
+    },
+    {
+      "profile": "trim-4-screen-v1",
+      "trial_relative_to_iteration": "results/inferrsi-trim-4-screen-v1-3756cf810c1e44f7a0f2e9cce96730df",
+      "result_sha256": "0e7cae9bc2e93e96076a2ebc333360e9029424f6d2f5445dc40649629d8889b0",
+      "run_relative_to_lab": "comfy-original/runs/q33-trim-4-screen-v1-3756cf810c1e44f7a0f2e9cce96730df",
+      "artifact": {
+        "relative_to_run": "output\\q33-speed\\trim-4_00001_.mp4",
+        "bytes": 353613,
+        "sha256": "e496b6fe58bd77b64a9d1506438b8a6099239941c8e7bb25c0856039f6684738"
+      },
+      "prior_media_summary_sha256": "0c3985768029bfc32c995d2ccd8757a5edd3cc67e2d26443c395fde80f80629c"
+    },
+    {
+      "profile": "turbo-native-6",
+      "trial_relative_to_iteration": "results/inferrsi-turbo-native-6-bad9ddbae1944c888a727cd7b6fa6df7",
+      "result_sha256": "54e5390eb6b8fc47c94b696b36c4384861f965c19f582b0ae80f56c26b034ea3",
+      "run_relative_to_lab": "comfy-original/runs/q33-turbo-native-6-bad9ddbae1944c888a727cd7b6fa6df7",
+      "artifact": {
+        "relative_to_run": "output\\q33-speed\\turbo-native-6_00001_.mp4",
+        "bytes": 251499,
+        "sha256": "24cbe003f2c14ecd9f14fb66fca0bbef5852395359a93328a0ae07173f24084b"
+      },
+      "prior_media_summary_sha256": "af9a325da1fe82b87390a3b44a72947ca202f32b78477f8f410dad6035812801"
+    },
+    {
+      "profile": "turbo-native-8",
+      "trial_relative_to_iteration": "results/inferrsi-turbo-native-8-df0eb5493f9a4d9c9c004adcba3e8575",
+      "result_sha256": "8fe833eb4a7e2abb9ceeb55b61513d02b9cd6ada7be9b42c34007d3b22186cf1",
+      "run_relative_to_lab": "comfy-original/runs/q33-turbo-native-8-df0eb5493f9a4d9c9c004adcba3e8575",
+      "artifact": {
+        "relative_to_run": "output\\q33-speed\\turbo-native-8_00001_.mp4",
+        "bytes": 258462,
+        "sha256": "36d075157f9e267513bbc299841765d284c47491e38aa1e9511ba94d8c513708"
+      },
+      "prior_media_summary_sha256": "1b71b0822df4d977a96a5d668a4e96f2c8a526465a308444eb77e55007e1ff7c"
+    },
+    {
+      "profile": "turbo-hybrid-6",
+      "trial_relative_to_iteration": "results/inferrsi-turbo-hybrid-6-646386e61498424d9d27ab36eed25c6e",
+      "result_sha256": "3041c607ccad29a597e4ff0fb96e5189b0e0d903782bf73466f1458235211280",
+      "run_relative_to_lab": "comfy-original/runs/q33-turbo-hybrid-6-646386e61498424d9d27ab36eed25c6e",
+      "artifact": {
+        "relative_to_run": "output\\q33-speed\\turbo-hybrid-6_00001_.mp4",
+        "bytes": 343399,
+        "sha256": "79e24661612f5bfbac208089e52ad53dc9041d17147414a68b49467b925fec17"
+      },
+      "prior_media_summary_sha256": "5f361dbce64ab695f229c6946081cf11c68236d4610c03a7640dc1018b364a97"
+    }
+  ],
+  "claim": "INCONCLUSIVE"
+}

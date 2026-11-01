@@ -1,0 +1,15 @@
+{
+  "before_candidate": true,
+  "files": [
+    {
+      "path": "PLAN-FROZEN-v1.json",
+      "bytes": 1640,
+      "sha256": "64e0b3ab098672f0a18813d4acb1ba316563e3f21abb57759b2c719626a923ff"
+    },
+    {
+      "path": "validate_async_delta_v1.py",
+      "bytes": 4846,
+      "sha256": "56dd51106648f04641e10a35189234dc4dcbd5f66df9f28810033dd4d0090316"
+    }
+  ]
+}

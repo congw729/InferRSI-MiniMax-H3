@@ -1,0 +1,50 @@
+{
+  "schema": "q33-corpus-conditioning-values-freeze/v1",
+  "frozen_at_utc": "2026-10-30T17:48:23.079264+00:00",
+  "execution_state": "NOT_EXECUTED_REAL_CORPUS_UNAVAILABLE",
+  "sources": [
+    {
+      "path": "agents/corpus-video/PLAN-v1.json",
+      "bytes": 2225,
+      "sha256": "9b358813fd06562a8827a420f9cc1b53e6ef385ac784bc4ce2fd3cd4766c244a"
+    },
+    {
+      "path": "agents/corpus-video/corpus_conditioning_values_v1.py",
+      "bytes": 12179,
+      "sha256": "c43cf358b04accdb4d21d1476d32370642a6dd8420e5b5afd88a47256b9061ba"
+    },
+    {
+      "path": "agents/quality-corpus/conditioning_corpus_v3.py",
+      "bytes": 38132,
+      "sha256": "1e930d7ad4c5b32d8c3842e77bc39cbea5d0d510c4c5758c7240758ae15087dc"
+    },
+    {
+      "path": "agents/quality-corpus/CORPUS-MANIFEST-v1.json",
+      "bytes": 1608,
+      "sha256": "870756bbdae953f6c52b40a05a6ac35005d8818402170f1aa9d964bed715ef02"
+    },
+    {
+      "path": "agents/quality-corpus/graphs/bounce-audio.json",
+      "bytes": 1073,
+      "sha256": "1ada1b2863fd3e18b7bf20c85b6a459d70df5f802590e46dde99d6b58fd15ba3"
+    },
+    {
+      "path": "agents/quality-corpus/graphs/hands-face-mug.json",
+      "bytes": 1104,
+      "sha256": "07d4d6734fbadca28ba315fa3c620bfaf6c3d9e9f4cad2a22e9e6abfa831eaed"
+    }
+  ],
+  "validator_sha256": "c43cf358b04accdb4d21d1476d32370642a6dd8420e5b5afd88a47256b9061ba",
+  "stage_a_driver_sha256": "1e930d7ad4c5b32d8c3842e77bc39cbea5d0d510c4c5758c7240758ae15087dc",
+  "cases": {
+    "bounce-audio": {
+      "prompt_sha256": "ab2edbd2e3a796a8f0507aa8cefc0f7d76c412b1e889a9d6536b44536cd78869",
+      "graph_sha256": "1ada1b2863fd3e18b7bf20c85b6a459d70df5f802590e46dde99d6b58fd15ba3"
+    },
+    "hands-face-mug": {
+      "prompt_sha256": "5f19fe4a542a411bf2313a2a9f8cd051c2b727c8666d5df628c461a025eb7b58",
+      "graph_sha256": "07d4d6734fbadca28ba315fa3c620bfaf6c3d9e9f4cad2a22e9e6abfa831eaed"
+    }
+  },
+  "claim": "INCONCLUSIVE"
+}

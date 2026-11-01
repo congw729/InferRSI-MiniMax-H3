@@ -1,0 +1,25 @@
+{
+  "schema": "q33-async-infra-profile/v1",
+  "profile_id": "trim-8",
+  "cache_policy": "classic",
+  "memory_policy": "smart",
+  "request_seeds": [
+    424242,
+    424243
+  ],
+  "single_runtime_delta": "Remove --disable-async-offload",
+  "disable_pinned_memory": true,
+  "default_nvidia_async_streams": 2,
+  "reserve_vram_gib": 3,
+  "vram_headroom_gib": 1,
+  "quality_and_performance": "INCONCLUSIVE",
+  "controller": {
+    "file": "async_persistent_stage_b_v1.py",
+    "sha256": "be5ed4634a212e0d68d9b014f04ac2ca8e8547ade62c93967e73ccdecb9a8bfe"
+  },
+  "baseline": {
+    "relative_to_q33": "agents/persistent-preparation/persistent_stage_b_v2.py",
+    "sha256": "f27dff8a8792a99c47d9ba71f5ddd005a95bebd950e8f365b51cb4685b4c31b8"
+  },
+  "existing_actual_baseline_run_parent_reported": "3d98ba2758554d3ebf3c3d0bbed9d69d"
+}

@@ -1,0 +1,149 @@
+{
+  "schema": "h3-quality-review-freeze/v1",
+  "frozen_at_utc": "2026-10-30T17:04:21.0751689Z",
+  "reviewer": "manual_notes_review",
+  "claim": "INCONCLUSIVE",
+  "prospective_protocol": true,
+  "historical_baselines_observed_before_freeze": true,
+  "model_runs_started_by_reviewer": 0,
+  "encodings_started": 0,
+  "downloads_or_installs": 0,
+  "old_validators_modified": false,
+  "source_path_policy": "Runtime roots are aliases; actual paths supplied externally",
+  "sources": [
+    {
+      "root": "notes",
+      "path": "iterations/2026-10-28-comfy-trim-first-video/results/FIRST-REAL-CLIP-SUMMARY-v1.json",
+      "bytes": 3459,
+      "sha256": "ef85164b67fd01f8108ca7325608d872f75bdca966b54f7b5a6a1b83cc4224c1"
+    },
+    {
+      "root": "notes",
+      "path": "iterations/2026-10-28-comfy-trim-first-video/results/FIRST-CLIP-VISUAL-OBSERVATION-v1.json",
+      "bytes": 1714,
+      "sha256": "d7b52b43473e1f3274de17e3f592369fcaa64fa68c50de9530b414cffa51a75f"
+    },
+    {
+      "root": "notes",
+      "path": "iterations/2026-10-28-comfy-trim-first-video/results/media-inspection-inferrsi-8f7ee9a2/decode-result.json",
+      "bytes": 61116,
+      "sha256": "35abfca75c64dc241c95b02c5a566ce9d5085fda746f03dc3474d40dad229926"
+    },
+    {
+      "root": "notes",
+      "path": "iterations/2026-10-28-comfy-trim-first-video/plan/STAGE-A-CONDITIONING-DRAFT-v1.json",
+      "bytes": 1000,
+      "sha256": "1da6a1e7184e13d7e783918d09f2a3bbec750b53ec3fd66c7c3e8c57a103cb88"
+    },
+    {
+      "root": "notes",
+      "path": "iterations/2026-10-30-original-h3-first-video/results/ORIGINAL-FIRST-CLIP-SUMMARY-v1.json",
+      "bytes": 3643,
+      "sha256": "5095928d6b566b83454346decf9f89a761a8b358700fa29941e24c076b00f9dc"
+    },
+    {
+      "root": "notes",
+      "path": "iterations/2026-10-30-original-h3-first-video/results/ORIGINAL-VISUAL-OBSERVATION-v1.json",
+      "bytes": 1512,
+      "sha256": "73ac24cc010094bba07d62e672010d4f5dac9b64827bbe8824b1f420fd439413"
+    },
+    {
+      "root": "trim_run",
+      "path": "history.raw.json",
+      "bytes": 6265,
+      "sha256": "ca54b3022e96dbc76f367334dc46d366048eb5857d4b208d6ef19320fa8ba70c"
+    },
+    {
+      "root": "trim_run",
+      "path": "media-inspection-v1/decode-result.json",
+      "bytes": 61116,
+      "sha256": "35abfca75c64dc241c95b02c5a566ce9d5085fda746f03dc3474d40dad229926"
+    },
+    {
+      "root": "trim_run",
+      "path": "media-inspection-v1/validation-summary.json",
+      "bytes": 704,
+      "sha256": "e2bc165f31630fd302eda44b620436ca6a1a3bade5c7c21562be1fd27e14be45"
+    },
+    {
+      "root": "trim_run",
+      "path": "media-inspection-v1/first.png",
+      "bytes": 32374,
+      "sha256": "a566c3cb492385f06134f968f39eb7e3a8c9ed7d323694f46592d9cd2291a2e8"
+    },
+    {
+      "root": "trim_run",
+      "path": "media-inspection-v1/middle.png",
+      "bytes": 71871,
+      "sha256": "78e9205e52d634170d3f8e3fd417772eb4c02cf2846f6dc065a26439485ac185"
+    },
+    {
+      "root": "trim_run",
+      "path": "media-inspection-v1/last.png",
+      "bytes": 84512,
+      "sha256": "a3f2218920bf887a966c7e2f782611bcae374f9fde5a603aa144294b1837fa44"
+    },
+    {
+      "root": "trim_run",
+      "path": "output/h3-trim/first-video_00001_.mp4",
+      "bytes": 240104,
+      "sha256": "48835ff12deefaf62741910f2ff7814aef63926a8ce5dd6532ea61f7aa0f1ac9"
+    },
+    {
+      "root": "original_run",
+      "path": "history.raw.json",
+      "bytes": 5497,
+      "sha256": "e24ae3218e603d6a4a4f67f4b2bcbc230ca7d9576df2120c737dedb14a877b2f"
+    },
+    {
+      "root": "original_run",
+      "path": "media-inspection-v1/decode-result.json",
+      "bytes": 61108,
+      "sha256": "bce1fbf5a5193cf646fed2ba4c8d281b666d21a2f2cf8205b4badb7693f1d4de"
+    },
+    {
+      "root": "original_run",
+      "path": "media-inspection-v1/validation-summary.json",
+      "bytes": 704,
+      "sha256": "5b4d0383ec64156c8964d35ffde5a15749e7affed27da11bdabbaea07f38d121"
+    },
+    {
+      "root": "original_run",
+      "path": "media-inspection-v1/first.png",
+      "bytes": 33940,
+      "sha256": "e290648d97514d2460daa032e093d454ebefc542a6cbc62d7fd816bc948469fb"
+    },
+    {
+      "root": "original_run",
+      "path": "media-inspection-v1/middle.png",
+      "bytes": 85676,
+      "sha256": "496a15db708da08eb3815819077571fc552188d65a82d23fd8a50e19446d9362"
+    },
+    {
+      "root": "original_run",
+      "path": "media-inspection-v1/last.png",
+      "bytes": 60557,
+      "sha256": "ffa84bf4272539dba5b853950fd912ada39087327c2fcae6cde873d72b062c67"
+    },
+    {
+      "root": "original_run",
+      "path": "output/h3-original/first-video-73f_00001_.mp4",
+      "bytes": 282114,
+      "sha256": "5fcadc2dab7e434b47230cd55fd3b1cc178491cb96318357007d25c9ba1af421"
+    }
+  ],
+  "frozen_records": [
+    {
+      "path": "QUALITY-SCREEN-PROTOCOL-v1.json",
+      "bytes": 8662,
+      "sha256": "9130e04dc11d376689f9b23c283efdae4d756eeeb23192fe9409899410026348"
+    },
+    {
+      "path": "BASELINE-OBSERVATIONS-v1.zh-CN.txt",
+      "bytes": 4099,
+      "sha256": "41dd0a228cea2f7fc8d83ca5ba3b2a385c30d061dd32d215a59a6938efd3ab94"
+    }
+  ],
+  "perceptual_review_scope": "6nativePNGstills viewed through view_image; no full playback or listening",
+  "notes": "One failed bounded lookup of absent execution.json and one PowerShell parse-error occurred during read-only discovery; neither ran a model or changed artifacts. Then actual history/decode/media paths were located and verified."
+}

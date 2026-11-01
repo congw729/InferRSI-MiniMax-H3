@@ -1,0 +1,7 @@
+{
+  "schema": "q33-auxiliary-quality-plan/v1",
+  "scope": "Two already generated native Turbo6 corpus videos using unchanged v2; one already generated 576x384 video using only four geometry literal replacements plus explicit plan reference. No model or quality threshold search.",
+  "sources": "Existing actual receipts + complete media summaries, source full SHA before/after",
+  "geometry_delta_checks": "Reverse exact text replacement equals v2 bytes; new plan 576x384 and extraction dimensions, grid positions and label offset agree. Existing limits unchanged.",
+  "quality": "Twelve assistant-viewed stills only; no full motion/audio subjective validation."
+}

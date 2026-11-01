@@ -1,0 +1,70 @@
+{
+  "schema": "q33-history-ready-notification-audit/v1",
+  "at_utc": "2026-10-30T20:15:05.696190+00:00",
+  "claim": "INCONCLUSIVE",
+  "read_only": true,
+  "verified_source_order": [
+    "execution.py:828 emits execution_success before assembling history_result, optional unload_all_models and finally lifecycle calls.",
+    "main.py:384 returns from e.execute before q.task_done at389.",
+    "execution.py:1341-1361 q.task_done holds mutex while storing prompt, outputs and status in the in-memory history dict.",
+    "main.py:399 queues executing with explicit node:null and matching prompt_id to the current client only after task_done returns.",
+    "Current timing_events_v1 receiver stops and closes its WS connection immediately when collector.terminal becomes execution_success at150; it therefore cannot receive the later history-ready marker."
+  ],
+  "minimal_new_version_design": [
+    "Keep the existing connection and all bounds/stop/join/cleanup semantics. Preserve execution_success timing but continue receiving after success.",
+    "Wake and end successful reception only on matching prompt_id, type executing, explicit node key and node is None; wrong prompt, missing node or non-null node do not qualify.",
+    "Error/interrupted terminal events end immediately. Disconnect/budget/schema exceptions remain invalid and wake through existing finally; cancellation and deadline still use original stop/cleanup.",
+    "Keep controller one-shot consumed-event waiting and original 1-second fallback. Never repeatedly await a permanently set event.",
+    "HTTP history remains authoritative for success/artifact; marker alone is not a success verdict. A missing marker must not fabricate a timestamp or lose bounded HTTP fallback.",
+    "Track execution_success_received_ns separately from history_ready_marker_received_ns. After extending reception, collector.last_ns must not stand for execution_success.",
+    "Record marker/terminal-to-artifact intervals as signed transport observations; keep unavailable measurements null. Node=None indicates native in-memory history publication order, not durable disk persistence, all GC completion or pure GPU completion."
+  ],
+  "targeted_change_boundaries": [
+    "One independent observer/controller version; original frozen observer and v6 retained.",
+    "No new WebSocket reconnect or second listener; no model/infra/guard changes.",
+    "Only necessary new sequence checks: success-before-marker keeps receiver open, matching marker ends, wrong/missing node ignored, error/cancel/disconnect still terminal, consumed wake cannot spin."
+  ],
+  "source_identities": [
+    {
+      "root": "portable",
+      "path": "ComfyUI/execution.py",
+      "bytes": 66163,
+      "sha256": "5312ba107f69f2bc70f4009c5d52524b3865dd54fceafdc8649b22c98d6c612f",
+      "relevant_lines": [
+        819,
+        847
+      ]
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/main.py",
+      "bytes": 31468,
+      "sha256": "baaa16d69ee78e08c490eeec20bf27c56b746c070f76cc05b4aa13cbc616bcef",
+      "relevant_lines": [
+        384,
+        400
+      ]
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/server.py",
+      "bytes": 72477,
+      "sha256": "52618f91c663dc6524a028162212e0434fc9239618ddc0efbf7c605027081c8c",
+      "relevant_lines": [
+        348,
+        357
+      ]
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/timing_events_v1.py",
+      "bytes": 10734,
+      "sha256": "f0abb1937ca5462d712a73d1a8623b6a9f5df86927dbcf6375903b8a5ad3e614",
+      "relevant_lines": [
+        40,
+        170
+      ]
+    }
+  ],
+  "gpu_or_model_execution": false
+}

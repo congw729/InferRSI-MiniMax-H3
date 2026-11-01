@@ -1,0 +1,15 @@
+{
+  "reverse_patch_byte_equivalence": true,
+  "new_geometry": [
+    576,
+    384
+  ],
+  "grid_geometry": [
+    2304,
+    1236
+  ],
+  "label_offset": 388,
+  "resource_caps_identical": true,
+  "model_dispatches": 0,
+  "actual_video_not_yet_extracted": true
+}

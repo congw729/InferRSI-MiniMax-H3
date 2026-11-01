@@ -1,0 +1,38 @@
+{
+  "schema": "q33-contact-sheet-source-freeze/v1",
+  "created_utc": "2026-10-30T18:37:30.449584+00:00",
+  "files": [
+    {
+      "path": "PLAN-v1.json",
+      "bytes": 1374,
+      "sha256": "9d79c35f058014cfa54fd31c6df58c1dff6e082ae171277dce709a7cab97b38b"
+    },
+    {
+      "path": "PLAN-CORPUS-v1.json",
+      "bytes": 683,
+      "sha256": "c0748b4b3e4ac08b399ebc5f43e8bacdd9ff5d8d343035ea1ebf13446172b914"
+    },
+    {
+      "path": "contact_sheets_v1.py",
+      "bytes": 7530,
+      "sha256": "391d06a846230a4accd37f25aef369921023a287c3660479644b6733529b9e09"
+    },
+    {
+      "path": "contact_sheets_v2.py",
+      "bytes": 7800,
+      "sha256": "b0d5f4283f5f6bb78c5f650bcea7e779f472b42f81c2745ded7eba329827b68d"
+    },
+    {
+      "path": "CONTACT-v2.patch",
+      "bytes": 2204,
+      "sha256": "9f5d48226b831261ba69386c8161527fd6ecc45a6302a7925ce4dc4ce7452ff4"
+    },
+    {
+      "path": "INPUTS-CORPUS-LAST1-v1.json",
+      "bytes": 818,
+      "sha256": "d0e0b560d0d130cbc04dd67d1d64f243a23f545bf8f818081048a70e5da56499"
+    }
+  ],
+  "same_extraction_loop_bytes": true,
+  "claim": "INCONCLUSIVE"
+}

@@ -1,0 +1,343 @@
+{
+  "schema": "q33-corpus-real-ready-execution-freeze/v1",
+  "created_utc": "2026-10-30T18:14:49.267408+00:00",
+  "actual_corpus_ready": true,
+  "controller_sha256": "74de2ccded6ec7415e183c13d162caba653b54b5bcc99270a924c9391d58c7d1",
+  "files": [
+    {
+      "path": "assets/original.json",
+      "bytes": 2910,
+      "sha256": "de6848a0135415f086ad3fa53e94e40202bfc4d72bdf5d3eeafe3494bc9cdd7c"
+    },
+    {
+      "path": "assets/trim.json",
+      "bytes": 2763,
+      "sha256": "c1507b121962e250f2d74c7dce2f4e0e63e7de8e55a39c2d2795e336106de2a0"
+    },
+    {
+      "path": "bind_corpus_profiles_v1.py",
+      "bytes": 5545,
+      "sha256": "2313f4d4058417977abbb620dfce534485e769e9de1bb9504ae7fbb999a27fc7"
+    },
+    {
+      "path": "canonical/original.json",
+      "bytes": 3069,
+      "sha256": "d5937f2505f74e07ce8de746c49c98e8a428535d79ccc878383e8b989807fb29"
+    },
+    {
+      "path": "canonical/trim.json",
+      "bytes": 3895,
+      "sha256": "a915f62f109cd2e1be615eb7b0c1aa6fab4a4b6ad6e31791fb84488b02a17ad8"
+    },
+    {
+      "path": "corpus_conditioning_values_v1.py",
+      "bytes": 12179,
+      "sha256": "c43cf358b04accdb4d21d1476d32370642a6dd8420e5b5afd88a47256b9061ba"
+    },
+    {
+      "path": "corpus_stage_b_v1.py",
+      "bytes": 54098,
+      "sha256": "74de2ccded6ec7415e183c13d162caba653b54b5bcc99270a924c9391d58c7d1"
+    },
+    {
+      "path": "EXECUTION-FREEZE-v1.json",
+      "bytes": 4416,
+      "sha256": "164650840bc33cfba2236b6c8fdbd68dfdac089792c8d7309aa3c693ff399b3e"
+    },
+    {
+      "path": "OFFLINE-CONTROLLER-FREEZE-v1.json",
+      "bytes": 766,
+      "sha256": "788b0d452dac370c8003de70adff90ecf0afa3af0f86e8f773865ecd847a9719"
+    },
+    {
+      "path": "OFFLINE-CONTROLLER-RESULT-v1.json",
+      "bytes": 3352,
+      "sha256": "822c1f10a1d5709779657458e0a395816230b5720b6e54f315337b626ea6e504"
+    },
+    {
+      "path": "OFFLINE-VALUES-FREEZE-v1.json",
+      "bytes": 769,
+      "sha256": "f00a3af6d0246d03b82c0090532bc6723903fc622a71eec6806eff93bd212ca0"
+    },
+    {
+      "path": "OFFLINE-VALUES-RESULT-v1.json",
+      "bytes": 1873,
+      "sha256": "fcb74929fcce31f15b357846e495e98842e566d7d07364859211c5df12148186"
+    },
+    {
+      "path": "offline_controller_v1.py",
+      "bytes": 2883,
+      "sha256": "0b1ab9d2d297b46e04213983645b8467658ef8acd08e6a39f973c332bacc0df9"
+    },
+    {
+      "path": "offline_values_v1.py",
+      "bytes": 2660,
+      "sha256": "fc3e21e7c13ed4246e08f2462529fd2e742501eb12a7938644251a980af42146"
+    },
+    {
+      "path": "PLAN-v1.json",
+      "bytes": 2225,
+      "sha256": "9b358813fd06562a8827a420f9cc1b53e6ef385ac784bc4ce2fd3cd4766c244a"
+    },
+    {
+      "path": "PORTABLE-HELP-RESULT-v1.json",
+      "bytes": 361,
+      "sha256": "f5d8be83fa62791218e5583eca037c6da73b66fd73e3ad960afff5b297100c5f"
+    },
+    {
+      "path": "PREPARATION-FREEZE-v1.json",
+      "bytes": 2825,
+      "sha256": "b3225a9d0b0dae4f87695b471f8b00d3b931515492c5d7cd04c515addb02b6fe"
+    },
+    {
+      "path": "ready/bounce-audio/BINDING-v1.json",
+      "bytes": 3055,
+      "sha256": "f569206771edc25cdd55c9c7a56413d6d7a4de1adf025df0b527647973727d9f"
+    },
+    {
+      "path": "ready/bounce-audio/original-20.conditioning.json",
+      "bytes": 1584,
+      "sha256": "f9ea7e3fed461b978eac83ce325b3f26a142dd1be602a7942fc094ab75eb5900"
+    },
+    {
+      "path": "ready/bounce-audio/original-20.graph.json",
+      "bytes": 3077,
+      "sha256": "4c7b1c108122f8eab27ad829e1c4235b29b2c35a2eda9806370cf705cd78b7bb"
+    },
+    {
+      "path": "ready/bounce-audio/original-20.profile.json",
+      "bytes": 1142,
+      "sha256": "6d7169eaf4cb9dd1f7e197f8d8ddbe8bd4ee320ad975d860d09869b2ca8cdbb6"
+    },
+    {
+      "path": "ready/bounce-audio/original-50.conditioning.json",
+      "bytes": 1584,
+      "sha256": "6338ec15cb1d100d10e2c8a1f997503461ff697a19c6088432f3440945c52253"
+    },
+    {
+      "path": "ready/bounce-audio/original-50.graph.json",
+      "bytes": 3077,
+      "sha256": "ba51d756f626f99427acdabda6501ed1b42f7d07a9d724ae072d118d6ca14896"
+    },
+    {
+      "path": "ready/bounce-audio/original-50.profile.json",
+      "bytes": 1142,
+      "sha256": "e5f916da433dc45d955667f41c9d7ef72635ef96187b71daf9940df8e6a840e3"
+    },
+    {
+      "path": "ready/bounce-audio/trim-6.conditioning.json",
+      "bytes": 1579,
+      "sha256": "9b3e6e926819bcbf6c540689d9d4d74cd5c06ccbe934d47822da57c19f10219f"
+    },
+    {
+      "path": "ready/bounce-audio/trim-6.graph.json",
+      "bytes": 3712,
+      "sha256": "fef0c5b5136de8aa2881bf27df3a7554adc992e2bdc6fef4d6b4d917ca85d1b8"
+    },
+    {
+      "path": "ready/bounce-audio/trim-6.profile.json",
+      "bytes": 1110,
+      "sha256": "82075f82f6ea7ab459db3727ff74b3ea0fe3b4833d4b2d4859b9a0ee95ef4f40"
+    },
+    {
+      "path": "ready/bounce-audio/trim-8.conditioning.json",
+      "bytes": 1579,
+      "sha256": "1ad54e9281d4e3b3d4ba7d7baf8d4a9dab7060d30965d6774c904aebcd731c5b"
+    },
+    {
+      "path": "ready/bounce-audio/trim-8.graph.json",
+      "bytes": 3712,
+      "sha256": "0cb30852195d42dad6eb3d5edf5c6cbf7ed4c6596de1e149310f8d88d0091fce"
+    },
+    {
+      "path": "ready/bounce-audio/trim-8.profile.json",
+      "bytes": 1110,
+      "sha256": "ce709559ed18e1bc6e4f421f016ff9214328aa2f1b37af5d354127f11eda719d"
+    },
+    {
+      "path": "ready/hands-face-mug/BINDING-v1.json",
+      "bytes": 3090,
+      "sha256": "6def69b8a83d908e96782fd562899b467a25beca80520547151592c3c7b677cc"
+    },
+    {
+      "path": "ready/hands-face-mug/original-20.conditioning.json",
+      "bytes": 1592,
+      "sha256": "efe6f1259c7aa2411a2239795c1d5b90cdc4595b710dcf0f374fd42a0b6e4e15"
+    },
+    {
+      "path": "ready/hands-face-mug/original-20.graph.json",
+      "bytes": 3079,
+      "sha256": "1e3ab1bc64f2a3e250bb4b62589a04b645d27b6f897d3289a14b41c2333abbf6"
+    },
+    {
+      "path": "ready/hands-face-mug/original-20.profile.json",
+      "bytes": 1148,
+      "sha256": "9885a33730f083a864ad2440cefa2228b8a58c79a7ce9afd94399b7d9f42fedc"
+    },
+    {
+      "path": "ready/hands-face-mug/original-50.conditioning.json",
+      "bytes": 1592,
+      "sha256": "22dec438ce4f27aef16dc53d24b9bc7f0e50da8c926c2973f70f6c89a6d0f81d"
+    },
+    {
+      "path": "ready/hands-face-mug/original-50.graph.json",
+      "bytes": 3079,
+      "sha256": "7cec5877bb5f8c7824277ea7f15fa93878e99f5a051805aa60f36913cfd30eae"
+    },
+    {
+      "path": "ready/hands-face-mug/original-50.profile.json",
+      "bytes": 1148,
+      "sha256": "c24a2efbcda00958e41d9523c0e814aad3a601d346d1e9eb31d04675e58a2f9e"
+    },
+    {
+      "path": "ready/hands-face-mug/trim-6.conditioning.json",
+      "bytes": 1587,
+      "sha256": "4844b28bcca80cf68f4039dcf42021025e4f28c29822c2967354ed1cd5f7c3f6"
+    },
+    {
+      "path": "ready/hands-face-mug/trim-6.graph.json",
+      "bytes": 3714,
+      "sha256": "9a4b7387916183d8af726f13c1bbfb6a3ccc7e0a0876c340cd9f1ec44529a79e"
+    },
+    {
+      "path": "ready/hands-face-mug/trim-6.profile.json",
+      "bytes": 1116,
+      "sha256": "e736236c43f2c6d5e5e2533040450632815899b5626d735c68ce2f1db8e3d76a"
+    },
+    {
+      "path": "ready/hands-face-mug/trim-8.conditioning.json",
+      "bytes": 1587,
+      "sha256": "f2892bc8a06e4c84108c07c9e95d4950b20dad26be05b2ddf8c92b73dfcecb33"
+    },
+    {
+      "path": "ready/hands-face-mug/trim-8.graph.json",
+      "bytes": 3714,
+      "sha256": "544a60ad4863ec1639e351fcf6b8a503bf196ac93f1175023dafa9ff28a89fe8"
+    },
+    {
+      "path": "ready/hands-face-mug/trim-8.profile.json",
+      "bytes": 1116,
+      "sha256": "1e20ccd00c5df73c2efbd24e26f1b690dc970ed3179ae512df29adc20a07d11f"
+    },
+    {
+      "path": "REAL-CONDITIONING-ALIASES-v1.json",
+      "bytes": 2626,
+      "sha256": "fc3c5b01b22edbceed2b3dc707ebba49064c800c2f8b10632042fb6ac05a2ee5"
+    },
+    {
+      "path": "REAL-READY-HANDOFF-v1.json",
+      "bytes": 3245,
+      "sha256": "ed93b86a502bbd3fb1ebc6a4fe559152e9c5444b6ef1de9e53595fe2482b0dc7"
+    },
+    {
+      "path": "REAL-VALUES-RESULTS-v1.json",
+      "bytes": 968,
+      "sha256": "d685464cedd66a3d2f57fac44df5d6a971875ce17e6405da550c082f2cd746c0"
+    },
+    {
+      "path": "RUN-HANDOFF-v1.txt",
+      "bytes": 4152,
+      "sha256": "5079b94359221ec88a659b0e044758bdb33072bde33d05b6deeeac21272604e9"
+    },
+    {
+      "path": "STAGE-B-v1.patch",
+      "bytes": 9494,
+      "sha256": "84c0284d667b1567068a664732857d822e0212199509644325f66600a3547311"
+    },
+    {
+      "path": "timing_events_v1.py",
+      "bytes": 10734,
+      "sha256": "f0abb1937ca5462d712a73d1a8623b6a9f5df86927dbcf6375903b8a5ad3e614"
+    },
+    {
+      "path": "VALUES-FREEZE-v1.json",
+      "bytes": 1975,
+      "sha256": "3a6b8d0a794eedce440e70895065bf5995d1a79a6a453f405086eafaed21159c"
+    },
+    {
+      "path": "VALUES-RUNSPEC-bounce-audio-v1.json",
+      "bytes": 1563,
+      "sha256": "083d153e098d577292422e7b8105766568628ca376edc82638dd6135c2992b72"
+    },
+    {
+      "path": "VALUES-RUNSPEC-hands-face-mug-v1.json",
+      "bytes": 1576,
+      "sha256": "778a3e1fca9df592d73ec1a8a40c4603aa56eaaa24868d51e17b1ff2de475c84"
+    },
+    {
+      "path": "VALUES-v1.patch",
+      "bytes": 5881,
+      "sha256": "c96a4f8c8518bc3644f6809e893f7b50b32ce62d2aeb3cc88ab4ac3f4e79981d"
+    }
+  ],
+  "external_files": [
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/quality-corpus/conditioning_corpus_v3.py",
+      "bytes": 38132,
+      "sha256": "1e930d7ad4c5b32d8c3842e77bc39cbea5d0d510c4c5758c7240758ae15087dc"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/quality-corpus/CORPUS-MANIFEST-v1.json",
+      "bytes": 1608,
+      "sha256": "870756bbdae953f6c52b40a05a6ac35005d8818402170f1aa9d964bed715ef02"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/quality-corpus/graphs/bounce-audio.json",
+      "bytes": 1073,
+      "sha256": "1ada1b2863fd3e18b7bf20c85b6a459d70df5f802590e46dde99d6b58fd15ba3"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/quality-corpus/graphs/hands-face-mug.json",
+      "bytes": 1104,
+      "sha256": "07d4d6734fbadca28ba315fa3c620bfaf6c3d9e9f4cad2a22e9e6abfa831eaed"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/timing-controller/RESOURCE-GATES-RESERVE3-v1.json",
+      "bytes": 855,
+      "sha256": "13672a9bbe8946c28c98b3bab0f906f6ddfe67735ff7f77929e58539a4a580dd"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/timing-controller/SOURCES-v1.json",
+      "bytes": 33327,
+      "sha256": "bf0d3e3b09f8130053735eaa6645bcc4ff753833a97ef4ae306d7d223283f007"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/agents/turbo-preparation/CORPUS-VIDEO-INDEPENDENT-REVIEW-v1.json",
+      "bytes": 4811,
+      "sha256": "890338823b87731fada3c801ce8b6cf68c6d866e7525195ce549cccef965199b"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/results/corpus-bounce-audio-d390a0a06ba94536ba389c1a97e025b8/result.json",
+      "bytes": 8448,
+      "sha256": "9ee4c39cfe9d96735d432015ba84bba5d67d920445956a1ffd8498e9756ec401"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/results/corpus-hands-face-mug-e60ffa23907148b18928538d2a2ea43d/result.json",
+      "bytes": 8454,
+      "sha256": "5a33d0f55b511d68b71739c2ed47c7bb8feb1a9572b246d8dd8f79f1f3eabbc2"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/results/corpus-values-bounce-audio-fe603a89512d4bb98a135d9e8d78efd7/execution.json",
+      "bytes": 1993,
+      "sha256": "ccfb10876a799d597446122e0e93b71c5f35af6ddff41b04873191fd40e1a89f"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/results/corpus-values-bounce-audio-fe603a89512d4bb98a135d9e8d78efd7/result.json",
+      "bytes": 5019,
+      "sha256": "4855dcfd0579ffe9557a46fb6b9b3acd679ffb3fc21a61697c0ed331efa8c5f5"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/results/corpus-values-hands-face-mug-0f8d3dfd38934c84975055108dd3d69c/execution.json",
+      "bytes": 2012,
+      "sha256": "badb95525b35c6af4d8c10de663b423c165b4cc08e02a8c751c854b8140ca3e7"
+    },
+    {
+      "relative_to_notes": "iterations/2026-10-31-speed-quality-search/results/corpus-values-hands-face-mug-0f8d3dfd38934c84975055108dd3d69c/result.json",
+      "bytes": 5022,
+      "sha256": "466f920729e35fe314ba8e26d06a4da904b0f8a166585666a4074d24242dd8dc"
+    }
+  ],
+  "resources": "Unchanged reserve3/headroom1/native graph and controller guards; fresh parent admission required",
+  "pending": "Independent actual-ready review and parent serial model dispatch; numerical integrity does not establish image/audio quality",
+  "claim": "INCONCLUSIVE"
+}

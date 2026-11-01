@@ -1,0 +1,34 @@
+{
+  "schema": "q33-quality-corpus-stageA-plan/v1",
+  "frozen_before_candidate": true,
+  "plane": "harness",
+  "basis": "Q31 conditioning_stage_v1.py",
+  "basis_sha256": "5ed099fa2761cac83ce8c6ae920c234fb289724ac1efcff57a69f38766d1991c",
+  "cases": [
+    "bounce-audio",
+    "hands-face-mug"
+  ],
+  "changed": [
+    "fixed prompt text and unique output prefix only",
+    "Q33 results/path injection with explicit Q31 source root",
+    "explicit frozen timing-controller v3 import for native WS observer and reviewed cleanup",
+    "timestamps for source checks and each asset hash"
+  ],
+  "preserved": [
+    "Q31 native4node StageA",
+    "TE/videoVAE names and device/default params",
+    "all4 old asset receipt/fullSHA checks retained",
+    "Q31 StageA gates including reserve1GiB/private16GiB/RSS10GiB/output32MiB",
+    "onePOST and owned process Job",
+    "header-only output verification; real conditioning content gate remains separate"
+  ],
+  "no_ready_conditioning": "manifest expected SHA null and StageB ready false; real output first",
+  "validation": [
+    "graphs differ from canonical only prompt/prefix",
+    "protocol exact text and crossrefs",
+    "unchanged core monitor/http/artifact header/find functionsAST",
+    "timing/cleanup reused from exact reviewed v3 hash",
+    "real portable --help only"
+  ],
+  "no_gpu_network_by_preparer": true
+}

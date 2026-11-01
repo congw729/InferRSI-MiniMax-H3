@@ -1,0 +1,7 @@
+{
+  "schema": "q33-persistent-cache-helper-help/v2",
+  "helper_sha256": "0b48ed7d18c4aaed4a27f9bbe32af9c98ac61637ce896067bd56417798f0fd59",
+  "portable_help_returncode": 0,
+  "no_gpu_service_model_dispatch": true,
+  "scope": "Actual portable --help only; not resource admission or model run"
+}

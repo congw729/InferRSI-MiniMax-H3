@@ -1,0 +1,84 @@
+--- persistent_stage_b_v2.py
++++ async_persistent_stage_b_v1.py
+@@ -1,4 +1,4 @@
+-"""Q33 bounded two-seed persistent Trim8 cache-policy probe with native node timing.
++"""Q33 bounded two-seed Trim8 classic-cache default-async infra probe with native node timing.
+ This is a new harness derived from frozen Q32; old sources remain unchanged.
+ Run with the existing portable Python under InferRSI. No model imports here.
+ """
+@@ -75,7 +75,8 @@
+             "legacy ModelPatcher fallback detected")
+     require(b"DynamicVRAM support detected and enabled" in raw,
+             "DynamicVRAM enabled marker missing")
+-    return {"startup_log_bytes": len(raw),
++    require(b"Using async weight offloading with 2 streams" in raw, "native default 2-stream marker missing")
++    return {"observed_async_offload_streams": 2, "startup_log_bytes": len(raw),
+             "startup_log_sha256": hashlib.sha256(raw).hexdigest()}
+ 
+ 
+@@ -250,7 +251,7 @@
+ 
+ def parse():
+     p = argparse.ArgumentParser(description=__doc__, allow_abbrev=False)
+-    p.add_argument("--mode", choices=["persistent-video-stage-b"], required=True)
++    p.add_argument("--mode", choices=["async-persistent-video-stage-b"], required=True)
+     for name in ("iteration-root", "lab-root", "portable-python", "comfy-root",
+                  "run-dir", "stop-marker", "nvidia-smi", "inferrsi-src",
+                  "gates", "conditioning-manifest", "notes-root", "q31-root",
+@@ -261,7 +262,7 @@
+     p.add_argument("--asset-manifest-sha256", required=True)
+     p.add_argument("--gates-sha256", required=True)
+     p.add_argument("--conditioning-manifest-sha256", required=True)
+-    p.add_argument("--cache-policy", choices=["none", "classic"], required=True)
++    p.add_argument("--cache-policy", choices=["classic"], required=True)
+     p.add_argument("--port", type=int, required=True)
+     return p.parse_args()
+ 
+@@ -308,10 +309,10 @@
+         state["status"]="cleanup_inconclusive"
+ 
+ def cache_command(command, policy):
+-    require(policy in {"none", "classic"}, "cache policy")
++    require(policy == "classic", "fixed classic cache policy")
+     require(command.count("--disable-smart-memory") == 1 and command.count("--cache-none") == 1, "fixed smart/cache baseline")
+     smart = [x for x in command if x != "--disable-smart-memory"]
+-    return smart if policy == "none" else ["--cache-classic" if x == "--cache-none" else x for x in smart]
++    return ["--cache-classic" if x == "--cache-none" else x for x in smart]
+ 
+ 
+ def request_graph(graph, request_index):
+@@ -394,7 +395,7 @@
+ 
+     require(a.iteration_root == a.notes_root / "iterations/2026-10-31-speed-quality-search"
+             and a.q31_root == a.notes_root / "iterations/2026-10-28-comfy-trim-first-video"
+-            and Path(__file__).resolve().parent == a.iteration_root / "agents/persistent-preparation", "Q33/Q31 roots")
++            and Path(__file__).resolve().parent == a.iteration_root / "agents/offload-preparation", "Q33/Q31 roots")
+     require(a.portable_python == a.comfy_root.parent / "python_embeded/python.exe", "fixed portable relationship")
+     sys.dont_write_bytecode = True
+     v1_path = a.q31_root / "tools/comfy_first_video_v1.py"
+@@ -459,7 +460,7 @@
+     proc = job = raw_log = samples = journal = observer = None
+     next_sample = next_gpu = 0.0
+     gpu = None
+-    state = {"status": "preflight", "claim": "INCONCLUSIVE", "mode": "persistent-video-stage-b",
++    state = {"status": "preflight", "claim": "INCONCLUSIVE", "mode": "async-persistent-video-stage-b",
+              "profile_id": a.loaded_profile["id"], "profile_sha256": a.profile_sha256,
+              "controller_entry_perf_counter_ns":entry_perf_ns,
+              "source_verification_start_ns":source_start_ns,"source_verification_end_ns":source_end_ns,
+@@ -664,12 +665,15 @@
+         command = [str(a.portable_python), "-s", "-B", str(a.comfy_root / "main.py"),
+                    "--listen", "127.0.0.1", "--port", str(a.port),
+                    "--disable-auto-launch", "--disable-all-custom-nodes", "--disable-partner-nodes",
+-                   "--offline", "--disable-assets", "--disable-pinned-memory", "--disable-async-offload", "--disable-smart-memory", "--cache-none", "--preview-method", "none",
++                   "--offline", "--disable-assets", "--disable-pinned-memory", "--disable-smart-memory", "--cache-none", "--preview-method", "none",
+                    "--vram-headroom", "1.0",
+                    "--reserve-vram", str(gates["reserve_vram_gb"]),
+                    "--models-directory", str(models_root)]
+         command = cache_command(command, a.cache_policy)
+         state["disable_smart_memory_requested"] = "--disable-smart-memory" in command
++        state["disable_async_offload_requested"] = "--disable-async-offload" in command
++        state["disable_pinned_memory_requested"] = "--disable-pinned-memory" in command
++        state["requested_async_offload_streams"] = 2
+         for key in ("base", "output", "temp", "input", "previews", "user"):
+             command += ["--" + key + "-directory", str(dirs[key])]
+         raw_log = (a.run_dir / "comfy.raw.log").open("xb")

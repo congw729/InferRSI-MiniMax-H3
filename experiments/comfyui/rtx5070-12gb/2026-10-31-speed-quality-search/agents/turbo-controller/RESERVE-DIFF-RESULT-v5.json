@@ -1,0 +1,15 @@
+{
+  "gates_only_reserve_diff": {
+    "reserve_vram_gb": [
+      2.0,
+      3.0
+    ]
+  },
+  "controller_only_expected_gates_hash_changed": true,
+  "old_gates_sha256": "dd9658a253e1e0c73bd1d1fe9034055622289a9f6748486fb55761bfa195eecf",
+  "new_gates_sha256": "13672a9bbe8946c28c98b3bab0f906f6ddfe67735ff7f77929e58539a4a580dd",
+  "candidate_sha256": "604ae8578f132e66654924dd08c9515a0be6b25273faa5e962efe93c9f91102c",
+  "prior45_metadata_checks_reused_no_rerun": true,
+  "quality_performance": "INCONCLUSIVE",
+  "comparison_scope": "whole recipe candidate; resource reserve also changed, not single-factor causal test"
+}

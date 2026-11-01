@@ -1,0 +1,41 @@
+{
+  "schema": "q33-contact-sheet-source-freeze/v1",
+  "files": [
+    {
+      "path": "PLAN-576-v1.json",
+      "bytes": 1336,
+      "sha256": "8d330f0340b1681f324d040ca907d7df24ee98043afae54163eb4489d38e9d78"
+    },
+    {
+      "path": "contact_sheets_576_v1.py",
+      "bytes": 7730,
+      "sha256": "4e081b2b1163a1d6f1b710e3548a0b89b2e31889551883372de1faee392311fe"
+    },
+    {
+      "path": "PLAN-TURBO-AND-576-v1.json",
+      "bytes": 665,
+      "sha256": "3594c1b6c843dca52cc106c993fb615b4187b5d2d9ac9144fe612fa0a98f606a"
+    },
+    {
+      "path": "INPUTS-576-v1.json",
+      "bytes": 768,
+      "sha256": "5210b1fcd5aa259412eb6a365c2b496867a3dd68361db124489dadc9d659e323"
+    },
+    {
+      "path": "contact_sheets_v2.py",
+      "bytes": 7800,
+      "sha256": "b0d5f4283f5f6bb78c5f650bcea7e779f472b42f81c2745ded7eba329827b68d"
+    },
+    {
+      "path": "CONTACT-576-v1.patch",
+      "bytes": 3110,
+      "sha256": "db7e6e69f8ecd20ec85a716eabfa5f95b4857a423530d7a1ccc5daf13cd7252d"
+    },
+    {
+      "path": "GEOMETRY-576-CHECK-v1.json",
+      "bytes": 257,
+      "sha256": "1c04c2b080d97a1d4aaf1abcba76a885ea265ab9e50fde82d168a8789041e9eb"
+    }
+  ],
+  "claim": "INCONCLUSIVE"
+}

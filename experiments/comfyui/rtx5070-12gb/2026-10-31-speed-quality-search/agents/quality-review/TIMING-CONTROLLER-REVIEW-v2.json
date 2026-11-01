@@ -1,0 +1,65 @@
+{
+  "schema": "q33-independent-timing-review/v2",
+  "at_utc": "2026-10-30T17:16:52.6023616Z",
+  "scope": "Incremental read-only review of controller-v2-cleanup.patch and frozen targeted offline evidence; previous v1 review retained",
+  "candidate": "agents/timing-controller/speed_stage_b_v2.py",
+  "candidate_sha256": "916c8f2e19d9d42d72719e985ee801d9a92e4d43d007eeabb9ec25c52c77d797",
+  "freeze_items_rechecked": 8,
+  "freeze_mismatches": [],
+  "resolved_findings": [
+    {
+      "resolution": "Nonblocking observer stop precedes immediate owned Job close and exact child kill/wait; observer join/write now follows owned service cleanup",
+      "id": "T1"
+    },
+    {
+      "resolution": "Journal write is best effort after owned service cleanup; logger and observer errors cannot skip the explicit Job/process cleanup",
+      "id": "T2"
+    }
+  ],
+  "targeted_evidence": {
+    "sha256": "6e9604ec287ae88363ef61bc48991f76c3b43e5abc0e9ef7f891a8d22b9b3796",
+    "reviewed_not_rerun": true,
+    "stderr_bytes": 0,
+    "scenarios_scope": [
+      "normal",
+      "logger OSError",
+      "Job.close OSError",
+      "observer.finish OSError"
+    ],
+    "all_observed": true,
+    "scenarios": 4,
+    "path": "agents/timing-controller/offline-v2-cleanup.stdout.json",
+    "real_process_gpu_or_network_validation": false
+  },
+  "code_observations": [
+    "Job.close failure still attempts exact root cleanup and reports cleanup_inconclusive",
+    "Owned root wait failure reports cleanup_inconclusive",
+    "Stream close is best effort",
+    "Profiles, assets, gates and timing observer unchanged by v2 patch"
+  ],
+  "readiness": {
+    "ready_for_one_original_50_timing_trial": true,
+    "conditions": [
+      "Freeze exact v2 controller and execution sources before dispatch",
+      "Fresh resource snapshot must meet the recorded admission revision",
+      "All existing controller start/running/owned memory and free VRAM guards remain unchanged",
+      "Actual node timing requires the real WS evidence; missing endpoints remain null"
+    ],
+    "blockers": []
+  },
+  "admission_review": {
+    "physical_gib": 12,
+    "controller_stop_gates_unchanged": true,
+    "previous_sampled_owned_private_bytes": 13331423232,
+    "commit_gib": 16.5,
+    "scope": "Conditional same-configuration repeat only, based on parent-reported fresh snapshot and prior measured run",
+    "measured_peak_is_not_continuous_or_a_universal_requirement": true,
+    "no_other_user_process_termination": true
+  },
+  "claim": "INCONCLUSIVE",
+  "limits": [
+    "No real service, model or GPU run by this reviewer",
+    "Targeted fake scenarios do not prove real Windows Job or websocket lifecycle",
+    "Not a service performance or quality verdict"
+  ]
+}

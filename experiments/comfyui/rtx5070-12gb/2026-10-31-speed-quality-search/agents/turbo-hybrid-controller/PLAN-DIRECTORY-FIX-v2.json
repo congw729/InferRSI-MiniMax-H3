@@ -1,0 +1,24 @@
+{
+  "schema": "q33-hybrid-directory-fix-plan/v2",
+  "created_utc": "2026-10-30T18:12:04.309386+00:00",
+  "baseline_file": "turbo_hybrid_stage_b_v1.py",
+  "baseline_sha256": "eb195fdb263ee8015bd06233f4cfb115f4741749e87b2a02afa5d56793b341a1",
+  "change": "Only create empty fresh run/base/custom_nodes after existing seven task-owned directory mkdir calls, before service spawn. Preserve all graphs/receipts/guards/cleanup/native runtime/custom node files.",
+  "failure_preserved": "results/inferrsi-turbo-hybrid-6-98a2d965c65e49ef8c2f861a583c0890",
+  "source_evidence": {
+    "path": "ComfyUI/main.py",
+    "lines": [
+      185,
+      186,
+      200,
+      203
+    ],
+    "sha256": "baaa16d69ee78e08c490eeec20bf27c56b746c070f76cc05b4aa13cbc616bcef"
+  },
+  "validator": {
+    "file": "validate_hybrid_directory_v2.py",
+    "sha256": "0f61e3eabbffafeca36b47b5c8c7a24d03250986f69b75be17e205b83dbc0bb8"
+  },
+  "frozen_gate": "One targeted case: exact one-line source diff; execute only dirs assignment/for/mkdir AST slice in new E directory; all original seven dirs plus empty base/custom_nodes; no Torch/service/author/model/GPU/network. Keep small output and do not delete.",
+  "quality_performance": "INCONCLUSIVE"
+}

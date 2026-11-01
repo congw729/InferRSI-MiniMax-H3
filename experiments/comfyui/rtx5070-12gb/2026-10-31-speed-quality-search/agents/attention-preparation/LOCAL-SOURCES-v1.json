@@ -1,0 +1,82 @@
+{
+  "schema": "q33-attention-local-source-audit/v1",
+  "scope": "Read-only installed sources and prior native schema/log, no import/Torch/GPU probing",
+  "portable_sources": [
+    {
+      "path": "ComfyUI/comfy_extras/nodes_model_advanced.py",
+      "bytes": 17514,
+      "sha256": "8308f07f95938c2156136553ffd1e81b13e71aa6955c71f48c64404bdf91fe1c"
+    },
+    {
+      "path": "ComfyUI/comfy_extras/nodes_sparse_attention.py",
+      "bytes": 23450,
+      "sha256": "de202f2b5eb753a5748e1c6452cdc10cdf28834ffd8f8bb6acfaf6f643de9692"
+    },
+    {
+      "path": "ComfyUI/comfy/ldm/modules/attention.py",
+      "bytes": 56383,
+      "sha256": "15e4d191c645cb3b475a2d48b16d3d9ac4ff6c4c9b7b714f03ecc25bfb1bf80a"
+    },
+    {
+      "path": "ComfyUI/comfy/ops.py",
+      "bytes": 93642,
+      "sha256": "0167aef2929b92ba3623376f7656e58ead5869485b926b09bead525f32e4dd06"
+    },
+    {
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/sage_attention.py",
+      "bytes": 23243,
+      "sha256": "565bab9b3ab7ce81a06f761812f7a775a465cebf20fecf15c9fd39590b6338b8"
+    },
+    {
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/backends/cuda/_C.abi3.pyd",
+      "bytes": 35901952,
+      "sha256": "fe4cd34a0c2fa9d13737266a89066409894978297d33d4239cf3c894b849385d"
+    },
+    {
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen-0.2.40.dist-info/METADATA",
+      "bytes": 19753,
+      "sha256": "a2fb59b8cf3235662bdd17a9b146d1616ae473491da0ff5e7d2dad483fb166df"
+    },
+    {
+      "path": "python_embeded/Lib/site-packages/torch-2.14.1+cu130.dist-info/METADATA",
+      "bytes": 37982,
+      "sha256": "c980571008c81c6a36b9b2ef06bf63036a389835c4e3f15d42365d07b83d0de2"
+    }
+  ],
+  "prior_run_relative_to_runs_parent": "q33-trim-8-92cae71fdc914fec818983563370cb76",
+  "schema_sha256": "66118e41d00f28da3eef97e92a0293ca177684904de5169815f0778c0854de40",
+  "prior_log_sha256": "03d4c394f2fd95067853b618f349291801f4931189b859d50ae93576f3d8f258",
+  "actual_prior_schema_options": [
+    "pytorch attention",
+    "comfy kitchen attention"
+  ],
+  "installed_distribution_names": [
+    "comfy_kitchen-0.2.40",
+    "torch-2.14.1+cu130"
+  ],
+  "not_present_as_package_directory": [
+    "sageattention",
+    "sageattn3",
+    "flash_attn",
+    "xformers",
+    "triton"
+  ],
+  "prior_log_facts": [
+    "RTX5070",
+    "CUDA kitchen backend available",
+    "triton unavailable: no module",
+    "global Using pytorch attention does not describe node128 override"
+  ],
+  "kitchen_gpu_gate": "CUDA extension available and capability >=7.5; prior live schema offers kitchen on this GPU; not a per-kernel trace",
+  "packed_rows": 2385,
+  "min_tokens": 12288,
+  "sparse_selection_inactive_for_this_geometry": true,
+  "sdpa_priority_source": [
+    "FLASH_ATTENTION",
+    "CUDNN_ATTENTION",
+    "EFFICIENT_ATTENTION",
+    "MATH"
+  ],
+  "actual_sdpa_kernel": null,
+  "quality_speed_verdict": "INCONCLUSIVE"
+}

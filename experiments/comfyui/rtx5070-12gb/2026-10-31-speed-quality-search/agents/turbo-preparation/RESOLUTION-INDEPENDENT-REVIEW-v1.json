@@ -1,0 +1,18 @@
+{
+  "schema": "q33-resolution-independent-review/v1",
+  "created_utc": "2026-10-30T18:34:26.856821+00:00",
+  "freeze_sha256": "7d13204a6b36cae7bc788652e967402f6b52bc6ee67c50bb7d87aaf9b4c2aca7",
+  "local_matched": 19,
+  "external_matched": 7,
+  "controller_sha256": "7eba09ef5e83aaa7517ad24115651a2d2ae6f80c3169921c2aeaab4579caf0c3",
+  "media_sha256": "a6bf70e146c07e1ae3706b2900130afd44cbd92787584f78a13cf1994c52cf5b",
+  "blockers": [],
+  "findings": [
+    "Formal profile is fixed Trim8 576x384 with same3:2;640 PLAN-v1 remains unexecuted historical design",
+    "Controller limits width/height/outputprefix with fixedTrim8 and adjusts own root/mode/schema; resource and cleanup unchanged",
+    "CPU media diff changes only five geometry literal positions; resource-gates bytes unchanged; old384 validator is correctly excluded in handoff",
+    "Arithmetic 22*(36/2)*(24/2)+244+29=5025 below unchanged12288 min_tokens; this source-level gate inference does not trace actual kernel or prove memory capacity",
+    "Same seed at larger latent shape need not preserve composition; neither quality nor speed is established"
+  ],
+  "scope": "Read-only precise patch and declared small-source/metadata identity review; no repeated25 gates, GPU, model load or media decode"
+}

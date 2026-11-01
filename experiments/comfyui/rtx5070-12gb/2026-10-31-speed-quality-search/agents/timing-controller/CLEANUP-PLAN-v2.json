@@ -1,0 +1,24 @@
+{
+  "schema": "q33-cleanup-order-fix/v2",
+  "plane": "harness",
+  "baseline_controller_sha256": "17ad08a26af88efad9ee2bd25ee7bd575cde8adfb6a574f472d5fd336c539ae3",
+  "frozen_before_candidate": true,
+  "changes": [
+    "Signal observer without joining; close owned Job and exact process before observer finish",
+    "Cleanup event I/O exceptions cannot bypass owned process cleanup; diagnostics best effort"
+  ],
+  "unchanged": [
+    "timing_events_v1.py",
+    "profiles and graphs",
+    "source manifest154",
+    "model and resource gates",
+    "normal dispatch/sampling/HTTP"
+  ],
+  "offline_gates": [
+    "stop before Job close; Job/process exited before event/join",
+    "raising cleanup logger still closes Job/process and finishes observer",
+    "Job-close exception still attempts exact process cleanup",
+    "observer-finish failure occurs after owned process cleanup"
+  ],
+  "no_network_gpu": true
+}

@@ -1,0 +1,51 @@
+{
+  "schema": "h3-speed-quality-search-plan/v1",
+  "client_date": "2026-10-31",
+  "created_utc": "2026-10-30T17:01:47.717637+00:00",
+  "authority": "User now prioritizes maximizing speed with no large perceived quality degradation; previous strict original/no-pruning restriction relaxed; continue until account remaining20percent. Preserve all existing files.",
+  "objective": "Find fastest credible configuration on localRTX5070/32GB for useful short audio-video, using actual quality review and fully scoped timing. Preserve original50step reference; Omni migration remains later objective, not prerequisite.",
+  "planes_sequence": [
+    "harness: timestamped native node observer and complete result contract",
+    "model: step/profile/LoRA/Trim candidates, one controlled factor within each family",
+    "infra: VRAM residency/offload/backend/persistence candidates with same model/quality workload"
+  ],
+  "candidate_families": [
+    "original fullINT8 50reference and30/20steps",
+    "existingFastH3TrimNVFP4 8reference; shorter schedule only after native compatibility check",
+    "full-baseTurbo v4step600EMA 8/6steps after provenance/isolated compatibility review",
+    "attention or transfer optimization after measured bottleneck; no blind dependency churn"
+  ],
+  "fixed_initial_workload": {
+    "prompt": "A small red toy car drives slowly from left to right across a wooden table. Static camera, continuous motion. Audio: a quiet motor hum.",
+    "seed": 424242,
+    "width": 384,
+    "height": 256,
+    "frames": 73,
+    "fps": 24,
+    "conditioning_sha256": "ad5c2652080729c191db4189ab42a42c5f80476370e82a9e2a99fe008cb303f2"
+  },
+  "comparisons": "Different model families are end-to-end alternatives, not causal one-factor speedup claims. Same-family sweeps change one declared factor. Freeze each candidate before run.",
+  "quality": "Local screening: full decode/finite/audio/duration and explicit visual observations; no invented quality-percent gate. Single scene cannot establish general equivalence; expand representative prompts for promising candidates. Human quality acceptance pending unless explicit.",
+  "resource_policy": {
+    "gpu_parallelism": 1,
+    "existing_runtime_guards_preserved": true,
+    "do_not_kill_other_processes": true,
+    "models_media_location": "<E_H3_LAB>",
+    "records_location": "<NOTES_ROOT>/iterations/2026-10-31-speed-quality-search",
+    "no_delete": true
+  },
+  "budget_policy": {
+    "last_remaining_percent": 50,
+    "stop_floor_remaining_percent": 20,
+    "check_before_each_new_expensive_trial_and_periodically": true,
+    "near_floor_finish_owned_worker_and_archive": true,
+    "no_new_token_budget_invented": true,
+    "download_cap_total_GiB": 128,
+    "old_ledger_not_reset": true,
+    "new_candidate_download_manifest_required": "fixed publicrevision/filebytes/SHA, add to historicaltotal, avoid redownload",
+    "no_large_model_download_started": true
+  },
+  "reporting": "notes/small redacted indices auto-push to existingprivate main; no runtime/weights/media publish; failures/frozen evidence retained",
+  "campaign_verdict": "INCONCLUSIVE",
+  "acceptance_issue": "not established; no formal campaignPASS or advertised gain claim"
+}

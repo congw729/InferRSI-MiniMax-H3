@@ -1,0 +1,38 @@
+{
+  "schema": "q33-persistent-candidate-freeze/v1",
+  "created_utc": "2026-10-30T18:21:01.945993+00:00",
+  "files": [
+    {
+      "path": "DESIGN-v1.zh-CN.txt",
+      "bytes": 3055,
+      "sha256": "c71b66ab5df4172162875582745b68ee0bf7b7f03f9441251d4ae407995fb3e2"
+    },
+    {
+      "path": "persistent_stage_b_v1.py",
+      "bytes": 57696,
+      "sha256": "333ec8b999dd747e585ce01e57245a4db5ec582cbbb146bf810f52e2ef39c7ef"
+    },
+    {
+      "path": "PLAN-FROZEN-v1.json",
+      "bytes": 1072,
+      "sha256": "5bf339a0f7e32d4def960fc54280db6e3f86d2fe1e8d894359a392246eca2f96"
+    },
+    {
+      "path": "SOURCE-READOUT-v1.json",
+      "bytes": 2402,
+      "sha256": "a1e0d413bf22a1b142fb24bbead06b3b20328572bae6a0947f956911b9adea36"
+    },
+    {
+      "path": "speed-v6-to-persistent-v1.patch",
+      "bytes": 28480,
+      "sha256": "76131029823ef687d55799a9e658b1e16b37f61f7734fb473451e6a029b0f86e"
+    },
+    {
+      "path": "validate_persistent_offline_v1.py",
+      "bytes": 4218,
+      "sha256": "c4f25e32d28bfbb707473a3af407e41ef48dc8f81509d5ac8d8d7df1adc52641"
+    }
+  ],
+  "scope": "Freeze before targeted offline validation; no real dispatch yet",
+  "quality_performance": "INCONCLUSIVE"
+}

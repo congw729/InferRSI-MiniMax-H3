@@ -1,0 +1,25 @@
+{
+  "checks": [
+    {
+      "label": "READOUT-CHECKS-v1",
+      "returncode": 0,
+      "stdout_bytes": 42,
+      "stderr_bytes": 0
+    },
+    {
+      "label": "PORTABLE-HELP-v1",
+      "returncode": 0,
+      "stdout_bytes": 1110,
+      "stderr_bytes": 0
+    },
+    {
+      "label": "PORTABLE-PREVIEW-PENDING-v1",
+      "returncode": 0,
+      "stdout_bytes": 3604,
+      "stderr_bytes": 0
+    }
+  ],
+  "gpu_dispatches": 0,
+  "native_service_started": false,
+  "claim": "INCONCLUSIVE"
+}

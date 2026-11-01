@@ -1,0 +1,107 @@
+{
+  "schema": "q33-e2e-targeted-offline/v1",
+  "complete": true,
+  "model_dispatches": 0,
+  "network_requests": 0,
+  "checks": [
+    {
+      "name": "inherited_sample",
+      "ok": true
+    },
+    {
+      "name": "inherited_guarded_hash",
+      "ok": true
+    },
+    {
+      "name": "inherited_cleanup_owned_v2",
+      "ok": true
+    },
+    {
+      "name": "inherited_begin_request",
+      "ok": true
+    },
+    {
+      "name": "inherited_begin_post",
+      "ok": true
+    },
+    {
+      "name": "inherited_conditioning_header",
+      "ok": true
+    },
+    {
+      "name": "inherited_verify_dynamic_vram_startup",
+      "ok": true
+    },
+    {
+      "name": "fresh_exact_floor",
+      "ok": true
+    },
+    {
+      "name": "fresh_reject_available_physical_bytes",
+      "ok": true
+    },
+    {
+      "name": "fresh_reject_available_commit_bytes",
+      "ok": true
+    },
+    {
+      "name": "fresh_reject_gpu_board",
+      "ok": true
+    },
+    {
+      "name": "startup_marker_not_ack",
+      "ok": true
+    },
+    {
+      "name": "new_marker_enters_reset_path",
+      "ok": true
+    },
+    {
+      "name": "truncated_log_rejected",
+      "ok": true
+    },
+    {
+      "name": "repeat_post_rejected",
+      "ok": true
+    },
+    {
+      "name": "third_request_rejected",
+      "ok": true
+    },
+    {
+      "name": "only_condition_prefix_delta",
+      "ok": true
+    },
+    {
+      "name": "path_alias_rejected",
+      "ok": true
+    },
+    {
+      "name": "finite_and_tags_valid",
+      "ok": true
+    },
+    {
+      "name": "nan_rejected",
+      "ok": true
+    },
+    {
+      "name": "badtag_rejected",
+      "ok": true
+    },
+    {
+      "name": "shape_rejected",
+      "ok": true
+    },
+    {
+      "name": "exact_stage_calls",
+      "ok": true
+    },
+    {
+      "name": "no_torch_import",
+      "ok": true
+    }
+  ],
+  "elapsed_seconds": 0.09977960004471242,
+  "fixture_directory": "offline-7a3b0c60aba7436da1343e0d7dbc1788",
+  "check_count": 24
+}

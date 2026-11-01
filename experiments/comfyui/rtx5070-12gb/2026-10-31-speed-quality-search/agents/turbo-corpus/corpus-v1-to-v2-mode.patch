@@ -1,0 +1,20 @@
+--- turbo_corpus_stage_b_v1.py
++++ turbo_corpus_stage_b_v2.py
+@@ -322,7 +322,7 @@
+ 
+ def parse():
+     p = argparse.ArgumentParser(description=__doc__, allow_abbrev=False)
+-    p.add_argument("--mode", choices=["speed-video-stage-b"], required=True)
++    p.add_argument("--mode", choices=["turbo-corpus-video-stage-b"], required=True)
+     for name in ("iteration-root", "lab-root", "portable-python", "comfy-root",
+                  "run-dir", "stop-marker", "nvidia-smi", "inferrsi-src",
+                  "gates", "conditioning-manifest", "notes-root", "q31-root",
+@@ -466,7 +466,7 @@
+     proc = job = raw_log = samples = journal = observer = None
+     next_sample = next_gpu = 0.0
+     gpu = None
+-    state = {"status": "preflight", "claim": "INCONCLUSIVE", "mode": "speed-video-stage-b",
++    state = {"status": "preflight", "claim": "INCONCLUSIVE", "mode": "turbo-corpus-video-stage-b",
+              "profile_id": a.loaded_profile["id"], "profile_sha256": a.profile_sha256,
+              "corpus_id": a.loaded_profile["corpus_id"], "prompt_sha256": a.loaded_profile["prompt_sha256"],
+              "controller_entry_perf_counter_ns":entry_perf_ns,

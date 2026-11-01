@@ -1,0 +1,138 @@
+{
+  "schema": "q33-e2e-attempt1-review/v1",
+  "claim": "INCONCLUSIVE",
+  "attempt_result": "FAIL",
+  "failure_scope": "StageA completed; 30-second release admission wait did not regain fixed 16.5GiB available commit. No DiT POST or video occurred.",
+  "source_result_sha256": "20fa0c9112ce47080293ff95a2228b8d490a78e34f9a403d72f98c1e3b16ba0c",
+  "events_sha256": "df1b351466fe49a1d180a670e136f7c1951960cd2c8a29e9117418656d288435",
+  "resource_samples_sha256": "6e31eb29da0724a7ae7bff928001488ee240740f5ef630a547af24954d6d7caf",
+  "controller_sha256": "378b3830cb85edaaec9c9b6a1539e084c3a2a04ccf74ed088c527ccd6b8ff903",
+  "execution_freeze_sha256": "4bc84ddf38701bbb086abe4efde5febdd59429a6d7f89caf726f6e4945eeb035",
+  "trial_relative_to_iteration": "results/inferrsi-e2e-bounce-trim8-69cb3e6959a2499fa4c7b32c214da4a0",
+  "timeline_seconds": {
+    "source_verification": 0.2031172,
+    "asset_full_hash_by_asset": {
+      "trim-dit": 7.32533,
+      "video-vae": 1.7649602,
+      "audio-vae": 0.3649732,
+      "text-encoder": 9.4999941
+    },
+    "asset_full_hash_sum": 18.955257500000002,
+    "service_spawn_to_owned_ready_and_dynamic_marker": 9.3578794,
+    "native_schema_verification": 0.1767415,
+    "stageA_native_prompt": 3.569,
+    "stageA_ws_nodes": {
+      "13": 0.6478672,
+      "11": 0.2494115,
+      "104": 2.6656839,
+      "1001": 0.0045949
+    },
+    "condition_verify_and_alias": 0.0278624,
+    "free_start_to_reset_path_marker": 0.0787219,
+    "release_wait_until_failure": 30.2252858,
+    "controller_through_cleanup": 63.64218730002176,
+    "DiT_native_prompt": null,
+    "DiT_sampler": null,
+    "video_VAE_decode": null,
+    "audio_VAE_decode": null,
+    "MP4_save": null,
+    "end_to_end_video_ready": null,
+    "GPU_kernel_only": null
+  },
+  "condition": {
+    "bytes": 840216,
+    "sha256": "70a19cfeb46fe9411ac6f3fbfea63c253056d28cffb9bb28f269da4c2134d170",
+    "matches_split_reference": true,
+    "finite_and_tags": {
+      "finite_values_checked": true,
+      "all_token_tags_one": true,
+      "elements_checked": 209961,
+      "nonzero_conditioning_values": 209920,
+      "roundtrip_equivalence_checked": false
+    },
+    "alias": {
+      "relative_to_models": "embeddings\\h3-e2e-bounce-69cb3e6959a2499fa4c7b32c214da4a0-70a19cfeb46fe9411ac6f3fbfea63c253056d28cffb9bb28f269da4c2134d170.safetensors",
+      "sha256": "70a19cfeb46fe9411ac6f3fbfea63c253056d28cffb9bb28f269da4c2134d170",
+      "samefile": true,
+      "created": true
+    }
+  },
+  "release": {
+    "log_offset": 8146,
+    "post_attempted": true,
+    "reset_path_entered": true,
+    "fresh_admitted": false,
+    "te_object_absence_proven": false,
+    "start_perf_counter_ns": 992434130985600,
+    "http_status": 200,
+    "marker_perf_counter_ns": 992434209696800,
+    "actual_marker_absolute_byte_offset": 8162,
+    "raw_log_sha256": "e7ab685ded58858f1e1926c90fec909ca33597c3435f6a9549254fc4377a4004",
+    "marker_is_completion_ack": false,
+    "stable_window_rule": "Samples >=2s after newly observed reset-path-entered marker",
+    "stable_samples": 27,
+    "stable_owned_private_min": 3840593920,
+    "stable_owned_private_max": 3840593920,
+    "stable_available_commit_min": 16146886656,
+    "stable_available_commit_max": 16336310272,
+    "TE_object_absence_proven": false
+  },
+  "resources": {
+    "peak_owned_private_bytes_including_last_sample": 13555654656,
+    "peak_owned_rss_bytes_including_last_sample": 4894150656,
+    "last_sample": {
+      "elapsed_seconds": 63.56069710000884,
+      "request_index": 1,
+      "available_physical_bytes": 18257997824,
+      "available_commit_bytes": 16326205440,
+      "commit_limit_bytes": 57285681152,
+      "owned_processes": [
+        {
+          "pid": 30316,
+          "rss_bytes": 1784475648,
+          "private_bytes": 3840593920
+        }
+      ],
+      "owned_rss_sum_bytes": 1784475648,
+      "owned_private_sum_bytes": 3840593920,
+      "e_free_bytes": 383498747904,
+      "gpu_board": {
+        "total_bytes": 12820938752,
+        "used_bytes": 2430599168,
+        "free_bytes": 10093592576,
+        "sample_elapsed_seconds": 63.641540099983104
+      }
+    },
+    "only_fixed_fresh_dimension_unmet": "available_commit",
+    "board_metrics_are_whole_board_not_torch_allocator": true
+  },
+  "cleanup": {
+    "prompt_posts": 1,
+    "completed_requests": 1,
+    "free_posts": 1,
+    "owned_root_exited": true,
+    "job_close_requested": true,
+    "diagnostics": [],
+    "condition_and_alias_preserved": true
+  },
+  "old_split_reference": {
+    "stageA_result_sha256": "9ee4c39cfe9d96735d432015ba84bba5d67d920445956a1ffd8498e9756ec401",
+    "stageB_result_sha256": "022c8a45e26c38c63db843d7e88a2f2392f09e98e927087d6d11d120be6119d3",
+    "stageA_controller_seconds": 34.034207799937576,
+    "stageB_controller_seconds": 27.991701400023885,
+    "arithmetic_sum_only_seconds": 62.02590919996146,
+    "same_single_session_e2e_measurement": false,
+    "comparison_limit": "Old separate successful runs; v1 emitted no video. Cannot claim end-to-end speedup."
+  },
+  "proposed_warm_budget_not_applied_to_v1": {
+    "private_cap_bytes": 17179869184,
+    "system_commit_floor_bytes": 2147483648,
+    "current_owned_private_bytes": 3840593920,
+    "remaining_private_growth_budget_bytes": 13339275264,
+    "required_free_commit_bytes": 15486758912,
+    "actual_free_commit_bytes": 16326205440,
+    "fixed_fresh_commit_floor_bytes": 17716740096,
+    "safety_margin_bytes": null,
+    "requires_new_frozen_harness_and_review": true
+  }
+}

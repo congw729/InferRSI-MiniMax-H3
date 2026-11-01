@@ -1,0 +1,22 @@
+{
+  "schema": "q33-turbo-corpus-parent-help/v1",
+  "helper_sha256": "1ffb91a42e315a5163cc4f6a5b627f188a56e44bd330a019877d07949462233b",
+  "actual_interpreter": "existing portable python_embeded/python.exe",
+  "args_suffix": [
+    "-s",
+    "-B",
+    "-X",
+    "utf8",
+    "run_turbo_corpus_v1.py",
+    "--help"
+  ],
+  "returncode": 0,
+  "stderr_observed": false,
+  "accepted_cases": [
+    "bounce-audio",
+    "hands-face-mug"
+  ],
+  "resource_queries": 0,
+  "model_GPU_service_dispatches": 0,
+  "scope": "Actual argparse help exited before resource preflight or launch; source diff reviewed separately."
+}

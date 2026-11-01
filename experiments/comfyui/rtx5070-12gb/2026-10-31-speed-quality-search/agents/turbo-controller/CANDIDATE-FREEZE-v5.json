@@ -1,0 +1,118 @@
+{
+  "schema": "q33-native-turbo-candidate-freeze/v5",
+  "created_utc": "2026-10-30T17:25:54.956477+00:00",
+  "candidate": "turbo_stage_b_v5.py",
+  "candidate_sha256": "604ae8578f132e66654924dd08c9515a0be6b25273faa5e962efe93c9f91102c",
+  "baseline_controller_sha256": "524bf48df04c3ecdb251115b4db08c6482ed36eeb33405db34799b3a5669f66e",
+  "timing_module_relative_to_iteration": "agents/timing-controller/timing_events_v1.py",
+  "timing_module_sha256": "f0abb1937ca5462d712a73d1a8623b6a9f5df86927dbcf6375903b8a5ad3e614",
+  "runtime_sources_manifest_relative_to_iteration": "agents/timing-controller/SOURCES-v1.json",
+  "runtime_sources_manifest_sha256": "bf0d3e3b09f8130053735eaa6645bcc4ff753833a97ef4ae306d7d223283f007",
+  "source_files": [
+    {
+      "path": "assets/turbo-native.pending.json",
+      "bytes": 3655,
+      "sha256": "9f959985568131f2ff0aa68cb48bd36eca50cce8ef13924ae5d1544e8ab7a43e"
+    },
+    {
+      "path": "canonical/original.json",
+      "bytes": 3069,
+      "sha256": "d5937f2505f74e07ce8de746c49c98e8a428535d79ccc878383e8b989807fb29"
+    },
+    {
+      "path": "conditioning/turbo-native-6.json",
+      "bytes": 1059,
+      "sha256": "e84a47f0263f8bcb967c1a8289745629e1a550094134030ff2722af620f97a7f"
+    },
+    {
+      "path": "conditioning/turbo-native-8.json",
+      "bytes": 1059,
+      "sha256": "ced34d2e4003c32964f28d62f4404150921275594a31ab5f1ec880c53dc6efb8"
+    },
+    {
+      "path": "controller-v3-to-turbo-v4.patch",
+      "bytes": 18840,
+      "sha256": "2e9a0a24c19f020fde03306a408aa64f8c950a5e37c0df6202c79169b08aa9f9"
+    },
+    {
+      "path": "controller-v4-to-v5-reserve.patch",
+      "bytes": 2843,
+      "sha256": "1fdcb871542b91ac207175bfd74f4f9b94b252646d358255ab98338f641cc91d"
+    },
+    {
+      "path": "EXTRA-NATIVE-LORA-SOURCES-v4.json",
+      "bytes": 1348,
+      "sha256": "40ef10a42124c9e6e3c0b22e265cd456e24ad556a01fe764a0f9196e78c97036"
+    },
+    {
+      "path": "graphs/turbo-native-6.json",
+      "bytes": 3490,
+      "sha256": "e0f890fb91a40f559070101b4143e147fa51c511d55a1df7e187b92ea215add9"
+    },
+    {
+      "path": "graphs/turbo-native-8.json",
+      "bytes": 3490,
+      "sha256": "6130337efb39907e0eaec48a6a1760e6424fe94a54a6326b775f5523e3aca4f9"
+    },
+    {
+      "path": "offline-v4.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "offline-v4.stdout.json",
+      "bytes": 3473,
+      "sha256": "68c7550dd33f4dc22bca6c037cd24b27501b6545f00bdaff434e6f2c104c3a08"
+    },
+    {
+      "path": "PLAN-FROZEN-v4.json",
+      "bytes": 1909,
+      "sha256": "9497a6e3a28296a31fea5b9c2b18a9417fe710de6943d27c8d9543cf3b0daf3a"
+    },
+    {
+      "path": "profiles/turbo-native-6.pending.json",
+      "bytes": 934,
+      "sha256": "5c06b7bd485837f2941c20490685e6b32f2fe59d669e9aa341808f0d9d721c1e"
+    },
+    {
+      "path": "profiles/turbo-native-8.pending.json",
+      "bytes": 934,
+      "sha256": "f35fc442210ad2965b988f60987dd893e65b62348796b87efbbb6ae936642f5f"
+    },
+    {
+      "path": "RESERVE-DIFF-RESULT-v5.json",
+      "bytes": 633,
+      "sha256": "4f8ad9061b31143f915bf0a32d1df957533806348cf5724454bc8a7856de36b3"
+    },
+    {
+      "path": "RESERVE-PLAN-FROZEN-v5.json",
+      "bytes": 784,
+      "sha256": "46699e882eeeca6dba0ca2a5e7df4394c96712136b13dbbc37c268f195114087"
+    },
+    {
+      "path": "TURBO-RESOURCE-GATES-v1.json",
+      "bytes": 855,
+      "sha256": "13672a9bbe8946c28c98b3bab0f906f6ddfe67735ff7f77929e58539a4a580dd"
+    },
+    {
+      "path": "turbo_stage_b_v4.py",
+      "bytes": 53366,
+      "sha256": "7c4c4f44460f0c7dd2a64892d61c13f9e087d79d5bbdeb1956b75bb9b057834d"
+    },
+    {
+      "path": "turbo_stage_b_v5.py",
+      "bytes": 53366,
+      "sha256": "604ae8578f132e66654924dd08c9515a0be6b25273faa5e962efe93c9f91102c"
+    },
+    {
+      "path": "validate_offline_v4.py",
+      "bytes": 4953,
+      "sha256": "283bbab3cb326d8048eef81736eba192110c08be62e1d938af41572fab6e1b61"
+    }
+  ],
+  "offline": "45 v4 metadata/graph/schema/unchangedAST checks; v5 only gatesSHA change verified, no rerun",
+  "dispatch_ready": false,
+  "actual_LoRA_receipt_or_header_read": false,
+  "no_model_or_GPU_execution": true,
+  "comparison": "recipe comparison reserve3 vs prior reserve2; no singlefactor/quality claim"
+}

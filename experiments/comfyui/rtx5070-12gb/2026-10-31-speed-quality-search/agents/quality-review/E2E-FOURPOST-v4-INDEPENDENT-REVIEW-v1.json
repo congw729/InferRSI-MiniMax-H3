@@ -1,0 +1,40 @@
+{
+  "schema": "q33-fourpost-independent-review/v1",
+  "utc": "2026-10-30T19:37:52.446753+00:00",
+  "decision": "no_blocker_for_one_bounded_two_prompt_session",
+  "claim": "INCONCLUSIVE",
+  "identities": {
+    "end_to_end_v4.py": "70a627fc293bb01f7961b7228abfa4b2cda413fecf9d148044ea1d981552d89f",
+    "e2e_helpers_v3.py": "da1f2273e93a18ba78e58f2ccae1f4cc52559e89a9285aeb91110e0f15aaf4d0",
+    "run_e2e_two_v4.py": "9e25c713e9ee33db634f24de23000c75db239f0790cfc67af8856ab1f921877c",
+    "validate_e2e_two_media_v4.py": "2b012f561c6e8029004b05c7ff92eca0182524e3280b680f898e2218f9be6fd9",
+    "EXECUTION-FREEZE-v4.json": "2c617737e96c095b5b2169ff4f566a9063b82a256b96266de1542a4beec53cd7",
+    "PARENT-MEDIA-FREEZE-v4.json": "618c79df4274e66c81159e15641c4a40ec4d78a741236fdfdab2c8cbb220f2a4"
+  },
+  "source_matches": {
+    "candidate_v3": 9,
+    "execution_local": 36,
+    "execution_notes": 24,
+    "runtime": 154,
+    "parent_media": 5
+  },
+  "checks": [
+    "Fixed bounce TE1/video2 then hands TE3/video4, with exactly3 bounded free transitions after completed predecessors",
+    "TE1/3 clears old condition/path; exact41/49token reference SHA and new percase condition subtree/alias; StageB matches immediately preceding case",
+    "All later POSTs including TE3 require successful latest free/newmarker/warm gate and forced warm recheck after websocket ready",
+    "At most4 prompt attempts and3free; no retry on unknown outcome; any exception prevents later dispatch; original runtime guards and cleanup unchanged",
+    "v4 singleline clears previous top-level timing immediately after begin_request; active observer cleanup still records current request",
+    "Parent correct v4 filename/hash/mode/freeze; same resources and existing InferRSI result environment",
+    "Media validates all4 actual completed requests/3release/fresh budgets and both reference conditions; request2/4 map to distinct percase videos and separate original-media-worker trials; first failed decode stops"
+  ],
+  "limitations": [
+    "Fourpost runtime not yet executed at review",
+    "No service/quality acceptance implied",
+    "Per-video CPU validator bounded140s; two sequential calls not a single140s aggregate deadline"
+  ],
+  "actions": {
+    "model_gpu_media_runs": 0,
+    "repeated_old_test_matrix": 0,
+    "runtime_edits": 0
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "schema": "q33-persistent-source-readout/v1",
+  "sources": [
+    {
+      "relative_to_portable": "ComfyUI/execution.py",
+      "bytes": 66163,
+      "sha256": "5312ba107f69f2bc70f4009c5d52524b3865dd54fceafdc8649b22c98d6c612f",
+      "line_ranges": [
+        [
+          121,
+          154
+        ],
+        [
+          499,
+          502
+        ],
+        [
+          828,
+          847
+        ]
+      ]
+    },
+    {
+      "relative_to_portable": "ComfyUI/comfy_execution/caching.py",
+      "bytes": 23938,
+      "sha256": "f71d43f6196330e73674e13795a9d392a95750ad55be2c9d96cf54355794b862",
+      "line_ranges": [
+        [
+          83,
+          128
+        ],
+        [
+          411,
+          438
+        ]
+      ]
+    },
+    {
+      "relative_to_portable": "ComfyUI/main.py",
+      "bytes": 31468,
+      "sha256": "baaa16d69ee78e08c490eeec20bf27c56b746c070f76cc05b4aa13cbc616bcef",
+      "line_ranges": [
+        [
+          337,
+          357
+        ],
+        [
+          384,
+          410
+        ],
+        [
+          416,
+          434
+        ]
+      ]
+    },
+    {
+      "relative_to_portable": "ComfyUI/comfy/model_management.py",
+      "bytes": 77396,
+      "sha256": "63610e41cf06fccb5eeaa153c5fd3799e01a0c645facba844763781d2036989a",
+      "line_ranges": [
+        [
+          893,
+          924
+        ],
+        [
+          939,
+          1038
+        ]
+      ]
+    },
+    {
+      "relative_to_portable": "ComfyUI/nodes.py",
+      "bytes": 112281,
+      "sha256": "776f549a05fc068eca20a9edc1602c6f1b80cfbbf5153bc44ba371a55fbb13be",
+      "line_ranges": [
+        [
+          844,
+          873
+        ],
+        [
+          992,
+          1015
+        ]
+      ]
+    },
+    {
+      "relative_to_portable": "ComfyUI/comfy/cli_args.py",
+      "bytes": 23996,
+      "sha256": "c88f737c65915bd19ff04be68d151c0794b03b09e50dcb4fcd088647eb796f4a",
+      "line_ranges": [
+        [
+          140,
+          144
+        ],
+        [
+          194,
+          194
+        ]
+      ]
+    }
+  ],
+  "baseline_controller": {
+    "relative_to_iteration": "agents/timing-controller/speed_stage_b_v6.py",
+    "sha256": "f194d1b1862eab246c826d19c36c9c0846afe89b1664f6c24cd3f367f86d9ee9"
+  },
+  "scope": "Static local source evidence, not runtime memory capacity or performance proof"
+}

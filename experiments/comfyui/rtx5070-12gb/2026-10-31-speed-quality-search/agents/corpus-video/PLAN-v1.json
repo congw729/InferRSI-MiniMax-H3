@@ -1,0 +1,42 @@
+{
+  "schema": "q33-corpus-video-plan/v1",
+  "created_utc": "2026-10-30T17:47:57.500801+00:00",
+  "plane": "harness",
+  "scope": [
+    "bounce-audio",
+    "hands-face-mug"
+  ],
+  "allowed_profiles": [
+    "original-50",
+    "original-20",
+    "trim-8",
+    "trim-6"
+  ],
+  "base_controller": {
+    "relative_to_iteration": "agents/timing-controller/speed_stage_b_v6.py",
+    "sha256": "f194d1b1862eab246c826d19c36c9c0846afe89b1664f6c24cd3f367f86d9ee9"
+  },
+  "base_value_validator": {
+    "relative_to_notes": "iterations/2026-10-28-comfy-trim-first-video/validator/real_conditioning_values_v3.py",
+    "sha256": "c2dc14bbfcf7576e3c495245d423be48b7b7f5d113f45ceac0d55c5ab3d911b8"
+  },
+  "value_validator_changes": [
+    "Q33 output/receipt scope and explicit corpus enum",
+    "Require frozen Stage-A v3 driver, fixed prompt and corresponding graph SHA in real successful single-POST cleaned receipt",
+    "Preserve original 32MiB/64KiB header/512KiB chunks/60s, dynamic token count, double full SHA, finite/nonzero/tags-one scanner unchanged"
+  ],
+  "stage_b_changes": [
+    "Separate corpus controller derived from frozen speed v6; fixed corpus profile binds Stage-A receipt and passing value report hashes",
+    "Only graph conditioning_name and output prefix differ from selected frozen toycar profile; original50 is reference, original20/Trim8/Trim6 candidates",
+    "No ready profile before real receipt and successful value validation; no generated or synthetic real receipt",
+    "Preserve model/steps/seed/shape/attention/sampler/headroom1/reserve3 and all asset identities/monitor/Job/single POST/cleanup"
+  ],
+  "checks_frozen_before_implementation": [
+    "AST identity of unchanged value-scanner tail and resource constants",
+    "In-memory receipt identity checks: two valid corpus metadata records, wrong prompt, wrong graph, wrong driver, missing cleanup, wrong corpus rejected; these are unit data not receipts",
+    "StageB exact graph delta: two fields only; reject seed/shape/steps/headroom changes or missing real value report",
+    "Portable --help only, zero model dispatch"
+  ],
+  "real_stage_a_outputs_available_at_freeze": false,
+  "claim": "INCONCLUSIVE"
+}

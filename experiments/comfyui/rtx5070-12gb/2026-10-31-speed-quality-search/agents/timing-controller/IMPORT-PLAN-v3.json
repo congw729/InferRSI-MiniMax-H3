@@ -1,0 +1,8 @@
+{
+  "schema": "q33-portable-import-fix/v3",
+  "frozen_before_candidate": true,
+  "failure": "PPY isolated _pth cannot resolve sibling top-level import; real v2 stopped before model POST",
+  "change": "One direct import replaced by fixed sibling SHA then explicit importlib load",
+  "unchanged": "runtime _pth, sys.path, models, graph, gates, all v2 cleanup",
+  "validation": "Existing portable Python -s -B speed_stage_b_v3.py --help; zero model dispatch"
+}

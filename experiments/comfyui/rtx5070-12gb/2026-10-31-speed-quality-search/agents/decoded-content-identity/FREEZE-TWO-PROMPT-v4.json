@@ -1,0 +1,39 @@
+{
+  "schema": "q33-decoded-content-freeze/v3",
+  "files": [
+    {
+      "path": "PLAN-TWO-PROMPT-v1.json",
+      "bytes": 1878,
+      "sha256": "6d3e91060d98a5ca60f8728cf5fb76d70c61a47ee31bfe03f8865e1b1804322a"
+    },
+    {
+      "path": "INPUTS-TWO-PROMPT-v1.json",
+      "bytes": 6384,
+      "sha256": "02795f77d1b903f0d4bcf384f4d6585c452aacc7096434667e45472026195d16"
+    },
+    {
+      "path": "decoded_content_v4.py",
+      "bytes": 13396,
+      "sha256": "b6034cb841fc8382f2840838d39e975b7be66db87c42049c60ae2187969fa6fd"
+    },
+    {
+      "path": "v3-to-v4-fourpost-receipts.patch",
+      "bytes": 3480,
+      "sha256": "9816af58ab76b8b7f89202db17c9c42f2e8a4be91496b4ef13a032afb10a8d0a"
+    }
+  ],
+  "infra_files": [
+    {
+      "path": "src/inferrsi/infra/executors/local.py",
+      "bytes": 3505,
+      "sha256": "b089cdc7daaaf7834698c2d280a12c5e755915ded926aa039c8de5f521bd46f0"
+    },
+    {
+      "path": "src/inferrsi/infra/processes.py",
+      "bytes": 8151,
+      "sha256": "3b96ebc7a50913e78e86ff3dcba74c8ee8d03d547d9591ca6488f390ac1e6189"
+    }
+  ],
+  "decode_loop_text_identical_to_v2": true,
+  "decode_loop_unchanged_from_v3": true
+}

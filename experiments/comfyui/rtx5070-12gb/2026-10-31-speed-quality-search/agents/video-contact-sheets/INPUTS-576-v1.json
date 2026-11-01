@@ -1,0 +1,18 @@
+{
+  "schema": "q33-contact-sheet-inputs/v1",
+  "inputs": [
+    {
+      "profile": "toycar/trim-8-576x384",
+      "trial_relative_to_iteration": "results/inferrsi-trim-8-576x384-182855632cc74ed292336debe0cb7d66",
+      "result_sha256": "5da2a99a71541f59be38abb583a92d173c21fdb5259262ce05b4cb0977e769e4",
+      "run_relative_to_lab": "comfy-original/runs/q33-trim-8-576x384-182855632cc74ed292336debe0cb7d66",
+      "artifact": {
+        "relative_to_run": "output\\q33-resolution\\trim-8-576x384_00001_.mp4",
+        "bytes": 284322,
+        "sha256": "28db9282a3c2501f93fb27bc89894ad9b8b429a31ca21668d7a6e39a29bae3b9"
+      },
+      "prior_media_summary_sha256": "3988a1babde51e6c7df56137ba1260640cd9af098373f2825bf5bf47f44e5031"
+    }
+  ],
+  "claim": "INCONCLUSIVE"
+}

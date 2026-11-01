@@ -1,0 +1,53 @@
+Q33 corpus-video handoff v1 (preparation only)
+All paths are runtime parameters; R=notes root, Q=R/iterations/2026-10-31-speed-quality-search,
+V=Q/agents/corpus-video, T=Q/agents/timing-controller, A=Q/agents/quality-corpus.
+Old toycar files and freezes are unchanged. No actual corpus StageB ready profiles exist yet.
+
+1. After each actual Stage A success, run the bounded standard-library values gate through InferRSI:
+  <existing Python> -B V/corpus_conditioning_values_v1.py
+  --qroot Q --owned-runs-root <actual E runs parent> --run-dir <actual completed StageA run>
+  --input <actual unique output safetensors> --receipt <Q/results actual StageA result.json>
+  --expected-bytes <actual bytes> --expected-sha256 <actual sha>
+  --receipt-sha256 <actual result hash> --corpus <bounce-audio|hands-face-mug>
+  --freeze V/VALUES-FREEZE-v1.json
+  --freeze-sha256 3a6b8d0a794eedce440e70895065bf5995d1a79a6a453f405086eafaed21159c
+  --result <new Q/results values-report.json>
+Only 32MiB/64KiB header/512KiB chunks/60s. No torch, model or network. The N token count is dynamic;
+receipt, dtype, width5120, tags=N, finite/nonzero/tags-one and full SHA before+after remain required.
+Successful integrity is not serialization roundtrip or quality equivalence.
+
+2. Once the actual values report succeeds and the parent independently reviews it:
+  <existing Python> -B V/bind_corpus_profiles_v1.py --notes-root R
+  --corpus <case> --stage-a-receipt <actual result path> --stage-a-receipt-sha256 <actual SHA>
+  --value-report <actual value result path> --value-report-sha256 <actual SHA>
+This creates new V/ready/<case> only, never replaces prior files. It invokes the same controller's
+metadata/graph/receipt preflight before writing. It does not copy/read model payloads or conditioning tensors.
+Four profiles: original-50 reference; original-20, trim-8 and trim-6 candidates.
+All graph differences relative selected frozen toycar profile are conditioning_name and output prefix only.
+The builder has not yet run because no actual completed corpus values report was supplied.
+
+3. Parent creates content-addressed conditioning hardlink aliases in the appropriate
+M/comfy-original/models/embeddings and M/comfy-trim/models/embeddings; builder does not touch E files.
+Basename = h3-conditioning-<realSHA>.safetensors. Runtime hashes full conditioning before POST.
+Freeze each new profile/graph/conditioning metadata plus actual receipt/value reports; hash PREPARATION or
+EXECUTION freeze and all listed files before dispatch, additionally preserve frozen T/SOURCES-v1.json.
+Do not reuse timing-controller's toycar-only run_profile wrapper without changing its fixed C directory/mode.
+
+4. Execute existing PPY -s -B -X utf8 V/corpus_stage_b_v1.py with unchanged v6 arguments except:
+  --mode corpus-video-stage-b
+  --profile V/ready/<case>/<family-steps>.profile.json --profile-sha256 <actual profile SHA>
+  --conditioning-manifest V/ready/<case>/<family-steps>.conditioning.json --conditioning-manifest-sha256 <actual SHA>
+  --asset-manifest V/assets/<original|trim>.json --asset-manifest-sha256 <profile assets SHA>
+  --model-root M/comfy-<original|trim>/models
+  --gates T/RESOURCE-GATES-RESERVE3-v1.json
+  --gates-sha256 13672a9bbe8946c28c98b3bab0f906f6ddfe67735ff7f77929e58539a4a580dd
+  --source-manifest T/SOURCES-v1.json
+  --source-manifest-sha256 bf0d3e3b09f8130053735eaa6645bcc4ff753833a97ef4ae306d7d223283f007
+All actual remaining roots, PPY, nvidia-smi, InferRSI source, E run/stop, port are injected as in v6.
+Current run/gpu admission belongs to parent. Single POST/monitor/cleanup and native reserve3+headroom1.0 stay.
+No quota bypass, no GPU run by this agent. Per-node timing receiver wall is not GPU kernel-only latency.
+
+Validation: values identity/unchanged scanner20 checks; StageB graph/unchanged guards36 checks;
+actual portable --help exit0. New builder has only been parsed/prepared, not bound to actual outputs yet.
+Pending: real value checks, real receipt binding, aliases, parent final freeze and serial GPU dispatch.
+Claim remains INCONCLUSIVE for quality/performance/generalization.

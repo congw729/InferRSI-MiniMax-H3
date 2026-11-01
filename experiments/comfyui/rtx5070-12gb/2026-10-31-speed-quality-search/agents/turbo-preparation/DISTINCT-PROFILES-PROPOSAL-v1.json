@@ -1,0 +1,58 @@
+{
+  "schema": "q33-turbo-distinct-profile-proposals/v1",
+  "status": "static_preparation_not_model_execution",
+  "shared": {
+    "asset": "minimax_h3_turbo_v4_step600_ema.safetensors",
+    "asset_sha256": "5f3a626cd72c93a8b9318d6760c510bc5092d2ab13aaba1f932c5bab07a416d3",
+    "base": "existing full50block INT8ConvRot Q32 identity",
+    "conditioning": "reuse existing completed StageA only if all input text/conditioning settings identical",
+    "video_vae": "existing original36layer",
+    "audio_vae": "existing original audio VAE",
+    "strength": 1.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "steps_first_candidate": 6,
+    "suggested_second_steps": 8,
+    "preserve": "Q32 prompt/seed/width/height/frames/AV shift; independent output/profile/run receipt",
+    "scope": "author guidance, not quality/VRAM/latency acceptance gates"
+  },
+  "profiles": [
+    {
+      "id": "native-merge-v1",
+      "lora_node": "LoraLoaderModelOnly",
+      "node_inputs": {
+        "strength_model": 1.0
+      },
+      "semantic_mode": "all matching weights add_patches merge; corresponds to author low_vram=true full-base route",
+      "custom_nodes": [],
+      "expected_tradeoff": "lower peak versus bypass claimed by author; quantization can round away small delta; no local measured comparison",
+      "required_observation": "all expected LoRA keys matched; actual patched module count; sampler completed; full clip temporal/audio review; resource monitor"
+    },
+    {
+      "id": "author-hybrid-v1",
+      "lora_node": "MiniMaxH3TurboLoRA",
+      "node_inputs": {
+        "strength": 1.0,
+        "low_vram": false
+      },
+      "semantic_mode": "author exact code bypass except selected INT8 fc2 merge",
+      "node_commit": "4274783a23afcfdbea3b4876cb79effd6c510785",
+      "entry_snapshot_sha256": "a22f222f11dfc337552371f7f288bf5928cb1fa80a6afb3f24075a8315d02f06",
+      "custom_node_deployment": "new E isolation custom_nodes/ComfyUI-MiniMax-H3-Turbo-full-4274783; extra-model-paths YAML; --disable-all-custom-nodes --whitelist-custom-nodes matching folder basename; all output/user/cache/temp in E owned roots",
+      "deploy_files": [
+        "__init__.py exact pinned snapshot",
+        "LICENSE exact pinned snapshot"
+      ],
+      "excluded_full_base_only_files": [
+        "h3_silu_temb_grid.safetensors pruned-only 5510600B",
+        "node.zip redundant",
+        "no manager/pip update"
+      ],
+      "sampler_option": "native euler uses installed ModelSamplingAV; source-compatible candidate, no claim of tested bitwise equivalence",
+      "expected_tradeoff": "bypass adapter weights moved to GPU together on injection; >filebytes temporary casts possible; INT8 fc2 merge requantizes under current installed Comfy",
+      "required_observation": "mode log full/bypass; injection adapter and INT8 fc2 counts; selected source identity; memory peak/fullclip review"
+    }
+  ],
+  "do_not_treat_profiles_as_equivalent": true,
+  "do_not_patch_existing_successful_runtime": true
+}

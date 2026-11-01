@@ -1,0 +1,97 @@
+{
+  "schema": "q33-decoded-content-summary/v1",
+  "claim": "INCONCLUSIVE",
+  "quality_verdict": "INCONCLUSIVE",
+  "conclusion": "All five existing clips have identical complete decoded RGB24 bytes, canonical native-valued PCM bytes and exact recorded video/audio timelines under the recorded decoder. Container SHA differs across request numbers and the earlier Trim8 file.",
+  "scope_limit": "This does not establish perceptual quality PASS, latent equality, audio listening quality, inference speed, or that all differing container bytes are exclusively metadata.",
+  "inputs": [
+    {
+      "id": "baseline-request-1",
+      "source_sha256": "63cd570596e11f4ffc42e8e846f65beda77f9eaaa29a4227305d2bc8a65b8f43",
+      "source_bytes": 240116,
+      "generation_result_sha256": "9039f35e40542fcb0552fd2c2ba0f2bf2a8d199426ca781865116dcc6949bfd6",
+      "media_summary_sha256": "a59c762ab188876f4450047d978625aa9a6ed0ea7284695517d4e1eb3767fbca"
+    },
+    {
+      "id": "baseline-request-2",
+      "source_sha256": "58bb1dc397e790a63d07ed4307793e99bebdf1cbd0558cd98f7c4e8ac97b9559",
+      "source_bytes": 240116,
+      "generation_result_sha256": "9039f35e40542fcb0552fd2c2ba0f2bf2a8d199426ca781865116dcc6949bfd6",
+      "media_summary_sha256": "1836e3e6faccb0ba55012b96e85b1643f92d9c8fe8ddf44518fe5d723bd9f55a"
+    },
+    {
+      "id": "smart-request-1",
+      "source_sha256": "63cd570596e11f4ffc42e8e846f65beda77f9eaaa29a4227305d2bc8a65b8f43",
+      "source_bytes": 240116,
+      "generation_result_sha256": "df81988ce567e6b5dea51ced8df867b2a40147ae8fff796ce4fb580220b04082",
+      "media_summary_sha256": "a9ad1941e798da8acebe632404a93080b2c95842429da79cfb37aa1d2314642b"
+    },
+    {
+      "id": "smart-request-2",
+      "source_sha256": "58bb1dc397e790a63d07ed4307793e99bebdf1cbd0558cd98f7c4e8ac97b9559",
+      "source_bytes": 240116,
+      "generation_result_sha256": "df81988ce567e6b5dea51ced8df867b2a40147ae8fff796ce4fb580220b04082",
+      "media_summary_sha256": "8da7f6ba73d26c34617b31932a252f424a424bd31337738541769b956b0b6c07"
+    },
+    {
+      "id": "original",
+      "source_sha256": "0e98112c12f89c00fb11100e36825257d96f0408e9b90e908c71752c00a4eaba",
+      "source_bytes": 240101,
+      "generation_result_sha256": "7469d69e299d0e161ab812d0f484b43fa0f770793d55e79edb692664ee2cc70b",
+      "media_summary_sha256": "a959a0179d1646b9e871b7e42a83c92dbae67d99d7a636eeab4a42ee7d3a9c78"
+    }
+  ],
+  "video": {
+    "decoded_frames": 73,
+    "shape": [
+      256,
+      384,
+      3
+    ],
+    "dtype": "uint8",
+    "layout": "RGB24 HWC C-order",
+    "bytes_hashed": 21528576,
+    "all_frames_rgb_sha256": "b4f2e728a17c30918de919143642ef07027b0344e65d7859f1384bc139aafd93",
+    "timeline_sha256": "197946269366394c46c284a4cda1f988d9dc0b6903d70765f6f8b0e2c895f55b"
+  },
+  "audio": {
+    "format": {
+      "native_format": "fltp",
+      "native_dtype": "<f4",
+      "native_planar": true,
+      "layout": "stereo",
+      "channel_order": [
+        "FL",
+        "FR"
+      ],
+      "rate": 32000,
+      "canonical_layout": "sample-major interleaved",
+      "canonical_dtype": "<f4"
+    },
+    "decoded_frames": 96,
+    "samples_per_channel": 97334,
+    "bytes_hashed": 778672,
+    "all_samples_pcm_sha256": "c1e92012cd5f0694bcb0b44b0d35e7935b590d70f43f84ce8ca5ff62e77d2233",
+    "timeline_sha256": "eb2173ad849abcde32f4fafe998528685c2b7839854bc3a5b47fee0616df528b"
+  },
+  "all_pairwise_decoded_content_equal": true,
+  "all_timelines_equal": true,
+  "all_input_full_sha_unchanged": true,
+  "cpu_worker_seconds": 0.42604249995201826,
+  "inferrsi_executor_seconds": 0.5320000000065193,
+  "peak_own_rss_bytes": 54370304,
+  "source_freeze_sha256": "af01d8ee988291f82843806448ee4e78a10b8b8f00d1db00735393882455aa3c",
+  "frozen_source_entries_rechecked": 8,
+  "trial_relative_to_iteration": "results/decoded-content-identity-v2-75e21186a4d145cd85243058d42dac86",
+  "result_sha256": "6448b68321563571ce1eeb802237f5abebaac85c7efab18e8b62fe560932186e",
+  "execution_sha256": "23b4d11c0fd207d3b7e7674649c0c8ef60dbc22a507e270716a09a53a5c93234",
+  "worker_returncode": 0,
+  "torch_imported": false,
+  "media_writes": 0,
+  "network_requests": 0,
+  "model_dispatches": 0,
+  "failed_attempt_preserved": {
+    "trial": "results/decoded-content-identity-2bf0c6ba643c4b999debb71705f2cd5e",
+    "reason": "Equivalent exact rational frame rate 24/1 failed v1 string comparison against 24. Repaired only this check in frozen v2; no evidence/content/resource threshold changed."
+  }
+}

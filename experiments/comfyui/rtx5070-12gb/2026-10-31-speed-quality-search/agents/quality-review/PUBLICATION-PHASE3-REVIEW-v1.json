@@ -1,0 +1,40 @@
+{
+  "schema": "q33-independent-publication-review/v1",
+  "utc": "2026-10-30T19:09:47.343308+00:00",
+  "scope": "Only two phase3 public notes; no runtime, model or media execution",
+  "decision": "ready_to_sync_after_two_precise_wording_corrections",
+  "claim": "INCONCLUSIVE",
+  "summary_sha256": "5f17101f3172069d7d27245905d9928739650ea515e00ce1933a84b204ffe4d2",
+  "checks": {
+    "observations_exact_summary_entries": 32,
+    "source_identities_current_bytes_sha256_matched": 268,
+    "rsi_pairs_exact_summary": true,
+    "native_controller_executor_scope_separated": true,
+    "trim6_not_default_due_limited_quality_observation": true,
+    "async_single_sequence_scope_explicit": true,
+    "new_prompt_end_to_end_not_yet_measured": true,
+    "privacy_scan_no_absolute_paths_ip_or_token_patterns": true,
+    "no_runtime_publication": true
+  },
+  "corrections": [
+    {
+      "before": "Only loader nodes cached",
+      "after": "Loader, conditioning and other unchanged nodes may be cached; sampler still executes eight steps"
+    },
+    {
+      "before": "New prompt still uses precomputed conditioning",
+      "after": "Table requests reuse precomputed conditioning; 6.727 s excludes entering a new prompt"
+    }
+  ],
+  "before_markdown_sha256": "31a93eef27dedefd1580419a57578acebca2f72b6b5c1732d78844106e988071",
+  "files": {
+    "2026-10-31-speed-quality-search.md": {
+      "bytes": 7411,
+      "sha256": "eaa70bdcfc3b9fa684f98fef3eaaebca2a24d9c19b2e4130dbb967dc83cd5057"
+    },
+    "2026-10-31-speed-quality-search-evidence.json": {
+      "bytes": 444974,
+      "sha256": "301475bd2aa509efd441b3936fdf0cfb58441e82582cd5692e1ca4238f7c62ab"
+    }
+  }
+}

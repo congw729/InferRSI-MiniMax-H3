@@ -1,0 +1,28 @@
+{
+  "schema": "q33-turbo4-contact-plan/v1",
+  "scope": "Auxiliary CPU-only12frame review of two actually completed Turbo4 clips with successful full media inspection; compare previous Turbo6 views.",
+  "tool_unchanged": "contact_sheets_v2.py",
+  "native_geometry": [
+    384,
+    256,
+    73,
+    24
+  ],
+  "same_selected_indices": [
+    0,
+    7,
+    13,
+    20,
+    26,
+    33,
+    39,
+    46,
+    52,
+    59,
+    65,
+    72
+  ],
+  "same_limits": "512MiB RSS,30s each,120s aggregate,8MiB PNG,source fullSHA before/after",
+  "no_model_gpu_network": true,
+  "quality": "INCONCLUSIVE; no subjective full motion/audio playback"
+}

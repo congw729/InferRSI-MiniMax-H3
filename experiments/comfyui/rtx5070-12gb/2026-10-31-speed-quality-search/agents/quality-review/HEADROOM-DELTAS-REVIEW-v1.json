@@ -1,0 +1,42 @@
+{
+  "schema": "q33-independent-headroom-review/v1",
+  "at_utc": "2026-10-30T17:46:36.4262148Z",
+  "components": [
+    {
+      "files": 54,
+      "name": "Trim timing v6",
+      "external": 0,
+      "freeze_sha256": "bc5a648c6598cf5e4ab3fb7b01f0294f08e6898ff4585955a7423e58656859e5",
+      "source_sha256": "f194d1b1862eab246c826d19c36c9c0846afe89b1664f6c24cd3f367f86d9ee9"
+    },
+    {
+      "files": 22,
+      "name": "corpus StageA v3",
+      "external": 7,
+      "freeze_sha256": "b516c28f90bd2174097b1ab20a5200c888555a8edadfdab20a10f8042e8e7011",
+      "source_sha256": "1e930d7ad4c5b32d8c3842e77bc39cbea5d0d510c4c5758c7240758ae15087dc"
+    },
+    {
+      "files": 25,
+      "name": "Turbo v6",
+      "external": 11,
+      "freeze_sha256": "f06f433dc89b21ab2900203437b87f3ba97768c90a825c4a69826d97cce62d2a",
+      "source_sha256": "407a1dc679941f444ed0100108eab01c740a43a3ea193088de844284b9e9abcd"
+    }
+  ],
+  "mismatches": [],
+  "observations": [
+    "Patches only add native --vram-headroom1.0; Trim/corpus also store requested value",
+    "Native installed CLI/main/control source inspected: GiB-to-byte device tuple, uint64 headroom array passed to library init",
+    "Ordinary reserve is distinct simple_vram_headroom setting",
+    "Graph, assets, stop floors and owned cleanup unchanged",
+    "run_profile_v3 reviewed: select frozen reserve2/3 path+SHA, remaining launcher semantics retained"
+  ],
+  "blockers": [],
+  "limits": [
+    "Requested1GiB is not measured guaranteed freeVRAM",
+    "No new GPU/model/test-matrix execution by reviewer",
+    "Existing guard failures retained; actual recipe stability still requires trial"
+  ],
+  "claim": "INCONCLUSIVE"
+}

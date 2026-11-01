@@ -1,0 +1,25 @@
+{
+  "schema": "q33-independent-review/v1",
+  "at_utc": "2026-10-30T20:27:52.402114+00:00",
+  "status": "no_blocking_finding",
+  "scope": "Single bounce Turbo4 native async transfer candidate; read-only narrow diff review",
+  "controller_sha256": "06eefc92c039a476efbad12b76a90400655a1e80ec267f0448c8a3ad25f09b04",
+  "launcher_sha256": "2c3e4cb06837871604cd90f6951bc848af4a0322a178a4d0aa3e585e8975422d",
+  "execution_freeze_sha256": "23f5f906d7d49dc4f600a78106ca0f46f2308d8badf4f2ec459ebb9a8a770f13",
+  "verified_local_external_items": 50,
+  "helper_freeze_sha256": "c2cdf6360c574fd0b1045da67ce28b66519fdf51123fa761e96f545bad8e8ea5",
+  "verified_helper_items": 4,
+  "mismatches": [],
+  "findings": [
+    "Native service argv only removes disable-async-offload; same full INT8 base, LoRA, four steps, condition, headroom1, reserve3, no-pin, cache-none, smart-memory setting and stopping guards remain.",
+    "Mode/root/unique run prefix/actual source filename are consistently changed; only bounce is accepted. Startup must report two native async streams, a configuration marker rather than overlap proof.",
+    "Unchanged generic media helper accepts actual artifact_received_unvalidated result and dynamic artifact/profile, without an old controller filename binding. The original full decoder and gates hashes remain frozen."
+  ],
+  "parent_post_run_requirements": [
+    "Verify actual driver SHA and no cleanup diagnostics before media.",
+    "Inspect actual media execution returncode and full result rather than treating helper process exit alone as proof.",
+    "Compare against existing synchronous bounce with full decoded content; maintain single-run exploratory scope."
+  ],
+  "new_tests_or_gpu_executed": false,
+  "quality_service_verdict": "INCONCLUSIVE"
+}

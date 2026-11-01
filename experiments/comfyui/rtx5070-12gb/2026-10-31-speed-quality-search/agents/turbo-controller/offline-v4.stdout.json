@@ -1,0 +1,189 @@
+{
+  "schema": "q33-turbo-controller-offline/v4",
+  "checks": [
+    {
+      "id": "fixed_turbo_6",
+      "ok": true
+    },
+    {
+      "id": "pending_6",
+      "ok": true
+    },
+    {
+      "id": "6_reject_lora_strength_model",
+      "ok": true
+    },
+    {
+      "id": "6_reject_lora_lora_name",
+      "ok": true
+    },
+    {
+      "id": "6_reject_lora_model",
+      "ok": true
+    },
+    {
+      "id": "6_reject_15_noise_seed",
+      "ok": true
+    },
+    {
+      "id": "6_reject_17_sampler_name",
+      "ok": true
+    },
+    {
+      "id": "6_reject_9_scheduler",
+      "ok": true
+    },
+    {
+      "id": "6_reject_1002_length",
+      "ok": true
+    },
+    {
+      "id": "6_reject_6_unet_name",
+      "ok": true
+    },
+    {
+      "id": "6_reject_4step",
+      "ok": true
+    },
+    {
+      "id": "6_reject_reference",
+      "ok": true
+    },
+    {
+      "id": "fixed_turbo_8",
+      "ok": true
+    },
+    {
+      "id": "pending_8",
+      "ok": true
+    },
+    {
+      "id": "8_reject_lora_strength_model",
+      "ok": true
+    },
+    {
+      "id": "8_reject_lora_lora_name",
+      "ok": true
+    },
+    {
+      "id": "8_reject_lora_model",
+      "ok": true
+    },
+    {
+      "id": "8_reject_15_noise_seed",
+      "ok": true
+    },
+    {
+      "id": "8_reject_17_sampler_name",
+      "ok": true
+    },
+    {
+      "id": "8_reject_9_scheduler",
+      "ok": true
+    },
+    {
+      "id": "8_reject_1002_length",
+      "ok": true
+    },
+    {
+      "id": "8_reject_6_unet_name",
+      "ok": true
+    },
+    {
+      "id": "8_reject_4step",
+      "ok": true
+    },
+    {
+      "id": "8_reject_reference",
+      "ok": true
+    },
+    {
+      "id": "pending_receipt_before_payload",
+      "ok": true
+    },
+    {
+      "id": "pending_only_manifest_read",
+      "ok": true
+    },
+    {
+      "id": "missing_lora",
+      "ok": true
+    },
+    {
+      "id": "changed_lora_sha",
+      "ok": true
+    },
+    {
+      "id": "extra_asset",
+      "ok": true
+    },
+    {
+      "id": "native_lora_schema",
+      "ok": true
+    },
+    {
+      "id": "missing_file",
+      "ok": true
+    },
+    {
+      "id": "wrong_output",
+      "ok": true
+    },
+    {
+      "id": "extra_required",
+      "ok": true
+    },
+    {
+      "id": "unchanged_sample",
+      "ok": true
+    },
+    {
+      "id": "unchanged_http",
+      "ok": true
+    },
+    {
+      "id": "unchanged_guarded_hash",
+      "ok": true
+    },
+    {
+      "id": "unchanged_conditioning_header",
+      "ok": true
+    },
+    {
+      "id": "unchanged_bounded_notes_json",
+      "ok": true
+    },
+    {
+      "id": "unchanged_verify_dynamic_vram_startup",
+      "ok": true
+    },
+    {
+      "id": "unchanged_cleanup_owned_v2",
+      "ok": true
+    },
+    {
+      "id": "gates_same",
+      "ok": true
+    },
+    {
+      "id": "core_manifest_same",
+      "ok": true
+    },
+    {
+      "id": "no_timing_import_at_module_entry",
+      "ok": true
+    },
+    {
+      "id": "timing_wrong_path",
+      "ok": true
+    },
+    {
+      "id": "no_torch_import",
+      "ok": true
+    }
+  ],
+  "completed": 45,
+  "all_observed": true,
+  "candidate_sha256": "7c4c4f44460f0c7dd2a64892d61c13f9e087d79d5bbdeb1956b75bb9b057834d",
+  "scope": "offline graph/metadata/pending receipt/schema/AST identity only; no real LoRA header/model/body or dispatch, no network/GPU"
+}

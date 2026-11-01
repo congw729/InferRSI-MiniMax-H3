@@ -1,0 +1,62 @@
+Q33 计时 harness 交接 v1（仅实现与离线验证，尚未真实运行）
+
+实现范围
+- speed_stage_b_v1.py 从冻结 Q32 原版 controller 派生，controller-v1.patch 保留完整差异。
+- timing_events_v1.py 是现有 portable aiohttp 的有界 WS 观察线程，不导入模型。
+- 原 sample/http/conditioning_header/bounded_notes_json/verify_dynamic_vram_startup 五函数 AST 与 Q32 相同；一服务、一 POST、既有 Job/resource guards保留。
+- 已冻结 PLAN-v1.json 与 validator 后实施；CANDIDATE-FREEZE-v1.json 在离线实测前生成。
+- offline-v1.stdout.json：34项完成，offline-v1.stderr.txt为空。仅本地状态解析/边界/配置/AST，没有网络或 GPU。
+- METADATA-PREFLIGHT-v1.json：原版50/Trim8真实小型asset receipt与plan绑定已核对，不访问大权重payload。
+- 先审阅后执行original-50；Trim8另一次串行，不能用其身份代替原版50。
+- 原版30/20是仅steps变化的候选，不构成质量已过关。Trim6 profile dispatch_ready=false，未核对原生8步模型时间表对6步的兼容性，不允许执行。
+- Turbo未接入，不能将profile改名冒充已绑定模型。
+
+首批身份
+speed_stage_b_v1.py SHA256 17ad08a26af88efad9ee2bd25ee7bd575cde8adfb6a574f472d5fd336c539ae3
+SOURCES-v1.json SHA256 bf0d3e3b09f8130053735eaa6645bcc4ff753833a97ef4ae306d7d223283f007
+profiles/original-50.json SHA256 8f952247cb616a1404aaf16d7718f12903cfeda3e8741b7086a84b83bbf66a03
+profiles/trim-8.json SHA256 e25e4e27c44203e8bf5deac8ddb143c7b1c347881cc572f4161021a112a38e64
+其余完整文件hash在CANDIDATE-FREEZE-v1.json；其输入154项runtime来源包括原104项、native progress与aiohttp Python文件，不是全部DLL闭包。
+resource gates仍用Q32 ORIGINAL-RESOURCE-GATES-v1.json SHA dd9658a253e1e0c73bd1d1fe9034055622289a9f6748486fb55761bfa195eecf。reserve=2GiB，未混改为2.5。
+
+参数化执行入口（父级执行；此文档不执行）
+R=记录根；Q31/Q32/Q33为对应iteration；C=Q33/agents/timing-controller；P=portable根；
+PPY=P/python_embeded/python.exe；M=模型根（models/MiniMax-H3）；IR=InferRSI checkout。
+E_RUN新E盘目录且父目录已存在；TRIAL为新Q33/results试验，由InferRSI创建；PORT/SMI由父级明确传入。
+PROFILE=C/profiles/original-50.json（首轮）；另轮trim-8切相应profile。
+profile读取是小型JSON，以下P0字段来自已验证PROFILE，不准任意改graph：
+    P0 = json.loads(PROFILE.read_text(encoding='utf-8'))
+    argv = [str(PPY), '-s', '-B', '-X', 'utf8', str(C/'speed_stage_b_v1.py'),
+      '--mode','speed-video-stage-b',
+      '--iteration-root',str(Q33),'--notes-root',str(R),'--q31-root',str(Q31),
+      '--lab-root',str(M),'--model-root',str(M/P0['model_subdir']),
+      '--portable-python',str(PPY),'--comfy-root',str(P/'ComfyUI'),
+      '--run-dir',str(E_RUN),'--stop-marker',str(E_RUN/'stop.signal'),
+      '--nvidia-smi',str(SMI),'--inferrsi-src',str(IR/'src'),
+      '--profile',str(PROFILE),'--profile-sha256',PROFILE_SHA,
+      '--gates',str(Q32/'agents/native-graph/ORIGINAL-RESOURCE-GATES-v1.json'),
+      '--gates-sha256','dd9658a253e1e0c73bd1d1fe9034055622289a9f6748486fb55761bfa195eecf',
+      '--source-manifest',str(C/'SOURCES-v1.json'),
+      '--source-manifest-sha256','bf0d3e3b09f8130053735eaa6645bcc4ff753833a97ef4ae306d7d223283f007',
+      '--conditioning-manifest',str(C/P0['conditioning']['file']),
+      '--conditioning-manifest-sha256',P0['conditioning']['sha256'],
+      '--asset-manifest',str(C/P0['assets']['file']),
+      '--asset-manifest-sha256',P0['assets']['sha256'],
+      '--port',str(PORT)]
+    record=execute_command(tuple(argv),IR,TRIAL,time.monotonic()+2730)
+必须仍走既有InferRSI execute_command，让外层owned Job回收controller及服务；本版要求sys.executable是参数所指PPY，以使用该环境原有aiohttp。
+不能提前创建E_RUN、stop.signal或TRIAL。不得重复POST。资源预检、账户停止线与串行GPU由父级保持。
+
+采集含义
+- Controller total现从main入口开始，包含前置来源/小manifest核验；与Q32排除初步核验的旧口径有差异，比较时应使用native prompt同口径。
+- source_verification_start_ns/end_ns单计154项来源payload检查；entry至此间还包含参数/小清单检查，不把它们叫模型加载。
+- 各asset_verification_started/asset_verified是完整SHA核验区间；conditioning校验、service spawn、API/schema、observer ready、POST、artifact、owned cleanup均有事件。它们可能嵌套，不相加。
+- timing/events.jsonl：本次client/prompt绑定的native生命周期、节点状态转移与progress；附接收perf_counter_ns及controller elapsed用于对齐资源采样。WS连接ready必须在POST前。
+- timing/summary.json：每node首次running→首次finished的观察墙钟，不是GPU-only。重复全量快照不覆盖首个边界。cached、缺失边界、断线/异常为null；不自动重连。
+- 原生prompt start/success的timestamp_ms也保留，须与history对照；日志Prompt executed还包括稍后清理等，不强行使两者相等。
+- 节点14包含准备、lazy load、首步、全部采样、搬回；progress=50不代表CUDA完成，node14 start→progress1不可命名纯初始化。
+- 10/23为VideoVAE/AudioVAE调用（后者还含幅度归一化）；11/24是VAE构造加载入口；91 codec none仅封装，92是真实编码/mux/保存。
+- 若history已有成功而observer尚未收到最终消息，finally停止可能导致timing标记incomplete并置null；不得用生成成功掩盖计时不全。线程join3秒超时同样独立标记，外层进程退出负责终止所属线程。
+- WS max message1MiB/累计16MiB/10000消息，日志也有16MiB/10000条上限。只保存有界必要字段，不存原生exception traceback。
+- 同一run的stageB不执行TE，复用condition，TE时间null。媒体校验沿用Q31 73帧validator，Comfy退出后串行执行；CPU媒体解码时间不能算成VAE推理。
+- 没有声称质量或性能改进；全部候选需要既有质量协议/实测证据。

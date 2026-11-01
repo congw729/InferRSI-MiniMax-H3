@@ -1,0 +1,10 @@
+--- turbo_hybrid_stage_b_v1.py
++++ turbo_hybrid_stage_b_v2.py
+@@ -670,6 +670,7 @@
+         dirs = {k: a.run_dir / k for k in ("base", "output", "temp", "input", "previews", "user", "cache")}
+         for path in dirs.values():
+             path.mkdir()
++        (dirs["base"] / "custom_nodes").mkdir()
+         env = os.environ.copy()
+         for key in ("PYTHONPATH", "PYTHONHOME"):
+             env.pop(key, None)

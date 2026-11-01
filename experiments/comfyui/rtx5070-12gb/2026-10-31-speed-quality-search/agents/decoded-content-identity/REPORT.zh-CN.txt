@@ -1,0 +1,6 @@
+五片全内容同一性核查完成。baseline 两请求、smart 两请求、此前 Trim8：73 帧 RGB24 全字节、每通道 97,334 个解码 float32 PCM 样本，以及完整 PTS 时间线都相同。
+三种容器 SHA 不同，但此次未检测到解码像素或 PCM 字节变化。这里没有证明容器差异仅为元数据，也不等于画质 PASS、latent 一致或听审通过。
+音频原始解码为 fltp / float32 little-endian / stereo FL,FR；只做 planar 到样本交错布局，保持数值，不重采样。每次只保留一帧或一个音频块。
+CPU worker 0.426 秒，InferRSI executor 0.532 秒，采样 RSS 峰约 51.85 MiB；这些是核查成本，不是推理性能。五个原 MP4 前后完整 SHA 与文件身份均未变化，没有媒体写入、模型调度、GPU、网络或新依赖。
+v1 帧率字符串比较失败已保留；v2 只修复精确有理数等价比较，8 项冻结来源事后复核一致。
+详情与哈希见 SUMMARY-v1.json 和其绑定 result.json。

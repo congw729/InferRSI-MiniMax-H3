@@ -1,0 +1,26 @@
+{
+  "schema": "q33-independent-review/v1",
+  "at_utc": "2026-10-30T20:19:57.301885+00:00",
+  "scope": "E2E v7 post-task_done history marker observer, controller, launcher and media binding",
+  "status": "no_blocking_finding",
+  "controller_sha256": "d061f926418dd48dcef3b4c9517f1b198ac190dd0b5405d0c42c3f74b924aaa0",
+  "observer_sha256": "5a276a265d06c3108dfe0babac1137145db6553f211dd2a7b77882d49e5c6bf8",
+  "execution_freeze_sha256": "61ff847ab2481b5b9dffcb8239a1872b464a007b74cd5b9da5c156008f180fc7",
+  "verified_execution_sources": 237,
+  "parent_media_freeze_sha256": "0a49ee49879ef102e9d069cf2943feafb8b6457bbf36e0161ff6555e0443c70a",
+  "verified_parent_media_items": 5,
+  "mismatches": [],
+  "findings": [
+    "Successful execution terminal no longer closes the WS before native history publication; only matching prompt with explicit node:null after success qualifies for successful marker completion.",
+    "Error/interrupted end immediately. Existing disconnect invalidation, receive budgets, cancellation stop/join and process cleanup remain unchanged.",
+    "Controller keeps one-shot done consumption and original timeout fallback, so a permanently set event cannot create a tight polling loop.",
+    "Success and history-marker receipt timestamps are separate. Successful authoritative history can end observer waiting without inventing a missing marker; unavailable intervals remain null.",
+    "The event indicates ordering after native in-memory history publication; it does not prove durable persistence, complete GC or GPU-only timing. Signed reception-to-artifact intervals are observations, not performance claims.",
+    "Launcher v7 source filename/hash/freeze and unique output prefix match; media v7 source identity still validates both actual case-isolated outputs and four completed prompts/three releases.",
+    "Frozen resource thresholds, model graphs, async streams, headroom, no-pin, warm admission and owned cleanup retain prior semantics.",
+    "Original v6 and observer remain preserved. The offline static checker AsyncFunctionDef oversight is retained separately; candidate did not change for that checker repair."
+  ],
+  "new_tests_executed_by_reviewer": false,
+  "gpu_or_model_execution": false,
+  "formal_quality_service_verdict": "INCONCLUSIVE"
+}

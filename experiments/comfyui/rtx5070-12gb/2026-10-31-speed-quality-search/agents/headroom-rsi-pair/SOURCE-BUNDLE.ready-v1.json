@@ -1,0 +1,2085 @@
+{
+  "schema": "q33-rsi-source-bundle/v1",
+  "purpose": "q33-headroom-warm-pair/v1",
+  "dispatch_ready": true,
+  "sides": {
+    "A": {
+      "directory": "agents/offload-preparation",
+      "headroom_gib": 1.0,
+      "mode": "async-persistent-video-stage-b",
+      "controller": "async_persistent_stage_b_v1.py",
+      "controller_sha256": "be5ed4634a212e0d68d9b014f04ac2ca8e8547ade62c93967e73ccdecb9a8bfe",
+      "launcher": "run_async_persistent_v1.py",
+      "launcher_sha256": "618638a30e2092deb676981657cfd106b0960c843d3139f5026709452217a6f8",
+      "media_helper": "run_async_persistent_media_v1.py",
+      "media_helper_sha256": "460e98178bc28649a822286acb54137fb298fed150305228695efe5206183617",
+      "media_validator_sha256": "27d8a29e51d9e18da93e803e16eaa8276445e103665c2eeef7dc1e6ee746b84e"
+    },
+    "B": {
+      "directory": "agents/headroom-preparation",
+      "headroom_gib": 0.75,
+      "mode": "headroom-persistent-video-stage-b",
+      "controller": "headroom_persistent_stage_b_v1.py",
+      "controller_sha256": "2455f4c923639103a294fc53145ff6e3ef4eb2c6fa7dfd36014a5a50905981e1",
+      "launcher": "run_headroom_persistent_v1.py",
+      "launcher_sha256": "83788ccb1ccc370a413ef01340a447edc324faed915e7c5e14c1e13692813741",
+      "media_helper": "run_headroom_persistent_media_v1.py",
+      "media_helper_sha256": "28f82690c0630e69ea4256eec2c9cdb184ddd804686e25f151e1c9ef755ba351",
+      "media_validator_sha256": "10fbe161061af3b38b8fd8d926771be1940d2fb4b7e379c646784da3470e4367"
+    }
+  },
+  "schedule": [
+    "A",
+    "B",
+    "B",
+    "A"
+  ],
+  "repetitions": 2,
+  "workload_sha256": "2d86b24bac36e04dde6c4c9756419608f20577c93600cda34048bebc88c31333",
+  "claim": "INCONCLUSIVE",
+  "source_scope": "Selected frozen sources and actual entrypoints/receipts; not full environment or DLL closure. Older immutable bundle retained as provenance. No model payload included.",
+  "files": [
+    {
+      "root": "rsi_base",
+      "path": "rsi_pair_v1.py",
+      "bytes": 14874,
+      "sha256": "c6effd915ea16301b08c335059e29aa1b39869845cf5ed6a98cce66babdc4249"
+    },
+    {
+      "root": "rsi_base",
+      "path": "validate_pair_offline_v1.py",
+      "bytes": 5883,
+      "sha256": "07d9c177a634d2c4c163397e96426257efa10feec55c2b988415b48ce99ea32b"
+    },
+    {
+      "root": "rsi_base",
+      "path": "PLAN-FROZEN-v1.json",
+      "bytes": 2538,
+      "sha256": "b9922e3e579c9859a9a62b5f55dcd074760bdc57dff816db964d4fc4abff4617"
+    },
+    {
+      "root": "rsi_base",
+      "path": "PLAN-RESOURCE-UPDATE-v2.json",
+      "bytes": 786,
+      "sha256": "82630eda7eed3e14a0fb8db905fff13b80c289920be56f0f895528e05554a1fa"
+    },
+    {
+      "root": "rsi_base",
+      "path": "CANDIDATE-FREEZE-v1.json",
+      "bytes": 790,
+      "sha256": "10dd160b54dfedb47514049b394ff3df6e6c84ad39d5babe0030ba6750ee77bf"
+    },
+    {
+      "root": "q33",
+      "path": "tools/run_profile_v3.py",
+      "bytes": 5530,
+      "sha256": "ceb5727c01cc0a1b29c6d20a3c602fdd9f4d2deabb0980bb25a4faba6907c854"
+    },
+    {
+      "root": "q33",
+      "path": "tools/validate_profile_media_v1.py",
+      "bytes": 2230,
+      "sha256": "b44bc73cd1c7d65e0c1f8616c051fd341cba66c98fe7dbacc36f80a92e42e138"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/EXECUTION-FREEZE-v6-headroom.json",
+      "bytes": 9416,
+      "sha256": "bc5a648c6598cf5e4ab3fb7b01f0294f08e6898ff4585955a7423e58656859e5"
+    },
+    {
+      "root": "q33",
+      "path": "agents/quality-review/QUALITY-SCREEN-PROTOCOL-v1.json",
+      "bytes": 8662,
+      "sha256": "9130e04dc11d376689f9b23c283efdae4d756eeeb23192fe9409899410026348"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/CANDIDATE-FREEZE-v1.json",
+      "bytes": 4157,
+      "sha256": "6a5141d32958b5f9ba36894fd44d355183a45c0b7732642047ca23d41cf0f51f"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/CANDIDATE-FREEZE-v2.json",
+      "bytes": 1513,
+      "sha256": "f491aa14ee38bf55d967cbd7ec6d8188725ce67d50d0da3829bc9ae218ee7ada"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/CLEANUP-PLAN-v2.json",
+      "bytes": 932,
+      "sha256": "af8cd29a92dc9bf557e511ac83c5ecde1702f88d4ad11dc09a411e44e130d7eb"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/EXECUTION-FREEZE-v4-screen.json",
+      "bytes": 6942,
+      "sha256": "28db6a564e8763d8cf08b2d11d748d69a70ca3baa76bea90b5ac50705c462069"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/EXECUTION-FREEZE-v5-reserve3.json",
+      "bytes": 7945,
+      "sha256": "0b49f7af16ae8e4f117ce2df096a8365634278584563ba3be10ef07246fc1624"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/HEADROOM-PLAN-v1.json",
+      "bytes": 1498,
+      "sha256": "b8ce59523d3e9674ccd3eae66ef22b78c9c5850a7c8e4d613606999372b02f03"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/HEADROOM-STATIC-CHECK-v1.json",
+      "bytes": 412,
+      "sha256": "0dae50864c34b1a86f128a67be0bc5a1393aa0f32e0c39145d44359577d0b863"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/HEADROOM-speed_stage_b_v6.patch",
+      "bytes": 1231,
+      "sha256": "fe9378f85a4d16fcb222cefa00e6b262939d2a36354acda0f76909c7d847b8ad"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/IMPORT-PLAN-v3.json",
+      "bytes": 466,
+      "sha256": "5c16ac3291832f7e412a6ca91f59135fdac22395b2e5da5f9765460737e91398"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/NATIVE-SPEED-PATH-AUDIT-v1.json",
+      "bytes": 9860,
+      "sha256": "6e193dea59f064a3820a1a107879e351b92a159d6c8094e94a02c6d3731a565c"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/PLAN-v1.json",
+      "bytes": 3234,
+      "sha256": "39821746413e5b8f22912f882c7fc1f0a3b52f56ac13753a3e50eb5164389ed9"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/RESERVE3-PLAN-v1.json",
+      "bytes": 933,
+      "sha256": "73624aa1ca37ce75471929a3de41cd08d4f72769c9a1b89a997ae80fc68c6eb5"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/RESERVE3-STATIC-CHECK-v1.json",
+      "bytes": 468,
+      "sha256": "2dbf788426fd90fd458c73e0da54be398ee4175028e4b5580a906dcb3a65c78d"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/RESOURCE-GATES-RESERVE3-v1.json",
+      "bytes": 855,
+      "sha256": "13672a9bbe8946c28c98b3bab0f906f6ddfe67735ff7f77929e58539a4a580dd"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/SOURCES-v1.json",
+      "bytes": 33327,
+      "sha256": "bf0d3e3b09f8130053735eaa6645bcc4ff753833a97ef4ae306d7d223283f007"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/TRIM-SCREEN-PLAN-v1.json",
+      "bytes": 1272,
+      "sha256": "79fa50faf6f5af00b58e852511bfadd1d221f59a3506c9e5e5751d28f51cd4b3"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/assets/original.json",
+      "bytes": 2910,
+      "sha256": "de6848a0135415f086ad3fa53e94e40202bfc4d72bdf5d3eeafe3494bc9cdd7c"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/assets/trim.json",
+      "bytes": 2763,
+      "sha256": "c1507b121962e250f2d74c7dce2f4e0e63e7de8e55a39c2d2795e336106de2a0"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/canonical/original.json",
+      "bytes": 3069,
+      "sha256": "d5937f2505f74e07ce8de746c49c98e8a428535d79ccc878383e8b989807fb29"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/canonical/trim.json",
+      "bytes": 3895,
+      "sha256": "a915f62f109cd2e1be615eb7b0c1aa6fab4a4b6ad6e31791fb84488b02a17ad8"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/conditioning/original-20.json",
+      "bytes": 1016,
+      "sha256": "2b732d4be99d46c629e182bd445efcfe516f75cc3144717ed919718403452256"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/conditioning/original-30.json",
+      "bytes": 1016,
+      "sha256": "b60cf03017757fd285cd14f12400f458a4ad1d04ef20bc82884dde98e751b930"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/conditioning/original-50.json",
+      "bytes": 1016,
+      "sha256": "c5b81f24e6817953ffb6af258b76b2639f45814fe105392211bfba6095787ff2"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/conditioning/trim-4-screen-v1.json",
+      "bytes": 1021,
+      "sha256": "78ac2b0035ce70871e43f50ac73ac39705c478e2fe258ccfc4f30bb9d3e1157e"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/conditioning/trim-6.json",
+      "bytes": 1011,
+      "sha256": "33d0cb9fe20557ea456d222e1e92bcc3bd734cb981326ed48e3f5451162c14e2"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/conditioning/trim-8.json",
+      "bytes": 1011,
+      "sha256": "56e67d26b9041f4e21b91f9adf12d8efdfeab2a1a677540b3765052982043992"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/controller-v1.patch",
+      "bytes": 27005,
+      "sha256": "4e0ac3a7045b6da334ff657cc1a7d505e07c7af92efb9dc9a9ac4c1b56d9c9dc"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/controller-v2-cleanup.patch",
+      "bytes": 4263,
+      "sha256": "4bba738d1e50c36c2a1a2a867c56e343f775759e9cfeb82040738b3d27b04137"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/controller-v3-import.patch",
+      "bytes": 1261,
+      "sha256": "5e8d160b9ac68ad630a9aa6add263e4d75cedfd7eb9ac631913e9b74e19ff4a3"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/controller-v4-step4.patch",
+      "bytes": 666,
+      "sha256": "304d29281c6db40655dc885b346736d97be78629bd8ded811247fac2f868ac7b"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/controller-v5-reserve3.patch",
+      "bytes": 2832,
+      "sha256": "dcef9f20d4b727d2fbf37b8760d4c97a02a2a168b6ed1c086b98ffbe7b98286e"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/graphs/original-20.json",
+      "bytes": 3063,
+      "sha256": "88c74e996c92f66624df209486e96c125755ab8c970c7ce336876527b3b2da3a"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/graphs/original-30.json",
+      "bytes": 3063,
+      "sha256": "2b74121ecc901484239dff188ff3c9d5399d23c4388621115dc21ae0867b088c"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/graphs/original-50.json",
+      "bytes": 3063,
+      "sha256": "9c38e25acd44d56513814f12361d6cd71ac004596df4e29298fb874f68173045"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/graphs/trim-4-screen-v1.json",
+      "bytes": 3698,
+      "sha256": "f2d618eca8eceea2a1d795e7bca90a790c32b11930ea336dde8df8268b51fd95"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/graphs/trim-6.json",
+      "bytes": 3698,
+      "sha256": "8e18d80bd0039acd96d33595db2a2547e3f4b58b090e05829cced67e2976efd6"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/graphs/trim-8.json",
+      "bytes": 3698,
+      "sha256": "4f3100808edb367c1e06066320113eb94043c1f697489c443b025a31d1788016"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/profiles/original-20.json",
+      "bytes": 842,
+      "sha256": "5a5ccd57ee76b2db2165f634dce2ccde0576d8d5558eca7d39d66ac977736c3c"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/profiles/original-30.json",
+      "bytes": 842,
+      "sha256": "375f8ae84269a75f1349ca5144eea6c74a2c034363b4fa389b02badf2382d6bb"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/profiles/original-50.json",
+      "bytes": 842,
+      "sha256": "8f952247cb616a1404aaf16d7718f12903cfeda3e8741b7086a84b83bbf66a03"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/profiles/trim-4-screen-v1.json",
+      "bytes": 912,
+      "sha256": "950d49dbf72ef1afa2335199b6b200ebbdd54f4abab2f89d74ebaa32b7b8222c"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/profiles/trim-6-screen-v1.json",
+      "bytes": 892,
+      "sha256": "22bf854b5cb86b45295295a4180d07d78516699a47bc5ebb70d2fb8ec4f91dfe"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/profiles/trim-6.json",
+      "bytes": 837,
+      "sha256": "ef397cf7e614f29b3b50a1d1835f787db25c3929280753db0c6d31daf5027299"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/profiles/trim-8.json",
+      "bytes": 810,
+      "sha256": "e25e4e27c44203e8bf5deac8ddb143c7b1c347881cc572f4161021a112a38e64"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/speed_stage_b_v1.py",
+      "bytes": 47912,
+      "sha256": "17ad08a26af88efad9ee2bd25ee7bd575cde8adfb6a574f472d5fd336c539ae3"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/speed_stage_b_v2.py",
+      "bytes": 49129,
+      "sha256": "916c8f2e19d9d42d72719e985ee801d9a92e4d43d007eeabb9ec25c52c77d797"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/speed_stage_b_v3.py",
+      "bytes": 49642,
+      "sha256": "524bf48df04c3ecdb251115b4db08c6482ed36eeb33405db34799b3a5669f66e"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/speed_stage_b_v4.py",
+      "bytes": 49644,
+      "sha256": "10ff69732b3e06b273d124bc3342db62938349ee0e2ef0d431af1151c3a53e1b"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/speed_stage_b_v5.py",
+      "bytes": 49644,
+      "sha256": "7bfac0749c6d9a95420eb2eb3b90c70ebd915f8dc17197f44277db22355888df"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/speed_stage_b_v6.py",
+      "bytes": 49744,
+      "sha256": "f194d1b1862eab246c826d19c36c9c0846afe89b1664f6c24cd3f367f86d9ee9"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/timing_events_v1.py",
+      "bytes": 10734,
+      "sha256": "f0abb1937ca5462d712a73d1a8623b6a9f5df86927dbcf6375903b8a5ad3e614"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/validate_cleanup_offline_v2.py",
+      "bytes": 2442,
+      "sha256": "7b4a2d63530b78d8458fa37ba1e0d03b87866a013de3c66d31155890f199421e"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/validate_timing_offline_v1.py",
+      "bytes": 5951,
+      "sha256": "aef00e8b02cb6491c759b790130ba20e645d9ea6c507646396c2644f4edf1926"
+    },
+    {
+      "root": "q33",
+      "path": "agents/timing-controller/validate_trim_screen_v1.py",
+      "bytes": 1943,
+      "sha256": "914bab5206a076073ba1d4429e479d35bdf4294bdbe6f729d3930f2564f73e9e"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/__init__.py",
+      "bytes": 102,
+      "sha256": "606691627d4b346e60072208ada8d6b4df2409de190daffb7795c2cc24517e47"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/infra/__init__.py",
+      "bytes": 85,
+      "sha256": "8779897733779266841b0f79b84b1dc43f0fa57c013855c906c809829ecfc77c"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/infra/processes.py",
+      "bytes": 8151,
+      "sha256": "3b96ebc7a50913e78e86ff3dcba74c8ee8d03d547d9591ca6488f390ac1e6189"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/infra/executors/__init__.py",
+      "bytes": 64,
+      "sha256": "327c3cd5c821c832ff260a41dba0ee1e439cdabefc9edfb9cad1cd38d14bc87a"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/infra/executors/local.py",
+      "bytes": 3505,
+      "sha256": "b089cdc7daaaf7834698c2d280a12c5e755915ded926aa039c8de5f521bd46f0"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/python.exe",
+      "bytes": 105696,
+      "sha256": "ef8f51028ac5329641985112f8efb1c2d4c47c86b8011ddf7e6fae21e2b4e5a1"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/python313.dll",
+      "bytes": 6132448,
+      "sha256": "3a7a6170ea840bf2a2a76d05b687b946fcdc8d0cfedfe159012b38f1e8959a7c"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/python313._pth",
+      "bytes": 98,
+      "sha256": "5caee11a202b73328941593a3bea1a0540ddafc15a2fafc939be4520dd96e381"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/torch/__init__.py",
+      "bytes": 134069,
+      "sha256": "2d89482562a491093a10c2dcf9a83eea070f02b69b65aa4ae1b95ad23bcdbcaf"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/torch/version.py",
+      "bytes": 327,
+      "sha256": "84e179afbd773ecf41d671a2fa0dd643758f8830f247d563affe419b52ae7e06"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/__init__.py",
+      "bytes": 49093,
+      "sha256": "dbe4b16f4ff3fd1a0130b63e8c3e57b81f6c539728a9232e90ce6089be5429fa"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/_rope_utils.py",
+      "bytes": 4231,
+      "sha256": "53436ba6213778061740d87d95f38d72d8bda21eb2c9cf34a1a64b3931e33f37"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/allocation.py",
+      "bytes": 425,
+      "sha256": "9fbc4aa62458450022d23e182fccda7894ffec67dab3c192f3c493f49472a47a"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/backends/_activations.py",
+      "bytes": 3753,
+      "sha256": "d5456783bfb1febc3727f6f1076466c56c4e1ba710b1ef0c15ee75edc06b2b0a"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/backends/_modulation.py",
+      "bytes": 2639,
+      "sha256": "d1942526d55066f9dbd48c63ba0a3b3d3ad7e3509dfa011068d6b91cab812ede"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/backends/ascend/__init__.py",
+      "bytes": 32773,
+      "sha256": "820b18e7b83339a583f86773c6c340d30311fe36c448484155a81a07d237d058"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/backends/ascend/rope.py",
+      "bytes": 11763,
+      "sha256": "7b87d6d14987f762579be6187b6ca5ae7306d8b2b8caaa4382fb9e75abfb20e8"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/backends/cuda/__init__.py",
+      "bytes": 220412,
+      "sha256": "51dde2e7f95aa07c13d1a9edf7e4075dfbb8a468c51cfbc3cd6c33642f3bb0ea"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/backends/cuda/_C.abi3.pyd",
+      "bytes": 35901952,
+      "sha256": "fe4cd34a0c2fa9d13737266a89066409894978297d33d4239cf3c894b849385d"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/backends/eager/__init__.py",
+      "bytes": 29441,
+      "sha256": "e671e377e8c738f113f8f0109ed72a5e651d3fc2dfb9cf7cab12c0ae4b5ddf00"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/backends/eager/adaln.py",
+      "bytes": 1965,
+      "sha256": "ae3e078c31be1b09445078dbe7da1e97c6ae0e46b0571fac08485d93e2cfd0f4"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/backends/eager/awq.py",
+      "bytes": 3957,
+      "sha256": "53dc38fc2372968fee55a889cacd985b4f3e4fa5eac8a4ca63e93d983ec21487"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/backends/eager/conv3d.py",
+      "bytes": 2970,
+      "sha256": "0e7902f8d982c02500c1a6f2547ccc1d083382266c79457ac2a3720802ff078e"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/backends/eager/convrot_w4a4.py",
+      "bytes": 8115,
+      "sha256": "5f43e839f6b50f25e1d8c33d1c9d71d2889207e6c86d1a33f41218fb547d3309"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/backends/eager/group_norm_pad3d.py",
+      "bytes": 6539,
+      "sha256": "6b32c524dae1645562572513d6a5b54334bd98baded9c9a4ad29c04a31c75878"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/backends/eager/na.py",
+      "bytes": 7603,
+      "sha256": "180af6dbd5fc9d24fc192cea6c3996a08b5d09618c2789e6038842d38017005b"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/backends/eager/quantization.py",
+      "bytes": 48730,
+      "sha256": "1233a89a17fea9df62d293d19c7e1d6acd1b4911ba712b37258a96efe8944ade"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/backends/eager/residual.py",
+      "bytes": 593,
+      "sha256": "d1ddff3014717d3ca2475c7effdb8b2099837517bb9d72ebe914be47bff0e610"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/backends/eager/rope.py",
+      "bytes": 15455,
+      "sha256": "8bc585b0400e2d53d6cd1d921a991d57358697dd6f48ba0cb3ffa3f796c619e5"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/backends/eager/sol_attn.py",
+      "bytes": 12647,
+      "sha256": "fd71051a57eae170af415eda3375ceaeeb219b48eb804386d3922e8db6e2ca88"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/backends/eager/svdquant.py",
+      "bytes": 15820,
+      "sha256": "356609e52d2eb1906caf6e3ed623b5718a47251e6a7c2c24257aa717ab865434"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/backends/eager/w4a8_int8.py",
+      "bytes": 30109,
+      "sha256": "4da3d049bceb2c61d2d9929df721f604b912ee4d8096911e88981fd8a1c51fe6"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/backends/hip/__init__.py",
+      "bytes": 157289,
+      "sha256": "7384ff4a1b950ecb2d2a9477eac05a9c799e40e1b713a461a44b499afffd1ab7"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/backends/hip/_C.abi3.pyd",
+      "bytes": 158679040,
+      "sha256": "49ad450f0171634adaaa35fd1d5d1f831da6e919eb7d3d3eded19be80ce63098"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/backends/triton/__init__.py",
+      "bytes": 14080,
+      "sha256": "9d85006409b9b7d3702e8c97150ebe606b704ee4f84faf2a66fc832777a1016a"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/backends/triton/adaln.py",
+      "bytes": 4125,
+      "sha256": "9a1f64f27086ad17a8c41bec3d250a03a64db145030896d88471a01f173a537e"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/backends/triton/na.py",
+      "bytes": 6292,
+      "sha256": "08d3ec3009eacc218773b70e104e0dbcf30d310ec82c5e582f8bcefa72975e28"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/backends/triton/quantization.py",
+      "bytes": 39228,
+      "sha256": "09560cc20198aca3ec2177bc7fcf101197c521264aa259889886fa78d780212f"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/backends/triton/rms_rope.py",
+      "bytes": 8586,
+      "sha256": "0d20124f20213d4855be7490db6d6852ea62bc99fd4d89751b96dfa405acc465"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/backends/triton/rope.py",
+      "bytes": 10501,
+      "sha256": "f3020df5f2bb9e90d9d3e400f4281d676a76b7a679085a981fd32885b4738471"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/backends/triton/w4a8_int8.py",
+      "bytes": 6664,
+      "sha256": "4685c0b5fd34173bc2d3429c45b5394432a6b649b248d6722ce284b156c768c7"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/constraints.py",
+      "bytes": 14046,
+      "sha256": "0812a3e2693bf2f8aaa1aa7bebc9c7ec4a8819b7451557030c421815be3410d2"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/exceptions.py",
+      "bytes": 1342,
+      "sha256": "42698ab0c6b44127fdcbdeaa2051d8f2db744b9b42121350a53ba60123efbbbd"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/flash_attention.py",
+      "bytes": 12633,
+      "sha256": "c7e0e788c97f76b564e95a9b91622a94b957109cb5a47c86a9cc3b19bc4268f8"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/float_utils.py",
+      "bytes": 13312,
+      "sha256": "6546b60c2481361831af0a67b42f68ab5fa36be8327073bccc0db01253c9ef42"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/gated_delta.py",
+      "bytes": 19554,
+      "sha256": "d7ba4cbc6d843d64485da782b5597d6821f6d04c4fe7f5a38fd20aa95a3a9b77"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/int8_decode.py",
+      "bytes": 3687,
+      "sha256": "f3cc60e257d835ff97772e7b8abd97cf2d0315d2b64ff4b283c28ed782e6f7c5"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/registry.py",
+      "bytes": 11347,
+      "sha256": "e7eb061c1d52222af2a8d738102bfe9f4e85d5cc5a9f9fe4bd443d0185b0f77f"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/sage_attention.py",
+      "bytes": 23243,
+      "sha256": "565bab9b3ab7ce81a06f761812f7a775a465cebf20fecf15c9fd39590b6338b8"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/scaled_mm_v2.py",
+      "bytes": 7157,
+      "sha256": "3e194b9e62d51440adb87cb238d422b44eec0dd2ec475521bc50cb4747c9b9c6"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/tensor/__init__.py",
+      "bytes": 2437,
+      "sha256": "f15ebf95335f1aede241b618c551b0dbf641186d797fe164a3c0cbe9ed440ccd"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/tensor/awq_w4a16.py",
+      "bytes": 7955,
+      "sha256": "7f1de2c9a34c9e3d646f376fda58b75de33c52421466a583a11c027645dc6448"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/tensor/base.py",
+      "bytes": 20383,
+      "sha256": "badc436f9f0b9c3736551fdd471257fae85fcf88533461494d36b293a5bcf2ee"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/tensor/convrot_w4a4.py",
+      "bytes": 9070,
+      "sha256": "4f207fef362079d4246212f4b5f6561590a2a40e9bfc740c90301fdb67bc6aeb"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/tensor/fp8.py",
+      "bytes": 7828,
+      "sha256": "52cc7de03dab9c1a02529be3ee6df98f3cd5249ebd118dea790dd970edeb1ef2"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/tensor/int8.py",
+      "bytes": 17320,
+      "sha256": "57c592711013e6cb33c8e8c22e0c1b7eb94ea71d192a08c770349e80127cabf9"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/tensor/int8_utils.py",
+      "bytes": 2225,
+      "sha256": "f415cc53851fa22a2184997901f96c54dcd1d51894f18d73d4390434485dd4d1"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/tensor/mxfp8.py",
+      "bytes": 8705,
+      "sha256": "4cef837692273d11684629fdddef11280983856943c17639b9e746eded1a145c"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/tensor/nvfp4.py",
+      "bytes": 9935,
+      "sha256": "306cc2dc5b744f3c58c34a30790973549d658cd12fe14e5a10af4227033a514d"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/tensor/svdquant_w4a4.py",
+      "bytes": 22925,
+      "sha256": "14ef9388b9d6af2d37d5205777389e4991544c1dad4b05dd2f258696b4737936"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/tensor/w4a8_int8.py",
+      "bytes": 19427,
+      "sha256": "251f1231b48a6748cfa33a39323dbfd77081e27344cf81c69df4c897c5131636"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen/tensor/w4a8_packed.py",
+      "bytes": 5563,
+      "sha256": "462872f4bac132dbb2c3b36cfed0e414936be8c2e33e0662b41351f9b7b6522c"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/torch/_C.cp313-win_amd64.pyd",
+      "bytes": 9728,
+      "sha256": "b0d9c769bfe62da71688ddcb1fe2a75cbae29ad52f30b19eb24ec71aa70d1370"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_kitchen-0.2.40.dist-info/METADATA",
+      "bytes": 19753,
+      "sha256": "a2fb59b8cf3235662bdd17a9b146d1616ae473491da0ff5e7d2dad483fb166df"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/torch-2.14.1+cu130.dist-info/METADATA",
+      "bytes": 37982,
+      "sha256": "c980571008c81c6a36b9b2ef06bf63036a389835c4e3f15d42365d07b83d0de2"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/main.py",
+      "bytes": 31468,
+      "sha256": "baaa16d69ee78e08c490eeec20bf27c56b746c070f76cc05b4aa13cbc616bcef"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/server.py",
+      "bytes": 72477,
+      "sha256": "52618f91c663dc6524a028162212e0434fc9239618ddc0efbf7c605027081c8c"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/nodes.py",
+      "bytes": 112281,
+      "sha256": "776f549a05fc068eca20a9edc1602c6f1b80cfbbf5153bc44ba371a55fbb13be"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/folder_paths.py",
+      "bytes": 24090,
+      "sha256": "045a2ea987c0c7bcb0e47cbc46826ee34e82179562c85123f35ea3ff1c3e7ac4"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/comfy/cli_args.py",
+      "bytes": 23996,
+      "sha256": "c88f737c65915bd19ff04be68d151c0794b03b09e50dcb4fcd088647eb796f4a"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/comfy_api/latest/_io.py",
+      "bytes": 108937,
+      "sha256": "a16cea6dd228468b5fbe3fa2acb5dd86bf9445babcd9d8bfe697b84c449bf5fb"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/comfy_extras/nodes_minimax_h3.py",
+      "bytes": 31571,
+      "sha256": "5999ed8c22b13c8251084c0629fd82137d2fb52b55106abfc73bf5cafc73841d"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/comfy_extras/nodes_model_advanced.py",
+      "bytes": 17514,
+      "sha256": "8308f07f95938c2156136553ffd1e81b13e71aa6955c71f48c64404bdf91fe1c"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/comfy_extras/nodes_sparse_attention.py",
+      "bytes": 23450,
+      "sha256": "de202f2b5eb753a5748e1c6452cdc10cdf28834ffd8f8bb6acfaf6f643de9692"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/comfy_extras/nodes_custom_sampler.py",
+      "bytes": 50971,
+      "sha256": "913d776b5e696c70b77b8184f2af504533fbff2fad62a05cef4ecba87975f0bf"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/comfy_extras/nodes_audio.py",
+      "bytes": 36111,
+      "sha256": "37352d586a50845f1cb0375652583aa7c662f759298de0f904f56d107d709267"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/comfy_extras/nodes_video.py",
+      "bytes": 24222,
+      "sha256": "96fe786f9d8b52526f0340e3d64f11c375cc6948721381471cdaa41653408193"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/comfy/utils.py",
+      "bytes": 67195,
+      "sha256": "9a37b484d66f03a2f33e7c4bf1d6a38d6944a77cf09b6b8b149a26c179d69abd"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/comfy/memory_management.py",
+      "bytes": 8447,
+      "sha256": "a42e6613130f8099b3a478d387bac8ab23e139d48c619a99cea4409ce87b4f0f"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/comfy/model_management.py",
+      "bytes": 77396,
+      "sha256": "63610e41cf06fccb5eeaa153c5fd3799e01a0c645facba844763781d2036989a"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/comfy/model_patcher.py",
+      "bytes": 109588,
+      "sha256": "4f8ccf957a7227942c0e167384ed4e128f038245ad09b9bb547102281be13612"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/comfy/pinned_memory.py",
+      "bytes": 5396,
+      "sha256": "33338a144d0d59406630851d8ec6ea5659d28bad2cd3aa85680a5816e4b44d64"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/comfy/system_memory.py",
+      "bytes": 3478,
+      "sha256": "1ebc2515138bff8b174d298230b98b6ec09a7dae0a03ba7fefa7ce60c6fba625"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/comfy/ops.py",
+      "bytes": 93642,
+      "sha256": "0167aef2929b92ba3623376f7656e58ead5869485b926b09bead525f32e4dd06"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/comfy/sd.py",
+      "bytes": 151471,
+      "sha256": "b5dcb5d1156a1f4e5fb9b32ef684105cca27298416f8abe494eafac75a4d2863"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/comfy/sd1_clip.py",
+      "bytes": 31845,
+      "sha256": "02840bea124088477f7a5e071f1d4e0150ffc115b31864ddab9c5f130a40cb88"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/comfy/text_encoders/minimax.py",
+      "bytes": 10578,
+      "sha256": "cff2303063502b63afce83545c7443a48b339e42ee821fb716279a6aa2db4430"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/comfy/text_encoders/qwen3vl.py",
+      "bytes": 11847,
+      "sha256": "ed9b2e9e760ffe0a2ee3c702ac3d8aa26319c3d06833a2cef2d816e3591d6867"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/comfy/text_encoders/llama.py",
+      "bytes": 68092,
+      "sha256": "7cecc846bb54ad223cf44933651d0049b69b1377e6ac92f10342657d155b8234"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/comfy/text_encoders/hunyuan_video.py",
+      "bytes": 9651,
+      "sha256": "9c1c309de2014e899803094353110005307f15877c8cdc9dc49c2dc5f7393051"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/comfy/storage.py",
+      "bytes": 3489,
+      "sha256": "90a787e95d845d795d655246dbcbe28fc4f1a0e6be4a39925916aee087ea2d95"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_aimdo/model_mmap.py",
+      "bytes": 1627,
+      "sha256": "a0708851de1634e5aae807db48958078699e12068c9d9880801be6d9ad0943ac"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_aimdo/host_buffer.py",
+      "bytes": 6085,
+      "sha256": "740b078b6f1c2e16e55cd6448a9dab1de79a1f76eb78a53d2d216cdb60289277"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/comfy_aimdo/control.py",
+      "bytes": 9267,
+      "sha256": "15b1be566ab6b88d61a10b1dd65385772e26b1e140003ac0fc3d0a6f7f74ad4e"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/execution.py",
+      "bytes": 66163,
+      "sha256": "5312ba107f69f2bc70f4009c5d52524b3865dd54fceafdc8649b22c98d6c612f"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/comfy_api/latest/_ui.py",
+      "bytes": 19226,
+      "sha256": "31daecf835079952514c7703a52821069e83e3d72cdb359c94670a4cbe41938a"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/comfy_extras/nodes_cond.py",
+      "bytes": 6170,
+      "sha256": "56344e64a20692a0f64521bf4de78c0a9c040e23c3499a00491b5243ca39f898"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/comfy/k_diffusion/sampling.py",
+      "bytes": 95082,
+      "sha256": "a7f22bd23cf8da6814c0adf0328704b2946370f09939bb364c2523dc1fcc902f"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/comfy/ldm/minimax/model.py",
+      "bytes": 41932,
+      "sha256": "a1b9c179832ed69e84f603521fc89cd62c7f4486fda19d23ff356f212d01429c"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/comfy/model_detection.py",
+      "bytes": 97268,
+      "sha256": "3908b979fcd25c8eb761453cf0fd1be5bff65fb6481e70ef541df8fb3b9419d4"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/comfy/model_sampling.py",
+      "bytes": 16684,
+      "sha256": "176eeaa45b871fe96fa244961e24ba1f02c1654758b3de37966974ce6850bff7"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/comfy/samplers.py",
+      "bytes": 65945,
+      "sha256": "d403874e0c2c4843e3d951e5a98dbc38d9cf862519def82209df82a816c12950"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/comfy/supported_models.py",
+      "bytes": 93997,
+      "sha256": "a679679cc1556c67b795e6672296a8e03d504e92e706f7ad298cfee5553b3d06"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/comfy_extras/nodes_images.py",
+      "bytes": 101910,
+      "sha256": "fffbcd588848f747a1ef275baa47c015c6f04b2f5e1ba2ea304bca19ca005450"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/comfy_execution/progress.py",
+      "bytes": 12219,
+      "sha256": "ca0aaa4464e903212fd8379c080b5ddcfda0740401b384a289d54563e7cf5ded"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/latent_preview.py",
+      "bytes": 6478,
+      "sha256": "e3e17ec8ce6bf6803b3042df81723f9e962e80d457c0b5b62d734ec84d063c92"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/__init__.py",
+      "bytes": 8429,
+      "sha256": "7ddd3da8369592dbd4a04d9ada4629ce54d38779fc05ecef6cbeeb7a3e26d46e"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/_cookie_helpers.py",
+      "bytes": 16216,
+      "sha256": "13a1c5cfede8d86eb9e5d110ae2eb9379d591efa8d228c28072ce64943bfd1b5"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/abc.py",
+      "bytes": 8455,
+      "sha256": "1218d92a687f41adcb0f694cd1412958e23fd114c15559ab510934edeec30c28"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/base_protocol.py",
+      "bytes": 5348,
+      "sha256": "88c31ec8c16e99dff3f101e2e38a813878af4879adf394ad89090b183a742c64"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/client.py",
+      "bytes": 67904,
+      "sha256": "61eaeff40f0294666a3438c751698b7777b301fe8d43fc569bfa9c9ec33f8787"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/client_exceptions.py",
+      "bytes": 11725,
+      "sha256": "bd33e3aaef7306266efcdd78cf488ea7c20f999eb09dc4cc1229698ccd25c1e7"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/client_middleware_digest_auth.py",
+      "bytes": 19681,
+      "sha256": "a0d6d68f9b0182a420cd058fb7b65aae2cac62d858d7d1da8fa56c588cfe2496"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/client_middlewares.py",
+      "bytes": 1918,
+      "sha256": "90fe4df4233340f3063c813275e55488b5132ecc3c565f06af8a8059876edef3"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/client_proto.py",
+      "bytes": 14500,
+      "sha256": "e2245a9166011c6094248f8b2ac2f5f69eeed4e4a1827d0c17f123efeeb6b9df"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/client_reqrep.py",
+      "bytes": 64244,
+      "sha256": "75153bcadc900440fad5607bae0b1852a736c17370505f52c9050cbdd39904ca"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/client_ws.py",
+      "bytes": 20555,
+      "sha256": "35246f7732ab36b17713c1a82337ba8e20f83a1523f1c5988f828f073796a6fe"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/compression_utils.py",
+      "bytes": 18700,
+      "sha256": "cc1f2d52b2fabbbda34bce79f5edc6f0fa784036250d8fb7c5231bf08de0c3ff"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/connector.py",
+      "bytes": 71806,
+      "sha256": "49cc264ebc7d8dcbbb9181ad65f19ee171fc56765eb195d270dafa53716055a1"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/cookiejar.py",
+      "bytes": 39806,
+      "sha256": "ed3a0ecc55983443adfc409020bd0fbf27f33c6d0d79f1da99358d3bf03877ea"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/formdata.py",
+      "bytes": 6514,
+      "sha256": "cd1596d8e0d891679a84339dfa1c2b6befff1148b3741d9b7fa8403209022a17"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/hdrs.py",
+      "bytes": 8146,
+      "sha256": "e841e8cf3985671a53b28fe892ffb62c2ff5bf832ad3fa4f1fbadeaa8ad022e1"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/helpers.py",
+      "bytes": 33033,
+      "sha256": "587ef64942a5e4de725dc6ab95c91e39093312935bf7c0d619dc4517ba8c0448"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/http.py",
+      "bytes": 2077,
+      "sha256": "0875f116d3972bce513628d891fa63be309b2a525cde120646c08502787cde19"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/http_exceptions.py",
+      "bytes": 3115,
+      "sha256": "2359f2a29b75b185741aaa56dab6b8a670a615c3aa3280c2e1d10b821124da52"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/http_parser.py",
+      "bytes": 49843,
+      "sha256": "0f8ff5637605c4ec879330a9785744fc1d50e621e8c36d38d2539d3c0bf97da6"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/http_websocket.py",
+      "bytes": 983,
+      "sha256": "f2354db21b6034f4839da6f40dcd6500eec716fb53ef2efd7992a35175fa7b6f"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/http_writer.py",
+      "bytes": 12834,
+      "sha256": "c465f010d23c01f118494f1c25d27fcd6ad991635ecb47c149797b5c1bed9e1f"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/log.py",
+      "bytes": 325,
+      "sha256": "05b34ac7d7b754c226d31623648d087010684bbc2375e21e49a88913bfaa2b68"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/multipart.py",
+      "bytes": 46536,
+      "sha256": "c1436dbf370e052bdf3b28481d841dcab9e8dbf0db9bfee8599a33dd1d788234"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/payload.py",
+      "bytes": 41608,
+      "sha256": "e7319cd9fb13c9b451818f3ec8850f3a3b95161bcdfb05e33edb2268fb4bfd25"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/payload_streamer.py",
+      "bytes": 2225,
+      "sha256": "3c6a892adff571affb8baa7552053c8eba4ed6da0eb791100d030e2bd2e3b55e"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/pytest_plugin.py",
+      "bytes": 12976,
+      "sha256": "786851a32d1328d390de6b5a6e4a68320b74253867543af8d3a87f93266441ef"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/resolver.py",
+      "bytes": 10875,
+      "sha256": "898d0e938b565b961ba460a6faef1de47aa616234c9925fd182b9689e7ef0060"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/streams.py",
+      "bytes": 24745,
+      "sha256": "14c7f018cea18a4b83bc0336a07c16e5d3e4b07479a6192893c9b3bddf43ecb7"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/tcp_helpers.py",
+      "bytes": 961,
+      "sha256": "05269da9559a0693050d15a785a691f78d4df4c88367b6dd4ebc6009bd025be3"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/test_utils.py",
+      "bytes": 24773,
+      "sha256": "2d44fcf9eb425841cc9c8aba4200e69573e09280bfcd34d9e32669d8e6cf3d98"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/tracing.py",
+      "bytes": 14500,
+      "sha256": "e26a2435329d5f962ea12aef5671b80fb5933ccc1ef949581d563142346fe05c"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/typedefs.py",
+      "bytes": 1672,
+      "sha256": "23e57a4b84fbddf23fc2425f05888bee8b44791bd51e649db24f9860f47a163d"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/web.py",
+      "bytes": 18426,
+      "sha256": "82ccb14523d65778998cf51b391ddd206729d639b696d06d5f090f87dd5ca374"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/web_app.py",
+      "bytes": 19559,
+      "sha256": "d644c9e91255c66ed236f54e08f2d629afa63f972c64b004415df31c30b5aa13"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/web_exceptions.py",
+      "bytes": 10354,
+      "sha256": "0ac106f3c75020d612169925084ffb6d980bd485631e8cb97654d25501873d14"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/web_fileresponse.py",
+      "bytes": 16404,
+      "sha256": "e6f95ff8e99f805c46e4ed731abce4f923d191bb39f22ccb95b425753f831d71"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/web_log.py",
+      "bytes": 8487,
+      "sha256": "949083b19db1269ec7a92ba28da4d9caac49d283563e1c31244d45546516c165"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/web_middlewares.py",
+      "bytes": 4152,
+      "sha256": "3887e79c21c98119ca8f30e31e873f57335c2ee55ff72f24bf9693cccd951af7"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/web_protocol.py",
+      "bytes": 33219,
+      "sha256": "64a27fa5d0ae7906d705dd95318601a59908f74b2594d99d5c4ae5bf72e28f80"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/web_request.py",
+      "bytes": 35422,
+      "sha256": "00f9eddf058f708617a0bc3456b548124f8d57b99c6ab7c5aa162267f942713d"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/web_response.py",
+      "bytes": 30925,
+      "sha256": "78aa643c57d0c94b7f41b5e8b4d2e68f63aaae80d02fb2dd01278384eaf92e74"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/web_routedef.py",
+      "bytes": 6077,
+      "sha256": "558018c3caf0892a7008b8a081c3995e4063ccf37204ae151e6e209fc97d4076"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/web_runner.py",
+      "bytes": 12708,
+      "sha256": "3c651d66cfdddaacccdd39dbeb2090428c5fc2a41916e56bfcd18824166af4cb"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/web_server.py",
+      "bytes": 3170,
+      "sha256": "2dac13e3b489b8b48862090058bfe1685807ea5572ba80f7cf2153bc16adbec1"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/web_urldispatcher.py",
+      "bytes": 44297,
+      "sha256": "f92c5f98875c2161514e2ab6ccecf148321dd720726c10f3eae5f1b496b79a62"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/web_ws.py",
+      "bytes": 28358,
+      "sha256": "b75db90128267f0a01331859c68fde05e71314c4dde2d48ba4435e39fd010f35"
+    },
+    {
+      "root": "portable",
+      "path": "python_embeded/Lib/site-packages/aiohttp/worker.py",
+      "bytes": 9146,
+      "sha256": "60ac0e0164f6178c892f6b10a2da9dd376c6b7534411d35b78bf0b5afde20a10"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/__main__.py",
+      "bytes": 48,
+      "sha256": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/skill_catalog.py",
+      "bytes": 9938,
+      "sha256": "65f5a1f3f6894009abb98ec2fec30a63cc1bb2f6ce6aeb01f9f7a3dce0439f2d"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/runspec.py",
+      "bytes": 4398,
+      "sha256": "dca0952425caf42095ef0c7e2feb8ef4740cc422ecb61e777f203962d9b87709"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/reporting.py",
+      "bytes": 127,
+      "sha256": "1f771890ab3e69b1aa9246b548a7825596bdf904f6c395dd218208084266853d"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/model/__init__.py",
+      "bytes": 77,
+      "sha256": "3c1dba4f5159fd9fbc8d4d96e2a83c8441491c1b1dc7b42031a3fc1782ed9d9f"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/model/validators/__init__.py",
+      "bytes": 65,
+      "sha256": "1d4b6ffa968e283219ddcc8a09de9280238a8d65ae2dc8cd2b60889877a8eb0b"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/model/validators/image.py",
+      "bytes": 3204,
+      "sha256": "79470b6b06a22d53ec6c40636a0b3d821a2e6ee2f7bb7aed3dac7241504add1a"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/model/protocols/__init__.py",
+      "bytes": 85,
+      "sha256": "5a2f54483b164de04e309dbebb87a700b213682b0f44a50d89a752dd71a4ce47"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/model/protocols/metrics.py",
+      "bytes": 610,
+      "sha256": "17db16d6ef15b41fb60d8f09507893accc43f9cb3ad686b8dc4e9839713ebc56"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/model/protocols/image.py",
+      "bytes": 2047,
+      "sha256": "251a1f8f885da2cd8e9d3baba766c525afe293091606b4e8668c43ba2cb7cb5f"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/knowledge_store.py",
+      "bytes": 13700,
+      "sha256": "5e794e28906ce4687aff7f14a507e267184640fc8a4fac19e0ced279ce6a6cb6"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/knowledge_operations.py",
+      "bytes": 23733,
+      "sha256": "dd086a3f6d9d883aa6cc9432302ded3a0e2a2ae0eb3fd998c940f714bf662967"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/inspection.py",
+      "bytes": 692,
+      "sha256": "afa44bf4cdfbb58a318c21f9b292ca142d1bbb22750e35a4cc8244da5350ebb3"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/infra/targets/__init__.py",
+      "bytes": 186,
+      "sha256": "1f3ea75dded7c6cc967754c7b6d4f30ef00da8191a749938aabc3c6bb8f86eb3"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/infra/targets/git.py",
+      "bytes": 2910,
+      "sha256": "6327c4f126086f310b6de309fc7659c9759da28ed76efaeeb94a3d2fba29a0c2"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/infra/platforms/__init__.py",
+      "bytes": 1422,
+      "sha256": "40b6783796ed066e1e4ce75a0bd9464ee01d0e024550c49f34f1f37f99ac5bd7"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/infra/platforms/cuda.py",
+      "bytes": 3309,
+      "sha256": "9e0e4276e1b2984605493b14b82fba3e86f6635204719c318302e624f66f8b6f"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/infra/inspection.py",
+      "bytes": 2409,
+      "sha256": "70578b7da0b8605498fafc6eb7bd0b48df45444cb35af767d1224038344206f5"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/infra/http.py",
+      "bytes": 634,
+      "sha256": "f65d6c2b55b6a89694caaf6dcdf7d74f417e9ced103eca1b3f218e305c6b6cb2"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/infra/environment.py",
+      "bytes": 2067,
+      "sha256": "60e46c2aefc216db202b41f44542e7b893e08e0721c667b9ccc50411d1ac84ee"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/infra/commands.py",
+      "bytes": 811,
+      "sha256": "1890f115b3a2c5c6832173bf60432ad595bd6bf1c69783ecd460c6f8961194f1"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/infra/campaign.py",
+      "bytes": 1028,
+      "sha256": "be505fba1592611bd84ceaca55afbac027205413a2639baefa0c3bb343230209"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/infra/artifacts.py",
+      "bytes": 1040,
+      "sha256": "e72e1bebdbb88e42de430238489252386851f9e6645ed7780f2aad2e90338120"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/harness/__init__.py",
+      "bytes": 177,
+      "sha256": "1006e4713003f44bfb32b2e385a918e1652b9e9833801e4555674a71e57fb0d5"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/harness/skill_evaluation.py",
+      "bytes": 8098,
+      "sha256": "8d35f43a4589851d1a449ac22a411202be4aea3c251553c27d5251e8d68fdc24"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/harness/scenarios/__init__.py",
+      "bytes": 79,
+      "sha256": "4e97913c806077f0cadfeb29d986d2fa75b55ab8766cb86e6e3e9a195a9a1f5a"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/harness/scenarios/media.py",
+      "bytes": 2914,
+      "sha256": "67d979a3ed6f13a8e3e1e40a304f78e5a3e6c2556b3aa8a11c41156745d7050a"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/harness/scenarios/external.py",
+      "bytes": 1016,
+      "sha256": "84d5f6920501a9d882cc4fffbc721d2051fdbf7c90694bde9cbfba3c2b866304"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/harness/runner.py",
+      "bytes": 6567,
+      "sha256": "a566307b9b586655941b627f428b5121ed38d7ac80bccd1e1799e443fb0de911"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/harness/reporting.py",
+      "bytes": 2134,
+      "sha256": "46aaed9858c27d4717570154294df8c0c3bf3a1ed23f0791f39c1f2070141e5b"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/harness/evaluation.py",
+      "bytes": 4160,
+      "sha256": "9b00b2e93959f16b7b76bb4b257df7dcf48520a06fd6adae96e9a165a05e6e80"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/execution.py",
+      "bytes": 755,
+      "sha256": "f43d8cbb4d43a72a7ff8a10b29a5fb9cf4cb22af54dd35943283c843fba0da92"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/evidence_paths.py",
+      "bytes": 859,
+      "sha256": "cc46231e0b8334ef5742defdda20e0093e22b30c86af59df1fb3ae4b5caa70fa"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/evaluation.py",
+      "bytes": 183,
+      "sha256": "482c40710d428206c59fe3696703248cd86c4b3c7d19ad41017c1369bd6d780e"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/claim.py",
+      "bytes": 805,
+      "sha256": "5f24c4fa91b48f0bb4d4554531607763fc8fc108e90f332816f06cfb520b5cc1"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/arguments.py",
+      "bytes": 10787,
+      "sha256": "22b4c491e5ce1f42c9ec6e9877f3bf942d64eb4cb1f3d167d52be8e6e20302f1"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/catalog.py",
+      "bytes": 6814,
+      "sha256": "b16a2ae6f5bd03dfe94966cb129c2ae5d7a4114b9f46bb1cc417a2352f14c84b"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/contracts.py",
+      "bytes": 119,
+      "sha256": "03000cb9246ce8c0967147533f7ad25df918ba2674839801453ffb870f496490"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/cli.py",
+      "bytes": 12539,
+      "sha256": "60e8ed5116d8f08674209b633613257d2bfc177f3322f6b16022226498d3f478"
+    },
+    {
+      "root": "infra",
+      "path": "src/inferrsi/data/skill_library/repositories/strata/scripts/summarize_trials.py",
+      "bytes": 5170,
+      "sha256": "6a243a08da15659ced6519f49f52a49a675bd9e952740c3ab03dd21964eefbe2"
+    },
+    {
+      "root": "notes",
+      "path": "iterations/2026-10-28-comfy-trim-first-video/tools/validate_first_video_media_v1.py",
+      "bytes": 23411,
+      "sha256": "7fa12bd773e5933f2ce0e71c5be2f4124fc6c35284fbe5d3c624ab1b7012ca1a"
+    },
+    {
+      "root": "notes",
+      "path": "iterations/2026-10-28-comfy-trim-first-video/tools/comfy_first_video_v1.py",
+      "bytes": 20306,
+      "sha256": "63eb319e9fe294209e65c188a447a101987738e5ebc49bae879b65d36bb20d35"
+    },
+    {
+      "root": "notes",
+      "path": "iterations/2026-10-28-comfy-trim-first-video/plan/MEDIA-VALIDATION-GATES-v1.json",
+      "bytes": 687,
+      "sha256": "3e880606a5744fc290be9ca4011169be7dac65140e66ac3525e7b58b65a82e60"
+    },
+    {
+      "root": "notes",
+      "path": "iterations/2026-10-28-comfy-trim-first-video/state/transport/assets/trim-dit.receipt.json",
+      "bytes": 823,
+      "sha256": "bfac58dff244b76e1933696293a6d14cb9edba76f44eab994467c4982e48f0f8"
+    },
+    {
+      "root": "notes",
+      "path": "iterations/2026-10-28-comfy-trim-first-video/state/transport/assets/trim-dit.json",
+      "bytes": 443,
+      "sha256": "2469e286a91b603ef0d80598ed55d0db23405d35b85ec1842e9b82ca41616583"
+    },
+    {
+      "root": "notes",
+      "path": "iterations/2026-10-28-comfy-trim-first-video/state/transport/assets/video-vae.receipt.json",
+      "bytes": 809,
+      "sha256": "10d5e728d94c586c0aa3db2f8b9433df3b3d84105d6fa31a8a4c2e5e513e19d4"
+    },
+    {
+      "root": "notes",
+      "path": "iterations/2026-10-28-comfy-trim-first-video/state/transport/assets/video-vae.json",
+      "bytes": 400,
+      "sha256": "2606bfe4a0a25313d8423dfc8486a4e3260eed41a8fbff1678e425fb12d94dc9"
+    },
+    {
+      "root": "notes",
+      "path": "iterations/2026-10-28-comfy-trim-first-video/state/transport/assets/audio-vae.receipt.json",
+      "bytes": 800,
+      "sha256": "f2f8217d2d75c8d8420a12b44e6cb298ce7f2dda52d71296c25f99c39fd28251"
+    },
+    {
+      "root": "notes",
+      "path": "iterations/2026-10-28-comfy-trim-first-video/state/transport/assets/audio-vae.json",
+      "bytes": 383,
+      "sha256": "825d5402d4dea3d39be45c436564949944a030268860d5eb029728f30b552a6b"
+    },
+    {
+      "root": "rsi_base",
+      "path": "rsi_pair_v2.py",
+      "bytes": 15336,
+      "sha256": "4830c462866ea832481a1a97f0989ed01481911126998b61d5f6c1fe728a8b6c"
+    },
+    {
+      "root": "rsi_base",
+      "path": "PATH-AND-PAIR-PLAN-v2.json",
+      "bytes": 967,
+      "sha256": "1224028e714fc859f7129e438eace05d74a1afacd7f96e7360e6bb146c15b845"
+    },
+    {
+      "root": "rsi_base",
+      "path": "validate_path_pair_v2.py",
+      "bytes": 1623,
+      "sha256": "936cebcc40211e5545698dd2429cd474c5f10e43e43cc6270f039cc05c820395"
+    },
+    {
+      "root": "rsi_base",
+      "path": "CANDIDATE-FREEZE-v2.json",
+      "bytes": 742,
+      "sha256": "bc6c6efb62ad8186ca2d66ca1049e1d4d72a6651dd8156450edceba6e50943b4"
+    },
+    {
+      "root": "rsi_base",
+      "path": "v1-to-v2-path-pair.patch",
+      "bytes": 3235,
+      "sha256": "05de17b8a9853c42b19323b8c36e8c45fae077c8f9e6316ecef15de3086bded0"
+    },
+    {
+      "root": "rsi_base",
+      "path": "PATH-PAIR-REGRESSION-v2.json",
+      "bytes": 564,
+      "sha256": "b16afa005fdeb44e9fe1f3073c8a4d7948cfaaaa6c5fdcf13c18ed9c3e189218"
+    },
+    {
+      "root": "q33",
+      "path": "agents/offload-preparation/EXECUTION-FREEZE-v1.json",
+      "bytes": 9726,
+      "sha256": "a996fe37e5f693bab17c2d7ec3b120ac4d4c12ff717562d6e1f9b181fc493a8a"
+    },
+    {
+      "root": "q33",
+      "path": "agents/offload-preparation/async_persistent_stage_b_v1.py",
+      "bytes": 58297,
+      "sha256": "be5ed4634a212e0d68d9b014f04ac2ca8e8547ade62c93967e73ccdecb9a8bfe"
+    },
+    {
+      "root": "q33",
+      "path": "agents/offload-preparation/async_persistent_stage_b_v1.py.help-stderr-v1.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "root": "q33",
+      "path": "agents/offload-preparation/async_persistent_stage_b_v1.py.help-stdout-v1.txt",
+      "bytes": 2752,
+      "sha256": "16d7691a5460c8ae4d22a8cf38222fedcb55016850738acc862d657a4689608c"
+    },
+    {
+      "root": "q33",
+      "path": "agents/offload-preparation/CANDIDATE-FREEZE-v1.json",
+      "bytes": 1358,
+      "sha256": "246180fddf0df1a354c51db6d86b701215864f3f76068ea1cdf08ebc2b330b19"
+    },
+    {
+      "root": "q33",
+      "path": "agents/offload-preparation/CONTROLLER-v2-to-async-v1.patch",
+      "bytes": 5152,
+      "sha256": "4403a5385d054b22aff31acff7926d79cb93828e8c1a2c48dc64b878b796d5bb"
+    },
+    {
+      "root": "q33",
+      "path": "agents/offload-preparation/DESIGN.zh-CN.txt",
+      "bytes": 2743,
+      "sha256": "a424cf416a08d33b583a79098f97304b8d36d0f6f58c8f94a40b493f576b8c08"
+    },
+    {
+      "root": "q33",
+      "path": "agents/offload-preparation/HELP-RESULTS-v1.json",
+      "bytes": 527,
+      "sha256": "1781cdf4aad0119c5e3f4374c6b694e43fcddd7a9226cc1b3399bcb9831c97a1"
+    },
+    {
+      "root": "q33",
+      "path": "agents/offload-preparation/INFRA-MANIFEST-v1.json",
+      "bytes": 822,
+      "sha256": "3201a27b1080cd6dd89cf43fbc6bddf5166e64eb38c5440ebf8bd02667f5608b"
+    },
+    {
+      "root": "q33",
+      "path": "agents/offload-preparation/MEDIA-v3-to-async-v1.patch",
+      "bytes": 6231,
+      "sha256": "f42ccc331b571509ae0ba3e76ce8890c3795dc1bc04fd836359bc8d3ea932d0d"
+    },
+    {
+      "root": "q33",
+      "path": "agents/offload-preparation/offline-log-fixtures-v1/legacy.txt",
+      "bytes": 122,
+      "sha256": "38ed752d449c4800af39871d1c83721ecf6107c497e7d35e30f426325f36894c"
+    },
+    {
+      "root": "q33",
+      "path": "agents/offload-preparation/offline-log-fixtures-v1/missing.txt",
+      "bytes": 41,
+      "sha256": "02a48f58ac0203b3d7747154b835b86cd7f2396889de99caa28bffc8a814e07d"
+    },
+    {
+      "root": "q33",
+      "path": "agents/offload-preparation/offline-log-fixtures-v1/valid.txt",
+      "bytes": 86,
+      "sha256": "35ee946e6af4afd6315c84c30494c6973ca38b6afac858202ccacffa76892d7d"
+    },
+    {
+      "root": "q33",
+      "path": "agents/offload-preparation/OFFLINE-RESULT-v1.json",
+      "bytes": 2149,
+      "sha256": "517f4636310c87a2d81c84c10b9f01d50cd0e54b706b42b8cacbf414b4dcdd2d"
+    },
+    {
+      "root": "q33",
+      "path": "agents/offload-preparation/offline-stderr-v1.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "root": "q33",
+      "path": "agents/offload-preparation/offline-stdout-v1.txt",
+      "bytes": 53,
+      "sha256": "82ffc61678e55d65a8909a2db69a4166cb114df91bdcbf836dfa05e1b537c311"
+    },
+    {
+      "root": "q33",
+      "path": "agents/offload-preparation/PLAN-FROZEN-v1.json",
+      "bytes": 1565,
+      "sha256": "cec44e32607cd074ea50c44b091cdcd4e1e21179c9e0fc9ccdee2f713bdc54e9"
+    },
+    {
+      "root": "q33",
+      "path": "agents/offload-preparation/PLAN-VALIDATOR-FREEZE-v1.json",
+      "bytes": 392,
+      "sha256": "8aa9f707b6b97274e018e02e498a09da930ef682b39e34e8d2eab349f534ce94"
+    },
+    {
+      "root": "q33",
+      "path": "agents/offload-preparation/SOURCE-READOUT-v1.json",
+      "bytes": 34530,
+      "sha256": "5f025db02613ac343e91c5d1b830734d4bc6e4cfa0a4cf993d3118cc2751bb1f"
+    },
+    {
+      "root": "q33",
+      "path": "agents/offload-preparation/validate_async_delta_v1.py",
+      "bytes": 5853,
+      "sha256": "ec366f2fdce27c49985c2a0ec8483d50f7656d3cfdb405b22e333ae5b90e70a8"
+    },
+    {
+      "root": "q33",
+      "path": "agents/offload-preparation/validate_async_persistent_media_v1.py",
+      "bytes": 10049,
+      "sha256": "27d8a29e51d9e18da93e803e16eaa8276445e103665c2eeef7dc1e6ee746b84e"
+    },
+    {
+      "root": "q33",
+      "path": "agents/offload-preparation/validate_async_persistent_media_v1.py.help-stderr-v1.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "root": "q33",
+      "path": "agents/offload-preparation/validate_async_persistent_media_v1.py.help-stdout-v1.txt",
+      "bytes": 687,
+      "sha256": "5df26e85cacc2ace10ae739bd4306b4884fb819d7b3dd61a6ab6c7d69094f7a8"
+    },
+    {
+      "root": "notes",
+      "path": "iterations/2026-10-31-speed-quality-search/agents/timing-controller/assets/trim.json",
+      "bytes": 2763,
+      "sha256": "c1507b121962e250f2d74c7dce2f4e0e63e7de8e55a39c2d2795e336106de2a0"
+    },
+    {
+      "root": "notes",
+      "path": "iterations/2026-10-31-speed-quality-search/agents/timing-controller/canonical/trim.json",
+      "bytes": 3895,
+      "sha256": "a915f62f109cd2e1be615eb7b0c1aa6fab4a4b6ad6e31791fb84488b02a17ad8"
+    },
+    {
+      "root": "notes",
+      "path": "iterations/2026-10-31-speed-quality-search/agents/timing-controller/conditioning/trim-8.json",
+      "bytes": 1011,
+      "sha256": "56e67d26b9041f4e21b91f9adf12d8efdfeab2a1a677540b3765052982043992"
+    },
+    {
+      "root": "notes",
+      "path": "iterations/2026-10-31-speed-quality-search/agents/timing-controller/graphs/trim-8.json",
+      "bytes": 3698,
+      "sha256": "4f3100808edb367c1e06066320113eb94043c1f697489c443b025a31d1788016"
+    },
+    {
+      "root": "notes",
+      "path": "iterations/2026-10-31-speed-quality-search/agents/timing-controller/profiles/trim-8.json",
+      "bytes": 810,
+      "sha256": "e25e4e27c44203e8bf5deac8ddb143c7b1c347881cc572f4161021a112a38e64"
+    },
+    {
+      "root": "notes",
+      "path": "iterations/2026-10-31-speed-quality-search/agents/timing-controller/RESOURCE-GATES-RESERVE3-v1.json",
+      "bytes": 855,
+      "sha256": "13672a9bbe8946c28c98b3bab0f906f6ddfe67735ff7f77929e58539a4a580dd"
+    },
+    {
+      "root": "notes",
+      "path": "iterations/2026-10-31-speed-quality-search/agents/timing-controller/SOURCES-v1.json",
+      "bytes": 33327,
+      "sha256": "bf0d3e3b09f8130053735eaa6645bcc4ff753833a97ef4ae306d7d223283f007"
+    },
+    {
+      "root": "notes",
+      "path": "iterations/2026-10-31-speed-quality-search/agents/timing-controller/speed_stage_b_v6.py",
+      "bytes": 49744,
+      "sha256": "f194d1b1862eab246c826d19c36c9c0846afe89b1664f6c24cd3f367f86d9ee9"
+    },
+    {
+      "root": "notes",
+      "path": "iterations/2026-10-31-speed-quality-search/agents/timing-controller/timing_events_v1.py",
+      "bytes": 10734,
+      "sha256": "f0abb1937ca5462d712a73d1a8623b6a9f5df86927dbcf6375903b8a5ad3e614"
+    },
+    {
+      "root": "notes",
+      "path": "iterations/2026-10-31-speed-quality-search/agents/persistent-preparation/persistent_stage_b_v2.py",
+      "bytes": 57964,
+      "sha256": "f27dff8a8792a99c47d9ba71f5ddd005a95bebd950e8f365b51cb4685b4c31b8"
+    },
+    {
+      "root": "notes",
+      "path": "iterations/2026-10-31-speed-quality-search/agents/persistent-preparation/validate_persistent_media_v3.py",
+      "bytes": 9816,
+      "sha256": "87782b68c6e7ea7629e490ff859739fd20f30903687c2101593e6555bd873e6a"
+    },
+    {
+      "root": "notes",
+      "path": "iterations/2026-10-31-speed-quality-search/agents/persistent-preparation/run_persistent_profile_v2.py",
+      "bytes": 6168,
+      "sha256": "0b48ed7d18c4aaed4a27f9bbe32af9c98ac61637ce896067bd56417798f0fd59"
+    },
+    {
+      "root": "notes",
+      "path": "iterations/2026-10-31-speed-quality-search/agents/persistent-preparation/EXECUTION-FREEZE-v3.json",
+      "bytes": 11146,
+      "sha256": "7605cd62e680a25877b8e77df2e676f7b700e5b2f70210b519f97e96ad32cfff"
+    },
+    {
+      "root": "portable",
+      "path": "ComfyUI/comfy_execution/caching.py",
+      "bytes": 23938,
+      "sha256": "f71d43f6196330e73674e13795a9d392a95750ad55be2c9d96cf54355794b862"
+    },
+    {
+      "root": "q33",
+      "path": "agents/offload-preparation/run_async_persistent_media_v1.py",
+      "bytes": 2193,
+      "sha256": "460e98178bc28649a822286acb54137fb298fed150305228695efe5206183617"
+    },
+    {
+      "root": "q33",
+      "path": "agents/offload-preparation/run_async_persistent_v1.py",
+      "bytes": 6640,
+      "sha256": "618638a30e2092deb676981657cfd106b0960c843d3139f5026709452217a6f8"
+    },
+    {
+      "root": "q33",
+      "path": "agents/headroom-preparation/EXECUTION-FREEZE-v1.json",
+      "bytes": 9730,
+      "sha256": "8ca36a4350eeece479fd012f64921f905973a1f9084639201654f6f8b296a62d"
+    },
+    {
+      "root": "q33",
+      "path": "agents/headroom-preparation/CANDIDATE-FREEZE-v1.json",
+      "bytes": 1573,
+      "sha256": "43cc11586d6eaa5d241cead3080bc522630ebf36ce8fa5f1be800a95dc9ca4ef"
+    },
+    {
+      "root": "q33",
+      "path": "agents/headroom-preparation/CONTROLLER-ASYNC-TO-HEADROOM075-v1.patch",
+      "bytes": 2822,
+      "sha256": "d79e896ef809c2cfa4e4cfb9679bf968689a3fe4ea0d4c559c6eb77eadeb2555"
+    },
+    {
+      "root": "q33",
+      "path": "agents/headroom-preparation/headroom_persistent_stage_b_v1.py",
+      "bytes": 58306,
+      "sha256": "2455f4c923639103a294fc53145ff6e3ef4eb2c6fa7dfd36014a5a50905981e1"
+    },
+    {
+      "root": "q33",
+      "path": "agents/headroom-preparation/HELP-RESULT-v1.json",
+      "bytes": 523,
+      "sha256": "ee87189b25b310b8f1ec6534211581341a83ffe6e4c53c68c0f7ff7ddab3eb1d"
+    },
+    {
+      "root": "q33",
+      "path": "agents/headroom-preparation/INFRA-MANIFEST-v1.json",
+      "bytes": 857,
+      "sha256": "660ea2490d46bce740cd8c3deb8247f41e4ccac87fe65a1ae596f5fe80842dea"
+    },
+    {
+      "root": "q33",
+      "path": "agents/headroom-preparation/MEDIA-ASYNC-TO-HEADROOM075-v1.patch",
+      "bytes": 6353,
+      "sha256": "130124db98c4c681d212951950fd8a6bb749af222e564594e2bb6cadecf2b684"
+    },
+    {
+      "root": "q33",
+      "path": "agents/headroom-preparation/OFFLINE-RESULT-v1.json",
+      "bytes": 965,
+      "sha256": "54eda6535cb73959bce9e5003ec15352b6fb043b21b7224c787b9cfa8e89fcf8"
+    },
+    {
+      "root": "q33",
+      "path": "agents/headroom-preparation/offline-stderr-v1.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "root": "q33",
+      "path": "agents/headroom-preparation/offline-stdout-v1.txt",
+      "bytes": 43,
+      "sha256": "d691fdbd7c02ccfe546c110b58585ba8dc31d8addf3b84901ae9f8d147ee6e6c"
+    },
+    {
+      "root": "q33",
+      "path": "agents/headroom-preparation/PLAN-FROZEN-v1.json",
+      "bytes": 1108,
+      "sha256": "f9ef46b5be68e8b5eff5fbea25c80a1e18b19f0ecc9bdc1517b9e79076d3be4b"
+    },
+    {
+      "root": "q33",
+      "path": "agents/headroom-preparation/PLAN-VALIDATOR-FREEZE-v1.json",
+      "bytes": 550,
+      "sha256": "54f87c2e3e40e164d070c39a803989153769621e4238a482ad62fef0719424ae"
+    },
+    {
+      "root": "q33",
+      "path": "agents/headroom-preparation/SOURCE-SEMANTICS-v1.json",
+      "bytes": 5750,
+      "sha256": "b24f03aefcd49573d3d21d49d660fc2740b3035bb66d3706bc42a7e07665b6a2"
+    },
+    {
+      "root": "q33",
+      "path": "agents/headroom-preparation/validate_headroom_delta_v1.py",
+      "bytes": 4117,
+      "sha256": "7e89399b65dd2d2a0f42fb1d06e4d3b6dd1400b79e8b6479e0999bdfeace4059"
+    },
+    {
+      "root": "q33",
+      "path": "agents/headroom-preparation/validate_headroom_persistent_media_v1.py",
+      "bytes": 10118,
+      "sha256": "10fbe161061af3b38b8fd8d926771be1940d2fb4b7e379c646784da3470e4367"
+    },
+    {
+      "root": "notes",
+      "path": "iterations/2026-10-31-speed-quality-search/agents/offload-preparation/async_persistent_stage_b_v1.py",
+      "bytes": 58297,
+      "sha256": "be5ed4634a212e0d68d9b014f04ac2ca8e8547ade62c93967e73ccdecb9a8bfe"
+    },
+    {
+      "root": "notes",
+      "path": "iterations/2026-10-31-speed-quality-search/agents/offload-preparation/validate_async_persistent_media_v1.py",
+      "bytes": 10049,
+      "sha256": "27d8a29e51d9e18da93e803e16eaa8276445e103665c2eeef7dc1e6ee746b84e"
+    },
+    {
+      "root": "notes",
+      "path": "iterations/2026-10-31-speed-quality-search/agents/offload-preparation/run_async_persistent_v1.py",
+      "bytes": 6640,
+      "sha256": "618638a30e2092deb676981657cfd106b0960c843d3139f5026709452217a6f8"
+    },
+    {
+      "root": "notes",
+      "path": "iterations/2026-10-31-speed-quality-search/agents/offload-preparation/run_async_persistent_media_v1.py",
+      "bytes": 2193,
+      "sha256": "460e98178bc28649a822286acb54137fb298fed150305228695efe5206183617"
+    },
+    {
+      "root": "notes",
+      "path": "iterations/2026-10-31-speed-quality-search/agents/offload-preparation/EXECUTION-FREEZE-v1.json",
+      "bytes": 9726,
+      "sha256": "a996fe37e5f693bab17c2d7ec3b120ac4d4c12ff717562d6e1f9b181fc493a8a"
+    },
+    {
+      "root": "q33",
+      "path": "agents/headroom-preparation/run_headroom_persistent_media_v1.py",
+      "bytes": 2252,
+      "sha256": "28f82690c0630e69ea4256eec2c9cdb184ddd804686e25f151e1c9ef755ba351"
+    },
+    {
+      "root": "q33",
+      "path": "agents/headroom-preparation/run_headroom_persistent_v1.py",
+      "bytes": 6737,
+      "sha256": "83788ccb1ccc370a413ef01340a447edc324faed915e7c5e14c1e13692813741"
+    },
+    {
+      "root": "adapter",
+      "path": "CANDIDATE-FREEZE-v1.json",
+      "bytes": 694,
+      "sha256": "931ba847f9585114141169ab94fd9abc12fb69a9530724cbb935477982c0fc7f"
+    },
+    {
+      "root": "adapter",
+      "path": "headroom_rsi_pair_v1.py",
+      "bytes": 18037,
+      "sha256": "06f1e924ff128db63a0eeb0bfdb8245bdb13ab98349d4630699f8a2c3073b944"
+    },
+    {
+      "root": "adapter",
+      "path": "PLAN-FROZEN-v1.json",
+      "bytes": 2580,
+      "sha256": "2d86b24bac36e04dde6c4c9756419608f20577c93600cda34048bebc88c31333"
+    },
+    {
+      "root": "adapter",
+      "path": "validate_readout_v1.py",
+      "bytes": 3935,
+      "sha256": "ff6055c05b690f102da2b03481ab7530375b0e3aa30e9e581cc7aa42071ebfd3"
+    },
+    {
+      "root": "adapter",
+      "path": "VALIDATOR-FREEZE-v1.json",
+      "bytes": 426,
+      "sha256": "7122fe304d328c84389ddc21bf6e8868526d44add6c4d6f29fb5731d8ccc20b2"
+    },
+    {
+      "root": "adapter",
+      "path": "READOUT-RESULTS-v1.json",
+      "bytes": 1426,
+      "sha256": "8325dea0197bfc61ed6140afcfc596dd983a3311a27ab65ce6ef6ffdbfa16528"
+    },
+    {
+      "root": "adapter",
+      "path": "PORTABLE-ENTRY-RESULTS-v1.json",
+      "bytes": 508,
+      "sha256": "a9ce9038eee9c646c18145bec4627ceca5a30cc264410ba5ad92f607e0e7fd74"
+    }
+  ],
+  "readiness_note": "Frozen 13 narrow readout gates, actual portable help/preview and independent core/source review completed; parent owns GPU execution and fresh quota/admission.",
+  "resource_summary_scope": "Successful members resources.jsonl sampled extrema only. Failed guard boundary requires original controller result.last_sample; failed member emits no accepted metric."
+}

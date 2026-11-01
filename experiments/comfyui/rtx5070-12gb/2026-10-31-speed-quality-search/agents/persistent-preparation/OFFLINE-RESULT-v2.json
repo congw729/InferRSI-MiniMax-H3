@@ -1,0 +1,44 @@
+{
+  "schema": "q33-persistent-cache-delta-check/v2",
+  "checks": [
+    {
+      "name": "both_smart_and_only_cache_flag_diff",
+      "completed": true
+    },
+    {
+      "name": "unknown_policy_or_missing_baseline_rejected",
+      "completed": true
+    },
+    {
+      "name": "two_request_seeds_and_original_unchanged",
+      "completed": true
+    },
+    {
+      "name": "graph_only_seed_and_output_prefix_change",
+      "completed": true
+    },
+    {
+      "name": "third_request_rejected",
+      "completed": true
+    },
+    {
+      "name": "other_functions_unchanged",
+      "completed": true
+    },
+    {
+      "name": "two_cache_policies_media_metadata_accepted",
+      "completed": true
+    },
+    {
+      "name": "wrong_policy_or_seed_media_metadata_rejected",
+      "completed": true
+    },
+    {
+      "name": "no_torch_model_dispatch",
+      "completed": true
+    }
+  ],
+  "completed": 9,
+  "scope": "Synthetic graph/CLI/metadata and unchanged helper AST; no actual service/cache hit/model/decoder",
+  "controller_sha256": "f27dff8a8792a99c47d9ba71f5ddd005a95bebd950e8f365b51cb4685b4c31b8"
+}

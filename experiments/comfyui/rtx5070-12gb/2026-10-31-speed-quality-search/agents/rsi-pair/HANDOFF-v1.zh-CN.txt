@@ -1,0 +1,23 @@
+最小 InferRSI 成对循环已准备，尚未执行真实 AB/BA。
+候选 rsi_pair_v1.py SHA c6effd915ea16301b08c335059e29aa1b39869845cf5ed6a98cce66babdc4249。
+冻结计划先于实现；CANDIDATE-FREEZE-v1 在离线测试前生成。冻结validator完成26项小元数据负例/来源篡改/真实runner合成ABBA检查，模型0/网络0；实际portable --help成功。此证据不包括真实controller/media子进程整个组合生命周期。
+SOURCE-BUNDLE.pending-v1.json SHA 4be294665850e05525cf06155ce8a5f9961535c2e5fe12226cab06fdfd3b717c，266本地selected源码/元数据当前匹配，无torch导入。明确dispatch_ready=false；仅预览可用。parent须独审适配器、实际Trim初筛完成后选pair，再新建ready清单，保留pending原件，不能沿旧清单身份换内容。
+
+最终绑定：run_profile_v3、speed_stage_b_v6、reserve3GiB+native vram-headroom1GiB，两侧相同；其它停止门不变。白名单只有trim-8、trim-6-screen-v1、trim-4-screen-v1；必须选不同两项，repetitions固定2，native runner顺序A B / B A，严格串行。
+核心流程：现有execute_trial启动launcher并完整保留其日志；launcher退出0还要看唯一dispatch/completed及inner controller accepted1POST、完整cleanup/timing/history；随后现有CPU完整媒体wrapper；聚合小JSON供native evaluator读取。任何内部失败都中止当前比较并保留INCONCLUSIVE，而不跳过慢/失败结果重填。
+主指标来自真实history execution_start到execution_success毫秒差，scope为native图执行/复用condition/冷服务，不称HTTP端到端或GPU纯计算。另保留sampler、video/audio decode、save、controller wall；人审pending，validation_command=None。native evaluator即使观察到更快也仍INCONCLUSIVE，中位数/range是描述性，非统计显著。
+源snapshot用真实文件内容hash，不造GitSHA。IR中成功reason的旧Git文案是已说明限制；以source.json identity_kind为准。IR源码未改。每次dispatch前另核bundle，避免仅最终integrity降级仍执行。
+
+运行参数（parent自行注入已确认实际路径）
+现有portable Python -s -B -X utf8 <本目录>/rsi_pair_v1.py
+ --notes-root <R> --infra-root <IR> --portable-root <PORTABLE>
+ --model-root <MODEL_ROOT> --runs-parent <MODEL_ROOT>/comfy-trim/runs
+ --nvidia-smi <NVIDIA_SMI> --source-bundle <本目录新ready文件>
+ --source-bundle-sha256 <真实readySHA>
+ --baseline <白名单A> --candidate <白名单B>
+ --remaining-percent <parent刚检查的真实剩余额度>
+ --max-minutes <parent冻结整场上限> --stop-file <Q33/results/一个新owned标志路径>
+默认只预览。parent确认后才追加 --execute。父级负责在20%额度线主动中止所属外层任务；脚本仅使用启动时quota声明，并在每次新child前检查stop-file，不能自己读取账号实时额度。活动child仍由现有executor整场deadline兜底。
+
+完成输出在Q33/results/rsi-pairs/<唯一runid>，包括run.lock、environment、A/B每次execution/result/source、source_checks、evaluation及report。正常完整比较但人审pending时脚本exit2对应INCONCLUSIVE，不能误当需要自动重试。原controller/media单次证据仍位于现有Q33/results和E盘run目录；聚合记录保存相对引用及hash。
+所有原始run.lock/argv可能有实际路径，禁止直接push生成HTML/原始logs。parent审核脱敏后只推笔记和小索引。

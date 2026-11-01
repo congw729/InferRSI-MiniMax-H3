@@ -1,0 +1,36 @@
+{
+  "schema": "q33-persistent-cache-independent-review/v1",
+  "created_utc": "2026-10-30T18:46:06.005940+00:00",
+  "freeze_sha256": "7605cd62e680a25877b8e77df2e676f7b700e5b2f70210b519f97e96ad32cfff",
+  "controller_sha256": "f27dff8a8792a99c47d9ba71f5ddd005a95bebd950e8f365b51cb4685b4c31b8",
+  "media_sha256": "87782b68c6e7ea7629e490ff859739fd20f30903687c2101593e6555bd873e6a",
+  "helper_sha256": "0b48ed7d18c4aaed4a27f9bbe32af9c98ac61637ce896067bd56417798f0fd59",
+  "local_matched": 33,
+  "external_matched": 16,
+  "portable_matched": 6,
+  "unchanged_function_ast": [
+    "cleanup_owned_v2",
+    "two_requests",
+    "begin_request",
+    "begin_post",
+    "request_metrics",
+    "sample",
+    "http",
+    "guarded_hash",
+    "verify_conditioning"
+  ],
+  "blockers": [],
+  "resolved_finding": {
+    "version": "media v2 preserved",
+    "problem": "New v2 CONTROLLER_SHA had retained persistent_stage_b_v1.py source path and would fail before decode",
+    "fix": "media v3 changes only that basename to persistent_stage_b_v2.py; actual SHA/path now match"
+  },
+  "findings": [
+    "Both configurations smart, only cache-none versus cache-classic differs; both use identical seed424242/424243 sequence",
+    "History exact graph plus unchanged uncached8progress/timing gates reject cached sampler; loader cache reuse is permitted and observable",
+    "No GPU/host/timeout/Job bounds changed; first failure still prevents second request, totals never reset",
+    "Per-request media source policy and seed identities now bind v2; original Q31 fulldecode/memory/cleanup contracts remain",
+    "Parent helper pins final freeze and controller, accepts only none/classic, retains12/16.5/6 admission and2730 outer executor; no extra requests"
+  ],
+  "scope": "Read-only delta/source identity review, no repeats of9offline gates, GPU or media execution. Full perceptual quality and stable performance INCONCLUSIVE."
+}

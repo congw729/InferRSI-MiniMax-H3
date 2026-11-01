@@ -1,0 +1,2 @@
+# Preserve original bytes for frozen source/evidence hashes.
+* -text

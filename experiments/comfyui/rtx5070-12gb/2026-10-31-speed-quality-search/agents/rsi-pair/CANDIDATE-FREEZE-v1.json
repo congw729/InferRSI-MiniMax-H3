@@ -1,0 +1,28 @@
+{
+  "schema": "q33-rsi-offline-freeze/v1",
+  "phase": "before offline validation",
+  "files": [
+    {
+      "path": "PLAN-FROZEN-v1.json",
+      "bytes": 2538,
+      "sha256": "b9922e3e579c9859a9a62b5f55dcd074760bdc57dff816db964d4fc4abff4617"
+    },
+    {
+      "path": "PLAN-RESOURCE-UPDATE-v2.json",
+      "bytes": 786,
+      "sha256": "82630eda7eed3e14a0fb8db905fff13b80c289920be56f0f895528e05554a1fa"
+    },
+    {
+      "path": "validate_pair_offline_v1.py",
+      "bytes": 5883,
+      "sha256": "07d9c177a634d2c4c163397e96426257efa10feec55c2b988415b48ce99ea32b"
+    },
+    {
+      "path": "rsi_pair_v1.py",
+      "bytes": 14874,
+      "sha256": "c6effd915ea16301b08c335059e29aa1b39869845cf5ed6a98cce66babdc4249"
+    }
+  ],
+  "models": 0,
+  "network": false
+}

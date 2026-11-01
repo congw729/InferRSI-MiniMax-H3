@@ -1,0 +1,292 @@
+{
+  "schema": "q33-turbo-and-576-contact-quality-review/v1",
+  "trials": [
+    {
+      "trial_relative_to_q33": "results/contact-sheets-turbo2-1bcfddc28fac4ec0b3ad164a3b8c3edd",
+      "result_sha256": "8d8a06f54eb29a527479863cea1900e89d37e5996e9736f326e9bdfc997b6c67",
+      "execution_sha256": "d10cc82da6b3340c1ff4ca2217ef43ef56eb0bc9ef67a6172a3e9dbb454301a6",
+      "worker_seconds": 0.3081048000603914,
+      "executor_seconds": 0.39000000001396984,
+      "peak_worker_rss_bytes": 55885824,
+      "source_sha256": "b0d5f4283f5f6bb78c5f650bcea7e779f472b42f81c2745ded7eba329827b68d",
+      "freeze_sha256": "5bdd1543dfad7fdc380327f48d12261394c1516ed5326524e22d7e500466de4c"
+    },
+    {
+      "trial_relative_to_q33": "results/contact-sheets-576-2a82b48a9d43411aa0656788ea53747b",
+      "result_sha256": "28d903cdd7bcf342dfb9e0efb0931d6403475ed23c4d3d4c919c4fb5461482f9",
+      "execution_sha256": "0fbd6008afa131b42ef49fc91b2725903c80b1b5339b22ff9659fa7ceadb22dc",
+      "worker_seconds": 0.2733956000301987,
+      "executor_seconds": 0.35999999998603016,
+      "peak_worker_rss_bytes": 70205440,
+      "source_sha256": "4e081b2b1163a1d6f1b710e3548a0b89b2e31889551883372de1faee392311fe",
+      "freeze_sha256": "b7152a1b7ce757429cb31432b4f1eb96d549ee716ce4b618c5a0ab0c11019f5e"
+    }
+  ],
+  "entries": [
+    {
+      "profile": "bounce-audio/turbo-native-6",
+      "run_relative_to_lab": "comfy-original/runs/q33-turbo-corpus-bounce-audio-f854ba8b4bbd49e6a8e7d1023323701b",
+      "source_relative_to_run": "output\\q33-turbo-corpus\\bounce-audio\\turbo-native-6_00001_.mp4",
+      "source_bytes": 143510,
+      "source_sha256": "105e3e6ba470bc71aea8e9ecf4fcb1e2f07d7fbf6156886bab7df5c00d9b4e18",
+      "full_decoded_video_frames": 73,
+      "video_decode_reached_eof": true,
+      "source_unchanged": true,
+      "selected_frames": [
+        {
+          "frame": 0,
+          "pts_seconds": 0.0
+        },
+        {
+          "frame": 7,
+          "pts_seconds": 0.2916666666666667
+        },
+        {
+          "frame": 13,
+          "pts_seconds": 0.5416666666666666
+        },
+        {
+          "frame": 20,
+          "pts_seconds": 0.8333333333333334
+        },
+        {
+          "frame": 26,
+          "pts_seconds": 1.0833333333333333
+        },
+        {
+          "frame": 33,
+          "pts_seconds": 1.375
+        },
+        {
+          "frame": 39,
+          "pts_seconds": 1.625
+        },
+        {
+          "frame": 46,
+          "pts_seconds": 1.9166666666666667
+        },
+        {
+          "frame": 52,
+          "pts_seconds": 2.1666666666666665
+        },
+        {
+          "frame": 59,
+          "pts_seconds": 2.4583333333333335
+        },
+        {
+          "frame": 65,
+          "pts_seconds": 2.7083333333333335
+        },
+        {
+          "frame": 72,
+          "pts_seconds": 3.0
+        }
+      ],
+      "grid_relative_to_run": "media-inspection-v1/contact-sheet-12-v1/contact-sheet-12.png",
+      "grid_dimensions": [
+        1536,
+        852
+      ],
+      "grid_bytes": 721141,
+      "grid_sha256": "23fb7b490d8a3a9b1dd636a5362d1a27bf6d87bef03616bdd2b95884dde9102c",
+      "elapsed_seconds": 0.11804990004748106,
+      "claim": "INCONCLUSIVE",
+      "audio_listened": false,
+      "observation_method": "assistant viewed full 12-frame contact sheet using view_image; 576 native grid viewed at original size; no full video playback or audio listening",
+      "observations": {
+        "observed": [
+          "At visible sampled positions there is one yellow-green tennis ball, with a coherent near-floor settling sequence in frames46–72.",
+          "Late frames52–72 show visible fuzz and seam. Early offscreen positions cannot by themselves be classified as disappearance.",
+          "No two separated ball-like regions in the same viewed sample, unlike the Trim6 concern documented in the prior six-clip review."
+        ],
+        "comparison": "Viewed Turbo and existing Trim8 grids independently; both retain late seam/fuzz and one visible ball per sampled frame. Different floor/composition/trajectory is not a defect. Prior original50/Trim6 statements are cited from earlier record, not replayed here.",
+        "limits": [
+          "Cannot count exactly two impacts or validate impact sound/synchronization from twelve stills.",
+          "No broad superiority over Trim8/original claimed."
+        ]
+      }
+    },
+    {
+      "profile": "hands-face-mug/turbo-native-6",
+      "run_relative_to_lab": "comfy-original/runs/q33-turbo-corpus-hands-face-mug-40be03c872424cc9b834ffe96e2413de",
+      "source_relative_to_run": "output\\q33-turbo-corpus\\hands-face-mug\\turbo-native-6_00001_.mp4",
+      "source_bytes": 233528,
+      "source_sha256": "997b739cfb932216abd1d361c015cfc909ed98f0907f60184415b49ca4610d95",
+      "full_decoded_video_frames": 73,
+      "video_decode_reached_eof": true,
+      "source_unchanged": true,
+      "selected_frames": [
+        {
+          "frame": 0,
+          "pts_seconds": 0.0
+        },
+        {
+          "frame": 7,
+          "pts_seconds": 0.2916666666666667
+        },
+        {
+          "frame": 13,
+          "pts_seconds": 0.5416666666666666
+        },
+        {
+          "frame": 20,
+          "pts_seconds": 0.8333333333333334
+        },
+        {
+          "frame": 26,
+          "pts_seconds": 1.0833333333333333
+        },
+        {
+          "frame": 33,
+          "pts_seconds": 1.375
+        },
+        {
+          "frame": 39,
+          "pts_seconds": 1.625
+        },
+        {
+          "frame": 46,
+          "pts_seconds": 1.9166666666666667
+        },
+        {
+          "frame": 52,
+          "pts_seconds": 2.1666666666666665
+        },
+        {
+          "frame": 59,
+          "pts_seconds": 2.4583333333333335
+        },
+        {
+          "frame": 65,
+          "pts_seconds": 2.7083333333333335
+        },
+        {
+          "frame": 72,
+          "pts_seconds": 3.0
+        }
+      ],
+      "grid_relative_to_run": "media-inspection-v1/contact-sheet-12-v1/contact-sheet-12.png",
+      "grid_dimensions": [
+        1536,
+        852
+      ],
+      "grid_bytes": 1249132,
+      "grid_sha256": "95db9029328851628ef18843f54cdd89a83b7fae7bf4907ba693c1ad56c83e08",
+      "elapsed_seconds": 0.11060899996664375,
+      "claim": "INCONCLUSIVE",
+      "audio_listened": false,
+      "observation_method": "assistant viewed full 12-frame contact sheet using view_image; 576 native grid viewed at original size; no full video playback or audio listening",
+      "observations": {
+        "observed": [
+          "A blue mug rises from the tabletop toward the face with both hands around it; sampled cup contour, hair, face and smile remain broadly coherent.",
+          "No obvious duplicated hand/broken mug or abrupt yellow-green forearm patch seen across these12frames. Small occluded fingers are not exhaustively validated."
+        ],
+        "comparison": "Existing Trim8 grid was also viewed: both show broadly coherent lifting/mug/face across the chosen frames. Turbo depicts a different person; the prompt has no fixed identity requirement. The earlier Trim6 one-frame forearm-color concern is not evident here.",
+        "limits": [
+          "Fine anatomy, temporal behavior between samples, and actual audio remain unassessed.",
+          "Sample-level absence of a defect does not establish full-motion consistency."
+        ]
+      }
+    },
+    {
+      "profile": "toycar/trim-8-576x384",
+      "run_relative_to_lab": "comfy-original/runs/q33-trim-8-576x384-182855632cc74ed292336debe0cb7d66",
+      "source_relative_to_run": "output\\q33-resolution\\trim-8-576x384_00001_.mp4",
+      "source_bytes": 284322,
+      "source_sha256": "28db9282a3c2501f93fb27bc89894ad9b8b429a31ca21668d7a6e39a29bae3b9",
+      "full_decoded_video_frames": 73,
+      "video_decode_reached_eof": true,
+      "source_unchanged": true,
+      "selected_frames": [
+        {
+          "frame": 0,
+          "pts_seconds": 0.0
+        },
+        {
+          "frame": 7,
+          "pts_seconds": 0.2916666666666667
+        },
+        {
+          "frame": 13,
+          "pts_seconds": 0.5416666666666666
+        },
+        {
+          "frame": 20,
+          "pts_seconds": 0.8333333333333334
+        },
+        {
+          "frame": 26,
+          "pts_seconds": 1.0833333333333333
+        },
+        {
+          "frame": 33,
+          "pts_seconds": 1.375
+        },
+        {
+          "frame": 39,
+          "pts_seconds": 1.625
+        },
+        {
+          "frame": 46,
+          "pts_seconds": 1.9166666666666667
+        },
+        {
+          "frame": 52,
+          "pts_seconds": 2.1666666666666665
+        },
+        {
+          "frame": 59,
+          "pts_seconds": 2.4583333333333335
+        },
+        {
+          "frame": 65,
+          "pts_seconds": 2.7083333333333335
+        },
+        {
+          "frame": 72,
+          "pts_seconds": 3.0
+        }
+      ],
+      "grid_relative_to_run": "media-inspection-v1/contact-sheet-12-v1/contact-sheet-12.png",
+      "grid_dimensions": [
+        2304,
+        1236
+      ],
+      "grid_bytes": 1276866,
+      "grid_sha256": "408f31e105b26f3c6a1b1e19e6243a168ba7f7eb14ff63566c6f04f8743a5145",
+      "elapsed_seconds": 0.19817170000169426,
+      "claim": "INCONCLUSIVE",
+      "audio_listened": false,
+      "observation_method": "assistant viewed full 12-frame contact sheet using view_image; 576 native grid viewed at original size; no full video playback or audio listening",
+      "observations": {
+        "observed": [
+          "A single red toy car crosses from the left side to the right edge; it is outside the frame by finalsample72. The body/wheels and black windows remain recognizable in visible samples.",
+          "Wood grain, wheel-spoke detail and car highlights are visible at native576x384. No obvious duplicate car or extra prominent roof object was seen in these samples."
+        ],
+        "comparison": "Also viewed existing384x256 Trim8 grid (SHA465c9756...). The576 clip changes composition, background and trajectory rather than simply upscaling identical frames; increased pixel count alone is not evidence of a quality gain.",
+        "limits": [
+          "The last-frame absence agrees with the preceding right-edge movement, not evidence of a disappearance artifact.",
+          "No continuous-motion/wheel-rotation or audio-quality judgment. Native576 grid is2304x1236 including labels, not rescaled."
+        ]
+      }
+    }
+  ],
+  "prior_records": [
+    {
+      "relative_to_q33": "agents/video-contact-sheets/CORPUS-12FRAME-QUALITATIVE-REVIEW-v1.json",
+      "sha256": "5e6936aaedf91163d931e3039dc616338f3525fa84915cc80535406ca5f1df5b"
+    },
+    {
+      "relative_to_q33": "agents/video-contact-sheets/SUMMARY-v1.json",
+      "sha256": "44aceac56fddb52d8b0c19142e73f0f658cd0c5b83cbfab62b776b7608357fef"
+    }
+  ],
+  "quality_verdict": "INCONCLUSIVE",
+  "no_audio_listening": true,
+  "no_full_motion_playback": true,
+  "full_source_video_decoded_for_extraction": true,
+  "source_files_unchanged": true,
+  "model_gpu_network_runs": 0,
+  "conclusion": "Turbo6 is a viable additional visual candidate on these two sampled scenes, not a proven general quality winner. Trim6 has documented sample-level concerns; Trim8 remains a plausible balanced option.576 is technically generated and visually inspected at native resolution; no overall quality gain claimed.",
+  "metadata_note": "PLAN-576-v1 inherited created_utc from the earlier common extraction plan; this is provenance of the reused extraction design, not a timestamp assertion for the new freeze. Actual call ordering froze new576 inputs/source before its extraction."
+}

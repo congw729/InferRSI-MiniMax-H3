@@ -1,0 +1,35 @@
+--- decoded_content_v2.py
++++ decoded_content_v3.py
+@@ -39,8 +39,8 @@
+   v=child(root,x['path']);need(v.stat().st_size==x['bytes'] and sha(v)==x['sha256'],'frozen source drift')
+  for x in f['infra_files']:
+   v=child(infra,x['path']);need(v.stat().st_size==x['bytes'] and sha(v)==x['sha256'],'InferRSI source drift')
+- plan=json.loads((root/'PLAN-v1.json').read_text());manifest=json.loads((root/'INPUTS-v1.json').read_text());need(1<=len(manifest['inputs'])<=10,'input count bound');expected=plan['expected']
+- out={'schema':'q33-decoded-content-identity/v1','complete':False,'claim':'INCONCLUSIVE','quality_verdict':'INCONCLUSIVE','model_dispatches':0,'network_requests':0,'media_writes':0,'worker_sha256':sha(Path(__file__)),'freeze_sha256':a.freeze_sha256,'inputs_sha256':sha(root/'INPUTS-v1.json'),'peak_own_rss_bytes':0,'items':[]}
++ plan=json.loads((root/'PLAN-BOUNCE-E2E-v1.json').read_text());manifest=json.loads((root/'INPUTS-BOUNCE-E2E-v1.json').read_text());need(1<=len(manifest['inputs'])<=10,'input count bound');expected=plan['expected']
++ out={'schema':'q33-decoded-content-identity/v1','complete':False,'claim':'INCONCLUSIVE','quality_verdict':'INCONCLUSIVE','model_dispatches':0,'network_requests':0,'media_writes':0,'worker_sha256':sha(Path(__file__)),'freeze_sha256':a.freeze_sha256,'inputs_sha256':sha(root/'INPUTS-BOUNCE-E2E-v1.json'),'peak_own_rss_bytes':0,'items':[]}
+  def guard():
+   need(time.perf_counter()-start<plan['whole_seconds'],'CPU whole deadline');v=rss();out['peak_own_rss_bytes']=max(out['peak_own_rss_bytes'],v);need(v<=plan['max_worker_rss_bytes'],'CPU RSS cap')
+  try:
+@@ -52,7 +52,11 @@
+    if idx:
+     need(receipt['status']=='two_artifacts_received_unvalidated' and len(receipt['requests'])==2,'persistent receipt')
+     req=receipt['requests'][idx-1];need(req['request_index']==idx and req['artifact']==item['artifact'],'request artifact binding')
+-   else:need(receipt['status']=='artifact_received_unvalidated' and receipt['artifact']==item['artifact'],'single receipt binding')
++   else:
++    need(receipt['status'] in ['artifact_received_unvalidated','new_prompt_video_received_unvalidated'] and receipt['artifact']==item['artifact'],'single receipt binding')
++    if receipt['status']=='new_prompt_video_received_unvalidated':
++     need(receipt['mode']=='new-prompt-trim8' and receipt['prompt_posts']==receipt['completed_requests']==2 and receipt['free_posts']==1 and receipt['release']['fresh_admitted'] and not receipt['cleanup_diagnostics'] and receipt['requests'][1]['artifact']==item['artifact'],'actual E2E receipt binding')
++     need(receipt['requests'][0]['artifact']['sha256']=='70a19cfeb46fe9411ac6f3fbfea63c253056d28cffb9bb28f269da4c2134d170','actual E2E bounce conditioning')
+    run=child(lab,item['run_relative_to_lab']);need(run.parent.name=='runs','owned run boundary');media=child(run,item['media_relative_to_run'])
+    prior=read_json(media/'validation-summary.json',item['media_summary_sha256']);decoded=read_json(media/'decode-result.json',item['decode_report_sha256']);art=item['artifact']
+    need(prior['worker_returncode']==0 and prior['owned_root_exited'] and prior['expected_input_sha256']==art['sha256'] and prior['decoder_result_sha256']==item['decode_report_sha256'],'prior media summary binding')
+@@ -92,7 +96,7 @@
+   pairs=[]
+   for x,y in itertools.combinations(out['items'],2):
+    fields={'container_bytes_equal':x['source_sha256']==y['source_sha256'],'all_rgb_bytes_equal':x['video']['all_frames_rgb_sha256']==y['video']['all_frames_rgb_sha256'],'video_timeline_equal':x['video']['timeline_sha256']==y['video']['timeline_sha256'],'all_pcm_bytes_equal':x['audio']['all_samples_pcm_sha256']==y['audio']['all_samples_pcm_sha256'],'audio_format_equal':x['audio']['format']==y['audio']['format'],'audio_timeline_equal':x['audio']['timeline_sha256']==y['audio']['timeline_sha256']};pairs.append({'a':x['id'],'b':y['id'],**fields})
+-  out['pairwise']=pairs;out['all_five_decoded_rgb_and_pcm_equal']=all(x['all_rgb_bytes_equal'] and x['all_pcm_bytes_equal'] and x['audio_format_equal'] for x in pairs);out['all_five_timelines_equal']=all(x['video_timeline_equal'] and x['audio_timeline_equal'] for x in pairs);out['complete']=True
++  out['pairwise']=pairs;out['all_inputs_decoded_rgb_and_pcm_equal']=all(x['all_rgb_bytes_equal'] and x['all_pcm_bytes_equal'] and x['audio_format_equal'] for x in pairs);out['all_inputs_timelines_equal']=all(x['video_timeline_equal'] and x['audio_timeline_equal'] for x in pairs);out['complete']=True
+  except BaseException as exc:out.update(error_type=type(exc).__name__,reason=str(exc) if isinstance(exc,Rejected) else 'external operation failed; details omitted')
+  out['elapsed_seconds']=time.perf_counter()-start;out['torch_imported']='torch' in sys.modules
+  data=json.dumps(out,indent=2)+'\n';need(len(data.encode())<=plan['max_result_bytes'],'result cap')

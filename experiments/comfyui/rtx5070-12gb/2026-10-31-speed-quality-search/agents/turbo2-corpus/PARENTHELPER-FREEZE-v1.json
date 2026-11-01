@@ -1,0 +1,25 @@
+{
+  "schema": "q33-turbo2-bounce-parenthelper/v1",
+  "files": [
+    {
+      "path": "run_turbo2_corpus_v1.py",
+      "bytes": 5974,
+      "sha256": "2857fff622047b5567754cbcf78c962b238fb703bcdc177c52ccba9d66f8c203"
+    },
+    {
+      "path": "PARENTHELPER-TURBO4-TO2-v1.patch",
+      "bytes": 5937,
+      "sha256": "c4ce2dddc0e1009966f273f7d7d16532cfe14808d66e97374ce9153eff99319e"
+    },
+    {
+      "path": "PARENTHELPER-HELP-v1.json",
+      "bytes": 176,
+      "sha256": "976597cc69deb79a88b50ad17dc9c5d1a3c6435773d9bdb398a55cceec6e232e"
+    },
+    {
+      "path": "EXECUTION-FREEZE-v1.json",
+      "bytes": 10985,
+      "sha256": "e36111f974f919eaef1009725162570aaa07a3fcfe3a4c5028717df684fb7044"
+    }
+  ]
+}

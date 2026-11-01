@@ -1,0 +1,43 @@
+{
+  "schema": "q33-decoded-content-freeze/v3",
+  "files": [
+    {
+      "path": "PLAN-BOUNCE-E2E-v1.json",
+      "bytes": 1753,
+      "sha256": "46305f1904ebc110fd66f60f3cbd7e34d016343b476865c8ae7f5168a829b56d"
+    },
+    {
+      "path": "INPUTS-BOUNCE-E2E-v1.json",
+      "bytes": 3266,
+      "sha256": "57e030f8d0a7236cdf14ba63d4f83447630701dd9864b528904b95268fbc8d58"
+    },
+    {
+      "path": "decoded_content_v3.py",
+      "bytes": 12272,
+      "sha256": "ce5e8bb26d9ec7db958cbf2bf1c98af9f23940f40db45ae54b74be145959e18b"
+    },
+    {
+      "path": "decoded_content_v2.py",
+      "bytes": 11658,
+      "sha256": "b5eda36fd477ac806c9e4e46fd2727a2dc7fe31313f78b6a5d8453d528ddd475"
+    },
+    {
+      "path": "v2-to-e2e-v3.patch",
+      "bytes": 4878,
+      "sha256": "cabed97110974875599da42f42b8f419f8d4ec813f5f962c3e33081f098b3458"
+    }
+  ],
+  "infra_files": [
+    {
+      "path": "src/inferrsi/infra/executors/local.py",
+      "bytes": 3505,
+      "sha256": "b089cdc7daaaf7834698c2d280a12c5e755915ded926aa039c8de5f521bd46f0"
+    },
+    {
+      "path": "src/inferrsi/infra/processes.py",
+      "bytes": 8151,
+      "sha256": "3b96ebc7a50913e78e86ff3dcba74c8ee8d03d547d9591ca6488f390ac1e6189"
+    }
+  ],
+  "decode_loop_text_identical_to_v2": true
+}

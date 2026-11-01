@@ -1,0 +1,40 @@
+{
+  "schema": "q33-attention-targeted-check/v1",
+  "checks": [
+    {
+      "name": "exact graph accepted",
+      "completed": true
+    },
+    {
+      "name": "kitchen rejected for this candidate",
+      "completed": true
+    },
+    {
+      "name": "steps8 rejected",
+      "completed": true
+    },
+    {
+      "name": "min_tokens change rejected",
+      "completed": true
+    },
+    {
+      "name": "seed change rejected",
+      "completed": true
+    },
+    {
+      "name": "unrelated graph change rejected",
+      "completed": true
+    },
+    {
+      "name": "all other functions AST identical",
+      "completed": true
+    },
+    {
+      "name": "real profile and conditioning metadata binding",
+      "completed": true
+    }
+  ],
+  "completed": 8,
+  "candidate_sha256": "0273e6d9b035db6b2077673c181a687e86fd2e149743a35eddbfed1efc32476b",
+  "no_torch_model_gpu_network": true
+}

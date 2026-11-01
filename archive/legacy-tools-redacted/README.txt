@@ -1,0 +1,1 @@
+Privacy exports of two historical tools. Original files remain local and ignored. These copies contain placeholders and are not the original frozen bytes. Do not execute them unchanged or use their hashes to satisfy old manifests. See docs/backup-manifest-2026-11-01.json. No historical validator has been rewritten.

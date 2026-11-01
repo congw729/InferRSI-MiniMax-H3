@@ -1,0 +1,428 @@
+--- persistent_stage_b_v1.py
++++ end_to_end_v1.py
+@@ -1,4 +1,4 @@
+-"""Q33 bounded two-request persistent Trim8 infra probe with native node timing.
++"""Q33 one-service real bounce TE -> explicit release -> Trim8 with native timing.
+ This is a new harness derived from frozen Q32; old sources remain unchanged.
+ Run with the existing portable Python under InferRSI. No model imports here.
+ """
+@@ -43,6 +43,15 @@
+ if Path(_timing_module.__file__).resolve() != _timing_path.resolve():
+     raise RuntimeError("actual timing import source")
+ NativeWSObserver = _timing_module.NativeWSObserver
++E2E_ASSETS_SHA = "fcaa021e7aa7ecc50ecd14f51e81448a758dc6c8352b65d5ea7aa657d1fe31a8"
++STAGE_A_GRAPH_SHA = "5f7d0cff0c911151fd2318e2be5e8c953503034d66259673edf851f24d2274f8"
++E2E_HELPER_SHA = "8d78df645d789a448116542f818b764f28d93f3e6333378da9ae75863c3846d6"
++_e2e_path = Path(__file__).resolve().parent / "e2e_helpers_v1.py"
++if hashlib.sha256(_e2e_path.read_bytes()).hexdigest() != E2E_HELPER_SHA: raise RuntimeError("frozen lifecycle helper drift")
++_e2e_spec = importlib.util.spec_from_file_location("q33_e2e_helpers_v1", _e2e_path)
++e2e = importlib.util.module_from_spec(_e2e_spec); _e2e_spec.loader.exec_module(e2e)
++if Path(e2e.__file__).resolve() != _e2e_path.resolve(): raise RuntimeError("actual lifecycle helper source")
++STAGE_A_NODES = {'CLIPLoader':'nodes','VAELoader':'nodes','MiniMaxH3ImageToVideo':'comfy_extras.nodes_minimax_h3','SaveConditioning':'comfy_extras.nodes_cond'}
+ EXTRA_GATES = {
+     "asset_timeout_seconds", "startup_timeout_seconds", "render_timeout_seconds",
+     "gpu_poll_seconds", "gpu_query_timeout_seconds", "start_gpu_free_bytes",
+@@ -172,7 +181,7 @@
+     gp,graph=descriptor("graph");_,canonical=descriptor("canonical_graph")
+     validate_profile_graph(profile,graph,canonical)
+     ap,_=descriptor("assets");cp,_=descriptor("conditioning")
+-    require(a.asset_manifest==ap.resolve() and a.asset_manifest_sha256==profile["assets"]["sha256"]
++    require(a.asset_manifest==Path(__file__).resolve().parent / "ASSETS-v1.json" and a.asset_manifest_sha256==E2E_ASSETS_SHA
+             and a.conditioning_manifest==cp.resolve()
+             and a.conditioning_manifest_sha256==profile["conditioning"]["sha256"],"profile metadata bindings")
+     require(profile["model_subdir"]=="comfy-"+profile["family"]+"/models","profile model root")
+@@ -214,9 +223,9 @@
+     require(type(manifest) is dict and set(manifest) == {"schema", "assets"}
+             and manifest["schema"] in {"q32-original-asset-set/v1","q33-speed-asset-set/v1"}, "Q32 asset manifest schema")
+     selected = manifest["assets"]
+-    require(type(selected) is list and len(selected) == 3
++    require(type(selected) is list and len(selected) == 4
+             and all(type(x) is dict for x in selected)
+-            and {x.get("id") for x in selected} == ASSET_IDS, "three fixed original assets required")
++            and {x.get("id") for x in selected} == ASSET_IDS, "four fixed new-prompt assets required")
+     # This first pass ensures an unfinished original download causes zero payload hashes.
+     for asset in selected:
+         require(set(asset) == {"id", "bytes", "sha256", "relative_path", "receipt", "transport_plan",
+@@ -250,7 +259,7 @@
+ 
+ def parse():
+     p = argparse.ArgumentParser(description=__doc__, allow_abbrev=False)
+-    p.add_argument("--mode", choices=["persistent-video-stage-b"], required=True)
++    p.add_argument("--mode", choices=["new-prompt-trim8"], required=True)
+     for name in ("iteration-root", "lab-root", "portable-python", "comfy-root",
+                  "run-dir", "stop-marker", "nvidia-smi", "inferrsi-src",
+                  "gates", "conditioning-manifest", "notes-root", "q31-root",
+@@ -261,7 +270,7 @@
+     p.add_argument("--asset-manifest-sha256", required=True)
+     p.add_argument("--gates-sha256", required=True)
+     p.add_argument("--conditioning-manifest-sha256", required=True)
+-    p.add_argument("--memory-policy", choices=["baseline", "smart"], default="baseline")
++    p.add_argument("--memory-policy", choices=["baseline"], default="baseline")
+     p.add_argument("--port", type=int, required=True)
+     return p.parse_args()
+ 
+@@ -350,9 +359,10 @@
+     require(timing.get("prompt_id") == prompt_id and timing.get("ready") is True
+             and timing.get("terminal") == "execution_success" and not timing.get("invalid_reasons")
+             and timing.get("error_type") is None and timing.get("observer_thread_exited") is True, "request timing incomplete")
+-    sampler = timing.get("nodes", {}).get("14", {})
+-    require(sampler.get("cached") is False and sampler.get("progress_value") == 8
+-            and sampler.get("progress_max") == 8, "request must execute eight uncached steps")
++    is_text="104" in record["prompt"][2]
++    sampler = timing.get("nodes", {}).get("104" if is_text else "14", {})
++    require(sampler.get("cached") is False,"request node must be uncached")
++    if not is_text:require(sampler.get("progress_value")==8 and sampler.get("progress_max")==8,"request must execute eight uncached steps")
+     wall = sampler.get("observed_wall_seconds")
+     require(type(wall) in (float, int) and math.isfinite(wall) and wall > 0, "sampler timing missing")
+     endpoints = {}
+@@ -364,7 +374,7 @@
+     require(set(endpoints) == {"execution_start", "execution_success"}
+             and endpoints["execution_success"] > endpoints["execution_start"], "native prompt interval missing")
+     return {"native_prompt_wall_seconds": (endpoints["execution_success"] - endpoints["execution_start"]) / 1000,
+-            "sampler_observed_wall_seconds": wall, "gpu_compute_only_seconds": None}
++            ("text_encoder_observed_wall_seconds" if is_text else "sampler_observed_wall_seconds"): wall, "gpu_compute_only_seconds": None}
+ 
+ 
+ def main():
+@@ -392,7 +402,7 @@
+ 
+     require(a.iteration_root == a.notes_root / "iterations/2026-10-31-speed-quality-search"
+             and a.q31_root == a.notes_root / "iterations/2026-10-28-comfy-trim-first-video"
+-            and Path(__file__).resolve().parent == a.iteration_root / "agents/persistent-preparation", "Q33/Q31 roots")
++            and Path(__file__).resolve().parent == a.iteration_root / "agents/end-to-end-preparation", "Q33/Q31 roots")
+     require(a.portable_python == a.comfy_root.parent / "python_embeded/python.exe", "fixed portable relationship")
+     sys.dont_write_bytecode = True
+     v1_path = a.q31_root / "tools/comfy_first_video_v1.py"
+@@ -405,8 +415,10 @@
+     require(a.profile == a.iteration_root / "agents/timing-controller/profiles/trim-8.json", "fixed Trim8 profile path")
+     a.loaded_profile=load_profile(a,v1)
+     require(a.loaded_profile["id"] == "trim-8" and a.loaded_profile["family"] == "trim" and a.loaded_profile["steps"] == 8, "fixed Trim8 recipe")
+-    STAGE_NODES=NODE_FAMILIES[a.loaded_profile["family"]]
+-    ASSET_EXPECTED=EXPECTED_BY_FAMILY[a.loaded_profile["family"]];ASSET_IDS=set(ASSET_EXPECTED)
++    STAGE_NODES={**NODE_FAMILIES["trim"],**STAGE_A_NODES}
++    ASSET_EXPECTED=copy.deepcopy(EXPECTED_BY_FAMILY["trim"])
++    ASSET_EXPECTED["text-encoder"]={'id':'text-encoder','bytes':15687142551,'sha256':'35a88d51044231fe332301d7a62aa81e3f2cba62febeb446e2c1e3e0ef76f2c6','relative_path':'comfy-trim/models/text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors'}
++    ASSET_IDS=set(ASSET_EXPECTED)
+     require(a.model_root==a.lab_root/a.loaded_profile["model_subdir"] and a.model_root.drive.upper()=="E:",
+             "profile model root boundary")
+     require(a.gates_sha256.lower() == STAGE_GATES_SHA, "Stage-B gates identity mismatch")
+@@ -431,7 +443,11 @@
+             "invalid polling/deadline relationship")
+     manifest, graph = load_stage_b_manifest(a, v1, gates)
+     graph_sha = manifest["graph"]["sha256"]
+-    conditioning = manifest["conditioning"]
++    conditioning = None
++    stage_a_path=Path(__file__).resolve().parent/"STAGE-A-GRAPH-v1.json"
++    stage_a_graph=v1.frozen_json(stage_a_path,STAGE_A_GRAPH_SHA,gates["max_schema_bytes"])
++    require(set(stage_a_graph)=={"prompt"} and {x["class_type"] for x in stage_a_graph["prompt"].values()}==set(STAGE_A_NODES),"StageA fixed nodes")
++    stage_a_prompt_sha=hashlib.sha256(stage_a_graph["prompt"]["104"]["inputs"]["prompt"].encode()).hexdigest()
+     selected = load_asset_manifest(a, v1, gates)  # Null receipt stops here before runtime/monitor/service.
+     require(a.source_manifest_sha256.lower() == SOURCE_MANIFEST_SHA, "Q32 source manifest identity")
+     source_manifest = v1.frozen_json(a.source_manifest, SOURCE_MANIFEST_SHA, gates["max_schema_bytes"])
+@@ -444,7 +460,7 @@
+         require(path.is_relative_to(root) and path.is_file() and path.stat().st_size == entry["bytes"]
+                 and digest(path) == entry["sha256"], "Q32 frozen runtime source drift")
+     source_end_ns=time.perf_counter_ns()
+-    require({n["class_type"] for n in graph["prompt"].values()} == set(STAGE_NODES),
++    require({n["class_type"] for n in graph["prompt"].values()} == set(NODE_FAMILIES["trim"]),
+             "fixed graph node set mismatch")
+ 
+     sys.path.insert(0, str(a.inferrsi_src))
+@@ -457,7 +473,7 @@
+     proc = job = raw_log = samples = journal = observer = None
+     next_sample = next_gpu = 0.0
+     gpu = None
+-    state = {"status": "preflight", "claim": "INCONCLUSIVE", "mode": "persistent-video-stage-b",
++    state = {"status": "preflight", "claim": "INCONCLUSIVE", "mode": "new-prompt-trim8",
+              "profile_id": a.loaded_profile["id"], "profile_sha256": a.profile_sha256,
+              "controller_entry_perf_counter_ns":entry_perf_ns,
+              "source_verification_start_ns":source_start_ns,"source_verification_end_ns":source_end_ns,
+@@ -467,7 +483,9 @@
+              "source_manifest_sha256": SOURCE_MANIFEST_SHA,
+              "conditioning_manifest_sha256": a.conditioning_manifest_sha256.lower(),
+              "gates_sha256": a.gates_sha256.lower(), "gates": gates,
+-             "prompt_posts": 0, "http_bytes": 0, "history_polls": 0,
++             "prompt_posts": 0, "http_bytes": 0, "history_polls": 0, "free_posts":0,
++             "stage_a_graph_sha256":STAGE_A_GRAPH_SHA,"prompt_sha256":stage_a_prompt_sha,
++             "fresh_between_stages":{"physical_bytes":12*2**30,"commit_bytes":int(16.5*2**30),"gpu_free_bytes":6*2**30},
+              "requests": [], "completed_requests": 0, "memory_policy": a.memory_policy,
+              "cache_policy": "none", "total_output_bytes": 0, "total_ws_bytes": 0,
+              "verified_assets": [], "gpu_measurement": "nvidia-smi whole-board MiB",
+@@ -557,7 +575,7 @@
+         require(value == conditioning["sha256"] and signature == structure.pop("file_signature"),
+                 "conditioning full hash or stable identity mismatch")
+         return {"bytes": conditioning["bytes"], "sha256": value, "structure": structure,
+-                "finite_tensor_values_checked": False}
++                "finite_tensor_values_checked_in_stage_a": True}
+ 
+     def http(method, route, body=None):
+         require(proc is not None and proc.poll() is None, "owned Comfy exited")
+@@ -565,10 +583,8 @@
+         allowed_get = {"/object_info/" + name for name in STAGE_NODES} | {
+             "/history/" + state["prompt_id"]}
+         require((method == "GET" and route in allowed_get) or
+-                (method == "POST" and route == "/prompt"
+-                 and 1 <= state["prompt_posts"] == len(state["requests"]) <= 2
+-                 and state["requests"][-1].get("post_attempted") is True),
+-                "HTTP operation outside fixed task")
++                (method == "POST" and route == "/prompt" and 1 <= state["prompt_posts"] == len(state["requests"]) <= 2 and state["requests"][-1].get("post_attempted") is True) or
++                (method=="POST" and route=="/free" and state["free_posts"]==1 and state["completed_requests"]==1 and state["prompt_posts"]==1 and body==b'{"unload_models":true,"free_memory":true}'), "HTTP operation outside fixed task")
+         connection = http_client.HTTPConnection("127.0.0.1", a.port,
+                                                  timeout=gates["http_timeout_seconds"])
+         try:
+@@ -578,8 +594,8 @@
+                 headers["Content-Type"] = "application/json"
+             connection.request(method, route, body=body, headers=headers)
+             response = connection.getresponse()
+-            require(response.getheader("Content-Type", "").split(";")[0] == "application/json",
+-                    "non-JSON local response")
++            if route!="/free":
++                require(response.getheader("Content-Type", "").split(";")[0] == "application/json", "non-JSON local response")
+             parts, count = [], 0
+             while not response.isclosed():
+                 sample()
+@@ -590,15 +606,22 @@
+                 if not chunk:
+                     break
+                 parts.append(chunk)
++            if route=="/free":
++                require(response.status==200 and b"".join(parts)==b"", "native free empty-200 response")
++                return response.status, {}
+             return response.status, json.loads(b"".join(parts), object_pairs_hook=v1.unique_json)
+         finally:
+             connection.close()
+ 
+     try:
+         sample(force=True, startup=True)
++        require(e2e.fresh_ready(state["last_sample"]), "initial external admission 12/16.5/6")
+         for relative, expected in STAGE_SOURCE_SHA256.items():
+             require(digest(a.comfy_root / relative) == expected, "Stage-B native source drift")
+         state["stage_source_sha256"] = STAGE_SOURCE_SHA256
++        release_sources={'server.py':'52618f91c663dc6524a028162212e0434fc9239618ddc0efbf7c605027081c8c','main.py':'baaa16d69ee78e08c490eeec20bf27c56b746c070f76cc05b4aa13cbc616bcef','execution.py':'5312ba107f69f2bc70f4009c5d52524b3865dd54fceafdc8649b22c98d6c612f','comfy/model_management.py':'63610e41cf06fccb5eeaa153c5fd3799e01a0c645facba844763781d2036989a','comfy/model_patcher.py':'4f8ccf957a7227942c0e167384ed4e128f038245ad09b9bb547102281be13612','comfy_execution/caching.py':'f71d43f6196330e73674e13795a9d392a95750ad55be2c9d96cf54355794b862'}
++        for name,expected in release_sources.items():require(digest(a.comfy_root/name)==expected,"native release source drift")
++        state["release_source_sha256"]=release_sources
+         # Include server history/UI behavior inspected for this controller.
+         state["additional_source_sha256"] = {
+             name: digest(a.comfy_root / name)
+@@ -628,19 +651,10 @@
+                                              "sha256": value, "receipt_sha256": asset["receipt"]["sha256"]})
+             event("asset_verified", asset_id=asset["id"])
+         embeddings = models_root / "embeddings"
+-        conditioning_path = embeddings / conditioning["basename"]
+-        for path in (embeddings, conditioning_path):
+-            st = path.lstat()
+-            require(not path.is_symlink() and not (getattr(st, "st_file_attributes", 0) & 0x400),
+-                    "conditioning input link/reparse boundary")
+-        require(embeddings.is_dir() and embeddings.resolve() == embeddings
+-                and conditioning_path.is_file() and conditioning_path.resolve().parent == embeddings,
+-                "conditioning input native embeddings boundary")
+-        event("conditioning_verification_started")
+-        state["conditioning_input"] = verify_conditioning(conditioning_path, verify_deadline)
+-        state["conditioning_input"]["relative_to_models"] = str(conditioning_path.relative_to(models_root))
+-        event("conditioning_input_verified", artifact=state["conditioning_input"])
+-        sample(force=True, startup=True)
++        e2e.no_links(embeddings)
++        require(embeddings.is_dir() and embeddings.resolve()==embeddings,"native embeddings root")
++        conditioning_path=None
++        sample(force=True,startup=True)
+ 
+         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as reservation:
+             reservation.setsockopt(socket.SOL_SOCKET, socket.SO_EXCLUSIVEADDRUSE, 1)
+@@ -702,31 +716,21 @@
+                         "Stage-B new node input schema mismatch")
+                 expected_output = ["CONDITIONING"] if name == "ConditioningLoader" else ["LATENT"]
+                 require(info[name].get("output") == expected_output, "Stage-B new node output schema mismatch")
+-            if name in ("UNETLoader", "VAELoader", "ConditioningLoader"):
+-                field, ids = {"UNETLoader": ("unet_name", ["6"]),
+-                              "VAELoader": ("vae_name", ["11", "24"]),
+-                              "ConditioningLoader": ("conditioning_name", ["1001"])}[name]
+-                if name == "ConditioningLoader":
+-                    combo = info[name]["input"]["required"][field]
+-                    require(type(combo) is list and len(combo) == 2 and combo[0] == "COMBO"
+-                            and type(combo[1]) is dict and combo[1].get("multiselect") is False,
+-                            "native conditioning COMBO schema mismatch")
+-                    choices = combo[1].get("options")
+-                    require(type(choices) is list and all(type(x) is str for x in choices),
+-                            "native conditioning options must be a string list")
+-                else:
+-                    choices = info[name]["input"]["required"][field][0]
+-                require(all(graph["prompt"][i]["inputs"][field] in choices for i in ids),
+-                        "model/conditioning file not enumerated")
++            if name in ("UNETLoader", "VAELoader", "CLIPLoader"):
++                field, ids = {"UNETLoader":("unet_name",["6"]),"VAELoader":("vae_name",["11","24"]),"CLIPLoader":("clip_name",["13"])}[name]
++                choices=info[name]["input"]["required"][field][0]
++                selected_graph=stage_a_graph if name=="CLIPLoader" else graph
++                require(type(choices) is list and all(selected_graph["prompt"][i]["inputs"][field] in choices for i in ids),"model file not enumerated")
+         event("native_schema_verification_finished")
+         def run_one(request_index):
+-            nonlocal observer
++            nonlocal observer, conditioning, conditioning_path
+             require(observer is None, "previous observer not finalized")
+             current = begin_request(state, request_index, str(uuid.uuid4()))
+             request_started = time.monotonic()
+             request_dir = a.run_dir / ("request-" + str(request_index))
+             request_dir.mkdir()
+-            current_graph = request_graph(graph, request_index)
++            current_graph = copy.deepcopy(stage_a_graph) if request_index==1 else e2e.bind_stage_b(graph,conditioning_path.name)
++            current["stage"]="text-encoder" if request_index==1 else "trim-video"
+             current["graph_sha256"] = hashlib.sha256(json.dumps(current_graph,sort_keys=True,separators=(",", ":"),allow_nan=False).encode()).hexdigest()
+             current["history_relative_to_run"] = str((request_dir / "history.raw.json").relative_to(a.run_dir))
+             current["timing_relative_to_run"] = str((request_dir / "timing/summary.json").relative_to(a.run_dir))
+@@ -738,13 +742,19 @@
+             for path, signature in asset_stats.items():
+                 st = path.stat()
+                 require((st.st_size, st.st_mtime_ns, st.st_dev, st.st_ino) == signature, "asset changed before POST")
+-            state["conditioning_pre_post"] = verify_conditioning(
+-                conditioning_path, min(deadline, time.monotonic() + gates["asset_timeout_seconds"]))
+-            require(digest(a.conditioning_manifest) == a.conditioning_manifest_sha256.lower(),
+-                    "conditioning manifest changed before POST")
+-            graph_path = a.iteration_root / manifest["graph"]["relative_path"]
+-            require(digest(graph_path) == graph_sha, "Stage-B graph changed before POST")
+-            sample(force=True, startup=request_index == 1)
++            require(digest(stage_a_path)==STAGE_A_GRAPH_SHA,"StageA graph drift before POST")
++            if request_index==2:
++                require(state.get("release",{}).get("fresh_admitted") is True,"release/admission required before DiT")
++                state["conditioning_pre_post"] = verify_conditioning(conditioning_path,min(deadline,time.monotonic()+60))
++                status,info=http("GET","/object_info/ConditioningLoader")
++                v1.save_new(request_dir/"ConditioningLoader.schema.raw.json",info)
++                require(status==200 and set(info)=={"ConditioningLoader"} and info["ConditioningLoader"]["python_module"]=="comfy_extras.nodes_cond","refreshed conditioning schema source")
++                combo=info["ConditioningLoader"]["input"]["required"]["conditioning_name"]
++                require(type(combo) is list and len(combo)==2 and combo[0]=="COMBO" and combo[1].get("multiselect") is False and conditioning_path.name in combo[1].get("options",[]),"new condition must be enumerated")
++            require(digest(a.conditioning_manifest)==a.conditioning_manifest_sha256,"baseline graph manifest drift")
++            require(digest(a.iteration_root/manifest["graph"]["relative_path"])==graph_sha,"baseline graph drift")
++            sample(force=True,startup=request_index==1)
++            if request_index==2:require(e2e.fresh_ready(state["last_sample"]),"fresh external admission before DiT POST")
+             render_deadline = min(deadline, time.monotonic() + gates["render_timeout_seconds"])
+             state["client_id"]=uuid.uuid4().hex
+             current["client_id"] = state["client_id"]
+@@ -762,6 +772,9 @@
+             event("observer_ready",client_id=state["client_id"])
+             body = json.dumps({"prompt": current_graph["prompt"], "prompt_id": state["prompt_id"],
+                                "client_id":state["client_id"]}).encode("utf-8")
++            if request_index==2:
++                sample(force=True)
++                require(e2e.fresh_ready(state["last_sample"]),"fresh external admission immediately before DiT POST")
+             begin_post(state); state["status"] = "submitting"
+             event("post_attempt", prompt_id=state["prompt_id"], graph_sha256=current["graph_sha256"])
+             try:
+@@ -796,18 +809,41 @@
+                     require(set(observed) == set(current_graph["prompt"]) and all(
+                         observed[k]["class_type"] == v["class_type"] and observed[k]["inputs"] == v["inputs"]
+                         for k, v in current_graph["prompt"].items()), "executed graph changed")
+-                    videos = record["outputs"]["92"]["images"]
+-                    require(len(videos) == 1 and videos[0].get("type") == "output", "single MP4 artifact not returned")
+-                    item = videos[0]
+-                    relative = Path(item["subfolder"]) / item["filename"]
+-                    require(not relative.is_absolute() and not relative.drive, "absolute output path forbidden")
+-                    output = (dirs["output"] / relative).resolve()
+-                    require(output.is_relative_to(dirs["output"]) and output.suffix.lower() == ".mp4"
+-                            and output.is_file() and 0 < output.stat().st_size <= gates["max_output_bytes"],
+-                            "output path/size guard")
+-                    output_hash, _ = guarded_hash(output, render_deadline)
+-                    current["artifact"] = {"relative_to_run": str(output.relative_to(a.run_dir)),
+-                                         "bytes": output.stat().st_size, "sha256": output_hash}
++                    if request_index==1:
++                        event("conditioning_verification_started")
++                        output=e2e.find_conditioning_artifact(dirs["output"],32*2**20,sample)
++                        structure=conditioning_header(output,v1.unique_json,32*2**20)
++                        value_scan=e2e.scan_conditioning(output,structure,sample,min(deadline,time.monotonic()+60))
++                        output_hash,signature=guarded_hash(output,render_deadline)
++                        require(signature==structure.pop("file_signature"),"conditioning changed during finite/hash scan")
++                        require(output_hash==e2e.REFERENCE_SHA and output.stat().st_size==e2e.REFERENCE_BYTES,"bounce conditioning differs from frozen split-process reference")
++                        conditioning={"bytes":output.stat().st_size,"sha256":output_hash,**{k:structure[k] for k in ("tensors","metadata_keys","option_keys","options_sha256")}}
++                        current["artifact"]={"relative_to_run":str(output.relative_to(a.run_dir)),"bytes":output.stat().st_size,"sha256":output_hash,"structure":structure}
++                        current["conditioning_value_validation"]=value_scan
++                        basename="h3-e2e-bounce-"+a.run_dir.name.rsplit("-",1)[-1]+"-"+output_hash+".safetensors"
++                        conditioning_path=embeddings/basename
++                        require(not conditioning_path.exists() and not conditioning_path.is_symlink(),"new condition alias already exists")
++                        os.link(output,conditioning_path)
++                        e2e.no_links(conditioning_path)
++                        require(conditioning_path.samefile(output),"new conditioning alias identity")
++                        current["conditioning_alias"]={"relative_to_models":str(conditioning_path.relative_to(models_root)),"sha256":output_hash,"samefile":True,"created":True}
++                        state["conditioning_input"]=verify_conditioning(conditioning_path,min(deadline,time.monotonic()+60))
++                        state["conditioning_input"]["relative_to_models"]=str(conditioning_path.relative_to(models_root))
++                        event("conditioning_verified_and_registered",artifact=current["artifact"],alias=current["conditioning_alias"],values=value_scan)
++                    else:
++                        videos = record["outputs"]["92"]["images"]
++                        require(len(videos) == 1 and videos[0].get("type") == "output", "single MP4 artifact not returned")
++                        item = videos[0]
++                        relative = Path(item["subfolder"]) / item["filename"]
++                        require(not relative.is_absolute() and not relative.drive, "absolute output path forbidden")
++                        output = (dirs["output"] / relative).resolve()
++                        require(output.is_relative_to(dirs["output"]) and output.suffix.lower() == ".mp4"
++                                and output.is_file() and 0 < output.stat().st_size <= gates["max_output_bytes"],
++                                "output path/size guard")
++                        output_hash, _ = guarded_hash(output, render_deadline)
++                        current["artifact"] = {"relative_to_run": str(output.relative_to(a.run_dir)),
++                                             "bytes": output.stat().st_size, "sha256": output_hash}
++                    if request_index==2:state["end_to_end_artifact_wall_seconds"]=time.monotonic()-started
+                     current["status"] = "artifact_received_unvalidated"
+                     event("artifact_received", artifact=current["artifact"])
+                     break
+@@ -820,6 +856,10 @@
+             observer = None
+             current["node_timing"] = timing
+             current["metrics"] = request_metrics(timing, record, state["prompt_id"])
++            if request_index==2:
++                state["artifact"]=current["artifact"]
++                state["node_timing"]=timing
++
+             state["total_ws_bytes"] += timing["raw_received_bytes"]
+             state["total_output_bytes"] += current["artifact"]["bytes"]
+             require(state["total_ws_bytes"] <= gates["max_total_http_bytes"], "whole-session WS budget")
+@@ -830,9 +870,35 @@
+             sample(force=True)
+             current["after_request_sample"] = copy.deepcopy(state["last_sample"])
+             event("request_complete", metrics=current["metrics"], artifact=current["artifact"])
+-        two_requests(run_one)
++        run_one(1)
++        event("release_started")
++        release_started=time.perf_counter_ns()
++        log_path=a.run_dir/"comfy.raw.log";log_offset=log_path.stat().st_size
++        require(state["free_posts"]==0,"free must be attempted once")
++        state["free_posts"]=1
++        state["release"]={"log_offset":log_offset,"post_attempted":True,"reset_path_entered":False,"fresh_admitted":False,"te_object_absence_proven":False,"start_perf_counter_ns":release_started}
++        status,_=http("POST","/free",b'{"unload_models":true,"free_memory":true}')
++        state["release"]["http_status"]=status
++        release_deadline=min(deadline,time.monotonic()+30)
++        while True:
++            sample(force=True)
++            require(proc.poll() is None and time.monotonic()<release_deadline,"release/admission deadline or service exit")
++            entered=e2e.reset_path_entered(log_path,log_offset)
++            if entered and not state["release"]["reset_path_entered"]:
++                state["release"]["reset_path_entered"]=True
++                state["release"]["marker_perf_counter_ns"]=time.perf_counter_ns()
++                event("reset_path_entered_not_completion_ack")
++            if entered and e2e.fresh_ready(state["last_sample"]):
++                state["release"]["fresh_admitted"]=True
++                state["release"]["fresh_sample"]=copy.deepcopy(state["last_sample"])
++                state["release"]["admitted_perf_counter_ns"]=time.perf_counter_ns()
++                break
++            time.sleep(gates["poll_seconds"])
++        state["release"]["elapsed_seconds"]=(time.perf_counter_ns()-release_started)/1e9
++        event("release_fresh_admission_finished",release=state["release"])
++        run_one(2)
+         require(state["completed_requests"] == state["prompt_posts"] == 2, "two completed requests required")
+-        state["status"] = "two_artifacts_received_unvalidated"
++        state["status"] = "new_prompt_video_received_unvalidated"
+     except BaseException as exc:
+         state["status"] = "cancelled" if isinstance(exc, KeyboardInterrupt) or a.stop_marker.exists() else "failed"
+         state["error_type"] = type(exc).__name__
+@@ -841,7 +907,7 @@
+     finally:
+         cleanup_owned_v2(job,proc,observer,state,gates,event)
+         if state["requests"] and "node_timing" in state:
+-            state["requests"][-1]["node_timing"] = state.pop("node_timing")
++            state["requests"][-1]["node_timing"] = state["node_timing"]
+         state["elapsed_seconds"] = time.monotonic() - started
+         for stream in (samples, journal, raw_log):
+             if stream is not None:
+@@ -852,7 +918,7 @@
+         v1.save_new(result_path, state)
+     print(json.dumps({"status": state["status"], "claim": state["claim"],
+                       "prompt_posts": state["prompt_posts"], "media_validation": "not_performed"}))
+-    return 0 if state["status"] == "two_artifacts_received_unvalidated" else 1
++    return 0 if state["status"] == "new_prompt_video_received_unvalidated" else 1
+ 
+ 
+ if __name__ == "__main__":

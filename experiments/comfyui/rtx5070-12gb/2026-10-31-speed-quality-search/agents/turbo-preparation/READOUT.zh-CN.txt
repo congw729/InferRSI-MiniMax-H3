@@ -1,0 +1,47 @@
+Q33 Turbo full-base 接入只读准备（2026-10-31）
+范围：原作者 Larryvrh 的 v4 step600 EMA LoRA + 已完成真实出片的 full 50-block INT8 ConvRot 底模。仅元数据/源码静态审计；没有运行节点、Torch、模型或 GPU，没有下载权重/安装包/修改成功 runtime。尚无本机 Turbo 画质、耗时或容量结论；均 INCONCLUSIVE。
+
+资产
+作者节点仓库 https://github.com/Larryvrh/ComfyUI-MiniMax-H3-Turbo
+锁定 commit 4274783a23afcfdbea3b4876cb79effd6c510785，Git tree da5af5a7492b28a4d6fcf088f19177ad479a2050，commit 日期 2026-08-14T14:14:50Z。pyproject 版本1.2.3、Python>=3.10、dependencies=[]、Apache-2.0。
+权重 https://huggingface.co/larryvrh/MiniMax-H3-Turbo-Lora
+锁定资产新增 commit 7b7ac96b0616100db75ea285090210c3ddf37c04（不是不稳定 main）。
+文件 minimax_h3_turbo_v4_step600_ema.safetensors
+779849816 B，743.72274 MiB，0.72629174 GiB；
+LFS SHA256 5f3a626cd72c93a8b9318d6760c510bc5092d2ab13aaba1f932c5bab07a416d3。
+身份依据：作者 HF 文件页、raw main LFS pointer 与该固定 commit diff三者大小/SHA一致；固定commit的raw pointer经web抓取失败，未伪装为成功。没有读取tensor header/正文，所以本报告不声称实测tensor数量/dtype或质量。
+完整 full-base 不调用 pruned egrid 分支（节点491–523）；h3_silu_temb_grid.safetensors 5510600B只为 pruned/curve 模型需要，本次最小full-base不需获取。
+节点源码、LICENSE、README、pyproject及示例workflow已保存非执行文本快照，每份核对Git blob SHA及大小，再记SHA256；metadata中含固定源URL。
+下载应新建Q33专属LoRA资产身份/范围登记并继承完整128GiB累计账本，不复用Q32固定原版DiT gap下载器的模型身份。建议单文件最小正文779849816B；局部尝试预算1GiB（包括重试保留，仍受全局128GiB上限），不自动重置旧账本/尝试记录。需父级完成新范围注册/方案复核；本代理未修改账本。
+单partial+完成后同卷hardlink方案磁盘约780MB；若实现需复制final，最多约1.56GB，建议E盘至少2GiB余量。不要放C盘。原DiT/TE/videoVAE/audioVAE全部复用，未提出新增模型。
+
+最小接线选择
+A. 成熟原生全merge路径（可先尝试，无新增custom node）：在已成功Q32 Stage B graph的 UNETLoader 之后插入 LoraLoaderModelOnly，strength_model=1.0；让所有下游模型输入使用其输出；原生KSamplerSelect euler，BasicScheduler simple，先6步或8步。保留原prompt/seed/尺寸/73帧、同conditioning和VAE，独立结果目录，先不加Sparse/Cache/Compile。
+本机 comfy/lora.py419–427已专门为MiniMaxH3建立裸模块路径键；comfy/sd.py110–121将该keymap+load_lora用于add_patches；nodes.py761–774暴露原生入口。故作者旧注释“stock model_lora_keys_unet不认识H3键”在当前安装版本已过时。此A路径对应作者low_vram=true的全merge策略，不等价于默认hybrid bypass；真实LoRA尚未下载，需实际加载匹配数与运行证据才能确认。
+B. 如需原作者default hybrid效果：不要修改成功runtime。将锁定的__init__.py与LICENSE放到E盘新隔离custom_nodes/ComfyUI-MiniMax-H3-Turbo-full-4274783目录，通过本轮独立extra-model-paths YAML注册custom_nodes与loras，禁用其他custom nodes并仅whitelist该目录名。现有python/Torch/Comfy核心继续只读复用；不需pip安装或升级。
+节点__init__.py16–29只依赖math/os、已安装torch、tqdm及Comfy内部模块。当前tqdm dist-info为4.70.1、torch为2.14.1+cu130；对应BypassInjectionManager/LoRAAdapter/signature、set_injections/add_patches/add_wrapper和ModelSamplingAV都存在。Python3.13满足声明>=3.10。只确认源码API存在，未做import或kernel运行兼容声明。
+本机extra_config.py6–34可从本轮YAML追加custom_nodes路径；cli_args.py218–219及nodes.py2381的allowlist可限制加载。独立启动必须使用自己的E盘base/user/cache/temp/output等，保留成功runtime文件，不安装Manager、不git pull、不复制大环境。
+B节点参数选low_vram=false/strength=1.0；先6或8步。可使用原生euler替代作者TurboSampler（见下），减少其逐步RMS日志同步。但这是从源码推导的兼容候选，不声明bitwise等价实测。
+
+low_vram与当前Comfy差异（重要）
+作者README建议default off保细节，on是低峰/可能变软的量化权重merge；4步高速运动可能拖影，6–8步通常更合适；audio/强运动仍preview，不应把宣传“细节完全恢复”当本机质量结论。
+作者默认路径__init__.py308–347,491–523给多数模块bypass，仅TensorWiseINT8Layout的.mlp.fc2做merge。作者350–374注释称旧fc2融合运算不会调用forward；但当前本机BypassForwardHook.inject在202–204会设置comfy_force_forward=True，本机ops1086–1088会优先调用forward，因此旧“永不触发”论据不再全面适用。不要未经实验修改作者策略；仅记录版本差异。
+本机post_cast ops333–343对lowvram patch先dequant、执行patch，want_requant时按原QuantizedTensor重算scale并requant；fc2融合路径ops1091–1093明确want_requant=True。因此不能复述作者注释“FP32 delta完全保留、无常驻成本”作为当前配置保证。
+本机BypassForwardHook.inject185–199及209–239会把各bypass adapter的weights搬到compute device；manager381–386一次注入所有hooks。额外LoRA GPU常驻量可能接近该文件的非fc2张量体积（完整文件<0.75GiB，但dtype转换/缓冲可增大），并有当前projection激活。不能称全部LoRA逐层offload或本机峰值已保证。
+全merge正常通过ModelPatcher动态LowVramPatch按模块应用（model_patcher.py2018–2027），但每个量化投影恢复/更新有临时张量，不能简单以744MiB文件大小推导GPU/RSS/private上界。沿用之前资源监控/取消与独立进程回收，让真实尝试决定峰值，不先造全BF16缓存。
+原生全merge可能比hybrid更便于当前12GB卡先运行，但质量损失是待对照量，不预先给PASS。成功后再比较hybrid同prompt/seed、至少全片视觉/音频检查，不能以单张静帧代替时序质量。
+
+采样及workflow
+作者__init__.py85–104检测ModelSamplingAV/audio_shift，111–134在当前分支执行普通Euler，不再手工双clock；当前本机model_sampling.py338–357存在ModelSamplingAV。因此保留本机原生AV模型采样，原生euler候选可用；不要再叠加老式audio shift。
+作者示例workflow仍写旧ckpt500、simple6，且含1344x768/73帧，不能原封照搬；仅参考其节点连线。按本机既有小分辨率Q32图改最少参数，Stage A conditioning无需重跑（前提prompt等conditioning输入不变）。
+采用Turbo已改变采样模型（LoRA/步数），保持原版50步结果为质量参照；勿将其称原版未改推理。目标用户已允许质量/速度折中，仍要分别报告first-load、sampling、decode、总wall与资源，不能用理论50/6=8.33倍当实测收益。
+本地73帧/低分辨率超出作者README标注的~124–362帧验证范围，虽其示例也用73，仍需要本机验证；不扩大生成尺寸以追宣传速度。
+
+直接来源
+https://github.com/Larryvrh/ComfyUI-MiniMax-H3-Turbo/blob/4274783a23afcfdbea3b4876cb79effd6c510785/README.md
+https://github.com/Larryvrh/ComfyUI-MiniMax-H3-Turbo/blob/4274783a23afcfdbea3b4876cb79effd6c510785/__init__.py
+https://huggingface.co/larryvrh/MiniMax-H3-Turbo-Lora/blob/main/minimax_h3_turbo_v4_step600_ema.safetensors
+https://huggingface.co/larryvrh/MiniMax-H3-Turbo-Lora/raw/main/minimax_h3_turbo_v4_step600_ema.safetensors
+https://huggingface.co/larryvrh/MiniMax-H3-Turbo-Lora/commit/7b7ac96b0616100db75ea285090210c3ddf37c04
+
+附：LOCAL-SOURCE-EVIDENCE-v1.json含当前Comfy所引用文件相对路径、SHA256、行段。SOURCE-INDEX-v1.json含远端快照Git SHA与SHA256。本报告不否定此前Q31 Windows AIMDO源码研究；本轮不研究DLL/Windowscommit，不将Python静态路径当完整容量证明。

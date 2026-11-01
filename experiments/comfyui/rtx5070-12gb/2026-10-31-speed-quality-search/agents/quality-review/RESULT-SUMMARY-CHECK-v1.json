@@ -1,0 +1,7 @@
+{
+  "schema": "q33-summary-targeted-check/v1",
+  "checks_completed": 4,
+  "scope": "resource last_sample/gpu_board; null native timing; persistent request filtering/missing media; Windows path redaction",
+  "script_sha256": "6d0678fa597a39696b434687257a0607bc1c0608745e69502d75aa0505705ca5",
+  "gpu_decoder_network": false
+}

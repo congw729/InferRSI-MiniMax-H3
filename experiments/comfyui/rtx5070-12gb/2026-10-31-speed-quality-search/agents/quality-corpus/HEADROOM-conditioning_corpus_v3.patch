@@ -1,0 +1,18 @@
+--- conditioning_corpus_v2.py
++++ conditioning_corpus_v3.py
+@@ -297,6 +297,7 @@
+              "corpus_manifest_sha256":CORPUS_MANIFEST_SHA,
+              "timing_controller_sha256":TIMING_CONTROLLER_SHA,
+              "runtime_sources_sha256":SOURCE_MANIFEST_SHA,
++             "requested_aimdo_vram_headroom_gib": 1.0,
+              "driver_sha256": digest(Path(__file__)), "v1_sha256": V1_SHA,
+              "graph_sha256": graph_sha, "asset_set_sha256": ASSET_SET_SHA,
+              "schema_result_sha256": a.schema_result_sha256.lower(),
+@@ -479,6 +480,7 @@
+                    "--listen", "127.0.0.1", "--port", str(a.port),
+                    "--disable-auto-launch", "--disable-all-custom-nodes", "--disable-partner-nodes",
+                    "--offline", "--disable-assets", "--disable-pinned-memory", "--disable-async-offload", "--disable-smart-memory", "--cache-none", "--preview-method", "none",
++                   "--vram-headroom", "1.0",
+                    "--reserve-vram", str(gates["reserve_vram_gb"]),
+                    "--models-directory", str(models_root)]
+         for key in ("base", "output", "temp", "input", "previews", "user"):

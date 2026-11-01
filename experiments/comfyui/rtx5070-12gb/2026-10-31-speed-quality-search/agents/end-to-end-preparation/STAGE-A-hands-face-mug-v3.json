@@ -1,0 +1,45 @@
+{
+  "prompt": {
+    "13": {
+      "class_type": "CLIPLoader",
+      "inputs": {
+        "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+        "type": "minimax",
+        "device": "default"
+      }
+    },
+    "11": {
+      "class_type": "VAELoader",
+      "inputs": {
+        "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+      }
+    },
+    "104": {
+      "class_type": "MiniMaxH3ImageToVideo",
+      "inputs": {
+        "clip": [
+          "13",
+          0
+        ],
+        "vae": [
+          "11",
+          0
+        ],
+        "prompt": "An adult sitting at a table slowly lifts a blue ceramic mug with both hands and gives a small smile. Static waist-up camera, continuous shot. Audio: a light ceramic sound as the mug leaves the table and a quiet room, no speech.",
+        "width": 384,
+        "height": 256,
+        "length": 73
+      }
+    },
+    "1001": {
+      "class_type": "SaveConditioning",
+      "inputs": {
+        "conditioning": [
+          "104",
+          0
+        ],
+        "filename_prefix": "q33-e2e-two/hands-face-mug/conditioning/stage-a"
+      }
+    }
+  }
+}

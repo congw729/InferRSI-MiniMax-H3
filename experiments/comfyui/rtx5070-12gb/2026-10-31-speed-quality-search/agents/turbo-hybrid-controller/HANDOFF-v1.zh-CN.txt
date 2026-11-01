@@ -1,0 +1,6 @@
+作者hybrid6最小候选已准备，未运行GPU。原版50层INT8ConvRot+同v4LoRA/conditioning/VAEs，Euler/simple6、12/3、strength1、low_vram=false；reserve3GiB/headroom1GiB/原全部guards与cleanup保持。作者源码原样复制，259目标预期209bypass+50INT8fc2merge；实际日志须报full且满足该分组，否则controller不接受为成功。日志是应用计数证据，不等于数值或画质。
+控制器：turbo_hybrid_stage_b_v1.py；profile profiles/turbo-hybrid-6.ready.json；assets assets/turbo-hybrid.ready.json；conditioning conditioning/turbo-hybrid-6.json；gates TURBO-RESOURCE-GATES-v1.json。
+沿用原Turbo独立InferRSI执行命令的既定根参数，只切换上述控制器/metadata路径与SHA。新增--hybrid-root <MODEL_ROOT>/comfy-original/extensions/q33-turbo-hybrid-4274783。--timing-module继续指Q33/agents/timing-controller/timing_events_v1.py；SOURCE-MANIFEST继续旧154source清单。父级须检查本目录EXECUTION-FREEZE-v1的files、external_notes_files、portable_files、deployment_files四类身份。
+E部署仅37,762B：__init__.py/许可证/extra-paths.yaml。原portable不变、不装依赖/不下载权重。CLI由controller固定extra-paths+单whitelist同时保留disable-all-custom-nodes，runbase/user/cache/temp/output仍新建独占目录。full资产SHA固定；本地header无adaln_t_table，nativecurve检测false，作者full分支不需egrid；未部署egrid且没有下载fallback。
+冻结28小门实际portable执行通过，含真实收据/记录header目标映射、图负例、源码身份和7个原保护/清理函数AST相同；没有import作者节点、Torch、模型或GPU。真实hook执行尚未发生。作者前6次RMS debug日志保持，会影响同步/计时；与native候选属整套加载方式比较，不能先称更快或更好。
+异步独审请求已发；父级审后串行运行。之前版本/失败/成功文件全部保留；独立完整媒体检验和人工全片视觉听音仍必要。

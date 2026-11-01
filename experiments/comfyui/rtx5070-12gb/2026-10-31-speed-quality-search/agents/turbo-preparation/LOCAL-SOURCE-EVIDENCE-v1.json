@@ -1,0 +1,1218 @@
+{
+  "schema": "q33-local-static-source-evidence/v1",
+  "scope": "selected installed Comfy source only; no imports, no CUDA, no whole environment compatibility claim",
+  "sources": [
+    {
+      "path": "comfy/weight_adapter/bypass.py",
+      "sha256": "d730f23c5d36968e102073051e9677db7761e87228d824470e4034909e3337dd",
+      "line_ranges": [
+        [
+          177,
+          204
+        ],
+        [
+          227,
+          240
+        ],
+        [
+          375,
+          398
+        ]
+      ],
+      "excerpts": [
+        {
+          "line": 177,
+          "text": "    def inject(self):"
+        },
+        {
+          "line": 178,
+          "text": "        \"\"\"Replace module forward with bypass version.\"\"\""
+        },
+        {
+          "line": 179,
+          "text": "        if self.original_forward is not None:"
+        },
+        {
+          "line": 180,
+          "text": "            logging.debug("
+        },
+        {
+          "line": 181,
+          "text": "                f\"[BypassHook] Already injected for {type(self.module).__name__}\""
+        },
+        {
+          "line": 182,
+          "text": "            )"
+        },
+        {
+          "line": 183,
+          "text": "            return  # Already injected"
+        },
+        {
+          "line": 184,
+          "text": ""
+        },
+        {
+          "line": 185,
+          "text": "        # Move adapter weights to compute device (GPU)"
+        },
+        {
+          "line": 186,
+          "text": "        # Use get_torch_device() instead of module.weight.device because"
+        },
+        {
+          "line": 187,
+          "text": "        # with offloading, module weights may be on CPU while compute happens on GPU"
+        },
+        {
+          "line": 188,
+          "text": "        device = comfy.model_management.get_torch_device()"
+        },
+        {
+          "line": 189,
+          "text": ""
+        },
+        {
+          "line": 190,
+          "text": "        # Get dtype from module weight if available"
+        },
+        {
+          "line": 191,
+          "text": "        dtype = None"
+        },
+        {
+          "line": 192,
+          "text": "        if hasattr(self.module, \"weight\") and self.module.weight is not None:"
+        },
+        {
+          "line": 193,
+          "text": "            dtype = self.module.weight.dtype"
+        },
+        {
+          "line": 194,
+          "text": ""
+        },
+        {
+          "line": 195,
+          "text": "        # Only use dtype if it's a standard float type, not quantized"
+        },
+        {
+          "line": 196,
+          "text": "        if dtype is not None and dtype not in (torch.float32, torch.float16, torch.bfloat16):"
+        },
+        {
+          "line": 197,
+          "text": "            dtype = None"
+        },
+        {
+          "line": 198,
+          "text": ""
+        },
+        {
+          "line": 199,
+          "text": "        self._move_adapter_weights_to_device(device, dtype)"
+        },
+        {
+          "line": 200,
+          "text": ""
+        },
+        {
+          "line": 201,
+          "text": "        self.original_forward = self.module.forward"
+        },
+        {
+          "line": 202,
+          "text": "        self.original_force_forward = getattr(self.module, \"comfy_force_forward\", False)"
+        },
+        {
+          "line": 203,
+          "text": "        self.module.comfy_force_forward = True"
+        },
+        {
+          "line": 204,
+          "text": "        self.module.forward = self._bypass_forward"
+        },
+        {
+          "line": 227,
+          "text": "        # WeightAdapterBase: handle self.weights tuple"
+        },
+        {
+          "line": 228,
+          "text": "        if not hasattr(adapter, \"weights\") or adapter.weights is None:"
+        },
+        {
+          "line": 229,
+          "text": "            return"
+        },
+        {
+          "line": 230,
+          "text": ""
+        },
+        {
+          "line": 231,
+          "text": "        weights = adapter.weights"
+        },
+        {
+          "line": 232,
+          "text": "        if isinstance(weights, (list, tuple)):"
+        },
+        {
+          "line": 233,
+          "text": "            new_weights = []"
+        },
+        {
+          "line": 234,
+          "text": "            for w in weights:"
+        },
+        {
+          "line": 235,
+          "text": "                if isinstance(w, torch.Tensor):"
+        },
+        {
+          "line": 236,
+          "text": "                    if dtype is not None:"
+        },
+        {
+          "line": 237,
+          "text": "                        new_weights.append(w.to(device=device, dtype=dtype))"
+        },
+        {
+          "line": 238,
+          "text": "                    else:"
+        },
+        {
+          "line": 239,
+          "text": "                        new_weights.append(w.to(device=device))"
+        },
+        {
+          "line": 240,
+          "text": "                else:"
+        },
+        {
+          "line": 375,
+          "text": "            hook = BypassForwardHook(module, adapter, multiplier=strength)"
+        },
+        {
+          "line": 376,
+          "text": "            self.hooks.append(hook)"
+        },
+        {
+          "line": 377,
+          "text": ""
+        },
+        {
+          "line": 378,
+          "text": "        logging.debug(f\"[BypassManager] Created {len(self.hooks)} hooks\")"
+        },
+        {
+          "line": 379,
+          "text": ""
+        },
+        {
+          "line": 380,
+          "text": "        # Create single injection that manages all hooks"
+        },
+        {
+          "line": 381,
+          "text": "        def inject_all(model_patcher):"
+        },
+        {
+          "line": 382,
+          "text": "            logging.debug("
+        },
+        {
+          "line": 383,
+          "text": "                f\"[BypassManager] inject_all called, injecting {len(self.hooks)} hooks\""
+        },
+        {
+          "line": 384,
+          "text": "            )"
+        },
+        {
+          "line": 385,
+          "text": "            for hook in self.hooks:"
+        },
+        {
+          "line": 386,
+          "text": "                hook.inject()"
+        },
+        {
+          "line": 387,
+          "text": "                logging.debug("
+        },
+        {
+          "line": 388,
+          "text": "                    f\"[BypassManager] Injected hook for {type(hook.module).__name__}\""
+        },
+        {
+          "line": 389,
+          "text": "                )"
+        },
+        {
+          "line": 390,
+          "text": ""
+        },
+        {
+          "line": 391,
+          "text": "        def eject_all(model_patcher):"
+        },
+        {
+          "line": 392,
+          "text": "            logging.debug("
+        },
+        {
+          "line": 393,
+          "text": "                f\"[BypassManager] eject_all called, ejecting {len(self.hooks)} hooks\""
+        },
+        {
+          "line": 394,
+          "text": "            )"
+        },
+        {
+          "line": 395,
+          "text": "            for hook in self.hooks:"
+        },
+        {
+          "line": 396,
+          "text": "                hook.eject()"
+        },
+        {
+          "line": 397,
+          "text": ""
+        },
+        {
+          "line": 398,
+          "text": "        return [PatcherInjection(inject=inject_all, eject=eject_all)]"
+        }
+      ]
+    },
+    {
+      "path": "comfy/weight_adapter/lora.py",
+      "sha256": "5e30c8b8a22be6459883cb5d758fa76f725cc4688d4048200145b885567c4cec",
+      "line_ranges": [
+        [
+          127,
+          132
+        ],
+        [
+          173,
+          180
+        ]
+      ],
+      "excerpts": [
+        {
+          "line": 127,
+          "text": "class LoRAAdapter(WeightAdapterBase):"
+        },
+        {
+          "line": 128,
+          "text": "    name = \"lora\""
+        },
+        {
+          "line": 129,
+          "text": ""
+        },
+        {
+          "line": 130,
+          "text": "    def __init__(self, loaded_keys, weights):"
+        },
+        {
+          "line": 131,
+          "text": "        self.loaded_keys = loaded_keys"
+        },
+        {
+          "line": 132,
+          "text": "        self.weights = weights"
+        },
+        {
+          "line": 173,
+          "text": "        elif diffusers_lora in lora.keys():"
+        },
+        {
+          "line": 174,
+          "text": "            A_name = diffusers_lora"
+        },
+        {
+          "line": 175,
+          "text": "            B_name = \"{}_lora.down.weight\".format(x)"
+        },
+        {
+          "line": 176,
+          "text": "            mid_name = None"
+        },
+        {
+          "line": 177,
+          "text": "        elif diffusers2_lora in lora.keys():"
+        },
+        {
+          "line": 178,
+          "text": "            A_name = diffusers2_lora"
+        },
+        {
+          "line": 179,
+          "text": "            B_name = \"{}.lora_A.weight\".format(x)"
+        },
+        {
+          "line": 180,
+          "text": "            mid_name = None"
+        }
+      ]
+    },
+    {
+      "path": "comfy/model_patcher.py",
+      "sha256": "4f8ccf957a7227942c0e167384ed4e128f038245ad09b9bb547102281be13612",
+      "line_ranges": [
+        [
+          1394,
+          1395
+        ],
+        [
+          2018,
+          2027
+        ]
+      ],
+      "excerpts": [
+        {
+          "line": 1394,
+          "text": "    def set_injections(self, key: str, injections: list[PatcherInjection]):"
+        },
+        {
+          "line": 1395,
+          "text": "        self.injections[key] = injections"
+        },
+        {
+          "line": 2018,
+          "text": "                    weight, _, _ = get_key_weight(self.model, key)"
+        },
+        {
+          "line": 2019,
+          "text": "                    if weight is None:"
+        },
+        {
+          "line": 2020,
+          "text": "                        return (False, 0)"
+        },
+        {
+          "line": 2021,
+          "text": "                    if key in self.patches:"
+        },
+        {
+          "line": 2022,
+          "text": "                        if comfy.lora.calculate_shape(self.patches[key], weight, key) != weight.shape:"
+        },
+        {
+          "line": 2023,
+          "text": "                            return (True, 0)"
+        },
+        {
+          "line": 2024,
+          "text": "                        lowvram_patch = LowVramPatch(key, self.patches)"
+        },
+        {
+          "line": 2025,
+          "text": "                        lowvram_patch._pin_state = pin_state"
+        },
+        {
+          "line": 2026,
+          "text": "                        setattr(m, param_key + \"_lowvram_function\", lowvram_patch)"
+        },
+        {
+          "line": 2027,
+          "text": "                        num_patches += 1"
+        }
+      ]
+    },
+    {
+      "path": "comfy/model_sampling.py",
+      "sha256": "176eeaa45b871fe96fa244961e24ba1f02c1654758b3de37966974ce6850bff7",
+      "line_ranges": [
+        [
+          338,
+          357
+        ]
+      ],
+      "excerpts": [
+        {
+          "line": 338,
+          "text": "class ModelSamplingAV(ModelSamplingDiscreteFlow):"
+        },
+        {
+          "line": 339,
+          "text": "    \"\"\"Flow sampling for packed audio-video latents whose audio stream has its own flow shift."
+        },
+        {
+          "line": 340,
+          "text": ""
+        },
+        {
+          "line": 341,
+          "text": "    Carrying the audio latent scaled onto the video schedule makes the pack an ordinary"
+        },
+        {
+          "line": 342,
+          "text": "    single-schedule flow latent whose audio target is scaled by audio_scale."
+        },
+        {
+          "line": 343,
+          "text": "    \"\"\""
+        },
+        {
+          "line": 344,
+          "text": "    def __init__(self, model_config=None):"
+        },
+        {
+          "line": 345,
+          "text": "        super().__init__(model_config)"
+        },
+        {
+          "line": 346,
+          "text": "        sampling_settings = model_config.sampling_settings if model_config is not None else {}"
+        },
+        {
+          "line": 347,
+          "text": "        self.audio_shift = sampling_settings.get(\"audio_shift\", None)"
+        },
+        {
+          "line": 348,
+          "text": ""
+        },
+        {
+          "line": 349,
+          "text": "    def set_parameters(self, shift=1.0, audio_shift=None, timesteps=1000, multiplier=1000):"
+        },
+        {
+          "line": 350,
+          "text": "        self.audio_shift = audio_shift"
+        },
+        {
+          "line": 351,
+          "text": "        super().set_parameters(shift=shift, timesteps=timesteps, multiplier=multiplier)"
+        },
+        {
+          "line": 352,
+          "text": ""
+        },
+        {
+          "line": 353,
+          "text": "    @property"
+        },
+        {
+          "line": 354,
+          "text": "    def audio_scale(self):"
+        },
+        {
+          "line": 355,
+          "text": "        if self.audio_shift is None:"
+        },
+        {
+          "line": 356,
+          "text": "            return 1.0"
+        },
+        {
+          "line": 357,
+          "text": "        return self.shift / self.audio_shift"
+        }
+      ]
+    },
+    {
+      "path": "comfy/ops.py",
+      "sha256": "0167aef2929b92ba3623376f7656e58ead5869485b926b09bead525f32e4dd06",
+      "line_ranges": [
+        [
+          316,
+          345
+        ],
+        [
+          1081,
+          1104
+        ]
+      ],
+      "excerpts": [
+        {
+          "line": 316,
+          "text": "    def post_cast(s, param_key, x, dtype, resident, update_weight):"
+        },
+        {
+          "line": 317,
+          "text": "        lowvram_fn = getattr(s, param_key + \"_lowvram_function\", None)"
+        },
+        {
+          "line": 318,
+          "text": "        fns = getattr(s, param_key + \"_function\", [])"
+        },
+        {
+          "line": 319,
+          "text": ""
+        },
+        {
+          "line": 320,
+          "text": "        if x is None:"
+        },
+        {
+          "line": 321,
+          "text": "            return None"
+        },
+        {
+          "line": 322,
+          "text": ""
+        },
+        {
+          "line": 323,
+          "text": "        orig = x"
+        },
+        {
+          "line": 324,
+          "text": ""
+        },
+        {
+          "line": 325,
+          "text": "        def to_dequant(tensor, dtype):"
+        },
+        {
+          "line": 326,
+          "text": "            tensor = tensor.to(dtype=dtype)"
+        },
+        {
+          "line": 327,
+          "text": "            if isinstance(tensor, QuantizedTensor):"
+        },
+        {
+          "line": 328,
+          "text": "                tensor = tensor.dequantize()"
+        },
+        {
+          "line": 329,
+          "text": "            return tensor"
+        },
+        {
+          "line": 330,
+          "text": ""
+        },
+        {
+          "line": 331,
+          "text": "        if (return_weights and orig.dtype != dtype) or len(fns) > 0:"
+        },
+        {
+          "line": 332,
+          "text": "            x = to_dequant(x, dtype)"
+        },
+        {
+          "line": 333,
+          "text": "        if not resident and lowvram_fn is not None:"
+        },
+        {
+          "line": 334,
+          "text": "            x = to_dequant(x, dtype if compute_dtype is None else compute_dtype)"
+        },
+        {
+          "line": 335,
+          "text": "            x = lowvram_fn(x)"
+        },
+        {
+          "line": 336,
+          "text": "            if (want_requant and len(fns) == 0 or update_weight):"
+        },
+        {
+          "line": 337,
+          "text": "                seed = comfy.utils.string_to_seed(s.seed_key)"
+        },
+        {
+          "line": 338,
+          "text": "                if isinstance(orig, QuantizedTensor):"
+        },
+        {
+          "line": 339,
+          "text": "                    y = orig.requantize_from_float(x, scale=\"recalculate\", stochastic_rounding=seed)"
+        },
+        {
+          "line": 340,
+          "text": "                else:"
+        },
+        {
+          "line": 341,
+          "text": "                    y = comfy.float.stochastic_rounding(x, orig.dtype, seed=seed)"
+        },
+        {
+          "line": 342,
+          "text": "            if want_requant and len(fns) == 0:"
+        },
+        {
+          "line": 343,
+          "text": "                x = y"
+        },
+        {
+          "line": 344,
+          "text": "            if update_weight:"
+        },
+        {
+          "line": 345,
+          "text": "                orig.copy_(y)"
+        },
+        {
+          "line": 1081,
+          "text": "def linear_input_act(linear, x, input_act, act_weight=None, act_eps=0.0,"
+        },
+        {
+          "line": 1082,
+          "text": "                     residual=None, residual_scale=None):"
+        },
+        {
+          "line": 1083,
+          "text": "    run_every_op()"
+        },
+        {
+          "line": 1084,
+          "text": "    weight = linear.weight"
+        },
+        {
+          "line": 1085,
+          "text": "    quantized = isinstance(weight, QuantizedTensor)"
+        },
+        {
+          "line": 1086,
+          "text": "    if (comfy.model_management.in_training or getattr(linear, \"comfy_force_forward\", False) or getattr(linear, \"_full_precision_mm\", False)"
+        },
+        {
+          "line": 1087,
+          "text": "            or not (quantized or _fp16_linear_wanted(x))):"
+        },
+        {
+          "line": 1088,
+          "text": "        out = linear(_eager_input_act(x, input_act, act_weight, act_eps))"
+        },
+        {
+          "line": 1089,
+          "text": "        return _linear_residual(out, residual, residual_scale)"
+        },
+        {
+          "line": 1090,
+          "text": ""
+        },
+        {
+          "line": 1091,
+          "text": "    with CastBiasWeightContext(linear, x, offloadable=True,"
+        },
+        {
+          "line": 1092,
+          "text": "                               compute_dtype=x.dtype if quantized else None,"
+        },
+        {
+          "line": 1093,
+          "text": "                               want_requant=quantized) as (weight, bias):"
+        },
+        {
+          "line": 1094,
+          "text": "        if not quantized:"
+        },
+        {
+          "line": 1095,
+          "text": "            return linear_input_act_(x, weight, bias, input_act, act_weight, act_eps,"
+        },
+        {
+          "line": 1096,
+          "text": "                                     residual, residual_scale)"
+        },
+        {
+          "line": 1097,
+          "text": "        out = _try_quantized_linear_input_act(x, weight, bias, input_act, act_weight, act_eps,"
+        },
+        {
+          "line": 1098,
+          "text": "                                              residual, residual_scale)"
+        },
+        {
+          "line": 1099,
+          "text": "        if out is not NotImplemented:"
+        },
+        {
+          "line": 1100,
+          "text": "            return out"
+        },
+        {
+          "line": 1101,
+          "text": ""
+        },
+        {
+          "line": 1102,
+          "text": "    # A tensor-level fallback cannot replace module-owned input processing."
+        },
+        {
+          "line": 1103,
+          "text": "    out = linear(_eager_input_act(x, input_act, act_weight, act_eps))"
+        },
+        {
+          "line": 1104,
+          "text": "    return _linear_residual(out, residual, residual_scale)"
+        }
+      ]
+    },
+    {
+      "path": "comfy/lora.py",
+      "sha256": "ac46c49b26b6d9f6d81d4ae4dcc444a4662e3b291635e2234f9ed7a1d1b16eeb",
+      "line_ranges": [
+        [
+          419,
+          427
+        ]
+      ],
+      "excerpts": [
+        {
+          "line": 419,
+          "text": "    if isinstance(model, comfy.model_base.MiniMaxH3):"
+        },
+        {
+          "line": 420,
+          "text": "        for k in sdk:"
+        },
+        {
+          "line": 421,
+          "text": "            if k.startswith(\"diffusion_model.\") and k.endswith(\".weight\"):"
+        },
+        {
+          "line": 422,
+          "text": "                key_lora = k[len(\"diffusion_model.\"):-len(\".weight\")]"
+        },
+        {
+          "line": 423,
+          "text": "                key_map[key_lora] = k"
+        },
+        {
+          "line": 424,
+          "text": "        pdd_steps = model.model_config.unet_config.get(\"pdd_steps\", 1)"
+        },
+        {
+          "line": 425,
+          "text": "        if pdd_steps > 1:  # baked PDD bank: single-head LoRAs patch head 0, the base of every interval head"
+        },
+        {
+          "line": 426,
+          "text": "            heads = {k: (k, (0, 0, sd[k].shape[0] // pdd_steps)) for k in (\"diffusion_model.final_layer.video_out.weight\", \"diffusion_model.final_layer.audio_out.weight\")}"
+        },
+        {
+          "line": 427,
+          "text": "            key_map.update({key_lora: heads[k] for key_lora, k in key_map.items() if k in heads})"
+        }
+      ]
+    },
+    {
+      "path": "comfy/sd.py",
+      "sha256": "b5dcb5d1156a1f4e5fb9b32ef684105cca27298416f8abe494eafac75a4d2863",
+      "line_ranges": [
+        [
+          110,
+          121
+        ]
+      ],
+      "excerpts": [
+        {
+          "line": 110,
+          "text": "def load_lora_for_models(model, clip, lora, strength_model, strength_clip, lora_metadata=None):"
+        },
+        {
+          "line": 111,
+          "text": "    key_map = {}"
+        },
+        {
+          "line": 112,
+          "text": "    if model is not None:"
+        },
+        {
+          "line": 113,
+          "text": "        key_map = comfy.lora.model_lora_keys_unet(model.model, key_map)"
+        },
+        {
+          "line": 114,
+          "text": "    if clip is not None:"
+        },
+        {
+          "line": 115,
+          "text": "        key_map = comfy.lora.model_lora_keys_clip(clip.cond_stage_model, key_map)"
+        },
+        {
+          "line": 116,
+          "text": ""
+        },
+        {
+          "line": 117,
+          "text": "    lora = comfy.lora_convert.convert_lora(lora)"
+        },
+        {
+          "line": 118,
+          "text": "    loaded = comfy.lora.load_lora(lora, key_map)"
+        },
+        {
+          "line": 119,
+          "text": "    if model is not None:"
+        },
+        {
+          "line": 120,
+          "text": "        new_modelpatcher = model.clone()"
+        },
+        {
+          "line": 121,
+          "text": "        k = new_modelpatcher.add_patches(loaded, strength_model)"
+        }
+      ]
+    },
+    {
+      "path": "nodes.py",
+      "sha256": "776f549a05fc068eca20a9edc1602c6f1b80cfbbf5153bc44ba371a55fbb13be",
+      "line_ranges": [
+        [
+          761,
+          774
+        ],
+        [
+          2378,
+          2385
+        ]
+      ],
+      "excerpts": [
+        {
+          "line": 761,
+          "text": "class LoraLoaderModelOnly(LoraLoader):"
+        },
+        {
+          "line": 762,
+          "text": "    @classmethod"
+        },
+        {
+          "line": 763,
+          "text": "    def INPUT_TYPES(s):"
+        },
+        {
+          "line": 764,
+          "text": "        return {\"required\": { \"model\": (\"MODEL\",),"
+        },
+        {
+          "line": 765,
+          "text": "                              \"lora_name\": (folder_paths.get_filename_list(\"loras\"), ),"
+        },
+        {
+          "line": 766,
+          "text": "                              \"strength_model\": (\"FLOAT\", {\"default\": 1.0, \"min\": -100.0, \"max\": 100.0, \"step\": 0.01}),"
+        },
+        {
+          "line": 767,
+          "text": "                            }}"
+        },
+        {
+          "line": 768,
+          "text": "    RETURN_TYPES = (\"MODEL\",)"
+        },
+        {
+          "line": 769,
+          "text": "    DESCRIPTION = \"This LoRAs loader is used to modify the diffusion model, altering the way in which latents are denoised such as applying styles. Multiple LoRA nodes can be linked together.\""
+        },
+        {
+          "line": 770,
+          "text": "    SEARCH_ALIASES = [\"lora\", \"load lora\", \"apply lora\", \"lora loader\", \"lora model\"]"
+        },
+        {
+          "line": 771,
+          "text": "    FUNCTION = \"load_lora_model_only\""
+        },
+        {
+          "line": 772,
+          "text": ""
+        },
+        {
+          "line": 773,
+          "text": "    def load_lora_model_only(self, model, lora_name, strength_model):"
+        },
+        {
+          "line": 774,
+          "text": "        return (self.load_lora(model, None, lora_name, strength_model, 0)[0],)"
+        },
+        {
+          "line": 2378,
+          "text": "                continue"
+        },
+        {
+          "line": 2379,
+          "text": "            if module_path.endswith(\".disabled\"):"
+        },
+        {
+          "line": 2380,
+          "text": "                continue"
+        },
+        {
+          "line": 2381,
+          "text": "            if args.disable_all_custom_nodes and possible_module not in args.whitelist_custom_nodes:"
+        },
+        {
+          "line": 2382,
+          "text": "                logging.info(f\"Skipping {possible_module} due to disable_all_custom_nodes and whitelist_custom_nodes\")"
+        },
+        {
+          "line": 2383,
+          "text": "                continue"
+        },
+        {
+          "line": 2384,
+          "text": ""
+        },
+        {
+          "line": 2385,
+          "text": "            if args.enable_manager:"
+        }
+      ]
+    },
+    {
+      "path": "utils/extra_config.py",
+      "sha256": "79575ef9f3c8eeda9903fb6f5cdea98b13ac408e1ccae06235f89453b8c65bb5",
+      "line_ranges": [
+        [
+          6,
+          34
+        ]
+      ],
+      "excerpts": [
+        {
+          "line": 6,
+          "text": "def load_extra_path_config(yaml_path):"
+        },
+        {
+          "line": 7,
+          "text": "    with open(yaml_path, 'r', encoding='utf-8') as stream:"
+        },
+        {
+          "line": 8,
+          "text": "        config = yaml.safe_load(stream)"
+        },
+        {
+          "line": 9,
+          "text": "    yaml_dir = os.path.dirname(os.path.abspath(yaml_path))"
+        },
+        {
+          "line": 10,
+          "text": "    for c in config:"
+        },
+        {
+          "line": 11,
+          "text": "        conf = config[c]"
+        },
+        {
+          "line": 12,
+          "text": "        if conf is None:"
+        },
+        {
+          "line": 13,
+          "text": "            continue"
+        },
+        {
+          "line": 14,
+          "text": "        base_path = None"
+        },
+        {
+          "line": 15,
+          "text": "        if \"base_path\" in conf:"
+        },
+        {
+          "line": 16,
+          "text": "            base_path = conf.pop(\"base_path\")"
+        },
+        {
+          "line": 17,
+          "text": "            base_path = os.path.expandvars(os.path.expanduser(base_path))"
+        },
+        {
+          "line": 18,
+          "text": "            if not os.path.isabs(base_path):"
+        },
+        {
+          "line": 19,
+          "text": "                base_path = os.path.abspath(os.path.join(yaml_dir, base_path))"
+        },
+        {
+          "line": 20,
+          "text": "        is_default = False"
+        },
+        {
+          "line": 21,
+          "text": "        if \"is_default\" in conf:"
+        },
+        {
+          "line": 22,
+          "text": "            is_default = conf.pop(\"is_default\")"
+        },
+        {
+          "line": 23,
+          "text": "        for x in conf:"
+        },
+        {
+          "line": 24,
+          "text": "            for y in conf[x].split(\"\\n\"):"
+        },
+        {
+          "line": 25,
+          "text": "                if len(y) == 0:"
+        },
+        {
+          "line": 26,
+          "text": "                    continue"
+        },
+        {
+          "line": 27,
+          "text": "                full_path = y"
+        },
+        {
+          "line": 28,
+          "text": "                if base_path:"
+        },
+        {
+          "line": 29,
+          "text": "                    full_path = os.path.join(base_path, full_path)"
+        },
+        {
+          "line": 30,
+          "text": "                elif not os.path.isabs(full_path):"
+        },
+        {
+          "line": 31,
+          "text": "                    full_path = os.path.abspath(os.path.join(yaml_dir, y))"
+        },
+        {
+          "line": 32,
+          "text": "                normalized_path = os.path.normpath(full_path)"
+        },
+        {
+          "line": 33,
+          "text": "                logging.info(\"Adding extra search path {} {}\".format(x, normalized_path))"
+        },
+        {
+          "line": 34,
+          "text": "                folder_paths.add_model_folder_path(x, normalized_path, is_default)"
+        }
+      ]
+    },
+    {
+      "path": "comfy/cli_args.py",
+      "sha256": "c88f737c65915bd19ff04be68d151c0794b03b09e50dcb4fcd088647eb796f4a",
+      "line_ranges": [
+        [
+          218,
+          219
+        ]
+      ],
+      "excerpts": [
+        {
+          "line": 218,
+          "text": "parser.add_argument(\"--disable-all-custom-nodes\", action=\"store_true\", help=\"Disable loading all custom nodes.\")"
+        },
+        {
+          "line": 219,
+          "text": "parser.add_argument(\"--whitelist-custom-nodes\", type=str, nargs='+', default=[], help=\"Specify custom node folders to load even when --disable-all-custom-nodes is enabled.\")"
+        }
+      ]
+    },
+    {
+      "path": "comfy/k_diffusion/sampling.py",
+      "sha256": "a7f22bd23cf8da6814c0adf0328704b2946370f09939bb364c2523dc1fcc902f",
+      "line_ranges": [
+        [
+          190,
+          213
+        ]
+      ],
+      "excerpts": [
+        {
+          "line": 190,
+          "text": "def sample_euler(model, x, sigmas, extra_args=None, callback=None, disable=None, s_churn=0., s_tmin=0., s_tmax=float('inf'), s_noise=1.):"
+        },
+        {
+          "line": 191,
+          "text": "    \"\"\"Implements Algorithm 2 (Euler steps) from Karras et al. (2022).\"\"\""
+        },
+        {
+          "line": 192,
+          "text": "    extra_args = {} if extra_args is None else extra_args"
+        },
+        {
+          "line": 193,
+          "text": "    s_in = x.new_ones([x.shape[0]])"
+        },
+        {
+          "line": 194,
+          "text": "    for i in trange(len(sigmas) - 1, disable=disable):"
+        },
+        {
+          "line": 195,
+          "text": "        if s_churn > 0:"
+        },
+        {
+          "line": 196,
+          "text": "            gamma = min(s_churn / (len(sigmas) - 1), 2 ** 0.5 - 1) if s_tmin <= sigmas[i] <= s_tmax else 0."
+        },
+        {
+          "line": 197,
+          "text": "            sigma_hat = sigmas[i] * (gamma + 1)"
+        },
+        {
+          "line": 198,
+          "text": "        else:"
+        },
+        {
+          "line": 199,
+          "text": "            gamma = 0"
+        },
+        {
+          "line": 200,
+          "text": "            sigma_hat = sigmas[i]"
+        },
+        {
+          "line": 201,
+          "text": ""
+        },
+        {
+          "line": 202,
+          "text": "        if gamma > 0:"
+        },
+        {
+          "line": 203,
+          "text": "            eps = torch.randn_like(x) * s_noise"
+        },
+        {
+          "line": 204,
+          "text": "            x = x + eps * (sigma_hat ** 2 - sigmas[i] ** 2) ** 0.5"
+        },
+        {
+          "line": 205,
+          "text": "        denoised = model(x, sigma_hat * s_in, **extra_args)"
+        },
+        {
+          "line": 206,
+          "text": "        d = to_d(x, sigma_hat, denoised)"
+        },
+        {
+          "line": 207,
+          "text": "        if callback is not None:"
+        },
+        {
+          "line": 208,
+          "text": "            callback({'x': x, 'i': i, 'sigma': sigmas[i], 'sigma_hat': sigma_hat, 'denoised': denoised})"
+        },
+        {
+          "line": 209,
+          "text": "        dt = sigmas[i + 1] - sigma_hat"
+        },
+        {
+          "line": 210,
+          "text": "        # Euler method"
+        },
+        {
+          "line": 211,
+          "text": "        x = x + d * dt"
+        },
+        {
+          "line": 212,
+          "text": "    return x"
+        },
+        {
+          "line": 213,
+          "text": ""
+        }
+      ]
+    }
+  ]
+}

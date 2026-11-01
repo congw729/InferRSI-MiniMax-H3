@@ -1,0 +1,16 @@
+{
+  "schema":"q33-attention-single-variable-plan/v1",
+  "scope":"One same-scene Trim6 dense attention screen; no new dependency, runtime edit, GPU or network in preparation",
+  "baseline_controller_sha256":"f194d1b1862eab246c826d19c36c9c0846afe89b1664f6c24cd3f367f86d9ee9",
+  "baseline_graph":"../timing-controller/graphs/trim-6.json",
+  "baseline_graph_sha256":"8e18d80bd0039acd96d33595db2a2547e3f4b58b090e05829cced67e2976efd6",
+  "allowed_semantic_delta":{"node":"128","field":"inputs.attention","before":"comfy kitchen attention","after":"pytorch attention"},
+  "nonsemantic_delta":"Unique profile ID trim-6-pytorch and output prefix q33-attention/trim-6-pytorch",
+  "fixed":"same three model assets, verified toycar conditioning, seed424242, 384x256,73frames24fps,6steps,res_multistep,simple,shift10/3,min_tokens12288,reserve3,headroom1,all resource/cleanup/onePOST/source checks",
+  "controller_delta":"Only validate_profile_graph permits exactly this one profile; all other functions byte-equivalent AST, same frozen timing module",
+  "checks_before_dispatch":["valid exact graph accepted","kitchen value rejected by this candidate","steps8 rejected","min_tokens change rejected","seed change rejected","unrelated graph change rejected","all other function ASTs unchanged","load_profile and load_stage_b_manifest succeed using real frozen metadata without payload reads","portable --help succeeds without model import"],
+  "comparison_metrics":["native history prompt execution seconds","observed sampler node wall seconds","owned private/RSS peaks","minimum board free VRAM","full media EOF/frames/audio checks","sampled frame visual screen with perceptual quality INCONCLUSIVE until reviewed"],
+  "decision":"Screen once against existing same-scene Trim6 Kitchen evidence; slower may be deprioritized, single run cannot establish universal speed or quality equivalence",
+  "reflection":"Kitchen INT8 attention was already selected by node128. Global Using pytorch attention log is not the patched model's backend. Do not install a duplicate backend on that mistaken premise.",
+  "claim":"INCONCLUSIVE"
+}

@@ -1,0 +1,132 @@
+{
+  "schema": "q33-resolution-preparation-plan/v2",
+  "created_utc": "2026-10-30T18:29:19.755718+00:00",
+  "plane": "model",
+  "changes": {
+    "width": [
+      384,
+      576
+    ],
+    "height": [
+      256,
+      384
+    ],
+    "output_prefix": [
+      "q33-speed/trim-8",
+      "q33-resolution/trim-8-576x384"
+    ]
+  },
+  "fixed": [
+    "Trim8 actual weights",
+    "toycar conditioning hash ad5c2652080729c191db4189ab42a42c5f80476370e82a9e2a99fe008cb303f2",
+    "73frames24fps",
+    "seed424242",
+    "res_multistep/simple8steps",
+    "shift10/3",
+    "reserve3/headroom1",
+    "same kitchen dense fallback and min_tokens12288",
+    "all CPU/GPU/RSS/private/timeout/disk stop gates"
+  ],
+  "geometry": {
+    "before": {
+      "width": 384,
+      "height": 256,
+      "aspect_ratio": "3:2",
+      "latent_video": [
+        1,
+        24,
+        22,
+        16,
+        24
+      ],
+      "video_tokens": 2112,
+      "audio_tokens": 244,
+      "text_tokens": 29,
+      "sequence_tokens": 2385
+    },
+    "candidate": {
+      "width": 576,
+      "height": 384,
+      "aspect_ratio": "3:2",
+      "latent_video": [
+        1,
+        24,
+        22,
+        24,
+        36
+      ],
+      "video_tokens": 4752,
+      "audio_tokens": 244,
+      "text_tokens": 29,
+      "sequence_tokens": 5025
+    },
+    "patch": [
+      1,
+      2,
+      2
+    ],
+    "spatial_divisor": 16,
+    "video_token_ratio": 2.25,
+    "sparse_threshold_active": false,
+    "limits": [
+      "Source-derived geometry, not a model execution or kernel trace",
+      "Aspect ratio remains3:2; noise shape changes with dimensions, so identical composition is not promised.",
+      "Higher pixel count may cost more time/memory; no faster claim",
+      "73frames remains below native UI trained-range recommendation; same as existing successfulscreen"
+    ]
+  },
+  "source_evidence": [
+    {
+      "relative_to_portable": "ComfyUI/comfy_extras/nodes_minimax_h3.py",
+      "sha256": "5999ed8c22b13c8251084c0629fd82137d2fb52b55106abfc73bf5cafc73841d",
+      "lines": [
+        34,
+        44,
+        48,
+        85,
+        94,
+        103,
+        104,
+        111
+      ]
+    },
+    {
+      "relative_to_portable": "ComfyUI/comfy/ldm/minimax/model.py",
+      "sha256": "a1b9c179832ed69e84f603521fc89cd62c7f4486fda19d23ff356f212d01429c",
+      "lines": [
+        42,
+        59,
+        568,
+        569,
+        590
+      ]
+    },
+    {
+      "relative_to_portable": "ComfyUI/comfy_extras/nodes_sparse_attention.py",
+      "sha256": "de202f2b5eb753a5748e1c6452cdc10cdf28834ffd8f8bb6acfaf6f643de9692",
+      "lines": [
+        68,
+        75,
+        229,
+        248,
+        310,
+        323
+      ]
+    }
+  ],
+  "base_controller_sha256": "f194d1b1862eab246c826d19c36c9c0846afe89b1664f6c24cd3f367f86d9ee9",
+  "base_graph_sha256": "4f3100808edb367c1e06066320113eb94043c1f697489c443b025a31d1788016",
+  "base_media_validator_sha256": "7fa12bd773e5933f2ce0e71c5be2f4124fc6c35284fbe5d3c624ab1b7012ca1a",
+  "media_change": "New source changes only geometry width/height constants and validation tuples in five occurrences; media resource gates copied byte-identically. All full frame/audio/EOF/SHA/finite/ownership checks retained.",
+  "checks_before_dispatch": [
+    "Extract native pure temporal functions by AST without importing native module or Torch; verify73/22/122",
+    "Exact graph diff: width,height,outputprefix only; seed/steps/backend/headroom preserved",
+    "Controller helper/nested monitoring AST identity and exact graph rejection for an unrelated edit",
+    "Media validator exact five geometry replacements and inverse bytes; unchanged resources",
+    "Existing portable --help only; no model dispatch"
+  ],
+  "no_gpu_no_network_no_install": true,
+  "dispatch_status": "PREPARATION_ONLY_PARENT_QUEUE",
+  "claim": "INCONCLUSIVE",
+  "supersedes_for_execution": "PLAN-v1.json retained as unexecuted640x384 geometry study; parent chose same3:2 aspect"
+}

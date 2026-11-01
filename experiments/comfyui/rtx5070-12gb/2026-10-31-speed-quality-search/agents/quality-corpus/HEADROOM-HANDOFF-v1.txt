@@ -1,0 +1,17 @@
+AIMDO extra headroom候选交接（仅准备，模型未运行）
+原有argv/paths/profile/corpus沿用前交接，只切新controller：
+conditioning_corpus_v3.py
+SHA 1e930d7ad4c5b32d8c3842e77bc39cbea5d0d510c4c5758c7240758ae15087dc
+执行冻结 EXECUTION-FREEZE-v3-headroom.json
+SHA b516c28f90bd2174097b1ab20a5200c888555a8edadfdab20a10f8042e8e7011
+gates仍用 Q31/plan/CONDITIONING-STAGE-RESOURCE-GATES-v1.json
+SHA 4d5114f7abc9041f34778b3f615034cc3da797150e750b4a6e7a4c684ad5a9be
+reserve_vram_gb仍1.0，运行boardfree停止门768MiB不变。
+
+新controller原生Comfy命令固定新增 --vram-headroom 1.0。
+state.requested_aimdo_vram_headroom_gib=1.0，仅记录请求，不表示测得或保证空闲显存。
+main.py296实际换算1.0*1024**3=1073741824B传入aimdo.init_devices；
+main82-83的reserve走simple_vram_headroom，是另一参数。
+HEADROOM-PLAN-v1及STATIC-CHECK保留确证源码/hash、精确两处增补反向字节复原、无import编译。
+不修改上游/PPY环境/旧文件/模型。新CLI参数存在已读原生源码；真正资源效果仍待父级实测。
+比较RSI候选两侧须相同headroom、同reserve门及同输入，不能把资源配置变化隐藏在模型收益里。

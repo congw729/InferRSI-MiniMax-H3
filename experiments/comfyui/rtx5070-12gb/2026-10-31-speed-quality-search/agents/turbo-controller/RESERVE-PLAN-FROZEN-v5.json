@@ -1,0 +1,14 @@
+{
+  "schema": "q33-turbo-reserve-only-plan/v5",
+  "parent_request": "First nativeTurbo recipe reserve_vram_gb3.0; all other numeric guards unchanged; do not imply causal single-factor comparison",
+  "baseline_candidate_sha256": "7c4c4f44460f0c7dd2a64892d61c13f9e087d79d5bbdeb1956b75bb9b057834d",
+  "baseline_gates_sha256": "dd9658a253e1e0c73bd1d1fe9034055622289a9f6748486fb55761bfa195eecf",
+  "checks": [
+    "only reserve_vram_gb differs2.0to3.0",
+    "all other keys/values equal",
+    "v5 controller equalsv4 after onlygatesSHA normalization",
+    "pending profiles stillfalse and fourthreceiptNULL",
+    "actual imported timingmodule source/hash exact underPPY withoutTorch",
+    "selectedLoRA runtime sourcehash drift check; no tensorbody/no model execution"
+  ]
+}

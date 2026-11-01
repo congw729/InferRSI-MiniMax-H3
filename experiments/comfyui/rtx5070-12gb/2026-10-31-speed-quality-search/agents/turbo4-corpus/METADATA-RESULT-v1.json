@@ -1,0 +1,53 @@
+{
+  "schema": "q33-turbo4-metadata-result/v1",
+  "checks": [
+    {
+      "name": "controller reverse literal changes exact baseline",
+      "ok": true
+    },
+    {
+      "name": "bounce-audio only steps and prefix",
+      "ok": true
+    },
+    {
+      "name": "bounce-audio actual4assets and real provenance metadata",
+      "ok": true
+    },
+    {
+      "name": "bounce-audio exact conditioning and provenance",
+      "ok": true
+    },
+    {
+      "name": "bounce-audio reject6steps",
+      "ok": true
+    },
+    {
+      "name": "hands-face-mug only steps and prefix",
+      "ok": true
+    },
+    {
+      "name": "hands-face-mug actual4assets and real provenance metadata",
+      "ok": true
+    },
+    {
+      "name": "hands-face-mug exact conditioning and provenance",
+      "ok": true
+    },
+    {
+      "name": "hands-face-mug reject6steps",
+      "ok": true
+    },
+    {
+      "name": "asset canonical byte identities",
+      "ok": true
+    },
+    {
+      "name": "no Torch imported",
+      "ok": true
+    }
+  ],
+  "count": 11,
+  "complete": true,
+  "model_gpu_runs": 0,
+  "quality_performance": "INCONCLUSIVE"
+}

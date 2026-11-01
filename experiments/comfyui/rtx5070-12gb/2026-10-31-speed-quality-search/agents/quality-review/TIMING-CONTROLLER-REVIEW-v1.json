@@ -1,0 +1,85 @@
+{
+  "schema": "q33-timing-controller-independent-review/v1",
+  "reviewed_at_utc": "2026-10-30T17:11:13.7578605Z",
+  "reviewer": "manual_notes_review",
+  "scope": "Static candidate/patch review against actual installed native Comfy progress.py/server.py; noGPU,service ornewtest",
+  "ready_for_first_model_run": false,
+  "campaign_verdict": "INCONCLUSIVE",
+  "files": [
+    {
+      "path": "speed_stage_b_v1.py",
+      "sha256": "17ad08a26af88efad9ee2bd25ee7bd575cde8adfb6a574f472d5fd336c539ae3",
+      "bytes": 47912
+    },
+    {
+      "path": "timing_events_v1.py",
+      "sha256": "f0abb1937ca5462d712a73d1a8623b6a9f5df86927dbcf6375903b8a5ad3e614",
+      "bytes": 10734
+    },
+    {
+      "path": "controller-v1.patch",
+      "sha256": "4e0ac3a7045b6da334ff657cc1a7d505e07c7af92efb9dc9a9ac4c1b56d9c9dc",
+      "bytes": 27005
+    },
+    {
+      "path": "PLAN-v1.json",
+      "sha256": "39821746413e5b8f22912f882c7fc1f0a3b52f56ac13753a3e50eb5164389ed9",
+      "bytes": 3234
+    },
+    {
+      "path": "CANDIDATE-FREEZE-v1.json",
+      "sha256": "6a5141d32958b5f9ba36894fd44d355183a45c0b7732642047ca23d41cf0f51f",
+      "bytes": 4157
+    },
+    {
+      "path": "offline-v1.stdout.json",
+      "sha256": "dac9c859eba78cb81ac351796a62b256b020bd980e24a505b7da383f0a6b0c7b",
+      "bytes": 2803
+    },
+    {
+      "path": "SOURCES-v1.json",
+      "sha256": "bf0d3e3b09f8130053735eaa6645bcc4ff753833a97ef4ae306d7d223283f007",
+      "bytes": 33327
+    }
+  ],
+  "frozen_file_count": 25,
+  "freeze_mismatches": [],
+  "existing_offline_evidence": "34/34 reported;read,notrerun;these test collector/contracts but do not establish unchanged cancellation ordering",
+  "observed_checks": [
+    "Native progress_state data has prompt_id,nodes;items have state lowercase,prompt_id,node_id,value,max. Collector matches actual schema.",
+    "Native initialstatus sid equals queryclientId; controller waitsready before1POST and includesclient_id.",
+    "Snapshot same-state repeatsignored;missing start/end,cached,disconnect leaveobserved intervalnull;progress maximum notfinish;unknown relevantnodes invalidatetiming.",
+    "Requested outputprofile bound to fullcanonical graph andonly steps/outputprefix changes;original50 reference,original30/20 candidates,Trim8 candidate;Trim6 dispatch_ready=false.",
+    "Original/Trim asset maps distinct;originalVAEhardlink alias rulesretained;full payloadSHA andreceipt/source checksretained.",
+    "--cache-none andpreviewnone retained;resource sampling/http/conditioning routines retainoldAST;modelroot isparameterized withintentionalEdrive constraint.",
+    "Newtiming receiver/logbounded1MiBmessage,16MiBtotal,10000messages;noreconnect/noadditionalPOST.",
+    "Receiver errors markedinvalid;daemon join timeout isrecordedratherthansilentlyaccepted asvalidtiming."
+  ],
+  "blocking_findings": [
+    {
+      "id": "T1",
+      "file": "speed_stage_b_v1.py",
+      "line": 677,
+      "title": "Model cancellation is delayed behind observer join",
+      "evidence": "finally calls observer.finish() before job.close();NativeWSObserver.finish setsstop then joins up to3seconds. aiohttp connection/close may outlast this wait.",
+      "impact": "Resourceguard/cancel has already fired,but ownedmodel may continueallocating/running whileobserver isjoined. Unchanged sampleAST doesnotpreserveprevious immediateJobclose behavior.",
+      "requested_fix": "Signal observerstop withoutblocking;closeownedJob andwait child before observerjoin/serialization. Keepfailure timingnull/incomplete andoldv1 frozen."
+    },
+    {
+      "id": "T2",
+      "file": "speed_stage_b_v1.py",
+      "line": 677,
+      "title": "Cleanup journaling can prevent explicit Job close",
+      "evidence": "event(owned_cleanup_started) writesandflushesjournal outsidebest-effort handling atstartoffinally,beforejob.close. AnI/Oerror escapes thisfinally beforeexplicitclose/wait.",
+      "impact": "Cleanup mustnotdependonadditionaljournalwrites. OSprocess teardown mayeventuallyclosehandle,butthatdoesnotestablishcontrollercleanupresult orboundedexplicitclose.",
+      "requested_fix": "Make cleanup logging best-effort andplaceJobclose/wait inunskippablecleanup path;do notallowobserver/logerrors toskipit."
+    }
+  ],
+  "nonblocking_limits": [
+    "Receive timestamps includeasync transport latency,notGPUkernel time.",
+    "Foreign/malformedstream ordisconnect can invalidatealltiming whilegenerationcontinues bydesign;resultmustnotbe calledcompleteinstrumentation then.",
+    "NoactualWS/modelexecution performedbyreviewer."
+  ],
+  "candidate_modified": false,
+  "next": "Reviewminimalcleanupv2 identityanddiff beforefirstrealoriginal50run."
+}

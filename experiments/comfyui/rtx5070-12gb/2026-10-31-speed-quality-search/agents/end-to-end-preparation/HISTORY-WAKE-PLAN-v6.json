@@ -1,0 +1,29 @@
+{
+  "schema": "q33-e2e-history-wake-plan/v6",
+  "plane": "harness",
+  "baseline_controller_sha256": "43fb85b9498949a56e4afeed3aaea7a71df8803513821b8e0c6ff75d569bbf5e",
+  "baseline_actual_review_sha256": "6641968fc16eade4a123e25833180b0e83dab808585ea7c00bcadeedbef9f347",
+  "only_behavior_change": "At history-loop wait, allow at most one observer.done-triggered early wake per request. After consumption use original timed sleep, even if history is not yet published. No other polling limit or interval changed.",
+  "unchanged": [
+    "observer decoding/WS code",
+    "all fixed graph/model/infra flags",
+    "sample and cancel marker calls, cold/warm gates, all resource caps/floors",
+    "per-stage and whole timeout, maxhistory and onePOST",
+    "Jobclose/observer cleanup"
+  ],
+  "records": [
+    "per-request wake consumed/count/source/perf_counter_ns",
+    "artifact fullSHA completion perf_counter_ns",
+    "terminal execution_success received counter from frozen observer.collector.last_ns after finish; invalid/missing/disconnect -> null",
+    "receiver terminal-to-artifact signed interval, not GPU-only; late delivery can produce negative signed interval"
+  ],
+  "offline_scope": [
+    "no signal waits with unchanged1.0s timeout",
+    "already-set signal wakes once; subsequent call sleeps original1.0s rather than busy spin",
+    "cancel exception not swallowed",
+    "protected resource/cleanup/warm/POST AST unchanged; only wait-site replacement",
+    "real portable --help"
+  ],
+  "success": "Actual4POST3free and2strictconditions/boundedMP4/cleanup, unchanged gates, same decodedRGB/PCM/PTS; compare complete prompt intervals, not claim GPU speedup.",
+  "claim": "INCONCLUSIVE"
+}

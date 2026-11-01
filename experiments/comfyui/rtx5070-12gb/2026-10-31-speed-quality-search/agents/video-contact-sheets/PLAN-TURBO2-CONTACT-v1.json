@@ -1,0 +1,7 @@
+{
+  "schema": "q33-turbo2-contact-plan/v1",
+  "scope": "One actually completed Turbo2 bounce video, actual full media inspection. Reuse unchanged CPU12frame tool and all existing bounds; compare prior4step frames.",
+  "source": "Actual result and full media summary required; source SHA before/after",
+  "quality": "INCONCLUSIVE until specific assistant sampled-frame observation; no full subjective video/audio playback",
+  "no_new_models_gpu_network": true
+}

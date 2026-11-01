@@ -1,0 +1,30 @@
+{
+  "schema": "q33-contact-sheet-inputs/v1",
+  "inputs": [
+    {
+      "profile": "bounce-audio/turbo-native-6",
+      "trial_relative_to_iteration": "results/inferrsi-turbo-corpus-bounce-audio-f854ba8b4bbd49e6a8e7d1023323701b",
+      "result_sha256": "fe85ae7892eeadef16973c876eee7abf38af7813cb3f020b9ad5b96eaa5d7158",
+      "run_relative_to_lab": "comfy-original/runs/q33-turbo-corpus-bounce-audio-f854ba8b4bbd49e6a8e7d1023323701b",
+      "artifact": {
+        "relative_to_run": "output\\q33-turbo-corpus\\bounce-audio\\turbo-native-6_00001_.mp4",
+        "bytes": 143510,
+        "sha256": "105e3e6ba470bc71aea8e9ecf4fcb1e2f07d7fbf6156886bab7df5c00d9b4e18"
+      },
+      "prior_media_summary_sha256": "e4d5c8a02dc7c483837015e84794e5d2326d47c5f7f716f55ab3ec4d7f3ef5b4"
+    },
+    {
+      "profile": "hands-face-mug/turbo-native-6",
+      "trial_relative_to_iteration": "results/inferrsi-turbo-corpus-hands-face-mug-40be03c872424cc9b834ffe96e2413de",
+      "result_sha256": "b8145e6a4f56c192b356eb2f98ae54b19c23be43efb7ebedc771d9e9ebeec1aa",
+      "run_relative_to_lab": "comfy-original/runs/q33-turbo-corpus-hands-face-mug-40be03c872424cc9b834ffe96e2413de",
+      "artifact": {
+        "relative_to_run": "output\\q33-turbo-corpus\\hands-face-mug\\turbo-native-6_00001_.mp4",
+        "bytes": 233528,
+        "sha256": "997b739cfb932216abd1d361c015cfc909ed98f0907f60184415b49ca4610d95"
+      },
+      "prior_media_summary_sha256": "7d8cf374d3383e52fe22b9a3ca1f72351c320d51e766873e92d58e253ee21f10"
+    }
+  ],
+  "claim": "INCONCLUSIVE"
+}

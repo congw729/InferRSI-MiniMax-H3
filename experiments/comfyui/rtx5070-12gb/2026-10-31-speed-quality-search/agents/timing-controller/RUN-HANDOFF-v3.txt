@@ -1,0 +1,11 @@
+Q33 v3执行补充（旧v1/v2及实际0POST失败全部保留）
+同RUN-HANDOFF-v1/v2的profile/assets/gates/路径参数，入口改speed_stage_b_v3.py：
+SHA256 524bf48df04c3ecdb251115b4db08c6482ed36eeb33405db34799b3a5669f66e
+父级run_profile_v1.py参数：
+--controller-name speed_stage_b_v3.py
+--freeze-name EXECUTION-FREEZE-v3.json
+--freeze-sha256 d63e64747e488c3b69f939811d66538c113078fb18c64884167bcf39fa0f9b50
+该freeze34项展平含实际profiles/graphs/receipt索引/condition及新旧controller；154runtime来源仍由原SOURCES-v1运行前核对。
+唯一修正：portable._pth不含脚本目录，v3按__file__ sibling先核已冻结timing module SHA再importlib显式加载，无sys.path或环境修改。
+PORTABLE-IMPORT-RESULT-v3.json：现有portable Python -s -B controller --help return0，stderr0，0POST；不是模型/WS实测。
+仍需父级独审后串行实际执行。所有计时null和质量限制沿用前交接。

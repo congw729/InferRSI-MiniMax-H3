@@ -1,0 +1,29 @@
+{
+  "schema": "q33-persistent-independent-review/v1",
+  "reviewer": "manual_notes_review",
+  "scope": "read-only source/patch/identity review; no rerun offline tests or model",
+  "controller_sha256": "333ec8b999dd747e585ce01e57245a4db5ec582cbbb146bf810f52e2ef39c7ef",
+  "freeze_sha256": "00e58d584bfdc7faa52763470c263cf9be247234a47724b906562b2b6c5d6d59",
+  "identity_counts": {
+    "files": 13,
+    "external_notes_files": 16,
+    "portable_files": 6
+  },
+  "blocking_findings": [],
+  "conclusion": "No source-level blocker found for bounded two-request Trim8 experiment; full media validation and resource success are future evidence",
+  "confirmed": [
+    "Only two ordered requests; first incomplete/failed request raises and prevents second POST",
+    "Each request binds unique prompt/client ID, owned listener, fresh observer, exact executed graph/history and uncached8 sampler progress",
+    "Observer done follows async connection/session exit; finish happens after done with monitored wait; failure uses one original Job/root finally cleanup",
+    "Whole deadline, HTTP byte/history budgets and resource floors retain shared session state; cache-none remains",
+    "baseline retains disable-smart-memory; smart changes only that CLI flag; requested policy is recorded",
+    "Selected local/notes/portable freeze entries all match; old cleanup AST exact"
+  ],
+  "limits": [
+    "No request has been run by reviewer; actual smart residency/speed not established",
+    "Both resulting media require existing full decoder checks; metadata/timing success is not quality",
+    "Owned peak aggregates may miss last guard-rejecting sample because legacy sample guard precedes peak update; inspect resources and last_sample on failure",
+    "On aborted observer cleanup, inherited top-level node_timing_relative_to_run can retain timing/summary.json; request timing_relative_to_run is the correct request-N/timing/summary.json. This does not affect active controls or successful session results."
+  ],
+  "verdict": "INCONCLUSIVE"
+}

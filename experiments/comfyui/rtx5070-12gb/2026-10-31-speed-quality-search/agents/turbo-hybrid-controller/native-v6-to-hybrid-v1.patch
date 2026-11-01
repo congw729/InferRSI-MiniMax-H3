@@ -1,0 +1,219 @@
+--- turbo_stage_b_v6.py
++++ turbo_hybrid_stage_b_v1.py
+@@ -12,6 +12,7 @@
+ import io
+ import json
+ import math
++import re
+ import os
+ from pathlib import Path
+ import shutil
+@@ -36,12 +37,12 @@
+ 
+ TURBO_FILENAME = "minimax_h3_turbo_v4_step600_ema.safetensors"
+ TURBO_PROFILE_SHA = "84be14a039cc3955eb475f5fa2cd52a62d92190a2c534ac7ee75f18d9e64bb10"
+-NODE_FAMILIES["turbo-native"] = {**NODE_FAMILIES["original"], "LoraLoaderModelOnly": "nodes"}
+-EXPECTED_BY_FAMILY["turbo-native"] = {**EXPECTED_BY_FAMILY["original"],
++NODE_FAMILIES["turbo-hybrid"] = {**NODE_FAMILIES["original"], "MiniMaxH3TurboLoRA": "custom_nodes.ComfyUI-MiniMax-H3-Turbo-full-4274783"}
++EXPECTED_BY_FAMILY["turbo-hybrid"] = {**EXPECTED_BY_FAMILY["original"],
+     "turbo-v4-step600-ema": {"id":"turbo-v4-step600-ema", "bytes":779849816,
+         "sha256":"5f3a626cd72c93a8b9318d6760c510bc5092d2ab13aaba1f932c5bab07a416d3",
+         "relative_path":"comfy-original/models/loras/"+TURBO_FILENAME}}
+-CANONICAL_SHA["turbo-native"] = CANONICAL_SHA["original"]
++CANONICAL_SHA["turbo-hybrid"] = CANONICAL_SHA["original"]
+ NativeWSObserver = None
+ 
+ def load_timing_module(path, iteration_root):
+@@ -75,6 +76,60 @@
+         for block in iter(lambda: f.read(1024 * 1024), b""):
+             h.update(block)
+     return h.hexdigest()
++
++
++
++HYBRID_PACKAGE = 'ComfyUI-MiniMax-H3-Turbo-full-4274783'
++HYBRID_RELATIVE = 'comfy-original/extensions/q33-turbo-hybrid-4274783'
++HYBRID_FILES = {'custom_nodes/ComfyUI-MiniMax-H3-Turbo-full-4274783/__init__.py': {'bytes': 26363, 'sha256': 'a22f222f11dfc337552371f7f288bf5928cb1fa80a6afb3f24075a8315d02f06'}, 'custom_nodes/ComfyUI-MiniMax-H3-Turbo-full-4274783/LICENSE': {'bytes': 11358, 'sha256': 'cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30'}, 'extra-paths.yaml': {'bytes': 41, 'sha256': '661a579712e477b9f0793454b4903489315a2b6051795a5d437470f7e2934187'}}
++
++def verify_hybrid_sources(root, lab_root):
++    root, lab_root = Path(root), Path(lab_root)
++    require(root == lab_root / HYBRID_RELATIVE and root.drive.upper() == "E:"
++            and root.is_dir() and root.resolve() == root, "fixed E hybrid deployment boundary")
++    entries = list(root.rglob("*"))
++    require(len(entries) <= 8, "hybrid deployment entry bound")
++    for path in [root, *entries]:
++        st = path.lstat()
++        require(not path.is_symlink() and not (getattr(st, "st_file_attributes", 0) & 0x400),
++                "hybrid source link/reparse forbidden")
++    actual = {path.relative_to(root).as_posix() for path in entries if path.is_file()}
++    require(actual == set(HYBRID_FILES), "hybrid source file set")
++    records = []
++    for rel, expected in HYBRID_FILES.items():
++        path = root / rel
++        before = path.stat()
++        require(before.st_size == expected["bytes"] and digest(path) == expected["sha256"],
++                "hybrid source identity drift")
++        after = path.stat()
++        require((before.st_size,before.st_mtime_ns,before.st_ino) ==
++                (after.st_size,after.st_mtime_ns,after.st_ino), "hybrid source changed while hashing")
++        records.append({"relative_to_hybrid_root":rel, **expected})
++    return {"files":records, "author_source_unmodified":True,
++            "egrid_present":False, "no_weight_download_code_in_pinned_author_node":True}
++
++def parse_hybrid_application_log(raw):
++    require(type(raw) is bytes and len(raw) <= 4*1024*1024, "bounded hybrid application log")
++    lines = [x for x in raw.splitlines() if x.startswith(b"[MiniMaxH3TurboLoRA]")]
++    require(len(lines) == 1, "one hybrid application log required")
++    expression = (rb"^\[MiniMaxH3TurboLoRA\] full base \[bypass\]: lora="
++                  + re.escape(TURBO_FILENAME.encode())
++                  + rb" strength=1\.0 \| (\d+) backbone modules, (\d+) bypass adapters, "
++                  + rb"(\d+) injections, (\d+) int8 fc2 via merge \| ")
++    match = re.match(expression, lines[0])
++    require(match is not None, "full-base author hybrid log required")
++    total,bypass,injections,merge = map(int,match.groups())
++    require((total,bypass,merge) == (259,209,50) and injections > 0,
++            "hybrid applied-target count differs from pinned full-base plan")
++    return {"total_targets":total,"bypass_targets":bypass,"merge_targets":merge,
++            "injections":injections,"mode":"full_author_hybrid", "source":"author_log",
++            "limit":"Reported application counts, not numerical or perceptual quality proof"}
++
++def verify_hybrid_application_log(path):
++    require(path.is_file() and path.stat().st_size <= 4*1024*1024, "hybrid log size bound")
++    with path.open("rb") as stream:
++        raw = stream.read(4*1024*1024+1)
++    return parse_hybrid_application_log(raw)
+ 
+ 
+ def verify_dynamic_vram_startup(log_path):
+@@ -155,18 +210,18 @@
+ 
+ def validate_profile_graph(profile, graph, canonical):
+     steps = profile.get("steps")
+-    require(profile.get("family") == "turbo-native" and type(steps) is int
+-            and steps in {6,8}, "native Turbo family/steps")
+-    require(profile.get("id") == "turbo-native-" + str(steps)
++    require(profile.get("family") == "turbo-hybrid" and type(steps) is int
++            and steps == 6, "fixed author hybrid6 family/steps")
++    require(profile.get("id") == "turbo-hybrid-" + str(steps)
+             and profile.get("role") == "candidate", "Turbo candidate identifier/role")
+     expected = copy.deepcopy(canonical)
+     expected["prompt"]["9"]["inputs"]["steps"] = steps
+     expected["prompt"]["92"]["inputs"]["filename_prefix"] = "q33-speed/" + profile["id"]
+-    expected["prompt"]["1100"] = {"class_type":"LoraLoaderModelOnly", "inputs":{
+-        "model":["6",0], "lora_name":TURBO_FILENAME, "strength_model":1.0}}
++    expected["prompt"]["1100"] = {"class_type":"MiniMaxH3TurboLoRA", "inputs":{
++        "model":["6",0], "lora_name":TURBO_FILENAME, "strength":1.0, "low_vram":False}}
+     expected["prompt"]["148"]["inputs"]["model"] = ["1100",0]
+-    require(graph == expected, "graph changes outside fixed native Turbo wiring")
+-    require(type(graph["prompt"]["1100"]["inputs"]["strength_model"]) is float,
++    require(graph == expected, "graph changes outside fixed author hybrid wiring")
++    require(type(graph["prompt"]["1100"]["inputs"]["strength"]) is float,
+             "LoRA strength type")
+     require(profile["canonical_graph"]["sha256"] == CANONICAL_SHA["original"],
+             "original full50 canonical identity")
+@@ -176,7 +231,7 @@
+     optional = info["input"].get("optional", {})
+     values = graph["prompt"]["1100"]["inputs"]
+     require(set(required) <= set(values) <= set(required) | set(optional)
+-            and info.get("output") == ["MODEL"], "native LoRA schema")
++            and info.get("output") == ["MODEL"], "author hybrid LoRA schema")
+     choices = required["lora_name"][0]
+     require(type(choices) is list and all(type(v) is str for v in choices)
+             and values["lora_name"] in choices, "Turbo LoRA not enumerated")
+@@ -186,8 +241,8 @@
+     profile=v1.frozen_json(a.profile,a.profile_sha256,65536)
+     require(set(profile)=={"schema","id","family","steps","role","dispatch_ready","dispatch_note",
+             "model_subdir","graph","canonical_graph","assets","conditioning"}
+-            and profile["schema"]=="q33-native-turbo-profile/v1","profile schema")
+-    require(profile["family"] == "turbo-native","profile family")
++            and profile["schema"]=="q33-hybrid-turbo-profile/v1","profile schema")
++    require(profile["family"] == "turbo-hybrid","profile family")
+     require(type(profile["dispatch_ready"]) is bool and profile["dispatch_ready"],
+             "profile not dispatch ready; review required")
+     root=Path(__file__).resolve().parent
+@@ -241,7 +296,7 @@
+     """No payload access: pending receipts reject before service/import/large file hashing."""
+     manifest = v1.frozen_json(a.asset_manifest, a.asset_manifest_sha256, gates["max_schema_bytes"])
+     require(type(manifest) is dict and set(manifest) == {"schema", "assets"}
+-            and manifest["schema"] in {"q32-original-asset-set/v1","q33-speed-asset-set/v1","q33-native-turbo-asset-set/v1"}, "Q32 asset manifest schema")
++            and manifest["schema"] in {"q32-original-asset-set/v1","q33-speed-asset-set/v1","q33-hybrid-turbo-asset-set/v1"}, "Q32 asset manifest schema")
+     selected = manifest["assets"]
+     require(type(selected) is list and len(selected) == len(ASSET_IDS)
+             and all(type(x) is dict for x in selected)
+@@ -278,7 +333,7 @@
+             require(receipt.get(key) == asset[key] and plan.get(key) == asset[key], "receipt/plan identity mismatch")
+         require(receipt.get("relative_path") == asset["receipt_relative_path"]
+                 and plan.get("relative_path") == asset["receipt_relative_path"], "receipt path mismatch")
+-        is_alias = a.loaded_profile["family"] in {"original","turbo-native"} and asset["id"] in {"video-vae","audio-vae"}
++        is_alias = a.loaded_profile["family"] in {"original","turbo-hybrid"} and asset["id"] in {"video-vae","audio-vae"}
+         expected_origin = asset["relative_path"].replace("comfy-original/", "comfy-trim/", 1) if is_alias else asset["relative_path"]
+         require(asset["receipt_relative_path"] == expected_origin, "unexpected original receipt path")
+         require(asset["alias_source_relative_path"] == (expected_origin if is_alias else None),
+@@ -292,7 +347,7 @@
+     for name in ("iteration-root", "lab-root", "portable-python", "comfy-root",
+                  "run-dir", "stop-marker", "nvidia-smi", "inferrsi-src",
+                  "gates", "conditioning-manifest", "notes-root", "q31-root",
+-                 "model-root", "source-manifest", "asset-manifest", "profile", "timing-module"):
++                 "model-root", "source-manifest", "asset-manifest", "profile", "timing-module", "hybrid-root"):
+         p.add_argument("--" + name, type=Path, required=True)
+     p.add_argument("--profile-sha256", required=True)
+     p.add_argument("--source-manifest-sha256", required=True)
+@@ -369,9 +424,10 @@
+ 
+     require(a.iteration_root == a.notes_root / "iterations/2026-10-31-speed-quality-search"
+             and a.q31_root == a.notes_root / "iterations/2026-10-28-comfy-trim-first-video"
+-            and Path(__file__).resolve().parent == a.iteration_root / "agents/turbo-controller", "Q33/Q31 roots")
++            and Path(__file__).resolve().parent == a.iteration_root / "agents/turbo-hybrid-controller", "Q33/Q31 roots")
+     require(a.portable_python == a.comfy_root.parent / "python_embeded/python.exe", "fixed portable relationship")
+     sys.dont_write_bytecode = True
++    hybrid_source_identity = verify_hybrid_sources(a.hybrid_root, a.lab_root)
+     v1_path = a.q31_root / "tools/comfy_first_video_v1.py"
+     require(digest(v1_path) == V1_SHA, "v1 dependency drift")
+     spec = importlib.util.spec_from_file_location("q32_frozen_q31_stdlib_helper", v1_path)
+@@ -438,8 +494,9 @@
+              "source_verification_start_ns":source_start_ns,"source_verification_end_ns":source_end_ns,
+              "driver_sha256": digest(Path(__file__)), "v1_sha256": V1_SHA,
+              "timing_source_relative_to_iteration": str(a.timing_module.relative_to(a.iteration_root)),
+-             "timing_source_sha256": digest(a.timing_module), "turbo_mode": "native_full_merge",
+-             "turbo_quality": "INCONCLUSIVE",
++             "timing_source_sha256": digest(a.timing_module), "turbo_mode": "author_hybrid_bypass_with_int8_fc2_merge",
++             "turbo_quality": "INCONCLUSIVE", "hybrid_sources_initial":hybrid_source_identity,
++             "requested_aimdo_vram_headroom_gib":1.0,
+              "graph_sha256": graph_sha, "asset_set_sha256": a.asset_manifest_sha256.lower(),
+              "source_manifest_sha256": SOURCE_MANIFEST_SHA,
+              "conditioning_manifest_sha256": a.conditioning_manifest_sha256.lower(),
+@@ -626,6 +683,8 @@
+         command = [str(a.portable_python), "-s", "-B", str(a.comfy_root / "main.py"),
+                    "--listen", "127.0.0.1", "--port", str(a.port),
+                    "--disable-auto-launch", "--disable-all-custom-nodes", "--disable-partner-nodes",
++                   "--whitelist-custom-nodes", HYBRID_PACKAGE,
++                   "--extra-model-paths-config", str(a.hybrid_root / "extra-paths.yaml"),
+                    "--offline", "--disable-assets", "--disable-pinned-memory", "--disable-async-offload", "--disable-smart-memory", "--cache-none", "--preview-method", "none",
+                    "--reserve-vram", str(gates["reserve_vram_gb"]),
+                    "--vram-headroom", "1.0",
+@@ -665,7 +724,7 @@
+                         "Stage-B new node input schema mismatch")
+                 expected_output = ["CONDITIONING"] if name == "ConditioningLoader" else ["LATENT"]
+                 require(info[name].get("output") == expected_output, "Stage-B new node output schema mismatch")
+-            if name == "LoraLoaderModelOnly":
++            if name == "MiniMaxH3TurboLoRA":
+                 validate_lora_schema(info[name], graph)
+             if name in ("UNETLoader", "VAELoader", "ConditioningLoader"):
+                 field, ids = {"UNETLoader": ("unet_name", ["6"]),
+@@ -684,6 +743,7 @@
+                 require(all(graph["prompt"][i]["inputs"][field] in choices for i in ids),
+                         "model/conditioning file not enumerated")
+         event("native_schema_verification_finished")
++        state["hybrid_sources_pre_post"] = verify_hybrid_sources(a.hybrid_root, a.lab_root)
+         require(digest(a.profile)==a.profile_sha256,"profile changed before POST")
+         require(digest(a.asset_manifest) == a.asset_manifest_sha256.lower(), "asset manifest changed before POST")
+         require(load_asset_manifest(a, v1, gates) == selected, "asset receipt identity changed before POST")
+@@ -747,6 +807,8 @@
+                 require(set(observed) == set(graph["prompt"]) and all(
+                     observed[k]["class_type"] == v["class_type"] and observed[k]["inputs"] == v["inputs"]
+                     for k, v in graph["prompt"].items()), "executed graph changed")
++                state["hybrid_application"] = verify_hybrid_application_log(a.run_dir / "comfy.raw.log")
++                state["hybrid_sources_post_execution"] = verify_hybrid_sources(a.hybrid_root, a.lab_root)
+                 videos = record["outputs"]["92"]["images"]
+                 require(len(videos) == 1 and videos[0].get("type") == "output", "single MP4 artifact not returned")
+                 item = videos[0]

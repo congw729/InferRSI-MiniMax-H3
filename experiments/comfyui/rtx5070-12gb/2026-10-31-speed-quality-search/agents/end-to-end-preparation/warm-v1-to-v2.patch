@@ -1,0 +1,66 @@
+--- end_to_end_v1.py
++++ end_to_end_v2.py
+@@ -45,8 +45,8 @@
+ NativeWSObserver = _timing_module.NativeWSObserver
+ E2E_ASSETS_SHA = "fcaa021e7aa7ecc50ecd14f51e81448a758dc6c8352b65d5ea7aa657d1fe31a8"
+ STAGE_A_GRAPH_SHA = "5f7d0cff0c911151fd2318e2be5e8c953503034d66259673edf851f24d2274f8"
+-E2E_HELPER_SHA = "8d78df645d789a448116542f818b764f28d93f3e6333378da9ae75863c3846d6"
+-_e2e_path = Path(__file__).resolve().parent / "e2e_helpers_v1.py"
++E2E_HELPER_SHA = "28262f6f3531d50b5b4e6f69eb6d13ba3103b75375a7d19cffcea37276439c83"
++_e2e_path = Path(__file__).resolve().parent / "e2e_helpers_v2.py"
+ if hashlib.sha256(_e2e_path.read_bytes()).hexdigest() != E2E_HELPER_SHA: raise RuntimeError("frozen lifecycle helper drift")
+ _e2e_spec = importlib.util.spec_from_file_location("q33_e2e_helpers_v1", _e2e_path)
+ e2e = importlib.util.module_from_spec(_e2e_spec); _e2e_spec.loader.exec_module(e2e)
+@@ -485,7 +485,7 @@
+              "gates_sha256": a.gates_sha256.lower(), "gates": gates,
+              "prompt_posts": 0, "http_bytes": 0, "history_polls": 0, "free_posts":0,
+              "stage_a_graph_sha256":STAGE_A_GRAPH_SHA,"prompt_sha256":stage_a_prompt_sha,
+-             "fresh_between_stages":{"physical_bytes":12*2**30,"commit_bytes":int(16.5*2**30),"gpu_free_bytes":6*2**30},
++             "fresh_between_stages":{"physical_bytes":12*2**30,"commit_policy":"remaining_owned_private_growth_plus_original_running_floor","gpu_free_bytes":6*2**30,"pre_post_available_minimum":True},
+              "requests": [], "completed_requests": 0, "memory_policy": a.memory_policy,
+              "cache_policy": "none", "total_output_bytes": 0, "total_ws_bytes": 0,
+              "verified_assets": [], "gpu_measurement": "nvidia-smi whole-board MiB",
+@@ -549,6 +549,13 @@
+             samples.write(json.dumps(row) + "\n"); samples.flush()
+         require(gpu["free_bytes"] >= gates[floor + "gpu_free_bytes"], "board free-VRAM guard")
+         next_sample = time.monotonic() + gates["poll_seconds"]
++
++    def warm_admit():
++        after=monitor.memory()
++        decision=e2e.warm_admission(state["last_sample"],after,gates)
++        decision["post_read_perf_counter_ns"]=time.perf_counter_ns()
++        state["last_warm_admission"]=decision
++        return decision["admitted"]
+ 
+     def guarded_hash(path, phase_deadline):
+         h = hashlib.sha256()
+@@ -754,7 +761,7 @@
+             require(digest(a.conditioning_manifest)==a.conditioning_manifest_sha256,"baseline graph manifest drift")
+             require(digest(a.iteration_root/manifest["graph"]["relative_path"])==graph_sha,"baseline graph drift")
+             sample(force=True,startup=request_index==1)
+-            if request_index==2:require(e2e.fresh_ready(state["last_sample"]),"fresh external admission before DiT POST")
++            if request_index==2:require(warm_admit(),"fresh external admission before DiT POST")
+             render_deadline = min(deadline, time.monotonic() + gates["render_timeout_seconds"])
+             state["client_id"]=uuid.uuid4().hex
+             current["client_id"] = state["client_id"]
+@@ -774,7 +781,7 @@
+                                "client_id":state["client_id"]}).encode("utf-8")
+             if request_index==2:
+                 sample(force=True)
+-                require(e2e.fresh_ready(state["last_sample"]),"fresh external admission immediately before DiT POST")
++                require(warm_admit(),"fresh external admission immediately before DiT POST")
+             begin_post(state); state["status"] = "submitting"
+             event("post_attempt", prompt_id=state["prompt_id"], graph_sha256=current["graph_sha256"])
+             try:
+@@ -888,9 +895,10 @@
+                 state["release"]["reset_path_entered"]=True
+                 state["release"]["marker_perf_counter_ns"]=time.perf_counter_ns()
+                 event("reset_path_entered_not_completion_ack")
+-            if entered and e2e.fresh_ready(state["last_sample"]):
++            if entered and warm_admit():
+                 state["release"]["fresh_admitted"]=True
+                 state["release"]["fresh_sample"]=copy.deepcopy(state["last_sample"])
++                state["release"]["warm_admission"]=copy.deepcopy(state["last_warm_admission"])
+                 state["release"]["admitted_perf_counter_ns"]=time.perf_counter_ns()
+                 break
+             time.sleep(gates["poll_seconds"])

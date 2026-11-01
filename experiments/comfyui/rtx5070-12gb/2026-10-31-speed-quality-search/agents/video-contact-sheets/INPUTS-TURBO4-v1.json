@@ -1,0 +1,30 @@
+{
+  "schema": "q33-contact-sheet-inputs/v1",
+  "inputs": [
+    {
+      "profile": "bounce-audio/turbo-native-4",
+      "trial_relative_to_iteration": "results/inferrsi-turbo4-corpus-bounce-audio-4265351f40394e2bb197a07d5c611653",
+      "result_sha256": "945596a1d88d496bcf91aab993463d36dc7b585cf9ec4e90f9016c2ab9f2db77",
+      "run_relative_to_lab": "comfy-original/runs/q33-turbo4-corpus-bounce-audio-4265351f40394e2bb197a07d5c611653",
+      "artifact": {
+        "relative_to_run": "output\\q33-turbo-corpus\\bounce-audio\\turbo-native-4_00001_.mp4",
+        "bytes": 168489,
+        "sha256": "f7d646b7b97918d78c16e6d6e69a8be05a54f4c58450b3d5dfaa27e4664b6350"
+      },
+      "prior_media_summary_sha256": "8c00aae8bdc563b7004b1b8c2a16e70cf3c74d721e14a3f0d19579970270b9f3"
+    },
+    {
+      "profile": "hands-face-mug/turbo-native-4",
+      "trial_relative_to_iteration": "results/inferrsi-turbo4-corpus-hands-face-mug-0d48885730294c2786c24e78ecab2ded",
+      "result_sha256": "7d4fd38775f99281cbd154e800bd71ef79778774aadf74bbb93e06294c0d1e33",
+      "run_relative_to_lab": "comfy-original/runs/q33-turbo4-corpus-hands-face-mug-0d48885730294c2786c24e78ecab2ded",
+      "artifact": {
+        "relative_to_run": "output\\q33-turbo-corpus\\hands-face-mug\\turbo-native-4_00001_.mp4",
+        "bytes": 226301,
+        "sha256": "a760abbd335eef70cfa1440814de72dfbb118511fec563ac19f594701af406c0"
+      },
+      "prior_media_summary_sha256": "663bdc63183009cc68452a78f46fcda6895ad62c34395208292803bb43527ad6"
+    }
+  ],
+  "claim": "INCONCLUSIVE"
+}

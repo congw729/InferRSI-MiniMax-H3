@@ -1,0 +1,13 @@
+{
+  "schema": "q33-turbo-corpus-mode-check/v2",
+  "reverse_mode_patch_byte_exact": true,
+  "portable_help_returncode": 0,
+  "stderr_bytes": 0,
+  "stdout_sha256": "97ae57bbae64e81233fdd698c84c9c97e874abcad17220596769fb293be4e483",
+  "controller_sha256": "5fb623f8b68c7be3342db7e28abe34bd206ac6967a51824b9a877f3a3bab9476",
+  "GPU": 0,
+  "service": 0,
+  "model_imports": 0,
+  "historical_metadata_checks": 24,
+  "historical_metadata_source": "v1 differs only two mode strings"
+}

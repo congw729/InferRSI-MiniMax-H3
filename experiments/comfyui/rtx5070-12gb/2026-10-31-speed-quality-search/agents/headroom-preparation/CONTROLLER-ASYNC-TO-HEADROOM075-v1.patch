@@ -1,0 +1,43 @@
+--- async_persistent_stage_b_v1.py
++++ headroom_persistent_stage_b_v1.py
+@@ -251,7 +251,7 @@
+ 
+ def parse():
+     p = argparse.ArgumentParser(description=__doc__, allow_abbrev=False)
+-    p.add_argument("--mode", choices=["async-persistent-video-stage-b"], required=True)
++    p.add_argument("--mode", choices=["headroom-persistent-video-stage-b"], required=True)
+     for name in ("iteration-root", "lab-root", "portable-python", "comfy-root",
+                  "run-dir", "stop-marker", "nvidia-smi", "inferrsi-src",
+                  "gates", "conditioning-manifest", "notes-root", "q31-root",
+@@ -395,7 +395,7 @@
+ 
+     require(a.iteration_root == a.notes_root / "iterations/2026-10-31-speed-quality-search"
+             and a.q31_root == a.notes_root / "iterations/2026-10-28-comfy-trim-first-video"
+-            and Path(__file__).resolve().parent == a.iteration_root / "agents/offload-preparation", "Q33/Q31 roots")
++            and Path(__file__).resolve().parent == a.iteration_root / "agents/headroom-preparation", "Q33/Q31 roots")
+     require(a.portable_python == a.comfy_root.parent / "python_embeded/python.exe", "fixed portable relationship")
+     sys.dont_write_bytecode = True
+     v1_path = a.q31_root / "tools/comfy_first_video_v1.py"
+@@ -460,11 +460,11 @@
+     proc = job = raw_log = samples = journal = observer = None
+     next_sample = next_gpu = 0.0
+     gpu = None
+-    state = {"status": "preflight", "claim": "INCONCLUSIVE", "mode": "async-persistent-video-stage-b",
++    state = {"status": "preflight", "claim": "INCONCLUSIVE", "mode": "headroom-persistent-video-stage-b",
+              "profile_id": a.loaded_profile["id"], "profile_sha256": a.profile_sha256,
+              "controller_entry_perf_counter_ns":entry_perf_ns,
+              "source_verification_start_ns":source_start_ns,"source_verification_end_ns":source_end_ns,
+-             "requested_aimdo_vram_headroom_gib": 1.0,
++             "requested_aimdo_vram_headroom_gib": 0.75,
+              "driver_sha256": digest(Path(__file__)), "v1_sha256": V1_SHA,
+              "graph_sha256": graph_sha, "asset_set_sha256": a.asset_manifest_sha256.lower(),
+              "source_manifest_sha256": SOURCE_MANIFEST_SHA,
+@@ -666,7 +666,7 @@
+                    "--listen", "127.0.0.1", "--port", str(a.port),
+                    "--disable-auto-launch", "--disable-all-custom-nodes", "--disable-partner-nodes",
+                    "--offline", "--disable-assets", "--disable-pinned-memory", "--disable-smart-memory", "--cache-none", "--preview-method", "none",
+-                   "--vram-headroom", "1.0",
++                   "--vram-headroom", "0.75",
+                    "--reserve-vram", str(gates["reserve_vram_gb"]),
+                    "--models-directory", str(models_root)]
+         command = cache_command(command, a.cache_policy)

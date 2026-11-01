@@ -1,0 +1,39 @@
+{
+  "schema": "q33-decoded-content-freeze/v3",
+  "files": [
+    {
+      "path": "PLAN-TWO-PROMPT-PUBLISHED-v1.json",
+      "bytes": 1875,
+      "sha256": "013225b5bda4381f9e8b76ba975e318c2811135575d0ca4e1cc83e9566b71937"
+    },
+    {
+      "path": "INPUTS-TWO-PROMPT-PUBLISHED-v1.json",
+      "bytes": 9570,
+      "sha256": "5f10ee6cd24b3592f906700caa3c60a32f7dd8a689ebe4acc770e829d3abf488"
+    },
+    {
+      "path": "decoded_content_v7.py",
+      "bytes": 13426,
+      "sha256": "07c44b15f183d47abbc0ffed6dc9eda2f69b9599755896d1e0c1baa161933f46"
+    },
+    {
+      "path": "v6-to-v7-published-inputs.patch",
+      "bytes": 1690,
+      "sha256": "8f0fc11eb33c5c91aa9b6393df8216065ff0e6c26d82baf4840a50fbd1c49150"
+    }
+  ],
+  "infra_files": [
+    {
+      "path": "src/inferrsi/infra/executors/local.py",
+      "bytes": 3505,
+      "sha256": "b089cdc7daaaf7834698c2d280a12c5e755915ded926aa039c8de5f521bd46f0"
+    },
+    {
+      "path": "src/inferrsi/infra/processes.py",
+      "bytes": 8151,
+      "sha256": "3b96ebc7a50913e78e86ff3dcba74c8ee8d03d547d9591ca6488f390ac1e6189"
+    }
+  ],
+  "decode_loop_text_identical_to_v2": true,
+  "decode_loop_unchanged_from_v3": true
+}

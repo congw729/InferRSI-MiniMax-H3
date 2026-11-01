@@ -1,0 +1,28 @@
+--- contact_sheets_v2.py
++++ contact_sheets_576_v1.py
+@@ -32,7 +32,7 @@
+  frozen=read_json(a.freeze,a.freeze_sha256)
+  for x in frozen['files']:
+   file=root/x['path'];need(file.resolve().is_relative_to(root) and file.stat().st_size==x['bytes'] and sha(file)==x['sha256'],'frozen source drift')
+- plan=json.loads((root/'PLAN-v1.json').read_text());need(a.manifest.resolve().parent==root,'frozen local manifest boundary');need(any((root/x['path']).resolve()==a.manifest.resolve() and x['sha256']==a.manifest_sha256 for x in frozen['files']),'manifest missing from freeze');manifest=read_json(a.manifest,a.manifest_sha256)
++ plan=json.loads((root/'PLAN-576-v1.json').read_text());need(a.manifest.resolve().parent==root,'frozen local manifest boundary');need(any((root/x['path']).resolve()==a.manifest.resolve() and x['sha256']==a.manifest_sha256 for x in frozen['files']),'manifest missing from freeze');manifest=read_json(a.manifest,a.manifest_sha256)
+  out={'schema':'q33-temporal-contact-sheets/v1','complete':False,'claim':'INCONCLUSIVE','quality_verdict':'INCONCLUSIVE','full_motion_playback_reviewed':False,'audio_listened':False,'model_dispatches':0,'network_requests':0,'worker_sha256':sha(Path(__file__)),'freeze_sha256':a.freeze_sha256,'items':[],'peak_own_rss_bytes':0}
+  try:
+   import av
+@@ -51,13 +51,13 @@
+    with av.open(str(source),mode='r') as container:
+     need(len(container.streams.video)==1,'one video stream');stream=container.streams.video[0];stream.thread_count=1;need(float(stream.average_rate)==24,'native24fps')
+     for frame in container.decode(stream):
+-     guard();need(count<73 and frame.width==384 and frame.height==256 and frame.pts is not None,'frame bound/geometry/PTS');seconds=float(frame.pts*frame.time_base);need(seconds>last,'monotonic PTS');last=seconds
++     guard();need(count<73 and frame.width==576 and frame.height==384 and frame.pts is not None,'frame bound/geometry/PTS');seconds=float(frame.pts*frame.time_base);need(seconds>last,'monotonic PTS');last=seconds
+      if count in indices:picked[count]=(frame.to_image().convert('RGB'),seconds)
+      count+=1
+    need(count==73 and list(picked)==indices,'complete73frames/selection');guard()
+-   grid=Image.new('RGB',(4*384,3*(256+plan['label_height'])),(18,18,18));draw=ImageDraw.Draw(grid)
++   grid=Image.new('RGB',(4*576,3*(384+plan['label_height'])),(18,18,18));draw=ImageDraw.Draw(grid)
+    for n,index in enumerate(indices):
+-    image,seconds=picked[index];x=(n%4)*384;y=(n//4)*(256+plan['label_height']);grid.paste(image,(x,y));draw.text((x+8,y+260),f'frame {index:02d} | {seconds:.3f} s',font=font,fill=(245,245,245))
++    image,seconds=picked[index];x=(n%4)*576;y=(n//4)*(384+plan['label_height']);grid.paste(image,(x,y));draw.text((x+8,y+388),f'frame {index:02d} | {seconds:.3f} s',font=font,fill=(245,245,245))
+    png=dest/'contact-sheet-12.png'
+    with png.open('xb') as f:grid.save(f,format='PNG',compress_level=6)
+    need(png.stat().st_size<=plan['max_png_bytes'],'PNG size cap');guard();need(sha(source)==art['sha256'] and sig(source.stat())==sig(before),'source unchanged after full SHA')

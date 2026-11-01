@@ -1,0 +1,20 @@
+{
+  "schema": "q33-native-turbo-controller-plan/v4",
+  "created_utc": "2026-10-30T17:20:22.048730+00:00",
+  "baseline": {
+    "path": "agents/timing-controller/speed_stage_b_v3.py",
+    "sha256": "524bf48df04c3ecdb251115b4db08c6482ed36eeb33405db34799b3a5669f66e"
+  },
+  "scope": "harness metadata/graph family only; no model code/runtime/dependency changes",
+  "gates": [
+    "Only turbo-native6/8 new candidate profiles; fixed full50 original INT8DiT, original video/audioVAE and conditioning; no reference/qualityPASS claim",
+    "Graph must equal original canonical plus node1100 native LoraLoaderModelOnly strength1 filenamefixed, model6->1100->148, steps6/8 and outputprefix; euler/simple/seed/dimensions/frames/audio-shifts unchanged",
+    "Three existing assets retain original receipt/alias identity validation; require fourth actual Q33 Turbo receipt+fixed transportprofile SHA+size/fullSHA/path complete before service or any payload hash",
+    "No generated/fake actual receipts; pending profiles dispatch false; real LoRA header inspection only after parent confirms file completion",
+    "Explicit timing-module argument constrained to original Q33 timing-controller source path and fixed SHA before import; report actual source/hash, no sys.path shadow import",
+    "Preserve AST identity of sample/http/guarded_hash/conditioning_header/bounded_notes_json/verify_dynamic_vram_startup/cleanup_owned_v2 and unchanged original resourcegates SHA",
+    "Add native LoraLoaderModelOnly schema/file enumeration/input/output checks; no custom nodes or new dependencies",
+    "Retain current154selected runtime source manifest plus explicitly hash needed native LoRA source files; not whole environment/DLL closure",
+    "Offline metadata graph mutations/negative pending asset/profile/timing hashes only; no network/GPU/model subprocess. Parent executes actual InferRSI runs."
+  ]
+}

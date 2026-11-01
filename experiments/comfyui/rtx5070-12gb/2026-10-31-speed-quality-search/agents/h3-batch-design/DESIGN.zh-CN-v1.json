@@ -1,0 +1,110 @@
+{
+  "schema": "q33-h3-batch-readonly-design/v1",
+  "implementation_started": false,
+  "gpu_dispatches": 0,
+  "claim": "INCONCLUSIVE",
+  "decision_zh": "可以做 H3 专用的一到两条纯文本入口，但不能仅删除固定 conditioning SHA 断言后就开放任意长度。先补真实 tokenizer 的 CPU-only 前置长度门；本轮只保留已验证 Trim8 配方和阶段释放，不合并异步/缓存/headroom 新变量。",
+  "input_contract_proposal": {
+    "format": "Small UTF-8 local JSON, strict unique keys; prompts array of 1 or 2 strings. No user graph, URLs, image/audio paths, node names, output path or model settings.",
+    "bounds_proposed_not_yet_frozen": "File <=16 KiB; each prompt nonblank UTF-8 <=4096 bytes; reject NUL, malformed Unicode and embedding: directives. Byte limit is parser bound, NOT token/capacity guarantee.",
+    "preservation": "No text truncation/rewrite. Snapshot exact input and SHA locally; prompt index supplies safe output ID, never prompt text as filename or command.",
+    "token_limit_proposed": 49,
+    "token_limit_reason": "The currently successful real one-service requests have 41/49 tokens; 64 would be a separate extension, not already proven.",
+    "cpu_preflight": "Use frozen installed MiniMaxH3Tokenizer only, no model/CLIP weight construction, under explicit --cpu/CUDA_VISIBLE_DEVICES empty, offline tokenizer files, E cache/temp. Count the sole qwen3vl_32b token batch; require 1<=T<=49 and all token entries integer/weight1. Record tokenizer source/data hashes and actual token-ID digest. Verify current fixed 41/49 examples as equivalence anchors first. Native runtime imports and resource envelope of this tiny CPU helper still need one bounded check; not executed in this design."
+  },
+  "minimal_changes": [
+    {
+      "part": "Input snapshot and Stage A builder",
+      "change": "Deep-copy the already frozen Stage A template. Permit only node104 prompt literal and SaveConditioning output prefix derived from request index. Freeze job JSON and generated graph hashes before service. Both 1 and 2 prompt jobs use same four model assets/receipts and source identity."
+    },
+    {
+      "part": "Sequence state",
+      "change": "Compute N from input. Requests 1..2N alternating TE/video, /free exactly 2N-1 between requests, one known prompt ID and POST attempt per request. Preserve first full admission and every warm-admission remaining-private-growth check. Keep total timeout/output/WS/history budgets unchanged."
+    },
+    {
+      "part": "Finite validator",
+      "change": "Replace CASES fixed-token lookup with CPU-preflight expected T. Keep exact pure-text tensor set, options {}, F32[1,T,5120], I64[T] all1, finite raw bits, nonzero condition, 512 KiB chunking, bounded headers, contiguous offsets and no trailing payload. Do not loosen to pooled/multimodal options."
+    },
+    {
+      "part": "Actual conditioning identity",
+      "change": "Compute whole output SHA/stat identity under monitor, create unique samefile hardlink alias, revalidate whole SHA/header/stat immediately before actual B POST. New-prompt receipt records real prompt/graph/tokenizer/T/output identities. Remove requirement to equal old 41/49 reference ONLY for new arbitrary prompt mode; explicit frozen-case comparison mode retains exact reference requirement. New prompts report reference_equivalence=not_applicable, never synthetic reference or old receipt."
+    },
+    {
+      "part": "Canonical graph anchor",
+      "change": "Current load_stage_b_manifest hard-pins old toycar conditioning metadata as a graph-template anchor. Keep immutable graph assets/recipe but label it template provenance; bind actual condition from previous TE. Do not report that anchor as a reference for new text."
+    },
+    {
+      "part": "Per-request output and media",
+      "change": "Preserve exact Trim8 geometry/steps/seed and nativegraph class/input checks. Adapt aggregate to N videos, each with a genuinely corresponding actual receipt/artifact and full existing 73-frame+audio validator. Keep cleanup first and require owned workers terminal before media. No silent continuation on an over-budget/failed TE."
+    }
+  ],
+  "unchanged": [
+    "Native runtime, four asset receipts/full initial model SHA and stat checks before every POST",
+    "No-pin, disabled-async, cache-none, disabled-smart-memory, reserve3 and headroom1 of actual e2e v4; no other infra optimization mixed in",
+    "E output/cache/temp and controlled embeddings aliases; R logs; fresh run/no overwrite/no deletion",
+    "Monitor/private16/RSS10/whole-board free768 MiB/host floors/deadlines and owned Job cleanup",
+    "8 uncached steps per video; per-request metrics and actual history graph identity"
+  ],
+  "lifecycle_caveat": "A /free reset marker plus safe warm admission is evidence of entering native release path, not proof that every TE Python object has been destroyed. Keep TE_object_absence_proven=false.",
+  "minimum_future_frozen_checks": [
+    "N=1/2 maps to 2/4 POST and 1/3 free; N=0/3 rejected before service",
+    "Bad/duplicate/oversize JSON, unsafe text embedding directive and excess token count reject before model service",
+    "Actual native tokenizer yields known fixed 41/49 counts and literal graph changes only prompt/prefix",
+    "Actual condition shape T must match preflight; negative NaN/Inf/allzero/tag/nonempty options/identity drift fail before B",
+    "Missing/failed TE cannot dispatch B or next prompt; cancellation uses unchanged owned cleanup",
+    "One new short prompt real smoke and complete media only after new sources reviewed/frozen; not a full new matrix"
+  ],
+  "sources_q33": [
+    {
+      "relative_path": "agents/end-to-end-preparation/end_to_end_v4.py",
+      "bytes": 67306,
+      "sha256": "70a627fc293bb01f7961b7228abfa4b2cda413fecf9d148044ea1d981552d89f",
+      "lines": "91-149 header;190-205 old template anchor;227-255 assets;326-350 sequence;434-440 templates;495-555 guards;627-646 full hashes;663-681 fixed CLI;722-926 run/release/4POST"
+    },
+    {
+      "relative_path": "agents/end-to-end-preparation/e2e_helpers_v3.py",
+      "bytes": 7020,
+      "sha256": "da1f2273e93a18ba78e58f2ccae1f4cc52559e89a9285aeb91110e0f15aaf4d0",
+      "lines": "5 CASES;25-47 finite scan;49-55 graph bind;85-98 warm admission"
+    },
+    {
+      "relative_path": "agents/end-to-end-preparation/validate_e2e_two_media_v4.py",
+      "bytes": 5483,
+      "sha256": "2b012f561c6e8029004b05c7ff92eca0182524e3280b680f898e2218f9be6fd9",
+      "lines": "17-35 fixed two cases/media bindings"
+    },
+    {
+      "relative_path": "agents/end-to-end-preparation/run_e2e_two_v4.py",
+      "bytes": 6296,
+      "sha256": "9e25c713e9ee33db634f24de23000c75db239f0790cfc67af8856ab1f921877c",
+      "lines": "36-40 frozen argv/RunSpec"
+    }
+  ],
+  "sources_portable": [
+    {
+      "relative_path": "ComfyUI/comfy_extras/nodes_minimax_h3.py",
+      "bytes": 31571,
+      "sha256": "5999ed8c22b13c8251084c0629fd82137d2fb52b55106abfc73bf5cafc73841d",
+      "lines": "139-157 tokenize then encode; pure text no keyframes"
+    },
+    {
+      "relative_path": "ComfyUI/comfy/text_encoders/minimax.py",
+      "bytes": 10578,
+      "sha256": "cff2303063502b63afce83545c7443a48b339e42ee821fb716279a6aa2db4430",
+      "lines": "75-81 all-text tag1;129-161 tokenizer and weights-disabled;195-202 text entries"
+    },
+    {
+      "relative_path": "ComfyUI/comfy/text_encoders/qwen3vl.py",
+      "bytes": 11847,
+      "sha256": "ed9b2e9e760ffe0a2ee3c702ac3d8aa26319c3d06833a2cef2d816e3591d6867",
+      "lines": "147-151 max_length99999999, no start/end or pad-to-max"
+    },
+    {
+      "relative_path": "ComfyUI/comfy/sd1_clip.py",
+      "bytes": 31845,
+      "sha256": "02840bea124088477f7a5e071f1d4e0150ffc115b31864ddab9c5f130a40cb88",
+      "lines": "578-622 weight disabling does not disable embedding lookup"
+    }
+  ],
+  "publication": "Only reviewed redacted notes may be pushed by parent. Runtime source, user prompt details, actual conditioning and weights remain local unless separately authorized."
+}

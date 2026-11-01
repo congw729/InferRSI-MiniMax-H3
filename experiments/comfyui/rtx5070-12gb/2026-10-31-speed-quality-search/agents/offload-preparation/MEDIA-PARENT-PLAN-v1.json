@@ -1,0 +1,18 @@
+{
+  "schema": "q33-async-media-parent-plan/v1",
+  "baseline_relative_to_q33": "tools/run_persistent_media_v2.py",
+  "baseline_sha256": "275b91438958e2c770c6cbbeebd2a5192deff11b2f03e1f7681c26115f144b7e",
+  "scope": "Only dispatch existing frozen async media validator through InferRSI with 330 second aggregate executor deadline. No actual decode in preparation.",
+  "delta": [
+    "new owned folder and execution freeze",
+    "new media filename and exact SHA",
+    "actual cleanup/controller/mode/classic identity before dispatch",
+    "fresh async-media trial prefix"
+  ],
+  "checks": [
+    "exact diff read",
+    "installed PPY --help exits 0",
+    "freeze source hashes"
+  ],
+  "gpu_runs": 0
+}

@@ -1,0 +1,10 @@
+{
+  "schema": "q33-contact-sheet-corpus-plan/v1",
+  "created_utc": "2026-10-30T18:35:54.236431+00:00",
+  "scope": "Same frozen extraction loop for completed original50/Trim8/Trim6 on two actual corpus prompts; first5 now, remaining1 only after actual media success",
+  "change": "v2 replaces fixed toycar manifest with explicit frozen local manifest path+SHA; all decode/selection/guard/output semantics unchanged",
+  "base_worker_sha256": "391d06a846230a4accd37f25aef369921023a287c3660479644b6733529b9e09",
+  "base_resource_plan_sha256": "9d79c35f058014cfa54fd31c6df58c1dff6e082ae171277dce709a7cab97b38b",
+  "no_repeat_toycar": true,
+  "quality_verdict": "INCONCLUSIVE"
+}

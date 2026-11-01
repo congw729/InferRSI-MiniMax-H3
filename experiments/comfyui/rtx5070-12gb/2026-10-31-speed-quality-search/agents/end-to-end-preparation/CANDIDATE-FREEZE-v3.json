@@ -1,0 +1,50 @@
+{
+  "schema": "q33-two-prompt-candidate/v3",
+  "files": [
+    {
+      "path": "TWO-PROMPT-PLAN-v3.json",
+      "bytes": 3325,
+      "sha256": "0867ca7b43c107752e28dccc68c128917f1769b75a35715a0aea7281158a78ba"
+    },
+    {
+      "path": "validate_two_prompt_v3.py",
+      "bytes": 3483,
+      "sha256": "957b089fc33c626485551b969b00ee288f2f24a5cc4026458f24036c01477b3c"
+    },
+    {
+      "path": "TWO-PROMPT-VALIDATOR-FREEZE-v3.json",
+      "bytes": 218,
+      "sha256": "a5ef326c8dfee3808f8a10c98249842530bf5f375b2cedbc3d0d7df53530c0e1"
+    },
+    {
+      "path": "end_to_end_v3.py",
+      "bytes": 67203,
+      "sha256": "15cb920f217f582ea7d6bd19af968f9306cd79e7c2b24de2925104a2d596979d"
+    },
+    {
+      "path": "e2e_helpers_v3.py",
+      "bytes": 7020,
+      "sha256": "da1f2273e93a18ba78e58f2ccae1f4cc52559e89a9285aeb91110e0f15aaf4d0"
+    },
+    {
+      "path": "STAGE-A-bounce-audio-v3.json",
+      "bytes": 1088,
+      "sha256": "e94c58afb0181f3a79f85c76b6e2d6441ae4ba49809bd30f40081f5f41da2caf"
+    },
+    {
+      "path": "STAGE-A-hands-face-mug-v3.json",
+      "bytes": 1119,
+      "sha256": "41d4fc0abcf22f10cf79afcbd439e769f7a5edaefb82376523056827dda4c2fb"
+    },
+    {
+      "path": "e2e-v2-to-two-prompt-v3.patch",
+      "bytes": 23216,
+      "sha256": "426fae9c076b53b0460ffb3633951ef7ca33d25c6afc9b88bccbc8a5d60331df"
+    },
+    {
+      "path": "helper-v2-to-v3.patch",
+      "bytes": 3608,
+      "sha256": "87547dcb7970bb2e9e824ffac7e744b7170070eaf147ad7c22415f7c74d244c3"
+    }
+  ]
+}

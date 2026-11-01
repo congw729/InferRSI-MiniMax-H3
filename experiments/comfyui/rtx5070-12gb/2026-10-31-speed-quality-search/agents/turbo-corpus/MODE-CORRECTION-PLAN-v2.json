@@ -1,0 +1,9 @@
+{
+  "schema": "q33-turbo-corpus-mode-correction/v2",
+  "created_utc": "2026-10-30T18:39:43.834457+00:00",
+  "baseline_sha256": "6d866a372cead6537a07999e02f52559fa2291259022614bab76a519118315e0",
+  "reason": "Preparation audit found native controller used generic speed-video-stage-b, so proposed new-mode string substitution had not applied. v1 metadata24 complete; no service/POST/GPU was run.",
+  "change": "Only parse choices and result.mode speed-video-stage-b -> turbo-corpus-video-stage-b. Preserve v1 source/freeze/results.",
+  "targeted_gate": "Reverse both replacements gives byte-identical v1; actual portable --help offers dedicated mode and timing-module. No broad metadata rerun.",
+  "quality_performance": "INCONCLUSIVE"
+}

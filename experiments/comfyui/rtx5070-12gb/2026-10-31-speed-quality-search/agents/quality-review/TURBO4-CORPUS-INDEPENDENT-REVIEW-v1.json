@@ -1,0 +1,28 @@
+{
+  "schema": "q33-turbo4-corpus-independent-review/v1",
+  "utc": "2026-10-30T19:15:35.599176+00:00",
+  "decision": "no_blocker_for_bounded_single_corpus_runs",
+  "claim": "INCONCLUSIVE",
+  "controller_sha256": "a94784c03a22de99eef9ebb379c0d7f741d0cb5923fffba3fae1cf5c0ad79aaf",
+  "helper_sha256": "f823eec338279d2ff717e365b9d8734c3662ec7c876f4bde6b7aebb29323300a",
+  "freeze_sha256": "2eb3836bf6850b5d1172f1e76a520c922bf6255e204911c7a26f8bf865c1a822",
+  "matched": {
+    "candidate": 13,
+    "execution_local": 20,
+    "execution_notes": 30,
+    "helper": 4
+  },
+  "checks": [
+    "Controller four literal edits only: steps6to4, root, parse mode, result mode",
+    "Both graphs differ only steps and output prefix; conditioning payload/provenance unchanged, its graph descriptor updated correctly",
+    "Same four real assets, LoRA, full original base and canonical graph; no weight reads",
+    "Helper binds new controller filename/hash and mode/root/freeze, guards and IR executor unchanged; media uses existing384 native validator",
+    "No claim of author-supported4step quality or quality-equivalence"
+  ],
+  "no_model_media_network_execution": true,
+  "old_offline_matrix_not_rerun": true,
+  "operational_limitations": [
+    "Raw parent RunSpec and executor argv retain local paths; use existing redacted publication summary, never publish raw logs",
+    "Actual quality and speed remain subject to output inspection; no controller acceptance implies perceptual PASS"
+  ]
+}

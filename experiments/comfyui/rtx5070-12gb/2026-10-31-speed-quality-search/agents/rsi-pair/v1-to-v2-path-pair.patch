@@ -1,0 +1,32 @@
+--- rsi_pair_v1.py
++++ rsi_pair_v2.py
+@@ -63,6 +63,12 @@
+    available=available and current['matches'];rows.append(current)
+  except (OSError,ValueError,KeyError,TypeError):available=False
+  return {'available':bool(available),'snapshot_hash':hashlib.sha256(json.dumps(rows,sort_keys=True).encode()).hexdigest(),'identity_kind':'sha256_file_manifest','bundle_sha256':expected_sha,'files':rows,'model_payload_scope':'Receipts/manifests here; original controller performs full model SHA per trial'}
++def run_relative(run,runs_parent):
++ run=Path(run).resolve();runs_parent=Path(runs_parent).resolve()
++ require(run.parent==runs_parent,'explicit_runs_parent_boundary')
++ return run.relative_to(runs_parent).as_posix()
++def require_selected_pair(bundle,baseline,candidate):
++ require(bundle.get('baseline_profile')==baseline=='trim-8' and bundle.get('candidate_profile')==candidate=='trim-6-screen-v1','pair_not_selected')
+ def main(argv=None):
+  p=argparse.ArgumentParser(allow_abbrev=False)
+  for n in ('notes-root','infra-root','portable-root','model-root','runs-parent','nvidia-smi','source-bundle','stop-file'):p.add_argument('--'+n,type=Path,required=True)
+@@ -79,6 +85,7 @@
+  roots={'adapter':HERE,'notes':a.notes_root,'q33':Q,'infra':a.infra_root,'portable':a.portable_root}
+  def snapshot(repo=None,excluded=None):return source_snapshot(a.source_bundle,a.source_bundle_sha256,roots)
+  initial=snapshot();require(initial['available'],'frozen_source_mismatch');bundle=read_json(a.source_bundle)
++ require_selected_pair(bundle,a.baseline,a.candidate)
+  require(bundle.get('controller_name')=='speed_stage_b_v6.py' and bundle.get('reserve_gib')==3 and bundle.get('native_headroom_gib')==1.0,'reviewed_resource_recipe')
+  require(bundle.get('launcher')=='tools/run_profile_v3.py' and bundle.get('media_wrapper')=='tools/validate_profile_media_v1.py','fixed_wrappers')
+  require(any(x['root']=='adapter' and x['path']==Path(__file__).name and x['sha256']==sha(__file__) for x in bundle['files']),'adapter_self_not_frozen')
+@@ -109,7 +116,7 @@
+    require(d.get('profile')==selected and done[0].get('status')=='completed' and done[0].get('returncode')==0,'inner_controller_incomplete')
+    run=Path(d['run']).resolve();actual=Path(d['trial']).resolve();require(run.parent==a.runs_parent and actual.parent==Q/'results','launched_path_boundary')
+    require(done[0]['run']==d['run'] and done[0]['trial']==d['trial'],'completion_identity')
+-   raw['run_relative_to_model_root']=run.relative_to(a.model_root).as_posix();raw['controller_trial_relative_to_q33']=actual.relative_to(Q).as_posix()
++   raw['run_relative_to_runs_parent']=run_relative(run,a.runs_parent);raw['controller_trial_relative_to_q33']=actual.relative_to(Q).as_posix()
+    result=read_json(actual/'result.json');require(result.get('driver_sha256')==bundle['controller_sha256'] and result.get('gates_sha256')==GATES_SHA,'actual_controller_identity')
+    require(result.get('owned_root_exited') is True and result.get('job_close_requested') is True,'controller_cleanup_before_media')
+    require(not a.stop_file.exists() and time.monotonic()<deadline,'parent_stop_or_deadline');require(snapshot()['available'],'source_mismatch_before_media')

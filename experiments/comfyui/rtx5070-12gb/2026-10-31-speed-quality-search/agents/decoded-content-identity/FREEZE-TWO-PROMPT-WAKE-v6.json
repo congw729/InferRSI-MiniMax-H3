@@ -1,0 +1,39 @@
+{
+  "schema": "q33-decoded-content-freeze/v3",
+  "files": [
+    {
+      "path": "PLAN-TWO-PROMPT-WAKE-v1.json",
+      "bytes": 1847,
+      "sha256": "cf421857599d5e0dbf283c69c2d25de321eb9a4ec24d79957e8483fc88ea2ade"
+    },
+    {
+      "path": "INPUTS-TWO-PROMPT-WAKE-v1.json",
+      "bytes": 6408,
+      "sha256": "a5d5ce09da2951234e4ae6636c8d43c51ed527f56846dde28e7524adc63d00d0"
+    },
+    {
+      "path": "decoded_content_v6.py",
+      "bytes": 13411,
+      "sha256": "ab441f44cab0b67f1d7b04895f3d18db81013aaf7e08ea4d7eba770c8a6c2f56"
+    },
+    {
+      "path": "v5-to-v6-wake-inputs.patch",
+      "bytes": 1678,
+      "sha256": "ade675f33e24ed5679a0fda47b4e828cf1f4167fb4792e4240eef17474ec9ba1"
+    }
+  ],
+  "infra_files": [
+    {
+      "path": "src/inferrsi/infra/executors/local.py",
+      "bytes": 3505,
+      "sha256": "b089cdc7daaaf7834698c2d280a12c5e755915ded926aa039c8de5f521bd46f0"
+    },
+    {
+      "path": "src/inferrsi/infra/processes.py",
+      "bytes": 8151,
+      "sha256": "3b96ebc7a50913e78e86ff3dcba74c8ee8d03d547d9591ca6488f390ac1e6189"
+    }
+  ],
+  "decode_loop_text_identical_to_v2": true,
+  "decode_loop_unchanged_from_v3": true
+}

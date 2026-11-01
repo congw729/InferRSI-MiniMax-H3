@@ -1,0 +1,59 @@
+{
+  "files": [
+    {
+      "path": "assets/turbo-native.ready.json",
+      "bytes": 3939,
+      "sha256": "4f43082899ac7818ebaeb4e911904bd258c4fae6d8d78ad11efa31f3fab0f95d"
+    },
+    {
+      "path": "canonical/original.json",
+      "bytes": 3069,
+      "sha256": "d5937f2505f74e07ce8de746c49c98e8a428535d79ccc878383e8b989807fb29"
+    },
+    {
+      "path": "conditioning/bounce-audio.json",
+      "bytes": 1616,
+      "sha256": "3f740296a4e230b72577c8abc7500ed0e6dc054de3a0697f94883b8e92ef8ac5"
+    },
+    {
+      "path": "CONTROLLER-v1.patch",
+      "bytes": 4124,
+      "sha256": "af6b27dd4431f78855cff31bc1dbf8137b8d3a9718e9bb6089e56f60e4201c97"
+    },
+    {
+      "path": "graphs/bounce-audio.json",
+      "bytes": 3333,
+      "sha256": "bed7a0c36208a1834707812c499648be6a66848750cfa9d11f513964a871ced6"
+    },
+    {
+      "path": "INFRA-MANIFEST-v1.json",
+      "bytes": 548,
+      "sha256": "90a05d2ee7ba7ae9f2a4fec8fac74d871cd6409f46d724acf78f39a738c51408"
+    },
+    {
+      "path": "PLAN-FROZEN-v1.json",
+      "bytes": 1640,
+      "sha256": "64e0b3ab098672f0a18813d4acb1ba316563e3f21abb57759b2c719626a923ff"
+    },
+    {
+      "path": "PLAN-VALIDATOR-FREEZE-v1.json",
+      "bytes": 376,
+      "sha256": "78cdec92d67a2ee975eda430422bc00d653ae1ce8d18546dc5da5d2bce91c1db"
+    },
+    {
+      "path": "profiles/bounce-audio.json",
+      "bytes": 1216,
+      "sha256": "1460f48e80579473a735acfcafa35d56162e7c6a92239128ea2239a888fe47ce"
+    },
+    {
+      "path": "turbo4_async_stage_b_v1.py",
+      "bytes": 57544,
+      "sha256": "06eefc92c039a476efbad12b76a90400655a1e80ec267f0448c8a3ad25f09b04"
+    },
+    {
+      "path": "validate_async_delta_v1.py",
+      "bytes": 4846,
+      "sha256": "56dd51106648f04641e10a35189234dc4dcbd5f66df9f28810033dd4d0090316"
+    }
+  ]
+}

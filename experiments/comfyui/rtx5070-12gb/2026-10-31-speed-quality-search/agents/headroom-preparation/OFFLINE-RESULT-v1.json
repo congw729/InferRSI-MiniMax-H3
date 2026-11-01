@@ -1,0 +1,46 @@
+{
+  "schema": "q33-headroom075-offline/v1",
+  "checks": [
+    {
+      "name": "controller reverse exact baseline",
+      "ok": true
+    },
+    {
+      "name": "only CLI numeric headroom changes",
+      "ok": true
+    },
+    {
+      "name": "async no-pin classic reserve unchanged",
+      "ok": true
+    },
+    {
+      "name": "two graph bytes semantic equal",
+      "ok": true
+    },
+    {
+      "name": "actual native CLI source hash",
+      "ok": true
+    },
+    {
+      "name": "native declaration accepts exact0.75GiB",
+      "ok": true
+    },
+    {
+      "name": "media exact sourcefilename and SHA",
+      "ok": true
+    },
+    {
+      "name": "media requires0.75 requested field",
+      "ok": true
+    },
+    {
+      "name": "no Torch imported",
+      "ok": true
+    }
+  ],
+  "count": 9,
+  "complete": true,
+  "GPU": 0,
+  "native_declaration_only_not_Comfy_launch": true,
+  "quality_performance": "INCONCLUSIVE"
+}

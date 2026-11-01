@@ -1,0 +1,6 @@
+{
+  "schema": "q33-turbo-corpus-parent-helper-plan/v1",
+  "created_utc": "2026-10-30T18:42:43.941129+00:00",
+  "baseline_sha256": "ceb5727c01cc0a1b29c6d20a3c602fdd9f4d2deabb0980bb25a4faba6907c854",
+  "scope": "Fixed two corpus choices, nativeTurbo6 v2/controller e607db execution freeze21/27; timing+gates T; extra timing-module arg; same external12/16.5/6/remaining>20 and IR2730; noGPU, onlyportablehelp/sourcepatch."
+}

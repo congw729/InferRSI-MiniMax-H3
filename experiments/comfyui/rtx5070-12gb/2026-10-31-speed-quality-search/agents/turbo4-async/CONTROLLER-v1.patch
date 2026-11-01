@@ -1,0 +1,62 @@
+--- turbo4-corpus/turbo4_corpus_stage_b_v1.py
++++ turbo4-async/turbo4_async_stage_b_v1.py
+@@ -93,7 +93,8 @@
+             "legacy ModelPatcher fallback detected")
+     require(b"DynamicVRAM support detected and enabled" in raw,
+             "DynamicVRAM enabled marker missing")
+-    return {"startup_log_bytes": len(raw),
++    require(b"Using async weight offloading with 2 streams" in raw, "native default 2-stream marker missing")
++    return {"observed_async_offload_streams": 2, "startup_log_bytes": len(raw),
+             "startup_log_sha256": hashlib.sha256(raw).hexdigest()}
+ 
+ 
+@@ -197,6 +198,7 @@
+             "model_subdir","graph","canonical_graph","assets","conditioning","corpus_id","prompt_sha256","conditioning_sha256"}
+             and profile["schema"]=="q33-turbo-corpus-profile/v1","profile schema")
+     require(profile["family"] == "turbo-native","profile family")
++    require(profile["corpus_id"] == "bounce-audio", "single bounce experiment")
+     require(type(profile["dispatch_ready"]) is bool and profile["dispatch_ready"],
+             "profile not dispatch ready; review required")
+     root=Path(__file__).resolve().parent
+@@ -322,7 +324,7 @@
+ 
+ def parse():
+     p = argparse.ArgumentParser(description=__doc__, allow_abbrev=False)
+-    p.add_argument("--mode", choices=["turbo4-corpus-video-stage-b"], required=True)
++    p.add_argument("--mode", choices=["turbo4-async-video-stage-b"], required=True)
+     for name in ("iteration-root", "lab-root", "portable-python", "comfy-root",
+                  "run-dir", "stop-marker", "nvidia-smi", "inferrsi-src",
+                  "gates", "conditioning-manifest", "notes-root", "q31-root",
+@@ -403,7 +405,7 @@
+ 
+     require(a.iteration_root == a.notes_root / "iterations/2026-10-31-speed-quality-search"
+             and a.q31_root == a.notes_root / "iterations/2026-10-28-comfy-trim-first-video"
+-            and Path(__file__).resolve().parent == a.iteration_root / "agents/turbo4-corpus", "Q33/Q31 roots")
++            and Path(__file__).resolve().parent == a.iteration_root / "agents/turbo4-async", "Q33/Q31 roots")
+     require(a.portable_python == a.comfy_root.parent / "python_embeded/python.exe", "fixed portable relationship")
+     sys.dont_write_bytecode = True
+     v1_path = a.q31_root / "tools/comfy_first_video_v1.py"
+@@ -466,7 +468,7 @@
+     proc = job = raw_log = samples = journal = observer = None
+     next_sample = next_gpu = 0.0
+     gpu = None
+-    state = {"status": "preflight", "claim": "INCONCLUSIVE", "mode": "turbo4-corpus-video-stage-b",
++    state = {"status": "preflight", "claim": "INCONCLUSIVE", "mode": "turbo4-async-video-stage-b",
+              "profile_id": a.loaded_profile["id"], "profile_sha256": a.profile_sha256,
+              "corpus_id": a.loaded_profile["corpus_id"], "prompt_sha256": a.loaded_profile["prompt_sha256"],
+              "controller_entry_perf_counter_ns":entry_perf_ns,
+@@ -661,10 +663,13 @@
+         command = [str(a.portable_python), "-s", "-B", str(a.comfy_root / "main.py"),
+                    "--listen", "127.0.0.1", "--port", str(a.port),
+                    "--disable-auto-launch", "--disable-all-custom-nodes", "--disable-partner-nodes",
+-                   "--offline", "--disable-assets", "--disable-pinned-memory", "--disable-async-offload", "--disable-smart-memory", "--cache-none", "--preview-method", "none",
++                   "--offline", "--disable-assets", "--disable-pinned-memory", "--disable-smart-memory", "--cache-none", "--preview-method", "none",
+                    "--reserve-vram", str(gates["reserve_vram_gb"]),
+                    "--vram-headroom", "1.0",
+                    "--models-directory", str(models_root)]
++        state["disable_async_offload_requested"] = False
++        state["disable_pinned_memory_requested"] = True
++        state["requested_async_offload_streams"] = 2
+         for key in ("base", "output", "temp", "input", "previews", "user"):
+             command += ["--" + key + "-directory", str(dirs[key])]
+         raw_log = (a.run_dir / "comfy.raw.log").open("xb")

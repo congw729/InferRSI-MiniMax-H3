@@ -1,0 +1,128 @@
+{
+  "schema": "q33-corpus-prepared-execution-freeze/v1",
+  "created_utc": "2026-10-30T17:53:34.079329+00:00",
+  "actual_corpus_ready": false,
+  "files": [
+    {
+      "path": "assets/original.json",
+      "bytes": 2910,
+      "sha256": "de6848a0135415f086ad3fa53e94e40202bfc4d72bdf5d3eeafe3494bc9cdd7c"
+    },
+    {
+      "path": "assets/trim.json",
+      "bytes": 2763,
+      "sha256": "c1507b121962e250f2d74c7dce2f4e0e63e7de8e55a39c2d2795e336106de2a0"
+    },
+    {
+      "path": "bind_corpus_profiles_v1.py",
+      "bytes": 5545,
+      "sha256": "2313f4d4058417977abbb620dfce534485e769e9de1bb9504ae7fbb999a27fc7"
+    },
+    {
+      "path": "canonical/original.json",
+      "bytes": 3069,
+      "sha256": "d5937f2505f74e07ce8de746c49c98e8a428535d79ccc878383e8b989807fb29"
+    },
+    {
+      "path": "canonical/trim.json",
+      "bytes": 3895,
+      "sha256": "a915f62f109cd2e1be615eb7b0c1aa6fab4a4b6ad6e31791fb84488b02a17ad8"
+    },
+    {
+      "path": "corpus_conditioning_values_v1.py",
+      "bytes": 12179,
+      "sha256": "c43cf358b04accdb4d21d1476d32370642a6dd8420e5b5afd88a47256b9061ba"
+    },
+    {
+      "path": "corpus_stage_b_v1.py",
+      "bytes": 54098,
+      "sha256": "74de2ccded6ec7415e183c13d162caba653b54b5bcc99270a924c9391d58c7d1"
+    },
+    {
+      "path": "OFFLINE-CONTROLLER-FREEZE-v1.json",
+      "bytes": 766,
+      "sha256": "788b0d452dac370c8003de70adff90ecf0afa3af0f86e8f773865ecd847a9719"
+    },
+    {
+      "path": "OFFLINE-CONTROLLER-RESULT-v1.json",
+      "bytes": 3352,
+      "sha256": "822c1f10a1d5709779657458e0a395816230b5720b6e54f315337b626ea6e504"
+    },
+    {
+      "path": "OFFLINE-VALUES-FREEZE-v1.json",
+      "bytes": 769,
+      "sha256": "f00a3af6d0246d03b82c0090532bc6723903fc622a71eec6806eff93bd212ca0"
+    },
+    {
+      "path": "OFFLINE-VALUES-RESULT-v1.json",
+      "bytes": 1873,
+      "sha256": "fcb74929fcce31f15b357846e495e98842e566d7d07364859211c5df12148186"
+    },
+    {
+      "path": "offline_controller_v1.py",
+      "bytes": 2883,
+      "sha256": "0b1ab9d2d297b46e04213983645b8467658ef8acd08e6a39f973c332bacc0df9"
+    },
+    {
+      "path": "offline_values_v1.py",
+      "bytes": 2660,
+      "sha256": "fc3e21e7c13ed4246e08f2462529fd2e742501eb12a7938644251a980af42146"
+    },
+    {
+      "path": "PLAN-v1.json",
+      "bytes": 2225,
+      "sha256": "9b358813fd06562a8827a420f9cc1b53e6ef385ac784bc4ce2fd3cd4766c244a"
+    },
+    {
+      "path": "PORTABLE-HELP-RESULT-v1.json",
+      "bytes": 361,
+      "sha256": "f5d8be83fa62791218e5583eca037c6da73b66fd73e3ad960afff5b297100c5f"
+    },
+    {
+      "path": "PREPARATION-FREEZE-v1.json",
+      "bytes": 2825,
+      "sha256": "b3225a9d0b0dae4f87695b471f8b00d3b931515492c5d7cd04c515addb02b6fe"
+    },
+    {
+      "path": "RUN-HANDOFF-v1.txt",
+      "bytes": 4152,
+      "sha256": "5079b94359221ec88a659b0e044758bdb33072bde33d05b6deeeac21272604e9"
+    },
+    {
+      "path": "STAGE-B-v1.patch",
+      "bytes": 9494,
+      "sha256": "84c0284d667b1567068a664732857d822e0212199509644325f66600a3547311"
+    },
+    {
+      "path": "timing_events_v1.py",
+      "bytes": 10734,
+      "sha256": "f0abb1937ca5462d712a73d1a8623b6a9f5df86927dbcf6375903b8a5ad3e614"
+    },
+    {
+      "path": "VALUES-FREEZE-v1.json",
+      "bytes": 1975,
+      "sha256": "3a6b8d0a794eedce440e70895065bf5995d1a79a6a453f405086eafaed21159c"
+    },
+    {
+      "path": "VALUES-v1.patch",
+      "bytes": 5881,
+      "sha256": "c96a4f8c8518bc3644f6809e893f7b50b32ce62d2aeb3cc88ab4ac3f4e79981d"
+    }
+  ],
+  "external_sources": [
+    {
+      "relative_to_iteration": "agents/timing-controller/SOURCES-v1.json",
+      "sha256": "bf0d3e3b09f8130053735eaa6645bcc4ff753833a97ef4ae306d7d223283f007"
+    },
+    {
+      "relative_to_iteration": "agents/timing-controller/RESOURCE-GATES-RESERVE3-v1.json",
+      "sha256": "13672a9bbe8946c28c98b3bab0f906f6ddfe67735ff7f77929e58539a4a580dd"
+    },
+    {
+      "relative_to_iteration": "agents/quality-corpus/conditioning_corpus_v3.py",
+      "sha256": "1e930d7ad4c5b32d8c3842e77bc39cbea5d0d510c4c5758c7240758ae15087dc"
+    }
+  ],
+  "real_ready_profile_requirement": "Append actual profile/graph/condition metadata, real StageA receipt and actual value report to a new final execution freeze before GPU. This preparation does not claim actual outputs.",
+  "claim": "INCONCLUSIVE"
+}
