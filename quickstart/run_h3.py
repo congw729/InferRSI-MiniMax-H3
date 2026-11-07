@@ -327,7 +327,11 @@ def find_video(history, run_id, output_root):
                 filename = item["filename"]
                 require(Path(filename).name == filename and "/" not in filename and "\\" not in filename,
                         "Invalid video filename in ComfyUI history.")
-                relative = str(PurePosixPath(item.get("subfolder", "")) / filename)
+                subfolder = item.get("subfolder", "")
+                require(isinstance(subfolder, str), "Invalid video subfolder in ComfyUI history.")
+                # Windows ComfyUI emits native separators in the UI result.
+                # Normalize only the folder, then apply the same containment checks.
+                relative = str(PurePosixPath(subfolder.replace("\\", "/")) / filename)
                 matches.append(contained_file(output_root, relative, f"h3-preview/{run_id}/video"))
     require(len(matches) == 1, "Expected one MP4 in this prompt's SaveVideo history.")
     require(0 < matches[0].stat().st_size <= MAX_VIDEO, "Video is empty or larger than 1 GiB.")

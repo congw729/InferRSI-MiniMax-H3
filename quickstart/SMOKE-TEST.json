@@ -1,0 +1,30 @@
+{
+  "schema": "h3-preview-release-smoke/v1",
+  "date": "2026-11-08",
+  "client_sha256": "984147771b821385c136044a645045c9c7ab13da6d6fc042f660c2450d19b1d7",
+  "preset_sha256": "4ea2e6b27e4247ce5570b565809da11bd680ef1cc05e4b77c8439b8113b515e1",
+  "scenario": "One fresh text prompt from an isolated client directory, existing ComfyUI v0.43.0, RTX5070 12GB / 32GB RAM",
+  "hardware_execution": "completed",
+  "cpu_tests": {
+    "completed": 16,
+    "total": 16
+  },
+  "source_and_path_review": "Independent review completed for the API contract, scoped cancellation and Windows artifact path normalization",
+  "media": {
+    "width": 384,
+    "height": 256,
+    "fps": "24/1",
+    "audio_streams": 1,
+    "decoded_frames": 73
+  },
+  "output_sha256": "ca8f356371adc266a90d459f3ecfa205d0537351eab23b3512eba270a8abdca3",
+  "client_model_cleanup": "completed",
+  "owned_service_reaped": true,
+  "model_payload_sha256": "All four existing files matched quickstart/models.json before smoke",
+  "retained_failed_attempts": [
+    "v1 isolated smoke harness omitted its custom output directory; no model dispatch",
+    "v2 generated media but client rejected Windows path separators; corrected with positive/negative regression coverage"
+  ],
+  "scope": "Functional smoke only. No perceptual-quality, cross-hardware or performance acceptance claim; model media is not distributed.",
+  "campaign_verdict": "INCONCLUSIVE"
+}

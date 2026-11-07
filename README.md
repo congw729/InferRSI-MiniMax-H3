@@ -47,6 +47,8 @@ python quickstart/run_h3.py generate --comfy-root "<path-to-ComfyUI>" --prompt "
 
 Use `--help` for the supported options. Choose a new MP4 filename for each run; existing files are preserved. ComfyUI stores its intermediate files under a unique run directory. The result includes an MP4 and a small record of the prompt, seed, configuration and observed elapsed times. Text encoding and video-stage wall times are reported separately from total client time; server startup and prior model downloads are outside that total.
 
+The preview has a [recorded functional smoke](quickstart/SMOKE-TEST.json): one new prompt produced 73 decoded video frames and an audio stream, with model cleanup and owned-service teardown checked. This is not a quality benchmark.
+
 The first request can be slower due to model loading and kernel initialization. This preview does not promise a fixed speed or original-model quality.
 
 ## Troubleshooting
@@ -55,7 +57,7 @@ The first request can be slower due to model loading and kernel initialization. 
 - **Missing node or model:** use the documented ComfyUI version and [model filenames/folders](quickstart/MODELS.md); check `doctor` before generating.
 - **Not enough memory:** close unnecessary GPU/RAM-heavy applications and retry. The client does not terminate other applications.
 - **A failed or cancelled request:** inspect the run record and ComfyUI terminal. Keep the diagnostic output; do not submit multiple jobs to the same instance while a request is still stopping.
-- **Custom model/output locations:** see `--help` for the explicit path options. The client and ComfyUI must refer to the same local installation and output folders.
+- **Custom model/output locations:** create a custom ComfyUI output directory before starting the server; see `--help` for the explicit path options. The client and ComfyUI must refer to the same local installation and output folders.
 
 ## Project scope
 

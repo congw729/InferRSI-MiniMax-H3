@@ -143,6 +143,33 @@ class ClientTests(unittest.TestCase):
             with self.assertRaises(app.PreviewError):
                 app.find_video(history, "c" * 32, root)
 
+    def test_windows_video_subfolder_is_normalized(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            token = "b" * 32
+            target = root / f"h3-preview/{token}/video/clip.mp4"
+            target.parent.mkdir(parents=True)
+            target.write_bytes(b"video")
+            history = {"outputs": {"92": {"images": [{"type": "output", "filename": "clip.mp4",
+                         "subfolder": f"h3-preview\\{token}\\video"}]}}}
+            self.assertEqual(app.find_video(history, token, root), target)
+
+    def test_windows_video_subfolder_escape_is_rejected(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            token = "b" * 32
+            for subfolder in [f"h3-preview\\{token}\\video\\..\\private", "C:\\private",
+                              "\\\\server\\share", "\\private", "..\\private"]:
+                history = {"outputs": {"92": {"images": [{"type": "output", "filename": "clip.mp4",
+                             "subfolder": subfolder}]}}}
+                with self.subTest(subfolder=subfolder), self.assertRaises(app.PreviewError):
+                    app.find_video(history, token, root)
+            for filename in ["..\\clip.mp4", "../clip.mp4", "folder\\clip.mp4", "folder/clip.mp4"]:
+                history = {"outputs": {"92": {"images": [{"type": "output", "filename": filename,
+                             "subfolder": f"h3-preview\\{token}\\video"}]}}}
+                with self.subTest(filename=filename), self.assertRaises(app.PreviewError):
+                    app.find_video(history, token, root)
+
     def test_models_hash_validation_rejects_wrong_payload(self):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
