@@ -29,3 +29,7 @@ cache/
 venvs/
 /tools/run_runtime_validation.py
 /tools/wsl_validation_entry.py
+
+# User-generated quick-start artifacts.
+/outputs/
+/quickstart/outputs/

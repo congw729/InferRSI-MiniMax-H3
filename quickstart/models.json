@@ -1,0 +1,78 @@
+{
+  "schema": "h3-preview-models/v1",
+  "preset": "trim8-384x256",
+  "models_root_semantics": "relative_path is relative to the ComfyUI models directory supplied by the user",
+  "total_bytes": 30998085709,
+  "assets": [
+    {
+      "id": "trim-dit",
+      "filename": "fastvideo_fasth3_trim_8step_nvfp4.safetensors",
+      "directory": "diffusion_models",
+      "relative_path": "diffusion_models/fastvideo_fasth3_trim_8step_nvfp4.safetensors",
+      "bytes": 11894623166,
+      "sha256": "748b2bcc9c4b7bf7b23406987b42d4ac40362070c164cf11092482be6a863455",
+      "url": "https://huggingface.co/FastVideo/FastVideo-FastH3-Trim-Comfy/resolve/f66c13dc17391dd4da99242a407918b92bf7d5fc/diffusion_models/fastvideo_fasth3_trim_8step_nvfp4.safetensors",
+      "source_repo": "FastVideo/FastVideo-FastH3-Trim-Comfy",
+      "revision": "f66c13dc17391dd4da99242a407918b92bf7d5fc",
+      "model_card_url": "https://huggingface.co/FastVideo/FastVideo-FastH3-Trim-Comfy/blob/f66c13dc17391dd4da99242a407918b92bf7d5fc/README.md",
+      "publisher_license_name": "minimax-h3-community-license-agreement",
+      "license_url": "https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/5d9b308a59ab12e67147f191e184baf704185bd1/LICENSE"
+    },
+    {
+      "id": "text-encoder",
+      "filename": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+      "directory": "text_encoders",
+      "relative_path": "text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+      "bytes": 15687142551,
+      "sha256": "35a88d51044231fe332301d7a62aa81e3f2cba62febeb446e2c1e3e0ef76f2c6",
+      "url": "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/e5eb578a89295337b8ff433a035929ce0279e0b6/text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+      "source_repo": "Comfy-Org/MiniMax-H3",
+      "revision": "e5eb578a89295337b8ff433a035929ce0279e0b6",
+      "model_card_url": "https://huggingface.co/Comfy-Org/MiniMax-H3/blob/e5eb578a89295337b8ff433a035929ce0279e0b6/README.md",
+      "publisher_license_name": "minimax-h3-community-license-agreement",
+      "license_url": "https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/5d9b308a59ab12e67147f191e184baf704185bd1/LICENSE",
+      "conversion_source_model_card": "https://huggingface.co/cybermotaz/Qwen3-VL-32B-Instruct-NVFP4/blob/dfcab1395094f56d3c78ba472158284def0fc278/README.md",
+      "base_model_card": "https://huggingface.co/Qwen/Qwen3-VL-32B-Instruct",
+      "license_note": "Publisher and upstream conversion/base-model cards have different license metadata. This manifest records provenance, not a determination that one license supersedes another; consult the source terms."
+    },
+    {
+      "id": "video-vae",
+      "filename": "minimax_h3_video_vae_int8_convrot.safetensors",
+      "directory": "vae",
+      "relative_path": "vae/minimax_h3_video_vae_int8_convrot.safetensors",
+      "bytes": 2811065184,
+      "sha256": "52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e",
+      "url": "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/e5eb578a89295337b8ff433a035929ce0279e0b6/vae/minimax_h3_video_vae_int8_convrot.safetensors",
+      "source_repo": "Comfy-Org/MiniMax-H3",
+      "revision": "e5eb578a89295337b8ff433a035929ce0279e0b6",
+      "model_card_url": "https://huggingface.co/Comfy-Org/MiniMax-H3/blob/e5eb578a89295337b8ff433a035929ce0279e0b6/README.md",
+      "publisher_license_name": "minimax-h3-community-license-agreement",
+      "license_url": "https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/5d9b308a59ab12e67147f191e184baf704185bd1/LICENSE"
+    },
+    {
+      "id": "audio-vae",
+      "filename": "minimax_h3_audio_vae_fp32.safetensors",
+      "directory": "vae",
+      "relative_path": "vae/minimax_h3_audio_vae_fp32.safetensors",
+      "bytes": 605254808,
+      "sha256": "8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48",
+      "url": "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/e5eb578a89295337b8ff433a035929ce0279e0b6/vae/minimax_h3_audio_vae_fp32.safetensors",
+      "source_repo": "Comfy-Org/MiniMax-H3",
+      "revision": "e5eb578a89295337b8ff433a035929ce0279e0b6",
+      "model_card_url": "https://huggingface.co/Comfy-Org/MiniMax-H3/blob/e5eb578a89295337b8ff433a035929ce0279e0b6/README.md",
+      "publisher_license_name": "minimax-h3-community-license-agreement",
+      "license_url": "https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/5d9b308a59ab12e67147f191e184baf704185bd1/LICENSE"
+    }
+  ],
+  "runtime_reference": {
+    "repository": "Comfy-Org/ComfyUI",
+    "release": "v0.43.0",
+    "revision": "426f5eea52a7ece1dd599fff4cb6cd1f352ddd24",
+    "release_url": "https://github.com/Comfy-Org/ComfyUI/releases/tag/v0.43.0",
+    "observed_python": "3.13.14",
+    "observed_torch": "2.14.1+cu130",
+    "observed_comfy_kitchen": "0.2.40",
+    "observed_comfy_aimdo": "0.6.0",
+    "note": "These are the historical measured Windows NVIDIA portable environment identities, not a guarantee for arbitrary updated installations."
+  }
+}
