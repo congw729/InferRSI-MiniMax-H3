@@ -34,6 +34,25 @@ Original = unpruned H3 FL2VA with INT8 ConvRot weights. Turbo adds **v4 step600 
 
 **More examples:** [Tennis ball — 6 configurations](docs/SHOWCASE.md#tennis-ball) · [Toy car — 11 configurations](docs/SHOWCASE.md#toy-car) · [Try the default Trim 8-step preset](#quick-start--windows-portable-comfyui)
 
+## How we used InferRSI
+
+[InferRSI](https://github.com/InferMatrixLab/InferRSI) was the **experiment orchestration and evidence layer** in our H3 / RTX 5070 research. It helped turn proposed settings into repeatable comparisons with traceable results.
+
+| Research step | InferRSI's role in this project |
+| --- | --- |
+| Run controlled trials | `execute_command` launched generation and media-checking commands with deadlines, logs and exit records. H3 controllers supplied resource limits and stage-specific cleanup. |
+| Compare configurations | `RunSpec` and `run_experiment` ran two **A-B-B-A** comparisons: Trim 8 vs 6 steps, and 1 vs 0.75 GiB VRAM headroom, with two trials per side in each comparison. |
+| Keep results traceable | H3 adapters supplied source-file snapshots, metric extraction and output checks; InferRSI organized the execution, source-check records, metric summaries and reports. |
+| Report what the evidence supports | Both comparisons remained **`INCONCLUSIVE`** without a general perceptual-quality validator. Completed H3 media/byte checks were retained alongside that limitation. |
+
+**Actual integration and results:** [trial launcher](experiments/comfyui/rtx5070-12gb/2026-10-31-speed-quality-search/tools/run_profile_v3.py), [Trim 8/6 comparison adapter](experiments/comfyui/rtx5070-12gb/2026-10-31-speed-quality-search/agents/rsi-pair/rsi_pair_v2.py) and [recorded results](experiments/comfyui/rtx5070-12gb/2026-10-31-speed-quality-search/results/Q33-READONLY-SUMMARY-v8.json); [headroom comparison adapter](experiments/comfyui/rtx5070-12gb/2026-10-31-speed-quality-search/agents/headroom-rsi-pair/headroom_rsi_pair_v1.py) and [actual-run review](experiments/comfyui/rtx5070-12gb/2026-10-31-speed-quality-search/agents/headroom-rsi-pair/ACTUAL-REVIEW-v1.json).
+
+These comparisons supported configuration decisions together with project-level quality screening: for example, we kept Trim 8 as the balanced candidate after observing artifacts in Trim 6. Candidate design and visual review remained human/agent work. **ComfyUI / PyTorch / CUDA performed inference**; H3-specific scripts measured resources and checked numerical/media outputs. The speed changes shown above come from those model and runtime configurations, not a measured speedup caused by InferRSI itself. See the [research report](experiments/comfyui/rtx5070-12gb/2026-10-31-speed-quality-search/REPORT.zh-CN.txt) for the observations and limitations.
+
+**The quick-start client is standalone and does not require installing InferRSI.** The archived research integrations show how it was used during development; they are not additional one-command launchers.
+
+中文：InferRSI 已用于调度实验、重复对照、整理指标和保留评估结论；实际推理由 ComfyUI 完成，资源与画质检查由本项目补齐。直接体验首版无需安装 InferRSI。
+
 ## What you need
 
 - A dedicated, idle **ComfyUI v0.43.0** instance with native H3 nodes; no custom nodes are needed for this preset.
@@ -94,7 +113,7 @@ The first request can be slower due to model loading and kernel initialization. 
 - `experiments/` and `archive/`: preserved development history, including failed attempts and frozen identities. These are not additional user-facing launchers and may reference external evidence that is not bundled.
 - [Adapter research notes](docs/ADAPTER-RESEARCH.md) and [source attribution](docs/provenance.md).
 
-InferRSI organizes the research comparisons and evidence. The quick-start client does not require installing InferRSI. Future benchmark results must distinguish model changes, cache conditions and complete output workloads; a working demo is not a formal quality or performance acceptance result.
+Future benchmark results must distinguish model changes, cache conditions and complete output workloads; a working demo is not a formal quality or performance acceptance result.
 
 ## License
 
