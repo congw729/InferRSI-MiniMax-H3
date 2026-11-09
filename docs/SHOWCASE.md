@@ -30,9 +30,9 @@ Full SHA256 identities are in [showcase-data.json](showcase-data.json). Turbo us
 
 > An adult sitting at a table slowly lifts a blue ceramic mug with both hands and gives a small smile. Static waist-up camera, continuous shot. Audio: a light ceramic sound as the mug leaves the table and a quiet room, no speech.
 
-[![Person lifting a mug: five configurations](assets/showcase/hands-face-mug-poster.png)](assets/showcase/hands-face-mug-comparison.mp4)
+[![Person lifting a mug: five configurations](assets/showcase/hands-face-mug-poster.png)](https://github.com/congw729/InferRSI-MiniMax-H3/raw/refs/heads/main/docs/assets/showcase/hands-face-mug-comparison.mp4)
 
-[Play / download MP4](assets/showcase/hands-face-mug-comparison.mp4)
+[Download full-size MP4](https://github.com/congw729/InferRSI-MiniMax-H3/raw/refs/heads/main/docs/assets/showcase/hands-face-mug-comparison.mp4)
 
 | Profile | Steps | Sampling node (s) | Generation request (s) | Experiment total (s) |
 | --- | ---: | ---: | ---: | ---: |
@@ -46,9 +46,9 @@ Full SHA256 identities are in [showcase-data.json](showcase-data.json). Turbo us
 
 > A single yellow tennis ball drops onto a wooden floor, bounces twice, and settles. Static camera, continuous shot. Audio: two soft impacts matching the visible bounces, with a quiet room background.
 
-[![Tennis ball configuration comparison](assets/showcase/bounce-audio-poster.png)](assets/showcase/bounce-audio-comparison.mp4)
+[![Tennis ball configuration comparison](assets/showcase/bounce-audio-poster.png)](https://github.com/congw729/InferRSI-MiniMax-H3/raw/refs/heads/main/docs/assets/showcase/bounce-audio-comparison.mp4)
 
-[Play / download MP4](assets/showcase/bounce-audio-comparison.mp4)
+[Download full-size MP4](https://github.com/congw729/InferRSI-MiniMax-H3/raw/refs/heads/main/docs/assets/showcase/bounce-audio-comparison.mp4)
 
 | Profile | Steps | Original dimensions | Generation request (s) | Experiment total (s) |
 | --- | ---: | --- | ---: | ---: |
@@ -65,9 +65,9 @@ Full SHA256 identities are in [showcase-data.json](showcase-data.json). Turbo us
 
 [Exact source text-encoding graph](../experiments/comfyui/rtx5070-12gb/2026-10-31-speed-quality-search/agents/quality-corpus/CANONICAL-STAGE-A-v1.json).
 
-[![Toy car configuration comparison](assets/showcase/toycar-poster.png)](assets/showcase/toycar-comparison.mp4)
+[![Toy car configuration comparison](assets/showcase/toycar-poster.png)](https://github.com/congw729/InferRSI-MiniMax-H3/raw/refs/heads/main/docs/assets/showcase/toycar-comparison.mp4)
 
-[Play / download MP4](assets/showcase/toycar-comparison.mp4)
+[Download full-size MP4](https://github.com/congw729/InferRSI-MiniMax-H3/raw/refs/heads/main/docs/assets/showcase/toycar-comparison.mp4)
 
 | Profile | Steps | Original dimensions | Generation request (s) | Experiment total (s) |
 | --- | ---: | --- | ---: | ---: |

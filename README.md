@@ -10,9 +10,9 @@ Experimental preview for an **existing ComfyUI installation**. The default is **
 
 **Same prompt, same seed, five model/step settings.** These are real generated outputs from our recorded local runs.
 
-[![Animated comparison: original H3 50 steps, Turbo 6 and 4 steps, and FastH3 Trim 8 and 6 steps](docs/assets/showcase/hands-face-mug-preview.webp)](docs/assets/showcase/hands-face-mug-comparison.mp4)
+[![Animated comparison: original H3 50 steps, Turbo 6 and 4 steps, and FastH3 Trim 8 and 6 steps](docs/assets/showcase/hands-face-mug-preview.webp)](https://github.com/congw729/InferRSI-MiniMax-H3/raw/refs/heads/main/docs/assets/showcase/hands-face-mug-comparison.mp4)
 
-[Watch the full-size comparison MP4](docs/assets/showcase/hands-face-mug-comparison.mp4) · [Still image](docs/assets/showcase/hands-face-mug-poster.png) · [All three examples and exact configurations](docs/SHOWCASE.md)
+[Download the full-size comparison MP4](https://github.com/congw729/InferRSI-MiniMax-H3/raw/refs/heads/main/docs/assets/showcase/hands-face-mug-comparison.mp4) · [Still image](docs/assets/showcase/hands-face-mug-poster.png) · [All three examples and exact configurations](docs/SHOWCASE.md)
 
 The comparison is **silent** and repeats each **3.04-second source clip three times**; it is not a 9-second generation. The animated preview is resized and encoded at about 12 fps for the README; open the full-size, 24 fps MP4 to inspect the outputs.
 
