@@ -1,12 +1,14 @@
-# Reproduction and boundaries
+# Historical tiny-chain reproduction (2026-10-22)
 
-The canonical evidence root is `<RECORD_ROOT>`. Current integrated iteration:
+This page records the **FastH3 synthetic vLLM-Omni chain** from 2026-10-22, not the current ComfyUI preview or the later original-H3 work. To generate a video, follow [the quick start](../README.md). For later adapter modules and the terminal-discard implementation, see [architecture](architecture.md) and [DLO lifecycle findings](dlo-lifecycle-gap.md).
+
+The environment, commands and limits below describe that historical protocol. Its canonical evidence root is `<RECORD_ROOT>` and its integrated iteration is:
 `iterations/2026-10-22-dlo-temporal-chain/`.
 Read its report, frozen plan, results and manifest before rerunning. Earlier environment setup, failed attempts and byte-only fixtures remain in their original directories.
 
 ## Environment
 
-The runtime uses a dedicated Ubuntu 24.04 WSL2 distribution, a separate Python 3.12 environment and an independent vLLM-Omni checkout. Recorded versions are torch 2.13.0+cu130, vLLM 0.32.0 and FlashInfer 0.7.0.post1. NVFP4 JIT uses a separate CUDA 13.0 compiler environment. The evidence records exact package/source identities.
+The recorded runtime used a dedicated Ubuntu 24.04 WSL2 distribution, a separate Python 3.12 environment and an independent vLLM-Omni checkout. Recorded versions are torch 2.13.0+cu130, vLLM 0.32.0 and FlashInfer 0.7.0.post1. NVFP4 JIT uses a separate CUDA 13.0 compiler environment. The evidence records exact package/source identities.
 
 The VM exposes approximately 15.3 GiB RAM and 4 GiB swap, distinct from host RAM. Installed dependencies and reviewed source/config downloads are not real model weights. All synthetic runs use offline flags.
 
@@ -32,11 +34,11 @@ The frozen integrated controller directly owns each reference or stage process a
 
 `text_streaming` keeps the actual native text model and weight loader, constructs on meta, and runs layer by layer. It excludes vision and consumes already prepared token IDs. The integrated fixture uses bounded synthetic IDs, without a tokenizer, special-token processing or meaningful prompts. The real-size embedding plus one encoder layer has separate capacity evidence; the full encoder is untested.
 
-`dlo_bridge` converts one group at a time on CPU into final runtime-layout safetensors, then emits the actual HostWeightPlan and restores defined nonpersistent PDD buffers. The native DLO backend handles two GPU slots and rank-local mmap. The cache adds disk usage and conversion work. Its manifest includes file hashes, but its current in-memory object binds to the same model identity once; reopening a cache in a fresh process is not implemented. Native DLO replaces parameter classes, so the validated scope is forward execution, not hot reloading custom loader metadata. Tiny two-block eight-step equivalence does not establish full-width DLO memory or full-model fit.
+`dlo_bridge` converts one group at a time on CPU into final runtime-layout safetensors, then emits the actual HostWeightPlan and restores defined nonpersistent PDD buffers. The native DLO backend handles two GPU slots and rank-local mmap. The cache adds disk usage and conversion work. Its manifest includes file hashes, but the recorded in-memory object binds to the same model identity once; reopening a cache in a fresh process is not implemented. Native DLO replaces parameter classes, so the validated scope is forward execution, not hot reloading custom loader metadata. Tiny two-block eight-step equivalence does not establish full-width DLO memory or full-model fit.
 
 `compact_decoder` constructs only the released compact ViT depth on meta. `temporal_decoder` hosts the original temporal/spatial overlap, blending, padding and trim methods and preserves the released FP32 pixel conversion. Tiny nonuniform fixtures compare raw tensors and pixels against the native reference. A real-shape eight-layer synthetic decoder has separate full temporal clip capacity evidence.
 
-`stage_handoff` uses bounded JSON/safetensors with digests. The current integrated chain runs actual tiny text encoding, eight native PDD updates and native temporal decoding in three fresh processes. The legal four-second request becomes 107 aligned frames; the first 72 frames represent a three-second video-only crop at 24 fps. Audio rows participate in denoising but audio decoding and synchronization are absent. Output artifacts contain synthetic tensors and hashes, without MP4 or real video.
+`stage_handoff` uses bounded JSON/safetensors with digests. The recorded integrated chain runs actual tiny text encoding, eight native PDD updates and native temporal decoding in three fresh processes. The legal four-second request becomes 107 aligned frames; the first 72 frames represent a three-second video-only crop at 24 fps. Audio rows participate in denoising but audio decoding and synchronization are absent. Output artifacts contain synthetic tensors and hashes, without MP4 or real video.
 
 The integrated DiT uses CUDNN_ATTN. Production VSA, all released layers, real weights, meaningful prompt generation, end-to-end memory, quality and service performance are unverified. Individual component memory peaks cannot be added together as full-model evidence.
 
@@ -44,6 +46,6 @@ FlashInfer and cuBLAS retain process-owned CUDA workspaces after tensor deletion
 
 Historical `byte_adapter.py` and frozen validators remain unchanged.
 
-## Status
+## Status of this historical protocol
 
-Campaign verdict: INCONCLUSIVE. No acceptance issue or independent review exists. The actual native DLO backend bridge runs; the generic planner, eager full pipeline construction and serving CLI remain unintegrated. No upstream runtime patch is applied.
+Campaign verdict: INCONCLUSIVE. This record does not establish formal quality or service-performance acceptance; later code/document reviews are separate from that acceptance. The actual native DLO backend bridge runs; the generic planner, eager full pipeline construction and serving CLI remain unintegrated. No upstream runtime patch is applied.

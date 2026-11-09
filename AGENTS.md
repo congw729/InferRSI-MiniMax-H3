@@ -1,6 +1,6 @@
 # H3 integration agent guide
 
-This local project owns H3 loading adapters and reproduction tools. InferRSI stays an external evidence controller; upstream vLLM-Omni changes belong in an isolated runtime checkout.
+This public experimental project owns the standalone ComfyUI preview client, H3 loading adapters and reproduction tools. InferRSI stays an external research/evidence controller, not a quick-start dependency; upstream vLLM-Omni changes belong in an isolated runtime checkout.
 
 - Follow the user's current authorized scope and the plan-code-test-review sequence.
 - Keep historical prototype validators unchanged. New protocols need new evidence directories.

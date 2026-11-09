@@ -60,7 +60,7 @@ These comparisons supported configuration decisions together with project-level 
 - The four model files listed in [MODELS.md](quickstart/MODELS.md), about **28.87 GiB** in total. Model licenses are separate from this project's code license. Download them from their official sources and place them in the listed ComfyUI model folders.
 - Python 3.10+ for the small client script (standard library only). ComfyUI's portable Python can also run it.
 
-This repository does not download models or install/change drivers. The experimental vLLM-Omni adapter and historical experiments are documented separately below.
+The quick-start client does not download models or install/change drivers. The experimental vLLM-Omni adapter and historical experiments are documented separately below.
 
 ## Quick start — Windows portable ComfyUI
 
@@ -104,14 +104,14 @@ The first request can be slower due to model loading and kernel initialization. 
 - **Missing node or model:** use the documented ComfyUI version and [model filenames/folders](quickstart/MODELS.md); check `doctor` before generating.
 - **Not enough memory:** close unnecessary GPU/RAM-heavy applications and retry. The client does not terminate other applications.
 - **A failed or cancelled request:** inspect the run record and ComfyUI terminal. Keep the diagnostic output; do not submit multiple jobs to the same instance while a request is still stopping.
-- **Custom model/output locations:** create a custom ComfyUI output directory before starting the server; see `--help` for the explicit path options. The client and ComfyUI must refer to the same local installation and output folders.
+- **Custom model/output locations:** configure external model folders in ComfyUI first. The client's `--model-root` only selects files for `--verify-weights`; it does not configure the server's search paths. Create a custom ComfyUI output directory before starting the server and pass the matching client path options shown by `--help`.
 
 ## Project scope
 
 - `quickstart/`: the maintained minimal ComfyUI preview.
 - `src/h3_omni_adapter/`: experimental vLLM-Omni loading/streaming adapters. The quick start does not use this backend; full vLLM-Omni serving integration is a separate research goal.
 - `experiments/` and `archive/`: preserved development history, including failed attempts and frozen identities. These are not additional user-facing launchers and may reference external evidence that is not bundled.
-- [Adapter research notes](docs/ADAPTER-RESEARCH.md) and [source attribution](docs/provenance.md).
+- [Architecture and current scope](docs/architecture.md), [adapter research notes](docs/ADAPTER-RESEARCH.md), [validation entry points](tests/README.md) and [source attribution](docs/provenance.md).
 
 Future benchmark results must distinguish model changes, cache conditions and complete output workloads; a working demo is not a formal quality or performance acceptance result.
 

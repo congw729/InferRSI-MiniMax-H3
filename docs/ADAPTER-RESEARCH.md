@@ -1,34 +1,26 @@
-> Historical adapter/backup overview, preserved from the pre-preview README. For the maintained ComfyUI user entry, see [the project README](../README.md).
+# vLLM-Omni adapter research
 
-# InferRSI-MiniMax-H3
+For video generation, use the maintained [ComfyUI quick start](../README.md). This page describes the separate experimental adapter and preserved research history; it is not another ready-to-run inference entry point.
 
-Local H3 loading experiments organized by [InferRSI](https://github.com/InferMatrixLab/InferRSI), with vLLM-Omni as the preferred runtime. This follows InferRSI's engine delivery layout. It is an experimental integration project prepared for private development backup, not an independent inference engine release.
+The project follows [InferRSI](https://github.com/InferMatrixLab/InferRSI)'s engine delivery layout. InferRSI organized research execution and evidence; upstream model classes and native weight loaders perform the adapter's model operations. The repository is now a **public experimental preview**, with real ComfyUI output examples in [the showcase](SHOWCASE.md). Public availability does not imply upstream acceptance or complete vLLM-Omni serving support.
 
-The external adapter provides strict TP1 mmap loading, native text layer streaming, a compact NVFP4 temporal video decoder, a runtime-layout cache bridge to the actual vLLM-Omni DLO backend, and serial process handoff. It uses upstream model classes and native weight loaders. InferRSI is the external experiment controller, not a runtime dependency.
+## Adapter capabilities and limits
 
-- Implementation: `src/h3_omni_adapter/`
-- [Reproduction and current boundaries](reproducibility.md)
-- [Source attribution](provenance.md)
-- [Local evidence ownership](../evidence/README.md)
-- [Upstream integration status](../patches/vllm-omni/README.md)
+The external adapter includes TP1 mmap loading, native text-layer streaming, compact temporal decoding, a runtime-layout cache bridge to the actual vLLM-Omni DLO backend, and serial process handoff. Later modules also cover original-H3 dense text/VAE loading and bounded INT8 ConvRot recovery; see [the module map](architecture.md#experimental-vllm-omni-adapter).
 
-Local frozen checks cover full meta parameter/buffer inventories, exact tiny native-loader equivalence, bounded real-shape component capacity, and an integrated tiny text → native DLO with eight PDD sampling steps → temporal decoder chain. The chain also exercises the native legal four-second request geometry and a video-only 72-frame crop at 24 fps. It produces synthetic tensors; it does not demonstrate meaningful video generation.
+The earlier FastH3 studies cover full meta parameter/buffer inventories, exact tiny native-loader equivalence, bounded real-shape component capacity, and an integrated tiny text → native DLO with eight PDD sampling steps → temporal decoder chain. That chain exercises the native legal four-second geometry and a video-only 72-frame crop at 24 fps. Its outputs are synthetic tensors, not meaningful generated video. The separate ComfyUI experiments did generate real video.
 
-Full model deployment, real video quality and service performance remain **INCONCLUSIVE**. The generic loader does not automatically select this bridge, full pipeline construction and the serving CLI remain unintegrated, and the full-width DLO lifecycle remains blocked by a CPU memory peak during shutdown. A bounded two-block synthetic run reached exact eight-step outputs before its RSS guard stopped cleanup; this is not a completed lifecycle check. No real model payload is included.
+The generic loader does not automatically select the DLO bridge; full pipeline construction and the serving CLI remain unintegrated. A historical full-width two-block run reached exact eight-step outputs before an RSS guard interrupted cleanup. An opt-in terminal-discard implementation was added later, but does not retroactively complete that failed lifecycle check. See [the dated DLO findings](dlo-lifecycle-gap.md). Full vLLM-Omni deployment, quality and service performance remain **INCONCLUSIVE**.
 
-Use a dedicated matched Linux environment; see the reproduction guide. Historical failures and frozen validators are preserved. Private source backup does not constitute an upstream contribution, a public release, or an acceptance verdict.
+## Research and record locations
 
-Original code is experimental local work. Upstream source snapshots retain their notices; this repository grants no model-weight license.
+- [Historical tiny-chain reproduction](reproducibility.md): dedicated Linux environment and external prerequisites; not a ComfyUI setup guide.
+- [Source attribution](provenance.md) and [evidence ownership](../evidence/README.md).
+- [Upstream integration status](../patches/vllm-omni/README.md).
+- [Archived ComfyUI experiments](../experiments/comfyui/rtx5070-12gb/2026-10-31-speed-quality-search/): actual-video controllers, measurements, failed attempts and frozen identities. These results do not establish vLLM-Omni performance.
+- [Historical progress ownership](PROGRESS-AND-REPRODUCTION.zh-CN.txt): the canonical local dashboard and notes remain in vllm-omni-draft; the dashboard was not migrated.
+- [2026-11-01 backup manifest](backup-manifest-2026-11-01.json): a historical export inventory, not a manifest of today's repository. Two excluded local-path tools have labelled copies under `archive/legacy-tools-redacted/`.
 
-由 [InferRSI](https://github.com/InferMatrixLab/InferRSI) 生成。
+The measured host is an RTX 5070 12GB with 32GB RAM; hardware and software identities belong to each experiment. Selected generated comparison media are now included under `docs/assets/showcase/`. Weights, environments, original raw run collections and large logs remain external. Historical failures, frozen validators and source identities are preserved.
 
-## Development backup and experiment progress
-
-Primary measured host: **RTX 5070 12GB, 32GB RAM**. Hardware is recorded per experiment rather than in the repository name.
-
-- `src/h3_omni_adapter/`: experimental vLLM-Omni integration; the limitations above apply to this path.
-- `experiments/comfyui/rtx5070-12gb/2026-10-31-speed-quality-search/`: archived actual-video ComfyUI experiments, including historical controller versions and frozen identities. These results do not establish vLLM-Omni service performance.
-- [Progress, comparison results and reproduction boundaries](PROGRESS-AND-REPRODUCTION.zh-CN.txt): the canonical dashboard and notes remain in vllm-omni-draft; no dashboard migration.
-- [Backup identities and exclusions](backup-manifest-2026-11-01.json): source/export hashes and privacy copies. Two historical local-path tools remain excluded; their labelled redacted copies are under `archive/legacy-tools-redacted/`.
-
-Model weights, generated videos, environments and raw large logs are not stored in Git. Original local evidence is retained. This backup makes no new license grant for third-party code or model weights.
+Original project code is experimental work under the repository's code license. External source/model terms remain separate; see [third-party notices](../THIRD_PARTY_NOTICES.md).

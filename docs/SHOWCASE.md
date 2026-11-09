@@ -1,6 +1,6 @@
 # Recorded video comparisons
 
-These are historical local experiments from 2026-10-31, republished on 2026-11-09. The existing comparison videos were reused; no model was rerun for this page. The maintained launcher currently exposes the Trim 8-step preset only. The other rows illustrate research configurations, not extra quick-start options.
+These are historical local experiments from 2026-10-31, republished on 2026-11-09. The existing comparison videos were reused; no model was rerun for this page. The only maintained, bundled quick-start preset is Trim 8-step. The other rows illustrate research configurations, not additional supported quick-start presets.
 
 ## Reading the timings
 
