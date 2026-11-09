@@ -33,3 +33,11 @@ venvs/
 # User-generated quick-start artifacts.
 /outputs/
 /quickstart/outputs/
+
+# Explicitly reviewed README demonstration media only.
+!/docs/assets/showcase/toycar-comparison.mp4
+!/docs/assets/showcase/toycar-poster.png
+!/docs/assets/showcase/bounce-audio-comparison.mp4
+!/docs/assets/showcase/bounce-audio-poster.png
+!/docs/assets/showcase/hands-face-mug-comparison.mp4
+!/docs/assets/showcase/hands-face-mug-poster.png

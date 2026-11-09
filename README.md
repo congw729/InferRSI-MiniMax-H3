@@ -6,6 +6,34 @@ Experimental preview for an **existing ComfyUI installation**. The default is **
 
 中文：这是面向 RTX 5070 的 H3 运行与实验工具。首版只提供一个配置：连接已有 ComfyUI，输入提示词，生成约 3 秒视频并保存耗时。请先看下面的准备与运行步骤。
 
+## See the output — RTX 5070 12GB
+
+**Same prompt, same seed, five model/step settings.** These are real generated outputs from our recorded local runs.
+
+[![Animated comparison: original H3 50 steps, Turbo 6 and 4 steps, and FastH3 Trim 8 and 6 steps](docs/assets/showcase/hands-face-mug-preview.webp)](docs/assets/showcase/hands-face-mug-comparison.mp4)
+
+[Watch the full-size comparison MP4](docs/assets/showcase/hands-face-mug-comparison.mp4) · [Still image](docs/assets/showcase/hands-face-mug-poster.png) · [All three examples and exact configurations](docs/SHOWCASE.md)
+
+The comparison is **silent** and repeats each **3.04-second source clip three times**; it is not a 9-second generation. The animated preview is resized and encoded at about 12 fps for the README; open the full-size, 24 fps MP4 to inspect the outputs.
+
+| Model / adaptation | Steps | Sampler | Generation request (s) | Experiment total (s) |
+| --- | ---: | --- | ---: | ---: |
+| Original H3 INT8 ConvRot | 50 | `euler` | 235.497 | 269.434 |
+| Original H3 + Turbo v4 EMA | 6 | `euler` | 37.749 | 71.174 |
+| Original H3 + Turbo v4 EMA | 4 | `euler` | 26.886 | 60.315 |
+| FastH3 Trim NVFP4 (default) | 8 | `res_multistep` | 9.702 | 27.965 |
+| Same Trim 8-step checkpoint | 6 | `res_multistep` | 8.283 | 26.825 |
+
+**Test conditions:** Windows, RTX 5070 12GB / 32GB RAM, ComfyUI v0.43.0; seed `424242`, 384 × 256, 73 frames at 24 fps. Each row is one historical run with a fresh service and **reused, precomputed text conditioning**. Weight verification pre-read model files; these are not cold-file-cache measurements.
+
+**Timing:** generation request = ComfyUI graph execution through sampling, audio/video decode and saving. Experiment total additionally includes asset checks, service startup and cleanup. **Both exclude the separate text-encoding request; do not add the columns.** Historical runs used synchronous offload; the current quick-start launch flags differ. These are observed configuration tradeoffs, not a fixed speed promise or proof of equal quality. Full quality/performance acceptance remains `INCONCLUSIVE`.
+
+Original = unpruned H3 FL2VA with INT8 ConvRot weights. Turbo adds **v4 step600 EMA LoRA**, strength 1.0. Trim uses the **FastH3 Trim 8-step NVFP4 checkpoint**, a pruned/distilled model; the 6-step row changes its sampling steps. All five use the original INT8 video VAE. [Pinned model revisions, hashes, prompt and stage timings](docs/SHOWCASE.md).
+
+中文：上图为同一提示词的真实成片对比；耗时复用了已编码文本条件，不包含完整首次文生视频流程。原版、Turbo 和 Trim 的模型与画质存在差异。
+
+**More examples:** [Tennis ball — 6 configurations](docs/SHOWCASE.md#tennis-ball) · [Toy car — 11 configurations](docs/SHOWCASE.md#toy-car) · [Try the default Trim 8-step preset](#quick-start--windows-portable-comfyui)
+
 ## What you need
 
 - A dedicated, idle **ComfyUI v0.43.0** instance with native H3 nodes; no custom nodes are needed for this preset.

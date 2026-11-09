@@ -2,7 +2,7 @@
 
 The project-authored client, adapters, configuration, documentation and experiment tools are licensed under [Apache License 2.0](LICENSE), unless a file carries a different notice. This grant covers this project's contributions; it does not relicense any external engine, model, weight export, dependency or separately obtained source bundle.
 
-The preview connects to a separately installed ComfyUI server. It does not bundle ComfyUI, vLLM-Omni, InferRSI, model implementations, weights, Python environments or generated videos. Model files remain user-supplied and subject to their own terms.
+The preview connects to a separately installed ComfyUI server. It does not bundle ComfyUI, vLLM-Omni, InferRSI, model implementations, weights or Python environments. Model files remain user-supplied and subject to their own terms. Selected AI-generated comparison previews are included under `docs/assets/showcase/`; their source models and transformations are documented in [the showcase](docs/SHOWCASE.md). The project code license does not override applicable model/output terms.
 
 ## Software sources
 

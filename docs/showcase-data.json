@@ -1,0 +1,5428 @@
+{
+  "schema": "h3-readme-showcase/v1",
+  "prepared_date": "2026-11-09",
+  "experiment_date": "2026-10-31",
+  "claim": "INCONCLUSIVE",
+  "purpose": "Historical output/configuration comparison, not a new benchmark or a same-quality speedup claim",
+  "hardware": {
+    "gpu": "NVIDIA GeForce RTX 5070 12GB",
+    "system_ram": "32GB",
+    "os": "Windows"
+  },
+  "runtime": {
+    "repository": "Comfy-Org/ComfyUI",
+    "release": "v0.43.0",
+    "revision": "426f5eea52a7ece1dd599fff4cb6cd1f352ddd24",
+    "release_url": "https://github.com/Comfy-Org/ComfyUI/releases/tag/v0.43.0",
+    "observed_python": "3.13.14",
+    "observed_torch": "2.14.1+cu130",
+    "observed_comfy_kitchen": "0.2.40",
+    "observed_comfy_aimdo": "0.6.0",
+    "note": "These are the historical measured Windows NVIDIA portable environment identities, not a guarantee for arbitrary updated installations."
+  },
+  "timing_scope": "native history graph wall and receiver-observed node wall; controller separately includes startup/checks; no GPU-compute or service-performance claim",
+  "hero_test_conditions": {
+    "case": "hands-face-mug",
+    "same_conditioning_sha256": "ea6cb031df1988576ee7eb4cc9d8d4c38a393e025f92de57d4aae8227858e2dc",
+    "single_observation_per_row": true,
+    "service_lifecycle": "Separate newly started service for each row",
+    "conditioning": "Precomputed text embeddings reused; text encoding excluded from both table columns",
+    "file_cache": "Asset SHA checks read model files before inference; cold filesystem cache is not established",
+    "offload": "Synchronous; async offload, smart memory and pinned memory disabled",
+    "comfy_cache": "--cache-none",
+    "vram_headroom_gib": 1.0,
+    "reserve_vram_gib": 3.0,
+    "current_quickstart_difference": "Historical comparisons explicitly disable async offload; the maintained quickstart does not use that flag. These rows are not its measured latency."
+  },
+  "prompts": {
+    "bounce-audio": {
+      "text": "A single yellow tennis ball drops onto a wooden floor, bounces twice, and settles. Static camera, continuous shot. Audio: two soft impacts matching the visible bounces, with a quiet room background.",
+      "sha256": "ab2edbd2e3a796a8f0507aa8cefc0f7d76c412b1e889a9d6536b44536cd78869"
+    },
+    "hands-face-mug": {
+      "text": "An adult sitting at a table slowly lifts a blue ceramic mug with both hands and gives a small smile. Static waist-up camera, continuous shot. Audio: a light ceramic sound as the mug leaves the table and a quiet room, no speech.",
+      "sha256": "5f19fe4a542a411bf2313a2a9f8cd051c2b727c8666d5df628c461a025eb7b58"
+    },
+    "toycar": {
+      "text": "A small red toy car drives slowly from left to right across a wooden table. Static camera, continuous motion. Audio: a quiet motor hum.",
+      "sha256": "d90e6394dbd526fc676f073f8982c3f879d0cf8e841879e75f87da4580f6ed30"
+    }
+  },
+  "models": [
+    {
+      "id": "trim-dit",
+      "filename": "fastvideo_fasth3_trim_8step_nvfp4.safetensors",
+      "source_repo": "FastVideo/FastVideo-FastH3-Trim-Comfy",
+      "revision": "f66c13dc17391dd4da99242a407918b92bf7d5fc",
+      "sha256": "748b2bcc9c4b7bf7b23406987b42d4ac40362070c164cf11092482be6a863455"
+    },
+    {
+      "id": "text-encoder",
+      "filename": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+      "source_repo": "Comfy-Org/MiniMax-H3",
+      "revision": "e5eb578a89295337b8ff433a035929ce0279e0b6",
+      "sha256": "35a88d51044231fe332301d7a62aa81e3f2cba62febeb446e2c1e3e0ef76f2c6"
+    },
+    {
+      "id": "video-vae",
+      "filename": "minimax_h3_video_vae_int8_convrot.safetensors",
+      "source_repo": "Comfy-Org/MiniMax-H3",
+      "revision": "e5eb578a89295337b8ff433a035929ce0279e0b6",
+      "sha256": "52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e"
+    },
+    {
+      "id": "audio-vae",
+      "filename": "minimax_h3_audio_vae_fp32.safetensors",
+      "source_repo": "Comfy-Org/MiniMax-H3",
+      "revision": "e5eb578a89295337b8ff433a035929ce0279e0b6",
+      "sha256": "8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48"
+    },
+    {
+      "id": "original-dit",
+      "filename": "minimax_h3_fl2va_int8_convrot.safetensors",
+      "source_repo": "Comfy-Org/MiniMax-H3",
+      "revision": "e5eb578a89295337b8ff433a035929ce0279e0b6",
+      "sha256": "7ad4c73e6e378b822ffd1629f27f632d3787d95f5e468e3af958f98c58df96a5"
+    },
+    {
+      "id": "turbo-lora",
+      "filename": "minimax_h3_turbo_v4_step600_ema.safetensors",
+      "source_repo": "larryvrh/MiniMax-H3-Turbo-Lora",
+      "revision": "7b7ac96b0616100db75ea285090210c3ddf37c04",
+      "sha256": "5f3a626cd72c93a8b9318d6760c510bc5092d2ab13aaba1f932c5bab07a416d3"
+    }
+  ],
+  "media_render": {
+    "comparison_mp4": "CPU encoded, synchronized by source frame index, silent, three loops of 73 original frames, 219 frames at 24 fps = 9.125s; no motion interpolation",
+    "original_clip": "73 frames at 24 fps = about 3.04s, original clips contain audio",
+    "source_dimensions": "384x256 except toycar trim-8-576x384; that tile is resized only for the comparison",
+    "poster_caption_note": "The generic 576x384 downscale footer applies only to that toycar tile, not the mug or ball groups"
+  },
+  "source_manifest_sha256": "1ddc3a87cdbc4669adbe6506fd0031578f814cc612b857bf5b3898a12a45fd1a",
+  "public_summary_path": "../experiments/comfyui/rtx5070-12gb/2026-10-31-speed-quality-search/results/Q33-READONLY-SUMMARY-v8.json",
+  "public_summary_sha256": "86a6559f3ae95ba438c1921e2bbca2f6477f415611c7bacf3754e13ff7c3a1f9",
+  "media": [
+    {
+      "file": "toycar-comparison.mp4",
+      "bytes": 7705814,
+      "sha256": "a730ca2805aa3e167ed46d922b4ac4956f49ba3381dce9d78801ddc7c66e5a2d",
+      "origin": "Previously approved local comparison; copied without alteration"
+    },
+    {
+      "file": "toycar-poster.png",
+      "bytes": 1049137,
+      "sha256": "e4d39eba1b069cfce6ba3b376d9e58d20db1d4c3f3663ce0ce6f7d1e0b99b443",
+      "origin": "Previously approved local comparison; copied without alteration"
+    },
+    {
+      "file": "bounce-audio-comparison.mp4",
+      "bytes": 3446211,
+      "sha256": "dade5ac0c7d7418c00c9c9caed9ca997bad725c031579ad618aae7a36e4ebece",
+      "origin": "Previously approved local comparison; copied without alteration"
+    },
+    {
+      "file": "bounce-audio-poster.png",
+      "bytes": 546439,
+      "sha256": "c273f78fbf6a107cfcaa3ced50a194d4f62d88e22412e69a64bedd26dfb002a5",
+      "origin": "Previously approved local comparison; copied without alteration"
+    },
+    {
+      "file": "hands-face-mug-comparison.mp4",
+      "bytes": 3174557,
+      "sha256": "f108856b270ff78be74be594422fabad14bef0b8d184a8beb70edd009ced3022",
+      "origin": "Previously approved local comparison; copied without alteration"
+    },
+    {
+      "file": "hands-face-mug-poster.png",
+      "bytes": 650675,
+      "sha256": "2ce398b69437025ae707067ac2711e929d9a3403f8cde66a2bd5fb708f81f6bd",
+      "origin": "Previously approved local comparison; copied without alteration"
+    },
+    {
+      "file": "hands-face-mug-preview.webp",
+      "bytes": 5446224,
+      "sha256": "de2f6f3d0d4c94a48ad39b0dad2b2b1b6bd0097d1b2d47d77fcde71f075c7a09",
+      "origin": "Derived from hands-face-mug-comparison.mp4",
+      "format": "animated WebP",
+      "width": 960,
+      "height": 756,
+      "frames": 110,
+      "duration_seconds": 9.125,
+      "source_frame_indices": "0,2,...,218; no interpolation or crop",
+      "settings": "quality85 method4, about12fps, infinite playback loop",
+      "exif_xmp_icc_comment_present": false
+    }
+  ],
+  "records": [
+    {
+      "case": "toycar",
+      "profile": "original-50",
+      "run_name": "q33-original-50-d6e6601a49af43809338b7ffa1512f83",
+      "seed": 424242,
+      "steps": 50,
+      "source_geometry": {
+        "width": 384,
+        "height": 256,
+        "frames": 73
+      },
+      "fps": 24,
+      "frames": 73,
+      "native_generation_seconds": 235.875,
+      "controller_seconds": 269.6205813001143,
+      "source_bytes": 282108,
+      "source_sha256": "36e39808ea63b6571e51298aa50a77969c544cd500adc749943a73a48ea7d03a",
+      "actual_graph_settings": {
+        "6": {
+          "class_type": "UNETLoader",
+          "inputs": {
+            "unet_name": "minimax_h3_fl2va_int8_convrot.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+          }
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+          }
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "inputs": {
+            "model": [
+              "6",
+              0
+            ],
+            "shift_video": 12.0,
+            "shift_audio": 3.0
+          }
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "inputs": {
+            "noise_seed": 424242
+          }
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "inputs": {
+            "sampler_name": "euler"
+          }
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "inputs": {
+            "model": [
+              "148",
+              0
+            ],
+            "scheduler": "simple",
+            "steps": 50,
+            "denoise": 1.0
+          }
+        }
+      },
+      "asset_identities": [
+        {
+          "id": "original-dit",
+          "bytes": 34038892334,
+          "sha256": "7ad4c73e6e378b822ffd1629f27f632d3787d95f5e468e3af958f98c58df96a5"
+        },
+        {
+          "id": "video-vae",
+          "bytes": 2811065184,
+          "sha256": "52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e"
+        },
+        {
+          "id": "audio-vae",
+          "bytes": 605254808,
+          "sha256": "8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48"
+        }
+      ],
+      "timing_nodes": {
+        "6": {
+          "class_type": "UNETLoader",
+          "observed_wall_seconds": 0.1339097,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.2296969,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.0588046,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "observed_wall_seconds": 0.0044013,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "observed_wall_seconds": 0.0002536,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "observed_wall_seconds": 0.0004233,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "observed_wall_seconds": 0.0016783,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "16": {
+          "class_type": "BasicGuider",
+          "observed_wall_seconds": 0.0003659,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "14": {
+          "class_type": "SamplerCustomAdvanced",
+          "observed_wall_seconds": 233.1125823,
+          "cached": false,
+          "progress_value": 50,
+          "progress_max": 50,
+          "last_state": "finished"
+        },
+        "10": {
+          "class_type": "VAEDecode",
+          "observed_wall_seconds": 1.4418565,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "23": {
+          "class_type": "VAEDecodeAudio",
+          "observed_wall_seconds": 0.5413206,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "91": {
+          "class_type": "CreateVideo",
+          "observed_wall_seconds": 0.0008909,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "92": {
+          "class_type": "SaveVideo",
+          "observed_wall_seconds": 0.3331144,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1001": {
+          "class_type": "ConditioningLoader",
+          "observed_wall_seconds": 0.0007254,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1002": {
+          "class_type": "EmptyMiniMaxH3LatentAV",
+          "observed_wall_seconds": 0.0048414,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        }
+      }
+    },
+    {
+      "case": "toycar",
+      "profile": "original-30",
+      "run_name": "q33-original-30-d74a0a6af04b4802a563b9d400e5f262",
+      "seed": 424242,
+      "steps": 30,
+      "source_geometry": {
+        "width": 384,
+        "height": 256,
+        "frames": 73
+      },
+      "fps": 24,
+      "frames": 73,
+      "native_generation_seconds": 141.823,
+      "controller_seconds": 175.3082485999912,
+      "source_bytes": 212032,
+      "source_sha256": "8ec4b1e366ff41b053c17d5ec736b26d52023c1b055e544b1d242db5dc4d82b4",
+      "actual_graph_settings": {
+        "6": {
+          "class_type": "UNETLoader",
+          "inputs": {
+            "unet_name": "minimax_h3_fl2va_int8_convrot.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+          }
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+          }
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "inputs": {
+            "model": [
+              "6",
+              0
+            ],
+            "shift_video": 12.0,
+            "shift_audio": 3.0
+          }
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "inputs": {
+            "noise_seed": 424242
+          }
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "inputs": {
+            "sampler_name": "euler"
+          }
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "inputs": {
+            "model": [
+              "148",
+              0
+            ],
+            "scheduler": "simple",
+            "steps": 30,
+            "denoise": 1.0
+          }
+        }
+      },
+      "asset_identities": [
+        {
+          "id": "original-dit",
+          "bytes": 34038892334,
+          "sha256": "7ad4c73e6e378b822ffd1629f27f632d3787d95f5e468e3af958f98c58df96a5"
+        },
+        {
+          "id": "video-vae",
+          "bytes": 2811065184,
+          "sha256": "52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e"
+        },
+        {
+          "id": "audio-vae",
+          "bytes": 605254808,
+          "sha256": "8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48"
+        }
+      ],
+      "timing_nodes": {
+        "6": {
+          "class_type": "UNETLoader",
+          "observed_wall_seconds": 0.1272655,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.2367451,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.0612542,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "observed_wall_seconds": 0.0040747,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "observed_wall_seconds": 0.0015981,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "observed_wall_seconds": 0.0003387,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "observed_wall_seconds": 0.0016396,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "16": {
+          "class_type": "BasicGuider",
+          "observed_wall_seconds": 0.0004888,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "14": {
+          "class_type": "SamplerCustomAdvanced",
+          "observed_wall_seconds": 138.9193479,
+          "cached": false,
+          "progress_value": 30,
+          "progress_max": 30,
+          "last_state": "finished"
+        },
+        "10": {
+          "class_type": "VAEDecode",
+          "observed_wall_seconds": 1.435139,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "23": {
+          "class_type": "VAEDecodeAudio",
+          "observed_wall_seconds": 0.5793972,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "91": {
+          "class_type": "CreateVideo",
+          "observed_wall_seconds": 0.0006413,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "92": {
+          "class_type": "SaveVideo",
+          "observed_wall_seconds": 0.4399059,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1001": {
+          "class_type": "ConditioningLoader",
+          "observed_wall_seconds": 0.0008362,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1002": {
+          "class_type": "EmptyMiniMaxH3LatentAV",
+          "observed_wall_seconds": 0.0042486,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        }
+      }
+    },
+    {
+      "case": "toycar",
+      "profile": "original-20",
+      "run_name": "q33-original-20-c8bd9a8c1f724175aec276f7c0afd119",
+      "seed": 424242,
+      "steps": 20,
+      "source_geometry": {
+        "width": 384,
+        "height": 256,
+        "frames": 73
+      },
+      "fps": 24,
+      "frames": 73,
+      "native_generation_seconds": 95.507,
+      "controller_seconds": 128.81562150001992,
+      "source_bytes": 211782,
+      "source_sha256": "20b6eb9d4a73496182a1dbe10c0982764e35785482eebfa2012376836d5ca3b8",
+      "actual_graph_settings": {
+        "6": {
+          "class_type": "UNETLoader",
+          "inputs": {
+            "unet_name": "minimax_h3_fl2va_int8_convrot.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+          }
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+          }
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "inputs": {
+            "model": [
+              "6",
+              0
+            ],
+            "shift_video": 12.0,
+            "shift_audio": 3.0
+          }
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "inputs": {
+            "noise_seed": 424242
+          }
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "inputs": {
+            "sampler_name": "euler"
+          }
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "inputs": {
+            "model": [
+              "148",
+              0
+            ],
+            "scheduler": "simple",
+            "steps": 20,
+            "denoise": 1.0
+          }
+        }
+      },
+      "asset_identities": [
+        {
+          "id": "original-dit",
+          "bytes": 34038892334,
+          "sha256": "7ad4c73e6e378b822ffd1629f27f632d3787d95f5e468e3af958f98c58df96a5"
+        },
+        {
+          "id": "video-vae",
+          "bytes": 2811065184,
+          "sha256": "52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e"
+        },
+        {
+          "id": "audio-vae",
+          "bytes": 605254808,
+          "sha256": "8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48"
+        }
+      ],
+      "timing_nodes": {
+        "6": {
+          "class_type": "UNETLoader",
+          "observed_wall_seconds": 0.1292846,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.2328394,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.0611385,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "observed_wall_seconds": 0.0039785,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "observed_wall_seconds": 0.001557,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "observed_wall_seconds": 0.0002633,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "observed_wall_seconds": 0.0022121,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "16": {
+          "class_type": "BasicGuider",
+          "observed_wall_seconds": 0.0003864,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "14": {
+          "class_type": "SamplerCustomAdvanced",
+          "observed_wall_seconds": 92.7245088,
+          "cached": false,
+          "progress_value": 20,
+          "progress_max": 20,
+          "last_state": "finished"
+        },
+        "10": {
+          "class_type": "VAEDecode",
+          "observed_wall_seconds": 1.466532,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "23": {
+          "class_type": "VAEDecodeAudio",
+          "observed_wall_seconds": 0.5727731,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "91": {
+          "class_type": "CreateVideo",
+          "observed_wall_seconds": 0.0011472,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "92": {
+          "class_type": "SaveVideo",
+          "observed_wall_seconds": 0.293678,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1001": {
+          "class_type": "ConditioningLoader",
+          "observed_wall_seconds": 0.0004241,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1002": {
+          "class_type": "EmptyMiniMaxH3LatentAV",
+          "observed_wall_seconds": 0.0068641,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        }
+      }
+    },
+    {
+      "case": "toycar",
+      "profile": "turbo-native-8",
+      "run_name": "q33-turbo-native-8-df0eb5493f9a4d9c9c004adcba3e8575",
+      "seed": 424242,
+      "steps": 8,
+      "source_geometry": {
+        "width": 384,
+        "height": 256,
+        "frames": 73
+      },
+      "fps": 24,
+      "frames": 73,
+      "native_generation_seconds": 49.031,
+      "controller_seconds": 82.55604860000312,
+      "source_bytes": 258462,
+      "source_sha256": "36d075157f9e267513bbc299841765d284c47491e38aa1e9511ba94d8c513708",
+      "actual_graph_settings": {
+        "6": {
+          "class_type": "UNETLoader",
+          "inputs": {
+            "unet_name": "minimax_h3_fl2va_int8_convrot.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+          }
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+          }
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "inputs": {
+            "model": [
+              "1100",
+              0
+            ],
+            "shift_video": 12.0,
+            "shift_audio": 3.0
+          }
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "inputs": {
+            "noise_seed": 424242
+          }
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "inputs": {
+            "sampler_name": "euler"
+          }
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "inputs": {
+            "model": [
+              "148",
+              0
+            ],
+            "scheduler": "simple",
+            "steps": 8,
+            "denoise": 1.0
+          }
+        },
+        "1100": {
+          "class_type": "LoraLoaderModelOnly",
+          "inputs": {
+            "model": [
+              "6",
+              0
+            ],
+            "lora_name": "minimax_h3_turbo_v4_step600_ema.safetensors",
+            "strength_model": 1.0
+          }
+        }
+      },
+      "asset_identities": [
+        {
+          "id": "original-dit",
+          "bytes": 34038892334,
+          "sha256": "7ad4c73e6e378b822ffd1629f27f632d3787d95f5e468e3af958f98c58df96a5"
+        },
+        {
+          "id": "video-vae",
+          "bytes": 2811065184,
+          "sha256": "52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e"
+        },
+        {
+          "id": "audio-vae",
+          "bytes": 605254808,
+          "sha256": "8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48"
+        },
+        {
+          "id": "turbo-v4-step600-ema",
+          "bytes": 779849816,
+          "sha256": "5f3a626cd72c93a8b9318d6760c510bc5092d2ab13aaba1f932c5bab07a416d3"
+        }
+      ],
+      "timing_nodes": {
+        "6": {
+          "class_type": "UNETLoader",
+          "observed_wall_seconds": 0.1280021,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.2256882,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.0590708,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "observed_wall_seconds": 0.0004069,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "observed_wall_seconds": 0.0018779,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "observed_wall_seconds": 0.0001498,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "observed_wall_seconds": 0.0015344,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "16": {
+          "class_type": "BasicGuider",
+          "observed_wall_seconds": 0.0003693,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "14": {
+          "class_type": "SamplerCustomAdvanced",
+          "observed_wall_seconds": 46.3203899,
+          "cached": false,
+          "progress_value": 8,
+          "progress_max": 8,
+          "last_state": "finished"
+        },
+        "10": {
+          "class_type": "VAEDecode",
+          "observed_wall_seconds": 1.4202239,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "23": {
+          "class_type": "VAEDecodeAudio",
+          "observed_wall_seconds": 0.5248881,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "91": {
+          "class_type": "CreateVideo",
+          "observed_wall_seconds": 0.0008649,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "92": {
+          "class_type": "SaveVideo",
+          "observed_wall_seconds": 0.3101193,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1001": {
+          "class_type": "ConditioningLoader",
+          "observed_wall_seconds": 0.00067,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1002": {
+          "class_type": "EmptyMiniMaxH3LatentAV",
+          "observed_wall_seconds": 0.0048044,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1100": {
+          "class_type": "LoraLoaderModelOnly",
+          "observed_wall_seconds": 0.0211238,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        }
+      }
+    },
+    {
+      "case": "toycar",
+      "profile": "turbo-native-6",
+      "run_name": "q33-turbo-native-6-bad9ddbae1944c888a727cd7b6fa6df7",
+      "seed": 424242,
+      "steps": 6,
+      "source_geometry": {
+        "width": 384,
+        "height": 256,
+        "frames": 73
+      },
+      "fps": 24,
+      "frames": 73,
+      "native_generation_seconds": 37.737,
+      "controller_seconds": 70.88226739992388,
+      "source_bytes": 251499,
+      "source_sha256": "24cbe003f2c14ecd9f14fb66fca0bbef5852395359a93328a0ae07173f24084b",
+      "actual_graph_settings": {
+        "6": {
+          "class_type": "UNETLoader",
+          "inputs": {
+            "unet_name": "minimax_h3_fl2va_int8_convrot.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+          }
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+          }
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "inputs": {
+            "model": [
+              "1100",
+              0
+            ],
+            "shift_video": 12.0,
+            "shift_audio": 3.0
+          }
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "inputs": {
+            "noise_seed": 424242
+          }
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "inputs": {
+            "sampler_name": "euler"
+          }
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "inputs": {
+            "model": [
+              "148",
+              0
+            ],
+            "scheduler": "simple",
+            "steps": 6,
+            "denoise": 1.0
+          }
+        },
+        "1100": {
+          "class_type": "LoraLoaderModelOnly",
+          "inputs": {
+            "model": [
+              "6",
+              0
+            ],
+            "lora_name": "minimax_h3_turbo_v4_step600_ema.safetensors",
+            "strength_model": 1.0
+          }
+        }
+      },
+      "asset_identities": [
+        {
+          "id": "original-dit",
+          "bytes": 34038892334,
+          "sha256": "7ad4c73e6e378b822ffd1629f27f632d3787d95f5e468e3af958f98c58df96a5"
+        },
+        {
+          "id": "video-vae",
+          "bytes": 2811065184,
+          "sha256": "52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e"
+        },
+        {
+          "id": "audio-vae",
+          "bytes": 605254808,
+          "sha256": "8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48"
+        },
+        {
+          "id": "turbo-v4-step600-ema",
+          "bytes": 779849816,
+          "sha256": "5f3a626cd72c93a8b9318d6760c510bc5092d2ab13aaba1f932c5bab07a416d3"
+        }
+      ],
+      "timing_nodes": {
+        "6": {
+          "class_type": "UNETLoader",
+          "observed_wall_seconds": 0.1255548,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.2291726,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.0564286,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "observed_wall_seconds": 5.67e-05,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "observed_wall_seconds": 0.0017907,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "observed_wall_seconds": 0.0004064,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "observed_wall_seconds": 0.0017834,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "16": {
+          "class_type": "BasicGuider",
+          "observed_wall_seconds": 0.0006729,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "14": {
+          "class_type": "SamplerCustomAdvanced",
+          "observed_wall_seconds": 35.0405105,
+          "cached": false,
+          "progress_value": 6,
+          "progress_max": 6,
+          "last_state": "finished"
+        },
+        "10": {
+          "class_type": "VAEDecode",
+          "observed_wall_seconds": 1.4032743,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "23": {
+          "class_type": "VAEDecodeAudio",
+          "observed_wall_seconds": 0.5191748,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "91": {
+          "class_type": "CreateVideo",
+          "observed_wall_seconds": 0.0006571,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "92": {
+          "class_type": "SaveVideo",
+          "observed_wall_seconds": 0.3204454,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1001": {
+          "class_type": "ConditioningLoader",
+          "observed_wall_seconds": 0.000622,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1002": {
+          "class_type": "EmptyMiniMaxH3LatentAV",
+          "observed_wall_seconds": 0.0042776,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1100": {
+          "class_type": "LoraLoaderModelOnly",
+          "observed_wall_seconds": 0.0221201,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        }
+      }
+    },
+    {
+      "case": "toycar",
+      "profile": "turbo-hybrid-6",
+      "run_name": "q33-turbo-hybrid-6-646386e61498424d9d27ab36eed25c6e",
+      "seed": 424242,
+      "steps": 6,
+      "source_geometry": {
+        "width": 384,
+        "height": 256,
+        "frames": 73
+      },
+      "fps": 24,
+      "frames": 73,
+      "native_generation_seconds": 35.45,
+      "controller_seconds": 69.3700622000033,
+      "source_bytes": 343399,
+      "source_sha256": "79e24661612f5bfbac208089e52ad53dc9041d17147414a68b49467b925fec17",
+      "actual_graph_settings": {
+        "6": {
+          "class_type": "UNETLoader",
+          "inputs": {
+            "unet_name": "minimax_h3_fl2va_int8_convrot.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+          }
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+          }
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "inputs": {
+            "model": [
+              "1100",
+              0
+            ],
+            "shift_video": 12.0,
+            "shift_audio": 3.0
+          }
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "inputs": {
+            "noise_seed": 424242
+          }
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "inputs": {
+            "sampler_name": "euler"
+          }
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "inputs": {
+            "model": [
+              "148",
+              0
+            ],
+            "scheduler": "simple",
+            "steps": 6,
+            "denoise": 1.0
+          }
+        }
+      },
+      "asset_identities": [
+        {
+          "id": "original-dit",
+          "bytes": 34038892334,
+          "sha256": "7ad4c73e6e378b822ffd1629f27f632d3787d95f5e468e3af958f98c58df96a5"
+        },
+        {
+          "id": "video-vae",
+          "bytes": 2811065184,
+          "sha256": "52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e"
+        },
+        {
+          "id": "audio-vae",
+          "bytes": 605254808,
+          "sha256": "8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48"
+        },
+        {
+          "id": "turbo-v4-step600-ema",
+          "bytes": 779849816,
+          "sha256": "5f3a626cd72c93a8b9318d6760c510bc5092d2ab13aaba1f932c5bab07a416d3"
+        }
+      ],
+      "timing_nodes": {
+        "6": {
+          "class_type": "UNETLoader",
+          "observed_wall_seconds": 0.1233424,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.228996,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.0587385,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "observed_wall_seconds": 0.0003074,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "observed_wall_seconds": 0.0003025,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "observed_wall_seconds": 0.0001169,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "observed_wall_seconds": 0.0022043,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "16": {
+          "class_type": "BasicGuider",
+          "observed_wall_seconds": 0.0002359,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "14": {
+          "class_type": "SamplerCustomAdvanced",
+          "observed_wall_seconds": 32.7156327,
+          "cached": false,
+          "progress_value": 6,
+          "progress_max": 6,
+          "last_state": "finished"
+        },
+        "10": {
+          "class_type": "VAEDecode",
+          "observed_wall_seconds": 1.430236,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "23": {
+          "class_type": "VAEDecodeAudio",
+          "observed_wall_seconds": 0.5238035,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "91": {
+          "class_type": "CreateVideo",
+          "observed_wall_seconds": 0.0008692,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "92": {
+          "class_type": "SaveVideo",
+          "observed_wall_seconds": 0.3297661,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1001": {
+          "class_type": "ConditioningLoader",
+          "observed_wall_seconds": 0.0006391,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1002": {
+          "class_type": "EmptyMiniMaxH3LatentAV",
+          "observed_wall_seconds": 0.0059772,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1100": {
+          "class_type": "MiniMaxH3TurboLoRA",
+          "observed_wall_seconds": 0.0164732,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        }
+      }
+    },
+    {
+      "case": "toycar",
+      "profile": "trim-8",
+      "run_name": "q33-trim-8-92cae71fdc914fec818983563370cb76",
+      "seed": 424242,
+      "steps": 8,
+      "source_geometry": {
+        "width": 384,
+        "height": 256,
+        "frames": 73
+      },
+      "fps": 24,
+      "frames": 73,
+      "native_generation_seconds": 11.563,
+      "controller_seconds": 31.030802299967036,
+      "source_bytes": 240101,
+      "source_sha256": "0e98112c12f89c00fb11100e36825257d96f0408e9b90e908c71752c00a4eaba",
+      "actual_graph_settings": {
+        "6": {
+          "class_type": "UNETLoader",
+          "inputs": {
+            "unet_name": "fastvideo_fasth3_trim_8step_nvfp4.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+          }
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+          }
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "inputs": {
+            "model": [
+              "6",
+              0
+            ],
+            "shift_video": 10.0,
+            "shift_audio": 3.0
+          }
+        },
+        "128": {
+          "class_type": "ModelAttentionBackend",
+          "inputs": {
+            "model": [
+              "148",
+              0
+            ],
+            "attention": "comfy kitchen attention"
+          }
+        },
+        "127": {
+          "class_type": "BlockSparseAttention",
+          "inputs": {
+            "model": [
+              "128",
+              0
+            ],
+            "selection": "vsa",
+            "selection.keep_percent": 10.0,
+            "start_percent": 0.2,
+            "end_percent": 1.0,
+            "dense_blocks": "",
+            "min_tokens": 12288,
+            "extra_tokens": 256,
+            "sink_conditioning": "exact_kv_and_rows",
+            "verbose": false
+          }
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "inputs": {
+            "noise_seed": 424242
+          }
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "inputs": {
+            "sampler_name": "res_multistep"
+          }
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "inputs": {
+            "model": [
+              "127",
+              0
+            ],
+            "scheduler": "simple",
+            "steps": 8,
+            "denoise": 1.0
+          }
+        }
+      },
+      "asset_identities": [
+        {
+          "id": "trim-dit",
+          "bytes": 11894623166,
+          "sha256": "748b2bcc9c4b7bf7b23406987b42d4ac40362070c164cf11092482be6a863455"
+        },
+        {
+          "id": "video-vae",
+          "bytes": 2811065184,
+          "sha256": "52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e"
+        },
+        {
+          "id": "audio-vae",
+          "bytes": 605254808,
+          "sha256": "8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48"
+        }
+      ],
+      "timing_nodes": {
+        "6": {
+          "class_type": "UNETLoader",
+          "observed_wall_seconds": 0.3397407,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.2339038,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.0536311,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "observed_wall_seconds": 0.0035862,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "128": {
+          "class_type": "ModelAttentionBackend",
+          "observed_wall_seconds": 0.0001957,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "127": {
+          "class_type": "BlockSparseAttention",
+          "observed_wall_seconds": 0.0004424,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "observed_wall_seconds": 0.001972,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "observed_wall_seconds": 0.0003149,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "observed_wall_seconds": 0.0008269,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "16": {
+          "class_type": "BasicGuider",
+          "observed_wall_seconds": 0.000337,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "14": {
+          "class_type": "SamplerCustomAdvanced",
+          "observed_wall_seconds": 8.8135315,
+          "cached": false,
+          "progress_value": 8,
+          "progress_max": 8,
+          "last_state": "finished"
+        },
+        "10": {
+          "class_type": "VAEDecode",
+          "observed_wall_seconds": 1.3430562,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "23": {
+          "class_type": "VAEDecodeAudio",
+          "observed_wall_seconds": 0.4536118,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "91": {
+          "class_type": "CreateVideo",
+          "observed_wall_seconds": 0.0009452,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "92": {
+          "class_type": "SaveVideo",
+          "observed_wall_seconds": 0.3021533,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1001": {
+          "class_type": "ConditioningLoader",
+          "observed_wall_seconds": 0.0006128,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1002": {
+          "class_type": "EmptyMiniMaxH3LatentAV",
+          "observed_wall_seconds": 0.0042068,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        }
+      }
+    },
+    {
+      "case": "toycar",
+      "profile": "trim-6",
+      "run_name": "q33-trim-6-screen-v1-d07ba4c432434d96b4903bfad2645f7a",
+      "seed": 424242,
+      "steps": 6,
+      "source_geometry": {
+        "width": 384,
+        "height": 256,
+        "frames": 73
+      },
+      "fps": 24,
+      "frames": 73,
+      "native_generation_seconds": 9.957,
+      "controller_seconds": 29.099103800021112,
+      "source_bytes": 222934,
+      "source_sha256": "77750a1f7a5af302f0e255f818eab8308c460089324d0326be700ea352de8f4d",
+      "actual_graph_settings": {
+        "6": {
+          "class_type": "UNETLoader",
+          "inputs": {
+            "unet_name": "fastvideo_fasth3_trim_8step_nvfp4.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+          }
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+          }
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "inputs": {
+            "model": [
+              "6",
+              0
+            ],
+            "shift_video": 10.0,
+            "shift_audio": 3.0
+          }
+        },
+        "128": {
+          "class_type": "ModelAttentionBackend",
+          "inputs": {
+            "model": [
+              "148",
+              0
+            ],
+            "attention": "comfy kitchen attention"
+          }
+        },
+        "127": {
+          "class_type": "BlockSparseAttention",
+          "inputs": {
+            "model": [
+              "128",
+              0
+            ],
+            "selection": "vsa",
+            "selection.keep_percent": 10.0,
+            "start_percent": 0.2,
+            "end_percent": 1.0,
+            "dense_blocks": "",
+            "min_tokens": 12288,
+            "extra_tokens": 256,
+            "sink_conditioning": "exact_kv_and_rows",
+            "verbose": false
+          }
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "inputs": {
+            "noise_seed": 424242
+          }
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "inputs": {
+            "sampler_name": "res_multistep"
+          }
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "inputs": {
+            "model": [
+              "127",
+              0
+            ],
+            "scheduler": "simple",
+            "steps": 6,
+            "denoise": 1.0
+          }
+        }
+      },
+      "asset_identities": [
+        {
+          "id": "trim-dit",
+          "bytes": 11894623166,
+          "sha256": "748b2bcc9c4b7bf7b23406987b42d4ac40362070c164cf11092482be6a863455"
+        },
+        {
+          "id": "video-vae",
+          "bytes": 2811065184,
+          "sha256": "52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e"
+        },
+        {
+          "id": "audio-vae",
+          "bytes": 605254808,
+          "sha256": "8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48"
+        }
+      ],
+      "timing_nodes": {
+        "6": {
+          "class_type": "UNETLoader",
+          "observed_wall_seconds": 0.2993034,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.2300233,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.0467832,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "observed_wall_seconds": 0.0034084,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "128": {
+          "class_type": "ModelAttentionBackend",
+          "observed_wall_seconds": 0.0007685,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "127": {
+          "class_type": "BlockSparseAttention",
+          "observed_wall_seconds": 0.0001251,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "observed_wall_seconds": 0.0003354,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "observed_wall_seconds": 0.0002644,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "observed_wall_seconds": 0.0029067,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "16": {
+          "class_type": "BasicGuider",
+          "observed_wall_seconds": 0.0003053,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "14": {
+          "class_type": "SamplerCustomAdvanced",
+          "observed_wall_seconds": 7.2831786,
+          "cached": false,
+          "progress_value": 6,
+          "progress_max": 6,
+          "last_state": "finished"
+        },
+        "10": {
+          "class_type": "VAEDecode",
+          "observed_wall_seconds": 1.3379024,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "23": {
+          "class_type": "VAEDecodeAudio",
+          "observed_wall_seconds": 0.4475109,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "91": {
+          "class_type": "CreateVideo",
+          "observed_wall_seconds": 0.000648,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "92": {
+          "class_type": "SaveVideo",
+          "observed_wall_seconds": 0.286736,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1001": {
+          "class_type": "ConditioningLoader",
+          "observed_wall_seconds": 0.0006075,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1002": {
+          "class_type": "EmptyMiniMaxH3LatentAV",
+          "observed_wall_seconds": 0.0046948,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        }
+      }
+    },
+    {
+      "case": "toycar",
+      "profile": "trim-4",
+      "run_name": "q33-trim-4-screen-v1-3756cf810c1e44f7a0f2e9cce96730df",
+      "seed": 424242,
+      "steps": 4,
+      "source_geometry": {
+        "width": 384,
+        "height": 256,
+        "frames": 73
+      },
+      "fps": 24,
+      "frames": 73,
+      "native_generation_seconds": 8.506,
+      "controller_seconds": 26.946424299967475,
+      "source_bytes": 353613,
+      "source_sha256": "e496b6fe58bd77b64a9d1506438b8a6099239941c8e7bb25c0856039f6684738",
+      "actual_graph_settings": {
+        "6": {
+          "class_type": "UNETLoader",
+          "inputs": {
+            "unet_name": "fastvideo_fasth3_trim_8step_nvfp4.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+          }
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+          }
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "inputs": {
+            "model": [
+              "6",
+              0
+            ],
+            "shift_video": 10.0,
+            "shift_audio": 3.0
+          }
+        },
+        "128": {
+          "class_type": "ModelAttentionBackend",
+          "inputs": {
+            "model": [
+              "148",
+              0
+            ],
+            "attention": "comfy kitchen attention"
+          }
+        },
+        "127": {
+          "class_type": "BlockSparseAttention",
+          "inputs": {
+            "model": [
+              "128",
+              0
+            ],
+            "selection": "vsa",
+            "selection.keep_percent": 10.0,
+            "start_percent": 0.2,
+            "end_percent": 1.0,
+            "dense_blocks": "",
+            "min_tokens": 12288,
+            "extra_tokens": 256,
+            "sink_conditioning": "exact_kv_and_rows",
+            "verbose": false
+          }
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "inputs": {
+            "noise_seed": 424242
+          }
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "inputs": {
+            "sampler_name": "res_multistep"
+          }
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "inputs": {
+            "model": [
+              "127",
+              0
+            ],
+            "scheduler": "simple",
+            "steps": 4,
+            "denoise": 1.0
+          }
+        }
+      },
+      "asset_identities": [
+        {
+          "id": "trim-dit",
+          "bytes": 11894623166,
+          "sha256": "748b2bcc9c4b7bf7b23406987b42d4ac40362070c164cf11092482be6a863455"
+        },
+        {
+          "id": "video-vae",
+          "bytes": 2811065184,
+          "sha256": "52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e"
+        },
+        {
+          "id": "audio-vae",
+          "bytes": 605254808,
+          "sha256": "8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48"
+        }
+      ],
+      "timing_nodes": {
+        "6": {
+          "class_type": "UNETLoader",
+          "observed_wall_seconds": 0.2912767,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.2347195,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.049018,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "observed_wall_seconds": 0.0028744,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "128": {
+          "class_type": "ModelAttentionBackend",
+          "observed_wall_seconds": 0.0005828,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "127": {
+          "class_type": "BlockSparseAttention",
+          "observed_wall_seconds": 0.0004746,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "observed_wall_seconds": 0.000334,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "observed_wall_seconds": 0.0004108,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "observed_wall_seconds": 0.0003896,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "16": {
+          "class_type": "BasicGuider",
+          "observed_wall_seconds": 0.0003654,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "14": {
+          "class_type": "SamplerCustomAdvanced",
+          "observed_wall_seconds": 5.8518743,
+          "cached": false,
+          "progress_value": 4,
+          "progress_max": 4,
+          "last_state": "finished"
+        },
+        "10": {
+          "class_type": "VAEDecode",
+          "observed_wall_seconds": 1.2819243,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "23": {
+          "class_type": "VAEDecodeAudio",
+          "observed_wall_seconds": 0.454015,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "91": {
+          "class_type": "CreateVideo",
+          "observed_wall_seconds": 0.0009263,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "92": {
+          "class_type": "SaveVideo",
+          "observed_wall_seconds": 0.3221751,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1001": {
+          "class_type": "ConditioningLoader",
+          "observed_wall_seconds": 0.0005316,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1002": {
+          "class_type": "EmptyMiniMaxH3LatentAV",
+          "observed_wall_seconds": 0.0033809,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        }
+      }
+    },
+    {
+      "case": "toycar",
+      "profile": "trim-6-pytorch",
+      "run_name": "q33-trim-6-pytorch-51482af62e9243d795604a3b3d5235b9",
+      "seed": 424242,
+      "steps": 6,
+      "source_geometry": {
+        "width": 384,
+        "height": 256,
+        "frames": 73
+      },
+      "fps": 24,
+      "frames": 73,
+      "native_generation_seconds": 8.984,
+      "controller_seconds": 26.916095299995504,
+      "source_bytes": 287701,
+      "source_sha256": "beab07ad8953fec17d609dc92b0f44ad58f0249965c9b4bc7297c60b6879eb1f",
+      "actual_graph_settings": {
+        "6": {
+          "class_type": "UNETLoader",
+          "inputs": {
+            "unet_name": "fastvideo_fasth3_trim_8step_nvfp4.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+          }
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+          }
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "inputs": {
+            "model": [
+              "6",
+              0
+            ],
+            "shift_video": 10.0,
+            "shift_audio": 3.0
+          }
+        },
+        "128": {
+          "class_type": "ModelAttentionBackend",
+          "inputs": {
+            "model": [
+              "148",
+              0
+            ],
+            "attention": "pytorch attention"
+          }
+        },
+        "127": {
+          "class_type": "BlockSparseAttention",
+          "inputs": {
+            "model": [
+              "128",
+              0
+            ],
+            "selection": "vsa",
+            "selection.keep_percent": 10.0,
+            "start_percent": 0.2,
+            "end_percent": 1.0,
+            "dense_blocks": "",
+            "min_tokens": 12288,
+            "extra_tokens": 256,
+            "sink_conditioning": "exact_kv_and_rows",
+            "verbose": false
+          }
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "inputs": {
+            "noise_seed": 424242
+          }
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "inputs": {
+            "sampler_name": "res_multistep"
+          }
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "inputs": {
+            "model": [
+              "127",
+              0
+            ],
+            "scheduler": "simple",
+            "steps": 6,
+            "denoise": 1.0
+          }
+        }
+      },
+      "asset_identities": [
+        {
+          "id": "trim-dit",
+          "bytes": 11894623166,
+          "sha256": "748b2bcc9c4b7bf7b23406987b42d4ac40362070c164cf11092482be6a863455"
+        },
+        {
+          "id": "video-vae",
+          "bytes": 2811065184,
+          "sha256": "52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e"
+        },
+        {
+          "id": "audio-vae",
+          "bytes": 605254808,
+          "sha256": "8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48"
+        }
+      ],
+      "timing_nodes": {
+        "6": {
+          "class_type": "UNETLoader",
+          "observed_wall_seconds": 0.2825017,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.2182935,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.0463126,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "observed_wall_seconds": 0.0028863,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "128": {
+          "class_type": "ModelAttentionBackend",
+          "observed_wall_seconds": 0.0002856,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "127": {
+          "class_type": "BlockSparseAttention",
+          "observed_wall_seconds": 0.0004192,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "observed_wall_seconds": 0.0001271,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "observed_wall_seconds": 0.0001571,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "observed_wall_seconds": 0.0004513,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "16": {
+          "class_type": "BasicGuider",
+          "observed_wall_seconds": 0.0002932,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "14": {
+          "class_type": "SamplerCustomAdvanced",
+          "observed_wall_seconds": 6.6387974,
+          "cached": false,
+          "progress_value": 6,
+          "progress_max": 6,
+          "last_state": "finished"
+        },
+        "10": {
+          "class_type": "VAEDecode",
+          "observed_wall_seconds": 1.1264559,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "23": {
+          "class_type": "VAEDecodeAudio",
+          "observed_wall_seconds": 0.3529123,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "91": {
+          "class_type": "CreateVideo",
+          "observed_wall_seconds": 0.0009175,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "92": {
+          "class_type": "SaveVideo",
+          "observed_wall_seconds": 0.2975718,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1001": {
+          "class_type": "ConditioningLoader",
+          "observed_wall_seconds": 0.0008849,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1002": {
+          "class_type": "EmptyMiniMaxH3LatentAV",
+          "observed_wall_seconds": 0.0041717,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        }
+      }
+    },
+    {
+      "case": "toycar",
+      "profile": "trim-8-576x384",
+      "run_name": "q33-trim-8-576x384-182855632cc74ed292336debe0cb7d66",
+      "seed": 424242,
+      "steps": 8,
+      "source_geometry": {
+        "width": 576,
+        "height": 384,
+        "frames": 73
+      },
+      "fps": 24,
+      "frames": 73,
+      "native_generation_seconds": 14.462,
+      "controller_seconds": 33.47406769997906,
+      "source_bytes": 284322,
+      "source_sha256": "28db9282a3c2501f93fb27bc89894ad9b8b429a31ca21668d7a6e39a29bae3b9",
+      "actual_graph_settings": {
+        "6": {
+          "class_type": "UNETLoader",
+          "inputs": {
+            "unet_name": "fastvideo_fasth3_trim_8step_nvfp4.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+          }
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+          }
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "inputs": {
+            "model": [
+              "6",
+              0
+            ],
+            "shift_video": 10.0,
+            "shift_audio": 3.0
+          }
+        },
+        "128": {
+          "class_type": "ModelAttentionBackend",
+          "inputs": {
+            "model": [
+              "148",
+              0
+            ],
+            "attention": "comfy kitchen attention"
+          }
+        },
+        "127": {
+          "class_type": "BlockSparseAttention",
+          "inputs": {
+            "model": [
+              "128",
+              0
+            ],
+            "selection": "vsa",
+            "selection.keep_percent": 10.0,
+            "start_percent": 0.2,
+            "end_percent": 1.0,
+            "dense_blocks": "",
+            "min_tokens": 12288,
+            "extra_tokens": 256,
+            "sink_conditioning": "exact_kv_and_rows",
+            "verbose": false
+          }
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "inputs": {
+            "noise_seed": 424242
+          }
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "inputs": {
+            "sampler_name": "res_multistep"
+          }
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "inputs": {
+            "model": [
+              "127",
+              0
+            ],
+            "scheduler": "simple",
+            "steps": 8,
+            "denoise": 1.0
+          }
+        }
+      },
+      "asset_identities": [
+        {
+          "id": "trim-dit",
+          "bytes": 11894623166,
+          "sha256": "748b2bcc9c4b7bf7b23406987b42d4ac40362070c164cf11092482be6a863455"
+        },
+        {
+          "id": "video-vae",
+          "bytes": 2811065184,
+          "sha256": "52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e"
+        },
+        {
+          "id": "audio-vae",
+          "bytes": 605254808,
+          "sha256": "8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48"
+        }
+      ],
+      "timing_nodes": {
+        "6": {
+          "class_type": "UNETLoader",
+          "observed_wall_seconds": 0.2930037,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.2025402,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.0495823,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "observed_wall_seconds": 0.0032843,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "128": {
+          "class_type": "ModelAttentionBackend",
+          "observed_wall_seconds": 0.0005035,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "127": {
+          "class_type": "BlockSparseAttention",
+          "observed_wall_seconds": 0.0002675,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "observed_wall_seconds": 0.0001,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "observed_wall_seconds": 0.0002385,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "observed_wall_seconds": 0.0005345,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "16": {
+          "class_type": "BasicGuider",
+          "observed_wall_seconds": 0.0002856,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "14": {
+          "class_type": "SamplerCustomAdvanced",
+          "observed_wall_seconds": 11.0089233,
+          "cached": false,
+          "progress_value": 8,
+          "progress_max": 8,
+          "last_state": "finished"
+        },
+        "10": {
+          "class_type": "VAEDecode",
+          "observed_wall_seconds": 2.1105795,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "23": {
+          "class_type": "VAEDecodeAudio",
+          "observed_wall_seconds": 0.357542,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "91": {
+          "class_type": "CreateVideo",
+          "observed_wall_seconds": 0.0010297,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "92": {
+          "class_type": "SaveVideo",
+          "observed_wall_seconds": 0.4124847,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1001": {
+          "class_type": "ConditioningLoader",
+          "observed_wall_seconds": 0.000622,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1002": {
+          "class_type": "EmptyMiniMaxH3LatentAV",
+          "observed_wall_seconds": 0.0045001,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        }
+      }
+    },
+    {
+      "case": "bounce-audio",
+      "profile": "original-50",
+      "run_name": "q33-corpus-bounce-audio-original-50-e8662fcba54247dd89d97c970b5e0998",
+      "seed": 424242,
+      "steps": 50,
+      "source_geometry": {
+        "width": 384,
+        "height": 256,
+        "frames": 73
+      },
+      "fps": 24,
+      "frames": 73,
+      "native_generation_seconds": 235.307,
+      "controller_seconds": 268.24318400002085,
+      "source_bytes": 219042,
+      "source_sha256": "66c60639cc3e1b7197ec5b133f6ab74a411dca7f25dee28735cb4beeb2df29c0",
+      "actual_graph_settings": {
+        "6": {
+          "class_type": "UNETLoader",
+          "inputs": {
+            "unet_name": "minimax_h3_fl2va_int8_convrot.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+          }
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+          }
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "inputs": {
+            "model": [
+              "6",
+              0
+            ],
+            "shift_video": 12.0,
+            "shift_audio": 3.0
+          }
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "inputs": {
+            "noise_seed": 424242
+          }
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "inputs": {
+            "sampler_name": "euler"
+          }
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "inputs": {
+            "model": [
+              "148",
+              0
+            ],
+            "scheduler": "simple",
+            "steps": 50,
+            "denoise": 1.0
+          }
+        }
+      },
+      "asset_identities": [
+        {
+          "id": "original-dit",
+          "bytes": 34038892334,
+          "sha256": "7ad4c73e6e378b822ffd1629f27f632d3787d95f5e468e3af958f98c58df96a5"
+        },
+        {
+          "id": "video-vae",
+          "bytes": 2811065184,
+          "sha256": "52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e"
+        },
+        {
+          "id": "audio-vae",
+          "bytes": 605254808,
+          "sha256": "8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48"
+        }
+      ],
+      "timing_nodes": {
+        "6": {
+          "class_type": "UNETLoader",
+          "observed_wall_seconds": 0.1282414,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.2305489,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.0638681,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "observed_wall_seconds": 0.0046144,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "observed_wall_seconds": 0.0021194,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "observed_wall_seconds": 0.0004536,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "observed_wall_seconds": 0.0024395,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "16": {
+          "class_type": "BasicGuider",
+          "observed_wall_seconds": 0.0001821,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "14": {
+          "class_type": "SamplerCustomAdvanced",
+          "observed_wall_seconds": 232.5635708,
+          "cached": false,
+          "progress_value": 50,
+          "progress_max": 50,
+          "last_state": "finished"
+        },
+        "10": {
+          "class_type": "VAEDecode",
+          "observed_wall_seconds": 1.4295528,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "23": {
+          "class_type": "VAEDecodeAudio",
+          "observed_wall_seconds": 0.550875,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "91": {
+          "class_type": "CreateVideo",
+          "observed_wall_seconds": 0.0006007,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "92": {
+          "class_type": "SaveVideo",
+          "observed_wall_seconds": 0.3128413,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1001": {
+          "class_type": "ConditioningLoader",
+          "observed_wall_seconds": 0.0004933,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1002": {
+          "class_type": "EmptyMiniMaxH3LatentAV",
+          "observed_wall_seconds": 0.0048409,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        }
+      }
+    },
+    {
+      "case": "bounce-audio",
+      "profile": "turbo-native-6",
+      "run_name": "q33-turbo-corpus-bounce-audio-f854ba8b4bbd49e6a8e7d1023323701b",
+      "seed": 424242,
+      "steps": 6,
+      "source_geometry": {
+        "width": 384,
+        "height": 256,
+        "frames": 73
+      },
+      "fps": 24,
+      "frames": 73,
+      "native_generation_seconds": 37.939,
+      "controller_seconds": 71.29720190004446,
+      "source_bytes": 143510,
+      "source_sha256": "105e3e6ba470bc71aea8e9ecf4fcb1e2f07d7fbf6156886bab7df5c00d9b4e18",
+      "actual_graph_settings": {
+        "6": {
+          "class_type": "UNETLoader",
+          "inputs": {
+            "unet_name": "minimax_h3_fl2va_int8_convrot.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+          }
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+          }
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "inputs": {
+            "model": [
+              "1100",
+              0
+            ],
+            "shift_video": 12.0,
+            "shift_audio": 3.0
+          }
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "inputs": {
+            "noise_seed": 424242
+          }
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "inputs": {
+            "sampler_name": "euler"
+          }
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "inputs": {
+            "model": [
+              "148",
+              0
+            ],
+            "scheduler": "simple",
+            "steps": 6,
+            "denoise": 1.0
+          }
+        },
+        "1100": {
+          "class_type": "LoraLoaderModelOnly",
+          "inputs": {
+            "model": [
+              "6",
+              0
+            ],
+            "lora_name": "minimax_h3_turbo_v4_step600_ema.safetensors",
+            "strength_model": 1.0
+          }
+        }
+      },
+      "asset_identities": [
+        {
+          "id": "original-dit",
+          "bytes": 34038892334,
+          "sha256": "7ad4c73e6e378b822ffd1629f27f632d3787d95f5e468e3af958f98c58df96a5"
+        },
+        {
+          "id": "video-vae",
+          "bytes": 2811065184,
+          "sha256": "52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e"
+        },
+        {
+          "id": "audio-vae",
+          "bytes": 605254808,
+          "sha256": "8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48"
+        },
+        {
+          "id": "turbo-v4-step600-ema",
+          "bytes": 779849816,
+          "sha256": "5f3a626cd72c93a8b9318d6760c510bc5092d2ab13aaba1f932c5bab07a416d3"
+        }
+      ],
+      "timing_nodes": {
+        "6": {
+          "class_type": "UNETLoader",
+          "observed_wall_seconds": 0.1241731,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.228243,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.0623328,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "observed_wall_seconds": 0.0001104,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "observed_wall_seconds": 0.0007135,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "observed_wall_seconds": 0.0002412,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "observed_wall_seconds": 0.0020696,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "16": {
+          "class_type": "BasicGuider",
+          "observed_wall_seconds": 0.0003265,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "14": {
+          "class_type": "SamplerCustomAdvanced",
+          "observed_wall_seconds": 35.2231198,
+          "cached": false,
+          "progress_value": 6,
+          "progress_max": 6,
+          "last_state": "finished"
+        },
+        "10": {
+          "class_type": "VAEDecode",
+          "observed_wall_seconds": 1.423913,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "23": {
+          "class_type": "VAEDecodeAudio",
+          "observed_wall_seconds": 0.554864,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "91": {
+          "class_type": "CreateVideo",
+          "observed_wall_seconds": 0.0010978,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "92": {
+          "class_type": "SaveVideo",
+          "observed_wall_seconds": 0.2790458,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1001": {
+          "class_type": "ConditioningLoader",
+          "observed_wall_seconds": 0.000762,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1002": {
+          "class_type": "EmptyMiniMaxH3LatentAV",
+          "observed_wall_seconds": 0.0041226,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1100": {
+          "class_type": "LoraLoaderModelOnly",
+          "observed_wall_seconds": 0.0211328,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        }
+      }
+    },
+    {
+      "case": "bounce-audio",
+      "profile": "turbo-native-4",
+      "run_name": "q33-turbo4-corpus-bounce-audio-4265351f40394e2bb197a07d5c611653",
+      "seed": 424242,
+      "steps": 4,
+      "source_geometry": {
+        "width": 384,
+        "height": 256,
+        "frames": 73
+      },
+      "fps": 24,
+      "frames": 73,
+      "native_generation_seconds": 27.106,
+      "controller_seconds": 60.78613529994618,
+      "source_bytes": 168489,
+      "source_sha256": "f7d646b7b97918d78c16e6d6e69a8be05a54f4c58450b3d5dfaa27e4664b6350",
+      "actual_graph_settings": {
+        "6": {
+          "class_type": "UNETLoader",
+          "inputs": {
+            "unet_name": "minimax_h3_fl2va_int8_convrot.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+          }
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+          }
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "inputs": {
+            "model": [
+              "1100",
+              0
+            ],
+            "shift_video": 12.0,
+            "shift_audio": 3.0
+          }
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "inputs": {
+            "noise_seed": 424242
+          }
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "inputs": {
+            "sampler_name": "euler"
+          }
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "inputs": {
+            "model": [
+              "148",
+              0
+            ],
+            "scheduler": "simple",
+            "steps": 4,
+            "denoise": 1.0
+          }
+        },
+        "1100": {
+          "class_type": "LoraLoaderModelOnly",
+          "inputs": {
+            "model": [
+              "6",
+              0
+            ],
+            "lora_name": "minimax_h3_turbo_v4_step600_ema.safetensors",
+            "strength_model": 1.0
+          }
+        }
+      },
+      "asset_identities": [
+        {
+          "id": "original-dit",
+          "bytes": 34038892334,
+          "sha256": "7ad4c73e6e378b822ffd1629f27f632d3787d95f5e468e3af958f98c58df96a5"
+        },
+        {
+          "id": "video-vae",
+          "bytes": 2811065184,
+          "sha256": "52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e"
+        },
+        {
+          "id": "audio-vae",
+          "bytes": 605254808,
+          "sha256": "8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48"
+        },
+        {
+          "id": "turbo-v4-step600-ema",
+          "bytes": 779849816,
+          "sha256": "5f3a626cd72c93a8b9318d6760c510bc5092d2ab13aaba1f932c5bab07a416d3"
+        }
+      ],
+      "timing_nodes": {
+        "6": {
+          "class_type": "UNETLoader",
+          "observed_wall_seconds": 0.127906,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.2278427,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.0580507,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "observed_wall_seconds": 8.2e-05,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "observed_wall_seconds": 0.0018191,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "observed_wall_seconds": 0.000271,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "observed_wall_seconds": 0.0021108,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "16": {
+          "class_type": "BasicGuider",
+          "observed_wall_seconds": 9.16e-05,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "14": {
+          "class_type": "SamplerCustomAdvanced",
+          "observed_wall_seconds": 24.4255377,
+          "cached": false,
+          "progress_value": 4,
+          "progress_max": 4,
+          "last_state": "finished"
+        },
+        "10": {
+          "class_type": "VAEDecode",
+          "observed_wall_seconds": 1.4302633,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "23": {
+          "class_type": "VAEDecodeAudio",
+          "observed_wall_seconds": 0.5124194,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "91": {
+          "class_type": "CreateVideo",
+          "observed_wall_seconds": 0.0008303,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "92": {
+          "class_type": "SaveVideo",
+          "observed_wall_seconds": 0.2831584,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1001": {
+          "class_type": "ConditioningLoader",
+          "observed_wall_seconds": 0.0008733,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1002": {
+          "class_type": "EmptyMiniMaxH3LatentAV",
+          "observed_wall_seconds": 0.0052427,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1100": {
+          "class_type": "LoraLoaderModelOnly",
+          "observed_wall_seconds": 0.0208168,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        }
+      }
+    },
+    {
+      "case": "bounce-audio",
+      "profile": "trim-8",
+      "run_name": "q33-corpus-bounce-audio-trim-8-017c32be26204b2aa8e6f4967c5afc71",
+      "seed": 424242,
+      "steps": 8,
+      "source_geometry": {
+        "width": 384,
+        "height": 256,
+        "frames": 73
+      },
+      "fps": 24,
+      "frames": 73,
+      "native_generation_seconds": 9.769,
+      "controller_seconds": 27.991701400023885,
+      "source_bytes": 234328,
+      "source_sha256": "0b9c5f0a29430f57efe9acd97ec21534ff0bb51ff2152fe1ab9abebb2d8ff246",
+      "actual_graph_settings": {
+        "6": {
+          "class_type": "UNETLoader",
+          "inputs": {
+            "unet_name": "fastvideo_fasth3_trim_8step_nvfp4.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+          }
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+          }
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "inputs": {
+            "model": [
+              "6",
+              0
+            ],
+            "shift_video": 10.0,
+            "shift_audio": 3.0
+          }
+        },
+        "128": {
+          "class_type": "ModelAttentionBackend",
+          "inputs": {
+            "model": [
+              "148",
+              0
+            ],
+            "attention": "comfy kitchen attention"
+          }
+        },
+        "127": {
+          "class_type": "BlockSparseAttention",
+          "inputs": {
+            "model": [
+              "128",
+              0
+            ],
+            "selection": "vsa",
+            "selection.keep_percent": 10.0,
+            "start_percent": 0.2,
+            "end_percent": 1.0,
+            "dense_blocks": "",
+            "min_tokens": 12288,
+            "extra_tokens": 256,
+            "sink_conditioning": "exact_kv_and_rows",
+            "verbose": false
+          }
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "inputs": {
+            "noise_seed": 424242
+          }
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "inputs": {
+            "sampler_name": "res_multistep"
+          }
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "inputs": {
+            "model": [
+              "127",
+              0
+            ],
+            "scheduler": "simple",
+            "steps": 8,
+            "denoise": 1.0
+          }
+        }
+      },
+      "asset_identities": [
+        {
+          "id": "trim-dit",
+          "bytes": 11894623166,
+          "sha256": "748b2bcc9c4b7bf7b23406987b42d4ac40362070c164cf11092482be6a863455"
+        },
+        {
+          "id": "video-vae",
+          "bytes": 2811065184,
+          "sha256": "52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e"
+        },
+        {
+          "id": "audio-vae",
+          "bytes": 605254808,
+          "sha256": "8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48"
+        }
+      ],
+      "timing_nodes": {
+        "6": {
+          "class_type": "UNETLoader",
+          "observed_wall_seconds": 0.2872724,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.1856596,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.0478552,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "observed_wall_seconds": 0.0032278,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "128": {
+          "class_type": "ModelAttentionBackend",
+          "observed_wall_seconds": 0.0004473,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "127": {
+          "class_type": "BlockSparseAttention",
+          "observed_wall_seconds": 0.000147,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "observed_wall_seconds": 9.66e-05,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "observed_wall_seconds": 0.0003065,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "observed_wall_seconds": 0.0005483,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "16": {
+          "class_type": "BasicGuider",
+          "observed_wall_seconds": 0.000352,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "14": {
+          "class_type": "SamplerCustomAdvanced",
+          "observed_wall_seconds": 7.5547675,
+          "cached": false,
+          "progress_value": 8,
+          "progress_max": 8,
+          "last_state": "finished"
+        },
+        "10": {
+          "class_type": "VAEDecode",
+          "observed_wall_seconds": 1.0635515,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "23": {
+          "class_type": "VAEDecodeAudio",
+          "observed_wall_seconds": 0.352651,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "91": {
+          "class_type": "CreateVideo",
+          "observed_wall_seconds": 0.0006642,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "92": {
+          "class_type": "SaveVideo",
+          "observed_wall_seconds": 0.2563479,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1001": {
+          "class_type": "ConditioningLoader",
+          "observed_wall_seconds": 0.0006252,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1002": {
+          "class_type": "EmptyMiniMaxH3LatentAV",
+          "observed_wall_seconds": 0.0033352,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        }
+      }
+    },
+    {
+      "case": "bounce-audio",
+      "profile": "trim-6",
+      "run_name": "q33-corpus-bounce-audio-trim-6-5fd0e6d1d80a4f1980d2b2a6db34716f",
+      "seed": 424242,
+      "steps": 6,
+      "source_geometry": {
+        "width": 384,
+        "height": 256,
+        "frames": 73
+      },
+      "fps": 24,
+      "frames": 73,
+      "native_generation_seconds": 8.295,
+      "controller_seconds": 26.964071800000966,
+      "source_bytes": 307903,
+      "source_sha256": "7cdc661c71fba3fc5dcc46831cd906c3f6cad7c64e4e9f785470027a385ef884",
+      "actual_graph_settings": {
+        "6": {
+          "class_type": "UNETLoader",
+          "inputs": {
+            "unet_name": "fastvideo_fasth3_trim_8step_nvfp4.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+          }
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+          }
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "inputs": {
+            "model": [
+              "6",
+              0
+            ],
+            "shift_video": 10.0,
+            "shift_audio": 3.0
+          }
+        },
+        "128": {
+          "class_type": "ModelAttentionBackend",
+          "inputs": {
+            "model": [
+              "148",
+              0
+            ],
+            "attention": "comfy kitchen attention"
+          }
+        },
+        "127": {
+          "class_type": "BlockSparseAttention",
+          "inputs": {
+            "model": [
+              "128",
+              0
+            ],
+            "selection": "vsa",
+            "selection.keep_percent": 10.0,
+            "start_percent": 0.2,
+            "end_percent": 1.0,
+            "dense_blocks": "",
+            "min_tokens": 12288,
+            "extra_tokens": 256,
+            "sink_conditioning": "exact_kv_and_rows",
+            "verbose": false
+          }
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "inputs": {
+            "noise_seed": 424242
+          }
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "inputs": {
+            "sampler_name": "res_multistep"
+          }
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "inputs": {
+            "model": [
+              "127",
+              0
+            ],
+            "scheduler": "simple",
+            "steps": 6,
+            "denoise": 1.0
+          }
+        }
+      },
+      "asset_identities": [
+        {
+          "id": "trim-dit",
+          "bytes": 11894623166,
+          "sha256": "748b2bcc9c4b7bf7b23406987b42d4ac40362070c164cf11092482be6a863455"
+        },
+        {
+          "id": "video-vae",
+          "bytes": 2811065184,
+          "sha256": "52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e"
+        },
+        {
+          "id": "audio-vae",
+          "bytes": 605254808,
+          "sha256": "8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48"
+        }
+      ],
+      "timing_nodes": {
+        "6": {
+          "class_type": "UNETLoader",
+          "observed_wall_seconds": 0.2806995,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.1972877,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.0481012,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "observed_wall_seconds": 0.0029256,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "128": {
+          "class_type": "ModelAttentionBackend",
+          "observed_wall_seconds": 0.0003306,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "127": {
+          "class_type": "BlockSparseAttention",
+          "observed_wall_seconds": 0.0003147,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "observed_wall_seconds": 0.0001982,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "observed_wall_seconds": 0.0002639,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "observed_wall_seconds": 0.0003286,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "16": {
+          "class_type": "BasicGuider",
+          "observed_wall_seconds": 0.0002144,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "14": {
+          "class_type": "SamplerCustomAdvanced",
+          "observed_wall_seconds": 6.070819,
+          "cached": false,
+          "progress_value": 6,
+          "progress_max": 6,
+          "last_state": "finished"
+        },
+        "10": {
+          "class_type": "VAEDecode",
+          "observed_wall_seconds": 1.0352124,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "23": {
+          "class_type": "VAEDecodeAudio",
+          "observed_wall_seconds": 0.3484708,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "91": {
+          "class_type": "CreateVideo",
+          "observed_wall_seconds": 0.0008288,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "92": {
+          "class_type": "SaveVideo",
+          "observed_wall_seconds": 0.2934934,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1001": {
+          "class_type": "ConditioningLoader",
+          "observed_wall_seconds": 0.0012572,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1002": {
+          "class_type": "EmptyMiniMaxH3LatentAV",
+          "observed_wall_seconds": 0.003655,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        }
+      }
+    },
+    {
+      "case": "bounce-audio",
+      "profile": "turbo-native-2",
+      "run_name": "q33-turbo2-corpus-bounce-audio-0aafeaf2f9a9450c8e6970d99a1784a8",
+      "seed": 424242,
+      "steps": 2,
+      "source_geometry": {
+        "width": 384,
+        "height": 256,
+        "frames": 73
+      },
+      "fps": 24,
+      "frames": 73,
+      "native_generation_seconds": 16.131,
+      "controller_seconds": 50.06758669996634,
+      "source_bytes": 160085,
+      "source_sha256": "ed5f869602ec435865f3dbca8e0b74462a0a5bbede877fe1976dfe3b485dd5d2",
+      "actual_graph_settings": {
+        "6": {
+          "class_type": "UNETLoader",
+          "inputs": {
+            "unet_name": "minimax_h3_fl2va_int8_convrot.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+          }
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+          }
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "inputs": {
+            "model": [
+              "1100",
+              0
+            ],
+            "shift_video": 12.0,
+            "shift_audio": 3.0
+          }
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "inputs": {
+            "noise_seed": 424242
+          }
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "inputs": {
+            "sampler_name": "euler"
+          }
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "inputs": {
+            "model": [
+              "148",
+              0
+            ],
+            "scheduler": "simple",
+            "steps": 2,
+            "denoise": 1.0
+          }
+        },
+        "1100": {
+          "class_type": "LoraLoaderModelOnly",
+          "inputs": {
+            "model": [
+              "6",
+              0
+            ],
+            "lora_name": "minimax_h3_turbo_v4_step600_ema.safetensors",
+            "strength_model": 1.0
+          }
+        }
+      },
+      "asset_identities": [
+        {
+          "id": "original-dit",
+          "bytes": 34038892334,
+          "sha256": "7ad4c73e6e378b822ffd1629f27f632d3787d95f5e468e3af958f98c58df96a5"
+        },
+        {
+          "id": "video-vae",
+          "bytes": 2811065184,
+          "sha256": "52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e"
+        },
+        {
+          "id": "audio-vae",
+          "bytes": 605254808,
+          "sha256": "8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48"
+        },
+        {
+          "id": "turbo-v4-step600-ema",
+          "bytes": 779849816,
+          "sha256": "5f3a626cd72c93a8b9318d6760c510bc5092d2ab13aaba1f932c5bab07a416d3"
+        }
+      ],
+      "timing_nodes": {
+        "6": {
+          "class_type": "UNETLoader",
+          "observed_wall_seconds": 0.1289357,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.230942,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.0607516,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "observed_wall_seconds": 0.0003252,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "observed_wall_seconds": 0.0001467,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "observed_wall_seconds": 0.0003452,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "observed_wall_seconds": 0.0024506,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "16": {
+          "class_type": "BasicGuider",
+          "observed_wall_seconds": 0.0001362,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "14": {
+          "class_type": "SamplerCustomAdvanced",
+          "observed_wall_seconds": 13.434212,
+          "cached": false,
+          "progress_value": 2,
+          "progress_max": 2,
+          "last_state": "finished"
+        },
+        "10": {
+          "class_type": "VAEDecode",
+          "observed_wall_seconds": 1.4185495,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "23": {
+          "class_type": "VAEDecodeAudio",
+          "observed_wall_seconds": 0.520356,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "91": {
+          "class_type": "CreateVideo",
+          "observed_wall_seconds": 0.0008664,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "92": {
+          "class_type": "SaveVideo",
+          "observed_wall_seconds": 0.294703,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1001": {
+          "class_type": "ConditioningLoader",
+          "observed_wall_seconds": 0.0008121,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1002": {
+          "class_type": "EmptyMiniMaxH3LatentAV",
+          "observed_wall_seconds": 0.004867,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1100": {
+          "class_type": "LoraLoaderModelOnly",
+          "observed_wall_seconds": 0.0209223,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        }
+      }
+    },
+    {
+      "case": "hands-face-mug",
+      "profile": "original-50",
+      "run_name": "q33-corpus-hands-face-mug-original-50-338e7a9ddd5e4b4c87582a28a096e7a0",
+      "seed": 424242,
+      "steps": 50,
+      "source_geometry": {
+        "width": 384,
+        "height": 256,
+        "frames": 73
+      },
+      "fps": 24,
+      "frames": 73,
+      "native_generation_seconds": 235.497,
+      "controller_seconds": 269.43359390005935,
+      "source_bytes": 240156,
+      "source_sha256": "fa7edd585011d34b4872c8fb2e8ccabf3c93a7da217fb62111e2b647692482f1",
+      "actual_graph_settings": {
+        "6": {
+          "class_type": "UNETLoader",
+          "inputs": {
+            "unet_name": "minimax_h3_fl2va_int8_convrot.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+          }
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+          }
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "inputs": {
+            "model": [
+              "6",
+              0
+            ],
+            "shift_video": 12.0,
+            "shift_audio": 3.0
+          }
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "inputs": {
+            "noise_seed": 424242
+          }
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "inputs": {
+            "sampler_name": "euler"
+          }
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "inputs": {
+            "model": [
+              "148",
+              0
+            ],
+            "scheduler": "simple",
+            "steps": 50,
+            "denoise": 1.0
+          }
+        }
+      },
+      "asset_identities": [
+        {
+          "id": "original-dit",
+          "bytes": 34038892334,
+          "sha256": "7ad4c73e6e378b822ffd1629f27f632d3787d95f5e468e3af958f98c58df96a5"
+        },
+        {
+          "id": "video-vae",
+          "bytes": 2811065184,
+          "sha256": "52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e"
+        },
+        {
+          "id": "audio-vae",
+          "bytes": 605254808,
+          "sha256": "8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48"
+        }
+      ],
+      "timing_nodes": {
+        "6": {
+          "class_type": "UNETLoader",
+          "observed_wall_seconds": 0.1238368,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.2428549,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.0612867,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "observed_wall_seconds": 0.0035309,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "observed_wall_seconds": 0.001751,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "observed_wall_seconds": 0.0002643,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "observed_wall_seconds": 0.0018402,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "16": {
+          "class_type": "BasicGuider",
+          "observed_wall_seconds": 0.0006344,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "14": {
+          "class_type": "SamplerCustomAdvanced",
+          "observed_wall_seconds": 232.658154,
+          "cached": false,
+          "progress_value": 50,
+          "progress_max": 50,
+          "last_state": "finished"
+        },
+        "10": {
+          "class_type": "VAEDecode",
+          "observed_wall_seconds": 1.4525126,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "23": {
+          "class_type": "VAEDecodeAudio",
+          "observed_wall_seconds": 0.5652906,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "91": {
+          "class_type": "CreateVideo",
+          "observed_wall_seconds": 0.0007403,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "92": {
+          "class_type": "SaveVideo",
+          "observed_wall_seconds": 0.3679365,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1001": {
+          "class_type": "ConditioningLoader",
+          "observed_wall_seconds": 0.0007105,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1002": {
+          "class_type": "EmptyMiniMaxH3LatentAV",
+          "observed_wall_seconds": 0.0040989,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        }
+      }
+    },
+    {
+      "case": "hands-face-mug",
+      "profile": "turbo-native-6",
+      "run_name": "q33-turbo-corpus-hands-face-mug-40be03c872424cc9b834ffe96e2413de",
+      "seed": 424242,
+      "steps": 6,
+      "source_geometry": {
+        "width": 384,
+        "height": 256,
+        "frames": 73
+      },
+      "fps": 24,
+      "frames": 73,
+      "native_generation_seconds": 37.749,
+      "controller_seconds": 71.17430140008219,
+      "source_bytes": 233528,
+      "source_sha256": "997b739cfb932216abd1d361c015cfc909ed98f0907f60184415b49ca4610d95",
+      "actual_graph_settings": {
+        "6": {
+          "class_type": "UNETLoader",
+          "inputs": {
+            "unet_name": "minimax_h3_fl2va_int8_convrot.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+          }
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+          }
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "inputs": {
+            "model": [
+              "1100",
+              0
+            ],
+            "shift_video": 12.0,
+            "shift_audio": 3.0
+          }
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "inputs": {
+            "noise_seed": 424242
+          }
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "inputs": {
+            "sampler_name": "euler"
+          }
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "inputs": {
+            "model": [
+              "148",
+              0
+            ],
+            "scheduler": "simple",
+            "steps": 6,
+            "denoise": 1.0
+          }
+        },
+        "1100": {
+          "class_type": "LoraLoaderModelOnly",
+          "inputs": {
+            "model": [
+              "6",
+              0
+            ],
+            "lora_name": "minimax_h3_turbo_v4_step600_ema.safetensors",
+            "strength_model": 1.0
+          }
+        }
+      },
+      "asset_identities": [
+        {
+          "id": "original-dit",
+          "bytes": 34038892334,
+          "sha256": "7ad4c73e6e378b822ffd1629f27f632d3787d95f5e468e3af958f98c58df96a5"
+        },
+        {
+          "id": "video-vae",
+          "bytes": 2811065184,
+          "sha256": "52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e"
+        },
+        {
+          "id": "audio-vae",
+          "bytes": 605254808,
+          "sha256": "8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48"
+        },
+        {
+          "id": "turbo-v4-step600-ema",
+          "bytes": 779849816,
+          "sha256": "5f3a626cd72c93a8b9318d6760c510bc5092d2ab13aaba1f932c5bab07a416d3"
+        }
+      ],
+      "timing_nodes": {
+        "6": {
+          "class_type": "UNETLoader",
+          "observed_wall_seconds": 0.1274141,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.2296376,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.0587278,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "observed_wall_seconds": 0.00011,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "observed_wall_seconds": 0.0003332,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "observed_wall_seconds": 0.0002732,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "observed_wall_seconds": 0.0013609,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "16": {
+          "class_type": "BasicGuider",
+          "observed_wall_seconds": 0.0003591,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "14": {
+          "class_type": "SamplerCustomAdvanced",
+          "observed_wall_seconds": 35.0694016,
+          "cached": false,
+          "progress_value": 6,
+          "progress_max": 6,
+          "last_state": "finished"
+        },
+        "10": {
+          "class_type": "VAEDecode",
+          "observed_wall_seconds": 1.4204463,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "23": {
+          "class_type": "VAEDecodeAudio",
+          "observed_wall_seconds": 0.5157443,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "91": {
+          "class_type": "CreateVideo",
+          "observed_wall_seconds": 0.0012246,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "92": {
+          "class_type": "SaveVideo",
+          "observed_wall_seconds": 0.2842231,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1001": {
+          "class_type": "ConditioningLoader",
+          "observed_wall_seconds": 0.0006612,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1002": {
+          "class_type": "EmptyMiniMaxH3LatentAV",
+          "observed_wall_seconds": 0.0064099,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1100": {
+          "class_type": "LoraLoaderModelOnly",
+          "observed_wall_seconds": 0.0208711,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        }
+      }
+    },
+    {
+      "case": "hands-face-mug",
+      "profile": "turbo-native-4",
+      "run_name": "q33-turbo4-corpus-hands-face-mug-0d48885730294c2786c24e78ecab2ded",
+      "seed": 424242,
+      "steps": 4,
+      "source_geometry": {
+        "width": 384,
+        "height": 256,
+        "frames": 73
+      },
+      "fps": 24,
+      "frames": 73,
+      "native_generation_seconds": 26.886,
+      "controller_seconds": 60.314831999945454,
+      "source_bytes": 226301,
+      "source_sha256": "a760abbd335eef70cfa1440814de72dfbb118511fec563ac19f594701af406c0",
+      "actual_graph_settings": {
+        "6": {
+          "class_type": "UNETLoader",
+          "inputs": {
+            "unet_name": "minimax_h3_fl2va_int8_convrot.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+          }
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+          }
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "inputs": {
+            "model": [
+              "1100",
+              0
+            ],
+            "shift_video": 12.0,
+            "shift_audio": 3.0
+          }
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "inputs": {
+            "noise_seed": 424242
+          }
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "inputs": {
+            "sampler_name": "euler"
+          }
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "inputs": {
+            "model": [
+              "148",
+              0
+            ],
+            "scheduler": "simple",
+            "steps": 4,
+            "denoise": 1.0
+          }
+        },
+        "1100": {
+          "class_type": "LoraLoaderModelOnly",
+          "inputs": {
+            "model": [
+              "6",
+              0
+            ],
+            "lora_name": "minimax_h3_turbo_v4_step600_ema.safetensors",
+            "strength_model": 1.0
+          }
+        }
+      },
+      "asset_identities": [
+        {
+          "id": "original-dit",
+          "bytes": 34038892334,
+          "sha256": "7ad4c73e6e378b822ffd1629f27f632d3787d95f5e468e3af958f98c58df96a5"
+        },
+        {
+          "id": "video-vae",
+          "bytes": 2811065184,
+          "sha256": "52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e"
+        },
+        {
+          "id": "audio-vae",
+          "bytes": 605254808,
+          "sha256": "8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48"
+        },
+        {
+          "id": "turbo-v4-step600-ema",
+          "bytes": 779849816,
+          "sha256": "5f3a626cd72c93a8b9318d6760c510bc5092d2ab13aaba1f932c5bab07a416d3"
+        }
+      ],
+      "timing_nodes": {
+        "6": {
+          "class_type": "UNETLoader",
+          "observed_wall_seconds": 0.1235668,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.2299334,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.0602238,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "observed_wall_seconds": 0.0004841,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "observed_wall_seconds": 0.0003781,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "observed_wall_seconds": 0.0003268,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "observed_wall_seconds": 0.0017502,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "16": {
+          "class_type": "BasicGuider",
+          "observed_wall_seconds": 0.0003742,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "14": {
+          "class_type": "SamplerCustomAdvanced",
+          "observed_wall_seconds": 24.2035254,
+          "cached": false,
+          "progress_value": 4,
+          "progress_max": 4,
+          "last_state": "finished"
+        },
+        "10": {
+          "class_type": "VAEDecode",
+          "observed_wall_seconds": 1.4202415,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "23": {
+          "class_type": "VAEDecodeAudio",
+          "observed_wall_seconds": 0.5226456,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "91": {
+          "class_type": "CreateVideo",
+          "observed_wall_seconds": 0.000638,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "92": {
+          "class_type": "SaveVideo",
+          "observed_wall_seconds": 0.2850985,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1001": {
+          "class_type": "ConditioningLoader",
+          "observed_wall_seconds": 0.0006729,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1002": {
+          "class_type": "EmptyMiniMaxH3LatentAV",
+          "observed_wall_seconds": 0.0043782,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1100": {
+          "class_type": "LoraLoaderModelOnly",
+          "observed_wall_seconds": 0.0203832,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        }
+      }
+    },
+    {
+      "case": "hands-face-mug",
+      "profile": "trim-8",
+      "run_name": "q33-corpus-hands-face-mug-trim-8-efeb0b2d4a80448d9449d36a5ed96917",
+      "seed": 424242,
+      "steps": 8,
+      "source_geometry": {
+        "width": 384,
+        "height": 256,
+        "frames": 73
+      },
+      "fps": 24,
+      "frames": 73,
+      "native_generation_seconds": 9.702,
+      "controller_seconds": 27.964970499975607,
+      "source_bytes": 266004,
+      "source_sha256": "ee040fcadaa68cd190bafd494153b9ada6427b6ef4005999040ae5a6bf20fd67",
+      "actual_graph_settings": {
+        "6": {
+          "class_type": "UNETLoader",
+          "inputs": {
+            "unet_name": "fastvideo_fasth3_trim_8step_nvfp4.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+          }
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+          }
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "inputs": {
+            "model": [
+              "6",
+              0
+            ],
+            "shift_video": 10.0,
+            "shift_audio": 3.0
+          }
+        },
+        "128": {
+          "class_type": "ModelAttentionBackend",
+          "inputs": {
+            "model": [
+              "148",
+              0
+            ],
+            "attention": "comfy kitchen attention"
+          }
+        },
+        "127": {
+          "class_type": "BlockSparseAttention",
+          "inputs": {
+            "model": [
+              "128",
+              0
+            ],
+            "selection": "vsa",
+            "selection.keep_percent": 10.0,
+            "start_percent": 0.2,
+            "end_percent": 1.0,
+            "dense_blocks": "",
+            "min_tokens": 12288,
+            "extra_tokens": 256,
+            "sink_conditioning": "exact_kv_and_rows",
+            "verbose": false
+          }
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "inputs": {
+            "noise_seed": 424242
+          }
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "inputs": {
+            "sampler_name": "res_multistep"
+          }
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "inputs": {
+            "model": [
+              "127",
+              0
+            ],
+            "scheduler": "simple",
+            "steps": 8,
+            "denoise": 1.0
+          }
+        }
+      },
+      "asset_identities": [
+        {
+          "id": "trim-dit",
+          "bytes": 11894623166,
+          "sha256": "748b2bcc9c4b7bf7b23406987b42d4ac40362070c164cf11092482be6a863455"
+        },
+        {
+          "id": "video-vae",
+          "bytes": 2811065184,
+          "sha256": "52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e"
+        },
+        {
+          "id": "audio-vae",
+          "bytes": 605254808,
+          "sha256": "8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48"
+        }
+      ],
+      "timing_nodes": {
+        "6": {
+          "class_type": "UNETLoader",
+          "observed_wall_seconds": 0.2855424,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.2054719,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.0475649,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "observed_wall_seconds": 0.0032475,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "128": {
+          "class_type": "ModelAttentionBackend",
+          "observed_wall_seconds": 0.0008908,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "127": {
+          "class_type": "BlockSparseAttention",
+          "observed_wall_seconds": 7.19e-05,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "observed_wall_seconds": 7.42e-05,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "observed_wall_seconds": 0.0003452,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "observed_wall_seconds": 0.0003821,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "16": {
+          "class_type": "BasicGuider",
+          "observed_wall_seconds": 0.0004156,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "14": {
+          "class_type": "SamplerCustomAdvanced",
+          "observed_wall_seconds": 7.4577585,
+          "cached": false,
+          "progress_value": 8,
+          "progress_max": 8,
+          "last_state": "finished"
+        },
+        "10": {
+          "class_type": "VAEDecode",
+          "observed_wall_seconds": 1.0927331,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "23": {
+          "class_type": "VAEDecodeAudio",
+          "observed_wall_seconds": 0.3552795,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "91": {
+          "class_type": "CreateVideo",
+          "observed_wall_seconds": 0.000737,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "92": {
+          "class_type": "SaveVideo",
+          "observed_wall_seconds": 0.2374465,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1001": {
+          "class_type": "ConditioningLoader",
+          "observed_wall_seconds": 0.0006171,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1002": {
+          "class_type": "EmptyMiniMaxH3LatentAV",
+          "observed_wall_seconds": 0.004186,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        }
+      }
+    },
+    {
+      "case": "hands-face-mug",
+      "profile": "trim-6",
+      "run_name": "q33-corpus-hands-face-mug-trim-6-4b67ed669500447d884d742f21443a7a",
+      "seed": 424242,
+      "steps": 6,
+      "source_geometry": {
+        "width": 384,
+        "height": 256,
+        "frames": 73
+      },
+      "fps": 24,
+      "frames": 73,
+      "native_generation_seconds": 8.283,
+      "controller_seconds": 26.82473980006762,
+      "source_bytes": 273858,
+      "source_sha256": "a601a863b26f96c359e9f9dc6a0b6aa11b8a4564e74c4bcebdefa64ad0802f42",
+      "actual_graph_settings": {
+        "6": {
+          "class_type": "UNETLoader",
+          "inputs": {
+            "unet_name": "fastvideo_fasth3_trim_8step_nvfp4.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+          }
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+          }
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "inputs": {
+            "model": [
+              "6",
+              0
+            ],
+            "shift_video": 10.0,
+            "shift_audio": 3.0
+          }
+        },
+        "128": {
+          "class_type": "ModelAttentionBackend",
+          "inputs": {
+            "model": [
+              "148",
+              0
+            ],
+            "attention": "comfy kitchen attention"
+          }
+        },
+        "127": {
+          "class_type": "BlockSparseAttention",
+          "inputs": {
+            "model": [
+              "128",
+              0
+            ],
+            "selection": "vsa",
+            "selection.keep_percent": 10.0,
+            "start_percent": 0.2,
+            "end_percent": 1.0,
+            "dense_blocks": "",
+            "min_tokens": 12288,
+            "extra_tokens": 256,
+            "sink_conditioning": "exact_kv_and_rows",
+            "verbose": false
+          }
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "inputs": {
+            "noise_seed": 424242
+          }
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "inputs": {
+            "sampler_name": "res_multistep"
+          }
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "inputs": {
+            "model": [
+              "127",
+              0
+            ],
+            "scheduler": "simple",
+            "steps": 6,
+            "denoise": 1.0
+          }
+        }
+      },
+      "asset_identities": [
+        {
+          "id": "trim-dit",
+          "bytes": 11894623166,
+          "sha256": "748b2bcc9c4b7bf7b23406987b42d4ac40362070c164cf11092482be6a863455"
+        },
+        {
+          "id": "video-vae",
+          "bytes": 2811065184,
+          "sha256": "52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e"
+        },
+        {
+          "id": "audio-vae",
+          "bytes": 605254808,
+          "sha256": "8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48"
+        }
+      ],
+      "timing_nodes": {
+        "6": {
+          "class_type": "UNETLoader",
+          "observed_wall_seconds": 0.2832768,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "11": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.1750149,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "24": {
+          "class_type": "VAELoader",
+          "observed_wall_seconds": 0.0477269,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "148": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "observed_wall_seconds": 0.0030608,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "128": {
+          "class_type": "ModelAttentionBackend",
+          "observed_wall_seconds": 0.0007963,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "127": {
+          "class_type": "BlockSparseAttention",
+          "observed_wall_seconds": 0.0003538,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "15": {
+          "class_type": "RandomNoise",
+          "observed_wall_seconds": 0.0003723,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "17": {
+          "class_type": "KSamplerSelect",
+          "observed_wall_seconds": 0.0002094,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "observed_wall_seconds": 0.0003956,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "16": {
+          "class_type": "BasicGuider",
+          "observed_wall_seconds": 0.0002455,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "14": {
+          "class_type": "SamplerCustomAdvanced",
+          "observed_wall_seconds": 6.1419297,
+          "cached": false,
+          "progress_value": 6,
+          "progress_max": 6,
+          "last_state": "finished"
+        },
+        "10": {
+          "class_type": "VAEDecode",
+          "observed_wall_seconds": 1.0084337,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "23": {
+          "class_type": "VAEDecodeAudio",
+          "observed_wall_seconds": 0.3480623,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "91": {
+          "class_type": "CreateVideo",
+          "observed_wall_seconds": 0.0009597,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "92": {
+          "class_type": "SaveVideo",
+          "observed_wall_seconds": 0.25732,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1001": {
+          "class_type": "ConditioningLoader",
+          "observed_wall_seconds": 0.0006395,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        },
+        "1002": {
+          "class_type": "EmptyMiniMaxH3LatentAV",
+          "observed_wall_seconds": 0.0032383,
+          "cached": false,
+          "progress_value": null,
+          "progress_max": null,
+          "last_state": "finished"
+        }
+      }
+    }
+  ],
+  "limits": [
+    "Same seed does not ensure identical imagery across different models.",
+    "Model, quantization, steps, scheduler and attention settings vary; not a single-variable optimization.",
+    "Receiver-observed node times are wall intervals, not GPU-only kernel timings.",
+    "No blinded quality score or end-to-end service-performance acceptance; INCONCLUSIVE."
+  ],
+  "graph_settings_scope": "Selected native loader/attention/scheduler fields from historical manifest; not every node. For the custom turbo-hybrid LoRA node see the archived PLAN-FROZEN-v1.json."
+}
